@@ -138,7 +138,7 @@ useful if you have already placed a suitable database driver in the `/ofbiz/lib-
 ## Examples of running the OFBiz container
 
 ```
-docker run -it -p 8443:8443 ofbiz-docker
+docker run -it -p 8443:8443 ofbiz-docker -d
 ```
 Launch the OFBiz container, load the seed data, create the administrator user with 
 name `admin` and password `ofbiz`, listen on port 8443 for connections to `localhost`.
