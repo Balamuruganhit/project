@@ -493,7 +493,7 @@ under the License.
         <section>
             <actions>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
-                <set field="logoImageUrl" value="/images/ofbiz_logo.png" global="true"/>
+                <set field="logoImageUrl" value="/images/main.png" global="true"/>
                 <property-to-field resource="fop.properties" field="defaultFontFamily" property="fop.font.family" default="NotoSans"/>
             </actions>
             <widgets>
@@ -506,7 +506,7 @@ under the License.
     <screen name="GlobalFoDecorator">
         <section>
             <actions>
-                <set field="layoutSettings.commonHeaderImageUrl" value="/images/ofbiz_logo.png"/>
+                <set field="layoutSettings.commonHeaderImageUrl" value="/images/main.png"/>
             </actions>
             <widgets>
                 <platform-specific>
