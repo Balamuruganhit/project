@@ -471,7 +471,7 @@ under the License.
                 <entity-one entity-name="PartyNameView" value-field="currentOrganization">
                     <field-map field-name="partyId" from-field="organizationPartyId"/>
                 </entity-one>
-                <set field="logoImageUrl" value="/images/ofbiz_logo.png"/>
+                <set field="logoImageUrl" value="/images/main.png"/>
                 <!--<set field="defaultFontFamily" value="Arial"/>-->
             </actions>
             <widgets>
