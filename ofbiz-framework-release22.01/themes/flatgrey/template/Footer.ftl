@@ -22,17 +22,13 @@ under the License.
         <li><a href="<@ofbizUrl>ListLocales</@ofbizUrl>">${locale.getDisplayName(locale)}</a></li>
         <li class="last"><a href="<@ofbizUrl>ListVisualThemes</@ofbizUrl>">${uiLabelMap.CommonVisualThemes}</a></li>
     </ul>
-  <p>
-    <div class="poweredBy"><span class="footerTextColour">${uiLabelMap.CommonPoweredBy}
-        <a href="http://ofbiz.apache.org" class="noicon">OFBiz </a></span><span class="footerTextColour">Copyright 2001-${nowTimestamp?string("yyyy")}
-        <a href="http://www.apache.org" class="noicon">The Apache Software Foundation - www.apache.org</a></span>
-        <span class="footerTextColour">
-            ${uiLabelMap.CommonRelease} <#include "ofbizhome://VERSION" ignore_missing=true/>
-            <#include "ofbizhome://runtime/GitInfo.ftl" ignore_missing=true/>
-        </span>
-    </div>
-
-  </p>
+  <div id="footer">
+    <span>${nowTimestamp?datetime?string.short} - <a href="<@ofbizUrl>ListTimezones</@ofbizUrl>">${timeZone.toZoneId().getDisplayName(Static["java.time.format.TextStyle"].FULL_STANDALONE, locale)}</a></span>
+    <span><a href="http://www.pangun.tech" class="noicon">Pangun NeoERP @</a> ${uiLabelMap.CommonCopyright}  2023-${nowTimestamp?string("yyyy")}
+        <a href=""http://www.pangun.tech"" target="_blank">Pangun Technologies</a>.
+       
+    </span>
+</div>
 </div>
 </div>
 <#if layoutSettings.VT_FTR_JAVASCRIPT?has_content>

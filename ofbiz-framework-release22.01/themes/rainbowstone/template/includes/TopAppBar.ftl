@@ -236,7 +236,7 @@ under the License.
         </#if>
     </div>
         <div id="main-nav-bar-right">
-            <div id="company-logo"></div>
+            <div id="company-logo1"></div>
             <a class="dark-color" title="${uiLabelMap.CommonHelp}" href="${userDocUri!Static["org.apache.ofbiz.entity.util.EntityUtilProperties"].getPropertyValue("general", "userDocUri", delegator)}<#if helpAnchor??>#${helpAnchor}</#if>" target="help">${uiLabelMap.CommonHelp}<img class="appbar-btn-img" id="help-btn" src="/rainbowstone/images/help.svg" alt="Help"></a>
 
             <#include "component://rainbowstone/template/includes/Avatar.ftl"/>
