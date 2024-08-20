@@ -41,7 +41,7 @@
 @color-font-success: #3c763d;
 @color-border-success: #d6e9c6;
 
-@app-bar-height: 5.3rem;
+@app-bar-height: 60px;
 @sub-app-bar-height: 40px;
 @footer-height: 20px;
 @home-btn-width: 47px;
@@ -346,6 +346,15 @@
     background-color: @light-color-theme;
   }
 }
+/* Login logo */ 
+#company-logo-login{
+  position: absolute;
+  left: 34rem;
+    top: 0.8rem;
+    width: 4.2rem;
+    height: 6.3rem;
+    background: url(https://34.28.254.50:8443/rainbowstone/images/main.png) no-repeat left top / cover;
+}
 
 /* end lookup widget */
 
@@ -356,6 +365,7 @@
   font-size: 15px;
   font-weight: bold;
 }
+
 
 #company-logo1 {
   // right: 20px;
@@ -376,10 +386,11 @@
   //   background: url("images/main.png") no-repeat left top / cover;
         // height: 6rem;
         // width: 4rem;
-        margin-right:0.9rem;
-        top: 0.4rem;
-        background: url(images/main.png) no-repeat left top / cover;
-        left: 40rem;
+        margin-right: 0.9rem;
+        background: url(https://34.28.254.50:8443/rainbowstone/images/main.png) no-repeat left top / cover;
+        left: -3.5rem;
+        /* height: 10px; */
+        background-size: 2.5rem 3rem;
   }
 }
 
@@ -557,7 +568,7 @@ li.line-odd {
   align-items: center;
   justify-content: space-between;
   font-family: Quicksand, sans-serif;
-  background-color: #DEF3FD;
+  background-color: #002333;
   z-index: 5;
   height: @app-bar-height;
 }
@@ -1212,7 +1223,7 @@ a.user-pref-btn {
     padding: 5px 10px 5px 10px;
   }
 
-  #company-logo {
+  #company-logo1 {
     position: absolute;
   }
 }

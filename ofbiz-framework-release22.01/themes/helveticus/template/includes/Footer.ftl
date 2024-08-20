@@ -19,9 +19,9 @@ under the License.
 <div id="footer-offset"></div>
 <div id="footer">
     <span>${nowTimestamp?datetime?string.short} - <a href="<@ofbizUrl>ListTimezones</@ofbizUrl>">${timeZone.toZoneId().getDisplayName(Static["java.time.format.TextStyle"].FULL_STANDALONE, locale)}</a></span>
-    <span><a href="http://www.pangun.tech" class="noicon">Pangun NeoERP @</a> ${uiLabelMap.CommonCopyright}  2023-${nowTimestamp?string("yyyy")}
+    <span> ${uiLabelMap.CommonCopyright} (c)  2023-${nowTimestamp?string("yyyy")}
         <a href=""http://www.pangun.tech"" target="_blank">Pangun Technologies</a>.
-       
+       Powered by <a href="http://www.pangun.tech" class="noicon">Pangun NeoERP </a>
     </span>
 </div>
 </div>

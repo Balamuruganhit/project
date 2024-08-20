@@ -4106,3 +4106,8 @@ html > /**/ body .jstree-default a {
 a[data-featherlight] {
     cursor: pointer;
 }
+/* it will control height of bluelight theme logo */
+.imager{
+    height:8rem;
+    margin-left: 0.2rem;
+}
