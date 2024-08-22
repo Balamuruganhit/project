@@ -63,7 +63,7 @@ if (phases) {
         newPhase.estimatedStartDate = newPhase.estimatedStartDate ?: context.chartStart
 
         if (!newPhase.estimatedCompletionDate && newPhase.actualCompletionDate) {
-            newPhase.estimatedCompletionDate = newPhase.actualCompletionDateDate
+            newPhase.estimatedCompletionDate = newPhase.actualCompletionDate
         }
         newPhase.estimatedCompletionDate = newPhase.estimatedCompletionDate
                 ?: UtilDateTime.addDaysToTimestamp(newPhase.estimatedStartDate as Timestamp, defaultTaskDurationDays)
@@ -173,5 +173,6 @@ if (phases) {
         }
     }
 }
+
 
 context.phaseTaskListJson = JsonOutput.toJson(ganttItems)
