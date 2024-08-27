@@ -44,7 +44,6 @@ import javax.xml.xpath.XPathFactory;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.UtilHttp;
 import org.apache.ofbiz.base.util.UtilProperties;
-import org.apache.ofbiz.base.util.UtilURL;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.base.util.UtilXml;
 import org.apache.ofbiz.entity.Delegator;
@@ -195,7 +194,7 @@ public class JanrainHelper {
         }
         String data = sb.toString();
         try {
-            URL url = UtilURL.fromUrlString(baseUrl + "/api/v2/" + methodName);
+            URL url = new URL(baseUrl + "/api/v2/" + methodName);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);

@@ -56,7 +56,7 @@
                             </condition>
                             <widgets>
                                 <screenlet title="${uiLabelMap.EbayFeedback}">
-                                    <include-menu name="EbayFeedbackTabBar" location="${parameters.mainMenuLocation}"/>
+                                    <include-menu name="EbayFeedbackTabBar" location="component://ebaystore/widget/EbayStoreMenus.xml"/>
                                     <decorator-section-include name="body"/>
                                 </screenlet>
                             </widgets>
@@ -83,7 +83,7 @@
                     <field-map field-name="productStoreId" from-field="parameters.productStoreId"/>
                 </service>
                 <set field="itemsAwaitingFeedbackList" from-field="results.itemsAwaitingFeedback"/>
-                <script location="component://ebaystore/src/main/groovy/org/apache/ofbiz/ebaystore/feedback/FeedbackList.groovy"/>
+                <script location="component://ebaystore/groovyScripts/feedback/FeedbackList.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="EbayFeedback" >
@@ -118,7 +118,7 @@
                     <decorator-section name="body">
                         <screenlet>
                             <screenlet title="${uiLabelMap.EbayLeaveFeedback}">
-                                <include-menu name="EbayFeedbackSubTabBar" location="${parameters.mainMenuLocation}"/>
+                                <include-menu name="EbayFeedbackSubTabBar" location="component://ebaystore/widget/EbayStoreMenus.xml"/>
                                 <platform-specific>
                                     <html><html-template multi-block="true" location="component://ebaystore/template/feedback/LeaveFeedback.ftl"/></html>
                                 </platform-specific>
@@ -146,7 +146,7 @@
                             </condition>
                             <widgets>
                                 <screenlet title="${uiLabelMap.EbayFeedback}">
-                                    <include-menu name="EbayFeedbackTabBar" location="${parameters.mainMenuLocation}"/>
+                                    <include-menu name="EbayFeedbackTabBar" location="component://ebaystore/widget/EbayStoreMenus.xml"/>
                                     <decorator-section-include name="body"/>
                                 </screenlet>
                             </widgets>
@@ -172,7 +172,7 @@
                     <field-map field-name="productStoreId" from-field="parameters.productStoreId"/>
                 </service>
                 <set field="itemsAwaitingFeedbackList" from-field="results.itemsAwaitingFeedback"/>
-                <script location="component://ebaystore/src/main/groovy/org/apache/ofbiz/ebaystore/feedback/FeedbackList.groovy"/>
+                <script location="component://ebaystore/groovyScripts/feedback/FeedbackList.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="EbayFeedback" >
@@ -206,7 +206,7 @@
                     <decorator-section name="body">
                         <screenlet>
                             <screenlet title="${uiLabelMap.EbayLeaveFeedback}">
-                                <include-menu name="EbayFeedbackSubTabBar" location="${parameters.mainMenuLocation}"/>
+                                <include-menu name="EbayFeedbackSubTabBar" location="component://ebaystore/widget/EbayStoreMenus.xml"/>
                                 <platform-specific>
                                     <html><html-template multi-block="true" location="component://ebaystore/template/feedback/LeaveFeedback.ftl"/></html>
                                 </platform-specific>

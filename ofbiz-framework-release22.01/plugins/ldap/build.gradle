@@ -17,25 +17,8 @@
  * under the License.
  */
 
-// 6.4.0 shows 2 hard to understand errors:
-//    > Task :compileJava
-//    C:\projectsASF\Git\ofbiz-framework\plugins\ldap\src\main\java\org\apache\ofbiz\ldap\activedirectory\OFBizActiveDirectoryAuthenticationHandler.java:95: error: incompatible types: String cannot be converted to DERBuffer
-//                LdapEntry entry = new LdapEntry(username);
-//                                                ^
-//    C:\projectsASF\Git\ofbiz-framework\plugins\ldap\src\main\java\org\apache\ofbiz\ldap\openldap\OFBizLdapAuthenticationHandler.java:82: error: incompatible types: String cannot be converted to DERBuffer
-//                LdapEntry entry = new LdapEntry(username);
-//                                                ^
 dependencies {
-    pluginLibsCompile 'org.apereo.cas:cas-server-support-ldap-core:5.0.10'
-}
-
-configurations.all {
-    exclude group: 'javax.xml.parsers', module: 'jsr173_api'
-    exclude group: 'javax.xml.namespace', module: 'jsr173_api'
-    exclude group: 'javax.xml.bind', module: 'jsr173_api'
-    exclude group: 'javax.xml.bind', module: 'jaxb-api'
-    exclude group: 'geronimo-spec', module: 'geronimo-spec-jta'
-    
+    pluginLibsCompile 'org.apereo.cas:cas-server-support-ldap-core:5.0.10' //  6.4.0 declares an API of a component compatible with Java 11 and the consumer needed a runtime of a component compatible with Java 8
 }
 
 configurations.all {

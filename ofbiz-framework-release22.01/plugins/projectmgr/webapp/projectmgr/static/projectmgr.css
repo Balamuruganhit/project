@@ -19,7 +19,10 @@
 
 /* This CSS file is used for the Project Manager component. */
 
-/* Remove any margins that my have been set on all divs by the themes, such as Rainbowstone */
-.gchartcontainer div {
-    margin: unset
+#GanttChartDIV tr, #GanttChartDIV td {
+    vertical-align: top;
+}
+
+.gheadwkend {
+    background-color: #cfcfcf
 }

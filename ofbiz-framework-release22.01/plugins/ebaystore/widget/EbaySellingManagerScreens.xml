@@ -319,7 +319,7 @@
                     <field-map field-name="productStoreId" from-field="parameters.productStoreId"/>
                     <field-map field-name="autoPrefEnumId" from-field="autoPrefEnumId2"/>
                 </entity-one>
-                <script location="component://ebaystore/src/main/groovy/org/apache/ofbiz/ebaystore/automationPreferences/GetDisputeInfo.groovy"/>
+                <script location="component://ebaystore/groovyScripts/automationPreferences/GetDisputeInfo.groovy"/>
             </actions>
             <widgets>
                 <screenlet title="${uiLabelMap.EbayAutomatiionDisputeItems}" collapsible="true" name="AutomationDispute">
@@ -421,7 +421,7 @@
                        <field-map field-name="userLoginId" from-field="userLoginId"/>
                    </entity-one>
                    <set field="partyId" from-field="userLoginCheck.partyId"/>
-                   <script location="component://ebaystore/src/main/groovy/org/apache/ofbiz/ebaystore/email/GetProductStoreEmailTemplate.groovy"/>
+                   <script location="component://ebaystore/groovyScripts/email/GetProductStoreEmailTemplate.groovy"/>
                    <entity-one entity-name="Content" value-field="templateContent"/>
                    <get-related-one value-field="templateContent" relation-name="DataResource" to-value-field="templateDataResource"/>
                    <get-related-one value-field="templateDataResource" relation-name="ElectronicText" to-value-field="templateData"/>
@@ -541,7 +541,7 @@
             <actions>
                 <set field="headerItem" value="ebayStore"/>
                 <set field="sellingManagerItem" value="ordersImported"/>
-                <script location="component://order/src/main/groovy/org/apache/ofbiz/order/order/FindOrders.groovy"/>
+                <script location="component://order/groovyScripts/order/FindOrders.groovy"/>
                 <set field="orderList" from-field="orderList" type="List"/>
                 <set field="productStoreId" from-field="parameters.productStoreId"/>
             </actions>
@@ -717,7 +717,7 @@
                                     <widgets/>
                                 </section>
                                     <screenlet title="Order Listings (Import single Transactions)">
-                                        <include-menu name="EbayOrderSubBar" location="${parameters.mainMenuLocation}"/>
+                                        <include-menu name="EbayOrderSubBar" location="component://ebaystore/widget/EbayStoreMenus.xml"/>
                                         <include-form name="FindEbayStoreOrders" location="component://ebaystore/widget/EbaySellingManagerForms.xml"/>
                                         <include-form name="TransactionList" location="component://ebaystore/widget/EbaySellingManagerForms.xml"/>
                                     </screenlet>
@@ -742,13 +742,13 @@
                                             <field-map field-name="thruDate" from-field="parameters.thruDate"/>
                                         </service>
                                         <set field="orderList" from-field="orderResult.orderList"/>
-                                        <script location="component://ebaystore/src/main/groovy/org/apache/ofbiz/ebaystore/store/OrderListPrepare.groovy"/>
+                                        <script location="component://ebaystore/groovyScripts/store/OrderListPrepare.groovy"/>
                                         <set field="selectedDate" value="false"/>
                                     </actions>
                                     <widgets/>
                                 </section>
                                     <screenlet title="Order Listings (Import many transactions)">
-                                        <include-menu name="EbayOrderSubBar" location="${parameters.mainMenuLocation}"/>
+                                        <include-menu name="EbayOrderSubBar" location="component://ebaystore/widget/EbayStoreMenus.xml"/>
                                         <include-form name="FindEbayStoreOrders" location="component://ebaystore/widget/EbaySellingManagerForms.xml"/>
                                         <include-form name="OrderList" location="component://ebaystore/widget/EbaySellingManagerForms.xml"/>
                                     </screenlet>

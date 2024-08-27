@@ -469,8 +469,7 @@ ${virtualJavaScript!}
       </td>
     </tr>
   <#-- Long description of product -->
-  <#assign longDescription = (productContentWrapper.get("LONG_DESCRIPTION", "html"))!"">
-  <#if longDescription?has_content && longDescription != "">>
+  <#if productContentWrapper.get("LONG_DESCRIPTION", "html") != "">
     <tr>
       <td colspan="2">
         <div>${productContentWrapper.get("LONG_DESCRIPTION", "html")!}</div>
@@ -507,27 +506,25 @@ ${virtualJavaScript!}
           <#list questions as question>
             <tr>
               <td>
-              <#if question?has_content && question != "">
                 <div>${question.question}</div>
                 <#if question.isFirst()>
-                  <#assign configItemId = (question.getConfigItem().getString("configItemId"))!"">
-                  <a name='#${configItemId}'></a>
-                  <#assign questionDescription = (question.getConfigItem().getString("description"))!"">
-                  <#if questionDescription != question.question>
-                    <div>${questionDescription}</div>
-                  </#if>
-                  <#assign instructions = (question.content.get("INSTRUCTIONS", "html"))!"">
+                  <a name='#${question.getConfigItem().getString("configItemId")}'></a>
+                  <div>${StringUtil.wrapString(question.description!)}</div>
+                  <#assign instructions = question.content.get("INSTRUCTIONS", "html")!>
                   <#if instructions?has_content && instructions != "">
                     <a href="javascript:showErrorAlert('${uiLabelMap.CommonErrorMessage2}','${instructions}');"
                     class="btn btn-outline-secondary btn-sm">Instructions</a>
                   </#if>
-                </#if>
                   <#assign image = question.content.get("IMAGE_URL", "url")!>
                   <#if image?string?has_content>
                     <img src='<@ofbizContentUrl>${contentPathPrefix!}${image!}</@ofbizContentUrl>'
-                    vspace='5' hspace='5' class='cssImgXLarge' align='left' alt=""/>
+                         vspace='5' hspace='5' class='cssImgXLarge' align='left' alt=""/>
                   </#if>
-              </#if>
+                <#else>
+                  <div>
+                    <a href='#${question.getConfigItem().getString("configItemId")}' class="btn btn-outline-secondary btn-sm">Details</a>
+                  </div>
+                </#if>
               </td>
             </tr>
             <tr>

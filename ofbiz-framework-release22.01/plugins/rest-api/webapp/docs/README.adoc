@@ -4,12 +4,12 @@ You can choose between Swagger UI and Redoc to publish documentation for the RES
 
 == Swagger
 
-Current version: swagger-ui-4.2.1
+Current version: swagger-ui-3.45.1
 
 Access: https://localhost:8443/docs/swagger-ui.html
 
 == Redoc
 
-Current version: redoc@2.0.0-rc.59
+Current version: redoc@2.0.0-rc.50
 
 Accesss: https://localhost:8443/docs/redoc.html

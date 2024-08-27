@@ -42,7 +42,7 @@ under the License.
                 <set field="MyTasks_index_1" from-field="parameters.MyTasks_index_1" default-value="0"/>
                 <set field="MyTasks_url" value="timesheetId=${parameters.timesheetId}&amp;MyTasks_size_1=${MyTasks_size_1}&amp;MyTasks_index_1=${MyTasks_index_1}#"/>
                 <set field="timesheetId" from-field="parameters.timesheetId"/>
-                <script location="component://scrum/src/main/groovy/org/apache/ofbiz/scrum/EditDailyHourReport.groovy"/>
+                <script location="component://scrum/groovyScripts/EditDailyHourReport.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonMyWorkScreenDecorator" location="${parameters.mainDecoratorLocation}">
@@ -81,7 +81,7 @@ under the License.
     <screen name="MyTaskList">
         <section>
             <actions>
-                <script location="component://scrum/src/main/groovy/org/apache/ofbiz/scrum/TaskList.groovy"/>
+                <script location="component://scrum/groovyScripts/TaskList.groovy"/>
             </actions>
             <widgets>
                 <section>
@@ -111,8 +111,8 @@ under the License.
     <screen name="CurrentTimesheet">
         <section>
             <actions>
-                <script location="component://scrum/src/main/groovy/org/apache/ofbiz/scrum/EditDailyHourReport.groovy"/>
-                <script location="component://scrum/src/main/groovy/org/apache/ofbiz/scrum/TaskList.groovy"/>
+                <script location="component://scrum/groovyScripts/EditDailyHourReport.groovy"/>
+                <script location="component://scrum/groovyScripts/TaskList.groovy"/>
             </actions>
             <widgets>
                     <section>
@@ -128,7 +128,7 @@ under the License.
                         <fail-widgets>
                             <screenlet title="${uiLabelMap.PageTitleCurrentTimesheet} ${uiLabelMap.CommonNbr} ${timesheet.timesheetId} ${uiLabelMap.CommonFrom} ${groovy:timesheet.get(&quot;fromDate&quot;).toString().substring(0,10)} ${uiLabelMap.CommonTo} ${groovy:timesheet.get(&quot;thruDate&quot;).toString().substring(0,10)}"
                                 navigation-menu-name="TimesheetBar">
-                                <include-menu name="TimesheetBar" location="${parameters.mainMenuLocation}"/>
+                                <include-menu name="TimesheetBar" location="component://scrum/widget/scrumMenus.xml"/>
                                 <include-form name="EditWeekTimesheet" location="component://scrum/widget/MyWorkForms.xml"/>
                             </screenlet>
                         </fail-widgets>

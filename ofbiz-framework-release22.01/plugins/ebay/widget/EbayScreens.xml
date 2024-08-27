@@ -31,8 +31,8 @@ under the License.
                     <condition-expr field-name="showInSelect" operator="not-equals" value="N"/>
                     <order-by field-name="description"/>
                 </entity-condition>
-                <script location="component://product/src/main/groovy/org/apache/ofbiz/product/catalog/find/AdvancedSearchOptions.groovy"/>
-                <script location="component://ebay/src/main/groovy/org/apache/ofbiz/ebay/EbayAdvancedSearch.groovy"/>
+                <script location="component://product/groovyScripts/catalog/find/AdvancedSearchOptions.groovy"/>
+                <script location="component://ebay/groovyScripts/EbayAdvancedSearch.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="permission-decorator" location="${parameters.mainDecoratorLocation}">
@@ -52,7 +52,7 @@ under the License.
                 <set field="titleProperty" value="PageTitleSearchResults"/>
                 <set field="helpAnchor" value="_search_products_in_category_screen"/>
                 <set field="headerItem" value="export"/>
-                <script location="component://product/src/main/groovy/org/apache/ofbiz/product/catalog/find/KeywordSearch.groovy"/>
+                <script location="component://product/groovyScripts/catalog/find/KeywordSearch.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="permission-decorator" location="${parameters.mainDecoratorLocation}">
@@ -80,7 +80,7 @@ under the License.
                     <condition-expr field-name="geoTypeId" value="COUNTRY"/>
                     <order-by field-name="geoName"/>
                 </entity-condition>
-                <script location="component://ebay/src/main/groovy/org/apache/ofbiz/ebay/ProductsExportToEbayScript.groovy"/>
+                <script location="component://ebay/groovyScripts/ProductsExportToEbay.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="permission-decorator" location="${parameters.mainDecoratorLocation}">
@@ -151,7 +151,7 @@ under the License.
                 <set field="titleProperty" value="EbayEBayOrders"/>
                 <set field="headerItem" value="eBayOrders"/>
                 <set field="orderList" from-field="parameters.orderList"/>
-                <script location="component://ebay/src/main/groovy/org/apache/ofbiz/ebay/EbayOrders.groovy"/>
+                <script location="component://ebay/groovyScripts/EbayOrders.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="permission-decorator" location="${parameters.mainDecoratorLocation}">
@@ -267,7 +267,7 @@ under the License.
                 <set field="titleProperty" value="EbayEBayOrders"/>
                 <set field="helpAnchor" value="_section_search_options"/>
                 <set field="headerItem" value="eBayOrders"/>
-                <script location="component://ebay/src/main/groovy/org/apache/ofbiz/ebay/UpdatedEbayOrders.groovy"/>
+                <script location="component://ebay/groovyScripts/UpdatedEbayOrders.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="permission-decorator" location="${parameters.mainDecoratorLocation}">

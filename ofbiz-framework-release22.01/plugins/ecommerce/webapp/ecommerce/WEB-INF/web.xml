@@ -44,12 +44,7 @@ under the License.
         <param-name>mainDecoratorLocation</param-name>
         <param-value>component://ecommerce/widget/CommonScreens.xml</param-value>
     </context-param>
-    <context-param>
-        <description>The location of the menus file to be used in this webapp; referred to as a context variable in screen def XML files.</description>
-        <param-name>mainMenuLocation</param-name>
-        <param-value>component://ecommerce/widget/EcommerceMenus.xml</param-value>
-    </context-param>
-    
+
     <filter>
         <display-name>ContextFilter</display-name>
         <filter-name>ContextFilter</filter-name>
@@ -168,4 +163,9 @@ under the License.
         <welcome-file>index.html</welcome-file>
         <welcome-file>index.htm</welcome-file>
     </welcome-file-list>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404.jsp</location>
+    </error-page>
 </web-app>

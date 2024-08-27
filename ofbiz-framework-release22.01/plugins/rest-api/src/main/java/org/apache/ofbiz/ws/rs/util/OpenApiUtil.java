@@ -159,12 +159,10 @@ public final class OpenApiUtil {
     }
 
     private static void buildApiResponseSchemas() {
-        Schema<?> genericErrorSchema = new MapSchema();
-        genericErrorSchema.addProperty("statusCode", new IntegerSchema().description("HTTP Status Code"));
-
-        genericErrorSchema.addProperty("statusDescription", new StringSchema().description("HTTP Status Code Description"));
-        genericErrorSchema.addProperty("errorType", new StringSchema().description("Error Type for the error"));
-        genericErrorSchema.addProperty("errorMessage", new StringSchema().description("Error Message"));
+        Schema<?> genericErrorSchema = new MapSchema().addProperties("statusCode", new IntegerSchema().description("HTTP Status Code"))
+                 .addProperties("statusDescription", new StringSchema().description("HTTP Status Code Description"))
+                 .addProperties("errorType", new StringSchema().description("Error Type for the error"))
+                 .addProperties("errorMessage", new StringSchema().description("Error Message"));
         SCHEMAS.put("api.response.unauthorized.noheader", genericErrorSchema);
         SCHEMAS.put("api.response.unauthorized.invalidtoken", genericErrorSchema);
         SCHEMAS.put("api.response.forbidden", genericErrorSchema);
@@ -285,7 +283,7 @@ public final class OpenApiUtil {
             }
             Schema<?> attrSchema = getAttributeSchema(service, param);
             if (attrSchema != null) {
-                parentSchema.addProperty(name, getAttributeSchema(service, service.getParam(name)));
+                parentSchema.addProperties(name, getAttributeSchema(service, service.getParam(name)));
             }
         });
         parentSchema.setRequired(required);
@@ -335,7 +333,7 @@ public final class OpenApiUtil {
                     if (!param.isOptional()) {
                         required.add(childParam.getName());
                     }
-                    schema.addProperty(childParam.getName(), getAttributeSchema(service, childParam));
+                    schema.addProperties(childParam.getName(), getAttributeSchema(service, childParam));
                 }
                 schema.setRequired(required);
             }
@@ -348,15 +346,15 @@ public final class OpenApiUtil {
         Schema<Object> parentSchema = new Schema<Object>();
         parentSchema.setDescription("Out Schema for service: " + service.getName() + " response");
         parentSchema.setType("object");
-        parentSchema.addProperty("statusCode", new IntegerSchema().description("HTTP Status Code"));
-        parentSchema.addProperty("statusDescription", new StringSchema().description("HTTP Status Code Description"));
-        parentSchema.addProperty("successMessage", new StringSchema().description("Success Message"));
+        parentSchema.addProperties("statusCode", new IntegerSchema().description("HTTP Status Code"));
+        parentSchema.addProperties("statusDescription", new StringSchema().description("HTTP Status Code Description"));
+        parentSchema.addProperties("successMessage", new StringSchema().description("Success Message"));
         Schema<Object> dataSchema = new Schema<Object>();
-        parentSchema.addProperty("data", dataSchema);
+        parentSchema.addProperties("data", dataSchema);
         service.getOutParamNamesMap().forEach((name, type) -> {
             Schema<?> attrSchema = getAttributeSchema(service, service.getParam(name));
             if (attrSchema != null) {
-                dataSchema.addProperty(name, getAttributeSchema(service, service.getParam(name)));
+                dataSchema.addProperties(name, getAttributeSchema(service, service.getParam(name)));
             }
         });
         return parentSchema;
@@ -387,7 +385,7 @@ public final class OpenApiUtil {
                 e.printStackTrace();
             }
             if (schemaClass != null) {
-                dataSchema.addProperty(fieldNm, schema.description(fieldNm));
+                dataSchema.addProperties(fieldNm, schema.description(fieldNm));
             }
         }
         return dataSchema;

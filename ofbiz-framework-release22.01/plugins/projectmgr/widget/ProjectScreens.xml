@@ -67,7 +67,7 @@ under the License.
                 </section>
                 <decorator-screen name="CommonProjectDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <include-menu name="ProjectButtonBar" location="${parameters.mainMenuLocation}"/>
+                        <include-menu name="ProjectButtonBar" location="component://projectmgr/widget/ProjectMenus.xml"/>
                         <container style="clear"/>
                         <screenlet name="findProject" collapsible="true" title="${uiLabelMap.PageTitleFindProject}">
                             <include-form name="FindProject" location="component://projectmgr/widget/forms/ProjectForms.xml"/>
@@ -114,7 +114,7 @@ under the License.
                 <set field="helpAnchor" value="_project_billing"/>
                 <set field="labelTitleProperty" value="PageTitleProjectBilling"/>
                 <set field="projectId" from-field="parameters.projectId" default-value="${parameters.workEffortId}"/>
-                <script location="component://projectmgr/src/main/groovy/org/apache/ofbiz/projectmgr/ProjectBilling.groovy"/>
+                <script location="component://projectmgr/groovyScripts/ProjectBilling.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonProjectDecorator" location="${parameters.mainDecoratorLocation}">
@@ -424,9 +424,9 @@ under the License.
             <actions>
                 <set field="titleProperty" value="ProjectMgrGanttChart"/>
                 <set field="tabButtonItem" value="ganttchart"/>
-                <set field="layoutSettings.styleSheets[]" value="/projectmgr/node_modules/jsgantt-improved/dist/jsgantt.css" global="true"/>
-                <set field="layoutSettings.styleSheets[]" value="/projectmgr/static/projectmgr.css" global="true"/>
-                <script location="component://projectmgr/src/main/groovy/org/apache/ofbiz/projectmgr/GanttChart.groovy"/>
+                <set field="layoutSettings.javaScripts[]" value="/common/js/plugins/jsgantt/jsgantt.js" global="true"/>
+                <set field="layoutSettings.styleSheets[]" value="/common/js/plugins/jsgantt/jsgantt.css" global="true"/>
+                <script location="component://projectmgr/groovyScripts/GanttChart.groovy"/>
             </actions>
             <widgets>
                 <label text="${project}"/>
@@ -707,8 +707,8 @@ under the License.
 
                 <set field="labelTitleProperty" value="PageTitleEditContactMech"/>
 
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/HasPartyPermissions.groovy"/>
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/EditContactMech.groovy"/>
+                <script location="component://party/groovyScripts/HasPartyPermissions.groovy"/>
+                <script location="component://party/groovyScripts/party/EditContactMech.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonPartyDecorator" location="${parameters.mainDecoratorLocation}">
@@ -763,7 +763,7 @@ under the License.
                 <entity-one entity-name="Party" use-cache="true" value-field="party"/>
                 <entity-one entity-name="Person" use-cache="true" value-field="lookupPerson"/>
                 <entity-one entity-name="CommunicationEvent" value-field="communicationEvent"/>
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/communication/FindCommEventContactMechs.groovy"/>
+                <script location="component://party/groovyScripts/communication/FindCommEventContactMechs.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonPartyDecorator" location="${parameters.mainDecoratorLocation}">
@@ -841,7 +841,7 @@ under the License.
                 <set field="headerItem" value="visits"/>
                 <set field="tabButtonItem" value="showvisits"/>
 
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/visit/ShowVisits.groovy"/>
+                <script location="component://party/groovyScripts/visit/ShowVisits.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonPartyDecorator" location="${parameters.mainDecoratorLocation}">
@@ -872,7 +872,7 @@ under the License.
                 <set field="headerItem" value="visits"/>
                 <set field="tabButtonItem" value="visitdetail"/>
 
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/visit/VisitDetails.groovy"/>
+                <script location="component://party/groovyScripts/visit/VisitDetails.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonPartyDecorator" location="${parameters.mainDecoratorLocation}">
@@ -980,8 +980,8 @@ under the License.
         <section>
             <actions>
                 <property-map resource="ProjectMgrUiLabels" map-name="uiLabelMap" global="true"/>
-                <set field="layoutSettings.styleSheets[]" value="/projectmgr/node_modules/jsgantt-improved/dist/jsgantt.css" global="true"/>
-                <set field="layoutSettings.styleSheets[]" value="/projectmgr/static/projectmgr.css" global="true"/>
+                <set field="layoutSettings.javaScripts[]" value="/common/js/plugins/jsgantt/jsgantt.js" global="true"/>
+                <set field="layoutSettings.styleSheets[]" value="/common/js/plugins/jsgantt/jsgantt.css" global="true"/>
                 <entity-condition entity-name="WorkEffortPartyAssignByGroup" list="projects" filter-by-date="true">
                     <condition-list combine="and">
                         <condition-expr field-name="partyId" from-field="userLogin.partyId"/>
@@ -999,7 +999,7 @@ under the License.
                         <actions>
                             <set field="projectId" from-field="project.workEffortId"/>
                             <set field="parameters.projectId" from-field="project.workEffortId"/>
-                            <script location="component://projectmgr/src/main/groovy/org/apache/ofbiz/projectmgr/GanttChart.groovy"/>
+                            <script location="component://projectmgr/groovyScripts/GanttChart.groovy"/>
                             <service service-name="getProject" result-map="result">
                                 <field-map field-name="projectId" from-field="projectId"/>
                             </service>

@@ -26,7 +26,7 @@ under the License.
             <actions>
                 <set field="workEffortId" from-field="parameters.workEffortId"/>
                 <set field="productStoreSurveyId" from-field="parameters.productStoreSurveyId"/>
-                <script location="component://ecommerce/src/main/groovy/org/apache/ofbiz/ecommerce/customer/CustomerSurvey.groovy"/>
+                <script location="component://ecommerce/groovyScripts/customer/CustomerSurvey.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonTaskDecorator" location="${parameters.mainDecoratorLocation}">
@@ -45,7 +45,7 @@ under the License.
                 <set field="surveyId" from-field="parameters.surveyId"/>
                 <set field="workEffortId" from-field="parameters.workEffortId"/>
                 <entity-one entity-name="Survey" value-field ="survey"/>
-                <script location="component://content/src/main/groovy/org/apache/ofbiz/content/survey/ViewSurveyResponses.groovy"/>
+                <script location="component://content/groovyScripts/survey/ViewSurveyResponses.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonTaskDecorator" location="${parameters.mainDecoratorLocation}">

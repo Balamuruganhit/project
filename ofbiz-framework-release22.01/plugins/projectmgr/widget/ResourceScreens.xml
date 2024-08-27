@@ -56,7 +56,7 @@ under the License.
                 <set field="tabButtonItem" value="ListBillingHours"/>
                 <set field="labelTitleProperty" value="ProjectMgrProjectName"/>
                 <set field="partyId" from-field="parameters.partyId"/>
-                <script location="component://projectmgr/src/main/groovy/org/apache/ofbiz/projectmgr/ListResourceBillingHours.groovy"/>
+                <script location="component://projectmgr/groovyScripts/ListResourceBillingHours.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonPartyDecorator" location="${parameters.mainDecoratorLocation}">
@@ -80,8 +80,8 @@ under the License.
                 <set field="headerItem" value="find"/>
                 <set field="labelTitleProperty" value="PartyTaxAuthInfos"/>
                 <set field="layoutSettings.javaScripts[]" value="/partymgr/static/PartyProfileContent.js" global="true"/>
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/ViewProfile.groovy"/>
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/GetUserLoginPrimaryEmail.groovy"/>
+                <script location="component://party/groovyScripts/party/ViewProfile.groovy"/>
+                <script location="component://party/groovyScripts/party/GetUserLoginPrimaryEmail.groovy"/>
                 <entity-condition entity-name="RoleTypeAndParty" list="partyRoles">
                     <condition-list combine="and">
                         <condition-expr field-name="partyId" operator="equals" value="${parameters.partyId}"/>

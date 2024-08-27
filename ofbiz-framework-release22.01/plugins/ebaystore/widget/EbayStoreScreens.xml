@@ -30,7 +30,7 @@ under the License.
             <widgets>
                 <decorator-screen name="permission-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <include-menu name="EbaySubTabBar" location="${parameters.mainMenuLocation}"/>
+                        <include-menu name="EbaySubTabBar" location="component://ebaystore/widget/EbayStoreMenus.xml"/>
                         <screenlet title="Ebay Accounts">
                             <include-form name="EbayAccountList" location="component://ebaystore/widget/EbayStoreForms.xml"/>
                         </screenlet>
@@ -46,7 +46,7 @@ under the License.
                 <set field="helpAnchor" value="_ebay_store_detail_screen"/>
                 <set field="headerItem" value="ebayStore"/>
                 <set field="tabButtonItem" value="ebayStoreSetting"/>
-                <script  location="component://ebaystore/src/main/groovy/org/apache/ofbiz/ebaystore/store/RetrieveStoreOptions.groovy"/>
+                <script  location="component://ebaystore/groovyScripts/store/RetrieveStoreOptions.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="permission-decorator" location="${parameters.mainDecoratorLocation}">
@@ -211,8 +211,8 @@ under the License.
                     <condition-expr field-name="showInSelect" operator="not-equals" value="N"/>
                     <order-by field-name="description"/>
                 </entity-condition>
-                <script location="component://product/src/main/groovy/org/apache/ofbiz/product/catalog/find/AdvancedSearchOptions.groovy"/>
-                <script location="component://ebay/src/main/groovy/org/apache/ofbiz/ebay/EbayAdvancedSearch.groovy"/>
+                <script location="component://product/groovyScripts/catalog/find/AdvancedSearchOptions.groovy"/>
+                <script location="component://ebay/groovyScripts/EbayAdvancedSearch.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="permission-decorator" location="${parameters.mainDecoratorLocation}">
@@ -233,7 +233,7 @@ under the License.
                 <set field="tabButtonItem" value="exportProductListing"/>
                 <set field="toEbayStore"  default-value="Y"/>
                 <set field="productStoreId" from-field="parameters.productStoreId"/>
-                <script location="component://product/src/main/groovy/org/apache/ofbiz/product/catalog/find/KeywordSearch.groovy"/>
+                <script location="component://product/groovyScripts/catalog/find/KeywordSearch.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="permission-decorator" location="${parameters.mainDecoratorLocation}">
@@ -265,7 +265,7 @@ under the License.
                 <entity-one entity-name="EbayConfig" value-field="ebayConfig">
                     <field-map field-name="productStoreId" from-field="parameters.productStoreId"/>
                 </entity-one>
-                <script location="component://ebaystore/src/main/groovy/org/apache/ofbiz/ebaystore/store/PrepareProductListing.groovy"/>
+                <script location="component://ebaystore/groovyScripts/store/PrepareProductListing.groovy"/>
                 <set field="language" from-field="userLogin.lastLocale" default-value="en"/>
             </actions>
             <widgets>
