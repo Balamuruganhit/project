@@ -34,7 +34,7 @@ services:
       - ofbiz-postgres.env
 
   ofbiz:
-    image: balamuruganhit/ofbiz-docker:latest
+    image: ofbiz
     mem_limit: 2400M
     memswap_limit: 2400M
     cpu_shares: 200
