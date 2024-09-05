@@ -10,4 +10,4 @@ COPY . /app
 EXPOSE 8080
 
 # Command to run OFBiz
-CMD ["sh", "start_ofbiz.sh"]
+CMD ["sh", "ofbiz.sh"]
