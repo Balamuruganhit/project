@@ -10,6 +10,7 @@ COPY . /app
 # Install Gradle (or use a Gradle wrapper if provided)
 RUN apt-get update && \
     apt-get install -y wget unzip && \
+    apt-get install git && \
     wget https://services.gradle.org/distributions/gradle-8.0-bin.zip && \
     unzip gradle-8.0-bin.zip && \
     mv gradle-8.0 /opt/gradle && \
