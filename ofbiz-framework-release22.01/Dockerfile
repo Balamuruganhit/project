@@ -5,6 +5,8 @@ WORKDIR /app
 
 # Copy OFBiz files to the container
 COPY . /app
+RUN apt-get update && \
+    apt-get install -y maven
 
 # Expose the port OFBiz runs on
 EXPOSE 8080
