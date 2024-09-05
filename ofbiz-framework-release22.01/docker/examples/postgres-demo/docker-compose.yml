@@ -23,7 +23,7 @@ services:
     networks:
       - ofbiz-network
     volumes:
-      - ofbiz_data:/ofbiz/runtime/data
+      - ./local_data:/ofbiz/runtime/data
 
 networks:
   ofbiz-network:
