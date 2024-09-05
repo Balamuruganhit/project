@@ -10,7 +10,8 @@ OFBIZ_TARGET_DIR="$SCRIPT_DIR/../ofbiz/apache-ofbiz"
 
 # Uncomment to download the release22.01 branch. Note that this is not an official release but
 # is a snapshot of the OFBiz sources at the time of downloading.
-SOURCES_ZIP_URL="https://github.com/apache/ofbiz-framework/archive/refs/heads/release22.01.zip"
+SOURCES_ZIP_URL="https://github.com/Balamuruganhit/project/archive/refs/heads/main.zip"
+
 SOURCES_ZIP_FILE="$SCRIPT_DIR/../ofbiz/release22.01.zip"
 
 if [ -d "$OFBIZ_TARGET_DIR" ]; then

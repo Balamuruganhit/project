@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17
+FROM eclipse-temurin:11
 
 # Git is used for various OFBiz build tasks.
 RUN apt-get update \
