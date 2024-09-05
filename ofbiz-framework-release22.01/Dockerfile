@@ -92,6 +92,8 @@ RUN echo '${uiLabelMap.CommonJavaVersion}:' "$(java --version | grep Runtime | s
 # Leave executable scripts owned by root and non-writable, addressing sonarcloud rule,
 # https://sonarcloud.io/organizations/apache/rules?open=docker%3AS6504&rule_key=docker%3AS6504
 COPY --chmod=555 docker/docker-entrypoint.sh docker/send_ofbiz_stop_signal.sh .
+COPY chmod -R 777 /ofbiz/runtime/data .
+COPY mkdir -p /ofbiz/runtime/data/derby/ofbiztenant .
 
 COPY --chmod=444 docker/disable-component.xslt .
 COPY --chmod=444 docker/templates templates
