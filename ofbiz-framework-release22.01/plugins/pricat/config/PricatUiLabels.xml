@@ -19,7 +19,7 @@ under the License.
 -->
 <resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <property key="PriCatCompanyName">
-        <value xml:lang="en">OFBiz: PriCat Demo</value>
+        <value xml:lang="en">Pangun Tech: PriCat Demo</value>
         <value xml:lang="zh">OFBiz：价目表</value>
     </property>
     <property key="PriCatApplication">
@@ -27,7 +27,7 @@ under the License.
         <value xml:lang="zh">价目表</value>
     </property>
     <property key="PriCatDemoCompanyName">
-        <value xml:lang="en">OFBiz: PriCat Demo</value>
+        <value xml:lang="en">Pangun Tech: PriCat Demo</value>
         <value xml:lang="zh">OFBiz：价目表演示</value>
     </property>
     <property key="PriCatDemoApplication">
@@ -83,7 +83,7 @@ under the License.
         <value xml:lang="zh">样例价目表</value>
     </property>
     <property key="OFBizPricatType">
-        <value xml:lang="en">OFBiz Type</value>
+        <value xml:lang="en">Pangun Tech Type</value>
         <value xml:lang="zh">OFBiz类型</value>
     </property>
     <property key="StartStoreExcel">

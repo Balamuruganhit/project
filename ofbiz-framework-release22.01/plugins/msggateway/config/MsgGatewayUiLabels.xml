@@ -25,7 +25,7 @@ under the License.
         <value xml:lang="zh-TW">MsgGateway應用程式</value>
     </property>
     <property key="MsgGatewayCompanyName">
-        <value xml:lang="en">OFBiz: MsgGateway</value>
+        <value xml:lang="en">Pangun Tech: MsgGateway</value>
         <value xml:lang="zh-TW">OFBiz: MsgGateway</value>
     </property>
     <property key="MsgGatewayCompanySubtitle">

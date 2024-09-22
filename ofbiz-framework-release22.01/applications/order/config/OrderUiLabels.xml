@@ -3134,12 +3134,12 @@
     </property>
     <property key="OrderCompanyName">
         <value xml:lang="de">OFBiz: Auftragsverwaltung</value>
-        <value xml:lang="en">OFBiz: Order Manager</value>
+        <value xml:lang="en">Pangun Tech: Order Manager</value>
         <value xml:lang="es">OFBiz: Gestión de pedidos</value>
         <value xml:lang="fr">OFBiz : Gestion commerciale</value>
         <value xml:lang="it">OFBiz: Gestione ordini</value>
         <value xml:lang="ja">OFBiz: 注文管理</value>
-        <value xml:lang="nl">OFBiz: Order Manager</value>
+        <value xml:lang="nl">Pangun Tech: Order Manager</value>
         <value xml:lang="pt-BR">OFBiz: Gestão de Pedidos</value>
         <value xml:lang="ro">OFBiz: Gestiune Comanda </value>
         <value xml:lang="ru">OFBiz: Управление заказами</value>
@@ -5994,7 +5994,7 @@
         <value xml:lang="fr">Gestion de Commandes</value>
         <value xml:lang="it">Applicazione gestione ordini</value>
         <value xml:lang="ja">注文管理業務</value>
-        <value xml:lang="nl">OFBiz: Order Manager</value>
+        <value xml:lang="nl">Pangun Tech: Order Manager</value>
         <value xml:lang="pt-BR">Aplicativo de gestão de pedidos</value>
         <value xml:lang="ro">Aplicatie Gestiune Comenzi</value>
         <value xml:lang="ru">Управление заказами</value>
