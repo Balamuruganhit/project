@@ -11,6 +11,7 @@
     "jquery-ui-dist": "^1.13.0",
     "jquery-validation": "^1.19.5",
     "jquery.browser": "^0.1.0",
+    "ofbiz-framework": "file:",
     "trumbowyg": "^2.25.1"
   }
 }
