@@ -4587,7 +4587,7 @@
     </property>
     <property key="FormFieldTitle_correspondingProductId">
         <value xml:lang="de">Dazugehörige Produkt ID</value>
-        <value xml:lang="en">Corresponding Product ID</value>
+        <value xml:lang="en">Corresponding Part Name</value>
         <value xml:lang="es">Código de producto correspondiente</value>
         <value xml:lang="fr">Réf. d'article correspondant</value>
         <value xml:lang="it">Codice prodotto corrispondente</value>
@@ -6919,7 +6919,7 @@
     <property key="FormFieldTitle_productId">
         <value xml:lang="cs">ID produktu</value>
         <value xml:lang="de">Produkt ID</value>
-        <value xml:lang="en">Product ID</value>
+        <value xml:lang="en">Part Name</value>
         <value xml:lang="es">Código de producto</value>
         <value xml:lang="fr">Réf. produit</value>
         <value xml:lang="it">Codice prodotto</value>
@@ -22609,7 +22609,7 @@
     </property>
     <property key="ProductNewProductId">
         <value xml:lang="de">Neue Produkt ID</value>
-        <value xml:lang="en">New Product ID</value>
+        <value xml:lang="en">New Part Name</value>
         <value xml:lang="es">Nuevo código de producto</value>
         <value xml:lang="fr">Nouvelle référence d'article</value>
         <value xml:lang="it">Nuovo codice prodotto</value>
@@ -26013,7 +26013,7 @@
     </property>
     <property key="ProductProductIdTo">
         <value xml:lang="de">Produkt ID zu</value>
-        <value xml:lang="en">Product ID To</value>
+        <value xml:lang="en">Part Name To</value>
         <value xml:lang="es">Código de producto para</value>
         <value xml:lang="fr">Réf. article associé</value>
         <value xml:lang="it">Codice prodotto a</value>

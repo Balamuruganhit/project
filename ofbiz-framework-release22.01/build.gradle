@@ -208,6 +208,7 @@ dependencies {
         exclude  group: 'bouncycastle', module: 'bcprov-jdk14'
         exclude  group: 'bouncycastle', module: 'bctsp-jdk14'
     }
+    implementation 'commons-cli:commons-cli:1.4'
     implementation 'com.sun.mail:javax.mail:1.6.2'
     implementation 'com.rometools:rome:1.16.0'
     implementation 'com.thoughtworks.xstream:xstream:1.4.18'
