@@ -8285,7 +8285,7 @@
     </property>
     <property key="FormFieldTitle_supplierProductName">
         <value xml:lang="de">Lieferant Produkt Name</value>
-        <value xml:lang="en">Supplier Product Name</value>
+        <value xml:lang="en">Supplier Drawing Number</value>
         <value xml:lang="es">Nombre de producto del proveedor</value>
         <value xml:lang="fr">Nom chez le fournisseur</value>
         <value xml:lang="it">Nome Prodotto Fornitore</value>
@@ -14324,7 +14324,7 @@
     <property key="ProductBrandName">
         <value xml:lang="cs">Název produktu</value>
         <value xml:lang="de">Markenname</value>
-        <value xml:lang="en">Brand Name</value>
+        <value xml:lang="en">Customer Name</value>
         <value xml:lang="es">Nombre de la Marca</value>
         <value xml:lang="fr">Appellation commerciale</value>
         <value xml:lang="it">Nome Marca</value>
@@ -20167,7 +20167,7 @@
     <property key="ProductInternalName">
         <value xml:lang="cs">Interní označení</value>
         <value xml:lang="de">Interner Name</value>
-        <value xml:lang="en">Internal Name</value>
+        <value xml:lang="en">Part Number</value>
         <value xml:lang="es">Nombre interno</value>
         <value xml:lang="fr">Libellé interne</value>
         <value xml:lang="it">Nome interno</value>
@@ -26092,7 +26092,7 @@
     <property key="ProductProductName">
         <value xml:lang="cs">Název výrobku</value>
         <value xml:lang="de">Produktname</value>
-        <value xml:lang="en">Product Name</value>
+        <value xml:lang="en">Drawing Number</value>
         <value xml:lang="es">Nombre del Producto</value>
         <value xml:lang="fr">Nom de l'article</value>
         <value xml:lang="hi-IN">सामान नाम</value>
@@ -26108,7 +26108,7 @@
     </property>
     <property key="ProductProductNameId">
         <value xml:lang="de">Produktname ID</value>
-        <value xml:lang="en">Product Name ID</value>
+        <value xml:lang="en">Drawing Number ID</value>
         <value xml:lang="es">Código del nombre de producto</value>
         <value xml:lang="fr">Réf. nom de l'article</value>
         <value xml:lang="it">Nome Prodotto</value>
@@ -31311,7 +31311,7 @@
     </property>
     <property key="ProductSupplierProductName">
         <value xml:lang="de">Lieferant Produktname</value>
-        <value xml:lang="en">Supplier product name</value>
+        <value xml:lang="en">Supplier Drawing Number</value>
         <value xml:lang="es">Nombre del producto para el proveedor</value>
         <value xml:lang="fr">Nom chez le fournisseur</value>
         <value xml:lang="it">Nome prodotto Fornitore</value>
