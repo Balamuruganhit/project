@@ -6580,7 +6580,7 @@
     <property key="AccountingFixedAssetTypeId">
         <value xml:lang="ar">نوع الأصل</value>
         <value xml:lang="de">Anlagenart</value>
-        <value xml:lang="en">Asset Type</value>
+        <value xml:lang="en">Machine Type</value>
         <value xml:lang="es">Tipo de activo</value>
         <value xml:lang="fr">Type d'actif</value>
         <value xml:lang="hi-IN">संपत्ति प्रकार</value>
@@ -18710,7 +18710,7 @@
     <property key="FormFieldTitle_fixedAssetId">
         <value xml:lang="ar">دليل الأصل الثابت</value>
         <value xml:lang="de">Anlage ID</value>
-        <value xml:lang="en">Fixed Asset ID</value>
+        <value xml:lang="en">Machine Id</value>
         <value xml:lang="es">Código Activo fijo</value>
         <value xml:lang="es-CL">Activo Fijo</value>
         <value xml:lang="fr">Réf. immobilisation</value>
@@ -18729,7 +18729,7 @@
     <property key="FormFieldTitle_fixedAssetName">
         <value xml:lang="ar">إسم الأصل الثابت</value>
         <value xml:lang="de">Anlagename</value>
-        <value xml:lang="en">Fixed Asset Name</value>
+        <value xml:lang="en">Machine Name</value>
         <value xml:lang="es">Nombre de activo fijo</value>
         <value xml:lang="fr">Nom de l'immobilisation</value>
         <value xml:lang="hi-IN">अचल संपत्ति नाम</value>

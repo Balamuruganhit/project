@@ -3918,7 +3918,7 @@
     </property>
     <property key="ManufacturingProductionRunId">
         <value xml:lang="de">Produktionsauftrags-Nr.</value>
-        <value xml:lang="en">Production Run ID</value>
+        <value xml:lang="en">Production Work Order Number</value>
         <value xml:lang="es">Código de orden de producción</value>
         <value xml:lang="fr">Réf. de l'ordre de fabrication</value>
         <value xml:lang="it">Ordine di produzione</value>
