@@ -2531,7 +2531,7 @@
     </property>
     <property key="ManufacturingListOfProductionRunFixedAssets">
         <value xml:lang="de">Anlagen des Produktionsauftrages anzeigen</value>
-        <value xml:lang="en">List Of Production Run Fixed Assets</value>
+        <value xml:lang="en">List Of Production Run  Machine ID</value>
         <value xml:lang="es">Lista de activos fijos de la orden de producción</value>
         <value xml:lang="fr">Liste de production des cours des machines</value>
         <value xml:lang="it">Lista dei cespiti ordine di produzione</value>
@@ -2626,7 +2626,7 @@
     </property>
     <property key="ManufacturingMachine">
         <value xml:lang="de">Anlage</value>
-        <value xml:lang="en">Fixed Asset</value>
+        <value xml:lang="en"> Machine ID</value>
         <value xml:lang="es">Máquina</value>
         <value xml:lang="fr">Immobilisation</value>
         <value xml:lang="it">Macchine</value>
@@ -2686,7 +2686,7 @@
     </property>
     <property key="ManufacturingMachineGroupPermissionError">
         <value xml:lang="de">Sicherheits-Fehler: Um eine Anlagengruppe zu bearbeiten müssen Sie über die Berechtigung MANUFACTURING_CREATE oder MANUFACTURING_ADMIN verfügen</value>
-        <value xml:lang="en">Security Error: to work on a Fixed Asset Group you must have the MANUFACTURING_CREATE or MANUFACTURING_ADMIN permission</value>
+        <value xml:lang="en">Security Error: to work on a  Machine ID Group you must have the MANUFACTURING_CREATE or MANUFACTURING_ADMIN permission</value>
         <value xml:lang="es">Error:  Para acceder a esta funcionalidad debe contar con los permisos MANUFACTURING_CREATE o MANUFACTURING_ADMIN</value>
         <value xml:lang="fr">Erreur sécurité : pour effectuer une opération sur un groupe de machines, il faut avoir l'autorisation MANUFACTURING_CREATE ou MANUFACTURING_ADMIN.</value>
         <value xml:lang="it">Errore Sicurezza : per lavorare sui gruppi Macchine tu devi avere il permesso MANUFACTURING_CREATE o MANUFACTURING_ADMIN</value>
