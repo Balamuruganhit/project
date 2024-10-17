@@ -2113,7 +2113,7 @@
         <value xml:lang="ar">تعليقات</value>
         <value xml:lang="cs">Poznámky</value>
         <value xml:lang="de">Notizen</value>
-        <value xml:lang="en">Comments</value>
+        <value xml:lang="en">Order Number</value>
         <value xml:lang="es">Comentarios</value>
         <value xml:lang="fr">Commentaires</value>
         <value xml:lang="hi-IN">टिप्पणियाँ</value>
@@ -14119,7 +14119,7 @@
         <value xml:lang="ar">تعليقات</value>
         <value xml:lang="cs">Poznámky</value>
         <value xml:lang="de">Notizen</value>
-        <value xml:lang="en">OrderNumber</value>
+        <value xml:lang="en">Order Number</value>
         <value xml:lang="es">Comentarios</value>
         <value xml:lang="fr">Commentaires</value>
         <value xml:lang="hi-IN">टिप्पणियाँ</value>
