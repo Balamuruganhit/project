@@ -6598,7 +6598,7 @@
     <property key="AccountingFixedAssets">
         <value xml:lang="ar">الأصول الثابتة</value>
         <value xml:lang="de">Anlagen</value>
-        <value xml:lang="en">Fixed Assets</value>
+        <value xml:lang="en">Machine ID</value>
         <value xml:lang="es">Activos Fijos</value>
         <value xml:lang="fr">Actifs immobilisés</value>
         <value xml:lang="hi-IN">अचल संपत्तियां</value>

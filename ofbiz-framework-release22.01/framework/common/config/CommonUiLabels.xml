@@ -4561,7 +4561,7 @@
         <value xml:lang="es">Activo fijo</value>
     </property>
     <property key="CommonFixedAssets">
-        <value xml:lang="en">Fixed Assets</value>
+        <value xml:lang="en"> Machine ID</value>
         <value xml:lang="es">Activos fijos</value>
     </property>
     <property key="CommonFollowingErrorsOccurred">
