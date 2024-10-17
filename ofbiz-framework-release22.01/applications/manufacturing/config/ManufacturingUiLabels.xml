@@ -3872,7 +3872,7 @@
         <value xml:lang="zh-TW">缺少固定資產識別</value>
     </property>
     <property key="ManufacturingProductionRunFixedAssets">
-        <value xml:lang="en">Production Run Fixed Assets</value>
+        <value xml:lang="en">Production Run Machine ID</value>
         <value xml:lang="es">Máquinas de la orden de producción</value>
         <value xml:lang="fr">Machines de l'ordre de fabrication</value>
         <value xml:lang="it">Cespite ordine di produzione</value>
@@ -3918,7 +3918,7 @@
     </property>
     <property key="ManufacturingProductionRunId">
         <value xml:lang="de">Produktionsauftrags-Nr.</value>
-        <value xml:lang="en">Production Work Order Number</value>
+        <value xml:lang="en">Production Order</value>
         <value xml:lang="es">Código de orden de producción</value>
         <value xml:lang="fr">Réf. de l'ordre de fabrication</value>
         <value xml:lang="it">Ordine di produzione</value>
@@ -4795,7 +4795,7 @@
     </property>
     <property key="ManufacturingRoutingTaskFixedAssets">
         <value xml:lang="de">Anlagen</value>
-        <value xml:lang="en">Fixed Assets</value>
+        <value xml:lang="en">Machine ID</value>
         <value xml:lang="es">Activos fijos</value>
         <value xml:lang="fr">Machines</value>
         <value xml:lang="it">Cespiti</value>

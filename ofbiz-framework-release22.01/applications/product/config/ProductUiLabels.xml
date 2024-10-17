@@ -15411,7 +15411,7 @@
     </property>
     <property key="ProductComments">
         <value xml:lang="de">Kommentare</value>
-        <value xml:lang="en">Comments</value>
+        <value xml:lang="en">Order Number</value>
         <value xml:lang="es">Comentarios</value>
         <value xml:lang="fr">Commentaires</value>
         <value xml:lang="it">Commenti</value>
