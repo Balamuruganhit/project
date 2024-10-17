@@ -95,9 +95,9 @@ COPY --chmod=555 docker/docker-entrypoint.sh docker/send_ofbiz_stop_signal.sh .
 COPY --chmod=444 docker/disable-component.xslt .
 COPY --chmod=444 docker/templates templates
 
-EXPOSE 8444
-EXPOSE 8010
-EXPOSE 5006
+EXPOSE 8443
+EXPOSE 8009
+EXPOSE 5005
 
 ENTRYPOINT ["/ofbiz/docker-entrypoint.sh"]
 CMD ["bin/ofbiz"]
