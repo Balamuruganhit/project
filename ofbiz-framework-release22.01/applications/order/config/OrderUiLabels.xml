@@ -521,7 +521,7 @@
     <property key="FormFieldTitle_internalName">
         <value xml:lang="ar">الإسم الداخلي</value>
         <value xml:lang="de">Interner Name</value>
-        <value xml:lang="en">Internal Name</value>
+        <value xml:lang="en">Part Name</value>
         <value xml:lang="es">Nombre Interno</value>
         <value xml:lang="fr">Nom interne</value>
         <value xml:lang="it">Nome Interno</value>
