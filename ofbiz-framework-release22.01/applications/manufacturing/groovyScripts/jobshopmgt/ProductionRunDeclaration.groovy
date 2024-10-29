@@ -166,10 +166,12 @@ if (productionRunId) {
             productionRunComponents.each { component ->
                 product = component.getRelatedOne("Product", false)
                 componentName = product.getString("internalName")
+                customerName=product.getString("brandName")
                 productionRunTask = component.getRelatedOne("WorkEffort", false)
                 workEffortName = productionRunTask.getString("workEffortName")
                 Map componentData = component.getAllFields()
                 componentData.internalName = componentName
+                componentData.brandName=customerName
                 componentData.workEffortName = workEffortName
                 componentData.facilityId = productionRunTask.facilityId
                 issuances = from("WorkEffortAndInventoryAssign").where("workEffortId", component.workEffortId, "productId", product.productId).queryList()
