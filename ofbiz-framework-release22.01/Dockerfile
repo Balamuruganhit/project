@@ -126,4 +126,4 @@ FROM runtimebase AS runtime
 USER ofbiz
 
 VOLUME ["/docker-entrypoint-hooks"]
-VOLUME ["/ofbiz/config", "/ofbiz/runtime", "/ofbiz/lib-extra"]
+VOLUME ["/ofbiz/config", "/ofbiz/runtime", "/ofbiz/lib-extra"]`
