@@ -76,6 +76,7 @@ RUN ["/usr/bin/chown", "-R", "ofbiz:ofbiz", "/docker-entrypoint-hooks" ]
 
 USER ofbiz
 WORKDIR /ofbiz
+RUN ls -l /mnt/ofbiz.tar
 
 # Extract the OFBiz tar distribution created by the builder stage.
 RUN --mount=type=bind,from=builder,source=/builder/build/distributions/ofbiz.tar,target=/mnt/ofbiz.tar \
