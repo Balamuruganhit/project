@@ -78,6 +78,8 @@ USER ofbiz
 WORKDIR /ofbiz
 
 # Extract the OFBiz tar distribution created by the builder stage.
+COPY --from=builder /builder/build/distributions/ofbiz.tar /mnt/ofbiz.tar
+
 RUN --mount=type=bind,from=builder,source=/builder/build/distributions/ofbiz.tar,target=/mnt/ofbiz.tar \
     ["tar", "--extract", "--strip-components=1", "--file=/mnt/ofbiz.tar"]
 
