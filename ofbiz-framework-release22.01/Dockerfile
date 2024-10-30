@@ -76,11 +76,13 @@ RUN ["/usr/bin/chown", "-R", "ofbiz:ofbiz", "/docker-entrypoint-hooks" ]
 
 USER ofbiz
 WORKDIR /ofbiz
-RUN ls -l /mnt/ofbiz.tar
 
 # Extract the OFBiz tar distribution created by the builder stage.
-RUN --mount=type=bind,from=builder,source=/builder/build/distributions/ofbiz.tar,target=/mnt/ofbiz.tar \
-    ["tar", "--extract", "--strip-components=1", "--file=/mnt/ofbiz.tar"]
+# RUN --mount=type=bind,from=builder,source=/builder/build/distributions/ofbiz.tar,target=/mnt/ofbiz.tar \
+#     ["tar", "--extract", "--strip-components=1", "--file=/mnt/ofbiz.tar"]
+# RUN ls -l /mnt/ofbiz.tar
+COPY --from=builder /builder/build/distributions/ofbiz.tar /mnt/ofbiz.tar
+RUN mkdir -p /app/ofbiz && tar --extract --strip-components=1 --file=/mnt/ofbiz.tar -C /app/ofbiz
 
 # Create directories for OFBiz volume mountpoints.
 RUN ["mkdir", "/ofbiz/runtime", "/ofbiz/config", "/ofbiz/lib-extra"]
