@@ -27,20 +27,16 @@ under the License.
     <description>None</description>
     <copyright></copyright>
     <version></version>
-    <entity name="CollectCustomerDetail" package-name="com.example">
+    <entity name="DemoPageUser" package-name="org.apache.ofbiz.DemoPage" title="Demopage Entity">
+         <field name="ofbizDemoId" type="id"><description>primary sequenced ID</description></field>
+        <field name="firstName" type="name"></field>
+        <field name="lastName" type="name"></field>
+        <field name="Mnumber" type="number"></field>
+        <prim-key field="ofbizDemoId"/>
         
-        <field name="UserName" type="name"/>
-        <field name="UserAddess" type="email"/>
-        <field name="UserMobile" type="long-varchar"/>
-        >
     </entity>
 
-    <!-- Entity for linked/processed details -->
-    <entity name="ProcessedDetail" package-name="com.example">
-        <field name="processedDetailId" type="id" primary-key="true"/>
-        <field name="formDetailId" type="id"/>
-        <field name="status" type="indicator"/>
-        <field name="processedDate" type="date-time"/>
-    </entity>
+   
+   
 
 </entitymodel>

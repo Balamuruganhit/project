@@ -29,11 +29,17 @@ under the License.
             Dummy service to prevent empty files and syntax error - Remove when the 1st real service will be added here 
         </description>
     </service> 
-    <service name="submitFormDetailService" engine="java" location="org.example.FormDetailServices" invoke="submitFormDetail" auth="true">
-    <description>Store form details in the database</description>
-        <param name="UserName" type="String"/>
-        <param name="UserAddress" type="String"/>
-        <param name="UserMobile" type="String"/>
-        <return name="responseMessage" type="String"/>
+    <service name="createNewCustomer" engine="java"
+            location="org.apache.ofbiz.manufacturing.jobshopmgt.ProductionRunServices" invoke="createProductionRunsForProductBom" auth="true">
+        <description>Explodes a product id and creates all the needed production runs.</description>
+        <attribute name="productId" type="String" mode="IN" optional="false"/>
+        <attribute name="quantity" optional="true" mode="IN" type="BigDecimal"/>
+        <attribute name="startDate" type="java.sql.Timestamp" mode="IN" optional="false"/>
+        <attribute name="facilityId" type="String" mode="IN" optional="false"/>
+        <attribute name="routingId" type="String" mode="IN" optional="true"/>
+        <attribute name="workEffortName" type="String" mode="IN" optional="true"/>
+        <attribute name="description" type="String" mode="IN" optional="true"/>
+        <attribute name="productionRuns" optional="true" mode="OUT" type="java.util.List"/><!-- TODO -->
+        <attribute name="productionRunId" type="String" mode="OUT" optional="false"/>
     </service>
 </services>
