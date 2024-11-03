@@ -29,7 +29,7 @@ under the License.
             Dummy service to prevent empty files and syntax error - Remove when the 1st real service will be added here 
         </description>
     </service> 
-    <service name="submitFormDetailService" engine="java" location="org.apache.ofbiz.DemoPage.FormDetailSevices" invoke="submitFormDetail" auth="true">
+    <service name="submitFormDetailService" engine="java" location="FormDetailSevices" invoke="submitFormDetail" auth="true">
     <description>Store form details in the database</description>
     <param name="UserName" type="String"/>
     <param name="UserAddress" type="String"/>

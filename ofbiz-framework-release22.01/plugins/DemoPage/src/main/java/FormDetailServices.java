@@ -1,4 +1,4 @@
-package org.apache.ofbiz.DemoPage;
+
 
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericValue;
