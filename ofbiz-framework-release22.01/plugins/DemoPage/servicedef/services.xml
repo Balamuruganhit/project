@@ -29,5 +29,11 @@ under the License.
             Dummy service to prevent empty files and syntax error - Remove when the 1st real service will be added here 
         </description>
     </service> 
-    
+    <service name="submitFormDetailService" engine="java" location="com.example.FormDetailServices" invoke="submitFormDetail" auth="true">
+    <description>Store form details in the database</description>
+    <param name="UserName" type="String"/>
+    <param name="UserAddress" type="String"/>
+    <param name="UserMobile" type="String"/>
+    <return name="responseMessage" type="String"/>
+</service>
 </services>

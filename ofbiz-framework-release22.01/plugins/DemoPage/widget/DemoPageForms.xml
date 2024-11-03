@@ -20,12 +20,14 @@ under the License.
 
 <forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://ofbiz.apache.org/Widget-Form" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
-        <form name="NewCustomer" type="single" target="AddDetail"
+        <form name="NewCustomer" type="single" target="submitFormDetail"
         focus-field-name="UserName" header-row-style="header-row" default-table-style="basic-table">
                 <field name="UserName" title="${uiLabelMap.DemoPageUserName}" required-field="true"><text size="30" maxlength="60"/></field>
                 <field name="UserMobile" title="${uiLabelMap.DemoPageUserMobile}" required-field="true"><text size="30" maxlength="60"/></field>
-                <field name="UserAddress" title="${uiLabelMap.DemoPageUserAddress}"><text size="4" maxlength="10"/></field>
-                
+                <field name="UserAddress" title="${uiLabelMap.DemoPageUserAddress}"><text size="30" maxlength="10"/></field>
+                <field name="submit" widget-style="smallSubmit">
+                                <submit title="Submit" button-type="button"/>
+                 </field>
         </form>
 
 </forms>

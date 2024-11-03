@@ -54,7 +54,7 @@ import org.apache.ofbiz.service.ModelService;
 import org.apache.ofbiz.service.ServiceUtil;
 
 /**
- * Product Worker class to reduce code in JSPs.
+ * Product Worker class to reduce code in   JSPs.
  */
 public final class ProductWorker {
 

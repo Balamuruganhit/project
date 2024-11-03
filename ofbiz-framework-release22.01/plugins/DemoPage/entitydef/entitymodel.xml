@@ -27,5 +27,20 @@ under the License.
     <description>None</description>
     <copyright></copyright>
     <version></version>
+    <entity name="CollectCustomerDetail" package-name="com.example">
+        <field name="formDetailId" type="id" primary-key="true"/>
+        <field name="name" type="name"/>
+        <field name="email" type="email"/>
+        <field name="message" type="long-varchar"/>
+        <field name="createdDate" type="date-time"/>
+    </entity>
+
+    <!-- Entity for linked/processed details -->
+    <entity name="ProcessedDetail" package-name="com.example">
+        <field name="processedDetailId" type="id" primary-key="true"/>
+        <field name="formDetailId" type="id"/>
+        <field name="status" type="indicator"/>
+        <field name="processedDate" type="date-time"/>
+    </entity>
 
 </entitymodel>

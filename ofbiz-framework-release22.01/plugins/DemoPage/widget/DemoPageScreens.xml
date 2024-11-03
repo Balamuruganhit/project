@@ -34,6 +34,16 @@ under the License.
             </widgets>
         </section>
     </screen>
+    <screen name="ViewProcessedDetails">
+    <section>
+        <entity-list-iterator entity-name="ProcessedDetail">
+            <field name="formDetailId"/>
+            <field name="status"/>
+            <field name="processedDate"/>
+        </entity-list-iterator>
+    </section>
+</screen>
+
     <screen name="AddDetail">
         <section>
         <actions>
