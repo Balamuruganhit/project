@@ -48,7 +48,7 @@ under the License.
 
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#main"/>
-    <view-map name="formScreenView" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#AddDetail"/>
+    <view-map name="AddDetail" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#AddDetail"/>
     <view-map name="formSubmissionSuccessView" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#ViewProcessedDetails"/>
 
 </site-conf>
