@@ -41,7 +41,9 @@ under the License.
 
     <!-- Request Mappings -->
     <request-map uri="main"><security https="true" auth="true"/><response name="success" type="view" value="main"/></request-map>
+    <request-map uri="AddDetail"><security https="true" auth="true"/><response name="success" type="view" value="AddDetail"/></request-map>
     <request-map uri="/submitFormDetail" security="true">
+
         <event type="service" service-name="submitFormDetailService"/>
         <response name="success" type="view" value="formSubmissionSuccessView"/>
     </request-map>
