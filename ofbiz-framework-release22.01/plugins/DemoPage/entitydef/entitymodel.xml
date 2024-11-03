@@ -31,7 +31,7 @@ under the License.
          <field name="ofbizDemoId" type="id"><description>primary sequenced ID</description></field>
         <field name="firstName" type="name"></field>
         <field name="lastName" type="name"></field>
-        <field name="Mnumber" type="number"></field>
+        <field name="Mnumber" type="name"></field>
         <prim-key field="ofbizDemoId"/>
         
     </entity>
