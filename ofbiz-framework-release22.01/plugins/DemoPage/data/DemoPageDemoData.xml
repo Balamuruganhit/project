@@ -19,8 +19,5 @@ under the License.
 -->
 
 <entity-engine-xml>
-	<DemoPageUser ofbizDemoId="SAMPLE_DEMO_1"  firstName="Sample First 1" lastName="Sample Last 1" Mnumber="This is test comment for first record."/>
-    <DemoPageUser ofbizDemoId="SAMPLE_DEMO_2"  firstName="Sample First 2" lastName="Sample last 2" Mnumber="This is test comment for second record."/>
-    <DemoPageUser ofbizDemoId="SAMPLE_DEMO_3"  firstName="Sample First 3" lastName="Sample last 3" Mnumber="This is test comment for third record."/>
-    <DemoPageUser ofbizDemoId="SAMPLE_DEMO_4" firstName="Sample First 4" lastName="Sample last 4" Mnumber="890373"/>
+	
 </entity-engine-xml>
