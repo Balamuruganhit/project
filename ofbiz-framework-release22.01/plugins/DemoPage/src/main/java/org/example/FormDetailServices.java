@@ -18,11 +18,11 @@ public class FormDetailServices {
         try {
             // Create a new GenericValue object for FormDetail
             GenericValue formDetail = delegator.makeValue("CollectCustomerDetail");
-            formDetail.set("formDetailId", delegator.getNextSeqId("CollectCustomerDetail"));
+        
             formDetail.set("name", name);
             formDetail.set("email", email);
             formDetail.set("message", message);
-            formDetail.set("createdDate", createdDate);
+            
 
             // Store the entity in the database
             formDetail.create();

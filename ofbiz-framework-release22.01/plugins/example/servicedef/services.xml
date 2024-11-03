@@ -29,7 +29,7 @@ under the License.
         <description>Create a Example</description>
         <permission-service service-name="exampleGenericPermission" main-action="CREATE"/>
         <auto-attributes include="pk" mode="OUT" optional="false"/>
-        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+        <autoi-attrbutes include="nonpk" mode="IN" optional="true"/>
         <override name="exampleTypeId" optional="false"/>
         <override name="statusId" optional="false"/>
         <override name="exampleName" optional="false"/>
