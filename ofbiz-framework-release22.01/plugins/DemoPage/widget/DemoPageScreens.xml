@@ -58,7 +58,7 @@ under the License.
                             <widgets>
                                 <platform-specific><html><html-template multi-block="true" location="component://common-theme/template/includes/SetDependentDropdownValuesJs.ftl"/></html></platform-specific>
                                 <screenlet title="${uiLabelMap.DemoPageCreateNewCustomer}">
-                                    <include-form name="NewUser" location="component://DemoPage/widget/DemoPageForms.xml"/>
+                                    <include-form name="NewCustomer" location="component://DemoPage/widget/DemoPageForms.xml"/>
                                 </screenlet>
                             </widgets>
                             <fail-widgets>
