@@ -28,11 +28,11 @@ under the License.
     <copyright></copyright>
     <version></version>
     <entity name="CollectCustomerDetail" package-name="com.example">
-        <field name="formDetailId" type="id" primary-key="true"/>
-        <field name="name" type="name"/>
-        <field name="email" type="email"/>
-        <field name="message" type="long-varchar"/>
-        <field name="createdDate" type="date-time"/>
+        
+        <field name="UserName" type="name"/>
+        <field name="UserAddess" type="email"/>
+        <field name="UserMobile" type="long-varchar"/>
+        >
     </entity>
 
     <!-- Entity for linked/processed details -->
