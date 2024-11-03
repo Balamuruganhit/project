@@ -47,4 +47,5 @@ under the License.
     </request-map>
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#main"/>
+    <view-map name="AddDetail" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#AddDetail"/>
 </site-conf>
