@@ -49,13 +49,18 @@ under the License.
         <value xml:lang="zh">DemoPage应用程�?</value>
         <value xml:lang="zh-TW">DemoPage應用程�?</value>
     </property>
+    <property key="DemoPageUserId">
+        <value xml:lang="en">User Id</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
     <property key="DemoPageUserMobile">
         <value xml:lang="en">Mobile Number</value>
         <value xml:lang="zh">DemoPage应用程�?</value>
         <value xml:lang="zh-TW">DemoPage應用程�?</value>
     </property>
     <property key="DemoPageUserAddress">
-        <value xml:lang="en">Address</value>
+        <value xml:lang="en">lastName</value>
         <value xml:lang="zh">DemoPage应用程�?</value>
         <value xml:lang="zh-TW">DemoPage應用程�?</value>
     </property>
