@@ -22,8 +22,10 @@ under the License.
     <menu name="MainAppBar" title="${uiLabelMap.DemoPageApplication}" extends="CommonAppBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
         <menu-item name="main" title="${uiLabelMap.CommonMain}"><link target="main"/></menu-item>
         <menu-item name="Add Detail" title="${uiLabelMap.DemoPageAddDetail}">
-            <link target="AddDetail"/>
+            <link target="createUser"/>
         </menu-item>
-
+        <menu-item name="view Detail" title="${uiLabelMap.DemoPageAddDetail}">
+            <link target="viewUserList"/>
+        </menu-item>
     </menu>
 </menus>

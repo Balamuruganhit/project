@@ -37,40 +37,19 @@ under the License.
             </widgets>
         </section>
     </screen>
-<screen name="FindOfbizDemo">
-    <section>
-        <actions>
-            <set field="headerItem" value="findOfbizDemo"/>
-            <set field="titleProperty" value="PageTitleFindOfbizDemo"/>
-            <set field="ofbizDemoCtx" from-field="parameters"/>
-        </actions>
-        <widgets>
-            <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
-                <decorator-section name="body">
-                    <section>
-                        <condition>
-                            <if-has-permission permission="OFBIZDEMO" action="_VIEW"/>
-                        </condition>
-                        <widgets>
-                            <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
-                                <decorator-section name="search-options">
-                                    <include-form name="FindOfbizDemo" location="component://DemoPage/widget/DemoPageoForms.xml"/>
-                                </decorator-section>
-                                <decorator-section name="search-results">
-                                    <include-form name="ListOfbizDemo" location="component://DemoPage/widget/DemoPageForms.xml"/>
-                                </decorator-section>
-                            </decorator-screen>
-                        </widgets>
-                        <fail-widgets>
-                            <label style="h3">${uiLabelMap.OfbizDemoViewPermissionError}</label>
-                       </fail-widgets>
-                    </section>
-                </decorator-section>
-            </decorator-screen>
-        </widgets>
-    </section>
-</screen>
 
+<screen name="UserScreen" location="component://myUserPlugin/widget/UserForms.xml" default-form="UserDataForm">
+        <section name="UserSection">
+            <label>Enter User Data</label>
+            <form name="UserDataForm"/>
+        </section>
+    </screen>
+    <screen name="UserListScreen">
+        <section name="UserListSection">
+            <label>User Data List</label>
+            <entity-list name="UserData" />
+        </section>
+    </screen>
     
 
 </screens>

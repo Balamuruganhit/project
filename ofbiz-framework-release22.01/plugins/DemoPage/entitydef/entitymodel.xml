@@ -27,13 +27,12 @@ under the License.
     <description>None</description>
     <copyright></copyright>
     <version></version>
-    <entity name="DemoPageUser" package-name="org.apache.ofbiz.DemoPage" title="Demopage Entity">
-         <field name="ofbizDemoId" type="id"><description>primary sequenced ID</description></field>
-        <field name="firstName" type="name"></field>
-        <field name="lastName" type="name"></field>
-        <field name="Mnumber" type="name"></field>
-        <prim-key field="ofbizDemoId"/>
-        
+    <entity entity-name="UserData" package-name="org.apache.ofbiz.DemoPage" title="User Data">
+        <field name="userId" type="id" />
+        <field name="userName" type="name" />
+        <field name="email" type="email" />
+        <field name="phoneNumber" type="phone" />
+        <prim-key field="userId" />
     </entity>
 
    

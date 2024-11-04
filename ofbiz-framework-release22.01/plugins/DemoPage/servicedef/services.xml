@@ -35,4 +35,20 @@ under the License.
         <auto-attributes include="nonpk" mode="IN" optional="false"/>
         <override name="comments" optional="true"/>
     </service>
+     <service name="createUserData" engine="entity-auto" type="sync">
+        <attribute name="userName" type="String" />
+        <attribute name="email" type="String" />
+        <attribute name="phoneNumber" type="String" />
+        <override-parameters entity-name="UserData" />
+    </service>
+    <service name="findUserData" engine="entity-auto" type="sync">
+        <override-parameters entity-name="UserData" />
+    </service>
+    <service name="updateUserData" engine="entity-auto" type="sync">
+        <override-parameters entity-name="UserData" />
+    </service>
+    <service name="deleteUserData" engine="entity-auto" type="sync">
+        <attribute name="userId" type="String" />
+        <override-parameters entity-name="UserData" />
+    </service>
 </services>
