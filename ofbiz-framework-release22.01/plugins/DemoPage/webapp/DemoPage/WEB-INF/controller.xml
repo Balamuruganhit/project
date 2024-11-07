@@ -60,6 +60,6 @@ under the License.
         <response name="success" type="screen" value="UserEditScreen"/>
     </request-map> -->
     <view-map name="main" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#main"/>
-    <view-map name="viewUserList" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#UserListScreen"/>
+    <view-map name="viewUserList" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#=UserScreen"/>
 
 </site-conf>
