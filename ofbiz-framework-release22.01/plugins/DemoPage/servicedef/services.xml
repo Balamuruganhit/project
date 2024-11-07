@@ -29,26 +29,18 @@ under the License.
             Dummy service to prevent empty files and syntax error - Remove when the 1st real service will be added here 
         </description>
     </service> 
-   <service name="createOfbizDemo" default-entity-name="DemoPageUser" engine="entity-auto" invoke="create" auth="true">
-        <description>Create an Ofbiz Demo record</description>
+   <service name="createCustomer" default-entity-name="CustomerDetail" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a customer</description>
+        <permission-service service-name="customerGenericPermission" main-action="CREATE"/>
         <auto-attributes include="pk" mode="OUT" optional="false"/>
-        <auto-attributes include="nonpk" mode="IN" optional="false"/>
-        <override name="comments" optional="true"/>
+        <autoi-attrbutes include="nonpk" mode="IN" optional="true"/>
+        <override name="customerName" optional="false"/>
     </service>
-     <service name="createUserData" engine="entity-auto" type="sync">
-        <attribute name="userName" type="String" />
-        <attribute name="email" type="String" />
-        <attribute name="phoneNumber" type="String" />
-        <override-parameters entity-name="UserData" />
-    </service>
-    <service name="findUserData" engine="entity-auto" type="sync">
-        <override-parameters entity-name="UserData" />
-    </service>
-    <service name="updateUserData" engine="entity-auto" type="sync">
-        <override-parameters entity-name="UserData" />
-    </service>
-    <service name="deleteUserData" engine="entity-auto" type="sync">
-        <attribute name="userId" type="String" />
-        <override-parameters entity-name="UserData" />
+     <service name="updateCustomer" default-entity-name="CustomerDetail" engine="entity-auto" invoke="update" auth="true">
+        <description>Update a Example</description>
+        <permission-service service-name="customerGenericPermission" main-action="UPDATE"/>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+        <attribute name="customerName" type="String" mode="OUT" optional="false"/>
     </service>
 </services>

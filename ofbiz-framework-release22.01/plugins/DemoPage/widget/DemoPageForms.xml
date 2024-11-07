@@ -20,22 +20,23 @@ under the License.
 
 <forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://ofbiz.apache.org/Widget-Form" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
-        <form name="UserDataForm" type="single">
-    <field name="userName" required="true">
-        <label>User Name</label>
-        <text type="text" size="30" />
-    </field>
-    <field name="email" required="true">
-        <label>Email</label>
-        <text type="email" size="30" />
-    </field>
-    <field name="phoneNumber">
-        <label>Phone Number</label>
-        <text type="text" size="15" />
-    </field>
-    <field name="submit">
-        <submit reset="true" name="createUser" style="primary" button-type="submit" value="Submit" />
-    </field>
-</form>
+        <form name="EditCustomer" type="single" target="updateCustomer" title="" default-map-name="customer" default-entity-name="CustomerDetail">
+        
+        <alt-target use-when="customer==null" target="createCustomer"/>
+        <auto-fields-service service-name="updateCustomer"/>
+        <field use-when="customer!=null" name="CustomerId" title="${uiLabelMap.ExampleExampleId}"><display/></field>
+        <field use-when="customer==null @and CustomerId==null" name="CustomerId" title="${uiLabelMap.ExampleExampleId}"><ignored/></field>
+        <field use-when="customer==null @and CustomerId!=null" name="CustomerId" title="${uiLabelMap.ExampleExampleId}"><display description="${uiLabelMap.CommonCannotBeFound}: [${exampleId}]" also-hidden="false"/></field>
+        
+           
+        
+       
+        <field name="customerName" title="${uiLabelMap.FormFieldTitle_exampleName}" required-field="true"><text /></field>
+        <field name="customerName" title="${uiLabelMap.FormFieldTitle_exampleName}" required-field="true" widget-style="required"><text placeholder="${uiLabelMap.FormFieldTitle_exampleName}"/></field>
+        <field name="description" title="${uiLabelMap.CommonDescription}"/>
+        <field name="longDescription" title="${uiLabelMap.ExampleLongDescription}"/>
+        <field name="submitButton" use-when="example==null" title="${uiLabelMap.CommonCreate}"><submit button-type="button"/></field>
+        <field name="submitButton" use-when="example!=null" title="${uiLabelMap.CommonUpdate}"><submit button-type="button"/></field>
+    </form>
 
 </forms>

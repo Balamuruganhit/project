@@ -82,5 +82,45 @@ under the License.
         <value xml:lang="vi">Tạo mới khách hàng</value>
         <value xml:lang="zh">创建客户</value>
         <value xml:lang="zh-TW">新建客戶</value>
+    </property><property key="CommonUpdate">
+        <value xml:lang="en">Update</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="CommonCreate">
+        <value xml:lang="en">Create</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="FormFieldTitle_exampleName">
+        <value xml:lang="en">Customer Name</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="CommonCannotBeFound">
+        <value xml:lang="en">Not Found</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="ExampleExampleId">
+        <value xml:lang="en">Customer Id</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="CommonDescription">
+        <value xml:lang="en">Description</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="ExampleLongDescription">
+        <value xml:lang="en">Long Description</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    
+    <property key="ExampleLongDescription">
+        <value xml:lang="en">Long Description</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
     </property>
 </resource>

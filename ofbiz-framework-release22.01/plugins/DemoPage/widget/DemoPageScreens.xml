@@ -30,26 +30,31 @@ under the License.
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <screenlet title="Add Ofbiz Demo">
-                            <include-form name="AddOfbizDemo" location="component://DemoPage/widget/DemoPageForms.xml"/>
+                            
                         </screenlet>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
         </section>
     </screen>
+    <screen name="EditCustomer">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleEditExample"/>
+                <set field="tabButtonItem" value="EditCustomer"/>
+                <set field="exampleId" from-field="parameters.CustomerId"/>
+                <entity-one entity-name="CustomerDetail" value-field="DemoPage"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonExampleDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <include-form name="EditCustomer" location="component://DemoPage/widget/DemoPageForms.xml"/>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
 
-<screen name="UserScreen" location="component://myUserPlugin/widget/UserForms.xml" default-form="UserDataForm">
-        <section name="UserSection">
-            <label>Enter User Data</label>
-            <form name="UserDataForm"/>
-        </section>
-    </screen>
-    <screen name="UserListScreen">
-        <section name="UserListSection">
-            <label>User Data List</label>
-            <entity-list name="UserData" />
-        </section>
-    </screen>
     
 
 </screens>
