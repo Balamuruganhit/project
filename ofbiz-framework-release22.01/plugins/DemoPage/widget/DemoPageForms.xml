@@ -26,7 +26,7 @@ under the License.
         <auto-fields-service service-name="updateCustomer"/>
         <field use-when="customer!=null" name="CustomerId" title="${uiLabelMap.ExampleExampleId}"><display/></field>
         <field use-when="customer==null @and CustomerId==null" name="CustomerId" title="${uiLabelMap.ExampleExampleId}"><ignored/></field>
-        <field use-when="customer==null @and CustomerId!=null" name="CustomerId" title="${uiLabelMap.ExampleExampleId}"><display description="${uiLabelMap.CommonCannotBeFound}: [${exampleId}]" also-hidden="false"/></field>
+        <field use-when="customer==null @and CustomerId!=null" name="CustomerId" title="${uiLabelMap.ExampleExampleId}"><display description="${uiLabelMap.CommonCannotBeFound}: [${CustomerId}]" also-hidden="false"/></field>
         
            
         
