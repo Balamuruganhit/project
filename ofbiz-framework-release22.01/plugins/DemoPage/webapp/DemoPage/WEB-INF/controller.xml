@@ -24,6 +24,8 @@ under the License.
          can be found in the following xml file. A component can override the
          elements found in the common-controller.xml file. -->
     <include location="component://common/webcommon/WEB-INF/common-controller.xml"/>
+    <include location="component://common/webcommon/WEB-INF/portal-controller.xml"/>
+    <include location="component://commonext/webapp/WEB-INF/controller.xml"/>
 
     <description>DemoPage Component Site Configuration File</description>
 
@@ -54,9 +56,9 @@ under the License.
         <response name="success" type="screen" value="viewUserList"/>
     </request-map>
 
-    <request-map uri="editUser">
+    <!-- <request-map uri="editUser">
         <response name="success" type="screen" value="UserEditScreen"/>
-    </request-map>
+    </request-map> -->
     <view-map name="viewUserList" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#UserListScreen"/>
 
 </site-conf>
