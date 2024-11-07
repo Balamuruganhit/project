@@ -42,8 +42,8 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleEditExample"/>
                 <set field="tabButtonItem" value="EditCustomer"/>
-                <set field="exampleId" from-field="parameters.CustomerId"/>
-                <entity-one entity-name="CustomerDetail" value-field="DemoPage"/>
+                <set field="CustomerId" from-field="parameters.CustomerId"/>
+                <entity-one entity-name="CustomerDetail" value-field="customer"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonExampleDecorator" location="${parameters.mainDecoratorLocation}">
