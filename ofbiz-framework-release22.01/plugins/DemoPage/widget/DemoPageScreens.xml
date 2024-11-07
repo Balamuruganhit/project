@@ -46,7 +46,7 @@ under the License.
                 <entity-one entity-name="CustomerDetail" value-field="customer"/>
             </actions>
             <widgets>
-                <decorator-screen name="CommonExampleDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="DemoPageCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <include-form name="EditCustomer" location="component://DemoPage/widget/DemoPageForms.xml"/>
                     </decorator-section>
