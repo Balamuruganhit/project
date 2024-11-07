@@ -33,7 +33,7 @@ under the License.
         <field name="description" type="description"></field>
         <field name="longDescription" type="very-long"></field>
         <field name="comments" type="comment"></field>
-        <prim-key field="exampleId"/>
+        <prim-key field="CustomerId"/>
     </entity>
 
    

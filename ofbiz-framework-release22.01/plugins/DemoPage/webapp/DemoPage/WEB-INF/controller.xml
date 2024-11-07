@@ -56,7 +56,7 @@ under the License.
         <security https="true" auth="true"/>
         <event type="service" invoke="updateCustomer"/>
         <response name="success" type="request-redirect" value="EditCustomer">
-            <redirect-parameter name="exampleId"/>
+            <redirect-parameter name="CustomerId"/>
         </response>
         <response name="error" type="view" value="EditCustomer"/>
     </request-map>
