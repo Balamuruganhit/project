@@ -118,7 +118,7 @@ under the License.
         <value xml:lang="zh-TW">DemoPage應用程�?</value>
     </property>
     
-    <property key="ExampleLongDescription">
+    <property key="">
         <value xml:lang="en">Long Description</value>
         <value xml:lang="zh">DemoPage应用程�?</value>
         <value xml:lang="zh-TW">DemoPage應用程�?</value>

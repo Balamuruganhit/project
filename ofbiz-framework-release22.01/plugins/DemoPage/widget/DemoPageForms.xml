@@ -38,5 +38,29 @@ under the License.
         <field name="submitButton" use-when="example==null" title="${uiLabelMap.CommonCreate}"><submit button-type="button"/></field>
         <field name="submitButton" use-when="example!=null" title="${uiLabelMap.CommonUpdate}"><submit button-type="button"/></field>
     </form>
+    <grid name="ListCustomer" list-name="listIt" paginate-target="EditCustomer" default-entity-name="CustomerDetail" separate-columns="true"
+        odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
+        <actions>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+               
+                <field-map field-name="entityName" value="CustomerDetail"/>
+                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+            </service>
+            <set field="sortField" from-field="parameters.sortField"/>
+        </actions>
+        
+        <field name="CustomerId" title="${uiLabelMap.ExampleExampleId}" widget-style="buttontext">
+            <hyperlink description="${CustomerId}" target="EditCustomer" also-hidden="false">
+                <parameter param-name="CustomerId"/>
+            </hyperlink>
+        </field>
+        <field name="CustomerName" title="${uiLabelMap.FormFieldTitle_exampleName}" sort-field="true"><display/></field>
+        <field name="longDescription" title="${uiLabelMap.CommonDescription}"><display/></field>
+        
+        <field name="description" title="${uiLabelMap.CommonDescription}" sort-field="true"><display/></field>
+        
+    </grid>
 
 </forms>

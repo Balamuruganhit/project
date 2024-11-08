@@ -19,5 +19,10 @@ under the License.
 -->
 
 <entity-engine-xml>
-	
+	<CustomerDetail CustomerId="1001" customerName="Balamurugan" description="work for this soul" longDescription="final year"/>
+	<CustomerDetail CustomerId="1002" customerName="Bala" description="work for this soul" longDescription="final year"/>
+	<CustomerDetail CustomerId="1003" customerName="murugan" description="work for this soul" longDescription="final year"/>
+	<CustomerDetail CustomerId="1004" customerName="Balamuruga" description="work for this soul" longDescription="final year"/>
+
+
 </entity-engine-xml>
