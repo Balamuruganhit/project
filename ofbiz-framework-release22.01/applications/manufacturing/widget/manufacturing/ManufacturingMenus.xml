@@ -113,7 +113,7 @@ under the License.
              <condition>
                 <if-has-permission permission="MANUFACTURING" action="_CREATE"/>
             </condition>
-            <link target="/manufacturing/control/productionPlantDocumentation" url-mode="inter-app"/>
+            <link target="/manufacturing/control/Audit1" url-mode="inter-app"/>
         </menu-item>
     </menu>
     <menu name="MainActionMenu" menu-container-style="button-bar button-style-2" default-selected-style="selected">
