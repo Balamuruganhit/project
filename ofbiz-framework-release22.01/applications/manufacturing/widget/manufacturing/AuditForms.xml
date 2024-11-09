@@ -109,7 +109,7 @@ under the License.
             <display-entity entity-name="ProductAssocType" key-field-name="productAssocTypeId"/>
         </field>
     </grid>
-    <!-- <form name="ImportProductionLayout" type="upload" target="uploadProductionLayout" title="" >
+    <form name="ImportProductionLayout" type="upload" target="uploadProductionLayout" title="" >
         <field name="textAreaField" title="${uiLableMap.ManufacturingTextArea}" >
             <textarea rows="10" default-value="Enter the Detail"/>
         </field>
@@ -123,5 +123,5 @@ under the License.
         </field>
         <field name="Pdf" title="${uiLabelMap.ManufacturingUploadDoc}"><display/></field>
         
-    </grid> -->
+    </grid>
 </forms>

@@ -19,6 +19,39 @@
     under the License.
 -->
 <resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
+    <property key="ManufacturingAuditReports">
+        <value xml:lang="en">Audit Reports</value>
+    </property>
+    <property key="ManufacturingProductionPlantDocumentation">
+        <value xml:lang='en'> Production Plant Documentation</value>
+    </property>
+    <property key="ManufacturingEquipmentandMachinery">
+        <value xml:lang='en'>Equipment and Machinery</value>
+    </property>
+    <property key='ManufacturingInspectionandApprovalRecords'>
+        <value xml:lang='en'> Inspection and Approval Records</value>
+    </property>
+    <property key="ManufacturingMonitoringandMaintenance">
+        <value xml:lang='en'> Monitoring and Maintenance</value>
+    </property>
+    <property key="ManufacturingTextArea">
+        <value xml:lang='en'>Can you provide the document for the production plant layout?</value>
+    </propert>
+    <property key="ManufacturingSubmit">
+        <value xml:lang="en">Submit</value>
+    </property>
+    <property key="ManufacturingContentFile">
+        <value xml:lang="en">Upload Document</value>
+    </property>
+    <property key="ManufacturingPlantDetail">
+        <value xml:lang="en">Plant Layout Details</value>
+    </property>
+    <property key="ManufacturingUploadDoc">
+        <value xml:lang="en">Uploaded Document</value>
+    </property>
+    <property key="ManufacturingPlantDetailId">
+        <value xml:lang="en">Plant Layout Id</value>
+    </property>
     <property key="AddParty">
         <value xml:lang="en">Add Party</value>
         <value xml:lang="nl">Partij toevoegen</value>
@@ -965,39 +998,6 @@
         <value xml:lang="vi">Kết hợp các Chế tác lô hàng</value>
         <value xml:lang="zh">相关的生产运行</value>
         <value xml:lang="zh-TW">相關的生產運行</value>
-    </property>
-    <property key="ManufacturingAuditReports">
-        <value xml:lang="en">Audit Reports</value>
-    </property>
-    <property key="ManufacturingProductionPlantDocumentation">
-        <value xml:lang='en'> Production Plant Documentation</value>
-    </property>
-    <property key="ManufacturingEquipmentandMachinery">
-        <value xml:lang='en'>Equipment and Machinery</value>
-    </property>
-    <property key='ManufacturingInspectionandApprovalRecords'>
-        <value xml:lang='en'> Inspection and Approval Records</value>
-    </property>
-    <property key="ManufacturingMonitoringandMaintenance">
-        <value xml:lang='en'> Monitoring and Maintenance</value>
-    </property>
-    <property key="ManufacturingTextArea">
-        <value xml:lang='en'>Can you provide the document for the production plant layout?</value>
-    </propert>
-    <property key="ManufacturingSubmit">
-        <value xml:lang="en">Submit</value>
-    </property>
-    <property key="ManufacturingContentFile">
-        <value xml:lang="en">Upload Document</value>
-    </property>
-    <property key="ManufacturingPlantDetail">
-        <value xml:lang="en">Plant Layout Details</value>
-    </property>
-    <property key="ManufacturingUploadDoc">
-        <value xml:lang="en">Uploaded Document</value>
-    </property>
-    <property key="ManufacturingPlantDetailId">
-        <value xml:lang="en">Plant Layout Id</value>
     </property>
     <property key="ManufacturingBillOfMaterials">
         <value xml:lang="de">Stückliste</value>

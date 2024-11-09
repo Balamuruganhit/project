@@ -36,7 +36,10 @@ under the License.
         <event name="test" type="java" path="org.apache.ofbiz.webapp.event.TestEvent" invoke="test"/>
     </postprocessor>
     -->
-
+<request-map uri="productionPlantDocumentation">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="productionPlantDocumentation"/>
+    </request-map>
     <!-- Request Mappings -->
     <request-map uri="view">
         <security https="true" auth="true"/>
@@ -429,10 +432,7 @@ under the License.
         <security https="true" auth="true"/>
         <response name="success" type="view" value="FindBom"/>
     </request-map>
-    <request-map uri="productionPlantDocumentation">
-        <security https="true" auth="true"/>
-        <response name="success" type="view" value="productionPlantDocumentation"/>
-    </request-map>
+
     <request-map uri="EditProductManufacturingRules">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="EditProductManufacturingRules"/>
@@ -867,9 +867,7 @@ under the License.
     <view-map name="EditProductManufacturingRules" type="screen" page="component://manufacturing/widget/manufacturing/BomScreens.xml#EditProductManufacturingRules"/>
     <view-map name="BomSimulation" type="screen" page="component://manufacturing/widget/manufacturing/BomScreens.xml#BomSimulation"/>
     <view-map name="FindBom" type="screen" page="component://manufacturing/widget/manufacturing/BomScreens.xml#FindBom"/>
-    <!-- Audit view mappings -->
-    <view-map name="productionPlantDocumentation" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionPlantDocumentation"/>
-  
+
     <!-- Costs view mappings -->
     <view-map name="EditCostCalcs" type="screen" page="component://manufacturing/widget/manufacturing/CostScreens.xml#EditCostCalcs"/>
 
@@ -878,7 +876,9 @@ under the License.
     <view-map name="MrpExecution" type="screen" page="component://manufacturing/widget/manufacturing/MrpScreens.xml#MrpExecution"/>
     <view-map name="RunMrpGo" page="component://manufacturing/widget/manufacturing/MrpScreens.xml#RunMrpGo" type="screen"/>
     <view-map name="ManufacturingReports" type="screen" page="component://manufacturing/widget/manufacturing/ReportScreens.xml#ManufacturingReports"/>
-
+<!-- Audit view mappings -->
+    <view-map name="productionPlantDocumentation" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionPlantDocumentation"/>
+  
     <!-- JobShop Management view mappings -->
     <view-map name="CreateProductionRun" type="screen" page="component://manufacturing/widget/manufacturing/JobshopScreens.xml#CreateProductionRun"/>
     <view-map name="FindProductionRun" type="screen" page="component://manufacturing/widget/manufacturing/JobshopScreens.xml#FindProductionRun"/>
