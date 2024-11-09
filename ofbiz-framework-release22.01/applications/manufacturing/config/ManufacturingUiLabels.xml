@@ -990,7 +990,15 @@
     <property key="ManufacturingContentFile">
         <value xml:lang="en">Upload Document</value>
     </property>
-
+    <property key="ManufacturingPlantDetail">
+        <value xml:lang="en">Plant Layout Details</value>
+    </property>
+    <property key="ManufacturingUploadDoc">
+        <value xml:lang="en">Uploaded Document</value>
+    </property>
+    <property key="ManufacturingPlantDetailId">
+        <value xml:lang="en">Plant Layout Id</value>
+    </property>
     <property key="ManufacturingBillOfMaterials">
         <value xml:lang="de">Stückliste</value>
         <value xml:lang="en">Bill Of Materials</value>
