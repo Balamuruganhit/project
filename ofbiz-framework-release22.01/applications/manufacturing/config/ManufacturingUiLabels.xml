@@ -24,51 +24,6 @@
         <value xml:lang="nl">Partij toevoegen</value>
         <value xml:lang="zh">添加会员</value>
     </property>
-    <property key="AuditReport1">
-        <value xml:lang="en">Report 1</value>
-        <value xml:lang="nl">Partij toevoegen</value>
-        <value xml:lang="zh">添加会员</value>
-    </property>
-    <property key="AuditReport2">
-        <value xml:lang="en"Report 2</value>
-        <value xml:lang="nl">Partij toevoegen</value>
-        <value xml:lang="zh">添加会员</value>
-    </property>
-    <property key="AuditReport3">
-        <value xml:lang="en">Report 3</value>
-        <value xml:lang="nl">Partij toevoegen</value>
-        <value xml:lang="zh">添加会员</value>
-    </property>
-    <property key="AuditReport4">
-        <value xml:lang="en">Report 4</value>
-        <value xml:lang="nl">Partij toevoegen</value>
-        <value xml:lang="zh">添加会员</value>
-    </property>
-    <property key="AuditReport5">
-        <value xml:lang="en">Report 5</value>
-        <value xml:lang="nl">Partij toevoegen</value>
-        <value xml:lang="zh">添加会员</value>
-    </property>
-    <property key="AuditReports">
-        <value xml:lang="en">Audit Reports</value>
-        <value xml:lang="nl">Partij toevoegen</value>
-        <value xml:lang="zh">添加会员</value>
-    </property>
-    <property key="AuditReportadder">
-        <value xml:lang="en">Audit Detailcreater</value>
-        <value xml:lang="nl">Partij toevoegen</value>
-        <value xml:lang="zh">添加会员</value>
-    </property>
-    <property key="AuditReportremover">
-        <value xml:lang="en">Audit Detail remover</value>
-        <value xml:lang="nl">Partij toevoegen</value>
-        <value xml:lang="zh">添加会员</value>
-    </property>
-    <property key="AuditReportsender">
-        <value xml:lang="en">Audit </value>
-        <value xml:lang="nl">Partij toevoegen</value>
-        <value xml:lang="zh">添加会员</value>
-    </property>
     <property key="FormFieldTitle_allocatedCost">
         <value xml:lang="de">Verrechnete Kosten</value>
         <value xml:lang="en">Allocated Cost</value>
@@ -1010,6 +965,21 @@
         <value xml:lang="vi">Kết hợp các Chế tác lô hàng</value>
         <value xml:lang="zh">相关的生产运行</value>
         <value xml:lang="zh-TW">相關的生產運行</value>
+    </property>
+    <property key="ManufacturingAuditReports">
+        <value xml:lang="en">Audit Reports</value>
+    </property>
+    <property key="ManufacturingProductionPlantDocumentation">
+        <value xml:lang='en'> Production Plant Documentation</value>
+    </property>
+    <property key="ManufacturingEquipmentandMachinery">
+        <value xml:lang='en'>Equipment and Machinery</value>
+    </property>
+    <property key='ManufacturingInspectionandApprovalRecords'>
+        <value xml:lang='en'> Inspection and Approval Records</value>
+    </property>
+    <property key="ManufacturingMonitoringandMaintenance">
+        <value xml:lang='en'> Monitoring and Maintenance</value>
     </property>
     <property key="ManufacturingBillOfMaterials">
         <value xml:lang="de">Stückliste</value>

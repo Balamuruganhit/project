@@ -429,7 +429,10 @@ under the License.
         <security https="true" auth="true"/>
         <response name="success" type="view" value="FindBom"/>
     </request-map>
-
+    <request-map uri="productionPlantDocumentation">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="productionPlantDocumentation"/>
+    </request-map>
     <request-map uri="EditProductManufacturingRules">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="EditProductManufacturingRules"/>
@@ -864,7 +867,9 @@ under the License.
     <view-map name="EditProductManufacturingRules" type="screen" page="component://manufacturing/widget/manufacturing/BomScreens.xml#EditProductManufacturingRules"/>
     <view-map name="BomSimulation" type="screen" page="component://manufacturing/widget/manufacturing/BomScreens.xml#BomSimulation"/>
     <view-map name="FindBom" type="screen" page="component://manufacturing/widget/manufacturing/BomScreens.xml#FindBom"/>
-
+    <!-- Audit view mappings -->
+    <view-map name="productionPlantDocumentation" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionPlantDocumentation"/>
+  
     <!-- Costs view mappings -->
     <view-map name="EditCostCalcs" type="screen" page="component://manufacturing/widget/manufacturing/CostScreens.xml#EditCostCalcs"/>
 

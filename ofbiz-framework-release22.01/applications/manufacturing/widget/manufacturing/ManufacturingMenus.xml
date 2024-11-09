@@ -49,8 +49,8 @@ under the License.
         <menu-item name="ManufacturingReports" title="${uiLabelMap.ManufacturingReports}">
             <link target="ManufacturingReports"/>
         </menu-item>
-        <menu-item name="AuditReports" title="${uiLabelMap.AuditReports}">
-            <link target="AuditReports"/>
+        <menu-item name="AuditReport" title="${uiLabelMap.ManufacturingAuditReports}">
+            <link target="productionPlantDocumentation"/>
         </menu-item>
     </menu>
 
@@ -109,11 +109,11 @@ under the License.
             </condition>
             <link target="/manufacturing/control/ManufacturingReports" url-mode="inter-app"/>
         </menu-item>
-        <menu-item name="AuditReports" title="${uiLabelMap.AuditReports}">
-        <condition>
-                <if-has-permission permission="MANUFACTURING" action="_VIEW" url-mode="inter-app"/>
+         <menu-item name="AuditReport" title="${uiLabelMap.ManufacturingAuditReports}">
+             <condition>
+                <if-has-permission permission="MANUFACTURING" action="_CREATE"/>
             </condition>
-            <link target="/manufacturing/control/AuditReports"/>
+            <link target="/manufacturing/control/productionPlantDocumentation" url-mode="inter-app"/>
         </menu-item>
     </menu>
     <menu name="MainActionMenu" menu-container-style="button-bar button-style-2" default-selected-style="selected">
@@ -141,31 +141,21 @@ under the License.
              </condition>
              <link target="EditRoutingTask"/>
          </menu-item>
-         <menu-item name="NewOneField" title="${uiLabelMap.CommonNew} ${uiLabelMap.AuditReportadder}">
-             <condition>
-                 <or>
-                     <if-has-permission permission="MANUFACTURING" action="_VIEW"/>
-                 </or>
-             </condition>
-             <link target="EditRoutingTask"/>
-         </menu-item>
-         <menu-item name="NewTwoField" title="${uiLabelMap.CommonNew} ${uiLabelMap.AuditReportremover}">
-             <condition>
-                 <or>
-                     <if-has-permission permission="MANUFACTURING" action="_VIEW"/>
-                 </or>
-             </condition>
-             <link target="EditRoutingTask"/>
-         </menu-item>
-         <menu-item name="NewThirdField" title="${uiLabelMap.CommonNew} ${uiLabelMap.AuditReportsender}">
-             <condition>
-                 <or>
-                     <if-has-permission permission="MANUFACTURING" action="_VIEW"/>
-                 </or>
-             </condition>
-             <link target="EditRoutingTask"/>
-         </menu-item>
      </menu>
+    <menu name="AuditTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
+        <menu-item name="productionPlantDocumentation" title="${uiLabelMap.ManufacturingProductionPlantDocumentation}">
+            <link target="productionPlantDocumentation"/>
+        </menu-item>
+        <menu-item name="equipmentAndMachinery" title="${uiLabelMap.ManufacturingEquipmentandMachinery}">
+            <link target="EquipmentAndMachinery"/>
+        </menu-item>
+        <menu-item name="inspectionAndApprovalRecords" title="${uiLabelMap.ManufacturingInspectionandApprovalRecords}">
+            <link target="InspectionAndApprovalRecords"/>
+        </menu-item>
+        <menu-item name="monitoringAndMaintenance" title="${uiLabelMap.ManufacturingMonitoringandMaintenance}">
+            <link target="MonitoringAndMaintenance"/>
+        </menu-item>
+    </menu>
     <menu name="BomTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
         <menu-item name="findBom" title="${uiLabelMap.CommonFind}">
             <link target="FindBom"/>
@@ -433,31 +423,6 @@ under the License.
         </menu-item>
         <menu-item name="routingProductLink" title="${uiLabelMap.ManufacturingEditRoutingProductLink}">
             <link target="EditRoutingProductLink">
-                <parameter param-name="workEffortId" from-field="routing.workEffortId"/>
-            </link>
-        </menu-item>
-    </menu>
-    <menu name="AuditTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
-        <menu-item name="Report1" title="${uiLabelMap.AuditReport1}">
-            <link target="EditRouting">
-                <parameter param-name="workEffortId" from-field="routing.workEffortId"/>
-            </link>
-        </menu-item>
-        <menu-item name="Report2" title="${uiLabelMap.AuditReport2}">
-            <link target="EditRoutingTaskAssoc">
-                <parameter param-name="workEffortId" from-field="routing.workEffortId"/>
-            </link>
-        </menu-item>
-        <menu-item name="Report3" title="${uiLabelMap.AuditReport3}">
-            <link target="EditRoutingProductLink">
-                <parameter param-name="workEffortId" from-field="routing.workEffortId"/>
-            </link>
-        </menu-item><menu-item name="Report4" title="${uiLabelMap.AuditReport4}">
-            <link target="EditRouting">
-                <parameter param-name="workEffortId" from-field="routing.workEffortId"/>
-            </link>
-        </menu-item><menu-item name="Report5" title="${uiLabelMap.AuditReport5}">
-            <link target="EditRouting">
                 <parameter param-name="workEffortId" from-field="routing.workEffortId"/>
             </link>
         </menu-item>
