@@ -44,7 +44,7 @@ under the License.
             </widgets>
         </section>
     </screen>
-    <screen name="productionPlantDocumentation">
+    <screen name="productionPlantDocumentat">
         <section>
             <actions>
                 <set field="titleProperty" value="PageTitleEditProductBom"/>
@@ -57,7 +57,7 @@ under the License.
                 <script location="component://manufacturing/groovyScripts/bom/EditProductBom.groovy"/>
             </actions>
             <widgets>
-                <decorator-screen name="CommonBomDecorator">
+                <decorator-screen name="CommonAuditDecorator">
                     <decorator-section name="body">
                         <platform-specific>
                             <html><html-template multi-block="true" location="component://manufacturing/template/bom/EditProductBom.ftl"/></html>
@@ -160,4 +160,26 @@ under the License.
             </widgets>
         </section>
     </screen>
+    <screen name="productionPlantDocumentation">
+        <section>
+            <actions>
+                 <set field="titleProperty" value="PageTitleproductionPlantDocumentation"/>
+                <set field="tabButtonItem" value="productionPlantDocumentation"/>
+                <set field="headerItem" value="productionPlantDocumentation"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonAuditDecorator" >
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.ManufacturingProductionPlantDocumentation}">
+                            <container style="lefthalf">
+                                <!-- <label style="h2">${uiLabelMap.CommonExport}</label> -->
+                                <include-form name="ImportProductionLayout" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
+                            </container>
+                         </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
 </screens>

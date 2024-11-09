@@ -981,6 +981,16 @@
     <property key="ManufacturingMonitoringandMaintenance">
         <value xml:lang='en'> Monitoring and Maintenance</value>
     </property>
+    <property key="ManufacturingTextArea">
+        <value xml:lang='en'>Can you provide the document for the production plant layout?</value>
+    </propert>
+    <property key="ManufacturingSubmit">
+        <value xml:lang="en">Submit</value>
+    </property>
+    <property key="ManufacturingContentFile">
+        <value xml:lang="en">Upload Document</value>
+    </property>
+
     <property key="ManufacturingBillOfMaterials">
         <value xml:lang="de">Stückliste</value>
         <value xml:lang="en">Bill Of Materials</value>
