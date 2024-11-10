@@ -40,7 +40,7 @@ under the License.
 
     <request-map uri="productionPlantDocumentation">
         <security https="true" auth="true"/>
-        <response name="success" type="view" value="productionPlantDocumentation" service-name="listProductionPlantDocuments" invoke="listProductionPlantDocuments"/>
+        <response name="success" type="view" value="productionPlantDocumentation" />
     </request-map>
 
     <request-map uri="uploadPdfFile">
