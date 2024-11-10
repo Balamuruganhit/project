@@ -11,21 +11,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.nio.*;
+
 
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.UtilMisc;
-import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.content.data.DataResourceWorker;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.service.DispatchContext;
 import org.apache.ofbiz.service.ServiceUtil;
-import org.apache.ofbiz.entity.condition.EntityCondition;
-import org.apache.ofbiz.entity.condition.EntityOperator;
 import java.io.OutputStream;
+
 public class StoreServices {
 	private static final String module = StoreServices.class.getName();
+	
+	/** Updates the product's low level code (llc)
+     * Given a product id, computes and updates the product's low level code (field billOfMaterialLevel in Product entity).
+     * It also updates the llc of all the product's descendants.
+     * For the llc only the manufacturing bom ("MANUF_COMPONENT") is considered.
+     * @param dctx the distach context
+     * @param context the context
+     * @return the results of the updates the product's low level code
+    */
 	public static Map<String, Object> uploadPdfToDatabaseService(DispatchContext dctx, Map<String, Object> context) {
     Delegator delegator = dctx.getDelegator();
     byte[] uploadedFile = (byte[]) context.get("uploadedFile");  // The uploaded PDF file
