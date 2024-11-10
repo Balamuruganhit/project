@@ -19,37 +19,37 @@
     under the License.
 -->
 <resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
-<property key="ManufacturingAuditReports">
+<property key="AuditReports">
         <value xml:lang="en">Audit Reports</value>
     </property>
-    <property key="ManufacturingProductionPlantDocumentation">
+    <property key="ProductionPlantDocumentation">
         <value xml:lang='en'> Production Plant Documentation</value>
     </property>
-    <property key="ManufacturingEquipmentandMachinery">
+    <property key="EquipmentandMachinery">
         <value xml:lang='en'>Equipment and Machinery</value>
     </property>
-    <property key='ManufacturingInspectionandApprovalRecords'>
+    <property key='InspectionandApprovalRecords'>
         <value xml:lang='en'> Inspection and Approval Records</value>
     </property>
-    <property key="ManufacturingMonitoringandMaintenance">
+    <property key="MonitoringandMaintenance">
         <value xml:lang='en'> Monitoring and Maintenance</value>
     </property>
-    <property key="ManufacturingTextArea">
+    <property key="TextArea">
         <value xml:lang='en'>Can you provide the document for the production plant layout?</value>
     </propert>
-    <property key="ManufacturingSubmit">
+    <property key="Submit">
         <value xml:lang="en">Submit</value>
     </property>
-    <property key="ManufacturingContentFile">
+    <property key="ContentFile">
         <value xml:lang="en">Upload Document</value>
     </property>
-    <property key="ManufacturingPlantDetail">
+    <property key="PlantDetail">
         <value xml:lang="en">Plant Layout Details</value>
     </property>
-    <property key="ManufacturingUploadDoc">
+    <property key="UploadDoc">
         <value xml:lang="en">Uploaded Document</value>
     </property>
-    <property key="ManufacturingPlantDetailId">
+    <property key="PlantDetailId">
         <value xml:lang="en">Plant Layout Id</value>
     </property>
 
