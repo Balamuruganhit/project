@@ -33,7 +33,6 @@ under the License.
     location="org.ofbiz.manufacturing.audit.StoreServices" >
         <description>Service to upload PDF and save it to DataResource and Content</description>
         <attribute name="uploadedFile" type="java.nio.ByteBuffer"/>
-        <attribute name="fileName" type="String"/>
         <attribute name="textAreaField" type="String"/>
         <attribute name="contentId" type="String" mode="OUT"/>
     </service>
