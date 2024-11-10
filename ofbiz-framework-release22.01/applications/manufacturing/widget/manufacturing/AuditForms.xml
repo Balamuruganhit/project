@@ -112,7 +112,7 @@ under the License.
     <form name="ImportProductionLayout" type="upload" target="uploadProductionLayout" title="" >
         <field name="uploadedFile" title="${uiLabelMap.ManuContentFile}"><file/></field>
         <field name="textAreaField" title="${uiLableMap.ManuTextArea}" >
-            <textarea rows="10" default-value="Enter the Detail"/>
+            <textarea rows="10" default-value="Enter the Detail" title="${uiLableMap.ManuTextArea}"/>
         </field>
         
         <field name="submitButton" title="${uiLabelMap.Submit}"><submit button-type="button"/></field>
