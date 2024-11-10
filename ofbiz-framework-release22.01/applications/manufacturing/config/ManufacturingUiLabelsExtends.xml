@@ -86,7 +86,7 @@
     </property>
     <property key="ManuTextArea">
         <value xml:lang='en'>Can you provide the document for the production plant layout?</value>
-		   <value xml:lang="es">Fecha y hora de cancelación</value>
+		<value xml:lang="es">Fecha y hora de cancelación</value>
         <value xml:lang="fr">Date et heure d'annulation</value>
         <value xml:lang="it">Data/ora di annullamento</value>
         <value xml:lang="ja">取消日時</value>
@@ -96,7 +96,7 @@
         <value xml:lang="vi">Ngày giờ hủy bỏ</value>
         <value xml:lang="zh">取消日期时间</value>
         <value xml:lang="zh-TW">取消日期時間</value>
-    </propert>
+    </property>
     <property key="ManuSubmit">
         <value xml:lang="en">Submit</value>
 		   <value xml:lang="es">Fecha y hora de cancelación</value>
