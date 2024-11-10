@@ -52,8 +52,8 @@ under the License.
     <request-map uri="uploadDocument">
         <security https="true"/>
         <event type="service" name="uploadDocument" path="component://manufacturing/groovyScripts/audit/uploadDocument.groovy"/>
-        <response name="success" type="view" value="productionPlantDocumentation"/>
-        <response name="error" type="view" value="errorPage"/>
+        <response name="success" type="view" value="successScreen"/>
+        <response name="error" type="view" value="errorScreen"/>
     </request-map>
     <!-- Request Mappings -->
     <request-map uri="view">
@@ -844,6 +844,8 @@ under the License.
 
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://manufacturing/widget/manufacturing/JobshopScreens.xml#FindProductionRun"/>
+    <view-map name="successScreen" type="screen" page="component://manufacturing/widget/manufacturing/JobshopScreens.xml#successUpload"/>
+    <view-map name="errorScreen" type="screen" page="component://manufacturing/widget/manufacturing/JobshopScreens.xml#ErrorUpload"/>
 
     <!-- Routing view mappings -->
     <view-map name="FindCalendar" type="screen" page="component://manufacturing/widget/manufacturing/CalendarScreens.xml#FindCalendar"/>

@@ -183,5 +183,43 @@ under the License.
             </widgets>
         </section>
     </screen>
+    <screen name="successUpload">
+        <section>
+        
+            <widgets>
+                <decorator-screen name="CommonAuditDecorator" >
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.ProductionPlantDocumentation}">
+                            <container >
+                                <label style="h2">Success fully</label>
+                                
+                            </container>
+                         </screenlet>
+                            
+
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ErrorUpload">
+        <section>
+        
+            <widgets>
+                <decorator-screen name="CommonAuditDecorator" >
+                    <decorator-section name="body">
+                        <screenlet title="${uiLabelMap.ProductionPlantDocumentation}">
+                            <container >
+                                <label style="h2">Not Upload</label>
+                                
+                            </container>
+                         </screenlet>
+                            
+
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
     
 </screens>
