@@ -19,7 +19,7 @@
     under the License.
 -->
 <resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
-<property key="AuditReports">
+	<property key="AuditReports">
         <value xml:lang="en">Audit Reports</value>
 		   <value xml:lang="es">Fecha y hora de cancelación</value>
         <value xml:lang="fr">Date et heure d'annulation</value>
@@ -163,4 +163,4 @@
         <value xml:lang="zh-TW">取消日期時間</value>
     </property>
 
-/resource>
+</resource>
