@@ -29,7 +29,7 @@ under the License.
         <description>Runs the package configurator.</description>
         <attribute mode="IN" name="shipmentId" optional="false" type="String"/>
     </service>
-    <service name="uploadPdfToDatabase" engine="java" auth="true" 
+    <service name="uploadPdfToDatabaseService" engine="java" auth="true" 
     location="org.ofbiz.manufacturing.audit.StoreServices" >
         <description>Service to upload PDF and save it to DataResource and Content</description>
         <attribute name="uploadedFile" type="java.nio.ByteBuffer"/>
