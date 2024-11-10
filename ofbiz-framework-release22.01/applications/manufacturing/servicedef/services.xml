@@ -30,9 +30,10 @@ under the License.
         <attribute mode="IN" name="shipmentId" optional="false" type="String"/>
     </service>
     <service name="uploadPdfToDatabaseService" engine="java" auth="true" 
-    location="org.ofbiz.manufacturing.audit.StoreServices" >
+    location="org.ofbiz.manufacturing.audit.StoreServices" invoke="uploadPdfToDatabaseService">
         <description>Service to upload PDF and save it to DataResource and Content</description>
         <attribute name="uploadedFile" type="java.nio.ByteBuffer"/>
+
         <attribute name="textAreaField" type="String"/>
         <attribute name="contentId" type="String" mode="OUT"/>
     </service>
