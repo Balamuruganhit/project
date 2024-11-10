@@ -37,7 +37,7 @@ under the License.
     </postprocessor>
     -->
     
-</request-map>
+
     <request-map uri="productionPlantDocumentation">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="productionPlantDocumentation" service-name="listProductionPlantDocuments" invoke="listProductionPlantDocuments"/>
@@ -885,7 +885,7 @@ under the License.
     <view-map name="MrpExecution" type="screen" page="component://manufacturing/widget/manufacturing/MrpScreens.xml#MrpExecution"/>
     <view-map name="RunMrpGo" page="component://manufacturing/widget/manufacturing/MrpScreens.xml#RunMrpGo" type="screen"/>
     <view-map name="ManufacturingReports" type="screen" page="component://manufacturing/widget/manufacturing/ReportScreens.xml#ManufacturingReports"/>
-<!-- Audit view mappings -->
+
     <view-map name="productionPlantDocumentation" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionPlantDocumentation"/>
   
     <!-- JobShop Management view mappings -->
