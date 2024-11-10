@@ -37,10 +37,10 @@
     <property key="ManuTextArea">
         <value xml:lang='en'>Can you provide the document for the production plant layout?</value>
     </propert>
-    <property key="Submit">
+    <property key="ManuSubmit">
         <value xml:lang="en">Submit</value>
     </property>
-    <property key="ContentFile">
+    <property key="ManuContentFile">
         <value xml:lang="en">Upload Document</value>
     </property>
     <property key="PlantDetail">
