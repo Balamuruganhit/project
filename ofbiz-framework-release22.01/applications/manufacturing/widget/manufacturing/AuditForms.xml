@@ -118,8 +118,8 @@ under the License.
     </form>
     <grid name="ListPPD" list-name="ListProductionPlantDocumentation" odd-row-style="alternate-row"
         default-table-style="basic-table hover-bar"  paginate-target="productionPlantDocumentation">
-        <field name="DetailOfPlant" title="${uiLabelMap.PlantDetail}" ></field>
-        <field name="DetailOfPlantID" title="${uiLabelMap.PlantDetailId}" >
+        <field name="DetailOfPlant" title="${uiLabelMap.PlantDetail}" ><display/></field>
+        <field name="DetailOfPlantID" title="${uiLabelMap.PlantDetailId}" ><display/>
         </field>
         <field name="Pdf" title="${uiLabelMap.UploadDoc}"><display/></field>
         
