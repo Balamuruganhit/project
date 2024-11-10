@@ -109,7 +109,7 @@ under the License.
             <display-entity entity-name="ProductAssocType" key-field-name="productAssocTypeId"/>
         </field>
     </grid>
-    <form name="ImportProductionLayout" type="upload"  target="uploadPdfFile">
+    <form name="ImportProductionLayout" type="single"  target="uploadDocument">
         <field name="uploadedFile" title="${uiLabelMap.ManuContentFile}"><file/></field>
         <field name="textAreaField" title="${uiLableMap.ManuTextArea}" >
             <textarea rows="10" default-value="Enter the Detail" title="${uiLableMap.ManuTextArea}"/>

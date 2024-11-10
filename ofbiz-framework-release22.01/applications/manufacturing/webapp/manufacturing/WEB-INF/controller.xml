@@ -49,6 +49,12 @@ under the License.
         <response name="success" type="view" value="productionPlantDocumentation"/>
         <response name="error" type="view" value="productionPlantDocumentation"/>
     </request-map>
+    <request-map uri="uploadDocument">
+        <security https="true"/>
+        <event type="service" name="uploadDocument" path="component://manufacturing/groovyScripts/audit/uploadDocument.groovy"/>
+        <response name="success" type="view" value="productionPlantDocumentation"/>
+        <response name="error" type="view" value="errorPage"/>
+    </request-map>
     <!-- Request Mappings -->
     <request-map uri="view">
         <security https="true" auth="true"/>
