@@ -176,7 +176,7 @@ under the License.
                                 <include-form name="ImportProductionLayout" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
                             </container>
                          </screenlet>
-                            <include-grid name="ListPPD" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
+                            <include-grid name="ProductionPlantDocuments" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
 
                     </decorator-section>
                 </decorator-screen>
