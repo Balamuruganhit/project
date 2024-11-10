@@ -110,7 +110,7 @@ under the License.
         </field>
     </grid>
     <form name="ImportProductionLayout" type="upload" target="uploadProductionLayout" title="" >
-        <field name="textAreaField" title="${uiLableMap.TextArea}" >
+        <field name="textAreaField" title="${uiLableMap.ManuTextArea}" >
             <textarea rows="10" default-value="Enter the Detail"/>
         </field>
         <field name="uploadedFile" title="${uiLabelMap.ContentFile}"><file/></field>
@@ -118,8 +118,8 @@ under the License.
     </form>
     <grid name="ListPPD" list-name="ListProductionPlantDocumentation" odd-row-style="alternate-row"
         default-table-style="basic-table hover-bar"  paginate-target="productionPlantDocumentation">
-        <field name="DetailOfPlant" title="${uiLabelMap.PlantDetail}" use-when=""></field>
-        <field name="DetailOfPlantID" title="${uiLabelMap.PlantDetailId}" use-when="">
+        <field name="DetailOfPlant" title="${uiLabelMap.PlantDetail}" ></field>
+        <field name="DetailOfPlantID" title="${uiLabelMap.PlantDetailId}" >
         </field>
         <field name="Pdf" title="${uiLabelMap.UploadDoc}"><display/></field>
         

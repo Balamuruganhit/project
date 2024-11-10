@@ -34,7 +34,7 @@
     <property key="MonitoringandMaintenance">
         <value xml:lang='en'> Monitoring and Maintenance</value>
     </property>
-    <property key="TextArea">
+    <property key="ManuTextArea">
         <value xml:lang='en'>Can you provide the document for the production plant layout?</value>
     </propert>
     <property key="Submit">
