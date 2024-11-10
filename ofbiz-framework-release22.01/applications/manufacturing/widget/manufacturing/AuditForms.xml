@@ -110,18 +110,18 @@ under the License.
         </field>
     </grid>
     <form name="ImportProductionLayout" type="upload" target="uploadProductionLayout" title="" >
-        <field name="textAreaField" title="${uiLableMap.ManufacturingTextArea}" >
+        <field name="textAreaField" title="${uiLableMap.TextArea}" >
             <textarea rows="10" default-value="Enter the Detail"/>
         </field>
-        <field name="uploadedFile" title="${uiLabelMap.ManufacturingContentFile}"><file/></field>
-        <field name="submitButton" title="${uiLabelMap.ManufacturingSubmit}"><submit button-type="button"/></field>
+        <field name="uploadedFile" title="${uiLabelMap.ContentFile}"><file/></field>
+        <field name="submitButton" title="${uiLabelMap.Submit}"><submit button-type="button"/></field>
     </form>
     <grid name="ListPPD" list-name="ListProductionPlantDocumentation" odd-row-style="alternate-row"
         default-table-style="basic-table hover-bar"  paginate-target="productionPlantDocumentation">
-        <field name="DetailOfPlant" title="${uiLabelMap.ManufacturingPlantDetail}" use-when=""></field>
-        <field name="DetailOfPlantID" title="${uiLabelMap.ManufacturingPlantDetailId}" use-when="">
+        <field name="DetailOfPlant" title="${uiLabelMap.PlantDetail}" use-when=""></field>
+        <field name="DetailOfPlantID" title="${uiLabelMap.PlantDetailId}" use-when="">
         </field>
-        <field name="Pdf" title="${uiLabelMap.ManufacturingUploadDoc}"><display/></field>
+        <field name="Pdf" title="${uiLabelMap.UploadDoc}"><display/></field>
         
     </grid>
 </forms>

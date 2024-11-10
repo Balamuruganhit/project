@@ -170,7 +170,7 @@ under the License.
             <widgets>
                 <decorator-screen name="CommonAuditDecorator" >
                     <decorator-section name="body">
-                        <screenlet title="${uiLabelMap.ManufacturingProductionPlantDocumentation}">
+                        <screenlet title="${uiLabelMap.ProductionPlantDocumentation}">
                             <container style="lefthalf">
                                 <!-- <label style="h2">${uiLabelMap.CommonExport}</label> -->
                                 <include-form name="ImportProductionLayout" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
