@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
+<property key="ManufacturingAuditReports">
+        <value xml:lang="en">Audit Reports</value>
+    </property>
+    <property key="ManufacturingProductionPlantDocumentation">
+        <value xml:lang='en'> Production Plant Documentation</value>
+    </property>
+    <property key="ManufacturingEquipmentandMachinery">
+        <value xml:lang='en'>Equipment and Machinery</value>
+    </property>
+    <property key='ManufacturingInspectionandApprovalRecords'>
+        <value xml:lang='en'> Inspection and Approval Records</value>
+    </property>
+    <property key="ManufacturingMonitoringandMaintenance">
+        <value xml:lang='en'> Monitoring and Maintenance</value>
+    </property>
+    <property key="ManufacturingTextArea">
+        <value xml:lang='en'>Can you provide the document for the production plant layout?</value>
+    </propert>
+    <property key="ManufacturingSubmit">
+        <value xml:lang="en">Submit</value>
+    </property>
+    <property key="ManufacturingContentFile">
+        <value xml:lang="en">Upload Document</value>
+    </property>
+    <property key="ManufacturingPlantDetail">
+        <value xml:lang="en">Plant Layout Details</value>
+    </property>
+    <property key="ManufacturingUploadDoc">
+        <value xml:lang="en">Uploaded Document</value>
+    </property>
+    <property key="ManufacturingPlantDetailId">
+        <value xml:lang="en">Plant Layout Id</value>
+    </property>
+
+/resource>
