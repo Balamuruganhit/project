@@ -41,11 +41,13 @@ under the License.
     <request-map uri="productionPlantDocumentation">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="productionPlantDocumentation" service-name="listProductionPlantDocuments" invoke="listProductionPlantDocuments"/>
+    </request-map>
+
     <request-map uri="uploadPdfFile">
-    <security https="true" auth="true"/>
-    <event type="service" service-name="uploadPdfToDatabase" invoke="uploadPdfToDatabaseService"/>
-    <response name="success" type="view" value="productionPlantDocumentation"/>
-    <response name="error" type="view" value="productionPlantDocumentation"/>
+        <security https="true" auth="true"/>
+        <event type="service" service-name="uploadPdfToDatabase" invoke="uploadPdfToDatabaseService"/>
+        <response name="success" type="view" value="productionPlantDocumentation"/>
+        <response name="error" type="view" value="productionPlantDocumentation"/>
     </request-map>
     <!-- Request Mappings -->
     <request-map uri="view">
