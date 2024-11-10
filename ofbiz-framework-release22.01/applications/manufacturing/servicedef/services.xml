@@ -29,4 +29,18 @@ under the License.
         <description>Runs the package configurator.</description>
         <attribute mode="IN" name="shipmentId" optional="false" type="String"/>
     </service>
+    <service name="uploadPdfToDatabase" engine="java" auth="true" 
+    location="org.ofbiz.manufacturing.audit.StoreServices" >
+        <description>Service to upload PDF and save it to DataResource and Content</description>
+        <attribute name="uploadedFile" type="java.nio.ByteBuffer"/>
+        <attribute name="fileName" type="String"/>
+        <attribute name="textAreaField" type="String"/>
+        <attribute name="contentId" type="String" mode="OUT"/>
+    </service>
+   <service name="listProductionPlantDocuments" engine="java" location="org.ofbiz.manufacturing.audit.StoreServices" invoke="listProductionPlantDocuments" />
+
+    <!-- Service to view a specific PDF by dataResourceId -->
+    <service name="viewPDF" engine="java" location="org.ofbiz.manufacturing.audit.StoreServices" invoke="viewPDF" />
+
+
 </services>

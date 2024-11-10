@@ -84,10 +84,6 @@
         <value xml:lang="zh">取消日期时间</value>
         <value xml:lang="zh-TW">取消日期時間</value>
     </property>
-    <property key="ManuTextArea">
-        <value xml:lang='en'>Can you provide the document for the production plant layout?</value>
-		
-    </property>
     <property key="ManuSubmit">
         <value xml:lang="en">Submit</value>
 		   <value xml:lang="es">Fecha y hora de cancelación</value>

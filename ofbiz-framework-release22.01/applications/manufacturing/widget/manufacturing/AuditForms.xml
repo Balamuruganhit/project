@@ -109,24 +109,29 @@ under the License.
             <display-entity entity-name="ProductAssocType" key-field-name="productAssocTypeId"/>
         </field>
     </grid>
-    <form name="ImportProductionLayout" type="upload" target="uploadProductionLayout" title="" >
+    <form name="ImportProductionLayout" type="upload"  target="uploadPdfFile">
         <field name="uploadedFile" title="${uiLabelMap.ManuContentFile}"><file/></field>
         <field name="textAreaField" title="${uiLableMap.ManuTextArea}" >
             <textarea rows="10" default-value="Enter the Detail" title="${uiLableMap.ManuTextArea}"/>
         </field>
+        <field name="contentId" title="Content ID">
+        <hidden value="plantProductionDocument"/>
+        </field>
         
         <field name="submitButton" title="${uiLabelMap.Submit}"><submit button-type="button"/></field>
     </form>
-    <grid name="ListPPD" list-name="ListProductionPlantDocumentation" odd-row-style="alternate-row"
-        default-table-style="basic-table hover-bar"  header-row-style="header-row-2"  paginate-target="productionPlantDocumentation">
-        
-        <field name="DetailOfPlantID" title="${uiLabelMap.PlantDetailId}" ><display/></field>
-        <field name="DetailOfPlant" title="${uiLabelMap.PlantDetail}" ><display/></field>
-        <field name="Pdf" title="${uiLabelMap.UploadDoc}"><display/></field>
-        <field name="printPdf" title=" " widget-style="buttontext">
-            <hyperlink description="${uiLabelMap.CommonRemove}" target="printPdf" also-hidden="false">
-              
-            </hyperlink>
-        </field>
-    </grid>
+    <grid name="ProductionPlantDocuments" list-name="contentList" odd-row-style="alternate-row"
+    default-table-style="basic-table hover-bar" header-row-style="header-row-2">
+    
+    <field name="contentId" title="Content ID"><display/></field>
+    <field name="description" title="Description"><display/></field>
+    <field name="dataResourceId" title="Data Resource ID"><display/></field>
+    
+    <!-- Button to view PDF -->
+    <field name="viewPdfButton" title="View PDF">
+        <hyperlink description="View PDF" target="/viewPDF?dataResourceId=${contentId}" />
+    </field>
+</grid>
+
+
 </forms>
