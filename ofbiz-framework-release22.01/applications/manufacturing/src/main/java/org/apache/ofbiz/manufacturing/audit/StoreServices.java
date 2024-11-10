@@ -5,6 +5,7 @@ import org.apache.ofbiz.entity.condition.EntityOperator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ import org.apache.ofbiz.content.data.DataResourceWorker;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.service.DispatchContext;
+import org.apache.ofbiz.service.LocalDispatcher;
 import org.apache.ofbiz.service.ServiceUtil;
 import java.io.OutputStream;
 
@@ -33,11 +35,13 @@ public class StoreServices {
      * @param context the context
      * @return the results of the updates the product's low level code
     */
-	public static Map<String, Object> uploadPdfToDatabaseService(DispatchContext dctx, Map<String, Object> context) {
+	public static Map<String, Object> uploadPdfToDatabaseService(DispatchContext dctx,
+    Map<String, ? extends Object> context) {
+    LocalDispatcher dispatcher = dctx.getDispatcher();
     Delegator delegator = dctx.getDelegator();
     byte[] uploadedFile = (byte[]) context.get("uploadedFile");  // The uploaded PDF file
     String textAreaField = (String) context.get("textAreaField"); // Text area content
-
+    Locale locale = (Locale) context.get("locale");
     // Define a content ID (can be customized)
     String contentId = "plantProductionDocument";  
     String description = "Production Layout Document";
