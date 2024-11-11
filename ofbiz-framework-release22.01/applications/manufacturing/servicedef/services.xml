@@ -29,29 +29,18 @@ under the License.
         <description>Runs the package configurator.</description>
         <attribute mode="IN" name="shipmentId" optional="false" type="String"/>
     </service>
-    <service name="uploadPdfToDatabaseService" engine="java" auth="true" 
-    location="org.ofbiz.manufacturing.audit.StoreServices" invoke="uploadPdfToDatabaseService">
-        <description>Service to upload PDF and save it to DataResource and Content</description>
-        <attribute name="uploadedFile" type="java.nio.ByteBuffer"/>
-
-        <attribute name="textAreaField" type="String"/>
-        <attribute name="contentId" type="String" mode="OUT"/>
+   <service name="uploadPartyContentFile" engine="group" transaction-timeout="300">
+        <description>Upload and attach a file to a party</description>
+        <group>
+            <invoke name="createContentFromUploadedFile" result-to-context="true"/>
+            <invoke name="createPlantContent"/>
+        </group>
     </service>
-   <service name="listProductionPlantDocuments" engine="java" location="org.ofbiz.manufacturing.audit.StoreServices" invoke="listProductionPlantDocuments" />
+    <service name="createPlantContent" default-entity-name="PlantContent" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a PartyContent record</description>
+        <auto-attributes mode="IN" include="pk" optional="false"/>
+        <auto-attributes mode="IN" include="nonpk" optional="true"/>
+        <override name="fromDate" optional="true"/>
+    </service>
 
-    <!-- Service to view a specific PDF by dataResourceId -->
-    <service name="viewPDF" engine="java" location="org.ofbiz.manufacturing.audit.StoreServices" invoke="viewPDF" />
-
-    <service name="uploadDocument"
-         engine="java"
-         location="component://manufacturing/groovyScripts/audit/uploadDocument.groovy"
-         invoke="uploadDocument"
-         auth="true">
-    <description>Uploads a PDF and saves associated text</description>
-    <attribute name="textAreaField" type="String" mode="IN"/>
-    <attribute name="uploadedFile" type="Object" mode="IN"/>
-    <attribute name="_uploadedFile_fileName" type="String" mode="IN"/>
-    <attribute name="_uploadedFile_contentType" type="String" mode="IN"/>
-    <attribute name="contentId" type="String" mode="OUT"/>
-</service
 </services>

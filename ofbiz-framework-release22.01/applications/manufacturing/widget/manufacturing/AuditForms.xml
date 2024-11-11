@@ -21,117 +21,100 @@ under the License.
 <forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xmlns="http://ofbiz.apache.org/Widget-Form" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
     
-    <grid name="ListProductManufacturingRules" target="UpdateProductManufacturingRule" title="" list-name="manufacturingRules"
-        odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
-        <field name="productionplantlayoutId"><display/></field>
-        <field name="ruleSeqId"><display/></field>
-        <field name="description"><display/></field>
-        <field name="productId"><display/></field>
-        <field name="productIdFor"><display/></field>
-        <field name="productIdIn"><display/></field>
-        <field name="productIdInSubst"><display/></field>
-        <field name="productFeature"><display/></field>
-        <field name="quantity"><display/></field>
-        <field name="ruleOperator"><display/></field>
-        <field name="fromDate"><display/></field>
-        <field name="thruDate"><display/></field>
-        <field name="updateLink" title=" " widget-style="buttontext">
-            <hyperlink description="${uiLabelMap.CommonSelect}" target="EditProductManufacturingRules" >
-                <parameter param-name="ruleId"/>
-            </hyperlink>
-        </field>
-        <field name="deleteLink" title=" " widget-style="buttontext">
-            <hyperlink description="${uiLabelMap.CommonDelete}" target="DeleteProductManufacturingRule" also-hidden="false">
-                <parameter param-name="ruleId"/>
-            </hyperlink>
-        </field>
-    </grid>
+   
+    
+   
+    <form name="AddPartyContent" target="updatePlantContent" type="upload" default-map-name="content"
+        focus-field-name="contentTypeId" header-row-style="header-row" default-table-style="basic-table">
+        <actions>
+            <entity-one entity-name="StatusItem" value-field="currentStatus" auto-field-map="false">
+                <field-map field-name="statusId" from-field="content.statusId"/>
+            </entity-one>
+            <entity-one entity-name="DataResource" value-field="dataResource" auto-field-map="false">
+                <field-map field-name="dataResourceId" from-field="content.dataResourceId"/>
+            </entity-one>
+        </actions>
 
-    <form name="UpdateProductManufacturingRule" type="single" target="UpdateProductManufacturingRule" title=""
-        header-row-style="header-row" default-table-style="basic-table">
-        <alt-target use-when="ruleId==null" target="AddProductManufacturingRule"/>
-        <auto-fields-service service-name="updateProductManufacturingRule" map-name="manufacturingRule"/>
-        <field name="ruleId" use-when="ruleId!=null"><display/></field>
-        <field name="ruleId" use-when="ruleId==null"><ignored/></field>
-        <field name="productId">
-            <lookup target-form-name="LookupProduct"/>
+        <alt-target use-when="content==null" target="createPlantContent"/>
+        <!-- <auto-fields-entity entity-name="Content"/> -->
+        <field name="plantId" map-name="parameters"><hidden/></field>
+        <field name="dataResourceId" map-name="dataResource" use-when="content!=null"><hidden/></field>
+        <field use-when="content!=null" name="contentId"><display/></field>
+        <field name="plantContentTypeId" use-when="plantContent!=null" map-name="plantContent">
+            <display-entity entity-name="PartyContentType"/>
         </field>
-        <field name="productIdFor">
-            <lookup target-form-name="LookupProduct"/>
-        </field>
-        <field name="productIdIn">
-            <lookup target-form-name="LookupVirtualProduct"/>
-        </field>
-        <field name="fromDate"><date-time default-value="${nowTimestamp}"/></field>
-        <field name="productIdInSubst">
-            <lookup target-form-name="LookupProduct"/>
-        </field>
-        <field name="productFeature">
-            <lookup target-form-name="LookupProductFeature"/>
-        </field>
-        <field name="ruleOperator">
-            <drop-down>
-                <option key="OR" description="${uiLabelMap.CommonOr}"/>
-                <option key="AND" description="${uiLabelMap.CommonAnd}"/>
+        <field name="plantContentTypeId" use-when="plantContent==null">
+            <drop-down allow-empty="false">
+                <entity-options entity-name="PartyContentType"/>
             </drop-down>
         </field>
-        <field use-when="ruleId==null" name="submitButton" title="${uiLabelMap.CommonCreate}">
-            <submit button-type="button"/>
-        </field>
-        <field use-when="ruleId!=null" name="submitButton" title="${uiLabelMap.CommonUpdate}">
-            <submit button-type="button"/>
-        </field>
-    </form>
-    <form name="FindBom" type="single" target="FindBom" title="">
-        <field name="productId"><lookup target-form-name="LookupProduct"/></field>
-        <field name="productIdTo" title="${uiLabelMap.ProductProductIdTo}"><lookup target-form-name="LookupProduct"/></field>
-        <field name="productAssocTypeId"  title="${uiLabelMap.ManufacturingBomType}">
-            <drop-down allow-empty="true">
-                <entity-options entity-name="ProductAssocType" description="${description}">
-                    <entity-constraint name="parentTypeId" operator="equals" value="PRODUCT_COMPONENT"/>
-                </entity-options>
+        <!-- note sure if these two are necessray, butplantI they are kind of confusing in this context:
+        <field name="ownerContentId"><lookup target-form-name="LookupContent"/></field>
+        <field name="dataResourceId" title="${uiLabelMap.ContentDataResourceId}"><lookup target-form-name="LookupDataResource"/></field>
+        -->
+        <field name="contentTypeId">
+            <drop-down allow-empty="false" no-current-selected-key="DOCUMENT">
+                <entity-options entity-name="ContentType"/>
             </drop-down>
         </field>
-        <field name="noConditionFind"><hidden value="Y"/><!-- if this isn't there then with all fields empty no query will be done --></field>
-        <field name="submit" title="${uiLabelMap.CommonFind}"><submit/></field>
+        <field name="fromDate" use-when="partyContent==null" required-field="true"><date-time default-value="${nowTimestamp}"/></field>
+        <field name="fromDate" use-when="partyContent!=null" map-name="partyContent"><display/></field>
+       
+        <field name="dataResourceName" title="${uiLabelMap.CommonUpload}"><file/></field>
+        
+        
+     
+        <field name="createButton" use-when="content==null"><submit button-type="button"/></field>
+        <field name="updateButton" use-when="content!=null"><submit button-type="button"/></field>
     </form>
-    
-    <grid name="ListBom" list-name="ListProductBom" odd-row-style="alternate-row"
-        default-table-style="basic-table hover-bar"  paginate-target="FindBom">
-        <field name="productId" title="${uiLabelMap.ProductProductId}" use-when="">
-            <hyperlink description="${productId}" target="EditProductBom">
-                <parameter param-name="productId"/>
-                <parameter param-name="productAssocTypeId"/>
+
+    <grid name="ListPartyContents" separate-columns="false"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
+        <actions>
+            <entity-and entity-name="PlantContentDetail">
+                <field-map field-name="plantId"/>
+            </entity-and>
+        </actions>
+        <field name="plantId"><hidden/></field>
+        <field name="contentId"><hidden/></field>
+        <field name="contentName">
+            <display-entity entity-name="Content" description="${contentName}" key-field-name="contentId">
+                <sub-hyperlink target="EditPlantContents" description="${contentId}" link-style="smallSubmit">
+                    <parameter param-name="contentId"/>
+                    <parameter param-name="plantId"/>
+                </sub-hyperlink>
+            </display-entity>
+        </field>
+        <field name="plantContentTypeId"><display-entity entity-name="PartyContentType"/></field>
+        <field name="description"><display/></field>
+        <field name="localeString"><display-entity entity-name="CountryCode" key-field-name="countryCode" description="${countryName}${countryCode}"></display-entity></field>
+        <field name="contentTypeId"><display-entity entity-name="ContentType"></display-entity></field>
+        
+        <field name="dataResourceId" title="${uiLabelMap.FormFieldTitle_dataResourceName}" use-when="dataResourceId==null"><display/> </field>
+        <field name="dataResourceId" title="${uiLabelMap.FormFieldTitle_dataResourceName}" use-when="dataResourceId!=null">
+            <display-entity entity-name="DataResource" description="${dataResourceName}"/>
+        </field>
+        <field name="fromDate"><display type="date-time"></display></field>
+        
+        <field name="editLink" title=" " widget-style="smallSubmit">
+           <hyperlink description="${uiLabelMap.CommonEdit}" target="EditPlantContents" also-hidden="false">
+                <parameter param-name="contentId"/>
+                <parameter param-name="plantId"/>
+                <parameter param-name="dataResourceId"/>
+                <parameter param-name="fromDate"/>
+                <parameter param-name="plantContentTypeId"/>
             </hyperlink>
         </field>
-        <field name="internalName" title="${uiLabelMap.ProductProductName}"><display/></field>
-        <field name="productAssocTypeId" title="${uiLabelMap.ManufacturingBomType}">
-            <display-entity entity-name="ProductAssocType" key-field-name="productAssocTypeId"/>
+        <field name="remove" title=" " widget-style="smallSubmit">
+           <hyperlink description="${uiLabelMap.CommonRemove}" target="removePartyContent" also-hidden="false">
+                <parameter param-name="contentId"/>
+                <parameter param-name="partyId"/>
+                <parameter param-name="dataResourceId"/>
+                <parameter param-name="fromDate"/>
+                <parameter param-name="partyContentTypeId"/>
+            </hyperlink>
         </field>
     </grid>
-    <form name="ImportProductionLayout" type="single"  target="uploadDocument">
-        <field name="uploadedFile" title="${uiLabelMap.ManuContentFile}"><file/></field>
-        <field name="textAreaField" title="${uiLableMap.ManuTextArea}" >
-            <textarea rows="10" default-value="Enter the Detail" title="${uiLableMap.ManuTextArea}"/>
-        </field>
-        <field name="contentId" title="Content ID">
-        <hidden value="plantProductionDocument"/>
-        </field>
-        
-        <field name="submitButton" title="${uiLabelMap.Submit}"><submit button-type="button"/></field>
-    </form>
-    <grid name="ProductionPlantDocuments" list-name="contentList" odd-row-style="alternate-row"
-    default-table-style="basic-table hover-bar" header-row-style="header-row-2">
-    
-    <field name="contentId" title="Content ID"><display/></field>
-    <field name="description" title="Description"><display/></field>
-    <field name="dataResourceId" title="Data Resource ID"><display/></field>
-    
-    <!-- Button to view PDF -->
-    <field name="viewPdfButton" title="View PDF">
-        <hyperlink description="View PDF" target="/viewPDF?dataResourceId=${contentId}" />
-    </field>
-</grid>
 
 
 </forms>

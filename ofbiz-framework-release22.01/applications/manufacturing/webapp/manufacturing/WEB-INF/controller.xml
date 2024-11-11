@@ -43,17 +43,23 @@ under the License.
         <response name="success" type="view" value="productionPlantDocumentation" />
     </request-map>
 
-    <request-map uri="uploadPdfFile">
-        <security https="true" auth="true"/>
-        <event type="service" invoke="uploadPdfToDatabaseService" />
+   <request-map uri="EditPlantContent">
+        <security auth="true" https="true"/>
         <response name="success" type="view" value="productionPlantDocumentation"/>
-        <response name="error" type="view" value="productionPlantDocumentation"/>
     </request-map>
-    <request-map uri="uploadDocument">
-        <security https="true"/>
-        <event type="service" name="uploadDocument" path="component://manufacturing/groovyScripts/audit/uploadDocument.groovy"/>
-        <response name="success" type="view" value="successScreen"/>
-        <response name="error" type="view" value="errorScreen"/>
+    <request-map uri="createPlantContent">
+        <security auth="true" https="true"/>
+        <event type="simple" path="component://manufacturing/minilang/report/PlantSimpleEvents.xml" invoke="createPlantContent"/>
+        <response name="success" type="request-redirect" value="productionPlantDocumentation">
+            <redirect-parameter name="partyId"></redirect-parameter>
+        </response>
+    </request-map>
+    <request-map uri="updatePlantContent">
+        <security auth="true" https="true"/>
+        <event type="simple" path="component://party/minilang/party/PartySimpleEvents.xml" invoke="updatePlantContent"/>
+        <response name="success" type="request-redirect" value="productionPlantDocumentation">
+            <redirect-parameter name="partyId"></redirect-parameter>
+        </response>
     </request-map>
     <!-- Request Mappings -->
     <request-map uri="view">

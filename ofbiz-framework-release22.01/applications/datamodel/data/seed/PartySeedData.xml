@@ -121,6 +121,7 @@ under the License.
     <CommunicationEventType communicationEventTypeId="FILE_TRANSFER_COMM" description="File transfer" hasTable="N" parentTypeId="" contactMechTypeId="FTP_ADDRESS"/>
 
     <!-- party content types -->
+    <PlantContentType description="Internal Plant Content" partyContentTypeId="INTERNALPLANT"/>
     <PartyContentType description="Internal Content" partyContentTypeId="INTERNAL"/>
     <PartyContentType description="User Defined Content"  partyContentTypeId="USERDEF"/>
     <PartyContentType description="Logo Image URL"  partyContentTypeId="LGOIMGURL"/>

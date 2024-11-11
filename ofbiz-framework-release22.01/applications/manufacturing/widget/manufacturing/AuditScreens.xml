@@ -160,66 +160,42 @@ under the License.
             </widgets>
         </section>
     </screen>
+    
     <screen name="productionPlantDocumentation">
         <section>
             <actions>
-                 <set field="titleProperty" value="PageTitleproductionPlantDocumentation"/>
-                <set field="tabButtonItem" value="productionPlantDocumentation"/>
-                <set field="headerItem" value="productionPlantDocumentation"/>
+                <set field="titleProperty" value="PageTitleListContent"/>
+                <set field="headerItem" value="find"/>
+                <set field="tabButtonItem" value="PartyContents"/>
+                <set field="partyId" from-field="parameters.plantId"/>
+                <set field="contentId" from-field="parameters.contentId"/>
+                <entity-one entity-name="Content" value-field="content"/>
+                <entity-one entity-name="PlantContent" value-field="plantContent">
+                    <field-map field-name="contentId" from-field="parameters.contentId"/>
+                    <field-map field-name="plantId" from-field="parameters.plantId"/>
+                    <field-map field-name="plantContentTypeId" from-field="parameters.plantContentTypeId"/>
+                    <field-map field-name="fromDate" from-field="parameters.fromDate"/>
+                </entity-one>
             </actions>
             <widgets>
-                <decorator-screen name="CommonAuditDecorator" >
+                <decorator-screen name="CommonAuditDecorator"  location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <screenlet title="${uiLabelMap.ProductionPlantDocumentation}">
-                            <container >
-                                <!-- <label style="h2">${uiLabelMap.CommonExport}</label> -->
-                                <include-form name="ImportProductionLayout" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
-                            </container>
-                         </screenlet>
-                            <include-grid name="ProductionPlantDocuments" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
-
+                        <container style="button-bar">
+                            <link target="EditPlantContent" text="${uiLabelMap.CommonCreate}" style="smallSubmit">
+                                <parameter param-name="partyId"/>
+                            </link>
+                        </container>
+                        <screenlet title="${uiLabelMap.PageTitleListContent}">
+                            <include-grid name="ListPartyContents" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
+                        </screenlet>
+                        <screenlet title="${uiLabelMap.PageTitleAddPartyContent}">
+                            <include-form name="AddPartyContent" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
+                        </screenlet>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
         </section>
     </screen>
-    <screen name="successUpload">
-        <section>
-        
-            <widgets>
-                <decorator-screen name="CommonAuditDecorator" >
-                    <decorator-section name="body">
-                        <screenlet title="${uiLabelMap.ProductionPlantDocumentation}">
-                            <container >
-                                <label style="h2">Success fully</label>
-                                
-                            </container>
-                         </screenlet>
-                            
-
-                    </decorator-section>
-                </decorator-screen>
-            </widgets>
-        </section>
-    </screen>
-    <screen name="ErrorUpload">
-        <section>
-        
-            <widgets>
-                <decorator-screen name="CommonAuditDecorator" >
-                    <decorator-section name="body">
-                        <screenlet title="${uiLabelMap.ProductionPlantDocumentation}">
-                            <container >
-                                <label style="h2">Not Upload</label>
-                                
-                            </container>
-                         </screenlet>
-                            
-
-                    </decorator-section>
-                </decorator-screen>
-            </widgets>
-        </section>
-    </screen>
+   
     
 </screens>
