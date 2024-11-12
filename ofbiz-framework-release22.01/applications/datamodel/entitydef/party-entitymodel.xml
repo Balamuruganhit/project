@@ -2049,6 +2049,7 @@ under the License.
       <prim-key field="contentId"/>
       <prim-key field="plantContentTypeId"/>
       <field name="fromDate" type="date-time"></field>
+      <field name="description" type="description"></field>
       <prim-key field="fromDate"/>
       <relation type="one" fk-name="PARTY_CNT_PARTY" rel-entity-name="Party">
         <key-map field-name="plantId"/>

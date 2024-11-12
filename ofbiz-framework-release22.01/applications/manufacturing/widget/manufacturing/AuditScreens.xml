@@ -180,16 +180,13 @@ under the License.
             <widgets>
                 <decorator-screen name="CommonAuditDecorator" >
                     <decorator-section name="body">
-                        <container style="button-bar">
-                            <link target="EditPlantContent" text="${uiLabelMap.CommonCreate}" style="smallSubmit">
-                                <parameter param-name="partyId"/>
-                            </link>
-                        </container>
+                        <screenlet title="${uiLabelMap.ProductionPlantDocumentation}">
                         <screenlet title="${uiLabelMap.PageTitleListContent}">
                             <include-grid name="ListPartyContents" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
                         </screenlet>
-                        <screenlet title="${uiLabelMap.PageTitleAddPartyContent}">
+                        <screenlet title="${uiLabelMap.PageTitleAddPlantContent}">
                             <include-form name="AddPartyContent" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
+                        </screenlet>
                         </screenlet>
                     </decorator-section>
                 </decorator-screen>

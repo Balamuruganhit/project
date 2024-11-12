@@ -100,6 +100,9 @@
     <property key="ManuContentFile">
         <value xml:lang="en">Can you provide the document for the production plant layout?</value>
     </property>
+    <property key="PageTitleAddPlantContent">
+        <value xml:lang="en">Add Plant LayOut</value>
+    </property>
     <property key="PlantDetail">
         <value xml:lang="en">Plant Layout Details</value>
 		   <value xml:lang="es">Fecha y hora de cancelación</value>

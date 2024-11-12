@@ -34,37 +34,10 @@ under the License.
                 <field-map field-name="dataResourceId" from-field="content.dataResourceId"/>
             </entity-one>
         </actions>
-
-        <alt-target use-when="content==null" target="createPlantContent"/>
-        <!-- <auto-fields-entity entity-name="Content"/> -->
-        <field name="plantId" map-name="parameters"><hidden/></field>
-        <field name="dataResourceId" map-name="dataResource" use-when="content!=null"><hidden/></field>
-        <field use-when="content!=null" name="contentId"><display/></field>
-        <field name="plantContentTypeId" use-when="plantContent!=null" map-name="plantContent">
-            <display-entity entity-name="PlantContentType"/>
-        </field>
-        <field name="plantContentTypeId" use-when="plantContent==null">
-            <drop-down allow-empty="false">
-                <entity-options entity-name="PlantContentType"/>
-            </drop-down>
-        </field>
-        <!-- note sure if these two are necessray, butplantI they are kind of confusing in this context:
-        <field name="ownerContentId"><lookup target-form-name="LookupContent"/></field>
-        <field name="dataResourceId" title="${uiLabelMap.ContentDataResourceId}"><lookup target-form-name="LookupDataResource"/></field>
-        -->
-        <field name="contentTypeId">
-            <drop-down allow-empty="false" no-current-selected-key="DOCUMENT">
-                <entity-options entity-name="ContentType"/>
-            </drop-down>
-        </field>
-        <field name="fromDate" use-when="partyContent==null" required-field="true"><date-time default-value="${nowTimestamp}"/></field>
-        <field name="fromDate" use-when="partyContent!=null" map-name="partyContent"><display/></field>
-       
-        <field name="dataResourceName" title="${uiLabelMap.CommonUpload}"><file/></field>
-        
-        
-     
-        <field name="createButton" use-when="content==null"><submit button-type="button"/></field>
+            <field name="dataResourceName" title="${uiLabelMap.ManuContentFile}"><file/></field>
+             <field name="textAreaField" title="${uiLableMap.ManuContentFile}" >
+            <textarea rows="10" default-value="Enter the Detail" title="${uiLableMap.ManuTextArea}"/>
+            </field>
         <field name="updateButton" use-when="content!=null"><submit button-type="button"/></field>
     </form>
 
