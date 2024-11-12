@@ -178,7 +178,7 @@ under the License.
                 </entity-one>
             </actions>
             <widgets>
-                <decorator-screen name="CommonAuditDecorator"  location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonAuditDecorator" >
                     <decorator-section name="body">
                         <container style="button-bar">
                             <link target="EditPlantContent" text="${uiLabelMap.CommonCreate}" style="smallSubmit">
