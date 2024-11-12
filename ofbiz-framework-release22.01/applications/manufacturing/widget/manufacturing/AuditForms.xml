@@ -35,10 +35,12 @@ under the License.
             </entity-one>
         </actions>
             <field name="dataResourceName" title="${uiLabelMap.ManuContentFile}"><file/></field>
-             <field name="textAreaField" title="${uiLableMap.ManuContentFile}" >
+            <field name="textAreaField" title="${uiLableMap.ManuContentFile}" >
             <textarea rows="10" default-value="Enter the Detail" title="${uiLableMap.ManuTextArea}"/>
             </field>
-        <field name="updateButton" use-when="content!=null"><submit button-type="button"/></field>
+            <field name="submitButton" title="${uiLabelMap.CommonSubmit}">
+            <submit button-type="button"/>
+            </field>
     </form>
 
     <grid name="ListPartyContents" separate-columns="false"

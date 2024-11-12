@@ -180,14 +180,14 @@ under the License.
             <widgets>
                 <decorator-screen name="CommonAuditDecorator" >
                     <decorator-section name="body">
-                        <screenlet title="${uiLabelMap.ProductionPlantDocumentation}">
+                        
                         <screenlet title="${uiLabelMap.PageTitleListContent}">
                             <include-grid name="ListPartyContents" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
                         </screenlet>
                         <screenlet title="${uiLabelMap.PageTitleAddPlantContent}">
                             <include-form name="AddPartyContent" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
                         </screenlet>
-                        </screenlet>
+                       
                     </decorator-section>
                 </decorator-screen>
             </widgets>
