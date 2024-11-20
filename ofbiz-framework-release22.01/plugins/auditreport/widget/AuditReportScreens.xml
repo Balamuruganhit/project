@@ -39,7 +39,7 @@
         <section>
             <actions>
                 <set field="titleProperty" value="PageTitleOspReport"/>
-                <set field="tabButtonItem" value="EditComputerHardware"/>
+                
             </actions>
             <widgets>
                 <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
