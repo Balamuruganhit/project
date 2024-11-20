@@ -52,7 +52,7 @@ under the License.
                     <decorator-section name="body">
                         <section>
                             <widgets>
-                                <include-menu name="AuditAS9100Bar" location="component://auditreport/widget/AuditReportMenus.xml"/>
+                                <include-menu name="AuditAS9100Bar" location="component://AuditReport/widget/AuditReportMenus.xml"/>
                             </widgets>
                         </section>
                         <section>

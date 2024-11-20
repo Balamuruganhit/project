@@ -19,12 +19,12 @@ under the License.
 -->
 
 <entity-engine-xml>
-    <SecurityPermission description="View operations in the AuditReport Component." permissionId="AUDITREPORT,OFBTOOLS_VIEW"/>
-    <SecurityPermission description="Create operations in the AuditReport Component." permissionId="AUDITREPORT,OFBTOOLS_CREATE"/>
-    <SecurityPermission description="Update operations in the AuditReport Component." permissionId="AUDITREPORT,OFBTOOLS_UPDATE"/>
-    <SecurityPermission description="Delete operations in the AuditReport Component." permissionId="AUDITREPORT,OFBTOOLS_DELETE"/>
-    <SecurityPermission description="ALL operations in the AuditReport Component." permissionId="AUDITREPORT,OFBTOOLS_ADMIN"/>
+    <SecurityPermission description="View operations in the AuditReport Component." permissionId="AUDITREPORT_VIEW"/>
+    <SecurityPermission description="Create operations in the AuditReport Component." permissionId="AUDITREPORT_CREATE"/>
+    <SecurityPermission description="Update operations in the AuditReport Component." permissionId="AUDITREPORT_UPDATE"/>
+    <SecurityPermission description="Delete operations in the AuditReport Component." permissionId="AUDITREPORT_DELETE"/>
+    <SecurityPermission description="ALL operations in the AuditReport Component." permissionId="AUDITREPORT_ADMIN"/>
 
-    <SecurityGroupPermission fromDate="2001-05-13 12:00:00.0" groupId="SUPER" permissionId="AUDITREPORT,OFBTOOLS_ADMIN"/>
+    <SecurityGroupPermission fromDate="2001-05-13 12:00:00.0" groupId="SUPER" permissionId="AUDITREPORT_ADMIN"/>
 
 </entity-engine-xml>

@@ -24,7 +24,7 @@ under the License.
     <vendor>OFBiz</vendor>
     <version>1.0</version>
 	    <service name="auditCheckquestion" engine="simple"
-            location="component://auditreport/minilang/permissions/PermissionsServices.xml" invoke="auditCheckquestion">
+            location="component://AuditReport/minilang/Permissions/PermissionsServices.xml" invoke="auditCheckquestion">
         <description>Basic Question Permission Checking Logic</description>
         <implements service="permissionInterface"/>
     </service>
