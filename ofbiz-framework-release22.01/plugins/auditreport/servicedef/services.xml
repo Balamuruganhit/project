@@ -29,12 +29,16 @@
             Dummy service to prevent empty files and syntax error - Remove when the 1st real service will be added here 
         </description>
     </service> 
-     
+     <service name="auditPermissionService" engine="simple"
+             location="component://common/minilang/permission/CommonPermissionServices.xml" invoke="genericBasePermissionCheck">
+        <implements service="permissionInterface"/>
+        <attribute name="primaryPermission" type="String" mode="IN" optional="true" default-value="AUDITREPORT"/>
+        <attribute name="altPermission" type="String" mode="IN" optional="true"/>
+    </service>
     <service name="createQuestion" default-entity-name="Question" engine="entity-auto" invoke="create" auth="true">
         <description>Create a question</description>
-        <permission-service service-name="auditCheckquestion" main-action="CREATE"/>
+        <permission-service service-name="auditPermissionService" main-action="CREATE"/>
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
-        <override name="Question" optional="true"/>
     </service>
 </services>
