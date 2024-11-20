@@ -39,23 +39,58 @@ under the License.
         <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
         <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
     </property>
-    <property key="AuditReportViewPermissionError">
-        <value xml:lang="en">You are not allowed to view this page.</value>
+    <property key="AuditAs9100">
+        <value xml:lang="en">AS 9100</value>
         <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
         <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
     </property>
-    <property key="AuditReportViewPermissionError">
-        <value xml:lang="en">You are not allowed to view this page.</value>
+    <property key="AuditIRIS">
+        <value xml:lang="en">IRIS</value>
         <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
         <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
     </property>
-    <property key="AuditReportViewPermissionError">
-        <value xml:lang="en">You are not allowed to view this page.</value>
+    <property key="AuditIso9001">
+        <value xml:lang="en">ISO 9001</value>
         <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
         <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
     </property>
-    <property key="AuditReportViewPermissionError">
-        <value xml:lang="en">You are not allowed to view this page.</value>
+    <property key="AuditConfig">
+        <value xml:lang="en">Config</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="AuditPickReview">
+        <value xml:lang="en">Pick Review</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="AuditExport">
+        <value xml:lang="en">Export</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="PageTitleOspReport">
+        <value xml:lang="en">OSP Report</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="AuditAdd">
+        <value xml:lang="en">Add</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="FormFieldTitle_Question">
+        <value xml:lang="en">Question</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="FieldTitle_Question">
+        <value xml:lang="en">Enter the Question</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="AuditExport">
+        <value xml:lang="en">Export</value>
         <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
         <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
     </property>
