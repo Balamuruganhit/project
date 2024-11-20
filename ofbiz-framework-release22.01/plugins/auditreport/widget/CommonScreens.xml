@@ -32,7 +32,7 @@ under the License.
 
                 <set field="activeApp" value="AuditReport" global="true"/>
                 <set field="applicationMenuName" value="MainAppBar" global="true"/>
-                <set field="applicationMenuLocation" value="component://auditreport/widget/AuditReportMenus.xml" global="true"/>
+                <set field="applicationMenuLocation" value="component://AuditReport/widget/AuditReportMenus.xml" global="true"/>
                 <set field="applicationTitle" from-field="uiLabelMap.AuditReportApplication" global="true"/>
             </actions>
             <widgets>
