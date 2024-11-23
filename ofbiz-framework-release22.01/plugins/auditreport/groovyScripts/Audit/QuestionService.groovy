@@ -55,9 +55,7 @@ def createQuestion() {
     }
     result.questionId = newEntity.questionId
 	result.question=newEntity.question
-    newEntity.lastModifiedDate = nowTimestamp
-    newEntity.lastModifiedByUserLogin = userLogin.userLoginId
-    newEntity.createdByUserLogin = userLogin.userLoginId
+   
    
     newEntity.create()
 
