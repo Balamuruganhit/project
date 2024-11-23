@@ -31,7 +31,6 @@
     </service> 
     <service name="interfaceQuestion" default-entity-name="Question" engine="interface" location="" invoke="">
         <auto-attributes include="nonpk" mode="IN" optional="true">
-            <exclude field-name="createdDate"/>
             <exclude field-name="createdByUserLogin"/>
             <exclude field-name="lastModifiedDate"/>
             <exclude field-name="lastModifiedByUserLogin"/>
