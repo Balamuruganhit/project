@@ -29,7 +29,7 @@
     <entity entity-name="Question" package-name="org.apache.ofbiz.AuditReport" title="AuditReport Entity">
         <field name="questionId" type="id"><description>primary sequenced ID</description></field>
         <field name="question" type="name"></field>
-        <prim-key field="QuestionId"/>
+        <prim-key field="questionId"/>
     </entity>
 
 </entitymodel>
