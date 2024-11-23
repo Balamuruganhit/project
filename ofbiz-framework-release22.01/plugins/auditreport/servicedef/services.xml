@@ -55,6 +55,7 @@
         <description>Create a question</description>
         <implements service="interfaceProduct"/>
        <auto-attributes include="pk" mode="INOUT" optional="true"/>
+       <auto-attributes include="nonpk" mode="INOUT" optional="true"/>
     </service>
 
 </services>
