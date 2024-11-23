@@ -52,7 +52,7 @@
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
      <service name="createQuestion" default-entity-name="Question" engine="groovy"
-                location="component://auditreport/groovyScripts/Audit/QuestionServices.groovy" invoke="createQuestion" auth="true">
+                location="component://AuditReport/groovyScripts/Audit/QuestionService.groovy" invoke="createQuestion" auth="true">
         <description>Create a question</description>
         <implements service="interfaceProduct"/>
        <auto-attributes include="pk" mode="INOUT" optional="true"/>
