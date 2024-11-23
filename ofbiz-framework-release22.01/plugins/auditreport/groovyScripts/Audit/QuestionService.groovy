@@ -53,8 +53,7 @@ def createQuestion() {
             return error(UtilProperties.getMessage("CommonErrorUiLabels", "CommonErrorDuplicateKey", parameters.locale))
         }
     }
-    def questionName =  context.question
-    newEntity.question=questionName
+    newEntity.question=parameters.question
     result.questionId = newEntity.questionId
 	result.question=newEntity.question
    
