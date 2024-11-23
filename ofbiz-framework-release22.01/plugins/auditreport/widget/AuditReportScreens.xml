@@ -44,7 +44,9 @@
             <widgets>
                 <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <include-form name="AddQuestion" location="component://AuditReport/widget/AuditReportForms.xml"/>
+                        <screenlet  title="${uiLabelMap.PageTitleOspReport}" >
+                            <include-form name="AddQuestion" location="component://AuditReport/widget/AuditReportForms.xml"/>
+                        </screenlet>
                     </decorator-section>
                 </decorator-screen>
             </widgets>

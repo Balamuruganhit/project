@@ -44,8 +44,12 @@ under the License.
      <!-- Request Mappings -->
     <request-map uri="main"><security https="true" auth="true"/><response name="success" type="view" value="config"/></request-map>
     <request-map uri="CreateQuestion"><security https="true" auth="true"/>
-        <event type="service" invoke="createQuestion"/>
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <event type="service" path="" invoke="createQuestion"/>
         <response name="success" type="view" value="config"/>
+        <response name="error" type="view" value="config"/>
     </request-map>
     <request-map uri="ospreport"><security https="true" auth="true"/><response name="success" type="view" value="config"/></request-map>
     
