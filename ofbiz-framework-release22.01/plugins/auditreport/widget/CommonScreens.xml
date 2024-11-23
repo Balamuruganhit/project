@@ -51,7 +51,9 @@
                     <decorator-section name="body">
                         <section>
                             <widgets>
+                             <screenlet  title="${uiLabelMap.PageTitleOspReport}" >
                                 <include-menu name="AuditAS9100Bar" location="component://AuditReport/widget/AuditReportMenus.xml"/>
+                            </screenlet>
                             </widgets>
                         </section>
                         <section>
