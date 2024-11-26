@@ -61,15 +61,15 @@
             <widgets>
                 <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <!-- <screenlet  title="${uiLabelMap.AuditpickReview}" >
+                        <screenlet  title="${uiLabelMap.AuditpickReview}" >
                             <include-form name="AddReportDetail" location="component://AuditReport/widget/AuditReportForms.xml"/>
-                        </screenlet> -->
-                        <screenlet title="${uiLabelMap.AuditpickReview}">
+                        </screenlet>
+                        <!-- <screenlet title="${uiLabelMap.AuditpickReview}">
                                     <platform-specific>
                                         <html><html-template location="component://AuditReport/template/reportdetail.ftl"/></html>
                                     </platform-specific>
                                 </screenlet>
-                    </decorator-section>
+                    </decorator-section> -->
                 </decorator-screen>
             </widgets>
         </section>
