@@ -68,7 +68,7 @@
         <attribute name="comment" type="String" mode="IN"/>
         <attribute name="approve" type="String" mode="IN"/>
         <attribute name="proof" type="Object" mode="IN"/>
-        <attribute name="_proof_fileName" type="Object" mode="IN"/>
-        <attribute name="_proof__contentType" type="Object" mode="IN"/>
+        <attribute name="_proof_fileName" type="String" mode="IN"/>
+        <attribute name="_proof__contentType" type="String~" mode="IN"/>
     </service>
 </services>
