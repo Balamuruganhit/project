@@ -104,8 +104,8 @@ def createReportDetail(){
         newEntity.comment = parameters.comment
         newEntity.approverName = parameters.approve
         newEntity.create()
-        result.successMessage = UtilProperties.getMessage("AuditReportUiLabels", "AuditReportCreateSuccess", parameters.locale)
-        return ServiceUtil.returnSuccess("Document feedback saved successfully", [reportId: reportId])
+        
+        return ServiceUtil.returnError("Document feedback saved successfully")
     }
     catch (Exception e) {
         return ServiceUtil.returnError("Error saving document feedback: ${e.message}")
