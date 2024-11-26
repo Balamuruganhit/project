@@ -85,7 +85,7 @@ def createReportDetail(){
             || security.hasEntityPermission("AUDITREPORT_ROLE", "_CREATE", parameters.userLogin))) {
         return error(UtilProperties.getMessage("AuditReportUiLabels", "AuditReportViewPermissionError", parameters.locale))
     }
-   
+   def upload = parameters.proof
     try {
         // Validate input
         if (!parameters.proof) {
@@ -93,12 +93,16 @@ def createReportDetail(){
         }
         
         GenericValue newEntity = makeValue("ReportContent", parameters)
+        if (upload instanceof java.nio.ByteBuffer) {
+            byte[] byteArray = new byte[upload.remaining()]
+            upload.get(byteArray) // Copy ByteBuffer content into the byte array
+            newEntity.documentContent = byteArray // Set to the entity's blob field
+        }
         newEntity.reportId=parameters.reportId
         newEntity.question = parameters.question
         newEntity.rating = parameters.rating
         newEntity.comment = parameters.comment
         newEntity.approverName = parameters.approve
-        newEntity.documentContent = parameters.proof
         newEntity.create()
         result.successMessage = UtilProperties.getMessage("AuditReportUiLabels", "AuditReportCreateSuccess", parameters.locale)
         return ServiceUtil.returnSuccess("Document feedback saved successfully", [reportId: reportId])
