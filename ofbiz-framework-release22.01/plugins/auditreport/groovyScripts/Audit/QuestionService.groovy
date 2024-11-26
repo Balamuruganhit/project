@@ -85,12 +85,7 @@ def createReportDetail(){
             || security.hasEntityPermission("AUDITREPORT_ROLE", "_CREATE", parameters.userLogin))) {
         return error(UtilProperties.getMessage("AuditReportUiLabels", "AuditReportViewPermissionError", parameters.locale))
     }
-    def reportId=parameters.reportId
-    def questionType = parameters.question
-    def rating = parameters.rating
-    def comment = parameters.comment
-    def approverName = parameters.approve
-    def uploadedFile = parameters.proof
+   
     try {
         // Validate input
         if (!uploadedFile) {
@@ -103,14 +98,13 @@ def createReportDetail(){
             // Handle the case where proof is not of type ByteBuffer
             return error("Uploaded file is not in the correct format.")
         }
-        GenericValue newEntity = makeValue("ReportContent", [
-            reportId     : reportId,
-            question   : questionType,
-            rating         : rating,
-            comment        : comment,
-            approverName   : approverName,
-            documentContent: uploadedFile,
-        ])
+        GenericValue newEntity = makeValue("ReportContent", parameters)
+        newEntity.reportId=parameters.reportId
+        newEntity.questionType = parameters.question
+        newEntity.rating = parameters.rating
+        newEntity.comment = parameters.comment
+        newEntity.approverName = parameters.approve
+        newEntity.documentContent = parameters.proof
         newEntity.create()
         result.successMessage = UtilProperties.getMessage("AuditReportUiLabels", "AuditReportCreateSuccess", parameters.locale)
         return ServiceUtil.returnSuccess("Document feedback saved successfully", [reportId: reportId])
