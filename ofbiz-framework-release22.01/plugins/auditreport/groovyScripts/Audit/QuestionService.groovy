@@ -94,7 +94,7 @@ def createReportDetail(){
         
         GenericValue newEntity = makeValue("ReportContent", parameters)
         newEntity.reportId=parameters.reportId
-        newEntity.questionType = parameters.question
+        newEntity.question = parameters.question
         newEntity.rating = parameters.rating
         newEntity.comment = parameters.comment
         newEntity.approverName = parameters.approve
