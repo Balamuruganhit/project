@@ -70,7 +70,7 @@
                                         <html><html-template location="component://AuditReport/template/reportdetail.ftl"/></html>
                                     </platform-specific>
                         </screenlet>
-                        <screenlet title="${uiLabelMap.ImageManagementImageUploadList}">
+                        <screenlet title="${uiLabelMap.AuditReportList}">
                                     <table>
                                         <thead>
                                             <tr>
