@@ -35,9 +35,9 @@
         <field name="reportId" type="id"><description>primary sequenced ID</description></field>
         <field name="question" type="name"></field>
         <field name="rating" type="id"></field>
-        <field name="comment" tye="comment"></field>
+        <field name="comment" type="comment"></field>
         <field name="approverName" type="name"></field>
-        <field name="documentContent" ttype="blog"></field>
+        <field name="documentContent" type="blog"></field>
         <prim-key field="reportId"/>
     </entity>
 
