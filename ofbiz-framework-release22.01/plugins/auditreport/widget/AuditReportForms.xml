@@ -35,7 +35,7 @@
             <field name="comment" position="1" title="${uiLabelMap.AuditReportComment}" required-field="true"><textarea rows="10" /></field>
             <field name="proof" title="${uiLabelMap.AuditReportProof}"><file/></field>
             <field name="approve" position="1" title="${uiLabelMap.AuditReportAApprove}" required-field="true"><text/></field>
-                <submit button-type="button"/>
+             <field name="submitButton" title="${uiLabelMap.AuditAdd}" widget-style="smallSubmit">   <submit button-type="button"/>
                  </field>
         </form>
         
