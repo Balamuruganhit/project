@@ -71,6 +71,7 @@
                                     </platform-specific>
                         </screenlet>
                         <screenlet title="${uiLabelMap.AuditReportList}">
+                            <container >`
                                     <table>
                                         <thead>
                                             <tr>
@@ -97,6 +98,7 @@
                                             </iterate>
                                         </tbody>
                                     </table>
+                            </container>
                         </screenlet>
                     </decorator-section>
                 </decorator-screen>
