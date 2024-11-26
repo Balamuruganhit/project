@@ -31,5 +31,16 @@
         <field name="question" type="name"></field>
         <prim-key field="questionId"/>
     </entity>
+    <entity entity-name="ReportContent" package-name="org.apache.ofbiz.AuditReport" title="AuditReport Entity">
+        <field name="reportId" type="id"><description>primary sequenced ID</description></field>
+        <field name="question" type="name"></field>
+        <field name="rating" type="id"></field>
+        <field name="comment" tye="comment"></field>
+        <field name="approverName" type="name"></field>
+        <field name="documentContent" ttype="blog"></field>
+        <field name="documentFileName" type="name"></field>
+        <field name="contentType" type="name" />
+        <prim-key field="reportId"/>
+    </entity>
 
 </entitymodel>

@@ -52,5 +52,22 @@
             </widgets>
         </section>
     </screen>
+     <screen name="pickReview">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleOspReport"/>
+                <set field="tabButtonItem" value="AddReportDetail"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet  title="${uiLabelMap.AuditpickReview}" >
+                            <include-form name="AddReportDetail" location="component://AuditReport/widget/AuditReportForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
 
 </screens>

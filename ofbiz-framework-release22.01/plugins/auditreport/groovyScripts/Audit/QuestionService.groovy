@@ -27,7 +27,8 @@ import org.apache.ofbiz.entity.serialize.XmlSerializer
 import org.apache.ofbiz.product.product.KeywordIndex
 import org.apache.ofbiz.product.product.ProductWorker
 import org.apache.ofbiz.service.ServiceUtil
-
+import org.apache.ofbiz.base.util.*
+import org.apache.ofbiz.entity.*
 import java.sql.Timestamp
 
 /**
@@ -57,9 +58,9 @@ def createQuestion() {
     result.questionId = newEntity.questionId
 	result.question=newEntity.question
    
-   
+    result.successMessage = UtilProperties.getMessage("AuditReportUiLabels", "AuditReportCreateSuccess", parameters.locale)
     newEntity.create()
-
+    return result
 /*
  *  if setting the primaryProductCategoryId create a member entity too 
  *  THIS IS REMOVED BECAUSE IT CAUSES PROBLEMS FOR WORKING ON PRODUCTION SITES
@@ -77,4 +78,44 @@ def createQuestion() {
 
 
     return result
+}
+def createReportDetail(){
+    Map result = success()
+     if (!(security.hasEntityPermission("AUDITREPORT", "_CREATE", parameters.userLogin)
+            || security.hasEntityPermission("AUDITREPORT_ROLE", "_CREATE", parameters.userLogin))) {
+        return error(UtilProperties.getMessage("AuditReportUiLabels", "AuditReportViewPermissionError", parameters.locale))
+    }
+    def reportId=parameters.reportId
+    def questionType = parameters.question
+    def rating = parameters.rating
+    def comment = parameters.comment
+    def approverName = parameters.approve
+    def uploadedFile = parameters.proof
+    try {
+        // Validate input
+        if (!uploadedFile) {
+            return ServiceUtil.returnError("No file uploaded.")
+        }
+        def fileBytes = uploadedFile.getBytes()
+        def fileName = uploadedFile.getOriginalFilename()
+        def contentType = uploadedFile.getContentType()
+        GenericValue newEntity = makeValue("ReportContent", [
+            reportId     : reportId,
+            question   : questionType,
+            rating         : rating,
+            comment        : comment,
+            approverName   : approverName,
+            documentContent: fileBytes,
+            documentFileName: fileName,
+            contentType    : contentType,
+        ])
+        newEntity.create()
+        result.successMessage = UtilProperties.getMessage("AuditReportUiLabels", "AuditReportCreateSuccess", parameters.locale)
+        return ServiceUtil.returnSuccess("Document feedback saved successfully", [reportId: reportId])
+    }
+    catch (Exception e) {
+        return ServiceUtil.returnError("Error saving document feedback: ${e.message}")
+    }
+
+    
 }
