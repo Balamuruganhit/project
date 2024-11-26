@@ -91,6 +91,7 @@ def createReportDetail(){
     def comment = parameters.comment
     def approverName = parameters.approve
     def uploadedFile = parameters.proof
+    byte[] fileData
     try {
         // Validate input
         if (!uploadedFile) {
