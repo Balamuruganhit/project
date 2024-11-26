@@ -96,14 +96,20 @@ def createReportDetail(){
         if (!uploadedFile) {
             return ServiceUtil.returnError("No file uploaded.")
         }
-        def fileBytes = uploadedFile.getBytes()
+        if (proof instanceof java.nio.ByteBuffer) {
+            byte[] fileData = proof.array() // Get the byte array from the ByteBuffer
+            // Now you can save the byteData to the database or process it as needed
+        } else {
+            // Handle the case where proof is not of type ByteBuffer
+            return error("Uploaded file is not in the correct format.")
+        }
         GenericValue newEntity = makeValue("ReportContent", [
             reportId     : reportId,
             question   : questionType,
             rating         : rating,
             comment        : comment,
             approverName   : approverName,
-            documentContent: fileBytes,
+            documentContent: fileData,
         ])
         newEntity.create()
         result.successMessage = UtilProperties.getMessage("AuditReportUiLabels", "AuditReportCreateSuccess", parameters.locale)
