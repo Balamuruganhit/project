@@ -27,7 +27,7 @@
                 <field name="submitButton" title="${uiLabelMap.AuditAdd}" widget-style="smallSubmit"><submit button-type="button"/></field>
         </form>
 
-        <form name="AddReportDetail" target="createReportDetail" title="" type="single"
+        <form name="AddReportDetail" target="createReportDetail" title="" type="single" enctype="multipart/form-data"
         header-row-style="header-row" default-table-style="basic-table">
             <field name="reportId" title="${uiLabelMap.AuditReportNo}" required-field="true"><text /></field>
             <field name="question" position="1" title="${uiLabelMap.FormFieldTitle_Question}" required-field="true"><text/></field>
