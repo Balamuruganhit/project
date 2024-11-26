@@ -57,7 +57,7 @@
             <actions>
                 <set field="titleProperty" value="PageTitleOspReport"/>
                 <set field="tabButtonItem" value="AddReportDetail"/>
-                <script src="component://example/groovy/questionReportList.groovy" />
+                <script src="component://AuditReport/groovyScripts/Audit/QuestionReportList.groovy" />
             </actions>
             <widgets>
                 <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
