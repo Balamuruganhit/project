@@ -22,7 +22,7 @@ under the License.
     <tbody>
       <tr>
     <td class="label"><label>${uiLabelMap.AuditReportNo}</label></td>
-    <td>input type="text"  name="reportId"/></td>
+    <td> <input type="text"  name="reportId"/></td>
     </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.FormFieldTitle_Question}</label></td>
