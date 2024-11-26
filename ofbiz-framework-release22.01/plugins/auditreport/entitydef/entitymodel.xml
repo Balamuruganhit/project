@@ -38,8 +38,6 @@
         <field name="comment" tye="comment"></field>
         <field name="approverName" type="name"></field>
         <field name="documentContent" ttype="blog"></field>
-        <field name="documentFileName" type="name"></field>
-        <field name="contentType" type="name" />
         <prim-key field="reportId"/>
     </entity>
 

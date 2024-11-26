@@ -97,8 +97,6 @@ def createReportDetail(){
             return ServiceUtil.returnError("No file uploaded.")
         }
         def fileBytes = uploadedFile.getBytes()
-        def fileName = parameters._proof_fileName
-        def contentType = parameters._proof_contentType
         GenericValue newEntity = makeValue("ReportContent", [
             reportId     : reportId,
             question   : questionType,
@@ -106,8 +104,6 @@ def createReportDetail(){
             comment        : comment,
             approverName   : approverName,
             documentContent: fileBytes,
-            documentFileName: fileName,
-            contentType    : contentType,
         ])
         newEntity.create()
         result.successMessage = UtilProperties.getMessage("AuditReportUiLabels", "AuditReportCreateSuccess", parameters.locale)
