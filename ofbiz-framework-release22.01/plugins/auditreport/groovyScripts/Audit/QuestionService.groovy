@@ -88,16 +88,10 @@ def createReportDetail(){
    
     try {
         // Validate input
-        if (!uploadedFile) {
+        if (!parameters.proof) {
             return ServiceUtil.returnError("No file uploaded.")
         }
-        if (proof instanceof java.nio.ByteBuffer) {
-                def fileData = uploadedFile.array() // Get the byte array from the ByteBuffer
-            // Now you can save the byteData to the database or process it as needed
-        } else {
-            // Handle the case where proof is not of type ByteBuffer
-            return error("Uploaded file is not in the correct format.")
-        }
+        
         GenericValue newEntity = makeValue("ReportContent", parameters)
         newEntity.reportId=parameters.reportId
         newEntity.questionType = parameters.question
