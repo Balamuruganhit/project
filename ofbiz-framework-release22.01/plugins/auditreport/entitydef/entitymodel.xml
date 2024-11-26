@@ -37,7 +37,7 @@
         <field name="rating" type="integer"></field>
         <field name="comment" type="name"></field>
         <field name="approverName" type="name"></field>
-        <field name="documentContent" type="blog"></field>
+        <field name="documentContent" type="blob"></field>
         <prim-key field="reportId"/>
     </entity>
 
