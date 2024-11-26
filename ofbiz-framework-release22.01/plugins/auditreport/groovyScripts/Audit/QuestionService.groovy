@@ -107,7 +107,7 @@ def createReportDetail(){
         result.question = newEntity.question
         result.rating = newEntity.rating
         result.comment = newEntity.comment
-        result.approverName = newEntity.approve
+        result.approverName = newEntity.approverName
         result.documentContent = newEntity.documentContent
         result.successMessage = UtilProperties.getMessage("AuditReportUiLabels", "AuditReportCreateSuccessFile", parameters.locale)
         newEntity.create()
