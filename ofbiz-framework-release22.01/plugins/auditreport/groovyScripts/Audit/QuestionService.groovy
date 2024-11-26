@@ -97,8 +97,8 @@ def createReportDetail(){
             return ServiceUtil.returnError("No file uploaded.")
         }
         def fileBytes = uploadedFile.getBytes()
-        def fileName = uploadedFile.getName()
-        def contentType = uploadedFile.getContentType()
+        def fileName = parameters._proof_fileName
+        def contentType = parameters._proof_contentType
         GenericValue newEntity = makeValue("ReportContent", [
             reportId     : reportId,
             question   : questionType,
