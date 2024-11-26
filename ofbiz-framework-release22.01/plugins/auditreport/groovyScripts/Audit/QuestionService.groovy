@@ -26,7 +26,7 @@ import org.apache.ofbiz.entity.GenericValue
 import org.apache.ofbiz.entity.serialize.XmlSerializer
 import org.apache.ofbiz.product.product.KeywordIndex
 import org.apache.ofbiz.product.product.ProductWorker
-import org.apache.ofbiz.service.ServiceUtil
+import org.apache.ofbiz.service.*
 import org.apache.ofbiz.base.util.*
 import org.apache.ofbiz.entity.*
 import java.sql.Timestamp
@@ -97,7 +97,7 @@ def createReportDetail(){
             return ServiceUtil.returnError("No file uploaded.")
         }
         def fileBytes = uploadedFile.getBytes()
-        def fileName = uploadedFile.getOriginalFilename()
+        def fileName = uploadedFile.getName()
         def contentType = uploadedFile.getContentType()
         GenericValue newEntity = makeValue("ReportContent", [
             reportId     : reportId,
