@@ -91,14 +91,13 @@ def createReportDetail(){
     def comment = parameters.comment
     def approverName = parameters.approve
     def uploadedFile = parameters.proof
-    byte[] fileData
     try {
         // Validate input
         if (!uploadedFile) {
             return ServiceUtil.returnError("No file uploaded.")
         }
         if (proof instanceof java.nio.ByteBuffer) {
-            byte[] fileData = proof.array() // Get the byte array from the ByteBuffer
+                def fileData = uploadedFile.array() // Get the byte array from the ByteBuffer
             // Now you can save the byteData to the database or process it as needed
         } else {
             // Handle the case where proof is not of type ByteBuffer
@@ -110,7 +109,7 @@ def createReportDetail(){
             rating         : rating,
             comment        : comment,
             approverName   : approverName,
-            documentContent: fileData,
+            documentContent: uploadedFile,
         ])
         newEntity.create()
         result.successMessage = UtilProperties.getMessage("AuditReportUiLabels", "AuditReportCreateSuccess", parameters.locale)
