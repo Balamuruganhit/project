@@ -68,8 +68,8 @@
                                     <platform-specific>
                                         <html><html-template location="component://AuditReport/template/reportdetail.ftl"/></html>
                                     </platform-specific>
-                                </screenlet>
-                    </decorator-section> -->
+                                </screenlet> -->
+                    </decorator-section>
                 </decorator-screen>
             </widgets>
         </section>
