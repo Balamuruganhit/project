@@ -57,6 +57,7 @@
             <actions>
                 <set field="titleProperty" value="PageTitleOspReport"/>
                 <set field="tabButtonItem" value="AddReportDetail"/>
+                <script src="component://example/groovy/questionReportList.groovy" />
             </actions>
             <widgets>
                 <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -68,7 +69,35 @@
                                     <platform-specific>
                                         <html><html-template location="component://AuditReport/template/reportdetail.ftl"/></html>
                                     </platform-specific>
-                                </screenlet>
+                        </screenlet>
+                        <screenlet title="${uiLabelMap.ImageManagementImageUploadList}">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Report No</th>
+                                                <th>Question</th>
+                                                <th>Rating</th>
+                                                <th>Comment</th>
+                                                <th>Approved By</th>
+                                                <th>Image</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <iterate collection="resultList" entry="report">
+                                                <tr>
+                                                    <td>${report.reportId}</td>
+                                                    <td>${report.question}</td>
+                                                    <td>${report.rating}</td>
+                                                    <th>${report.comment}</th>
+                                                    <td>${report.approver}</td>
+                                                    <td>
+                                                        <img src="data:image/png;base64,${report.image}" alt="Report Image" style="max-width:100px; max-height:100px;" />
+                                                    </td>
+                                                </tr>
+                                            </iterate>
+                                        </tbody>
+                                    </table>
+                        </screenlet>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
