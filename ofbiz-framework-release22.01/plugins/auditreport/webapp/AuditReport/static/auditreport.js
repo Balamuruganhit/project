@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-           for (let index = 0; index < formDataArray.length; index++) {
+           for (let i = 0; i< formDataArray.length; i++) {
                     jQuery.ajax({
                         url:DocumentTreeUrl,
                         type: 'POST',
