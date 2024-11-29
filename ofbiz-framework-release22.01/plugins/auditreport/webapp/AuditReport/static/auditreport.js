@@ -18,6 +18,7 @@ under the License.
 */
 const form = document.getElementById("AddReportDetail");
 const reportTable = document.getElementById("dataTable");
+const button=document.getElementById('submit-button');
 function loadReports() {
     const reports = JSON.parse(localStorage.getItem("reports")) || [];
     reportTable.innerHTML = ""; // Clear the table
@@ -85,7 +86,7 @@ function loadReports() {
     localStorage.removeItem("reports");// Save updated data
     loadReports(); // Refresh the table
   }
-  
+  button.addEventListener('click',deleteReport(1));
   // Load reports on page load
   loadReports();
 

@@ -67,3 +67,5 @@ under the License.
     <tbody>
     </tbody>
 </table>
+
+<button id="submit-button">Submit</button>
