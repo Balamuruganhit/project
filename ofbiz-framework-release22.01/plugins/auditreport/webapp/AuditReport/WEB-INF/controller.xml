@@ -51,7 +51,7 @@ under the License.
         <response name="success" type="view" value="config"/>
         <response name="error" type="view" value="config"/>
     </request-map>
-    <request-map uri="createReportDetail"><security https="true" auth="true"/>
+    <request-map uri="createReportDetail">
         <!-- <event type="service" invoke="createQuestion"/>
         <response name="success" type="view" value="config"/> -->
         <security https="true" auth="true"/>
