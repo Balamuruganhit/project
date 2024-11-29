@@ -99,7 +99,12 @@ def createReportDetail(){
         //     upload.get(byteArray) // Copy ByteBuffer content into the byte array
         //     newEntity.documentContent = byteArray // Set to the entity's blob field
         // }
-        byte[] proofBytes = Base64.decoder.decode(upload.split(",")[1])
+        if (upload != null && upload.startsWith("data:image")) {
+                upload = upload.substring(proofBase64.indexOf(",") + 1)  // Remove the "data:image/...;base64," part
+            }
+
+        // Decode the Base64 string into byte[] (binary data)
+        byte[] proofBytes = proof.decodeBase64()
         newEntity.documentContent=newEntity.proofBytes
         newEntity.reportId=parameters.reportId
         newEntity.question = parameters.question
