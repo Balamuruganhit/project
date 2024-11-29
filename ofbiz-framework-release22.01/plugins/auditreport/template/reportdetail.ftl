@@ -49,10 +49,10 @@ under the License.
             // Add row to table
           const newRow = `
             <tr>
-                <td>${reportId?string! "N/A"}</td>
-                <td>${question?string! "No question provided"}</td>
-                <td>${rating?string! "No rating"}</td>
-                <td>${comment?string! "No comment"}</td>
+                <td>${reportId??reportId?"N/A"}</td>
+                <td>${question??question?question?"No question provided"}</td>
+                <td>${rating??rating?"No rating"}</td>
+                <td>${comment??comment?"No comment"}</td>
                 <td>
                     <#if proofData??>
                         <img src="${proofData}" alt="Proof" style="width: 50px; height: 50px;" />
@@ -60,7 +60,7 @@ under the License.
                         <span>No image available</span>
                     </#if>
                 </td>
-                <td>${approve?string! "Not Approved"}</td>
+                <td>${approve??approve? "Not Approved"}</td>
 
             </tr>
         `;
