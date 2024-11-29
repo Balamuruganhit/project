@@ -16,7 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<script>
+<script type="application/javascript">
     var createReportDetailUrl = "${ofbizUrl(service='createReportDetail')}";
     console.log(createReportDetailUrl); // You can check the generated URL
     console.log(<@ofbizUrl>createReportDetails</@ofbizUrl>)

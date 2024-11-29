@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            const response = await fetch(createReportDetailUrl2, {
+            const response = await fetch("<@ofbizUrl>createReportDetails</@ofbizUrl>", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -107,5 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Error:", error);
             alert("An error occurred while submitting the data.");
         }
+        
     });
 });
