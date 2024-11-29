@@ -16,6 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 */
+var createReportDetailUrl = "${ofbizUrl(service='createReportDetail')}";
 document.addEventListener("DOMContentLoaded", () => {
     const dataTable = document.getElementById("data-table-body");
     const submitButton = document.getElementById("submit-button");
@@ -69,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             // Reset Form
-            document.getElementById("form").reset();
+            document.getElementById("AddReportDetail").reset();
         };
 
         // Read file as Base64
@@ -86,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            const response = await fetch("<@ofbizUrl>createReportDetail</@ofbizUrl>", {
+            const response = await fetch(createReportDetailUrl, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
