@@ -49,14 +49,19 @@ under the License.
             // Add row to table
           const newRow = `
             <tr>
-                <td>${reportId || "N/A"}</td>
-                <td>${question || "No question provided"}</td>
-                <td>${rating || "No rating"}</td>
-                <td>${comment || "No comment"}</td>
+                <td>${reportId?string! "N/A"}</td>
+                <td>${question?string! "No question provided"}</td>
+                <td>${rating?string! "No rating"}</td>
+                <td>${comment?string! "No comment"}</td>
                 <td>
-                    <img src="${proofData || 'default-image.png'}" alt="Proof" style="width: 50px; height: 50px;" />
+                    <#if proofData??>
+                        <img src="${proofData}" alt="Proof" style="width: 50px; height: 50px;" />
+                    <#else>
+                        <span>No image available</span>
+                    </#if>
                 </td>
-                <td>${approve || 'no'}</td>
+                <td>${approve?string! "Not Approved"}</td>
+
             </tr>
         `;
             dataTable.innerHTML += newRow;
