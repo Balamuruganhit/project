@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            const response = await fetch("<@ofbizUrl>createReportDetails</@ofbizUrl>", {
+            const response = await fetch("https://164.52.214.150:9443/AuditReport/control/createReportDetail", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
