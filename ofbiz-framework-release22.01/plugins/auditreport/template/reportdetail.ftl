@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${rating}</td>
                     <td>${comment}</td>
                     <td><img src="${proofData}" alt="Proof" style="width: 50px; height: 50px;" /></td>
-                    <td>${approve ? "Yes" : "No"}</td>
+                    <td>${approve}</td>
                 </tr>
             `;
             dataTable.innerHTML += newRow;
