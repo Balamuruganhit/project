@@ -16,7 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 */
-var createReportDetailUrl = "${ofbizUrl(service='createReportDetail')}";
+var createReportDetailUrl2="https://164.52.214.150:9443/AuditReport/control/createReportDetail"
 document.addEventListener("DOMContentLoaded", () => {
     const dataTable = document.getElementById("data-table-body");
     const submitButton = document.getElementById("submit-button");
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            const response = await fetch(createReportDetailUrl, {
+            const response = await fetch(createReportDetailUrl2, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

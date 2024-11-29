@@ -16,7 +16,11 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
+<script>
+    var createReportDetailUrl = "${ofbizUrl(service='createReportDetail')}";
+    console.log(createReportDetailUrl); // You can check the generated URL
+    console.log(<@ofbizUrl>createReportDetails</@ofbizUrl>)
+</script>
 <form class="basic-form" id="AddReportDetail" name="AddReportDetail"  enctype="multipart/form-data">
   <table>
     <tbody>
