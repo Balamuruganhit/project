@@ -16,7 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 */
-var editDocumentTreeUrl = '<@ofbizUrl>/createReportDetail</@ofbizUrl>';
+var DocumentTreeUrl = '<@ofbizUrl>/createReportDetail</@ofbizUrl>';
 document.addEventListener("DOMContentLoaded", () => {
     const dataTable = document.getElementById("data-table-body");
     const submitButton = document.getElementById("submit-button");
@@ -61,12 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Store data in array
             formDataArray.push({
-                reportId: reportId,
-                question: question,
-                rating: rating,
-                comment: comment,
-                proof: proofData,
-                approve: approve,
+                reportId,
+                question,
+                rating,
+                comment,
+                approve,
+                proofData,
             });
 
             // Reset Form
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Submit Button Logic
-    submitButton.addEventListener("click", async (event) => {
+    submitButton.addEventListener("click", (event)=> {
         event.preventDefault();
 
         if (formDataArray.length === 0) {
@@ -87,23 +87,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            const response = await fetch(editDocumentTreeUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ data: formDataArray }),
-            });
+           for (let index = 0; index < formDataArray.length; index++) {
+                    jQuery.ajax({
+                        url:DocumentTreeUrl,
+                        type: 'POST',
+                        data: {reportId : formDataArray[i][0], question : formDataArray[i][1], rating : formDataArray[i][2], comment : formDataArray[i][3],approve : formDataArray[i][4],proof: formDataArray[i][5]},
 
-            const result = await response.json();
-            if (result.responseMessage === "success") {
+                    });
+                }
                 alert("Data submitted successfully.");
                 formDataArray = []; // Clear data after submission
                 dataTable.innerHTML = ""; // Clear table
-            } else {
-                alert("Error submitting data: " + result.errorMessage);
-            }
-        } catch (error) {
+            } 
+         catch (error) {
             console.error("Error:", error);
             alert("An error occurred while submitting the data.");
         }

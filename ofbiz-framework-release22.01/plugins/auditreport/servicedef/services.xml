@@ -62,7 +62,12 @@
          location="component://AuditReport/groovyScripts/Audit/QuestionService.groovy"
          invoke="createReportDetail"
          auth="true">
-        <attribute name="data" type="java.util.List" mode="IN" optional="false"/>
+        <attribute name="reportId" type="Integer" mode="IN"/>
+        <attribute name="question" type="String" mode="IN"/>
+        <attribute name="rating" type="Integer" mode="IN"/>
+        <attribute name="comment" type="String" mode="IN"/>
+        <attribute name="approve" type="String" mode="IN"/>
+        <attribute name="proof" type="java.nio.ByteBuffer" mode="IN"/>
     </service>
 
 </services>

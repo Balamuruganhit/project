@@ -80,7 +80,7 @@ def createQuestion() {
 
     return result
 }
-def createReportDetail1(){
+def createReportDetail(){
     Map result = success()
      if (!(security.hasEntityPermission("AUDITREPORT", "_CREATE", parameters.userLogin)
             || security.hasEntityPermission("AUDITREPORT_ROLE", "_CREATE", parameters.userLogin))) {
@@ -94,11 +94,13 @@ def createReportDetail1(){
         }
         
         GenericValue newEntity = makeValue("ReportContent", parameters)
-        if (upload instanceof java.nio.ByteBuffer) {
-            byte[] byteArray = new byte[upload.remaining()]
-            upload.get(byteArray) // Copy ByteBuffer content into the byte array
-            newEntity.documentContent = byteArray // Set to the entity's blob field
-        }
+        // if (upload instanceof java.nio.ByteBuffer) {
+        //     byte[] byteArray = new byte[upload.remaining()]
+        //     upload.get(byteArray) // Copy ByteBuffer content into the byte array
+        //     newEntity.documentContent = byteArray // Set to the entity's blob field
+        // }
+        byte[] proofBytes = Base64.decoder.decode(upload.split(",")[1])
+        newEntity.documentContent=newEntity.proofBytes
         newEntity.reportId=parameters.reportId
         newEntity.question = parameters.question
         newEntity.rating = parameters.rating
