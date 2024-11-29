@@ -62,7 +62,7 @@
          location="component://AuditReport/groovyScripts/Audit/QuestionService.groovy"
          invoke="createReportDetail"
          auth="true">
-        <attribute name="data" type="java.util.List" mode="IN" optional="false">
+        <attribute name="data" type="java.util.List" mode="IN" optional="false"/>
     </service>
 
 </services>
