@@ -30,6 +30,7 @@ import org.apache.ofbiz.service.*
 import org.apache.ofbiz.base.util.*
 import org.apache.ofbiz.entity.*
 import java.sql.Timestamp
+import java.util.List
 
 /**
  * Create a Question
@@ -79,7 +80,7 @@ def createQuestion() {
 
     return result
 }
-def createReportDetail(){
+def createReportDetail1(){
     Map result = success()
      if (!(security.hasEntityPermission("AUDITREPORT", "_CREATE", parameters.userLogin)
             || security.hasEntityPermission("AUDITREPORT_ROLE", "_CREATE", parameters.userLogin))) {
@@ -119,4 +120,34 @@ def createReportDetail(){
     }
 
     
+}
+def createReportDetail(){
+     if (!(security.hasEntityPermission("AUDITREPORT", "_CREATE", parameters.userLogin)
+            || security.hasEntityPermission("AUDITREPORT_ROLE", "_CREATE", parameters.userLogin))) {
+        return error(UtilProperties.getMessage("AuditReportUiLabels", "AuditReportViewPermissionError", parameters.locale))
+    }
+    List<Map<String, Object>> dataList =parameters.data
+    try{
+        dataList.each { dataItem ->
+            // Decode Base64 proof data
+            String base64Proof = dataItem.proof
+            byte[] proofBytes = Base64.decoder.decode(base64Proof.split(",")[1]) // Assuming "data:image/*;base64," prefix
+            
+            // Create a new entity for ReportContent
+            GenericValue reportContent = delegator.makeValue("ReportContent")
+            reportContent.set("reportId", dataItem.reportId)
+            reportContent.set("question", dataItem.question)
+            reportContent.set("rating", dataItem.rating)
+            reportContent.set("comment", dataItem.comment)
+            reportContent.set("approve", dataItem.approve)
+            reportContent.set("proof", proofBytes) // Save as BLOB in DB
+            
+            // Store the entity in the database
+            reportContent.create()
+        }
+        return success("Report details saved successfully.")
+    } catch (Exception e) {
+        e.printStackTrace()
+        return error("Error saving report details: ${e.message}")
+    }
 }
