@@ -16,7 +16,6 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 */
-var DocumentTreeUrl = 'https://164.52.214.150:9443/AuditReport/control/createReportDetail';
 document.addEventListener("DOMContentLoaded", () => {
     const dataTable = document.getElementById("data-table-body");
     const submitButton = document.getElementById("submit-button");
@@ -87,14 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-           for (let i = 0; i< formDataArray.length; i++) {
-                    jQuery.ajax({
-                        url:DocumentTreeUrl,
-                        type: 'POST',
-                        data: {reportId : formDataArray[i][0], question : formDataArray[i][1], rating : formDataArray[i][2], comment : formDataArray[i][3],approve : formDataArray[i][4],proof: formDataArray[i][5]},
-
-                    });
-                }
+          
                 alert("Data submitted successfully.");
                 formDataArray = []; // Clear data after submission
                 dataTable.innerHTML = ""; // Clear table

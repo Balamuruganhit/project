@@ -94,18 +94,11 @@ def createReportDetail(){
         }
         
         GenericValue newEntity = makeValue("ReportContent", parameters)
-        // if (upload instanceof java.nio.ByteBuffer) {
-        //     byte[] byteArray = new byte[upload.remaining()]
-        //     upload.get(byteArray) // Copy ByteBuffer content into the byte array
-        //     newEntity.documentContent = byteArray // Set to the entity's blob field
-        // }
-        if (upload != null && upload.startsWith("data:image")) {
-                upload = upload.substring(proofBase64.indexOf(",") + 1)  // Remove the "data:image/...;base64," part
-            }
-
-        // Decode the Base64 string into byte[] (binary data)
-        byte[] proofBytes = proof.decodeBase64()
-        newEntity.documentContent=newEntity.proofBytes
+        if (upload instanceof java.nio.ByteBuffer) {
+            byte[] byteArray = new byte[upload.remaining()]
+            upload.get(byteArray) // Copy ByteBuffer content into the byte array
+            newEntity.documentContent = byteArray // Set to the entity's blob field
+        }
         newEntity.reportId=parameters.reportId
         newEntity.question = parameters.question
         newEntity.rating = parameters.rating
@@ -127,34 +120,4 @@ def createReportDetail(){
     }
 
     
-}
-def createReportDetail(){
-     if (!(security.hasEntityPermission("AUDITREPORT", "_CREATE", parameters.userLogin)
-            || security.hasEntityPermission("AUDITREPORT_ROLE", "_CREATE", parameters.userLogin))) {
-        return error(UtilProperties.getMessage("AuditReportUiLabels", "AuditReportViewPermissionError", parameters.locale))
-    }
-    List<Map<String, Object>> dataList =parameters.data
-    try{
-        dataList.each { dataItem ->
-            // Decode Base64 proof data
-            String base64Proof = dataItem.proof
-            byte[] proofBytes = Base64.decoder.decode(base64Proof.split(",")[1]) // Assuming "data:image/*;base64," prefix
-            
-            // Create a new entity for ReportContent
-            GenericValue reportContent = delegator.makeValue("ReportContent")
-            reportContent.set("reportId", dataItem.reportId)
-            reportContent.set("question", dataItem.question)
-            reportContent.set("rating", dataItem.rating)
-            reportContent.set("comment", dataItem.comment)
-            reportContent.set("approve", dataItem.approve)
-            reportContent.set("proof", proofBytes) // Save as BLOB in DB
-            
-            // Store the entity in the database
-            reportContent.create()
-        }
-        return success("Report details saved successfully.")
-    } catch (Exception e) {
-        e.printStackTrace()
-        return error("Error saving report details: ${e.message}")
-    }
 }

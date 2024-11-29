@@ -16,59 +16,54 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<script type="application/javascript">
-    var createReportDetailUrl = "${ofbizUrl(service='createReportDetail')}";
-    console.log(createReportDetailUrl); // You can check the generated URL
-    console.log(<@ofbizUrl>createReportDetails</@ofbizUrl>)
-</script>
-<form class="basic-form" id="AddReportDetail" name="AddReportDetail"  enctype="multipart/form-data">
+
+<form class="basic-form" id="AddReportDetail" name="AddReportDetail" method="post" action="<@ofbizUrl>createReportDetail</@ofbizUrl>" enctype="multipart/form-data">
   <table>
     <tbody>
       <tr>
-        <td class="label"><label>${uiLabelMap.AuditReportNo}</label></td>
-        <td> <input type="text" id="reportId"  name="reportId"/></td>
-      </tr>
+    <td class="label"><label>${uiLabelMap.AuditReportNo}</label></td>
+    <td> <input type="text"  name="reportId"/></td>
+    </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.FormFieldTitle_Question}</label></td>
         <td>
-             <input type="text" id="question"  name="question"/>
+             <input type="text"  name="question"/>
         </td>
       </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportRating}</label></td>
-        <td> <input type="text" id="rating" name="rating"/></td>
+        <td> <input type="text" id="fname" name="rating"/></td>
       </tr>
       
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportComment}</label></td>
-        <td> <input type="text" id="comment" name="comment"/></td>
+        <td> <input type="text" id="fname" name="comment"/></td>
       </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportProof}</label></td>
-        <td><input type="file" size="20" id="proof" name="proof"accept=".png,.gif,.jpg,.jpeg,.tiff,.tif"/></td>
+        <td><input type="file" size="20" name="proof"accept=".png,.gif,.jpg,.jpeg,.tiff,.tif"/></td>
       </tr>
     	<td class="label"><label>${uiLabelMap.AuditReportApprove}</label></td>
-        <td> <input type="text" id="approve" name="approve"/></td>
+        <td> <input type="text" id="fname" name="approve"/></td>
       </tr>
       <tr>
         <td class="label"/>
-        <td><button id="add-button">Add</button></td>
+        <td><input type="submit" value='${uiLabelMap.AuditAdd}'/></td>
       </tr>
     </tbody>
   </table>
 </form>
-<table>
+<table class="basic-table" id="dataTable" border="1">
     <thead>
         <tr>
-            <th>Report ID</th>
-            <th>Question</th>
+            <th>Question Type</th>
             <th>Rating</th>
             <th>Comment</th>
-            <th>Proof</th>
             <th>Approver Name</th>
+            <th>Proof File</th>
+            <th>Image Preview</th>
         </tr>
     </thead>
-    <tbody id="data-table-body"></tbody>
+    <tbody>
+    </tbody>
 </table>
-
-<button id="submit-button">Submit</button>
