@@ -16,85 +16,151 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 */
-document.addEventListener("DOMContentLoaded", () => {
-    const dataTable = document.getElementById("data-table-body");
-    const submitButton = document.getElementById("submit-button");
-    const addButton = document.getElementById("add-button");
-
-    let formDataArray = [];
-
-    // Add Button Logic
-    addButton.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        const reportId = document.getElementById("reportId").value;
-        const question = document.getElementById("question").value;
-        const rating = document.getElementById("rating").value;
-        const comment = document.getElementById("comment").value;
-        const proofInput = document.getElementById("proof");
-        const approve = document.getElementById("approve").checked;
-
-        // Handle File Upload
-        const proofFile = proofInput.files[0];
-        if (!proofFile) {
-            alert("Please select a proof file.");
-            return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const proofData = e.target.result; // Base64 encoded string
-
-            // Add row to table
-            const newRow = `
-                <tr>
-                    <td>${reportId}</td>
-                    <td>${question}</td>
-                    <td>${rating}</td>
-                    <td>${comment}</td>
-                    <td><img src="${proofData}" alt="Proof" style="width: 50px; height: 50px;" /></td>
-                    <td>${approve ? "Yes" : "No"}</td>
-                </tr>
-            `;
-            dataTable.innerHTML += newRow;
-
-            // Store data in array
-            formDataArray.push({
-                reportId,
-                question,
-                rating,
-                comment,
-                approve,
-                proofData,
-            });
-
-            // Reset Form
-            document.getElementById("AddReportDetail").reset();
-        };
-
-        // Read file as Base64
-        reader.readAsDataURL(proofFile);
+const form = document.getElementById("AddReportDetail");
+const reportTable = document.getElementById("dataTable");
+function loadReports() {
+    const reports = JSON.parse(localStorage.getItem("reports")) || [];
+    reportTable.innerHTML = ""; // Clear the table
+  
+    reports.forEach((report, index) => {
+      const row = document.createElement("tr");
+  
+      row.innerHTML = `
+        <td>${report.reportId}</td>
+        <td><img src="${report.proof}" alt="Proof" width="100"></td>
+        <td>${report.rating}</td>
+        <td>${report.comment}</td>
+        <td>${report.approverName}</td>
+        <td>${report.question}</td>
+        <td>
+          <button onclick="deleteReport(${index})">Delete</button>
+        </td>
+      `;
+  
+      reportTable.appendChild(row);
     });
+  }
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+  
+    // Clear all existing data in LocalStorage
+    
+  
+    const reportId = document.getElementById("reportId").value.trim();
+    const proofInput = document.getElementById("proof").files[0];
+    const rating = document.getElementById("rating").value.trim();
+    const comment = document.getElementById("comment").value.trim();
+    const approverName = document.getElementById("approverName").value.trim();
+    const question = document.getElementById("question").value.trim();
+  
+    if (!proofInput) {
+      alert("Please upload a proof image.");
+      return;
+    }
+  
+    // Convert image file to Base64
+    const reader = new FileReader();
+    reader.onload = function () {
+      const proofBase64 = reader.result;
+  
+      const newReport = {
+        reportId,
+        proof: proofBase64,
+        rating,
+        comment,
+        approverName,
+        question,
+      };
+  
+      // Save only the new report in LocalStorage
+      localStorage.setItem("reports", JSON.stringify([newReport]));
+      loadReports(); // Refresh the table
+      form.reset(); // Clear the form
+    };
+  
+    reader.readAsDataURL(proofInput);
+  });
+ 
+  function deleteReport(index) {
+    localStorage.removeItem("reports");// Save updated data
+    loadReports(); // Refresh the table
+  }
+  
+  // Load reports on page load
+  loadReports();
 
-    // Submit Button Logic
-    submitButton.addEventListener("click", (event)=> {
-        event.preventDefault();
+//     // Add Button Logic
+//     addButton.addEventListener("click", (event) => {
+//         event.preventDefault();
 
-        if (formDataArray.length === 0) {
-            alert("No data to submit.");
-            return;
-        }
+//         const reportId = document.getElementById("reportId").value;
+//         const question = document.getElementById("question").value;
+//         const rating = document.getElementById("rating").value;
+//         const comment = document.getElementById("comment").value;
+//         const proofInput = document.getElementById("proof");
+//         const approve = document.getElementById("approve").checked;
 
-        try {
+//         // Handle File Upload
+//         const proofFile = proofInput.files[0];
+//         if (!proofFile) {
+//             alert("Please select a proof file.");
+//             return;
+//         }
+
+//         const reader = new FileReader();
+//         reader.onload = function (e) {
+//             const proofData = e.target.result; // Base64 encoded string
+
+//             // Add row to table
+//             const newRow = `
+//                 <tr>
+//                     <td>${reportId}</td>
+//                     <td>${question}</td>
+//                     <td>${rating}</td>
+//                     <td>${comment}</td>
+//                     <td><img src="${proofData}" alt="Proof" style="width: 50px; height: 50px;" /></td>
+//                     <td>${approve ? "Yes" : "No"}</td>
+//                 </tr>
+//             `;
+//             dataTable.innerHTML += newRow;
+
+//             // Store data in array
+//             formDataArray.push({
+//                 reportId,
+//                 question,
+//                 rating,
+//                 comment,
+//                 approve,
+//                 proofData,
+//             });
+
+//             // Reset Form
+//             document.getElementById("AddReportDetail").reset();
+//         };
+
+//         // Read file as Base64
+//         reader.readAsDataURL(proofFile);
+//     });
+
+//     // Submit Button Logic
+//     submitButton.addEventListener("click", (event)=> {
+//         event.preventDefault();
+
+//         if (formDataArray.length === 0) {
+//             alert("No data to submit.");
+//             return;
+//         }
+
+//         try {
           
-                alert("Data submitted successfully.");
-                formDataArray = []; // Clear data after submission
-                dataTable.innerHTML = ""; // Clear table
-            } 
-         catch (error) {
-            console.error("Error:", error);
-            alert("An error occurred while submitting the data.");
-        }
+//                 alert("Data submitted successfully.");
+//                 formDataArray = []; // Clear data after submission
+//                 dataTable.innerHTML = ""; // Clear table
+//             } 
+//          catch (error) {
+//             console.error("Error:", error);
+//             alert("An error occurred while submitting the data.");
+//         }
         
-    });
-});
+//     });
+// });
