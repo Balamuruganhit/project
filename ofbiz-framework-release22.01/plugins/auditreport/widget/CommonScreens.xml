@@ -29,7 +29,7 @@
                 <set field="layoutSettings.companyName" from-field="uiLabelMap.AuditReportCompanyName" global="true"/>
                 <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.AuditReportCompanySubtitle" global="true"/>
                 <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/auditreport.js" global="true"/>
-
+                <set field="layoutSettings.javaScripts[]" value="/partymgr/static/partymgr.js" global="true"/>
                 <set field="activeApp" value="AuditReport" global="true"/>
                 <set field="applicationMenuName" value="MainAppBar" global="true"/>
                 <set field="applicationMenuLocation" value="component://AuditReport/widget/AuditReportMenus.xml" global="true"/>
