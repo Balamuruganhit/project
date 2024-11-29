@@ -29,15 +29,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Add row to table
             const newRow = `
-                <tr>
-                    <td>${reportId}</td>
-                    <td>${question}</td>
-                    <td>${rating}</td>
-                    <td>${comment}</td>
-                    <td><img src="${proofData}" alt="Proof" style="width: 50px; height: 50px;" /></td>
-                    <td>${approve ? "Yes" : "No"}</td>
-                </tr>
-            `;
+            <tr>
+                <td>${reportId || "N/A"}</td>
+                <td>${question || "No question provided"}</td>
+                <td>${rating || "No rating"}</td>
+                <td>${comment || "No comment"}</td>
+                <td>
+                    <img src="${proofData || 'default-image.png'}" alt="Proof" style="width: 50px; height: 50px;" />
+                </td>
+                <td>${approve || 'no'}</td>
+            </tr>
+        `;
             dataTable.innerHTML += newRow;
 
             // Store data in array
