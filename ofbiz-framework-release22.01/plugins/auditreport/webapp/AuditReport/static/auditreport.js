@@ -16,7 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 */
-var DocumentTreeUrl = '/createReportDetail';
+var DocumentTreeUrl = '<@ofbizUrl>createReportDetail</@ofbizUrl>';
 document.addEventListener("DOMContentLoaded", () => {
     const dataTable = document.getElementById("data-table-body");
     const submitButton = document.getElementById("submit-button");
