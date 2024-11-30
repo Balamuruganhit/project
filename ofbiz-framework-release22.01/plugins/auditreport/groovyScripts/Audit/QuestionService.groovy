@@ -80,7 +80,7 @@ def createQuestion() {
 
     return result
 }
-def createReportDetail(){
+def createReportDetail1(){
     Map result = success()
      if (!(security.hasEntityPermission("AUDITREPORT", "_CREATE", parameters.userLogin)
             || security.hasEntityPermission("AUDITREPORT_ROLE", "_CREATE", parameters.userLogin))) {
@@ -121,3 +121,38 @@ def createReportDetail(){
 
     
 }
+
+def createReportDetail() {
+    try {
+        // Retrieve the list of report details from the input parameters
+        List<Map<String, Object>> reportDetails = parameters.reportDetails
+
+        // Iterate through the list and store each report detail
+        reportDetails.each { report ->
+            String reportId = report.reportId
+            String question = report.question
+            Integer rating = report.rating as Integer
+            String comment = report.comment
+            String approve = report.approve
+            String proofBase64 = report.proof
+
+            // Create a new entity in the database
+            Map<String, Object> newReport = [
+                reportId: reportId,
+                question: question,
+                rating: rating,
+                comment: comment,
+                approve: approve,
+                proofBase64: proofBase64,
+             
+            ]
+            delegator.create("AuditReportDetail", newReport)
+        }
+
+        return success("Report details stored successfully.")
+    } catch (Exception e) {
+        logError("Error storing report details: ${e.message}")
+        return error("Failed to store report details: ${e.message}")
+    }
+}
+
