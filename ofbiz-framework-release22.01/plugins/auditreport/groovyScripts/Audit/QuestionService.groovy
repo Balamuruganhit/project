@@ -135,8 +135,7 @@ def createReportDetail() {
             String comment = report.comment
             String approve = report.approve
             String proofBase64 = report.proof
-            String cleanBase64 = proofBase64.replaceAll("[\\r\\n]+", "")
-            byte[] decodedImage = cleanBase64.decodeBase64()
+            byte[] proofBytes = Base64.decoder.decode(proofBase64.split(",")[1])
             // Create a new entity in the database
             Map<String, Object> newReport = [
                 reportId: reportId,
@@ -144,7 +143,7 @@ def createReportDetail() {
                 rating: rating,
                 comment: comment,
                 approve: approve,
-                proofBase64: decodedImage,
+                proofBase64: proofBytes,
              
             ]
             delegator.create("ReportContent", newReport)
