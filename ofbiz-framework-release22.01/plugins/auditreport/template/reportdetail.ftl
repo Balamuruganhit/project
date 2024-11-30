@@ -53,13 +53,15 @@ under the License.
       <tr>
         <td class="label"/>
         <td><button id="add-button">Add</button></td>
+        <button id="submit-button" style="
+    margin-right: 1rem;">Submit</button>
       </tr>
     </tbody>
   </table>
 </form>
-<table>
+<table class="basic-table hover-bar">
     <thead>
-        <tr>
+        <tr class="header-row-2">
             <th>Report ID</th>
             <th>Question</th>
             <th>Rating</th>
@@ -70,4 +72,4 @@ under the License.
     </thead>
     <tbody id="data-table-body"></tbody>
 </table>
-<button id="submit-button">Submit</button>
+

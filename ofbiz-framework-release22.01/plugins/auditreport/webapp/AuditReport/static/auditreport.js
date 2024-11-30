@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const proofData = e.target.result; // Base64 encoded string
           // Add row to table
           const newRow = `
-              <tr>
+              <tr class="alternate-row">
                   <td>${reportId}</td>
                   <td>${question}</td>
                   <td>${rating}</td>

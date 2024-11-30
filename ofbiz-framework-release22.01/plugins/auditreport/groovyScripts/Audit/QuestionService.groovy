@@ -99,6 +99,7 @@ def createReportDetail1(){
             upload.get(byteArray) // Copy ByteBuffer content into the byte array
             newEntity.documentContent = byteArray // Set to the entity's blob field
         }
+        newEntity.genId = delegator.getNextSeqId("ReportContent")
         newEntity.reportId=parameters.reportId
         newEntity.question = parameters.question
         newEntity.rating = parameters.rating
