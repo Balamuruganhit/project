@@ -96,25 +96,28 @@ document.addEventListener("DOMContentLoaded", () => {
           alert("No data to submit.");
           return;
       }
-      try {
-          const response = await fetch("createReportDetail", {
-              method: "POST",
-              headers: {
-                  "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ data: formDataArray }),
-          });
-          const result = await response.json();
-          if (result.responseMessage === "success") {
-              alert("Data submitted successfully.");
-              formDataArray = []; // Clear data after submission
-              dataTable.innerHTML = ""; // Clear table
+      const payload = JSON.stringify({ reportDetails : formDataArray});
+
+      // Prepare the XHR request
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "/AuditReport/control/createReportDetail", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+  
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            console.log("Success:", xhr.responseText);
+            alert("Data submitted successfully.");
+            formDataArray = []; // Clear the array after successful submission
+            dataTable.innerHTML = ""; // Clear the table
           } else {
-              alert("Error submitting data: " + result.errorMessage);
+            console.error("Error:", xhr.status, xhr.statusText);
+            alert("Failed to submit data.");
           }
-      } catch (error) {
-          console.error("Error:", error);
-          alert("An error occurred while submitting the data.");
-      }
+        }
+      };
+  
+      // Send the request
+      xhr.send(payload);
   });
 });
