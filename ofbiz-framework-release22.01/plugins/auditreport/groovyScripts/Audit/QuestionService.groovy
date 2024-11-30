@@ -146,7 +146,7 @@ def createReportDetail() {
                 proofBase64: proofBase64,
              
             ]
-            delegator.create("AuditReportDetail", newReport)
+            delegator.create("ReportContent", newReport)
         }
 
         return success("Report details stored successfully.")
