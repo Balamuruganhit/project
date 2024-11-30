@@ -71,8 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <td>${comment}</td>
                   <td><img src="${proofData}" alt="Proof" style="width: 50px; height: 50px;" /></td>
                   <td>${approve }</td>
-                  <td><button type="button" onclick="deleteReport('${reportId}')">Delete</button></td>
-              </tr>
+                  <td><button class="delete-btn">Delete</button></td>
           `;
           dataTable.innerHTML += newRow;
           // Store data in array
@@ -90,16 +89,18 @@ document.addEventListener("DOMContentLoaded", () => {
       // Read file as Base64
       reader.readAsDataURL(proofFile);
   });
-  window.deleteReport = function(reportId) {
-    // Remove the report from the array
-    formDataArray = formDataArray.filter(item => item.reportId !== reportId);
+  dataTable.addEventListener("click", (event) => {
+    if (event.target.classList.contains("delete-btn")) {
+        const rowIndex = event.target.closest("tr").rowIndex - 1; // Get the row index of the clicked delete button (excluding the header row)
+        
+        // Remove from the array
+        formDataArray.splice(rowIndex, 1);
 
-    // Remove the row from the table
-    const rowToRemove = document.getElementById(`report-row-${reportId}`);
-    if (rowToRemove) {
-        rowToRemove.remove();
+        // Remove from the table (UI)
+        event.target.closest("tr").remove();
     }
-};
+});
+
   // Submit Button Logic
   submitButton.addEventListener("click", async (event) => {
       event.preventDefault();
