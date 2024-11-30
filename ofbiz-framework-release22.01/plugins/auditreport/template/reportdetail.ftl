@@ -16,38 +16,38 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
-<form class="basic-form" id="AddReportDetail" name="AddReportDetail" enctype="multipart/form-data">
+<form class="basic-form" id="AddReportDetail" name="AddReportDetail"  enctype="multipart/form-data">
   <table>
     <tbody>
       <tr>
     <td class="label"><label>${uiLabelMap.AuditReportNo}</label></td>
-    <td> <input type="text"  name="reportId"/></td>
+    <td> <input type="text" id="reportId"  name="reportId"/></td>
     </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.FormFieldTitle_Question}</label></td>
         <td>
-             <input type="text"  name="question"/>
+             <input type="text" id="question"  name="question"/>
         </td>
       </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportRating}</label></td>
-        <td> <input type="text" id="fname" name="rating"/></td>
+        <td> <input type="text" id="rating" name="rating"/></td>
       </tr>
       
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportComment}</label></td>
-        <td> <input type="text" id="fname" name="comment"/></td>
+        <td> <input type="text" id="comment" name="comment"/></td>
       </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportProof}</label></td>
-        <td><input type="file" size="20" name="proof"accept=".png,.gif,.jpg,.jpeg,.tiff,.tif"/></td>
+        <td><input type="file" size="20" id="proof" name="proof"accept=".png,.gif,.jpg,.jpeg,.tiff,.tif"/></td>
       </tr>
     	<td class="label"><label>${uiLabelMap.AuditReportApprove}</label></td>
-        <td> <input type="text" id="fname" name="approve"/></td>
+        <td> <input type="text" id="approve" name="approve"/></td>
       </tr>
       <tr>
-          <button id="add-button">Add</button>
+        <td class="label"/>
+        <td><button id="add-button">Add</button></td>
       </tr>
     </tbody>
   </table>
@@ -60,7 +60,7 @@ under the License.
             <th>Rating</th>
             <th>Comment</th>
             <th>Proof</th>
-            <th>Approve</th>
+            <th>Approver Name</th>
         </tr>
     </thead>
     <tbody id="data-table-body"></tbody>
