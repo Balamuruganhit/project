@@ -1,4 +1,5 @@
-/*
+/*.
+
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
 distributed with this work for additional information
@@ -17,26 +18,49 @@ specific language governing permissions and limitations
 under the License.
 */
 
-document.addEventListener("DOMContentLoaded", () => {
-  const dataTable = document.getElementById("dataTable");
-  const submitButton = document.getElementById("submitButton");
-  const addButton = document.getElementById("addButton");
+/*.
 
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+*/
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const dataTable = document.getElementById("data-table-body");
+  const submitButton = document.getElementById("submit-button");
+  const addButton = document.getElementById("add-button");
+
+  // Array to hold the form data
   let formDataArray = [];
 
-  // Add Button Logic
+  // Function to handle the "Add" button click
   addButton.addEventListener("click", (event) => {
     event.preventDefault();
 
+    // Collect form inputs
     const reportId = document.getElementById("reportId").value;
     const question = document.getElementById("question").value;
     const rating = document.getElementById("rating").value;
     const comment = document.getElementById("comment").value;
+    const approve = document.getElementById("approve").checked ? "Yes" : "No";
     const proofInput = document.getElementById("proof");
-    const approve = document.getElementById("approve").value;
-
-    // Handle File Upload
     const proofFile = proofInput.files[0];
+
+    // Validate file input
     if (!proofFile) {
       alert("Please select a proof file.");
       return;
@@ -44,32 +68,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const reader = new FileReader();
     reader.onload = function (e) {
-      const proofData = e.target.result; // Base64 encoded string
+      const proofData = e.target.result; // Base64 string
 
-      // Add row to table
+      // Add the row to the table
       const newRow = `
         <tr>
-            <td>${reportId}</td>
-            <td>${question}</td>
-            <td>${rating}</td>
-            <td>${comment}</td>
-            <td><img src="${proofData}" alt="Proof" style="width: 50px; height: 50px;" /></td>
-            <td>${approve}</td>
+          <td>${reportId}</td>
+          <td>${question}</td>
+          <td>${rating}</td>
+          <td>${comment}</td>
+          <td><img src="${proofData}" alt="Proof" style="width: 50px; height: 50px;" /></td>
+          <td>${approve}</td>
         </tr>
       `;
       dataTable.innerHTML += newRow;
 
-      // Store data in array
+      // Add the data to the array
       formDataArray.push({
         reportId: reportId,
         question: question,
         rating: rating,
         comment: comment,
-        proof: proofData,
+        proof: proofData, // Base64 image
         approve: approve,
       });
 
-      // Reset Form
+      // Reset the form fields
       document.getElementById("form").reset();
     };
 
@@ -77,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     reader.readAsDataURL(proofFile);
   });
 
-  // Submit Button Logic
+  // Function to handle the "Submit" button click
   submitButton.addEventListener("click", (event) => {
     event.preventDefault();
 
@@ -86,35 +110,29 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Create an XHR object
+    // Create the payload
+    const payload = JSON.stringify( {reportDetails:formDataArray});
+
+    // Prepare the XHR request
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "/AuditReport/control/createReportDetail", true);
     xhr.setRequestHeader("Content-Type", "application/json");
 
-    // Define the success and error handling
     xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          alert("Data submitted successfully!");
-          console.log("Response:", xhr.responseText);
-
-          // Clear the table and formDataArray
-          dataTable.innerHTML = "";
-          formDataArray = [];
+          console.log("Success:", xhr.responseText);
+          alert("Data submitted successfully.");
+          formDataArray = []; // Clear the array after successful submission
+          dataTable.innerHTML = ""; // Clear the table
         } else {
+          console.error("Error:", xhr.status, xhr.statusText);
           alert("Failed to submit data.");
-          console.error("Error:", xhr.statusText);
         }
       }
     };
 
-    // Handle any XHR errors
-    xhr.onerror = function () {
-      alert("An error occurred while submitting the data.");
-      console.error("XHR error:", xhr.statusText);
-    };
-
-    // Send the data
-    xhr.send(JSON.stringify({ reportDetails: formDataArray }));
+    // Send the request
+    xhr.send(payload);
   });
 });

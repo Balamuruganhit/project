@@ -17,7 +17,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<form class="basic-form" id="AddReportDetail" name="AddReportDetail"  enctype="multipart/form-data">
+<form class="basic-form" id="AddReportDetail" name="AddReportDetail" enctype="multipart/form-data">
   <table>
     <tbody>
       <tr>
@@ -47,24 +47,22 @@ under the License.
         <td> <input type="text" id="fname" name="approve"/></td>
       </tr>
       <tr>
-        <td class="label"/>
-        <td> <button type="button" id="addButton">Submit</button></td>
+          <button id="add-button">Add</button>
       </tr>
     </tbody>
   </table>
 </form>
-<table class="basic-table" id="dataTable" border="1">
+<table>
     <thead>
         <tr>
-            <th>Question Type</th>
+            <th>Report ID</th>
+            <th>Question</th>
             <th>Rating</th>
             <th>Comment</th>
-            <th>Approver Name</th>
-            <th>Proof File</th>
-            <th>Image Preview</th>
+            <th>Proof</th>
+            <th>Approve</th>
         </tr>
     </thead>
-    <tbody>
-    </tbody>
+    <tbody id="data-table-body"></tbody>
 </table>
-<button type="button" id="submitButton">Add</button>
+<button id="submit-button">Submit</button>
