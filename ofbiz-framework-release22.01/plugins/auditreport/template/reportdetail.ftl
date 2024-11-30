@@ -17,7 +17,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<form class="basic-form" id="AddReportDetail" name="AddReportDetail" method="post" action="<@ofbizUrl>createReportDetail</@ofbizUrl>" enctype="multipart/form-data">
+<form class="basic-form" id="AddReportDetail" name="AddReportDetail"  enctype="multipart/form-data">
   <table>
     <tbody>
       <tr>
@@ -48,7 +48,7 @@ under the License.
       </tr>
       <tr>
         <td class="label"/>
-        <td><input type="submit" value='${uiLabelMap.AuditAdd}'/></td>
+        <td> <button type="button" id="submitButton">Submit</button></td>
       </tr>
     </tbody>
   </table>
@@ -67,5 +67,4 @@ under the License.
     <tbody>
     </tbody>
 </table>
-
-<button id="submit-button">Submit</button>
+<button type="button" id="addButton">Add</button>

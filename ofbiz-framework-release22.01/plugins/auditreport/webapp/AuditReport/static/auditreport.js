@@ -1,167 +1,100 @@
-/*
-Licensed to the Apache Software Foundation (ASF) under one
-or more contributor license agreements.  See the NOTICE file
-distributed with this work for additional information
-regarding copyright ownership.  The ASF licenses this file
-to you under the Apache License, Version 2.0 (the
-"License"); you may not use this file except in compliance
-with the License.  You may obtain a copy of the License at
+// Initialize an array to hold form data
+let formDataArray = [];
 
-http://www.apache.org/licenses/LICENSE-2.0
+// Function to collect form data and display in a table when "Add" button is pressed
+function addFormData() {
+    // Collect form inputs
+    const reportId = document.getElementById('reportId').value;
+    const question = document.getElementById('question').value;
+    const rating = document.getElementById('rating').value;
+    const comment = document.getElementById('comment').value;
+    const approve = document.getElementById('approve').checked ? 'Yes' : 'No';
+    const proof = document.getElementById('proof').files[0]; // Get the file object
 
-Unless required by applicable law or agreed to in writing,
-software distributed under the License is distributed on an
-"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, either express or implied.  See the License for the
-specific language governing permissions and limitations
-under the License.
-*/
-const form = document.getElementById("AddReportDetail");
-const reportTable = document.getElementById("dataTable");
-const button=document.getElementById('submit-button');
-function loadReports() {
-    const reports = JSON.parse(localStorage.getItem("reports")) || [];
-    reportTable.innerHTML = ""; // Clear the table
-  
-    reports.forEach((report, index) => {
-      const row = document.createElement("tr");
-  
-      row.innerHTML = `
-        <td>${report.reportId}</td>
-        <td><img src="${report.proof}" alt="Proof" width="100"></td>
-        <td>${report.rating}</td>
-        <td>${report.comment}</td>
-        <td>${report.approverName}</td>
-        <td>${report.question}</td>
-        <td>
-          <button onclick="deleteReport(${index})">Delete</button>
-        </td>
-      `;
-  
-      reportTable.appendChild(row);
-    });
-  }
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-  
-    // Clear all existing data in LocalStorage
-    
-  
-    const reportId = document.getElementById("reportId").value.trim();
-    const proofInput = document.getElementById("proof").files[0];
-    const rating = document.getElementById("rating").value.trim();
-    const comment = document.getElementById("comment").value.trim();
-    const approverName = document.getElementById("approverName").value.trim();
-    const question = document.getElementById("question").value.trim();
-  
-    if (!proofInput) {
-      alert("Please upload a proof image.");
-      return;
-    }
-  
-    // Convert image file to Base64
-    const reader = new FileReader();
-    reader.onload = function () {
-      const proofBase64 = reader.result;
-  
-      const newReport = {
-        reportId,
-        proof: proofBase64,
-        rating,
-        comment,
-        approverName,
-        question,
-      };
-  
-      // Save only the new report in LocalStorage
-      localStorage.setItem("reports", JSON.stringify([newReport]));
-      loadReports(); // Refresh the table
-      form.reset(); // Clear the form
+    // Create an object for the form data
+    const formData = {
+        reportId: reportId,
+        question: question,
+        rating: rating,
+        comment: comment,
+        approve: approve,
+        proof: proof // Store the file object
     };
-  
-    reader.readAsDataURL(proofInput);
-  });
- 
-  function deleteReport(index) {
-    localStorage.removeItem("reports");// Save updated data
-    loadReports(); // Refresh the table
-  }
-  button.addEventListener('click',deleteReport(1));
-  // Load reports on page load
-  loadReports();
 
-//     // Add Button Logic
-//     addButton.addEventListener("click", (event) => {
-//         event.preventDefault();
+    // Add the object to the array
+    formDataArray.push(formData);
 
-//         const reportId = document.getElementById("reportId").value;
-//         const question = document.getElementById("question").value;
-//         const rating = document.getElementById("rating").value;
-//         const comment = document.getElementById("comment").value;
-//         const proofInput = document.getElementById("proof");
-//         const approve = document.getElementById("approve").checked;
+    // Display the data in the table
+    displayFormData(formData);
+}
 
-//         // Handle File Upload
-//         const proofFile = proofInput.files[0];
-//         if (!proofFile) {
-//             alert("Please select a proof file.");
-//             return;
-//         }
+// Function to display form data in a table
+function displayFormData(data) {
+    let table = document.getElementById('dataTable'); // Table with id "formDataTable"
+    let newRow = table.insertRow();
 
-//         const reader = new FileReader();
-//         reader.onload = function (e) {
-//             const proofData = e.target.result; // Base64 encoded string
+    newRow.insertCell(0).innerText = data.reportId;
+    newRow.insertCell(1).innerText = data.question;
+    newRow.insertCell(2).innerText = data.rating;
+    newRow.insertCell(3).innerText = data.comment;
+    newRow.insertCell(4).innerText = data.approve;
 
-//             // Add row to table
-//             const newRow = `
-//                 <tr>
-//                     <td>${reportId}</td>
-//                     <td>${question}</td>
-//                     <td>${rating}</td>
-//                     <td>${comment}</td>
-//                     <td><img src="${proofData}" alt="Proof" style="width: 50px; height: 50px;" /></td>
-//                     <td>${approve ? "Yes" : "No"}</td>
-//                 </tr>
-//             `;
-//             dataTable.innerHTML += newRow;
+    // Handle the display of the proof image
+    if (data.proof) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            let imgCell = newRow.insertCell(5);
+            let img = document.createElement('img');
+            img.src = event.target.result; // Set image source
+            img.style.width = '50px';
+            img.style.height = '50px';
+            imgCell.appendChild(img);
+        };
+        reader.readAsDataURL(data.proof); // Read the file as a Data URL
+    } else {
+        newRow.insertCell(5).innerText = 'No Image';
+    }
+}
 
-//             // Store data in array
-//             formDataArray.push({
-//                 reportId,
-//                 question,
-//                 rating,
-//                 comment,
-//                 approve,
-//                 proofData,
-//             });
+// Function to send all form data to the backend when "Submit" button is pressed
+function submitFormData() {
+    // Loop through the formDataArray and send each item
+    formDataArray.forEach((data, index) => {
+        let formData = new FormData();
 
-//             // Reset Form
-//             document.getElementById("AddReportDetail").reset();
-//         };
+        // Append all fields to FormData
+        formData.append('reportId', data.reportId);
+        formData.append('question', data.question);
+        formData.append('rating', data.rating);
+        formData.append('comment', data.comment);
+        formData.append('approve', data.approve);
 
-//         // Read file as Base64
-//         reader.readAsDataURL(proofFile);
-//     });
+        // Append the proof file if available
+        if (data.proof) {
+            formData.append('proof', data.proof);
+        }
 
-//     // Submit Button Logic
-//     submitButton.addEventListener("click", (event)=> {
-//         event.preventDefault();
+        // Send the formData to the backend via AJAX
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '/AuditReport/control/createReportDetail', true);
 
-//         if (formDataArray.length === 0) {
-//             alert("No data to submit.");
-//             return;
-//         }
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log(`Record ${index + 1} submitted successfully.`);
+                // Optionally, you can clear the formDataArray here after successful submission
+            } else {
+                console.error(`Error submitting record ${index + 1}: ${xhr.statusText}`);
+            }
+        };
 
-//         try {
-          
-//                 alert("Data submitted successfully.");
-//                 formDataArray = []; // Clear data after submission
-//                 dataTable.innerHTML = ""; // Clear table
-//             } 
-//          catch (error) {
-//             console.error("Error:", error);
-//             alert("An error occurred while submitting the data.");
-//         }
-        
-//     });
-// });
+        xhr.onerror = function() {
+            console.error(`Request failed for record ${index + 1}`);
+        };
+
+        xhr.send(formData); // Send the form data
+    });
+}
+
+// Event listeners for buttons
+document.getElementById('addButton').addEventListener('click', addFormData); // "Add" button
+document.getElementById('submitButton').addEventListener('click', submitFormData); // "Submit" button
