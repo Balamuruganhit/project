@@ -48,7 +48,7 @@ under the License.
       </tr>
       <tr>
         <td class="label"/>
-        <td> <button type="button" id="submitButton">Submit</button></td>
+        <td> <button type="button" id="addButton">Submit</button></td>
       </tr>
     </tbody>
   </table>
@@ -67,4 +67,4 @@ under the License.
     <tbody>
     </tbody>
 </table>
-<button type="button" id="addButton">Add</button>
+<button type="button" id="submitButton">Add</button>
