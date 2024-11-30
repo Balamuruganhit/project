@@ -135,7 +135,8 @@ def createReportDetail() {
             String comment = report.comment
             String approve = report.approve
             String proofBase64 = report.proof
-            byte[] decodedImage = proofBase64.decodeBase64()
+            String cleanBase64 = proofBase64.replaceAll("[\\r\\n]+", "")
+            byte[] decodedImage = cleanBase64.decodeBase64()
             // Create a new entity in the database
             Map<String, Object> newReport = [
                 reportId: reportId,
