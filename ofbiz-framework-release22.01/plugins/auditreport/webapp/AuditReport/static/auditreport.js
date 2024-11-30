@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const rating = document.getElementById("rating").value;
       const comment = document.getElementById("comment").value;
       const proofInput = document.getElementById("proof");
-      const approve = document.getElementById("approve").checked;
+      const approve = document.getElementById("approve").value;
       // Handle File Upload
       const proofFile = proofInput.files[0];
       if (!proofFile) {
@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <td>${comment}</td>
                   <td><img src="${proofData}" alt="Proof" style="width: 50px; height: 50px;" /></td>
                   <td>${approve }</td>
+                  <td><button type="button" onclick="deleteReport('${reportId}')">Delete</button></td>
               </tr>
           `;
           dataTable.innerHTML += newRow;
@@ -84,11 +85,21 @@ document.addEventListener("DOMContentLoaded", () => {
               approve: approve,
           });
           // Reset Form
-          document.getElementById("form").reset();
+          document.getElementById("AddReportDetail").reset();
       };
       // Read file as Base64
       reader.readAsDataURL(proofFile);
   });
+  window.deleteReport = function(reportId) {
+    // Remove the report from the array
+    formDataArray = formDataArray.filter(item => item.reportId !== reportId);
+
+    // Remove the row from the table
+    const rowToRemove = document.getElementById(`report-row-${reportId}`);
+    if (rowToRemove) {
+        rowToRemove.remove();
+    }
+};
   // Submit Button Logic
   submitButton.addEventListener("click", async (event) => {
       event.preventDefault();

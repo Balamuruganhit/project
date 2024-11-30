@@ -156,3 +156,4 @@ def createReportDetail() {
     }
 }
 
+context.questions=from("Question").select("question").queryList()

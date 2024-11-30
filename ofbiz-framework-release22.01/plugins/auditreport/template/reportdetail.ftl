@@ -26,7 +26,12 @@ under the License.
       <tr>
         <td class="label"><label>${uiLabelMap.FormFieldTitle_Question}</label></td>
         <td>
-             <input type="text" id="question"  name="question"/>
+            <select name="question" id="question">
+                <#list questions as question>
+                    <option value="${question.question!}">${question.question!}</option>
+                </#list>
+                <option selected="" value="">Select the question</option>
+            </select>
         </td>
       </tr>
       <tr>
