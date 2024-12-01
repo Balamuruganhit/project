@@ -22,7 +22,7 @@ under the License.
         <fo:list-block provisional-distance-between-starts="40mm">
             <fo:list-item>
                     <fo:list-item-label><fo:block font-size="12">Report No:</fo:block></fo:list-item-label>
-                    <fo:list-item-body start-indent="body-start()"><fo:block><#if reportNumber.reportId??> ${reportNumber.reportId}</#if></fo:block></fo:list-item-body>
+                    <fo:list-item-body start-indent="body-start()"><fo:block><#if reportNumber??> ${reportNumber}</#if></fo:block></fo:list-item-body>
             </fo:list-item>
         </fo:list-block>
         <fo:block><fo:leader leader-length="100%" leader-pattern="rule" rule-style="solid" rule-thickness="0.1mm" color="black"/></fo:block>
@@ -32,16 +32,14 @@ under the License.
               <fo:table-column column-width="10%"/>
               <fo:table-column column-width="40%"/>
               <fo:table-column column-width="10%"/>
-              <fo:table-header>
-                    <fo:table-row font-weight="bold">
+            <fo:table-body>
+                <fo:table-row font-weight="bold">
                         <fo:table-cell><fo:block>Question</fo:block></fo:table-cell>
                         <fo:table-cell><fo:block>Rating</fo:block></fo:table-cell>
                         <fo:table-cell><fo:block>Comment</fo:block></fo:table-cell>
                         <fo:table-cell><fo:block>Proof</fo:block></fo:table-cell>
                         <fo:table-cell><fo:block>Approver</fo:block></fo:table-cell>
-                    </fo:table-row>
-                </fo:table-header>
-            <fo:table-body>
+                </fo:table-row>
                 <#list resultList as resultList>
                         <fo:table-row>
                             <fo:table-cell border="1pt solid" border-width=".1mm">
