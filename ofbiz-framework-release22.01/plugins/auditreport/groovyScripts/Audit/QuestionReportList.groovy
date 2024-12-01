@@ -35,7 +35,7 @@ import java.util.List
 Map reportContentMap = [:]
 
 if (!reportId) {
-     context.errorMessage = "Report ID is missing"
+    context.errorMessage = "Report ID is missing"
     return
     }
 // Retrieve all records from the ReportContent entity
