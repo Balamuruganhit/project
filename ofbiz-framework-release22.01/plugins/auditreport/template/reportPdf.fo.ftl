@@ -18,7 +18,7 @@ under the License.
 -->
 
 <#escape x as x?xml>
-    <#if glAcctBalancesByCostCenter?has_content && glAccountCategories?has_content>
+    <#if resultList?has_content >
         <fo:table table-layout="fixed" border="1pt solid" border-width=".1mm" width="19cm">
             <fo:table-body>
                 <#list resultList as resultList>
