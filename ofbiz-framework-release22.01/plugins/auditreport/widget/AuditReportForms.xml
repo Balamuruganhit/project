@@ -23,7 +23,7 @@
 
         <form name="AddQuestion" type="single" target="CreateQuestion" title="" default-map-name="question" header-row-style="header-row" default-table-style="basic-table">
                 <field name="questionId" map-name="parameters"><hidden/></field>
-                <field name="question" title="${uiLabelMap.FormFieldTitle_Question}" required-field="true" widget-style="required"><text placeholder="${uiLabelMap.FieldTitle_Question}"/></field>
+                <field name="question" title="${uiLabelMap.FormFieldTitle_Question}" required-field="true" widget-style="required"><textarea rows="5" placeholder="${uiLabelMap.FieldTitle_Question}"/></field>
                 <field name="submitButton" title="${uiLabelMap.AuditAdd}" widget-style="smallSubmit"><submit button-type="button"/></field>
         </form>
 

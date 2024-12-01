@@ -21,7 +21,7 @@ under the License.
     <tbody>
       <tr>
     <td class="label"><label>${uiLabelMap.AuditReportNo}</label></td>
-    <td> <input type="text" id="reportId"  name="reportId"/></td>
+    <td> <input type="text" id="reportId"  name="reportId" autocomplete="off"/></td>
     </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.FormFieldTitle_Question}</label></td>
@@ -36,19 +36,19 @@ under the License.
       </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportRating}</label></td>
-        <td> <input type="text" id="rating" name="rating"/></td>
+        <td> <input type="text" id="rating" name="rating" autocomplete="off"/></td>
       </tr>
       
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportComment}</label></td>
-        <td> <input type="text" id="comment" name="comment"/></td>
+        <td><textarea name="comment" id="comment" rows="4" cols="15"></textarea></td>
       </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportProof}</label></td>
         <td><input type="file" size="20" id="proof" name="proof"accept=".png,.gif,.jpg,.jpeg,.tiff,.tif"/></td>
       </tr>
     	<td class="label"><label>${uiLabelMap.AuditReportApprove}</label></td>
-        <td> <input type="text" id="approve" name="approve"/></td>
+        <td> <input type="text" id="approve" name="approve" autocomplete="off"/></td>
       </tr>
       <tr>
         <td class="label"/>
@@ -58,7 +58,7 @@ under the License.
     </tbody>
   </table>
 </form>
-<table class="basic-table hover-bar">
+<table class="basic-table light-grid hover-bar">
     <thead>
         <tr class="header-row-2">
             <th>Report ID</th>

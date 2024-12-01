@@ -113,7 +113,7 @@
                 <decorator-screen name="SimpleDecorator" location="component://common/widget/CommonScreens.xml">
                     <decorator-section name="body">
                         <container>
-                            <label style="h1" text="${uiLabelMap.PageTitleOspReport}"/>
+                            <label style="h1" text="OSP Report"/>
                             <platform-specific>
                                 <xsl-fo>
                                     <html-template location="component://AuditReport/template/reportPdf.fo.ftl"/>

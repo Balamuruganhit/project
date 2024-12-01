@@ -29,6 +29,6 @@ under the License.
         </select>
     </div>
     <div>
-        <input type="submit" value="Press To generate he File" />
+        <input type="submit" value="Press To generate" />
     </div>
 </form>

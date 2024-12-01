@@ -68,6 +68,7 @@ reportContents.each { reportContent ->
 }
 
 // Convert the result into a list of report data
+context.reportNumber=reportId
 context.resultList = reportContentMap.values().toList()
 context.responseMessage = "success"
 
