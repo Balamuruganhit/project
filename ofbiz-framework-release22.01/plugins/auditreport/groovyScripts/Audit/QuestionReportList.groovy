@@ -37,7 +37,7 @@ Map reportContentMap = [:]
 targetReportId=parameters.reportIdref
 // Retrieve all records from the ReportContent entity
 List reportContents = select("reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").where("reportId", targetReportId).orderBy("genId").queryList()
-List reportContentIds = select("reportId").from("reportContent").queryList()
+List reportContentIds = select("reportId").from("ReportContent").queryList()
 List uniqueReportContentIds = reportContentIds.collect { it.reportId }.unique()
 
 // Iterate through the records and process the data
