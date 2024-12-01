@@ -111,9 +111,11 @@
                     <decorator-section name="body">
                         <container>
                             <label style="h1" text="${uiLabelMap.AuditReportTitle}"/>
-                             <xsl-fo>
-                                <html-template location="component://AuditReport/template/reportPdf.fo.ftl"/>
-                            </xsl-fo>
+                            <platform-specific>
+                                <xsl-fo>
+                                    <html-template location="component://AuditReport/template/reportPdf.fo.ftl"/>
+                                </xsl-fo>
+                            </platform-specific>
                         </container>
                     </decorator-section>
                 </decorator-screen>
