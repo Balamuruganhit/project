@@ -50,7 +50,7 @@ try {
             question : report.getString("question"),
             rating   : report.get("rating"),
             approver : report.getString("approverName"),
-			comment  : report.getString("comment")
+			comment  : report.getString("comment"),
             image    : imageBase64
         ])
     }
