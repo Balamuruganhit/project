@@ -29,7 +29,7 @@ import org.apache.ofbiz.base.util.*
 import org.apache.ofbiz.entity.*
 import java.sql.Timestamp
 import org.apache.ofbiz.entity.util.EntityQuery
-import org.apache.ofbiz.base.util.UtilBase64
+
 
 
 def resultList = []
@@ -43,7 +43,7 @@ try {
     // Collect the required fields and convert the image data to Base64
     questionReports.each { report ->
         def imageBlob = report.getBytes("imageData")
-        def imageBase64 = imageBlob ? UtilBase64.encoder.encodeToString(imageBlob) : ""
+        def imageBase64 = imageBlob ? Base64.encoder.encodeToString(imageBlob) : ""
 
         resultList.add([
 			reportId : report.get("reportId"),
