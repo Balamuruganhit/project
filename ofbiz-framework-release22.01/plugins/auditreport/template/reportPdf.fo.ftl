@@ -26,6 +26,7 @@ under the License.
             </fo:list-item>
         </fo:list-block>
         <fo:block><fo:leader leader-length="100%" leader-pattern="rule" rule-style="solid" rule-thickness="0.1mm" color="black"/></fo:block>
+         <fo:block space-after.optimum="0.3cm"></fo:block>
         <fo:table table-layout="fixed" border="1pt solid" border-width=".1mm" width="19cm">
               <fo:table-column column-width="20%"/>
               <fo:table-column column-width="10%"/>
