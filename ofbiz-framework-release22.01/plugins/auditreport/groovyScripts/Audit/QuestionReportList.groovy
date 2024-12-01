@@ -31,44 +31,45 @@ import org.apache.ofbiz.entity.*
 import java.sql.Timestamp
 import java.util.List
 
+def QuestionList(){
+        // Initialize the map to store results
+        Map reportContentMap = [:]
 
-// Initialize the map to store results
-Map reportContentMap = [:]
+        def reportGen = parameters.reportId
 
-def reportGen = parameters.reportId
+        if (!reportGen) {
+            context.errorMessage = "Report ID is missing"
+            return
+        }
+        // Retrieve all records from the ReportContent entity
+        List reportContents = select("reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").where("reportId", reportGen).orderBy("genId").queryList()
 
-if (!reportGen) {
-    context.errorMessage = "Report ID is missing"
-    return
+
+        // Iterate through the records and process the data
+        reportContents.each { reportContent ->
+            // Initialize a map for each report
+            Map reportData = [:]
+            
+            // Fetch the required fields from the ReportContent entity
+            reportData.put("reportId", reportContent.get("reportId"))
+            reportData.put("question", reportContent.getString("question"))
+            reportData.put("rating", reportContent.get("rating"))
+            reportData.put("approve", reportContent.getString("approve"))
+            reportData.put("comment", reportContent.getString("comment"))
+
+            // Process image data (if available) and convert to Base64
+            def imageBlob = reportContent.getBytes("proofBase64")
+            def imageBase64 = imageBlob ? Base64.encoder.encodeToString(imageBlob) : ""
+            reportData.put("proof", imageBase64)
+
+            // Optionally, process other data based on your needs (like calculations or categories)
+            // Example: You could add categories or balances if needed, similar to your postedTransactionTotalsMap logic
+            
+            // Store the processed report data into the map (using reportId or another unique identifier)
+            reportContentMap.put(reportContent.get("reportId"), reportData)
+        }
+
+        // Convert the result into a list of report data
+        context.resultList = reportContentMap.values().toList()
+        context.responseMessage = "success"
 }
-// Retrieve all records from the ReportContent entity
-List reportContents = select("reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").where("reportId", reportGen).orderBy("genId").queryList()
-
-
-// Iterate through the records and process the data
-reportContents.each { reportContent ->
-    // Initialize a map for each report
-    Map reportData = [:]
-    
-    // Fetch the required fields from the ReportContent entity
-    reportData.put("reportId", reportContent.get("reportId"))
-    reportData.put("question", reportContent.getString("question"))
-    reportData.put("rating", reportContent.get("rating"))
-    reportData.put("approve", reportContent.getString("approve"))
-    reportData.put("comment", reportContent.getString("comment"))
-
-    // Process image data (if available) and convert to Base64
-    def imageBlob = reportContent.getBytes("proofBase64")
-    def imageBase64 = imageBlob ? Base64.encoder.encodeToString(imageBlob) : ""
-    reportData.put("proof", imageBase64)
-
-    // Optionally, process other data based on your needs (like calculations or categories)
-    // Example: You could add categories or balances if needed, similar to your postedTransactionTotalsMap logic
-    
-    // Store the processed report data into the map (using reportId or another unique identifier)
-    reportContentMap.put(reportContent.get("reportId"), reportData)
-}
-
-// Convert the result into a list of report data
-context.resultList = reportContentMap.values().toList()
-context.responseMessage = "success"

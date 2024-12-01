@@ -16,12 +16,19 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<div>
-	<label class="label">${uiLabelMap.AuditReportList}</label>
-	<select name="reportId" id="question">
-                <#list reportListId as id>
-                    <option value="${id.reportId!}">Report ${id.reportId!}</option>
-                </#list>
-                <option selected="" value="">Select the question</option>
-    </select>
-</div>
+
+
+<form class="basic-form" id="AddReportDetail" name="AddReportDetail"  action="<@ofbizUrl>Report.pdf</@ofbizUrl>" method="post">
+    <div>
+        <label class="label">${uiLabelMap.AuditReportList}</label>
+        <select name="reportId" id="question">
+                    <#list reportListId as id>
+                        <option value="${id.reportId!}">Report ${id.reportId!}</option>
+                    </#list>
+                    <option selected="" value="">Select the question</option>
+        </select>
+    </div>
+    <div>
+        <button >Print Pdf</button>
+    </div>
+</form>

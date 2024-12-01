@@ -61,6 +61,7 @@ under the License.
     </request-map>
     <request-map uri="Report.pdf">
         <security https="true" auth="true"/>
+        <event type="service" path="" invoke="QuestionList"/>
         <response name="success" type="view" value="ReportPdf"/>
         <response name="error" type="view" value="Export"/>
     </request-map>
