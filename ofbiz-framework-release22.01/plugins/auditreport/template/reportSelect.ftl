@@ -18,7 +18,7 @@ under the License.
 -->
 
 
-
+<form>
     <div>
         <label class="label">${uiLabelMap.AuditReportList}</label>
         <select name="reportId" id="reportgenId">
@@ -28,3 +28,7 @@ under the License.
                     <option selected="" value="">Select the question</option>
         </select>
     </div>
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+</form>
