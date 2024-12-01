@@ -137,7 +137,7 @@ def createReportDetail() {
             String approve = report.approve
             String proofBase64 = report.proof
             byte[] proofBytes = Base64.decoder.decode(proofBase64.split(",")[1])
-            Integer genId=delegator.getNextSeqId("ReportContent")
+            def genId=delegator.getNextSeqId("ReportContent")
             // Create a new entity in the database
             Map<String, Object> newReport = [
                 genId: genId,
