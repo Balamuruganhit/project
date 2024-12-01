@@ -39,7 +39,7 @@ if (!reportId) {
     return
     }
 // Retrieve all records from the ReportContent entity
-List reportContents = select("reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").where("reportId", reportId).orderBy("genId").queryList()
+List reportContents = select("genId","reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").where("reportId", reportId).orderBy("genId").queryList()
 
 
 // Iterate through the records and process the data
@@ -48,6 +48,7 @@ reportContents.each { reportContent ->
             Map reportData = [:]
             
             // Fetch the required fields from the ReportContent entity
+            reportData.put("genId", reportContent.get("genId"))
             reportData.put("reportId", reportContent.get("reportId"))
             reportData.put("question", reportContent.getString("question"))
             reportData.put("rating", reportContent.get("rating"))
@@ -63,7 +64,7 @@ reportContents.each { reportContent ->
             // Example: You could add categories or balances if needed, similar to your postedTransactionTotalsMap logic
             
             // Store the processed report data into the map (using reportId or another unique identifier)
-            reportContentMap.put(reportContent.get("reportId"), reportData)
+            reportContentMap.put(reportContent.get("genId"), reportData)
 }
 
 // Convert the result into a list of report data
