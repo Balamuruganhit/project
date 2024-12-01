@@ -81,18 +81,17 @@
             <actions>
                 <set field="titleProperty" value="PageTitleOspReport"/>
                 <set field="tabButtonItem" value="AddQuestion"/>
+                <script location="component://AuditReport/groovyScripts/Audit/QuestionReportList.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <screenlet  title="${uiLabelMap.AuditExport}" >
-                            
-                                        <link text="${uiLabelMap.AuditPdf}" style="button" target="Report.pdf" target-window="_BLANK">
-                                            
-                                        </link>
-                                        <link text="${uiLabelMap.AuditCsv}" style="button" target="Report.csv">
-                                            
-                                        </link>
+                            <platform-specific>
+                                        <html><html-template location="component://AuditReport/template/reportSelect.ftl"/></html>
+                            </platform-specific>
+                            <link text="${uiLabelMap.AuditPdf}" style="button" target="Report.pdf" target-window="_BLANK"></link>
+                            <link text="${uiLabelMap.AuditCsv}" style="button" target="Report.csv"></link>
                         </screenlet>
                     </decorator-section>
                 </decorator-screen>
@@ -110,7 +109,7 @@
                 <decorator-screen name="SimpleDecorator" location="component://common/widget/CommonScreens.xml">
                     <decorator-section name="body">
                         <container>
-                            <label style="h1" text="${uiLabelMap.AuditReportTitle}"/>
+                            <label style="h1" text="${uiLabelMap.PageTitleOspReport}"/>
                             <platform-specific>
                                 <xsl-fo>
                                     <html-template location="component://AuditReport/template/reportPdf.fo.ftl"/>

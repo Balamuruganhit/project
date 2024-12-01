@@ -143,4 +143,9 @@
         <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
         <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
     </property>
+      <property key="AuditReportList">
+        <value xml:lang="en">Report:</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
 </resource>

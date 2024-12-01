@@ -34,10 +34,11 @@ import java.util.List
 
 // Initialize the map to store results
 Map reportContentMap = [:]
-
+targetReportId=parameters.reportIdref
 // Retrieve all records from the ReportContent entity
-List reportContents = select("reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").orderBy("genId").queryList()
-
+List reportContents = select("reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").where("reportId", targetReportId).orderBy("genId").queryList()
+List reportContentIds = select("reportId").from("reportContent").queryList()
+List uniqueReportContentIds = reportContentIds.collect { it.reportId }.unique()
 
 // Iterate through the records and process the data
 reportContents.each { reportContent ->
@@ -65,4 +66,5 @@ reportContents.each { reportContent ->
 
 // Convert the result into a list of report data
 context.resultList = reportContentMap.values().toList()
+context.reportListId=uniqueReportContentIds.values().toList()
 context.responseMessage = "success"
