@@ -43,39 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const dataTable = document.getElementById("data-table-body");
   const submitButton = document.getElementById("submit-button");
   const addButton = document.getElementById("add-button");
-  const pdfButton = document.getElementById("print");
-  const formData=document.getElementById("reportgen");
-  let ReportDataArray = [];
-  pdfButton.addEventListener("click", (event) => {
-    const report = document.getElementById("reportgenId").value;
-    ReportDataArray.push({
-      reportId:report,
-    })
-    if (ReportDataArray.length === 0) {
-      alert("No data to submit.");
-      return;
-  }
-  const payload = JSON.stringify({ reportDetail : ReportDataArray});
-  const xhr = new XMLHttpRequest();
-      xhr.open("POST", "/AuditReport/control/Report.Pdf", true);
-      xhr.setRequestHeader("Content-Type", "application/json");
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            console.log("Success:", xhr.responseText);
-            alert("Data submitted successfully.");
-            formDataArray = []; // Clear the array after successful submission
-            dataTable.innerHTML = ""; // Clear the table
-          } else {
-            console.error("Error:", xhr.status, xhr.statusText);
-            alert("Failed to submit data.");
-          }
-        }
-      };
   
-      // Send the request
-      xhr.send(payload);
-  });
   let formDataArray = [];
   // Add Button Logic
   addButton.addEventListener("click", (event) => {
@@ -165,7 +133,5 @@ document.addEventListener("DOMContentLoaded", () => {
       // Send the request
       xhr.send(payload);
   });
-    pdfButton.addEventListener('click',()=>{
-      formData.action ='<@ofbizUrl>Report.pdf</@ofbizUrl>'
-    });
+
 });

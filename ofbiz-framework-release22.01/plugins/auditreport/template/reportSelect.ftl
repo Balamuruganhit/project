@@ -18,7 +18,7 @@ under the License.
 -->
 
 
-<form class="basic-form" id="reportgen" name="reportgen" >
+
     <div>
         <label class="label">${uiLabelMap.AuditReportList}</label>
         <select name="reportId" id="reportgenId">
@@ -28,7 +28,3 @@ under the License.
                     <option selected="" value="">Select the question</option>
         </select>
     </div>
-    <div>
-        <button id="print">Print Pdf</button>
-    </div>
-</form>

@@ -61,14 +61,13 @@ under the License.
     </request-map>
     <request-map uri="Report.pdf">
         <security https="true" auth="true"/>
-        <event type="service" path="" invoke="QuestionList"/>
         <response name="success" type="view" value="ReportPdf"/>
-        <response name="error" type="view" value="export"/>
+        <response name="error" type="view" value="Export"/>
     </request-map>
     <request-map uri="Report.csv">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="ReportPdf"/>
-        <response name="error" type="view" value="export"/>
+        <response name="error" type="view" value="Export"/>
     </request-map>
     <request-map uri="AuditExport"><security https="true" auth="true"/><response name="success" type="view" value="export"/></request-map>    
     <request-map uri="ospreport"><security https="true" auth="true"/><response name="success" type="view" value="config"/></request-map>

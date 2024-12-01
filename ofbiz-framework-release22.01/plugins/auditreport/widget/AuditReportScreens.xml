@@ -90,8 +90,8 @@
                             <platform-specific>
                                         <html><html-template location="component://AuditReport/template/reportSelect.ftl"/></html>
                             </platform-specific>
-                            <!-- <link text="${uiLabelMap.AuditPdf}" style="button" target="Report.pdf" target-window="_BLANK"></link>
-                            <link text="${uiLabelMap.AuditCsv}" style="button" target="Report.csv"></link> -->
+                            <link text="${uiLabelMap.AuditPdf}" style="button" target="Report.pdf" target-window="_BLANK"></link>
+                            <link text="${uiLabelMap.AuditCsv}" style="button" target="Report.csv"></link>
                         </screenlet>
                     </decorator-section>
                 </decorator-screen>
@@ -102,7 +102,7 @@
         <section>
             <actions>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
-                <!-- <script location="component://AuditReport/groovyScripts/Audit/QuestionReportList.groovy"/> -->
+                <script location="component://AuditReport/groovyScripts/Audit/QuestionReportList.groovy"/>
                 <set field="viewSize" value="99999"/>
             </actions>
             <widgets>
