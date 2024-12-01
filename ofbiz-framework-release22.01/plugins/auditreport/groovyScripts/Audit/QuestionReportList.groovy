@@ -38,7 +38,7 @@ targetReportId=parameters.reportIdref
 // Retrieve all records from the ReportContent entity
 List reportContents = select("reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").where("reportId", targetReportId).orderBy("genId").queryList()
 List reportContentIds = select("reportId").from("ReportContent").queryList()
-List uniqueReportContentIds = reportContentIds.collect { it.reportId }.unique()
+reportContentIds = reportContentIds.unique()
 
 // Iterate through the records and process the data
 reportContents.each { reportContent ->
