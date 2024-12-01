@@ -37,7 +37,9 @@ under the License.
                                 <fo:block text-align="center">${resultList.comment!}</fo:block>
                             </fo:table-cell>
                             <fo:table-cell border="1pt solid" border-width=".1mm">
-                                    <fo:block text-align="center"> <fo:external-graphic src="${resultList.proof!}" alt="Image" width="100px"/></fo:block>
+                                    <fo:block text-align="center">
+                                            <fo:external-graphic src="${resultList.proof!}" overflow="hidden" height="40px" content-height="scale-to-fit"/>
+                                    </fo:block>
                             </fo:table-cell>
                             <fo:table-cell border="1pt solid" border-width=".1mm">
                                 <fo:block text-align="center">${resultList.approve!}</fo:block>
