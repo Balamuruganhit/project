@@ -33,7 +33,7 @@ under the License.
                     <fo:table-cell>
                         <#if listOfReport.image?? && listOfReport.image != "">
                             <fo:block>
-                                <fo:external-graphic src="${listOfReport.image}" alt="Image" style="width: 50px; height: 50px;"/>
+                                <fo:external-graphic src="${listOfReport.image}" alt="Image" width="100px"/>
                             </fo:block>
                         <#else>
                             <fo:block>No Image</fo:block>
@@ -48,3 +48,4 @@ under the License.
         </#else>
     </fo:table-body>
 </fo:table>
+
