@@ -31,24 +31,19 @@ import org.apache.ofbiz.entity.*
 import java.sql.Timestamp
 import java.util.List
 
+// Initialize the map to store results
+Map reportContentMap = [:]
 
-        // Initialize the map to store results
-        Map reportContentMap = [:]
-        List<Map<String, Object>> reportDetail = parameters.reportDetail
-   
-
-        def reportGen = parameters.reportId
-
-        if (!reportGen) {
-            context.errorMessage = "Report ID is missing"
-            return
-        }
-        // Retrieve all records from the ReportContent entity
-        List reportContents = select("reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").where("reportId", reportGen).orderBy("genId").queryList()
+if (!reportId) {
+     context.errorMessage = "Report ID is missing"
+    return
+    }
+// Retrieve all records from the ReportContent entity
+List reportContents = select("reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").where("reportId", reportId).orderBy("genId").queryList()
 
 
-        // Iterate through the records and process the data
-        reportContents.each { reportContent ->
+// Iterate through the records and process the data
+reportContents.each { reportContent ->
             // Initialize a map for each report
             Map reportData = [:]
             
@@ -69,9 +64,9 @@ import java.util.List
             
             // Store the processed report data into the map (using reportId or another unique identifier)
             reportContentMap.put(reportContent.get("reportId"), reportData)
-        }
-
-        // Convert the result into a list of report data
-        context.resultList = reportContentMap.values().toList()
-        context.responseMessage = "success"
 }
+
+// Convert the result into a list of report data
+context.resultList = reportContentMap.values().toList()
+context.responseMessage = "success"
+

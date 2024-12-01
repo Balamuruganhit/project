@@ -81,6 +81,7 @@
             <actions>
                 <set field="titleProperty" value="PageTitleOspReport"/>
                 <set field="tabButtonItem" value="AddQuestion"/>
+                <set field="reportId" from-field="parameters.reportId" type="String"/>                
                 <script location="component://AuditReport/groovyScripts/Audit/ReportService.groovy"/>
             </actions>
             <widgets>
@@ -90,7 +91,9 @@
                             <platform-specific>
                                         <html><html-template location="component://AuditReport/template/reportSelect.ftl"/></html>
                             </platform-specific>
-                            <link text="${uiLabelMap.AuditPdf}" style="button" target="Report.pdf" target-window="_BLANK"></link>
+                            <link text="${uiLabelMap.AuditPdf}" style="button" target="Report.pdf" target-window="_BLANK">
+                                <parameter param-name="reportId" from-field="reportId"/>
+                            </link>
                             <link text="${uiLabelMap.AuditCsv}" style="button" target="Report.csv"></link>
                         </screenlet>
                     </decorator-section>
@@ -102,6 +105,7 @@
         <section>
             <actions>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="reportId" from-field="parameters.reportId" type="String"/>
                 <script location="component://AuditReport/groovyScripts/Audit/QuestionReportList.groovy"/>
                 <set field="viewSize" value="99999"/>
             </actions>
