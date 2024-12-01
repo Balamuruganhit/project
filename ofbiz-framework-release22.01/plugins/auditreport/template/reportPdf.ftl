@@ -45,7 +45,7 @@ under the License.
             <fo:table-row>
                 <fo:table-cell colspan="5"><fo:block>No data available</fo:block></fo:table-cell>
             </fo:table-row>
-        </#else>
+        </#if>
     </fo:table-body>
 </fo:table>
 
