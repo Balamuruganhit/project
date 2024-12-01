@@ -28,7 +28,7 @@
         </form>
 
         <form name="AddReportDetail" target="createReportDetail" title="" type="single" enctype="multipart/form-data"
-        header-row-style="header-row" default-table-style="basic-table">
+                header-row-style="header-row" default-table-style="basic-table">
             <field name="reportId" title="${uiLabelMap.AuditReportNo}" required-field="true"><text /></field>
             <field name="question" position="1" title="${uiLabelMap.FormFieldTitle_Question}" required-field="true"><text/></field>
             <field name="rating" position="1" title="${uiLabelMap.AuditReportRating}" required-field="true"><text /></field>
@@ -37,6 +37,10 @@
             <field name="approve" position="1" title="${uiLabelMap.AuditReportApprove}" required-field="true"><text/></field>
              <field name="submitButton" title="${uiLabelMap.AuditAdd}" widget-style="smallSubmit">   <submit button-type="button"/>
                  </field>
+        </form>
+         <form name="reportButton" target="Report.pdf" title="" type="single" 
+                header-row-style="header-row" default-table-style="basic-table">
+                <field name="submitButton" title="${uiLabelMap.AuditAdd}" widget-style="smallSubmit">   <submit button-type="button"/></field>
         </form>
         
 </forms>

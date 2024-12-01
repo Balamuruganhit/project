@@ -37,7 +37,7 @@ try {
     // Fetch all records from the QuestionReport entity
     def questionReports = EntityQuery.use(delegator)
         .from("ReportContent")
-        .orderBy("reportId") // Order by report number
+        .orderBy("genId") // Order by report number
         .queryList()
 
     // Collect the required fields and convert the image data to Base64
