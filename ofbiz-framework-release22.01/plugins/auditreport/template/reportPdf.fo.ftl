@@ -22,7 +22,6 @@ under the License.
         <fo:table table-layout="fixed" border="1pt solid" border-width=".1mm" width="19cm">
             <fo:table-body>
                 <#list resultList as resultList>
-                    <#if resultList?has_content>
                         <fo:table-row>
                             <fo:table-cell border="1pt solid" border-width=".1mm">
                                 <fo:block text-align="center">${resultList.reportId!}</fo:block>
@@ -45,7 +44,6 @@ under the License.
                                 <fo:block text-align="center">${resultList.approve!}</fo:block>
                             </fo:table-cell>
                         </fo:table-row>
-                    </#if>
                 </#list>
             </fo:table-body>
         </fo:table>
