@@ -79,6 +79,6 @@ under the License.
     <view-map name="export" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#export"/>   
     <view-map name="pickReview" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#pickReview"/>
     
-    <view-map name="ReportPdf" type="screenfop" page="component://accounting/widget/ReportFinancialSummaryScreens.xml#ReportPdf" content-type="application/pdf" encoding="none"/>
+    <view-map name="ReportPdf" type="screenfop" page="component://AuditReport/widget/AuditReportScreens.xml##ReportPdf" content-type="application/pdf" encoding="none"/>
 
 </site-conf>
