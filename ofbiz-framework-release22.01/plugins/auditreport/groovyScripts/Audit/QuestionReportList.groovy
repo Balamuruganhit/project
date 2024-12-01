@@ -16,6 +16,7 @@
 * specific language governing permissions and limitations
 * under the License.
 */
+
 import org.apache.ofbiz.base.util.UtilDateTime
 import org.apache.ofbiz.base.util.UtilProperties
 import org.apache.ofbiz.base.util.UtilValidate
@@ -28,8 +29,7 @@ import org.apache.ofbiz.service.*
 import org.apache.ofbiz.base.util.*
 import org.apache.ofbiz.entity.*
 import java.sql.Timestamp
-import org.apache.ofbiz.entity.util.EntityQuery
-
+import java.util.List
 
 
 def resultList = []
