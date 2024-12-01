@@ -16,25 +16,35 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<table class="basic-table hover-bar">
-    <thead>
-        <tr class="header-row-2">
-            <th>Report ID</th>
-            <th>Question</th>
-            <th>Rating</th>
-            <th>Comment</th>
-            <th>Proof</th>
-            <th>Approver Name</th>
-        </tr>
-    </thead>
-    <tbody>
-		 <#list resultList as listOfReport>
-		 	<td>${listOfReport.reportId!}</td>
-            <td>${listOfReport.question!}</td>
-            <td>${listOfReport.rating!}</td>
-            <td>${listOfReport.comment!}</td>
-            <td><img src="${listOfReport.image!}" alt="Proof" style="width: 50px; height: 50px;" /></td>
-            <td>${listOfReport.approverName!}</td>
-		 </#list>
-	</tbody>
-</table>
+<fo:table>
+    <fo:table-column column-number="1" column-width="proportional-column-width(15)"/>
+    <fo:table-column column-number="2" column-width="proportional-column-width(25)"/>
+    <fo:table-column column-number="3" column-width="proportional-column-width(15)"/>
+    <fo:table-column column-number="4" column-width="proportional-column-width(25)"/>
+    <fo:table-column column-number="5" column-width="proportional-column-width(20)"/>
+    <fo:table-body>
+        <#if resultList?? && resultList?size > 0>
+            <#list resultList as listOfReport>
+                <fo:table-row>
+                    <fo:table-cell><fo:block>${listOfReport.reportId}</fo:block></fo:table-cell>
+                    <fo:table-cell><fo:block>${listOfReport.question}</fo:block></fo:table-cell>
+                    <fo:table-cell><fo:block>${listOfReport.rating}</fo:block></fo:table-cell>
+                    <fo:table-cell><fo:block>${listOfReport.comment}</fo:block></fo:table-cell>
+                    <fo:table-cell>
+                        <#if listOfReport.image?? && listOfReport.image != "">
+                            <fo:block>
+                                <fo:external-graphic src="${listOfReport.image}" alt="Image" style="width: 50px; height: 50px;"/>
+                            </fo:block>
+                        <#else>
+                            <fo:block>No Image</fo:block>
+                        </#if>
+                    </fo:table-cell>
+                </fo:table-row>
+            </#list>
+        <#else>
+            <fo:table-row>
+                <fo:table-cell colspan="5"><fo:block>No data available</fo:block></fo:table-cell>
+            </fo:table-row>
+        </#else>
+    </fo:table-body>
+</fo:table>
