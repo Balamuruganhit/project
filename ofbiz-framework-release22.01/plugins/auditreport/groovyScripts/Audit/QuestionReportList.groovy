@@ -34,15 +34,15 @@ import java.util.List
 def QuestionList(){
         // Initialize the map to store results
         Map reportContentMap = [:]
-
-        def reportGen = parameters.reportId
-
-        if (!reportGen) {
+        List<Map<String, Object>> reportDetail = parameters.reportDetail
+        reportDetail.each{report ->
+            String reportId = report.reportId
+            if (!reportId) {
             context.errorMessage = "Report ID is missing"
             return
         }
         // Retrieve all records from the ReportContent entity
-        List reportContents = select("reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").where("reportId", reportGen).orderBy("genId").queryList()
+        List reportContents = select("reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").where("reportId", reportId).orderBy("genId").queryList()
 
 
         // Iterate through the records and process the data
@@ -72,4 +72,5 @@ def QuestionList(){
         // Convert the result into a list of report data
         context.resultList = reportContentMap.values().toList()
         context.responseMessage = "success"
+        }
 }

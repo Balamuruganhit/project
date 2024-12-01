@@ -18,10 +18,10 @@ under the License.
 -->
 
 
-<form class="basic-form" id="AddReportDetail" name="AddReportDetail"  action="<@ofbizUrl>Report.pdf</@ofbizUrl>" method="post">
+<form class="basic-form" id="reportgen" name="reportgen" >
     <div>
         <label class="label">${uiLabelMap.AuditReportList}</label>
-        <select name="reportId" id="question">
+        <select name="reportId" id="reportgenId">
                     <#list reportListId as id>
                         <option value="${id.reportId!}">Report ${id.reportId!}</option>
                     </#list>
@@ -29,6 +29,6 @@ under the License.
         </select>
     </div>
     <div>
-        <button >Print Pdf</button>
+        <button id="print">Print Pdf</button>
     </div>
 </form>

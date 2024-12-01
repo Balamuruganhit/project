@@ -81,7 +81,7 @@
         <attribute name="comment" type="String" mode="IN"/>
         <attribute name="approve" type="String" mode="IN"/>
         <attribute name="proof" type="java.nio.ByteBuffer" mode="IN"/> -->
-         <attribute name="reportId" type="String" mode="IN"/>
+         <attribute name="reportDetail" type="java.util.List" mode="IN"/>
     </service>
 
 
