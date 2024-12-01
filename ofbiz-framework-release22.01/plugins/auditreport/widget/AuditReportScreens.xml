@@ -103,6 +103,7 @@
         <section>
             <actions>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <script location="component://AuditReport/groovyScripts/Audit/QuestionReportList.groovy"/>
                 <set field="viewSize" value="99999"/>
             </actions>
             <widgets>

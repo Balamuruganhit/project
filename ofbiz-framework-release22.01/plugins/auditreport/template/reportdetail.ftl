@@ -67,6 +67,7 @@ under the License.
             <th>Comment</th>
             <th>Proof</th>
             <th>Approver Name</th>
+            <th>Button</th>
         </tr>
     </thead>
     <tbody id="data-table-body"></tbody>
