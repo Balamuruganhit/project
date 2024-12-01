@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const dataTable = document.getElementById("data-table-body");
   const submitButton = document.getElementById("submit-button");
   const addButton = document.getElementById("add-button");
+  const pdfButton = document.getElementById("pdf");
+  const csvButton = document.getElementById("csv");
+  const formData=document.getElementById("reportGenerator")
   let formDataArray = [];
   // Add Button Logic
   addButton.addEventListener("click", (event) => {
@@ -132,4 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Send the request
       xhr.send(payload);
   });
+    pdfButton.addEventListener('click',()=>{
+      formData.action ='<@ofbizUrl>Report.pdf</@ofbizUrl>'
+    });
 });
