@@ -22,7 +22,7 @@ under the License.
         <fo:list-block provisional-distance-between-starts="40mm">
             <fo:list-item>
                     <fo:list-item-label><fo:block font-size="12">Report No:</fo:block></fo:list-item-label>
-                    <fo:list-item-body start-indent="body-start()"><fo:block><#if reportNumber??> ${reportNumber}</#if></fo:block></fo:list-item-body>
+                    <fo:list-item-body start-indent="body-start()"><fo:block font-size="12"><#if reportNumber??> ${reportNumber}</#if></fo:block></fo:list-item-body>
             </fo:list-item>
         </fo:list-block>
         <fo:block><fo:leader leader-length="100%" leader-pattern="rule" rule-style="solid" rule-thickness="0.1mm" color="black"/></fo:block>
