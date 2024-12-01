@@ -32,33 +32,37 @@ import java.sql.Timestamp
 import java.util.List
 
 
-def resultList = []
-try {
-    // Fetch all records from the QuestionReport entity
-    def questionReports = EntityQuery.use(delegator)
-        .from("ReportContent")
-        .orderBy("genId") // Order by report number
-        .queryList()
+// Initialize the map to store results
+Map reportContentMap = [:]
 
-    // Collect the required fields and convert the image data to Base64
-    questionReports.each { report ->
-        def imageBlob = report.getBytes("imageData")
-        def imageBase64 = imageBlob ? Base64.encoder.encodeToString(imageBlob) : ""
+// Retrieve all records from the ReportContent entity
+List reportContents = select("reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").orderBy("genId").queryList()
 
-        resultList.add([
-			reportId : report.get("reportId"),
-            question : report.getString("question"),
-            rating   : report.get("rating"),
-            approver : report.getString("approverName"),
-			comment  : report.getString("comment"),
-            image    : imageBase64
-        ])
-    }
 
-    context.resultList = resultList
-    context.responseMessage = "success"
-} catch (Exception e) {
-    logError(e.getMessage())
-    context.responseMessage = "error"
-    context.errorMessage = e.getMessage()
+// Iterate through the records and process the data
+reportContents.each { reportContent ->
+    // Initialize a map for each report
+    Map reportData = [:]
+    
+    // Fetch the required fields from the ReportContent entity
+    reportData.put("reportId", reportContent.get("reportId"))
+    reportData.put("question", reportContent.getString("question"))
+    reportData.put("rating", reportContent.get("rating"))
+    reportData.put("approve", reportContent.getString("approve"))
+    reportData.put("comment", reportContent.getString("comment"))
+
+    // Process image data (if available) and convert to Base64
+    def imageBlob = reportContent.getBytes("proofBase64")
+    def imageBase64 = imageBlob ? Base64.encoder.encodeToString(imageBlob) : ""
+    reportData.put("proof", imageBase64)
+
+    // Optionally, process other data based on your needs (like calculations or categories)
+    // Example: You could add categories or balances if needed, similar to your postedTransactionTotalsMap logic
+    
+    // Store the processed report data into the map (using reportId or another unique identifier)
+    reportContentMap.put(reportContent.get("reportId"), reportData)
 }
+
+// Convert the result into a list of report data
+context.resultList = reportContentMap.values().toList()
+context.responseMessage = "success"
