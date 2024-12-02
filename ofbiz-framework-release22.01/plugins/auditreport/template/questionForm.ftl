@@ -26,7 +26,7 @@ under the License.
 		</tr>
 		<tr>
 			<td class="label"/>
-			<td><button id="add-button">Add</button></td>
+			<td><input type="submit" value="Add" /></td>
 		</tr>
     </tbody>
   </table>
