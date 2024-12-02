@@ -46,7 +46,9 @@
                 <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <screenlet  title="${uiLabelMap.AuditConfig}" >
-                            <include-form name="AddQuestion" location="component://AuditReport/widget/AuditReportForms.xml"/>
+                            <platform-specific>
+                                <html><html-template location="component://AuditReport/template/questionForm.ftl"/></html>
+                            </platform-specific>
                         </screenlet>
                         <screenlet title="${uiLabelMap.AuditQuestionList}">
                                 <platform-specific>

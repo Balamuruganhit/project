@@ -47,8 +47,7 @@
     <service name="createdQuestion" default-entity-name="Question" engine="entity-auto" invoke="create" auth="true">
         <description>Create a question</description>
         <permission-service service-name="auditPermissionService" main-action="CREATE"/>
-        <auto-attributes include="pk" mode="IN" optional="false"/>
-        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+         <attribute name="question" type="String" mode="IN"/>
     </service>
      <service name="createQuestion" default-entity-name="Question" engine="groovy"
                 location="component://AuditReport/groovyScripts/Audit/QuestionService.groovy" invoke="createQuestion" auth="true">
