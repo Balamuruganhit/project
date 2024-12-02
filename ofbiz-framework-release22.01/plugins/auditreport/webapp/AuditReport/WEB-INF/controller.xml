@@ -66,7 +66,7 @@ under the License.
     </request-map>
     <request-map uri="Report.csv">
         <security https="true" auth="true"/>
-        <response name="success" type="view" value="ReportPdf"/>
+        <response name="success" type="view" value="ReportCsv"/>
         <response name="error" type="view" value="Export"/>
     </request-map>
     <request-map uri="AuditExport"><security https="true" auth="true"/><response name="success" type="view" value="export"/></request-map>    
@@ -78,7 +78,7 @@ under the License.
     <view-map name="config" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#config"/>
     <view-map name="export" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#export"/>   
     <view-map name="pickReview" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#pickReview"/>
-    
+    <view-map name="ReportCsv" type="screenfop" page="component://AuditReport/widget/AuditReportScreens.xml#ReportCsv" content-type="application/csv" encoding="none"/>
     <view-map name="ReportPdf" type="screenfop" page="component://AuditReport/widget/AuditReportScreens.xml#ReportPdf" content-type="application/pdf" encoding="none"/>
 
 </site-conf>
