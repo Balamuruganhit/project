@@ -41,15 +41,17 @@
          <grid name="ReportList" list-name="resultList"
         odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
                 <field name="question">
-                        <display description="${question}"/>     
+                        <hyperlink description="${question}" target="export">
+                                <parameter param-name="reportId"/>
+                        </hyperlink>     
                 </field>
                 <field name="rating" title-area-style="tableheadwide"><display description="${rating}"/></field>
                 <field name="comment" widget-style="tabletextright"><display  description="${comment}"/></field>
                 <field name="approve" widget-style="tabletextright"><display  description="${approve}"/></field>
                 <field name="proof">
-                        <display>
+                        <text>
                                 <img src="data:image/png;base64,${proof}"/>
-                        </display>
+                        </text>
                 </field>
         </grid>
         

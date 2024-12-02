@@ -136,9 +136,7 @@
             </actions>
             <widgets>
                 <label style="h3" text="OSP Report"/>
-                <platform-specific>
-                    <html><html-template location="component://AuditReport/template/reportCsv.ftl"/></html>
-                </platform-specific>
+                <include-grid name="ReportList" location="component://AuditReport/widget/AuditReportForms.xml"/>
             </widgets>
         </section>
     </screen>
