@@ -48,7 +48,7 @@
                 <field name="approve" widget-style="tabletextright"><display  description="${approve}"/></field>
                 <field name="proof">
                         <display>
-                                <imag src="data:image/png;base64,${proof}"/>
+                                <img src="data:image/png;base64,${proof}"/>
                         </display>
                 </field>
         </grid>
