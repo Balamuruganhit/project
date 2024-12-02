@@ -25,7 +25,7 @@ under the License.
                     <#list reportListId as id>
                         <option value="${id.reportId!}">Report ${id.reportId!}</option>
                     </#list>
-                    <option selected="" value="Select the Report"></option>
+                    <option selected="" value="Select the Report">Select the Report</option>
         </select>
     </div>
     <div>

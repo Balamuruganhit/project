@@ -18,15 +18,15 @@ under the License.
 -->
 
 <#if questions?has_content >
-	<table>
+	<table class="basic-table light-grid hover-bar">
 		<thead>
-			<tr>
+			<tr class="header-row-2">
 				<th>Question</th>
 			</tr>
 		</thead>
 		<tbody>
 			<#list questions as questionList>
-				<tr>
+				<tr class="alternate-row">
 					<td>${questionList.question!}</td>
 				</tr>
 			</#list>
