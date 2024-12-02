@@ -38,9 +38,19 @@
              <field name="submitButton" title="${uiLabelMap.AuditAdd}" widget-style="smallSubmit">   <submit button-type="button"/>
                  </field>
         </form>
-         <form name="reportButton" target="Report.pdf" title="" type="single" 
-                header-row-style="header-row" default-table-style="basic-table">
-                <field name="submitButton" title="${uiLabelMap.AuditAdd}" widget-style="smallSubmit">   <submit button-type="button"/></field>
-        </form>
+         <grid name="ReportList" list-name="resultList"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
+                <field name="question">
+                        <display description="${question}"/>     
+                </field>
+                <field name="rating" title-area-style="tableheadwide"><display description="${rating}"/></field>
+                <field name="comment" widget-style="tabletextright"><display  description="${comment}"/></field>
+                <field name="approve" widget-style="tabletextright"><display  description="${approve}"/></field>
+                <field name="proof">
+                        <display>
+                                <imag src="data:image/png;base64,${proof}"/>
+                        </display>
+                </field>
+        </grid>
         
 </forms>
