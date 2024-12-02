@@ -40,12 +40,18 @@
             <actions>
                 <set field="titleProperty" value="PageTitleOspReport"/>
                 <set field="tabButtonItem" value="AddQuestion"/>
+                <script location="component://AuditReport/groovyScripts/Audit/QuestionService.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <screenlet  title="${uiLabelMap.AuditConfig}" >
                             <include-form name="AddQuestion" location="component://AuditReport/widget/AuditReportForms.xml"/>
+                        </screenlet>
+                        <screenlet title="${uiLabelMap.AuditQuestionList}">
+                                <platform-specific>
+                                    <html><html-template location="component://AuditReport/template/questionList.ftl"/></html>
+                                </platform-specific>
                         </screenlet>
                     </decorator-section>
                 </decorator-screen>

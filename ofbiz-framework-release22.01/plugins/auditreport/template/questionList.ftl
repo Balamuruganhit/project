@@ -17,18 +17,21 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-
-<form>
-    <div>
-        <label class="label">${uiLabelMap.AuditReportList}</label>
-        <select name="reportId" id="reportgenId">
-                    <#list reportListId as id>
-                        <option value="${id.reportId!}">Report ${id.reportId!}</option>
-                    </#list>
-                    <option selected="" value="Select the Report"></option>
-        </select>
-    </div>
-    <div>
-        <input type="submit" value="Submit" />
-    </div>
-</form>
+<#if questions?has_content >
+	<table>
+		<thead>
+			<tr>
+				<th>Question</th>
+			</tr>
+		</thead>
+		<tbody>
+			<#list questions as questionList>
+				<tr>
+					<td>${questionList.question!}</td>
+				</tr>
+			</#list>
+		</tbody>
+	</table>
+<#else>
+	<h1>No Data Record</h1>
+</#if>
