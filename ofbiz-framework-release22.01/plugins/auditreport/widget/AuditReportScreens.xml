@@ -140,7 +140,7 @@
                             <label style="h1" text="OSP Report"/>
                             <platform-specific>
                                 <xsl-fo>
-                                    <html-template location="component://AuditReport/template/reportPdf.fo.ftl"/>
+                                    <html-template location="component://AuditReport/template/reportCsv.ftl"/>
                                 </xsl-fo>
                             </platform-specific>
                         </container>
