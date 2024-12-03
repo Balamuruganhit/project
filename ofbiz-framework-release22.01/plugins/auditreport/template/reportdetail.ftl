@@ -53,7 +53,8 @@ under the License.
       <tr>
         <td class="label"/>
         <td><button id="add-button">Add</button></td>
-        <td><button id="submit-button">Submit</button></td>
+        <td><button id="submit-button" style="position: absolute;
+                      right: 20rem;">Submit</button></td>
       </tr>
     </tbody>
   </table>
