@@ -146,6 +146,7 @@
             </actions>
             <widgets>
                 <label style="h3" text="OSP Report"/>
+                <label style="h3" text="${reportNumber}"/>
                 <include-grid name="ReportList" location="component://AuditReport/widget/AuditReportForms.xml"/>
             </widgets>
         </section>
