@@ -80,6 +80,6 @@ under the License.
     <view-map name="pickReview" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#pickReview"/>
     <!-- <view-map name="ReportCsv" type="screencsv" page="component://AuditReport/widget/AuditReportScreens.xml#ReportCsv" content-type="text/csv" encoding="none"/> -->
     <view-map name="ReportPdf" type="screenfop" page="component://AuditReport/widget/AuditReportScreens.xml#ReportPdf" content-type="application/pdf" encoding="none"/>
-    <view-map name="ReportCsv" type="screenexcel" page="component://AuditReport/widget/AuditReportScreens.xml#ReportCsv" content-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" encoding="none"/>
+    <view-map name="ReportCsv" type="screenxls" page="component://AuditReport/widget/AuditReportScreens.xml#ReportCsv" content-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" encoding="none"/>
 
 </site-conf>
