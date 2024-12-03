@@ -49,9 +49,9 @@
                 <field name="comment" widget-style="tabletextright"><display  description="${comment}"/></field>
                 <field name="approve" widget-style="tabletextright"><display  description="${approve}"/></field>
                 <field name="proof">
-                        <text>
+                          <![CDATA[
                                 <img src="data:image/png;base64,${proof}"/>
-                        </text>
+                         ]]>
                 </field>
         </grid>
         
