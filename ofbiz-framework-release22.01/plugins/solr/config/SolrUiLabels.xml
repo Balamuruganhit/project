@@ -22,7 +22,7 @@ under the License.
         <value xml:lang="en">Added ${fieldList} documents to solr index</value>
     </property>
     <property key="SolrApplication">
-        <value xml:lang="en">Apache Solr Integration</value>
+        <value xml:lang="en">Pangun Solr Integration</value>
     </property>
     <property key="SolrClearedSolrIndexAndReindexedDocuments">
         <value xml:lang="en">Cleared solr index and reindexed ${numDocs} documents</value>

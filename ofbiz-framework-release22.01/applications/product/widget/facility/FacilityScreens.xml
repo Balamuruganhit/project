@@ -110,7 +110,51 @@ under the License.
             </widgets>
         </section>
     </screen>
-
+    <screen name="dashboard">
+        <section>
+            <actions>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <label style="h3" text="${uiLabelMap.ProductOnlyOneFacility}"/>
+                        <section>
+                            <widgets>
+                                <section>
+                                    <condition>
+                                        <if-compare field="showScreen" value="one" operator="equals"/>
+                                    </condition>
+                                    <actions>
+                                        <script location="component://product/groovyScripts/facility/facility/inventoryDashbooard.groovy"/>
+                                    </actions>
+                                    <widgets>
+                                        <section>
+                                            <widgets>
+                                                <section>
+                                                    <widgets>
+                                                        <include-form name="Inventory" location="component://product/widget/facility/InventoryForms.xml"/>
+                                                    </widgets>
+                                                    <fail-widgets>
+                                                        <label style="h1">${uiLabelMap.ProductNewFacility}"</label>
+                                                    </fail-widgets>
+                                                </section>
+                                            </widgets>
+                                            <fail-widgets>
+                                                <label style="h3">${uiLabelMap.ProductFacilityViewPermissionError}</label>
+                                            </fail-widgets>
+                                        </section>
+                                    </widgets>
+                                </section>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.ProductFacilityViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
     <screen name="FacilitySearchResults">
         <section>
             <condition>

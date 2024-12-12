@@ -33250,4 +33250,7 @@
         <value xml:lang="zh">使用购物车数量</value>
         <value xml:lang="zh-TW">使用購物車數量</value>
     </property>
+    <property name="Dashboard">
+        <value xml:lang="en">Dashboard</value>
+    </property>
 </resource>
