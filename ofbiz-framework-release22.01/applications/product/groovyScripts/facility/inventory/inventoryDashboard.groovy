@@ -39,7 +39,7 @@ inventoryItems.each{itemLists ->
 	facilityTypeId = itemLists.get("facilityTypeId")
 	singleItem=select('facilityTypeId').from('Facility').where("facilityTypeId", facilityTypeId).queryCount();
 	listValues.put("facilityTypeId", facilityTypeId)
-	if(singleItem = 0){
+	if(singleItem == 0){
 		listValues.put("facilityCount", 0)
 	}
 	else{
