@@ -25,6 +25,8 @@ import org.apache.ofbiz.entity.GenericValue
 import org.apache.ofbiz.entity.serialize.XmlSerializer
 import org.apache.ofbiz.product.product.KeywordIndex
 import org.apache.ofbiz.product.product.ProductWorker
+import org.apache.ofbiz.entity.condition.*
+import org.apache.ofbiz.entity.transaction.*
 import org.apache.ofbiz.service.*
 import org.apache.ofbiz.base.util.*
 import org.apache.ofbiz.entity.*
