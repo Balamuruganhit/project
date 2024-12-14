@@ -19,10 +19,10 @@ under the License.
 
 <#if itemsList?has_content >
 	<div class="dashMain">
-		<#list itemsList as itemList>
+		<#list itemsList as facilityTypeId,count>
 				<div>
-					<h4>No of ${itemList.facility!}</h4>
-					<h5>${itemList.facilityCount!}</h5>
+					<h4>No of ${facilityTypeId!}</h4>
+					<h5>${count!}</h5>
 				</div>
 		</#list>
 	</div>

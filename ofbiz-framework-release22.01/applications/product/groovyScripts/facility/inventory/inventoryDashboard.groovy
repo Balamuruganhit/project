@@ -25,15 +25,16 @@ import org.apache.ofbiz.entity.condition.EntityOperator
 import org.apache.ofbiz.entity.util.EntityUtil
 
 Map contentFacility = [:]
-inventoryItems=from('Facility').select('facilityTypeId').groupby(['facilityTypeId']).aggregate("count","facilityTypeId","facilityCount").queryList()
+inventoryItems=from('Facility').select('facilityTypeId').queryList()
 
 inventoryItems.each{itemLists -> 
-	Map items=[:]
-
-	items.put("facility",itemLists.get("facilityTypeId"))
-	items.put("facilityCount".itemLists.get("facilityCount"))
-    contentFacility.put(itemLists.get("facilityTypeId"), items)
-
+	facilityTypeId = itemLists.get("facilityTypeId")
+	if(contentFacility.containsKey(facilityTypeId)){
+		contentFacility[facilityTypeId]++
+	}
+	else{
+		contentFacility[facilityTypeId]=1
+	}
 }
 
-context.itemsList=contentFacility.values().toList()
+context.itemsList=contentFacility
