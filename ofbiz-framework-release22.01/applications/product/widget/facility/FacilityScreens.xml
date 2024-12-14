@@ -118,7 +118,7 @@ under the License.
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <label style="h3" text="${uiLabelMap.ProductOnlyOneFacility}"/>
+                        <label style="h1" text="${uiLabelMap.Dashboard}"/>
                         <section>
                             <widgets>
                                 <section>

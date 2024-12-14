@@ -33,7 +33,7 @@ import java.util.List
 
 Map contentFacility = [:]
 inventoryItems=select('facilityTypeId').from('FacilityType').queryList()
-idValue=0
+idValue=1
 inventoryItems.each{itemLists -> 
 	Map listValues=[:]
 	facilityTypeId = itemLists.get("facilityTypeId")

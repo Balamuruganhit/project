@@ -22,10 +22,10 @@ under the License.
 		<#list faculityList as listvalue>
 			<h2>${listvalue}</h2>
 		</#list>
-		<#list itemsList as facilityTypeId,facultycount>
+		<#list itemsList as item>
 				<div>
-					<h4>No of ${facilityTypeId!}</h4>
-					<h5>${facultycount!}</h5>
+					<h4>No of ${item.facilityTypeId!}</h4>
+					<h5>${item.facilityCount!}</h5>
 				</div>
 				<div>
 					<h1>${facilityTypeId!}</h1>
