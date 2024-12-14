@@ -110,7 +110,6 @@ try {
                 inventoryItemTotals.add(resultMap)    
             }
         }
-        invItemListItr.close()
     } catch (GenericEntityException e) {
         errMsg = "Failure in operation, rolling back transaction"
         logError(e, errMsg)
