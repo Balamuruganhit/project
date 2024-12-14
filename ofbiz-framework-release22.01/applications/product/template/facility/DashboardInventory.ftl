@@ -29,3 +29,28 @@ under the License.
 <#else>
 	<h1>No Data Record</h1>
 </#if>
+<#if questions?has_content >
+	<table class="basic-table light-grid hover-bar">
+		<thead>
+			<tr>
+				<th>Part Number</th>
+				<th>Product availability</th>
+				<th>Minimum Stocks</th>
+				<th>List Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<#list resultList as resultList>
+				<tr>
+					<td>${resultList.question!}</td>
+					<td>${resultList.rating!}</td>
+					<td>${resultList.comment!}</td>
+					<td>${resultList.approve!}</td>
+				</tr>
+			</#list>
+		</tbody>
+	</table>
+<#else>
+	<h1>No Data Record</h1>
+</#if>
+
