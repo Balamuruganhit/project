@@ -29,7 +29,7 @@ under the License.
 <#else>
 	<h1>No Data Record</h1>
 </#if>
-<#if questions?has_content >
+<#if inventoryItemTotals?has_content >
 	<table class="basic-table light-grid hover-bar">
 		<thead>
 			<tr>
@@ -40,12 +40,12 @@ under the License.
 			</tr>
 		</thead>
 		<tbody>
-			<#list resultList as resultList>
+			<#list inventoryItemTotals as resultList>
 				<tr>
-					<td>${resultList.question!}</td>
-					<td>${resultList.rating!}</td>
-					<td>${resultList.comment!}</td>
-					<td>${resultList.approve!}</td>
+					<td>${resultList.productId!}</td>
+					<td>${resultList.availableToPromise!}</td>
+					<td>${resultList.minimumStock!}</td>
+					<td>${resultList.costPrice!}</td>
 				</tr>
 			</#list>
 		</tbody>
