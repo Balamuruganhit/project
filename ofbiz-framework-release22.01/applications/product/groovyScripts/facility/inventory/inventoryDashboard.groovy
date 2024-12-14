@@ -27,7 +27,7 @@ import org.apache.ofbiz.entity.util.EntityUtil
 Map contentFacility = [:]
 inventoryItems=from('Facility').select('facilityTypeId').groupby('facilityTyypeId').aggregate("count"," ","facilityCount").queryList()
 
-inventoryItems.each{itemLists => 
+inventoryItems.each{itemLists -> 
 	Map items=[:]
 
 	items.put("facility",itemLists.get("facilityTypeId"))
