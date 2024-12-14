@@ -17,12 +17,19 @@
  * under the License.
  */
 
-import java.util.*
-import org.apache.ofbiz.base.util.UtilMisc
+import org.apache.ofbiz.base.util.UtilDateTime
+import org.apache.ofbiz.base.util.UtilProperties
 import org.apache.ofbiz.base.util.UtilValidate
-import org.apache.ofbiz.entity.condition.EntityCondition
-import org.apache.ofbiz.entity.condition.EntityOperator
-import org.apache.ofbiz.entity.util.EntityUtil
+import org.apache.ofbiz.entity.condition.EntityConditionBuilder
+import org.apache.ofbiz.entity.GenericValue
+import org.apache.ofbiz.entity.serialize.XmlSerializer
+import org.apache.ofbiz.product.product.KeywordIndex
+import org.apache.ofbiz.product.product.ProductWorker
+import org.apache.ofbiz.service.*
+import org.apache.ofbiz.base.util.*
+import org.apache.ofbiz.entity.*
+import java.sql.Timestamp
+import java.util.List
 
 Map contentFacility = [:]
 inventoryItems=select('facilityTypeId').from('Facility').queryList()

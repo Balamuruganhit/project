@@ -22,7 +22,7 @@ under the License.
 		<#list itemsList as facilityTypeId,count>
 				<div>
 					<h4>No of ${facilityTypeId!}</h4>
-					<h5>${count!}</h5>
+					<h5>${count?string!}</h5>
 				</div>
 		</#list>
 	</div>
