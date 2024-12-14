@@ -57,28 +57,28 @@ totalCostPriceGrandTotal = 0.0
 totalRetailPriceGrandTotal = 0.0
 boolean beganTransaction = false
 
-if (action) {
-    conditions = [EntityCondition.makeCondition("statusId", EntityOperator.NOT_EQUAL, "INV_DELIVERED")]
-    conditions.add(EntityCondition.makeCondition("statusId", EntityOperator.EQUALS, null))
-    conditionList = EntityCondition.makeCondition(conditions, EntityOperator.OR)
-    try {
-        beganTransaction = TransactionUtil.begin()
-        invItemListItr = from("InventoryItem").where(conditionList).orderBy("productId").queryIterator()
-        while ((inventoryItem = invItemListItr.next()) != null) {
-            productId = inventoryItem.productId
-            product = from("Product").where("productId", productId).queryOne()
-            productFacility = from("ProductFacility").where("productId", productId).queryOne()
-            if (productFacility) {
-                quantityOnHandTotal = inventoryItem.getDouble("quantityOnHandTotal")
-                availableToPromiseTotal = inventoryItem.getDouble("availableToPromiseTotal")
-                costPrice = inventoryItem.getDouble("unitCost")
-                retailPrice = 0.0
-                totalCostPrice = 0.0
-                totalRetailPrice = 0.0
-                productPrices = product.getRelated("ProductPrice", null, null, false)
-				minimumStock=select('minimumOrderQuantity').from('SupplierProduct').where('productId':productId).queryList()
-                if (productPrices) {
-                    productPrices.each { productPrice ->
+
+conditions = [EntityCondition.makeCondition("statusId", EntityOperator.NOT_EQUAL, "INV_DELIVERED")]
+conditions.add(EntityCondition.makeCondition("statusId", EntityOperator.EQUALS, null))
+conditionList = EntityCondition.makeCondition(conditions, EntityOperator.OR)
+try {
+    beganTransaction = TransactionUtil.begin()
+    invItemListItr = from("InventoryItem").where(conditionList).orderBy("productId").queryIterator()
+    while ((inventoryItem = invItemListItr.next()) != null) {
+        productId = inventoryItem.productId
+        product = from("Product").where("productId", productId).queryOne()
+        productFacility = from("ProductFacility").where("productId", productId).queryOne()
+        if (productFacility) {
+            quantityOnHandTotal = inventoryItem.getDouble("quantityOnHandTotal")
+            availableToPromiseTotal = inventoryItem.getDouble("availableToPromiseTotal")
+            costPrice = inventoryItem.getDouble("unitCost")
+            retailPrice = 0.0
+            totalCostPrice = 0.0
+            totalRetailPrice = 0.0
+            productPrices = product.getRelated("ProductPrice", null, null, false)
+			minimumStock=select('minimumOrderQuantity').from('SupplierProduct').where('productId':productId).queryList()
+            if (productPrices) {
+                	productPrices.each { productPrice ->
                         if (("DEFAULT_PRICE").equals(productPrice.productPriceTypeId)) {
                             retailPrice = productPrice.getDouble("price")
                         }
@@ -105,7 +105,7 @@ if (action) {
 
                 resultMap = [productId : product.productId, quantityOnHand : minimumStock, availableToPromise : availableToPromiseTotal,
                              costPrice : costPrice]
-                inventoryItemTotals.add(resultMap)
+                inventoryItemTotals.add(resultMap)    
             }
         }
         invItemListItr.close()
@@ -123,9 +123,9 @@ if (action) {
     } finally {
         // only commit the transaction if we started one... this will throw an exception if it fails
         TransactionUtil.commit(beganTransaction)
-    }
-
 }
+
+
 
 context.inventoryItemTotals = inventoryItemTotals
 
