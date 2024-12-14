@@ -66,7 +66,7 @@ conditionList = EntityCondition.makeCondition(conditions, EntityOperator.OR)
 try {
     beganTransaction = TransactionUtil.begin()
     invItemListItr = from("InventoryItem").where(conditionList).orderBy("productId").queryIterator()
-    while ((inventoryItem = invItemListItr.next()) != null) {
+    invItemListItr.each{ inventoryItem -> 
         productId = inventoryItem.productId
         product = from("Product").where("productId", productId).queryOne()
         productFacility = from("ProductFacility").where("productId", productId).queryOne()
