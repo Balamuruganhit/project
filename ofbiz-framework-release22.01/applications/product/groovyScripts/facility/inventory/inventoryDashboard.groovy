@@ -57,14 +57,12 @@ costPriceGrandTotal = 0.0
 retailPriceGrandTotal = 0.0
 totalCostPriceGrandTotal = 0.0
 totalRetailPriceGrandTotal = 0.0
-boolean beganTransaction = false
 
 
 conditions = [EntityCondition.makeCondition("statusId", EntityOperator.NOT_EQUAL, "INV_DELIVERED")]
 conditions.add(EntityCondition.makeCondition("statusId", EntityOperator.EQUALS, null))
 conditionList = EntityCondition.makeCondition(conditions, EntityOperator.OR)
-beganTransaction = TransactionUtil.begin()
-invItemListItr = from("InventoryItem").where(conditionList).orderBy("productId").queryIterator()
+invItemListItr = from("InventoryItem").where(conditionList).orderBy("productId").queryList()
 invItemListItr.each{ inventoryItem -> 
 	productId = inventoryItem.productId
 	product = from("Product").where("productId", productId).queryOne()
