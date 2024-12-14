@@ -38,3 +38,26 @@ width: 47%;
 float: left;
 width: 100%;
 }
+
+.dashMain{
+	display:flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.box-inventory{
+	margin: 3rem;
+    border: 1px solid black;
+    /* padding: 2rem; */
+    border-radius: 10px;
+}
+.heading{
+	padding: 1.7rem;
+    font-size: 1rem;
+}
+
+.heading_sub
+{
+	padding-left: 1.7rem;
+    padding-bottom: 1rem;
+}

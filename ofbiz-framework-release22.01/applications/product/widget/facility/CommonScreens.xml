@@ -41,7 +41,7 @@ under the License.
                 <!-- <set field="layoutSettings.headerMiddleBackgroundUrl" value="" global="true"/> -->
                 <!-- <set field="layoutSettings.headerRightBackgroundUrl" value="" global="true"/> -->
                 
-                <set field="layoutSettings.styleSheets[]" value="/facility/static/facility.css" global="true"/> 
+                <set field="layoutSettings.styleSheets[]" value="/partymgr/static/partymgr.css" global="true"/>
                 <set field="activeApp" value="facilitymgr" global="true"/>
                 <set field="applicationMenuName" value="FacilityAppBar" global="true"/>
                 <set field="applicationMenuLocation" value="component://product/widget/facility/FacilityMenus.xml" global="true"/>
