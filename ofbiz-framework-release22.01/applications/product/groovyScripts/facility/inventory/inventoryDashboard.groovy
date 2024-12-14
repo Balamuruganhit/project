@@ -25,7 +25,7 @@ import org.apache.ofbiz.entity.condition.EntityOperator
 import org.apache.ofbiz.entity.util.EntityUtil
 
 Map contentFacility = [:]
-inventoryItems=from('Facility').select('facilityTypeId').queryList()
+inventoryItems=select('facilityTypeId').from('Facility').queryList()
 
 inventoryItems.each{itemLists -> 
 	facilityTypeId = itemLists.get("facilityTypeId")
