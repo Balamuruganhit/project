@@ -19,16 +19,10 @@ under the License.
 
 <#if itemsList?has_content >
 	<div class="dashMain">
-		<#list faculityList as listvalue>
-			<h2>${listvalue}</h2>
-		</#list>
 		<#list itemsList as item>
-				<div>
-					<h4>No of ${item.facilityTypeId!}</h4>
-					<h5>${item.facilityCount!}</h5>
-				</div>
-				<div>
-					<h1>${facilityTypeId!}</h1>
+				<div class="box-inventory">
+					<h4 class="heading">NO OF ${item.facilityTypeId!}</h4>
+					<h5 class="heading_sub">${item.facilityCount!}</h5>
 				</div>
 		</#list>
 	</div>
