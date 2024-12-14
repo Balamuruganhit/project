@@ -113,6 +113,7 @@ under the License.
     <screen name="dashboard">
         <section>
             <actions>
+                <script location="component://product/groovyScripts/facility/facility/inventoryDashboard.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
@@ -121,12 +122,6 @@ under the License.
                         <section>
                             <widgets>
                                 <section>
-                                    <condition>
-                                        <if-compare field="showScreen" value="one" operator="equals"/>
-                                    </condition>
-                                    <actions>
-                                        <script location="component://product/groovyScripts/facility/facility/inventoryDashboard.groovy"/>
-                                    </actions>
                                     <widgets>
                                         <section>
                                             <widgets>
@@ -137,7 +132,7 @@ under the License.
                                                         </platform-specific>
                                                     </widgets>
                                                     <fail-widgets>
-                                                        <label style="h1">${uiLabelMap.ProductNewFacility}"</label>
+                                                        <label style="h1">${uiLabelMap.}"</label>
                                                     </fail-widgets>
                                                 </section>
                                             </widgets>

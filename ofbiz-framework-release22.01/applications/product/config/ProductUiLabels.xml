@@ -33253,4 +33253,7 @@
     <property name="Dashboard">
         <value xml:lang="en">Dashboard</value>
     </property>
+     <property name="DashboardElement">
+        <value xml:lang="en">Number of </value>
+    </property>
 </resource>
