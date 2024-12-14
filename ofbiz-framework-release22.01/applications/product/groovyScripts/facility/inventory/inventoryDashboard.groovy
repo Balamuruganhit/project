@@ -44,5 +44,5 @@ inventoryItems.each{itemLists ->
 	}
 }
 
-context.itemsList=contentFacility
+context.itemsList=contentFacility.values().toList()
 context.faculityList=inventoryItems
