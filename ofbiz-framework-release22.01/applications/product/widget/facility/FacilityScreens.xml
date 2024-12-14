@@ -113,7 +113,7 @@ under the License.
     <screen name="dashboard">
         <section>
             <actions>
-                <script location="component://product/groovyScripts/facility/facility/inventoryDashboard.groovy"/>
+                <script location="component://product/groovyScripts/facility/inventory/inventoryDashboard.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
