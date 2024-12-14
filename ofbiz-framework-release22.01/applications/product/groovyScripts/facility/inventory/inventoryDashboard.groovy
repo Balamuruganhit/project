@@ -32,16 +32,20 @@ import java.sql.Timestamp
 import java.util.List
 
 Map contentFacility = [:]
-inventoryItems=select('facilityTypeId').from('Facility').queryList()
-
+inventoryItems=select('facilityTypeId').from('FacilityType').queryList()
+idValue=0
 inventoryItems.each{itemLists -> 
+	Map listValues=[:]
 	facilityTypeId = itemLists.get("facilityTypeId")
-	if(contentFacility.containsKey(facilityTypeId)){
-		contentFacility[facilityTypeId]++
+	singleItem=select('facilityTypeId').from('Facility').where("facilityTypeId", facilityTypeId).queryCount();
+	listValues.put("facilityTypeId", facilityTypeId)
+	if(singleItem!){
+		listValues.put("facilityCount", singleItem)
 	}
 	else{
-		contentFacility[facilityTypeId]=1
+		listValues.put("facilityCount", 0)
 	}
+	contentFacility.put(idValue++, listValues)
 }
 
 context.itemsList=contentFacility.values().toList()
