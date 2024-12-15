@@ -124,11 +124,11 @@ under the License.
             <widgets>
                  <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <container>
+                        <!-- <container>
                            <platform-specific>
                               <html><html-template location="component://product/template/facility/DashboardInventory.ftl"/></html>
                             </platform-specific>
-                        </container>
+                        </container> -->
                         <container>
                             <include-grid name="ListInventoryDashboard" location="component://product/widget/facility/FacilityForms.xml"/>
                         </container>
