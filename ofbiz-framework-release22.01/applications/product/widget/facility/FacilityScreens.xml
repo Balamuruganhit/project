@@ -113,12 +113,10 @@ under the License.
     <screen name="dashboard">
         <section>
             <actions>
-                <set field="facilityId" value="WebStoreWarehouse"/>
-                <set field="action" value="Y"/>
-                <script location="component://product/groovyScripts/facility/facility/ViewFacilityInventoryByProduct.groovy"/>
-                <!-- <script location="component://product/groovyScripts/facility/inventory/inventoryDashboard.groovy"/> -->
+             <set field="facilityId" from-field="parameters.facilityId" default-value="WebStoreWarehouse"/>
             </actions>
-               
+                <script location="component://product/groovyScripts/facility/facility/ViewFacilityInventoryByProduct.groovy"/>
+                <script location="component://product/groovyScripts/facility/inventory/inventoryDashboard.groovy"/>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
@@ -131,14 +129,16 @@ under the License.
                                             <widgets>
                                                 <section>
                                                     <widgets>
-                                                        <!-- <platform-specific>
+                                                        <platform-specific>
                                                              <html><html-template location="component://product/template/facility/DashboardInventory.ftl"/></html>
-                                                        </platform-specific> -->
+                                                        </platform-specific>
                                                         <decorator-section name="search-results">
-                                                            <include-grid name="ListInventoryDashboard" location="component://product/widget/facility/FacilityForms.xml"/>
+                                                            <include-grid name="ListFacilityInventoryByProduct" location="component://product/widget/facility/FacilityForms.xml"/>
                                                         </decorator-section>
                                                     </widgets>
-                                                    
+                                                    <fail-widgets>
+                                                        <label style="h1">${uiLabelMap.}"</label>
+                                                    </fail-widgets>
                                                 </section>
                                             </widgets>
                                             <fail-widgets>
@@ -152,6 +152,34 @@ under the License.
                                 <label style="h3">${uiLabelMap.ProductFacilityViewPermissionError}</label>
                             </fail-widgets>
                         </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="dashboard">
+        <section>
+            <actions>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="facilityId" value="WebStoreWarehouse"/>>
+                <script location="component://product/groovyScripts/facility/facility/ViewFacilityInventoryByProduct.groovy"/>
+                <script location="component://product/groovyScripts/facility/inventory/inventoryDashboard.groovy"/>
+                <set field="viewSize" value="99999"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="SimpleDecorator" location="component://common/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                        <container>
+                            <label style="h1" text="OSP Report"/>
+                            <platform-specific>
+                              
+                                <html><html-template location="component://product/template/facility/DashboardInventory.ftl"/></html>
+                                                       
+                            </platform-specific>
+                        </container>
+                        <container>
+                                <include-grid name="ListInventoryDashboard" location="component://product/widget/facility/FacilityForms.xml"/>
+                        </container>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
