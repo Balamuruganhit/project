@@ -114,7 +114,7 @@ under the License.
         <section>
             <actions>
                 <set field="facilityId" from-field="parameters.facilityId" default-value="WebStoreWarehouse"/>
-                <set field="facilityId" from-field="parameters.action" default-value="Y"/>
+                <set field="action" from-field="parameters.action" default-value="Y"/>
                 <script location="component://product/groovyScripts/facility/facility/ViewFacilityInventoryByProduct.groovy"/>
                 <script location="component://product/groovyScripts/facility/inventory/inventoryDashboard.groovy"/>
             </actions>
@@ -135,7 +135,7 @@ under the License.
                                                              <html><html-template location="component://product/template/facility/DashboardInventory.ftl"/></html>
                                                         </platform-specific> -->
                                                         <decorator-section name="search-results">
-                                                            <include-grid name="ListFacilityInventoryByProduct" location="component://product/widget/facility/FacilityForms.xml"/>
+                                                            <include-grid name="ListInventoryDashboard" location="component://product/widget/facility/FacilityForms.xml"/>
                                                         </decorator-section>
                                                     </widgets>
                                                     <fail-widgets>
