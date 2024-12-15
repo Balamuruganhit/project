@@ -50,66 +50,8 @@ inventoryItems.each{itemLists ->
 	contentFacility.put(idValue++, listValues)
 }
 
-inventoryItemTotals = []
-qohGrandTotal = 0.0
-atpGrandTotal = 0.0
-costPriceGrandTotal = 0.0
-retailPriceGrandTotal = 0.0
-totalCostPriceGrandTotal = 0.0
-totalRetailPriceGrandTotal = 0.0
+       
 
-
-conditions = [EntityCondition.makeCondition("statusId", EntityOperator.NOT_EQUAL, "INV_DELIVERED")]
-conditions.add(EntityCondition.makeCondition("statusId", EntityOperator.EQUALS, null))
-conditionList = EntityCondition.makeCondition(conditions, EntityOperator.OR)
-invItemListItr = from("InventoryItem").where(conditionList).orderBy("productId").queryList()
-invItemListItr.each{ inventoryItem -> 
-	productId = inventoryItem.productId
-	product = from("Product").where("productId", productId).queryOne()
-	productFacility = from("ProductFacility").where("productId", productId).queryOne()
-	if (productFacility) {
-		quantityOnHandTotal = inventoryItem.getDouble("quantityOnHandTotal")
-		availableToPromiseTotal = inventoryItem.getDouble("availableToPromiseTotal")
-		costPrice = inventoryItem.getDouble("unitCost")
-		retailPrice = 0.0
-		totalCostPrice = 0.0
-		totalRetailPrice = 0.0
-		productPrices = product.getRelated("ProductPrice", null, null, false)
-		minimumStock=select('minimumOrderQuantity').from('SupplierProduct').where('productId':productId).queryList()
-		if (productPrices) {
-			productPrices.each { productPrice ->
-				if (("DEFAULT_PRICE").equals(productPrice.productPriceTypeId)) {
-					retailPrice = productPrice.getDouble("price")
-					}
-			}
-		}
-		if (costPrice && quantityOnHandTotal) {
-			totalCostPrice = costPrice * quantityOnHandTotal
-			totalCostPriceGrandTotal += totalCostPrice
-		}
-		if (retailPrice && quantityOnHandTotal) {
-			totalRetailPrice = retailPrice * quantityOnHandTotal
-			totalRetailPriceGrandTotal += totalRetailPrice
-		}
-		if (quantityOnHandTotal) {
-			qohGrandTotal += quantityOnHandTotal
-		}
-		if (availableToPromiseTotal) {
-			atpGrandTotal += availableToPromiseTotal
-		}
-		if (costPrice) {
-			costPriceGrandTotal += costPrice
-		}
-		resultMap = [productId : product.productId, quantityOnHand : minimumStock, availableToPromise : availableToPromiseTotal,
-					costPrice : costPrice]
-					inventoryItemTotals.add(resultMap)    
-	}
-}
-		
-    
-
-
-context.inventoryItemTotals = inventoryItemTotals.values().toList()
 
 
 context.itemsList=contentFacility.values().toList()
