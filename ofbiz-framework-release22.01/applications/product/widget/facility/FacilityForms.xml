@@ -478,6 +478,13 @@ under the License.
                 <parameter param-name="facilityId"/>
             </hyperlink>
         </field>
+        <field name="productId" title="${uiLabelMap.CommonDescription}">
+            <display-entity entity-name="Product" description="${internalName}">
+                <sub-hyperlink target="/catalog/control/EditProduct" target-type="inter-app" description="${uiLabelMap.ProductCatalog}" link-style="buttontext">
+                    <parameter param-name="productId"/>
+                </sub-hyperlink>
+            </display-entity>
+        </field>
         <field name="totalAvailableToPromise" title="${uiLabelMap.CommonTotal} ${uiLabelMap.ProductAtp}"><display/></field>
         <field name="totalQuantityOnHand" title="${uiLabelMap.CommonTotal} ${uiLabelMap.ProductQoh}"><display/></field>
         <field name="quantityOnOrder" title="${uiLabelMap.ProductOrderedQuantity}"><display/></field>
