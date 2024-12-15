@@ -113,10 +113,10 @@ under the License.
     <screen name="dashboard">
         <section>
             <actions>
-                <set field="facilityId" from-field="parameters.facilityId" default-value="WebStoreWarehouse"/>
-                <set field="action" from-field="parameters.action" default-value="Y"/>
+                <set field="facilityId" value="WebStoreWarehouse"/>
+                <set field="action" value="Y"/>
                 <script location="component://product/groovyScripts/facility/facility/ViewFacilityInventoryByProduct.groovy"/>
-                <script location="component://product/groovyScripts/facility/inventory/inventoryDashboard.groovy"/>
+                <!-- <script location="component://product/groovyScripts/facility/inventory/inventoryDashboard.groovy"/> -->
             </actions>
                
             <widgets>
@@ -138,9 +138,7 @@ under the License.
                                                             <include-grid name="ListInventoryDashboard" location="component://product/widget/facility/FacilityForms.xml"/>
                                                         </decorator-section>
                                                     </widgets>
-                                                    <fail-widgets>
-                                                        <label style="h1">${uiLabelMap.}"</label>
-                                                    </fail-widgets>
+                                                    
                                                 </section>
                                             </widgets>
                                             <fail-widgets>
