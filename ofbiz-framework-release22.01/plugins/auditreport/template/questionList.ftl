@@ -27,7 +27,7 @@ under the License.
 		<tbody>
 			<#list questions as questionList>
 				<tr class="alternate-row">
-					<td>${questionList.question!}</td>
+					<td >${questionList.question!}</td>
 				</tr>
 			</#list>
 		</tbody>

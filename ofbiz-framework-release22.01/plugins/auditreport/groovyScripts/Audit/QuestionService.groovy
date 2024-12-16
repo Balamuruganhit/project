@@ -55,6 +55,10 @@ def createQuestion() {
             return error(UtilProperties.getMessage("CommonErrorUiLabels", "CommonErrorDuplicateKey", parameters.locale))
         }
     }
+    checker=from("Question").select("question").where("question",parameters.question).queryList()
+    if(checker){
+         return error(UtilProperties.getMessage("AuditReportUiLabels", "AuditReportDuplicateKey", parameters.locale))
+    }
     newEntity.question=parameters.question
     result.questionId = newEntity.questionId
 	result.question=newEntity.question
