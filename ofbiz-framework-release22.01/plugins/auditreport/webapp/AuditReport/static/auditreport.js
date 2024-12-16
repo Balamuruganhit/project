@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitButton = document.getElementById("submit-button");
   const addButton = document.getElementById("add-button");
   const datalist = document.getElementById('listReport');
-  const rows = dataTable.querySelectorAll('tbody tr');
+  const rows = dataTable.getElementById('listId');
   const commentField = document.getElementById('comment');
   const charCount = document.getElementById('charCount');
   const uniqueValues = new Set();
@@ -37,23 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
     charCount.textContent = `${currentLength}/300`;
 
     // Apply red border if limit exceeded, otherwise remove it
-    if (currentLength > 250) {
+    if (currentLength > 300) {
       commentField.style.border = '2px solid red';
     } else {
       commentField.style.border = ''; // Reset to default
     }
   });
-  const form = document.getElementById('AddReportDetail');
 
-  form.addEventListener('submit', function (event) {
-    const commentLength = commentField.value.length;
-
-    if (commentLength > 300) {
-      alert('Comment should not exceed 300 characters.');
-      commentField.style.border = '2px solid red'; // Ensure red border on submit
-      event.preventDefault(); // Prevent form submission
-    }
-  });
 
   rows.forEach(row => {
     const reportId = row.cells[0].textContent.trim(); // Adjust the column index as needed
@@ -73,8 +63,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const comment = document.getElementById("comment").value;
       const proofInput = document.getElementById("proof");
       const approve = document.getElementById("approve").value;
+      const commentLength = commentField.value.length;
       // Handle File Upload
       const proofFile = proofInput.files[0];
+      if (commentLength > 300) {
+        alert('Comment should not exceed 300 characters.');
+        commentField.style.border = '2px solid red'; // Ensure red border on submit
+        return;
+      }
       if (!proofFile) {
           alert("Please select a proof file.");
           return;
@@ -85,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // Add row to table
           const newRow = `
               <tr class="alternate-row">
-                  <td>${reportId}</td>
+                  <td id ="listId">${reportId}</td>
                   <td>${question}</td>
                   <td>${rating}</td>
                   <td>${comment}</td>
