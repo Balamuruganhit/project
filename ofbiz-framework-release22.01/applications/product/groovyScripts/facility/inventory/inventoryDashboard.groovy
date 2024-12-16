@@ -50,7 +50,7 @@ inventoryItems.each{itemLists ->
 	contentFacility.put(idValue++, listValues)
 }
 
-       
+productInventoryList=select('internalName','quantityOnHandTotal','availableToPromiseTotal',).from('ProductInventoryItem')      
 
 
 

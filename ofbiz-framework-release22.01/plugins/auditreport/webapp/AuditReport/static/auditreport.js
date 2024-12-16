@@ -23,8 +23,47 @@ document.addEventListener("DOMContentLoaded", () => {
   const dataTable = document.getElementById("data-table-body");
   const submitButton = document.getElementById("submit-button");
   const addButton = document.getElementById("add-button");
+  const datalist = document.getElementById('listReport');
+  const rows = dataTable.querySelectorAll('tbody tr');
+  const commentField = document.getElementById('comment');
+  const charCount = document.getElementById('charCount');
+  const uniqueValues = new Set();
   
+  datalist.innerHTML = '';
   let formDataArray = [];
+
+  commentField.addEventListener('input', function () {
+    const currentLength = commentField.value.length;
+    charCount.textContent = `${currentLength}/300`;
+
+    // Apply red border if limit exceeded, otherwise remove it
+    if (currentLength > 250) {
+      commentField.style.border = '2px solid red';
+    } else {
+      commentField.style.border = ''; // Reset to default
+    }
+  });
+  const form = document.getElementById('AddReportDetail');
+
+  form.addEventListener('submit', function (event) {
+    const commentLength = commentField.value.length;
+
+    if (commentLength > 300) {
+      alert('Comment should not exceed 300 characters.');
+      commentField.style.border = '2px solid red'; // Ensure red border on submit
+      event.preventDefault(); // Prevent form submission
+    }
+  });
+
+  rows.forEach(row => {
+    const reportId = row.cells[0].textContent.trim(); // Adjust the column index as needed
+    if (reportId && !uniqueValues.has(reportId)) {
+      uniqueValues.add(reportId);
+      const option = document.createElement('option');
+      option.value = reportId;
+      datalist.appendChild(option);
+    }
+  });
   // Add Button Logic
   addButton.addEventListener("click", (event) => {
       event.preventDefault();
@@ -81,6 +120,11 @@ document.addEventListener("DOMContentLoaded", () => {
         event.target.closest("tr").remove();
     }
 });
+
+
+  //data validation in each field
+
+
 
   // Submit Button Logic
   submitButton.addEventListener("click", async (event) => {

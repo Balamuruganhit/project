@@ -21,7 +21,9 @@ under the License.
     <tbody>
       <tr>
     <td class="label"><label>${uiLabelMap.AuditReportNo}</label></td>
-    <td> <input type="text" id="reportId"  name="reportId" autocomplete="off"/></td>
+      <td> <input type="text" id="reportId"  name="reportId" list="listReport" autocomplete="off"/>
+          <datalist id="listReport"></datalist>
+      </td>
     </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.FormFieldTitle_Question}</label></td>
@@ -41,7 +43,8 @@ under the License.
       
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportComment}</label></td>
-        <td><textarea name="comment" id="comment" rows="4" cols="15"></textarea></td>
+        <td><textarea name="comment" id="comment" rows="4" cols="15"></textarea>
+        <small id="charCount">0/300</small></td>
       </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportProof}</label></td>
