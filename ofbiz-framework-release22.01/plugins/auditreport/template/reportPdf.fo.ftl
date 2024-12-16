@@ -44,17 +44,17 @@ under the License.
                 <#list resultList as resultList>
                         <fo:table-row>
                             <fo:table-cell border="1pt solid" border-width=".1mm">
-                                <fo:block text-align="center">${resultList.question!}</fo:block>
+                                <fo:block text-align="center"  white-space-collapse="false" white-space-treatment="preserve">${resultList.question!}</fo:block>
                             </fo:table-cell>
                             <fo:table-cell border="1pt solid" border-width=".1mm">
                                 <fo:block text-align="center">${resultList.rating!}</fo:block>
                             </fo:table-cell>
                             <fo:table-cell border="1pt solid" border-width=".1mm">
-                                <fo:block text-align="center">${resultList.comment!}</fo:block>
+                                <fo:block text-align="center"  white-space-collapse="false" white-space-treatment="preserve">${resultList.comment!}</fo:block>
                             </fo:table-cell>
                             <fo:table-cell border="1pt solid" border-width=".1mm">
                                     <fo:block text-align="center">
-                                            <fo:external-graphic src="data:image/png;base64,${resultList.proof!}"  width="200px" height="200px" overflow="hidden" max-width="100%" max-height="100%"/>
+                                            <fo:external-graphic src="data:image/png;base64,${resultList.proof!}"  width="100px" height="100px" />
                                     </fo:block>
                             </fo:table-cell>
                             <fo:table-cell border="1pt solid" border-width=".1mm">
