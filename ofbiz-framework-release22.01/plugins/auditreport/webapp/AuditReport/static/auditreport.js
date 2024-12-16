@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitButton = document.getElementById("submit-button");
   const addButton = document.getElementById("add-button");
   const datalist = document.getElementById('listReport');
-  const rows = document.getElementById('listId');
   const commentField = document.getElementById('comment');
   const charCount = document.getElementById('charCount');
   const uniqueValues = new Set();
@@ -34,27 +33,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   commentField.addEventListener('input', function () {
     const currentLength = commentField.value.length;
-    charCount.textContent = `${currentLength}/300`;
+    charCount.textContent = `${currentLength}/2000`;
 
     // Apply red border if limit exceeded, otherwise remove it
-    if (currentLength > 300) {
+    if (currentLength > 2000) {
       commentField.style.border = '2px solid red';
     } else {
       commentField.style.border = ''; // Reset to default
     }
   });
 
-if(rows){
-  rows.forEach(row => {
-    const reportId = row.cells[0].textContent.trim(); // Adjust the column index as needed
-    if (reportId && !uniqueValues.has(reportId)) {
-      uniqueValues.add(reportId);
-      const option = document.createElement('option');
-      option.value = reportId;
-      datalist.appendChild(option);
-    }
-  });
-}
+  function updateDatalist() {
+    // Clear existing datalist options
+    datalist.innerHTML = '';
+    
+    const rows = dataTable.querySelectorAll('tbody tr'); // Get all rows from tbody
+    rows.forEach(row => {
+      const reportId = row.cells[0].textContent.trim(); // Get Report ID from the first column
+      if (reportId && !uniqueValues.has(reportId)) {
+        uniqueValues.add(reportId); // Add to the set if unique
+        const option = document.createElement('option'); // Create a new option
+        option.value = reportId; // Set the value
+        datalist.appendChild(option); // Append to the datalist
+      }
+    });
+  }
+
+  updateDatalist();
   // Add Button Logic
   addButton.addEventListener("click", (event) => {
       event.preventDefault();
@@ -67,7 +72,7 @@ if(rows){
       const commentLength = commentField.value.length;
       // Handle File Upload
       const proofFile = proofInput.files[0];
-      if (commentLength > 300) {
+      if (commentLength > 2000) {
         alert('Comment should not exceed 300 characters.');
         commentField.style.border = '2px solid red'; // Ensure red border on submit
         return;
@@ -101,6 +106,7 @@ if(rows){
               approve: approve,
           });
           // Reset Form
+          charCount.textContent =0;
           document.getElementById("AddReportDetail").reset();
       };
       // Read file as Base64

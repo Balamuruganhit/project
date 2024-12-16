@@ -49,12 +49,12 @@ under the License.
                   /* width: 1rem; */
                   display: inline;
                   position: relative;
-                  right: -60rem;
-              ">The Charater contains </lable>
+                  right: -66rem;
+              ">The Charater contains: </lable>
         <small id="charCount" style="
             position: relative;
-            right: -60rem;
-        ">0/300</small></td>
+            right: -66rem;
+        ">0/2000</small></td>
       </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportProof}</label></td>

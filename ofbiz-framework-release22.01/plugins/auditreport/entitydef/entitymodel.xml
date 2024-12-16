@@ -36,7 +36,7 @@
         <field name="reportId" type="id"/>
         <field name="question" type="long-varchar"/>
         <field name="rating" type="numeric"/>
-        <field name="comment" type="email"/>
+        <field name="comment" type="url"/>
         <field name="approve" type="name"/>
         <field name="proofBase64" type="blob"/> <!-- Field to store Base64-encoded string -->
         <prim-key field="genId"/>
