@@ -43,23 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  function updateDatalist() {
-    // Clear existing datalist options
-    datalist.innerHTML = '';
-    
-    const rows = dataTable.querySelectorAll('tbody tr'); // Get all rows from tbody
-    rows.forEach(row => {
-      const reportId = row.cells[0].textContent.trim(); // Get Report ID from the first column
-      if (reportId && !uniqueValues.has(reportId)) {
-        uniqueValues.add(reportId); // Add to the set if unique
-        const option = document.createElement('option'); // Create a new option
-        option.value = reportId; // Set the value
-        datalist.appendChild(option); // Append to the datalist
-      }
-    });
-  }
-
-  updateDatalist();
+  
   // Add Button Logic
   addButton.addEventListener("click", (event) => {
       event.preventDefault();
@@ -72,9 +56,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const commentLength = commentField.value.length;
       // Handle File Upload
       const proofFile = proofInput.files[0];
+
+     
+
       if (commentLength > 2000) {
         alert('Comment should not exceed 300 characters.');
         commentField.style.border = '2px solid red'; // Ensure red border on submit
+        return;
+      }
+      if (!reportId || !question || !rating || !comment || !approve) {
+        alert("All fields are required.");
+        return;
+      }
+      if (proofFile && proofFile.size > 2 * 1024 * 1024) { // 2MB size limit
+        alert("Proof file size exceeds the limit of 2MB.");
         return;
       }
       if (!proofFile) {
@@ -111,6 +106,15 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       // Read file as Base64
       reader.readAsDataURL(proofFile);
+      if (uniqueValues.has(reportId)) {
+        return;
+      }
+  
+      // Add Report ID to the datalist
+      uniqueValues.add(reportId);
+      const option = document.createElement('option');
+      option.value = reportId;
+      datalist.appendChild(option);
   });
   dataTable.addEventListener("click", (event) => {
     if (event.target.classList.contains("delete-btn")) {

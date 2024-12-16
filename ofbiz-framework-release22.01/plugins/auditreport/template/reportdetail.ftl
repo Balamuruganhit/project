@@ -49,11 +49,11 @@ under the License.
                   /* width: 1rem; */
                   display: inline;
                   position: relative;
-                  right: -66rem;
+                  right: -63rem;
               ">The Charater contains: </lable>
         <small id="charCount" style="
             position: relative;
-            right: -66rem;
+            right: -63rem;
         ">0/2000</small></td>
       </tr>
       <tr>
