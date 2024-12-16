@@ -54,7 +54,7 @@ under the License.
                             </fo:table-cell>
                             <fo:table-cell border="1pt solid" border-width=".1mm">
                                     <fo:block text-align="center" width="200px" height="200px" overflow="hidden">
-                                            <fo:external-graphic src="data:image/png;base64,${resultList.proof!}"  content-width="scale-to-fit" content-height="scale-to-fit"/>
+                                            <fo:external-graphic src="data:image/png;base64,${resultList.proof!}"  max-width="100%" max-height="100%" scaling="uniform"/>
                                     </fo:block>
                             </fo:table-cell>
                             <fo:table-cell border="1pt solid" border-width=".1mm">
