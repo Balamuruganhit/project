@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-
+if(rows){
   rows.forEach(row => {
     const reportId = row.cells[0].textContent.trim(); // Adjust the column index as needed
     if (reportId && !uniqueValues.has(reportId)) {
@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       datalist.appendChild(option);
     }
   });
+}
   // Add Button Logic
   addButton.addEventListener("click", (event) => {
       event.preventDefault();

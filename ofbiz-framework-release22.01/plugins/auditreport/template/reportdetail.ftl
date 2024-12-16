@@ -44,7 +44,17 @@ under the License.
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportComment}</label></td>
         <td><textarea name="comment" id="comment" rows="4" cols="15"></textarea>
-        <small id="charCount">0/300</small></td>
+        <lable value="change" style="
+                  height: 1rem;
+                  /* width: 1rem; */
+                  display: inline;
+                  position: relative;
+                  right: -60rem;
+              ">The Charater contains </lable>
+        <small id="charCount" style="
+            position: relative;
+            right: -60rem;
+        ">0/300</small></td>
       </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportProof}</label></td>
