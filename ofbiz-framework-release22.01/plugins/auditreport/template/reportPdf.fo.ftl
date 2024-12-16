@@ -53,8 +53,8 @@ under the License.
                                 <fo:block text-align="center">${resultList.comment!}</fo:block>
                             </fo:table-cell>
                             <fo:table-cell border="1pt solid" border-width=".1mm">
-                                    <fo:block text-align="center">
-                                            <fo:external-graphic src="data:image/png;base64,${resultList.proof!}"  height="50%" width="50%"  content-height="scale-to-fit"/>
+                                    <fo:block text-align="center" width="200px" height="200px" overflow="hidden">
+                                            <fo:external-graphic src="data:image/png;base64,${resultList.proof!}"  content-width="scale-to-fit" content-height="scale-to-fit"/>
                                     </fo:block>
                             </fo:table-cell>
                             <fo:table-cell border="1pt solid" border-width=".1mm">
