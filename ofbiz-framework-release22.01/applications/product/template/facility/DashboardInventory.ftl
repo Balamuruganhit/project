@@ -29,28 +29,4 @@ under the License.
 <#else>
 	<h1>No Data Record</h1>
 </#if>
-<#if inventoryItemTotals?has_content >
-	<table class="basic-table light-grid hover-bar">
-		<thead>
-			<tr>
-				<th>Part Number</th>
-				<th>Product availability</th>
-				<th>Minimum Stocks</th>
-				<th>List Price</th>
-			</tr>
-		</thead>
-		<tbody>
-			<#list inventoryItemTotals as resultList>
-				<tr>
-					<td>${resultList.productId!}</td>
-					<td>${resultList.availableToPromise!}</td>
-					<td>${resultList.minimumStock!}</td>
-					<td>${resultList.costPrice!}</td>
-				</tr>
-			</#list>
-		</tbody>
-	</table>
-<#else>
-	<h1>No Data Record</h1>
-</#if>
 
