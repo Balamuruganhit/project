@@ -32,6 +32,10 @@ import org.apache.ofbiz.base.util.*
 import org.apache.ofbiz.entity.*
 import java.sql.Timestamp
 import java.util.List
+import org.apache.ofbiz.entity.model.DynamicViewEntity
+import org.apache.ofbiz.entity.model.ModelKeyMap
+import org.apache.ofbiz.entity.util.EntityFindOptions
+import org.apache.ofbiz.product.inventory.*
 
 Map contentFacility = [:]
 inventoryItems=select('facilityTypeId').from('FacilityType').queryList()
