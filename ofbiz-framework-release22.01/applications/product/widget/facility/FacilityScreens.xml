@@ -117,8 +117,7 @@ under the License.
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
                 <set field="facilityId" value="WebStoreWarehouse"/>
                 <set field="action" value="Y"/>
-                <script location="component://product/groovyScripts/facility/facility/ViewFacilityInventoryByProduct.groovy"/>
-                <entity-one entity-name="Facility" value-field="facility"/>
+                <script location="component://product/groovyScripts/facility/facility/CountFacilityInventoryByProduct.groovy"/>
                 <script location="component://product/groovyScripts/facility/inventory/inventoryDashboard.groovy"/>
             </actions>
             <widgets>
@@ -129,9 +128,9 @@ under the License.
                               <html><html-template location="component://product/template/facility/DashboardInventory.ftl"/></html>
                             </platform-specific>
                         </container>
-                        <decorator-section name="search-results">
-                                <include-grid name="ListFacilityInventoryByProduct" location="component://product/widget/facility/FacilityForms.xml"/>
-                        </decorator-section>
+                        
+                            <include-form name="ListFacilityInventoryByProduct" location="component://product/widget/facility/FacilityForms.xml"/>
+                        
                     </decorator-section>
                 </decorator-screen>
             </widgets>
