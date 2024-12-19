@@ -28,6 +28,7 @@ under the License.
         <value xml:lang="en"> Ai Dashboard</value>
         <value xml:lang="zh">Dashboard应用程�?</value>
         <value xml:lang="zh-TW">Dashboard應用程�?</value>
+    </property>
     <property key="DashboardCompanyName">
         <value xml:lang="en">Pangun Tech: Dashboard</value>
         <value xml:lang="zh-TW">OFBiz: Dashboard</value>
