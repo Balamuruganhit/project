@@ -180,20 +180,7 @@ prodView.addMemberEntity("PRFA", "ProductFacility")
     }
 
     // If the user has specified a number of months over which to sum usage quantities, define the correct timestamp
-    Timestamp checkTime = null
-    monthsInPastLimitStr = request.getParameter("monthsInPastLimit")
-    if (monthsInPastLimitStr) {
-        try {
-            monthsInPastLimit = Integer.parseInt(monthsInPastLimitStr)
-            cal = UtilDateTime.toCalendar(null)
-            cal.add(Calendar.MONTH, 0 - monthsInPastLimit)
-            checkTime = UtilDateTime.toTimestamp(cal.getTime())
-            searchParameterString += "&monthsInPastLimit=" + monthsInPastLimitStr
-        } catch (Exception e) {
-            logError(e, "Caught an exception : " + e.toString())
-            request.setAttribute("_ERROR_MESSAGE", "An exception occured please check the log")
-        }
-    }
+  
 
     prods.each { oneProd ->
         oneInventory = [:]
