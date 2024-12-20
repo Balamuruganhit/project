@@ -119,7 +119,7 @@ under the License.
                 <set field="viewIndex" from-field="parameters.VIEW_INDEX_1" type="Integer" default-value="0"/>
                 <!-- This is the target of the search form-->
                 <set field="facilityInventoryByProductScreen" value="ViewFacilityInventoryByProduct"/>
-                <set field="facilityId" from-field="parameters.facilityId"/>
+                <set field="facilityId" value="WebStoreWarehouse"/>
                 <set field="productTypeId" from-field="parameters.productTypeId"/>
                 <set field="searchInProductCategoryId" from-field="parameters.searchInProductCategoryId"/>
                 <set field="productSupplierId" from-field="parameters.productSupplierId"/>
