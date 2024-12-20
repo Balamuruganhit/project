@@ -60,10 +60,10 @@ under the License.
 	<h1>No Data Record</h1>
 </#if>
 <div>
-    <canvas id="pieChart" width="400" height="200"></canvas>
+    <canvas id="pieChart" width="200" height="50"></canvas>
 </div>
 <div>
-    <canvas id="barChart" width="400" height="200"></canvas>
+    <canvas id="barChart" width="200" height="50"></canvas>
 </div>
 <script>
         const partNumbers = [<#list inventoryByProduct as resultList>"${resultList.productId!}"<#if resultList_has_next>,</#if></#list>];
