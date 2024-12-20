@@ -136,20 +136,22 @@ small{
 }
 .future div{
 	border: 1px solid black;
-    width: 10rem;
-    height: 3rem;
+    /* width: 10rem; */
+    /* height: 3rem; */
     border-radius: 0.9rem;
     background: whitesmoke;
     text-align: center;
-    padding-top: 2rem;
+    padding: 2rem 1rem;
+    /* padding-left: 0.9rem; */
     margin-bottom: 1rem;
-	font-size: 1rem;
-	font-family: Quicksand, sans-serif;
+    font-size: 1rem;
+    font-family: Quicksand, sans-serif;
 }
 .future h3{
 	text-align: center;
 	font-family: Quicksand, sans-serif;
 	font-size: 1.1rem;
+	font-weight: 600;
 }
 .future p{
 	font-size: 1rem;
