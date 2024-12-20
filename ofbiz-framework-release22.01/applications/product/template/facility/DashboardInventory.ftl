@@ -59,4 +59,91 @@ under the License.
 <#else>
 	<h1>No Data Record</h1>
 </#if>
+<div>
+    <canvas id="pieChart" width="400" height="200"></canvas>
+</div>
+<div>
+    <canvas id="barChart" width="400" height="200"></canvas>
+</div>
+<script>
+        const partNumbers = [<#list inventoryByProduct as resultList>"${resultList.productId!}"<#if resultList_has_next>,</#if></#list>];
+        const qohData = [<#list inventoryByProduct as resultList>${resultList.totalQuantityOnHand!}<#if resultList_has_next>,</#if></#list>];
+        const athData = [<#list inventoryByProduct as resultList>${resultList.totalAvailableToPromise!}<#if resultList_has_next>,</#if></#list>];
+        const orderQuantityData = [<#list inventoryByProduct as resultList>${resultList.quantityOnOrder!}<#if resultList_has_next>,</#if></#list>];
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Pie Chart
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+            labels: partNumbers,
+            datasets: [{
+                label: 'QOH',
+                data: qohData,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+    });
+
+    // Bar Chart
+    const barCtx = document.getElementById('barChart').getContext('2d');
+    new Chart(barCtx, {
+        type: 'bar',
+        data: {
+            labels: partNumbers,
+            datasets: [
+                {
+                    label: 'QOH',
+                    data: qohData,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'ATH',
+                    data: athData,
+                    backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Order Quantity',
+                    data: orderQuantityData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    stacked: true
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 

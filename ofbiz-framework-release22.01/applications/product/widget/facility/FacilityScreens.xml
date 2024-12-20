@@ -143,9 +143,6 @@ under the License.
                               <html><html-template location="component://product/template/facility/DashboardInventory.ftl"/></html>
                             </platform-specific>
                         </container>
-                        
-                            <include-grid name="ListFacilityInventoryByProduct" location="component://product/widget/facility/FacilityForms.xml"/>
-                        
                     </decorator-section>
                 </decorator-screen>
             </widgets>
