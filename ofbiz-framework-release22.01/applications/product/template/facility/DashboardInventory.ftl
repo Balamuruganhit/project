@@ -29,23 +29,29 @@ under the License.
 <#else>
 	<h1>No Data Record</h1>
 </#if>
-<#if inventoryItemTotals?has_content >
+<#if inventoryByProduct?has_content >
 	<table class="basic-table light-grid hover-bar">
 		<thead>
 			<tr>
 				<th>Part Number</th>
-				<th>Product availability</th>
-				<th>Minimum Stocks</th>
-				<th>List Price</th>
+				<th>QOH</th>
+				<th>ATH</th>
+				<th>Ordered Quantity</th>
+				<th>QOH - Min Stock</th>
+				<th>Min Stock </th>
+				<th>Reorder Qyt</th>
 			</tr>
 		</thead>
 		<tbody>
-			<#list inventoryItemTotals as resultList>
+			<#list inventoryByProduct as resultList>
 				<tr>
 					<td>${resultList.productId!}</td>
-					<td>${resultList.availableToPromise!}</td>
+					<td>${resultList.totalQuantityOnHand!}</td>
+					<td>${resultList.totalAvailableToPromise!}</td>
+					<td>${resultList.quantityOnOrder!}</td>
+					<td>${resultList.offsetQOHQtyAvailable!}</td>
 					<td>${resultList.minimumStock!}</td>
-					<td>${resultList.costPrice!}</td>
+					<td>${resultList.reorderQuantity!}</td>
 				</tr>
 			</#list>
 		</tbody>
