@@ -37,25 +37,38 @@ under the License.
             </div>
         </div>
         <div class="holder">
-            <div class="bigbox">
-                <div class="event">
-                    <p><small>Incident</small></p>
-                    <p>No power supply in the machine 
-                    </p>
-                    <p>Defect in the product
-                    </p>
-                    <p>Voltage fluctuation</p>
-                    <p>Thermal heating abnormal</p>
-                </div>
-                <div class="pretiction">
-                    <p><small>Prediction</small></p>
-                    <p>Electrician </p>
-                    <p>QC 
-                        </p>
-                <p>Electrician</p>
-                <p>Operator</p>
-                </div>
-            </div>
+            <table id="planets" border="3" cellpadding="4" cellspacing="4">
+                <thead>
+                    <tr>
+                        <th>Incident</th>
+                        <th>Prediction</th>
+                        
+                    </tr>
+                </thead>
+                    
+                    <tbody>
+                        <tr>
+                        <td>No power supply in the machine</td>
+                        <td>Electrician</td>
+                        
+                        </tr>
+                        <tr>
+                        <td>Defect in the product</td>
+                        <td>QC</td>
+                            
+                        </tr>
+                        <tr>
+                        <td>Voltage fluctuation</td>
+                        <td>Electrician</td>
+                        
+                        </tr>
+                        <tr>
+                        <td>Thermal heating abnormal</td>
+                        <td>Operator</td>	
+                        </tr>
+                        
+                    </tbody>
+            </table>
             <div class="future">
                 <h3>Future</h3>
                 <div>
