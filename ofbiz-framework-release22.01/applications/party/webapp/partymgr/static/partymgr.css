@@ -222,3 +222,32 @@ background: #B6C6BE;
 transition:.6s;
 color:black;
 }
+.status{
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+
+}
+.status div{
+	border-radius: 1rem;
+	background:linear-gradient(-50deg,white 5%,#436783 80%)  ;
+	width: 12rem;
+	padding: 0.4rem;
+	height: 5rem;
+}
+.status div h2{
+	font-family: Quicksand, sans-serif;
+	color:white;
+	text-align: start;
+	font-size: 1rem;
+}
+.status div small{
+	font-family: Quicksand, sans-serif;
+	color:black;
+	font-size: 1.2rem;
+ }
+
+ .resizer-table{
+	width: 45rem;
+ }
+

@@ -20,17 +20,19 @@ under the License.
 <#if itemsList?has_content >
 	<div class="dashMain">
 		<#list itemsList as item>
-				<div class="box-inventory">
-					<h4 class="heading">NO OF ${item.facilityTypeId!}</h4>
-					<h5 class="heading_sub">${item.facilityCount!}</h5>
+            <div class="status">
+				<div>
+					<h2 class="heading">NO OF ${item.facilityTypeId!}</h2>
+					<h2 class="heading_sub">${item.facilityCount!}</h2>
 				</div>
+            </div>
 		</#list>
 	</div>
 <#else>
 	<h1>No Data Record</h1>
 </#if>
 <#if inventoryByProduct?has_content >
-	<table class="basic-table light-grid hover-bar">
+	<table class="basic-table light-grid hover-bar resizer-table">
 		<thead>
 			<tr>
 				<th>Part Number</th>
