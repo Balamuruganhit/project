@@ -23,6 +23,17 @@ under the License.
     <td class="label"><label>${uiLabelMap.AuditReportNo}</label></td>
       <td> <input type="text" id="reportId"  name="reportId" list="listReport" autocomplete="off"/>
           <datalist id="listReport"></datalist>
+          <lable value="change" style="
+                  height: 1rem;
+                  /* width: 1rem; */
+                  display: inline;
+                  position: relative;
+                  right: -63rem;
+              ">The Charater contains: </lable>
+        <small id="reportCount" style="
+            position: relative;
+            right: -63rem;
+        ">0/20</small></td>
       </td>
     </tr>
       <tr>
@@ -54,7 +65,7 @@ under the License.
         <small id="charCount" style="
             position: relative;
             right: -63rem;
-        ">0/2000</small></td>
+        ">0/250</small></td>
       </tr>
       <tr>
         <td class="label"><label>${uiLabelMap.AuditReportProof}</label></td>

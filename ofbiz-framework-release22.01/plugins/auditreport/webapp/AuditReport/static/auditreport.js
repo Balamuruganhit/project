@@ -26,17 +26,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const datalist = document.getElementById('listReport');
   const commentField = document.getElementById('comment');
   const charCount = document.getElementById('charCount');
+  const reportCount=document.getElementById('reportCount');
+  const reportField = document.getElementById("reportId")
   const uniqueValues = new Set();
   
   datalist.innerHTML = '';
   let formDataArray = [];
-
-  commentField.addEventListener('input', function () {
-    const currentLength = commentField.value.length;
-    charCount.textContent = `${currentLength}/200`;
+  reportField.addEventListener('input', function () { 
+    const currentLengthId = reportCount.value.length;
+    reportCount.textContent = `${currentLengthId}/250`;
 
     // Apply red border if limit exceeded, otherwise remove it
-    if (currentLength > 2000) {
+    if (currentLengthId > 20) {
+      reportField.style.border = '2px solid red';
+    } else {
+      reportField.style.border = ''; // Reset to default
+    }
+  });
+  commentField.addEventListener('input', function () {
+    const currentLength = commentField.value.length;
+    charCount.textContent = `${currentLength}/250`;
+
+    // Apply red border if limit exceeded, otherwise remove it
+    if (currentLength > 250) {
       commentField.style.border = '2px solid red';
     } else {
       commentField.style.border = ''; // Reset to default
@@ -54,13 +66,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const proofInput = document.getElementById("proof");
       const approve = document.getElementById("approve").value;
       const commentLength = commentField.value.length;
+      const reportIdLength=reportId.value.length;
       // Handle File Upload
       const proofFile = proofInput.files[0];
 
-     
+      if (reportIdLength > 20) {
+        alert('ReportId  should not exceed 20 AlphaNumeric .');
+        reportField.style.border = '2px solid red'; // Ensure red border on submit
+        return;
+      }
 
-      if (commentLength > 200) {
-        alert('Comment should not exceed 200 characters.');
+      if (commentLength > 250) {
+        alert('Comment should not exceed 250 characters.');
         commentField.style.border = '2px solid red'; // Ensure red border on submit
         return;
       }
@@ -101,7 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
               approve: approve,
           });
           // Reset Form
-          charCount.textContent =`${0}/200`;
+          reportCount.textContent =`${0}/20`;
+          charCount.textContent =`${0}/250`;
           document.getElementById("AddReportDetail").reset();
       };
       // Read file as Base64
