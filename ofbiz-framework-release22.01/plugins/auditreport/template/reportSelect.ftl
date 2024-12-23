@@ -41,7 +41,7 @@ under the License.
 
 <div>
     <#if resultList?has_content >
-	<table id="dataTable" style="display:none;">
+	<table id="dataTable">
 		<thead>
 			<tr>
 				<th>Question</th>
@@ -79,4 +79,5 @@ under the License.
                 });
             });
         });
+        console.log("i am here");
 </script>
