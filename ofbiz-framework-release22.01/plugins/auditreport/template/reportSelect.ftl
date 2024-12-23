@@ -32,3 +32,44 @@ under the License.
         <input type="submit" value="Submit" />
     </div>
 </form>
+<button id="dwnldBtn">
+    Download Excel Sheet
+</button>
+<div>
+    <#if resultList?has_content >
+	<table id="dataTable" style="display:none;">
+		<thead>
+			<tr>
+				<th>Question</th>
+				<th>Rating</th>
+				<th>Comment</th>
+				<th>Proof</th>
+				<th>Approver Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<#list resultList as resultList>
+				<tr>
+					<td>${resultList.question!}</td>
+					<td>${resultList.rating!}</td>
+					<td>${resultList.comment!}</td>
+					<td><image src="data:image/png;base64,${resultList.proof!}" height="250px" width="250px" content-height="scale-to-fit" /></td>
+					<td>${resultList.approve!}</td>
+				</tr>
+			</#list>
+		</tbody>
+	</table>
+    <#else>
+        <h1>No Data Record</h1>
+    </#if>
+</div>
+
+<script>
+        $(document).ready(function () {
+            $('#dwnldBtn').on('click', function () {
+                $("#dataTable").table2excel({
+                    filename: "employeeData.xls"
+                });
+            });
+        });
+</script>

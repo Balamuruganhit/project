@@ -102,9 +102,6 @@
                             <link text="${uiLabelMap.AuditPdf}" style="button" target="Report.pdf" target-window="_BLANK">
                                 <parameter param-name="reportId" from-field="reportId"/>
                             </link>
-                            <link text="${uiLabelMap.AuditCsv}" style="button" target="Report.csv">
-                                <parameter param-name="reportId" from-field="reportId"/>
-                            </link>
                         </screenlet>
                     </decorator-section>
                 </decorator-screen>
