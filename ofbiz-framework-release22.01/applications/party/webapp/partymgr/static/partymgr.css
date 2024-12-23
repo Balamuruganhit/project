@@ -222,32 +222,84 @@ background: #B6C6BE;
 transition:.6s;
 color:black;
 }
-.status{
+body {
+	font-family: Quicksand, sans-serif;
+	background-color: #f8f9fa;
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
+
+.dashMain {
 	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+	padding: 1rem;
+}
 
+.status {
+	background-color: #ffffff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 1rem;
+	flex: 1 1 calc(30% - 2rem);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.status div{
-	border-radius: 1rem;
-	background:linear-gradient(-50deg,white 5%,#436783 80%)  ;
-	width: 12rem;
-	padding: 0.4rem;
-	height: 5rem;
-}
-.status div h2{
-	font-family: Quicksand, sans-serif;
-	color:white;
-	text-align: start;
-	font-size: 1rem;
-}
-.status div small{
-	font-family: Quicksand, sans-serif;
-	color:black;
+
+.heading {
+	margin: 0;
 	font-size: 1.2rem;
- }
+	color: #007bff;
+}
 
- .resizer-table{
-	width: 45rem;
- }
+.heading_sub {
+	margin: 0.5rem 0 0;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
 
+.resizer-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1rem 0;
+	background-color: #ffffff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.resizer-table th, td {
+	padding: 0.8rem;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+.resizer-table th {
+	background-color: #007bff;
+	color: white;
+}
+
+h1 {
+	text-align: center;
+	color: #6c757d;
+}
+
+.chart-container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 1rem;
+}
+
+canvas {
+	background-color: #ffffff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.resizer-table{
+	max-width: 100%;
+	margin: 0 auto;
+}

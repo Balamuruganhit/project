@@ -32,7 +32,7 @@ under the License.
 	<h1>No Data Record</h1>
 </#if>
 <#if inventoryByProduct?has_content >
-	<table class="basic-table light-grid hover-bar resizer-table">
+	<table class="resizer-table">
 		<thead>
 			<tr>
 				<th>Part Number</th>
