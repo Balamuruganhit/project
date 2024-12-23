@@ -238,6 +238,7 @@ body {
 }
 
 .status {
+	font-family: Quicksand, sans-serif;
 	background-color: #ffffff;
 	border: 1px solid #ddd;
 	border-radius: 8px;
@@ -247,18 +248,21 @@ body {
 }
 
 .heading {
+	font-family: Quicksand, sans-serif;
 	margin: 0;
 	font-size: 1rem;
 	color: #007bff;
 }
 
 .heading_sub {
+	font-family: Quicksand, sans-serif;
 	margin: 0.5rem 0 0;
 	font-size: 1.2rem;
 	font-weight: bold;
 }
 
-table {
+.basic-table-inventory {
+	font-family: Quicksand, sans-serif;
 	width: 90%;
 	border-collapse: collapse;
 	margin: 1rem auto;
@@ -272,14 +276,15 @@ table {
 	overflow-y: auto;
 }
 
-th, td {
+.basic-table-inventory th, td {
+	font-family: Quicksand, sans-serif;
 	padding: 0.5rem;
 	text-align: left;
 	border-bottom: 1px solid #ddd;
 	font-size: 0.9rem;
 }
 
-th {
+.basic-table-inventory th {
 	background-color: #007bff;
 	color: white;
 }
