@@ -91,6 +91,7 @@
                 <set field="tabButtonItem" value="AddQuestion"/>
                 <set field="reportId" from-field="parameters.reportId" type="String"/>                
                 <script location="component://AuditReport/groovyScripts/Audit/ReportService.groovy"/>
+                <script location="component://AuditReport/groovyScripts/Audit/QuestionReportList.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
