@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       reportField.style.border = ''; // Reset to default
     }
   });
+
   commentField.addEventListener('input', function () {
     const currentLength = commentField.value.length;
     charCount.textContent = `${currentLength}/250`;
@@ -66,11 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const proofInput = document.getElementById("proof");
       const approve = document.getElementById("approve").value;
       const commentLength = commentField.value.length;
-      const reportIdLength=reportId.value.length;
+      const reportLength=reportField.value.length;
       // Handle File Upload
       const proofFile = proofInput.files[0];
 
-      if (reportIdLength > 20) {
+      if (reportLength > 20) {
         alert('ReportId  should not exceed 20 AlphaNumeric .');
         reportField.style.border = '2px solid red'; // Ensure red border on submit
         return;
