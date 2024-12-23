@@ -16,9 +16,13 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
+<script src=
+"https://code.jquery.com/jquery-3.6.4.min.js">
+    </script>
+    <!-- table2excel jQuery plugin CDN -->
+    <script src=
+"//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js">
+    </script>
 
 <form>
     <div>
@@ -37,8 +41,8 @@ under the License.
 
 <div>
     <#if resultList?has_content >
-	<table id="dataTable" class="basic-table">
-		<thead>
+	<table id="dataTable" class="basic-table light-grid hover-bar">
+		<thead class="header-row-2">
 			<tr>
 				<th>Question</th>
 				<th>Rating</th>
@@ -68,18 +72,12 @@ under the License.
 </div>
 
 <script>
-        function exportTableToExcel() {
-    const wb = XLSX.utils.book_new(); // Create a new workbook
-    const ws = XLSX.utils.table_to_sheet(document.getElementById("dataTable"));
-
-    // Add the sheet to the workbook
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-    const today = new Date();
-    const dateOnly = today.toLocaleDateString();
-    // Export the workbook
-    XLSX.writeFile(wb, "dateOnly.xlsx");
-}
-document.getElementById("dwnldBtn").addEventListener("click", exportTableToExcel);
-
+        $(document).ready(function () {
+            $('#dwnldBtn').on('click', function () {
+                $("#dataTable").table2excel({
+                    filename: "reportData.xls"
+                });
+            });
+        });
         console.log("i am here");
 </script>
