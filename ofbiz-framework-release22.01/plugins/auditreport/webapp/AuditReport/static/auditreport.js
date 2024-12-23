@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
               approve: approve,
           });
           // Reset Form
-          charCount.textContent =0;
+          charCount.textContent =`${0}/2000`;
           document.getElementById("AddReportDetail").reset();
       };
       // Read file as Base64
