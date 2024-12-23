@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   commentField.addEventListener('input', function () {
     const currentLength = commentField.value.length;
-    charCount.textContent = `${currentLength}/2000`;
+    charCount.textContent = `${currentLength}/200`;
 
     // Apply red border if limit exceeded, otherwise remove it
     if (currentLength > 2000) {
@@ -59,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
      
 
-      if (commentLength > 2000) {
-        alert('Comment should not exceed 300 characters.');
+      if (commentLength > 200) {
+        alert('Comment should not exceed 200 characters.');
         commentField.style.border = '2px solid red'; // Ensure red border on submit
         return;
       }
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
               approve: approve,
           });
           // Reset Form
-          charCount.textContent =`${0}/2000`;
+          charCount.textContent =`${0}/200`;
           document.getElementById("AddReportDetail").reset();
       };
       // Read file as Base64

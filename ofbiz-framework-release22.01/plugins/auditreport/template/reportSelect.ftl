@@ -57,8 +57,15 @@ under the License.
 					<td>${resultList.question!}</td>
 					<td>${resultList.rating!}</td>
 					<td>${resultList.comment!}</td>
-					<td><image src="data:image/png;base64,${resultList.proof!}" height="250px" width="250px" content-height="scale-to-fit" /></td>
-					<td>${resultList.approve!}</td>
+                    <td>
+                        <img 
+                                src="data:image/png;base64,${resultList.proof!}" 
+                                height="250px" 
+                                width="250px" 
+                                style="object-fit: scale-down;" 
+                                alt="Proof Image" />
+                    </td>
+    				<td>${resultList.approve!}</td>
 				</tr>
 			</#list>
 		</tbody>

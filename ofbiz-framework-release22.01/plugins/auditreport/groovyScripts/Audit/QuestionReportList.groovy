@@ -34,10 +34,7 @@ import java.util.List
 // Initialize the map to store results
 Map reportContentMap = [:]
 
-if (!reportId) {
-    context.errorMessage = "Report ID is missing"
-    return
-    }
+
 // Retrieve all records from the ReportContent entity
 List reportContents = select("genId","reportId", "question", "rating", "comment", "approve","proofBase64").from("ReportContent").where("reportId", reportId).orderBy("genId").queryList()
 
