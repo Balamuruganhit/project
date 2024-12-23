@@ -19,10 +19,6 @@ under the License.
 <script src=
 "https://code.jquery.com/jquery-3.6.4.min.js">
     </script>
-    <!-- table2excel jQuery plugin CDN -->
-    <script src=
-"//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js">
-    </script>
 
 <form>
     <div>
@@ -81,10 +77,43 @@ under the License.
 <script>
         $(document).ready(function () {
             $('#dwnldBtn').on('click', function () {
-                $("#dataTable").table2excel({
-                    filename: "reportData.xls"
-                });
+                downloadExcelTable('dataTable', 'employeeData');
             });
+
+            function downloadExcelTable(tableID, filename = '') {
+                const linkToDownloadFile = document.
+                                           createElement("a");
+                const fileType = 'application/vnd.ms-excel';
+                const selectedTable = document.
+                                      getElementById(tableID);
+                const selectedTableHTML = selectedTable.outerHTML.
+                                          replace(/ /g, '%20');
+
+                filename = filename ? filename + '.xls' : 
+                           'excel_data.xls';
+                document.body.appendChild(linkToDownloadFile);
+
+                if (navigator.msSaveOrOpenBlob) {
+                    const myBlob = new Blob(['\ufeff',
+                                   selectedTableHTML], {
+                        type: fileType
+                    });
+                    navigator.msSaveOrOpenBlob(myBlob, filename);
+                } else {
+                    // Create a link to download
+                    // the excel the file
+                    linkToDownloadFile.href = 'data:' + fileType + 
+                                               ', ' + selectedTableHTML;
+
+                    // Setting the name of
+                    // the downloaded file
+                    linkToDownloadFile.download = filename;
+
+                    // Clicking the download link 
+                    // on click to the button
+                    linkToDownloadFile.click();
+                }
+            }
         });
         console.log("i am here");
 </script>
