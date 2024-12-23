@@ -16,104 +16,84 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<script src=
-"https://code.jquery.com/jquery-3.6.4.min.js">
-    </script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <form>
     <div>
         <label class="label">${uiLabelMap.AuditReportList}</label>
         <select name="reportId" id="reportgenId">
-                    <#list reportListId as id>
-                        <option value="${id.reportId!}">Report ${id.reportId!}</option>
-                    </#list>
-                    <option selected="" value="Select the Report">Select the Report</option>
+            <#list reportListId as id>
+                <option value="${id.reportId!}">Report ${id.reportId!}</option>
+            </#list>
+            <option selected="" value="Select the Report">Select the Report</option>
         </select>
     </div>
     <div>
         <input type="submit" value="Submit" />
-    </div>
+    
 </form>
 
 <div>
-    <#if resultList?has_content >
-	<table id="dataTable" class="basic-table light-grid hover-bar">
-		<thead class="header-row-2">
-			<tr>
-				<th>Question</th>
-				<th>Rating</th>
-				<th>Comment</th>
-				<th>Proof</th>
-				<th>Approver Name</th>
-			</tr>
-		</thead>
-		<tbody>
-			<#list resultList as resultList>
-				<tr>
-					<td>${resultList.question!}</td>
-					<td>${resultList.rating!}</td>
-					<td>${resultList.comment!}</td>
-                    <td>
-                        <img 
-                                src="data:image/png;base64,${resultList.proof!}" 
-                                height="250px" 
-                                width="250px" 
-                                style="object-fit: scale-down;" 
-                                alt="Proof Image" />
-                    </td>
-    				<td>${resultList.approve!}</td>
-				</tr>
-			</#list>
-		</tbody>
-	</table>
+    <#if resultList?has_content>
+    <table id="dataTable" class="basic-table light-grid hover-bar">
+        <thead class="header-row-2">
+            <tr>
+                <th>Question</th>
+                <th>Rating</th>
+                <th>Comment</th>
+                <th>Proof</th>
+                <th>Approver Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <#list resultList as resultList>
+            <tr>
+                <td>${resultList.question!}</td>
+                <td>${resultList.rating!}</td>
+                <td>${resultList.comment!}</td>
+                <td>
+                    <img src="data:image/png;base64,${resultList.proof!}" height="250px" width="250px" style="object-fit: scale-down;" alt="Proof Image" />
+                </td>
+                <td>${resultList.approve!}</td>
+            </tr>
+            </#list>
+        </tbody>
+    </table>
     <#else>
-        
     </#if>
-    <button id="dwnldBtn">
-    Download Excel Sheet
-</button>
+    <button id="dwnldBtn">Download Excel Sheet</button>
 </div>
 
 <script>
-        $(document).ready(function () {
-            $('#dwnldBtn').on('click', function () {
-                downloadExcelTable('dataTable', 'employeeData');
+    $(document).ready(function () {
+        $('#dwnldBtn').on('click', function () {
+            downloadExcelTable('dataTable', 'reportData');
+        });
+
+        function downloadExcelTable(tableID, filename = '') {
+            const linkToDownloadFile = document.createElement("a");
+            const fileType = 'application/vnd.ms-excel';
+            const selectedTable = document.getElementById(tableID);
+            let selectedTableHTML = selectedTable.outerHTML.replace(/ /g, '%20');
+
+            // Optionally, convert the Base64 proof to plain text for Excel export
+            selectedTableHTML = selectedTableHTML.replace(/<img src="data:image\/png;base64,([A-Za-z0-9+/=]+)"[^>]*>/g, function(match, base64Data) {
+                return `<td>Base64 Image Data: ${base64Data}</td>`;  // Replace with the Base64 string or a descriptive text
             });
 
-            function downloadExcelTable(tableID, filename = '') {
-                const linkToDownloadFile = document.
-                                           createElement("a");
-                const fileType = 'application/vnd.ms-excel';
-                const selectedTable = document.
-                                      getElementById(tableID);
-                const selectedTableHTML = selectedTable.outerHTML.
-                                          replace(/ /g, '%20');
+            filename = filename ? filename + '.xls' : 'excel_data.xls';
+            document.body.appendChild(linkToDownloadFile);
 
-                filename = filename ? filename + '.xls' : 
-                           'excel_data.xls';
-                document.body.appendChild(linkToDownloadFile);
-
-                if (navigator.msSaveOrOpenBlob) {
-                    const myBlob = new Blob(['\ufeff',
-                                   selectedTableHTML], {
-                        type: fileType
-                    });
-                    navigator.msSaveOrOpenBlob(myBlob, filename);
-                } else {
-                    // Create a link to download
-                    // the excel the file
-                    linkToDownloadFile.href = 'data:' + fileType + 
-                                               ', ' + selectedTableHTML;
-
-                    // Setting the name of
-                    // the downloaded file
-                    linkToDownloadFile.download = filename;
-
-                    // Clicking the download link 
-                    // on click to the button
-                    linkToDownloadFile.click();
-                }
+            if (navigator.msSaveOrOpenBlob) {
+                const myBlob = new Blob(['\ufeff', selectedTableHTML], { type: fileType });
+                navigator.msSaveOrOpenBlob(myBlob, filename);
+            } else {
+                linkToDownloadFile.href = 'data:' + fileType + ', ' + selectedTableHTML;
+                linkToDownloadFile.download = filename;
+                linkToDownloadFile.click();
             }
-        });
-        console.log("i am here");
+        }
+    });
 </script>
