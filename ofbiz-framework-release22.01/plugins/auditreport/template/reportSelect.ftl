@@ -16,7 +16,13 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
+<script src=
+"https://code.jquery.com/jquery-3.6.4.min.js">
+    </script>
+    <!-- table2excel jQuery plugin CDN -->
+    <script src=
+"//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js">
+    </script>
 
 <form>
     <div>
@@ -32,9 +38,7 @@ under the License.
         <input type="submit" value="Submit" />
     </div>
 </form>
-<button id="dwnldBtn">
-    Download Excel Sheet
-</button>
+
 <div>
     <#if resultList?has_content >
 	<table id="dataTable" style="display:none;">
@@ -60,8 +64,11 @@ under the License.
 		</tbody>
 	</table>
     <#else>
-        <h1>No Data Record</h1>
+        
     </#if>
+    <button id="dwnldBtn">
+    Download Excel Sheet
+</button>
 </div>
 
 <script>
