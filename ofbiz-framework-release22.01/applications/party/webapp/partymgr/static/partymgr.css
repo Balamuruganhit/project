@@ -238,81 +238,58 @@ body {
 }
 
 .status {
-	font-family: Quicksand, sans-serif;
-	background-color: #ffffff;
-	border: 1px solid #ddd;
+	background-color: #dceeff; /* Light blue */
+	border: 1px solid #b6d4f9; /* Slightly darker blue border */
 	border-radius: 8px;
-	padding: 0.5rem;
-	flex: 1 1 calc(30% - 2rem);
+	padding: 20px;
+	text-align: center;
+	width: 200px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .heading {
 	font-family: Quicksand, sans-serif;
-	margin: 0;
 	font-size: 1rem;
-	color: #007bff;
-}
-.heading h1 {
-	text-align: center;
-	color: #6c757d;
+    font-weight: bold;
+    margin: 0 0 10px;
+    color: #004080;
 }
 
 .heading_sub {
 	font-family: Quicksand, sans-serif;
-	margin: 0.5rem 0 0;
-	font-size: 1.2rem;
-	font-weight: bold;
+	font-size: 1.22rem;
+    color: #0056b3;
 }
 
 .basic-table-inventory {
-	font-family: Quicksand, sans-serif;
-    width: 90%;
-    border-collapse: collapse;
-    margin: 1rem auto;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	width: 90%;
+	border-collapse: collapse;
+	margin: 1rem auto;
+	background-color: #ffffff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	height: 400px;
+	overflow-y: auto;
 }
 
 .basic-table-inventory th, td {
-    font-family: Quicksand, sans-serif;
-    padding: 0.5rem;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    font-size: 0.9rem;
+	padding: 0.5rem;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+	font-size: 0.9rem;
 }
 
 .basic-table-inventory th {
-    background-color: #007bff;
-    color: white;
+	background-color: #007bff;
+	color: white;
 }
 
-.table-container {
-    margin: 0 auto;
-    width: 95%;
-    overflow-x: auto; /* Allows horizontal scrolling if needed */
+h1 {
+	text-align: center;
+	color: #6c757d;
 }
-
-.basic-table-inventory tbody {
-    display: block;
-    max-height: 300px; /* Adjust height as needed */
-    overflow-y: auto; /* Vertical scrolling for the table body */
-    width: 100%;
-}
-
-.basic-table-inventory thead, tfoot {
-    display: table;
-    width: 100%;
-}
-
-.basic-table-inventory th, .basic-table-inventory td {
-    width: 14%; /* Adjust based on the number of columns */
-    word-wrap: break-word;
-}
-
-
 
 .chart-container {
     display: flex;
@@ -335,7 +312,7 @@ canvas {
 	height: 400px !important;
 }
 
-.table-container {
-    margin: 0 auto;
-    width: 95%;
+.basic-table-inventory {
+	max-width: 100%;
+	margin: 0 auto;
 }
