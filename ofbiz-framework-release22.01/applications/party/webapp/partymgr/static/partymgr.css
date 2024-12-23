@@ -253,6 +253,10 @@ body {
 	font-size: 1rem;
 	color: #007bff;
 }
+.heading h1 {
+	text-align: center;
+	color: #6c757d;
+}
 
 .heading_sub {
 	font-family: Quicksand, sans-serif;
@@ -263,49 +267,68 @@ body {
 
 .basic-table-inventory {
 	font-family: Quicksand, sans-serif;
-	width: 90%;
-	border-collapse: collapse;
-	margin: 1rem auto;
-	background-color: #ffffff;
-	border: 1px solid #ddd;
-	border-radius: 8px;
-	overflow: hidden;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	height: 400px;
-	display: block;
-	overflow-y: auto;
+    width: 90%;
+    border-collapse: collapse;
+    margin: 1rem auto;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .basic-table-inventory th, td {
-	font-family: Quicksand, sans-serif;
-	padding: 0.5rem;
-	text-align: left;
-	border-bottom: 1px solid #ddd;
-	font-size: 0.9rem;
+    font-family: Quicksand, sans-serif;
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.9rem;
 }
 
 .basic-table-inventory th {
-	background-color: #007bff;
-	color: white;
+    background-color: #007bff;
+    color: white;
 }
 
-h1 {
-	text-align: center;
-	color: #6c757d;
+.table-container {
+    margin: 0 auto;
+    width: 95%;
+    overflow-x: auto; /* Allows horizontal scrolling if needed */
 }
+
+.basic-table-inventory tbody {
+    display: block;
+    max-height: 300px; /* Adjust height as needed */
+    overflow-y: auto; /* Vertical scrolling for the table body */
+    width: 100%;
+}
+
+.basic-table-inventory thead, tfoot {
+    display: table;
+    width: 100%;
+}
+
+.basic-table-inventory th, .basic-table-inventory td {
+    width: 14%; /* Adjust based on the number of columns */
+    word-wrap: break-word;
+}
+
+
 
 .chart-container {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+    width: 100%; /* Ensures the container stretches to fill available space */
 }
 
 canvas {
-	background-color: #ffffff;
-	border: 1px solid #ddd;
-	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 #barChart {
