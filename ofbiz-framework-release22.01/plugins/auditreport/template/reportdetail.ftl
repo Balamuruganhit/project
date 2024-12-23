@@ -29,11 +29,11 @@ under the License.
                     display: inline;
                     position: relative;
                     
-                ">The Charater contains: </lable>
+                ">Max Contain character is 20 </lable>
           <small id="reportCount" style="
               position: relative;
               
-          ">0/20</small>
+          "></small>
         </td>
     </tr>
       <tr>
