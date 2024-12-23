@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const commentField = document.getElementById('comment');
   const charCount = document.getElementById('charCount');
   const reportCount=document.getElementById('reportCount');
-  const reportField = document.getElementById("reportId")
+  const reportField = document.getElementById('reportId');
   const uniqueValues = new Set();
-  
+  console.log(reportField)
   datalist.innerHTML = '';
   let formDataArray = [];
   reportField.addEventListener('input', function () { 

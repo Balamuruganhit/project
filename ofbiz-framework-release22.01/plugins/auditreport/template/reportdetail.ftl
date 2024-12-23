@@ -28,11 +28,11 @@ under the License.
                     /* width: 1rem; */
                     display: inline;
                     position: relative;
-                    right: -63rem;
+                    
                 ">The Charater contains: </lable>
           <small id="reportCount" style="
               position: relative;
-              right: -63rem;
+              
           ">0/20</small>
         </td>
     </tr>
