@@ -68,7 +68,7 @@ under the License.
 
     <div class="chart-container">
         <div style="width: 40%;">
-            <canvas id="pieChart"></canvas>
+            <canvas id="pieChart" ></canvas>
         </div>
         <div style="width: 50%;">
             <canvas id="barChart"></canvas>

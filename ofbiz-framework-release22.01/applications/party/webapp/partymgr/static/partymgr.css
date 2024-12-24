@@ -308,6 +308,7 @@ canvas {
 }
 #pieChart{
 	height: 400px !important;
+	padding: 1 rem;
 }
 #barChart {
 	height: 400px !important;
