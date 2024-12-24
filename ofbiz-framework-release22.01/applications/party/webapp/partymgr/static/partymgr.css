@@ -224,7 +224,7 @@ color:black;
 }
 body {
 	font-family: Quicksand, sans-serif;
-	background-color: #f8f9fa;
+	background-color: #d3dde7;
 	margin: 0;
 	padding: 0;
 	color: #333;
@@ -308,7 +308,7 @@ canvas {
 }
 #pieChart{
 	height: 400px !important;
-	padding: 1 rem;
+	padding: 1rem;
 }
 #barChart {
 	height: 400px !important;
