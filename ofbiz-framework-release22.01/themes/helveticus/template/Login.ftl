@@ -30,7 +30,7 @@ under the License.
     <div id="company-logo"></div>
   </div>
 
-  <div class="screenlet login-screenlet">
+  <div class="screenlet login-screenlet" id="tester">
     <h3>${uiLabelMap.CommonBeLogged}</h3>
     <div class="screenlet-body">
       <form method="post" action="<@ofbizUrl>login</@ofbizUrl>" name="loginform">

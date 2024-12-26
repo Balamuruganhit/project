@@ -16,6 +16,20 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+<div class="botHolder">
+<img class="botImg" src="/flatgrey/images/bot-removebg.png" id="bot-img" alt="hello">
+<div class="chat-container" id="chat-holder">
+    <button id="close-btn">X</button>
+    <div id="chat-box" class="chat-box">
+      <!-- Messages will be dynamically added here -->
+    </div>
+   
+    <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Type your message here..." />
+        <button id="send-btn">Send</button>
+    </div>
+</div>
+</div>
 <div id="footer">
     <ul>
         <li class="first">${nowTimestamp?datetime?string.short} - <a href="<@ofbizUrl>ListTimezones</@ofbizUrl>">${timeZone.toZoneId().getDisplayName(Static["java.time.format.TextStyle"].FULL_STANDALONE, locale)}</a></li>
