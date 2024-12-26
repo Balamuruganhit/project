@@ -63,7 +63,7 @@ async function fetchChatGPTResponse(message) {
         messages: [{ role: "user", content: message }],
         model: "llama3-8b-8192",
         temperature: 1,
-        max_tokens: 50,
+        max_tokens: 500,
         top_p: 1,
         stream: false,
       }),
