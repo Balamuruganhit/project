@@ -35,6 +35,7 @@ function selectOrgaOK(orgaName){
     currentModal.style.visibility = "hidden";
 }
 console.log("Script loaded");
+const testerChecker = document.getElementById("tester");
 const chatBox = document.getElementById("chat-box");
 const userInput = document.getElementById("user-input");
 const sendBtn = document.getElementById("send-btn");
@@ -42,7 +43,12 @@ const closeBtn=document.getElementById("close-btn");
 const chatholder=document.getElementById("chat-holder");
 const botImg = document.getElementById("bot-img");
 const API_KEY = "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";
-
+if(testerChecker){
+    botImg.classList.add("hide");
+}
+else{
+    botImg.classList.remove("hide");
+}
 async function fetchChatGPTResponse(message) {
   const apiUrl = "https://api.groq.com/openai/v1/chat/completions";
 

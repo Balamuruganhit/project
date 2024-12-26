@@ -28,7 +28,7 @@ under the License.
 </#if>
 <div id="loginBar"><div id="company-logo-login"></div></div>
 <center>
-  <div class="screenlet login-screenlet">
+  <div class="screenlet login-screenlet" id="tester">
     <div class="screenlet-title-bar">
       <h3>${uiLabelMap.CommonRegistered}</h3>
     </div>
