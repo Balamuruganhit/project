@@ -16,6 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+<div class="botHolder">
 <img class="botImg" src="/rainbowstone/images/bot-removebg.png" id="bot-img" alt="hello">
 <div class="chat-container" id="chat-holder">
     <button id="close-btn">X</button>
@@ -27,6 +28,7 @@ under the License.
         <input type="text" id="user-input" placeholder="Type your message here..." />
         <button id="send-btn">Send</button>
     </div>
+</div>
 </div>
 <div id="footer-offset"></div>
 <div id="footer">
