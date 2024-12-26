@@ -2346,6 +2346,8 @@ a[data-featherlight] {
   
   .chat-input input {
 	flex: 1;
+    height:2rem;
+    background: aquamarine;
 	padding: 10px;
 	border: none;
 	border-right: 1px solid #ddd;
@@ -2354,7 +2356,7 @@ a[data-featherlight] {
   .chat-input button {
 	padding: 10px;
 	background-color: #4caf50;
-	color: white;
+	color: black;
 	border: none;
 	cursor: pointer;
   }
@@ -2365,6 +2367,6 @@ a[data-featherlight] {
   
 .botHolder{
   position: fixed;
-  bottom: 1.2rem;
+  bottom: 15rem;
   width: 100%;
 }
