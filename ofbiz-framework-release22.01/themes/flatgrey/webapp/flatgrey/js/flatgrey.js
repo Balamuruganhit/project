@@ -68,7 +68,7 @@ function truncateResponse(response, maxLength) {
 
 sendBtn.addEventListener("click", async () => {
   const userMessage = userInput.value.trim();
-  const usermessageResized =`Craft a detailed and professional response to a query in the manufacturing domain. Use concise language to address technical, operational, or logistical aspects, ensuring the answer is tailored to the context provided. Include relevant examples, technical terms, or processes common in manufacturing, and suggest actionable solutions or improvements if applicable. Be precise, and focus on adding value by referencing best practices, standards, or innovations in the field.Question : ${userMessage}. Answer: give complete sentence max 100 characters`;
+  const usermessageResized =`Craft a detailed and professional response to a query in the manufacturing domain. Use concise language to address technical, operational, or logistical aspects, ensuring the answer is tailored to the context provided. Include relevant examples, technical terms, or processes common in manufacturing, and suggest actionable solutions or improvements if applicable. Be precise, and focus on adding value by referencing best practices, standards, or innovations in the field.Question : ${userMessage}. Answer: .give complete sentence max 500 characters`;
   console.log("User message:", usermessageResized);
   if (!userMessage) return;
   
