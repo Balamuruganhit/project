@@ -31,9 +31,7 @@ under the License.
                     
                 ">Max Contain character is 20 </lable>
           <small id="reportCount" style="
-              position: relative;
-              
-          "></small>
+              position: relative">0/20</small>
         </td>
     </tr>
       <tr>
