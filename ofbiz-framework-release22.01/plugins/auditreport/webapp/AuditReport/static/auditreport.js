@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let formDataArray = [];
   reportField.addEventListener('input', function () { 
     const currentLengthId = reportField.value.length;
-    reportCount.textContent = `${currentLengthId}/25`;
+    reportCount.textContent = `${currentLengthId}/20`;
 
     // Apply red border if limit exceeded, otherwise remove it
     if (currentLengthId > 20) {
