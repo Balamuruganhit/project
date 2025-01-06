@@ -29,7 +29,7 @@ under the License.
 
                 <set field="layoutSettings.companyName" from-field="uiLabelMap.PunguAiCompanyName" global="true"/>
                 <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.PunguAiCompanySubtitle" global="true"/>
-                
+                <set field="layoutSettings.javaScripts[]" value="/punguAi/static/chat.js" global="true"/>
                 <set field="activeApp" value="punguAi" global="true"/>
                 <set field="applicationMenuName" value="MainAppBar" global="true"/>
                 <set field="applicationMenuLocation" value="component://punguAi/widget/PunguAiMenus.xml" global="true"/>

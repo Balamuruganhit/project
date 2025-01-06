@@ -75,7 +75,7 @@ button_input.forEach(button_inputs => {
 console.log(button_num);
 function addMessageToChat(role, text) {
   const messageElement = document.createElement("div");
-  messageElement.classList.add("chat-message", role);
+  messageElement.classList.add("chat-message-ai", role);
   messageElement.textContent = text;
   chatBox.appendChild(messageElement);
   chatBox.scrollTop = chatBox.scrollHeight;
@@ -101,7 +101,7 @@ console.log("User message:", usermessageResized);
 
   // Add placeholder bot message
   const botPlaceholder = document.createElement("div");
-  botPlaceholder.classList.add("chat-message", "bot");
+  botPlaceholder.classList.add("chat-message-ai", "bot");
   botPlaceholder.textContent = "Thinking...";
   chatBox.appendChild(botPlaceholder);
 
@@ -115,14 +115,3 @@ console.log("User message:", usermessageResized);
     chatBox.scrollTop = chatBox.scrollHeight; // Ensure scroll stays at the bottom
   }
 });
-// addMessageToChat("bot", "Welcome! I can help you with your 8D defect analysis. To get started, please tell me the defect description. ")
-// botImg.addEventListener("click",()=>{
-//   chatholder.classList.add("show");
-//   botImg.classList.add("hide");
-//   console.log("chat button clicked");
-// });
-// closeBtn.addEventListener("click",()=>{
-//   chatholder.classList.remove("show");
-//   botImg.classList.remove("hide");
-//   console.log("close button clicked");
-// });

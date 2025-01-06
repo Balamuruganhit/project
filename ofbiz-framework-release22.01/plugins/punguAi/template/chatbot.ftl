@@ -45,105 +45,7 @@ under the License.
       
     </div>
   </div>
-  <script>
-	console.log("Script loaded");
-const chatBox = document.getElementById("chat-box");
-const userInput = document.getElementById("user-input");
-const sendBtn = document.getElementById("send-btn");
-const closeBtn=document.getElementById("close-btn");
-const chatholder=document.getElementById("chat-holder");
-const botImg = document.getElementById("bot-img");
-const API_KEY = "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";
-const button_input=document.querySelectorAll('button');
-const chatform=document.getElementById("chat-form");
-var button_num=0;
-async function fetchChatGPTResponse(message) {
-  const apiUrl = "https://api.groq.com/openai/v1/chat/completions";
-
-  try {
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
-      },
-      body: JSON.stringify({
-        messages: [{ role: "user", content: message }],
-        model: "llama3-8b-8192",
-        temperature: 1,
-        max_tokens: 500,
-        top_p: 1,
-        stream: false,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`API Error: ${response.status} ${response.statusText}`);
-    }
-
-    const data = await response.json();
-
-    if (!data.choices || !data.choices.length) {
-      throw new Error("Invalid response structure from API");
-    }
-
-    return data.choices[0].message.content;
-  } catch (error) {
-    console.error("Error in fetchChatGPTResponse:", error.message);
-    throw new Error("Failed to get a response from the bot.");
-  }
-}
-console.log(button_input);
-button_input.forEach(button_inputs => {
-  button_inputs.addEventListener('click', () => {
-    button_num = button_inputs.dataset.id; // Get the data-id of the button
-    console.log(button_num);
-  });
-});
-console.log(button_num);
-function addMessageToChat(role, text) {
-  const messageElement = document.createElement("div");
-  messageElement.classList.add("chat-message-ai", role);
-  messageElement.textContent = text;
-  chatBox.appendChild(messageElement);
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-chatform.addEventListener("submit", async (e) => { 
-  e.preventDefault(); });
-
-
-sendBtn.addEventListener("click", async () => {
-  const userMessage = userInput.value.trim();
-  const manufacturing =`Craft a detailed and professional response to a query in the manufacturing domain. Use concise language to address technical, operational, or logistical aspects, ensuring the answer is tailored to the context provided. Include relevant examples, technical terms, or processes common in manufacturing, and suggest actionable solutions or improvements if applicable. Be precise, and focus on adding value by referencing best practices, standards, or innovations in the field. Question : ${userMessage}. Answer:must give complete sentence max 500 characters `;
-  const Production= `Craft a detailed and professional response to a query in the Production domain. Use concise language to address technical, operational, or logistical aspects, ensuring the answer is tailored to the context provided. Include relevant examples, technical terms, or processes common in manufacturing, and suggest actionable solutions or improvements if applicable. Be precise, and focus on adding value by referencing best practices, standards, or innovations in the field. Question : ${userMessage}. Answer:must give complete sentence max 500 characters `;
-  const Invetory= `Craft a detailed and professional response to a query in the Inventory domain. Use concise language to address technical, operational, or logistical aspects, ensuring the answer is tailored to the context provided. Include relevant examples, technical terms, or processes common in manufacturing, and suggest actionable solutions or improvements if applicable. Be precise, and focus on adding value by referencing best practices, standards, or innovations in the field. Question : ${userMessage}. Answer:must give complete sentence max 500 characters `;
-  const usermessageResized=button_num==1?manufacturing:button_num==2?Production:button_num==3?Invetory:userMessage;
-  
-console.log("User message:", usermessageResized);
-  if (!userMessage) return;
-  
-  // Add user message to chat
-  addMessageToChat("user", userMessage);
-  userInput.value = "";
-
-  // Add placeholder bot message
-  const botPlaceholder = document.createElement("div");
-  botPlaceholder.classList.add("chat-message-ai", "bot");
-  botPlaceholder.textContent = "Thinking...";
-  chatBox.appendChild(botPlaceholder);
-
-  try {
-    const botResponse = await fetchChatGPTResponse(usermessageResized);
-    console.log("Bot response:", botResponse);
-	  botPlaceholder.textContent = botResponse; // Update bot's message
-  } catch (error) {
-    botPlaceholder.textContent = "Error fetching response!";
-  } finally {
-    chatBox.scrollTop = chatBox.scrollHeight; // Ensure scroll stays at the bottom
-  }
-});
-  </script>
+ 
 
   <style>
 	.main-container {
@@ -249,7 +151,7 @@ console.log("User message:", usermessageResized);
 	line-height: 1.5;
   }
   
-  .chat-input-area {
+  .chat-input-area-ai {
 	display: flex;
 	align-items: center;
 	gap: 10px;
@@ -258,7 +160,7 @@ console.log("User message:", usermessageResized);
 	border-top: 1px solid #e0e0e0;
   }
   
-  .chat-input-area input[type='text'] {
+  .chat-input-area-ai input[type='text'] {
 	flex: 1;
 	resize: none;
 	padding: 10px;
@@ -270,7 +172,7 @@ console.log("User message:", usermessageResized);
 	outline: none;
   }
   
-  .chat-input-area input[type='submit'] {
+  .chat-input-area-ai input[type='submit'] {
 	background-color: #0078d4;
 	color: white;
 	border: none;
@@ -281,17 +183,11 @@ console.log("User message:", usermessageResized);
 	transition: background-color 0.3s ease;
   }
   
-  .chat-input-area button:hover {
+  .chat-input-area-ai button:hover {
 	background-color: #005bb5;
   }
   
-  .bot-image {
-	position: absolute;
-	top: 20px;
-	left: 20px;
-	width: 100px;
-	height: auto;
-  }
+  
   .color{
 	background-color: #1abc9c
   }
