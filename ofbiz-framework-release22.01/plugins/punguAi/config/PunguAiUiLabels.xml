@@ -20,7 +20,7 @@ under the License.
 
 <resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
     <property key="PunguAiApplication">
-        <value xml:lang="en">PunguAi Application</value>
+        <value xml:lang="en">PanguAi Application</value>
         <value xml:lang="zh">PunguAi应用程�?</value>
         <value xml:lang="zh-TW">PunguAi應用程�?</value>
     </property>
