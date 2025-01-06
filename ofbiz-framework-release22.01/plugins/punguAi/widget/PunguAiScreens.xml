@@ -29,11 +29,9 @@ under the License.
             <widgets>
                 <decorator-screen name="PunguAiCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <screenlet >
-                            <platform-specific>
+                    <platform-specific>
                                 <html><html-template location="component://panguAi/template/chat.ftl"/></html>
                             </platform-specific>
-                        </screenlet>
                     </decorator-section>
                 </decorator-screen>
             </widgets>

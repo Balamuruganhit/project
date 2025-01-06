@@ -21,22 +21,22 @@ under the License.
 <resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
     <property key="PunguAiApplication">
         <value xml:lang="en">PunguAi Application</value>
-        <value xml:lang="zh">PunguAi应用程�?</value>
-        <value xml:lang="zh-TW">PunguAi應用程�?</value>
+        <value xml:lang="zh">PunguAi应用程�?</value>
+        <value xml:lang="zh-TW">PunguAi應用程�?</value>
     </property>
     <property key="PunguAiCompanyName">
-        <value xml:lang="en">OFBiz: PunguAi</value>
+        <value xml:lang="en">Pangun Tech: PunguAi</value>
         <value xml:lang="zh-TW">OFBiz: PunguAi</value>
     </property>
     <property key="PunguAiCompanySubtitle">
         <value xml:lang="en">Part of the Apache OFBiz Family of Open Source Software</value>
         <value xml:lang="it">Un modulo della famiglia di software open source Apache OFBiz</value>
-        <value xml:lang="zh">开�?软件OFBiz的组�?部分</value>
-        <value xml:lang="zh-TW">開�?軟體OFBiz的組�?部分</value>
+        <value xml:lang="zh">开�?软件OFBiz的组�?部分</value>
+        <value xml:lang="zh-TW">開�?軟體OFBiz的組�?部分</value>
     </property>
     <property key="PunguAiViewPermissionError">
         <value xml:lang="en">You are not allowed to view this page.</value>
-        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
-        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
     </property>
 </resource>
