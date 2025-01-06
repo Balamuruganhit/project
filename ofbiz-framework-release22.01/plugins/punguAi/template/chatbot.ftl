@@ -26,18 +26,18 @@ under the License.
         <button class="sidebar-button button"  data-id="4">Logistics</button>
       </nav>
     </aside>
-    <div class="chat-container">
+    <div class="chat-container-ai">
       <header class="chat-header">
         Chat with Pangu
         
       </header>
-      <main class="chat-area" id="chat-box">
-        <p class="chat-message bot greet">Hi, Welcome To Pangun Tech!</p>
-        <p class="chat-message bot greet">I'm Pangu, your Support assistant.</p>
+      <main class="chat-area-ai" id="chat-box">
+        <p class="chat-message-ai bot greet">Hi, Welcome To Pangun Tech!</p>
+        <p class="chat-message-ai bot greet">I'm Pangu, your Support assistant.</p>
         <!-- Messages will be dynamically added here -->
       </main>
       
-        <form id="chat-form" class="chat-input-area">
+        <form id="chat-form" class="chat-input-area-ai">
               <input id="user-input" placeholder="Type your message here..." type="text"/>
             <input type="submit" id="send-btn" value="Send"/>
         </form>
@@ -103,7 +103,7 @@ button_input.forEach(button_inputs => {
 console.log(button_num);
 function addMessageToChat(role, text) {
   const messageElement = document.createElement("div");
-  messageElement.classList.add("chat-message", role);
+  messageElement.classList.add("chat-message-ai", role);
   messageElement.textContent = text;
   chatBox.appendChild(messageElement);
   chatBox.scrollTop = chatBox.scrollHeight;
@@ -129,7 +129,7 @@ console.log("User message:", usermessageResized);
 
   // Add placeholder bot message
   const botPlaceholder = document.createElement("div");
-  botPlaceholder.classList.add("chat-message", "bot");
+  botPlaceholder.classList.add("chat-message-ai", "bot");
   botPlaceholder.textContent = "Thinking...";
   chatBox.appendChild(botPlaceholder);
 
@@ -194,7 +194,7 @@ console.log("User message:", usermessageResized);
 	background-color: #1abc9c;
   }
   
-  .chat-container {
+  .chat-container-ai {
 	width: 85%;
 	display: flex;
 	flex-direction: column;
@@ -220,14 +220,14 @@ console.log("User message:", usermessageResized);
 	cursor: pointer;
   }
   
-  .chat-area {
+  .chat-area-ai {
 	flex: 1;
 	padding: 15px;
 	overflow-y: auto;
 	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/panguAi/images/pangu.webp?v=1') no-repeat center center;
   }
   
-  .chat-message {
+  .chat-message-ai {
 	
 	margin-bottom: 10px;
 	padding: 10px 15px;
@@ -235,14 +235,14 @@ console.log("User message:", usermessageResized);
 	font-size: 0.9rem;
   }
   
-  .chat-message.user {
+  .chat-message-ai .user {
 	background-color: #0078d4;
 	color: white;
 	line-height: 1.5;
 	align-self: flex-end;
   }
   
-  .chat-message.bot {
+  .chat-message-ai .bot {
 	background-color: #e0e0e0;
 	color: #333;
 	align-self: flex-start;
