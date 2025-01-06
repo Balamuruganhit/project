@@ -30,7 +30,7 @@ under the License.
                 <decorator-screen name="PunguAiCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                     <platform-specific>
-                                <html><html-template location="component://panguAi/template/chat.ftl"/></html>
+                                <html><html-template location="component://panguAi/templates/chat.ftl"/></html>
                             </platform-specific>
                     </decorator-section>
                 </decorator-screen>
