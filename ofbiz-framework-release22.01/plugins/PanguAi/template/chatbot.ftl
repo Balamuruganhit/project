@@ -17,10 +17,11 @@ specific language governing permissions and limitations
 under the License.
 
 -->
+<head>
 <meta http-equiv="Content-Security-Policy" content="connect-src 'self' https://api.groq.com;">
-
+</head>
 <body>
-  <div class="main-container-chat">
+  <div class="main-container-chat" id="tester">
     <aside class="sidebar">
       <h2 class="sidebar-title">Discover</h2>
       <nav class="sidebar-nav">
@@ -56,7 +57,7 @@ under the License.
   .main-container-chat {
 	display: flex;
 	width: 100%;
-	height: 100%;
+	height: 30rem;
 	background-color: #ffffff;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
 	border-radius: 8px;
@@ -124,7 +125,7 @@ under the License.
 	flex: 1;
 	padding: 15px;
 	overflow-y: auto;
-	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(/PunguAi/images/panguAiBg.jpg) no-repeat center center;
+	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(/rainbowstone/images/panguAiBg.jpg) no-repeat center center;
   }
   
   .chat-message-area {
