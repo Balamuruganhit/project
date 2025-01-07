@@ -38,7 +38,7 @@ under the License.
       </header>
       <main class="chat-area-bot" id="chat-box-area">
         <p class="chat-message-area bot-res greet">Hi, Welcome To Pangun Tech!</p>
-        <p class="chat-message-area bot-res greet">I'm Pangu, your Support assistant.</p>
+        <p class="chat-message-area bot-res greet">"Hello there! How can I assist you today?"</p>
         <!-- Messages will be dynamically added here -->
       </main>
       
@@ -63,6 +63,7 @@ under the License.
 	border-radius: 8px;
 	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(/rainbowstone/images/panguAiBg.jpg) no-repeat center center;
 	overflow: hidden;
+	background-size: cover;
   }
   
   .sidebar {

@@ -18,10 +18,10 @@ specific language governing permissions and limitations
 under the License.
 */
 console.log("Script loaded from chatbot");
-const chatBox = document.getElementById("chat-box-area");
-const userInput = document.getElementById("user-input-area");
-const sendBtn = document.getElementById("send-btn-user");
-const API_KEY = "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";
+const chatBoxAi = document.getElementById("chat-box-area");
+const userInputRes = document.getElementById("user-input-area");
+const sendBtnUser = document.getElementById("send-btn-user");
+const API_KEY_New = "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";
 const button_input=document.querySelectorAll('button');
 const chatform=document.getElementById("chat-form");
 var button_num=0;
@@ -33,7 +33,7 @@ async function fetchChatResponse(message) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
+        Authorization: `Bearer ${API_KEY_New}`,
       },
       body: JSON.stringify({
         messages: [{ role: "user", content: message }],
@@ -69,20 +69,20 @@ button_input.forEach(button_inputs => {
   });
 });
 console.log(button_num);
-function addMessageToChat(role, text) {
+function addMessageToChatRes(role, text) {
   const messageElement = document.createElement("div");
   messageElement.classList.add("chat-message-area", role);
   messageElement.textContent = text;
-  chatBox.appendChild(messageElement);
-  chatBox.scrollTop = chatBox.scrollHeight;
+  chatBoxAi.appendChild(messageElement);
+  chatBoxAi.scrollTop = chatBoxAi.scrollHeight;
 }
 
 chatform.addEventListener("submit", async (e) => { 
   e.preventDefault(); });
 
 
-sendBtn.addEventListener("click", async () => {
-  const userMessage = userInput.value.trim();
+sendBtnUser.addEventListener("click", async () => {
+  const userMessage = userInputRes.value.trim();
   const manufacturing =`Craft a detailed and professional response to a query in the manufacturing domain. Use concise language to address technical, operational, or logistical aspects, ensuring the answer is tailored to the context provided. Include relevant examples, technical terms, or processes common in manufacturing, and suggest actionable solutions or improvements if applicable. Be precise, and focus on adding value by referencing best practices, standards, or innovations in the field. Question : ${userMessage}. Answer:must give complete sentence max 500 characters `;
   const Production= `Craft a detailed and professional response to a query in the Production domain. Use concise language to address technical, operational, or logistical aspects, ensuring the answer is tailored to the context provided. Include relevant examples, technical terms, or processes common in manufacturing, and suggest actionable solutions or improvements if applicable. Be precise, and focus on adding value by referencing best practices, standards, or innovations in the field. Question : ${userMessage}. Answer:must give complete sentence max 500 characters `;
   const Invetory= `Craft a detailed and professional response to a query in the Inventory domain. Use concise language to address technical, operational, or logistical aspects, ensuring the answer is tailored to the context provided. Include relevant examples, technical terms, or processes common in manufacturing, and suggest actionable solutions or improvements if applicable. Be precise, and focus on adding value by referencing best practices, standards, or innovations in the field. Question : ${userMessage}. Answer:must give complete sentence max 500 characters `;
@@ -92,14 +92,14 @@ console.log("User message:", usermessageResized);
   if (!userMessage) return;
   
   // Add user message to chat
-  addMessageToChat("user-res", userMessage);
-  userInput.value = "";
+  addMessageToChatRes("user-res", userMessage);
+  userInputRes.value = "";
 
   // Add placeholder bot message
   const botPlaceholder = document.createElement("div");
   botPlaceholder.classList.add("chat-message-area", "bot-res");
   botPlaceholder.textContent = "Thinking...";
-  chatBox.appendChild(botPlaceholder);
+  chatBoxAi.appendChild(botPlaceholder);
 
   try {
     const botResponse = await fetchChatResponse(usermessageResized);
@@ -108,6 +108,6 @@ console.log("User message:", usermessageResized);
   } catch (error) {
     botPlaceholder.textContent = "Error fetching response!";
   } finally {
-    chatBox.scrollTop = chatBox.scrollHeight; // Ensure scroll stays at the bottom
+    chatBoxAi.scrollTop = chatBoxAi.scrollHeight; // Ensure scroll stays at the bottom
   }
 });
