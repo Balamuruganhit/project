@@ -18,7 +18,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<ofbiz-component name="punguAi"
+<ofbiz-component name="PanguAi"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-component.xsd">
     <!-- define resource loaders; most common is to use the component resource loader -->
@@ -29,10 +29,10 @@ under the License.
     <!-- entity resources: model(s), eca(s), group, and data definitions -->
     <entity-resource type="model" reader-name="main" loader="main" location="entitydef/entitymodel.xml"/>
     <!-- <entity-resource type="eca" reader-name="main" loader="main" location="entitydef/eecas.xml"/> -->
-    <entity-resource type="data" reader-name="seed" loader="main" location="data/PunguAiTypeData.xml"/>
-    <entity-resource type="data" reader-name="seed" loader="main" location="data/PunguAiSecurityPermissionSeedData.xml"/>
-    <entity-resource type="data" reader-name="demo" loader="main" location="data/PunguAiSecurityGroupDemoData.xml"/>
-    <entity-resource type="data" reader-name="demo" loader="main" location="data/PunguAiDemoData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/PanguAiTypeData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/PanguAiSecurityPermissionSeedData.xml"/>
+    <entity-resource type="data" reader-name="demo" loader="main" location="data/PanguAiSecurityGroupDemoData.xml"/>
+    <entity-resource type="data" reader-name="demo" loader="main" location="data/PanguAiDemoData.xml"/>
 
     <!-- service resources: model(s), eca(s) and group definitions -->
     <service-resource type="model" loader="main" location="servicedef/services.xml"/>
@@ -41,13 +41,13 @@ under the License.
     <service-resource type="group" loader="main" location="servicedef/groups.xml"/>
     -->
 
-    <test-suite loader="main" location="testdef/PunguAiTests.xml"/>
+    <test-suite loader="main" location="testdef/PanguAiTests.xml"/>
 
     <!-- web applications; will be mounted when using the embedded container -->
-    <webapp name="punguAi"
-        title="Pungu Ai"
+    <webapp name="PanguAi"
+        title="Pangu Ai"
         server="default-server"
-        location="webapp/punguAi"
-        base-permission="OFBTOOLS,PUNGUAI"
-        mount-point="/punguAi"/>
+        location="webapp/PanguAi"
+        base-permission="OFBTOOLS,PANGUAI"
+        mount-point="/PanguAi"/>
 </ofbiz-component>

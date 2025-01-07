@@ -27,11 +27,11 @@ under the License.
                 <set field="headerItem" value="main"/><!-- this highlights the selected menu-item with name "main" -->
             </actions>
             <widgets>
-                <decorator-screen name="PunguAiCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="PanguAiCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <platform-specific>
-                            <html><html-template location="component://punguAi/template/chatbot.ftl"/></html>
-                        </platform-specific>
+                            <platform-specific>
+                                <html><html-template location="component://PanguAi/template/chatbot.ftl"/></html>
+                            </platform-specific>
                     </decorator-section>
                 </decorator-screen>
             </widgets>

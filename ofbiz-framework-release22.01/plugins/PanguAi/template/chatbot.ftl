@@ -16,7 +16,8 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<div class="main-container" id="tester">
+<body>
+  <div class="main-container-chat">
     <aside class="sidebar">
       <h2 class="sidebar-title">Discover</h2>
       <nav class="sidebar-nav">
@@ -26,29 +27,39 @@ under the License.
         <button class="sidebar-button button"  data-id="4">Logistics</button>
       </nav>
     </aside>
-    <div class="chat-container-ai">
+    <div class="chat-container-bot">
       <header class="chat-header">
         Chat with Pangu
         
       </header>
-      <main class="chat-area-ai" id="chat-box">
-        <p class="chat-message-ai bot greet">Hi, Welcome To Pangun Tech!</p>
-        <p class="chat-message-ai bot greet">I'm Pangu, your Support assistant.</p>
+      <main class="chat-area-bot" id="chat-box-area">
+        <p class="chat-message-area bot-res greet">Hi, Welcome To Pangun Tech!</p>
+        <p class="chat-message-area bot-res greet">I'm Pangu, your Support assistant.</p>
         <!-- Messages will be dynamically added here -->
       </main>
       
-        <form id="chat-form" class="chat-input-area-ai">
-              <input id="user-input" placeholder="Type your message here..." type="text"/>
-            <input type="submit" id="send-btn" value="Send"/>
+        <form id="chat-form" class="chat-input-area-user">
+              <input id="user-input-area" placeholder="Type your message here..." type="text"/>
+            <input type="submit" id="send-btn-user" value="Send"/>
         </form>
         
       
     </div>
   </div>
- 
-
-  <style>
-	.main-container {
+  <script src="./script.js"></script>
+</body>
+<style>
+	body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+  }
+  
+  .main-container-chat {
 	display: flex;
 	width: 100%;
 	height: 100%;
@@ -96,7 +107,7 @@ under the License.
 	background-color: #1abc9c;
   }
   
-  .chat-container-ai {
+  .chat-container-bot{
 	width: 85%;
 	display: flex;
 	flex-direction: column;
@@ -114,22 +125,16 @@ under the License.
 	font-size: 1.2rem;
   }
   
-  .close-button {
-	background-color: transparent;
-	color: white;
-	border: none;
-	font-size: 1.5rem;
-	cursor: pointer;
-  }
+ 
   
-  .chat-area-ai {
+  .chat-area-bot{
 	flex: 1;
 	padding: 15px;
 	overflow-y: auto;
-	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/panguAi/images/pangu.webp?v=1') no-repeat center center;
+	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('./panguAiBg.jpg') no-repeat center center;
   }
   
-  .chat-message-ai {
+  .chat-message-area {
 	
 	margin-bottom: 10px;
 	padding: 10px 15px;
@@ -137,21 +142,21 @@ under the License.
 	font-size: 0.9rem;
   }
   
-  .chat-message-ai .user {
+  .chat-message-area.user-res {
 	background-color: #0078d4;
 	color: white;
 	line-height: 1.5;
 	align-self: flex-end;
   }
   
-  .chat-message-ai .bot {
+  .chat-message-area.bot-res {
 	background-color: #e0e0e0;
 	color: #333;
 	align-self: flex-start;
 	line-height: 1.5;
   }
   
-  .chat-input-area-ai {
+  .chat-input-area-user {
 	display: flex;
 	align-items: center;
 	gap: 10px;
@@ -160,7 +165,7 @@ under the License.
 	border-top: 1px solid #e0e0e0;
   }
   
-  .chat-input-area-ai input[type='text'] {
+  .chat-input-area-user input[type='text'] {
 	flex: 1;
 	resize: none;
 	padding: 10px;
@@ -172,7 +177,7 @@ under the License.
 	outline: none;
   }
   
-  .chat-input-area-ai input[type='submit'] {
+  .chat-input-area-user input[type='submit'] {
 	background-color: #0078d4;
 	color: white;
 	border: none;
@@ -183,7 +188,7 @@ under the License.
 	transition: background-color 0.3s ease;
   }
   
-  .chat-input-area-ai button:hover {
+  .chat-input-area-user button:hover {
 	background-color: #005bb5;
   }
   
@@ -191,4 +196,4 @@ under the License.
   .color{
 	background-color: #1abc9c
   }
-  </style>
+</style>

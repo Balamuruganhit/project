@@ -17,14 +17,10 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 */
-
-console.log("Script loaded");
-const chatBox = document.getElementById("chat-box");
-const userInput = document.getElementById("user-input");
-const sendBtn = document.getElementById("send-btn");
-const closeBtn=document.getElementById("close-btn");
-const chatholder=document.getElementById("chat-holder");
-const botImg = document.getElementById("bot-img");
+console.log("Script loaded from chatbot");
+const chatBox = document.getElementById("chat-box-area");
+const userInput = document.getElementById("user-input-area");
+const sendBtn = document.getElementById("send-btn-user");
 const API_KEY = "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";
 const button_input=document.querySelectorAll('button');
 const chatform=document.getElementById("chat-form");
@@ -75,7 +71,7 @@ button_input.forEach(button_inputs => {
 console.log(button_num);
 function addMessageToChat(role, text) {
   const messageElement = document.createElement("div");
-  messageElement.classList.add("chat-message-ai", role);
+  messageElement.classList.add("chat-message-area", role);
   messageElement.textContent = text;
   chatBox.appendChild(messageElement);
   chatBox.scrollTop = chatBox.scrollHeight;
@@ -96,12 +92,12 @@ console.log("User message:", usermessageResized);
   if (!userMessage) return;
   
   // Add user message to chat
-  addMessageToChat("user", userMessage);
+  addMessageToChat("user-res", userMessage);
   userInput.value = "";
 
   // Add placeholder bot message
   const botPlaceholder = document.createElement("div");
-  botPlaceholder.classList.add("chat-message-ai", "bot");
+  botPlaceholder.classList.add("chat-message-area", "bot-res");
   botPlaceholder.textContent = "Thinking...";
   chatBox.appendChild(botPlaceholder);
 

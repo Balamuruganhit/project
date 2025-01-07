@@ -19,12 +19,11 @@ under the License.
 -->
 
 <entity-engine-xml>
-    <SecurityPermission description="View operations in the PunguAi Component." permissionId="PUNGUAI_VIEW"/>
-    <SecurityPermission description="Create operations in the PunguAi Component." permissionId="PUNGUAI_CREATE"/>
-    <SecurityPermission description="Update operations in the PunguAi Component." permissionId="PUNGUAI_UPDATE"/>
-    <SecurityPermission description="Delete operations in the PunguAi Component." permissionId="PUNGUAI_DELETE"/>
-    <SecurityPermission description="ALL operations in the PunguAi Component." permissionId="PUNGUAI_ADMIN"/>
-
-    <SecurityGroupPermission fromDate="2001-05-13 12:00:00.0" groupId="SUPER" permissionId="PUNGUAI_ADMIN"/>
-
+    <SecurityGroupPermission fromDate="2001-05-13 12:00:00.0" groupId="FULLADMIN" permissionId="PANGUAI_ADMIN"/>
+    <SecurityGroupPermission fromDate="2001-05-13 12:00:00.0" groupId="FLEXADMIN" permissionId="PANGUAI_CREATE"/>
+    <SecurityGroupPermission fromDate="2001-05-13 12:00:00.0" groupId="FLEXADMIN" permissionId="PANGUAI_DELETE"/>
+    <SecurityGroupPermission fromDate="2001-05-13 12:00:00.0" groupId="FLEXADMIN" permissionId="PANGUAI_UPDATE"/>
+    <SecurityGroupPermission fromDate="2001-05-13 12:00:00.0" groupId="FLEXADMIN" permissionId="PANGUAI_VIEW"/>
+    <SecurityGroupPermission fromDate="2001-05-13 12:00:00.0" groupId="VIEWADMIN" permissionId="PANGUAI_VIEW"/>
+    <SecurityGroupPermission fromDate="2001-05-13 12:00:00.0" groupId="BIZADMIN" permissionId="PANGUAI_ADMIN"/>
 </entity-engine-xml>
