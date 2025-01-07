@@ -169,7 +169,7 @@ under the License.
 	width: 100%;
 	border: 1px solid #ddd;
 	border-radius: 4px;
-	height: 20px;
+	height: 40px;
 	outline: none;
   }
   
