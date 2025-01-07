@@ -43,7 +43,7 @@ under the License.
       </main>
       
         <form id="chat-form" class="chat-input-area-user">
-              <input id="user-input-area" placeholder="Type your message here..." type="text"/>
+              <input id="user-input-area" placeholder="Type your message here..."  type="text"/>
             <input type="submit" id="send-btn-user" value="Send"/>
         </form>
         
@@ -61,6 +61,7 @@ under the License.
 	background-color: #ffffff;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
 	border-radius: 8px;
+	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(/rainbowstone/images/panguAiBg.jpg) no-repeat center center;
 	overflow: hidden;
   }
   
@@ -125,7 +126,7 @@ under the License.
 	flex: 1;
 	padding: 15px;
 	overflow-y: auto;
-	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(/rainbowstone/images/panguAiBg.jpg) no-repeat center center;
+	
   }
   
   .chat-message-area {
@@ -159,7 +160,7 @@ under the License.
 	border-top: 1px solid #e0e0e0;
   }
   
-  .chat-input-area-user input[type='text'] {
+  #user-input-area{
 	flex: 1;
 	resize: none;
 	padding: 10px;
