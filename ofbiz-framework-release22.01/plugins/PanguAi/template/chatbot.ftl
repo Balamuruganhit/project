@@ -61,7 +61,7 @@ under the License.
 	background-color: #ffffff;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
 	border-radius: 8px;
-	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(/rainbowstone/images/panguAiBg.jpg) no-repeat center center;
+	
 	overflow: hidden;
 	background-size: cover;
   }
@@ -108,7 +108,8 @@ under the License.
 	width: 85%;
 	display: flex;
 	flex-direction: column;
-	background-size: cover;
+	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(/rainbowstone/images/panguAiBg.jpg) no-repeat center center;
+	background-size:cover;
   }
   
   .chat-header {
