@@ -25,7 +25,7 @@ const API_KEY = "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";
 const button_input=document.querySelectorAll('button');
 const chatform=document.getElementById("chat-form");
 var button_num=0;
-async function fetchChatGPTResponse(message) {
+async function fetchChatResponse(message) {
   const apiUrl = "https://api.groq.com/openai/v1/chat/completions";
 
   try {
@@ -102,7 +102,7 @@ console.log("User message:", usermessageResized);
   chatBox.appendChild(botPlaceholder);
 
   try {
-    const botResponse = await fetchChatGPTResponse(usermessageResized);
+    const botResponse = await fetchChatResponse(usermessageResized);
     console.log("Bot response:", botResponse);
 	  botPlaceholder.textContent = botResponse; // Update bot's message
   } catch (error) {

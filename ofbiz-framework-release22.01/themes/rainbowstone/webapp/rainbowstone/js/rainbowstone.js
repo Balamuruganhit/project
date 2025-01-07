@@ -148,7 +148,7 @@ const API_KEY_New = "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";
 const button_input=document.querySelectorAll('button');
 const chatform=document.getElementById("chat-form");
 var button_num=0;
-async function fetchChatGPTResponse(message) {
+async function fetchChatResponse(message) {
   const apiUrl = "https://api.groq.com/openai/v1/chat/completions";
 
   try {
@@ -192,7 +192,7 @@ button_input.forEach(button_inputs => {
   });
 });
 console.log(button_num);
-function addMessageToChat(role, text) {
+function addMessageToChatRes(role, text) {
   const messageElement = document.createElement("div");
   messageElement.classList.add("chat-message-area", role);
   messageElement.textContent = text;
@@ -215,7 +215,7 @@ console.log("User message:", usermessageResized);
   if (!userMessage) return;
   
   // Add user message to chat
-  addMessageToChat("user-res", userMessage);
+  addMessageToChatRes("user-res", userMessage);
   userInputRes.value = "";
 
   // Add placeholder bot message
@@ -225,7 +225,7 @@ console.log("User message:", usermessageResized);
   chatBoxAi.appendChild(botPlaceholder);
 
   try {
-    const botResponse = await fetchChatGPTResponse(usermessageResized);
+    const botResponse = await fetchChatResponse(usermessageResized);
     console.log("Bot response:", botResponse);
 	  botPlaceholder.textContent = botResponse; // Update bot's message
   } catch (error) {

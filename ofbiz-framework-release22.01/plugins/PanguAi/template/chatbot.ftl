@@ -110,7 +110,6 @@ under the License.
 	width: 85%;
 	display: flex;
 	flex-direction: column;
-	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/PunguAi/images/panguAiBg.jpg') no-repeat center center;
 	background-size: cover;
   }
   
@@ -130,7 +129,7 @@ under the License.
 	flex: 1;
 	padding: 15px;
 	overflow-y: auto;
-	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('./panguAiBg.jpg') no-repeat center center;
+	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(/PunguAi/images/panguAiBg.jpg) no-repeat center center;
   }
   
   .chat-message-area {
