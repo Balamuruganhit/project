@@ -76,10 +76,11 @@ function addMessageToChatRes(role, text) {
   chatBoxAi.appendChild(messageElement);
   chatBoxAi.scrollTop = chatBoxAi.scrollHeight;
 }
-
+if (chatform) {
 chatform.addEventListener("submit", async (e) => { 
-  e.preventDefault(); });
-
+  e.preventDefault(); 
+  console.log("Form submitted!");});
+}
 
 sendBtnUser.addEventListener("click", async () => {
   const userMessage = userInputRes.value.trim();
