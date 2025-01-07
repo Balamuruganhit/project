@@ -15,7 +15,10 @@ software distributed under the License is distributed on an
 KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
+
 -->
+<meta http-equiv="Content-Security-Policy" content="connect-src 'self' https://api.groq.com;">
+
 <body>
   <div class="main-container-chat">
     <aside class="sidebar">
@@ -48,15 +51,7 @@ under the License.
   </div>
 </body>
 <style>
-	body {
-	font-family: Arial, sans-serif;
-	background-color: #f4f4f4;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	margin: 0;
-  }
+	
   
   .main-container-chat {
 	display: flex;
