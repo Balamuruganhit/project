@@ -25,10 +25,10 @@ under the License.
     <aside class="sidebar">
       <h2 class="sidebar-title">Discover</h2>
       <nav class="sidebar-nav">
-        <button class="sidebar-button button" data-id="1">Manufacturing</button>
-        <button class="sidebar-button button" data-id="2">Production</button>
-        <button class="sidebar-button button"  data-id="3">Inventory</button>
-        <button class="sidebar-button button"  data-id="4">Logistics</button>
+        <button class="sidebar-button button" data-id="1">Manufacturing Intelligence</button>
+        <button class="sidebar-button button" data-id="2">Supply Chain Intelligence</button>
+        <button class="sidebar-button button"  data-id="3">RAM Intelligence</button>
+        <button class="sidebar-button button"  data-id="4">8D Error Analysis</button>
       </nav>
     </aside>
     <div class="chat-container-bot">
