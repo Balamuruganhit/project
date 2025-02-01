@@ -31,7 +31,7 @@ under the License.
   </#if>
 </#if>
 <!-- Sales Order Entry -->
-<div style="display:flex;algin-items:center;flex-direction:column"> 
+<div style="display:flex;justify-content: space-around;position:relative;top:4rem"> 
   <#if security.hasEntityPermission("ORDERMGR", "_CREATE", session)>
     <#if shoppingCartOrderType != "PURCHASE_ORDER">
       <div class="screenlet">
