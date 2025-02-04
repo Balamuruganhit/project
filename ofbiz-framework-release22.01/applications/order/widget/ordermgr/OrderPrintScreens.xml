@@ -112,7 +112,13 @@ under the License.
                 <script location="component://order/groovyScripts/order/CompanyHeader.groovy"/>
             </actions>
             <widgets>
-                <platform-specific><xsl-fo><html-template location="component://order/template/order/CompanyHeader.fo.ftl"/></xsl-fo></platform-specific>
+                <platform-specific>
+                    <xsl-fo>
+                        <fo:block space-before="5pt" space-after="10pt">
+                            <html-template location="component://order/template/order/CompanyHeader.fo.ftl"/>
+                        </fo:block>    
+                    </xsl-fo>
+                </platform-specific>
             </widgets>
         </section>
     </screen>
