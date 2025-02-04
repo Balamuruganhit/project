@@ -56,7 +56,7 @@ under the License.
                         </#if>
                     </#if>
                 </fo:table-cell>
-                <fo:block space-after="0.2in"/>
+               
                 <fo:table-cell>
                     <#list orderContactMechValueMaps as orderContactMechValueMap>
                         <#assign contactMech = orderContactMechValueMap.contactMech>

@@ -53,4 +53,5 @@ under the License.
                     </#if>
                     </fo:table-body>
                   </fo:table>
+                   <fo:block space-after="0.2in"/>
 </#escape>

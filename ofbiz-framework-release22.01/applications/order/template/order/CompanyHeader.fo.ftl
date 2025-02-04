@@ -78,4 +78,5 @@ under the License.
             </#if>
         </fo:block>
     </fo:block>
+     <fo:block space-after="0.2in"/>
 </#escape>
