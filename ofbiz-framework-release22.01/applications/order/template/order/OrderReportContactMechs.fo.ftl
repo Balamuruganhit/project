@@ -128,6 +128,4 @@ under the License.
         </fo:block>
     </#list>
 </#if>
-
-<fo:block space-after="0.2in"/>
 </#escape>
