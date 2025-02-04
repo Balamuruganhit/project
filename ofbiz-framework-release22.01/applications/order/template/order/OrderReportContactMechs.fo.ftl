@@ -18,66 +18,75 @@ under the License.
 -->
 <#escape x as x?xml>
 <fo:block border="1pt solid black">
-    <fo:block-container inline-progression-dimension="100%" display-align="center" text-align="center">
-        <#if "PURCHASE_ORDER" == orderHeader.getString("orderTypeId")>
-            <#if supplierGeneralContactMechValueMap??>
-                <#assign contactMech = supplierGeneralContactMechValueMap.contactMech>
-                <fo:block font-weight="bold">${uiLabelMap.OrderPurchasedFrom}:</fo:block>
-                <#assign postalAddress = supplierGeneralContactMechValueMap.postalAddress>
-                <#if postalAddress?has_content>
-                    <fo:block-container inline-progression-dimension="50%" text-align="left">
-                        <fo:block>
-                            <#if postalAddress.toName?has_content><fo:block>${postalAddress.toName}</fo:block></#if>
-                            <#if postalAddress.attnName?has_content><fo:block>${postalAddress.attnName!}</fo:block></#if>
-                            <fo:block>${postalAddress.address1!}</fo:block>
-                            <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2!}</fo:block></#if>
+    <fo:table table-layout="fixed" width="100%">
+        <fo:table-column column-width="50%"/>
+        <fo:table-column column-width="50%"/>
+        <fo:table-body>
+            <fo:table-row>
+                <fo:table-cell>
+                    <#if "PURCHASE_ORDER" == orderHeader.getString("orderTypeId")>
+                        <#if supplierGeneralContactMechValueMap??>
+                            <#assign contactMech = supplierGeneralContactMechValueMap.contactMech>
+                            <fo:block font-weight="bold">${uiLabelMap.OrderPurchasedFrom}:</fo:block>
+                            <#assign postalAddress = supplierGeneralContactMechValueMap.postalAddress>
+                            <#if postalAddress?has_content>
+                                <fo:block-container inline-progression-dimension="100%" text-align="left">
+                                    <fo:block>
+                                        <#if postalAddress.toName?has_content><fo:block>${postalAddress.toName}</fo:block></#if>
+                                        <#if postalAddress.attnName?has_content><fo:block>${postalAddress.attnName!}</fo:block></#if>
+                                        <fo:block>${postalAddress.address1!}</fo:block>
+                                        <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2!}</fo:block></#if>
+                                        <fo:block>
+                                            <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId!}, false))! />
+                                            ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName!}</#if> ${postalAddress.postalCode!}
+                                        </fo:block>
+                                        <fo:block>
+                                            <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId!}, false))! />
+                                            <#if countryGeo?has_content>${countryGeo.geoName!}</#if>
+                                        </fo:block>
+                                    </fo:block>
+                                </fo:block-container>
+                            </#if>
+                        <#else>
+                            <#assign vendorParty = orderReadHelper.getBillFromParty()>
                             <fo:block>
-                                <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId!}, false))! />
-                                ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName!}</#if> ${postalAddress.postalCode!}
-                            </fo:block>
-                            <fo:block>
-                                <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId!}, false))! />
-                                <#if countryGeo?has_content>${countryGeo.geoName!}</#if>
-                            </fo:block>
-                        </fo:block>
-                    </fo:block-container>
-                </#if>
-            <#else>
-                <#assign vendorParty = orderReadHelper.getBillFromParty()>
-                <fo:block>
-                    <fo:inline font-weight="bold">${uiLabelMap.OrderPurchasedFrom}:</fo:inline> 
-                    ${Static['org.apache.ofbiz.party.party.PartyHelper'].getPartyName(vendorParty)}
-                </fo:block>
-            </#if>
-        </#if>
-
-        <#list orderContactMechValueMaps as orderContactMechValueMap>
-            <#assign contactMech = orderContactMechValueMap.contactMech>
-            <#assign contactMechPurpose = orderContactMechValueMap.contactMechPurposeType>
-            <#if "POSTAL_ADDRESS" == contactMech.contactMechTypeId>
-                <#assign postalAddress = orderContactMechValueMap.postalAddress>
-                <fo:block-container inline-progression-dimension="50%" text-align="right">
-                    <fo:block font-weight="bold">${contactMechPurpose.get("description",locale)}:</fo:block>
-                    <fo:block>
-                        <#if postalAddress?has_content>
-                            <#if postalAddress.toName?has_content><fo:block>${postalAddress.toName!}</fo:block></#if>
-                            <#if postalAddress.attnName?has_content><fo:block>${postalAddress.attnName!}</fo:block></#if>
-                            <fo:block>${postalAddress.address1!}</fo:block>
-                            <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2!}</fo:block></#if>
-                            <fo:block>
-                                <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId!}, false))! />
-                                ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName!}</#if> ${postalAddress.postalCode!}
-                            </fo:block>
-                            <fo:block>
-                                <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId!}, false))! />
-                                <#if countryGeo?has_content>${countryGeo.geoName!}</#if>
+                                <fo:inline font-weight="bold">${uiLabelMap.OrderPurchasedFrom}:</fo:inline> 
+                                ${Static['org.apache.ofbiz.party.party.PartyHelper'].getPartyName(vendorParty)}
                             </fo:block>
                         </#if>
-                    </fo:block>
-                </fo:block-container>
-            </#if>
-        </#list>
-    </fo:block-container>
+                    </#if>
+                </fo:table-cell>
+                <fo:table-cell>
+                    <#list orderContactMechValueMaps as orderContactMechValueMap>
+                        <#assign contactMech = orderContactMechValueMap.contactMech>
+                        <#assign contactMechPurpose = orderContactMechValueMap.contactMechPurposeType>
+                        <#if "POSTAL_ADDRESS" == contactMech.contactMechTypeId>
+                            <#assign postalAddress = orderContactMechValueMap.postalAddress>
+                            <fo:block-container inline-progression-dimension="100%" text-align="right">
+                                <fo:block font-weight="bold">${contactMechPurpose.get("description",locale)}:</fo:block>
+                                <fo:block>
+                                    <#if postalAddress?has_content>
+                                        <#if postalAddress.toName?has_content><fo:block>${postalAddress.toName!}</fo:block></#if>
+                                        <#if postalAddress.attnName?has_content><fo:block>${postalAddress.attnName!}</fo:block></#if>
+                                        <fo:block>${postalAddress.address1!}</fo:block>
+                                        <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2!}</fo:block></#if>
+                                        <fo:block>
+                                            <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId!}, false))! />
+                                            ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName!}</#if> ${postalAddress.postalCode!}
+                                        </fo:block>
+                                        <fo:block>
+                                            <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId!}, false))! />
+                                            <#if countryGeo?has_content>${countryGeo.geoName!}</#if>
+                                        </fo:block>
+                                    </#if>
+                                </fo:block>
+                            </fo:block-container>
+                        </#if>
+                    </#list>
+                </fo:table-cell>
+            </fo:table-row>
+        </fo:table-body>
+    </fo:table>
 </fo:block> 
 <fo:block space-after="0.2in"/>
 
