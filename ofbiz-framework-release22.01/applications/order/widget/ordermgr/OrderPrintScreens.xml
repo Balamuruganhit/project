@@ -56,7 +56,7 @@ under the License.
                     <widgets>
                         <decorator-screen name="FoReportDecorator" location="component://common/widget/CommonScreens.xml">
                             <!-- at the top left of every page we put the logo and company information -->
-                            <decorator-section name="topLeft">
+                            <decorator-section name="top">
                                 <section>
                                     <widgets>
                                         <include-screen name="CompanyLogo" location="component://order/widget/ordermgr/OrderPrintScreens.xml" />
