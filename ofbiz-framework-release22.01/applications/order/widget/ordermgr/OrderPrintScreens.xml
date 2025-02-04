@@ -56,7 +56,7 @@ under the License.
                     <widgets>
                         <decorator-screen name="FoReportDecorator" location="component://common/widget/CommonScreens.xml">
                             <!-- at the top left of every page we put the logo and company information -->
-                            <decorator-section name="top">
+                            <decorator-section name="topLeft">
                                 <section>
                                     <widgets>
                                         <include-screen name="CompanyLogo" location="component://order/widget/ordermgr/OrderPrintScreens.xml" />
@@ -64,7 +64,17 @@ under the License.
                                 </section>
                             </decorator-section>
                             <!-- at the top right of every page we put the order information -->
-                            
+                            <decorator-section name="topRight">
+                                <section>
+                                    <widgets>
+                                        <platform-specific>
+                                            <xsl-fo>
+                                                <html-template location="component://order/template/order/OrderReportHeaderInfo.fo.ftl" />
+                                            </xsl-fo>
+                                        </platform-specific>
+                                    </widgets>
+                                </section>
+                            </decorator-section>
                             <decorator-section name="body">
                                 <section>
                                     <widgets>                                   

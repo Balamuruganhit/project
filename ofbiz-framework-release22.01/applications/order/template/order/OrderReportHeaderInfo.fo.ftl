@@ -17,40 +17,59 @@ specific language governing permissions and limitations
 under the License.
 -->
 <#escape x as x?xml>
-                  <fo:table table-layout="fixed">
-                    <fo:table-column column-width="2.0in"/>
-                    <fo:table-column column-width="2.0in"/>
-                    <fo:table-body>
-                    <fo:table-row>
-                      <fo:table-cell>
-                         <fo:block number-columns-spanned="2" font-weight="bold">${orderHeader.getRelatedOne("OrderType", false).get("description",locale)}</fo:block>
-                      </fo:table-cell>
-                    </fo:table-row>
+                 <fo:table border="1pt solid black" padding="5pt" table-layout="fixed">
+                 <fo:table-column column-width="50%"/>
+    <fo:table-column column-width="50%"/>
+        <fo:table-body>
+            <fo:table-row>
+                <fo:table-cell number-columns-spanned="2" border="1pt solid black" padding="3pt">
+                    <fo:block font-weight="bold">${orderHeader.getRelatedOne("OrderType", false).get("description",locale)}</fo:block>
+                </fo:table-cell>
+            </fo:table-row>
 
-                    <fo:table-row>
-                      <fo:table-cell><fo:block>${uiLabelMap.OrderDateOrdered}</fo:block></fo:table-cell>
-                      <#assign dateFormat = Static["java.text.DateFormat"].LONG>
-                    <#assign orderDate = Static["java.text.DateFormat"].getDateInstance(dateFormat,locale).format(orderHeader.get("orderDate"))>
-                      <fo:table-cell><fo:block>${orderDate}</fo:block></fo:table-cell>
-                    </fo:table-row>
+            <fo:table-row>
+                <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:block font-weight="bold">${uiLabelMap.OrderDateOrdered}</fo:block>
+                </fo:table-cell>
+                <#assign dateFormat = Static["java.text.DateFormat"].LONG>
+                <#assign orderDate = Static["java.text.DateFormat"].getDateInstance(dateFormat,locale).format(orderHeader.get("orderDate"))>
+                <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:block>${orderDate}</fo:block>
+                </fo:table-cell>
+            </fo:table-row>
 
-                    <fo:table-row>
-                      <fo:table-cell><fo:block>${uiLabelMap.OrderOrder} ${uiLabelMap.CommonNbr}</fo:block></fo:table-cell>
-                      <fo:table-cell><fo:block>${orderId}</fo:block></fo:table-cell>
-                    </fo:table-row>
+            <fo:table-row>
+                <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:block font-weight="bold">${uiLabelMap.OrderOrder} ${uiLabelMap.CommonNbr}</fo:block>
+                </fo:table-cell>
+                <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:block>${orderId}</fo:block>
+                </fo:table-cell>
+            </fo:table-row>
 
-                    <fo:table-row>
-                      <fo:table-cell><fo:block>${uiLabelMap.OrderCurrentStatus}</fo:block></fo:table-cell>
-                      <fo:table-cell><fo:block font-weight="bold">${currentStatus.get("description",locale)}</fo:block></fo:table-cell>
-                    </fo:table-row>
-                    <#if orderItem.cancelBackOrderDate??>
-                      <fo:table-row>
-                        <fo:table-cell><fo:block>${uiLabelMap.FormFieldTitle_cancelBackOrderDate}</fo:block></fo:table-cell>
-                        <#assign dateFormat = Static["java.text.DateFormat"].LONG>
-                        <#assign cancelBackOrderDate = Static["java.text.DateFormat"].getDateInstance(dateFormat,locale).format(orderItem.get("cancelBackOrderDate"))>
-                        <fo:table-cell><#if cancelBackOrderDate?has_content><fo:block>${cancelBackOrderDate}</fo:block></#if></fo:table-cell>
-                      </fo:table-row>
-                    </#if>
-                    </fo:table-body>
-                  </fo:table>
+            <fo:table-row>
+                <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:block font-weight="bold">${uiLabelMap.OrderCurrentStatus}</fo:block>
+                </fo:table-cell>
+                <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:block font-weight="bold">${currentStatus.get("description",locale)}</fo:block>
+                </fo:table-cell>
+            </fo:table-row>
+
+            <#if orderItem.cancelBackOrderDate??>
+                <fo:table-row>
+                    <fo:table-cell border="1pt solid black" padding="3pt">
+                        <fo:block font-weight="bold">${uiLabelMap.FormFieldTitle_cancelBackOrderDate}</fo:block>
+                    </fo:table-cell>
+                    <#assign dateFormat = Static["java.text.DateFormat"].LONG>
+                    <#assign cancelBackOrderDate = Static["java.text.DateFormat"].getDateInstance(dateFormat,locale).format(orderItem.get("cancelBackOrderDate"))>
+                    <fo:table-cell border="1pt solid black" padding="3pt">
+                        <#if cancelBackOrderDate?has_content>
+                            <fo:block>${cancelBackOrderDate}</fo:block>
+                        </#if>
+                    </fo:table-cell>
+                </fo:table-row>
+            </#if>
+        </fo:table-body>
+    </fo:table>
 </#escape>

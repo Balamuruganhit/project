@@ -18,101 +18,134 @@ under the License.
 -->
 <#escape x as x?xml>
 
-<#if "PURCHASE_ORDER" == orderHeader.getString("orderTypeId")>
-    <#if supplierGeneralContactMechValueMap??>
-        <#assign contactMech = supplierGeneralContactMechValueMap.contactMech>
-        <fo:block font-weight="bold">${uiLabelMap.OrderPurchasedFrom}:</fo:block>
-        <#assign postalAddress = supplierGeneralContactMechValueMap.postalAddress>
-        <#if postalAddress?has_content>
-            <fo:block text-indent="0.2in">
-                <#if postalAddress.toName?has_content><fo:block>${postalAddress.toName}</fo:block></#if>
-                <#if postalAddress.attnName?has_content><fo:block>${postalAddress.attnName!}</fo:block></#if>
-                <fo:block>${postalAddress.address1!}</fo:block>
-                <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2!}</fo:block></#if>
-                <fo:block>
-                    <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId!}, false))! />
-                    ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName!}</#if> ${postalAddress.postalCode!}
-                </fo:block>
-                <fo:block>
-                    <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId!}, false))! />
-                    <#if countryGeo?has_content>${countryGeo.geoName!}</#if>
-                </fo:block>
-            </fo:block>                
+<fo:table border="1pt solid black" table-layout="fixed" width="100%">
+    <fo:table-body>
+
+        <!-- Header Row -->
+        <fo:table-row>
+            <fo:table-cell border="1pt solid black" padding="5pt" number-columns-spanned="2">
+                <fo:block font-weight="bold">${orderHeader.getRelatedOne("OrderType", false).get("description", locale)}</fo:block>
+            </fo:table-cell>
+        </fo:table-row>
+
+        <!-- Order Date & Order Number (Side by Side) -->
+        <fo:table-row>
+            <fo:table-cell border="1pt solid black" padding="5pt">
+                <fo:block font-weight="bold">${uiLabelMap.OrderDateOrdered}</fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="1pt solid black" padding="5pt">
+                <#assign dateFormat = Static["java.text.DateFormat"].LONG>
+                <#assign orderDate = Static["java.text.DateFormat"].getDateInstance(dateFormat,locale).format(orderHeader.get("orderDate"))>
+                <fo:block>${orderDate}</fo:block>
+            </fo:table-cell>
+        </fo:table-row>
+
+        <!-- Order Number Row -->
+        <fo:table-row>
+            <fo:table-cell border="1pt solid black" padding="5pt">
+                <fo:block font-weight="bold">${uiLabelMap.OrderOrder} ${uiLabelMap.CommonNbr}</fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="1pt solid black" padding="5pt">
+                <fo:block>${orderId}</fo:block>
+            </fo:table-cell>
+        </fo:table-row>
+
+        <!-- Order Status Row -->
+        <fo:table-row>
+            <fo:table-cell border="1pt solid black" padding="5pt">
+                <fo:block font-weight="bold">${uiLabelMap.OrderCurrentStatus}</fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="1pt solid black" padding="5pt">
+                <fo:block font-weight="bold">${currentStatus.get("description",locale)}</fo:block>
+            </fo:table-cell>
+        </fo:table-row>
+
+        <!-- Cancel Back Order Date (Conditional) -->
+        <#if orderItem.cancelBackOrderDate??>
+            <fo:table-row>
+                <fo:table-cell border="1pt solid black" padding="5pt">
+                    <fo:block font-weight="bold">${uiLabelMap.FormFieldTitle_cancelBackOrderDate}</fo:block>
+                </fo:table-cell>
+                <fo:table-cell border="1pt solid black" padding="5pt">
+                    <#assign dateFormat = Static["java.text.DateFormat"].LONG>
+                    <#assign cancelBackOrderDate = Static["java.text.DateFormat"].getDateInstance(dateFormat,locale).format(orderItem.get("cancelBackOrderDate"))>
+                    <#if cancelBackOrderDate?has_content>
+                        <fo:block>${cancelBackOrderDate}</fo:block>
+                    </#if>
+                </fo:table-cell>
+            </fo:table-row>
         </#if>
-    <#else>
-        <#-- here we just display the name of the vendor, since there is no address -->
-        <#assign vendorParty = orderReadHelper.getBillFromParty()>
-        <fo:block>
-            <fo:inline font-weight="bold">${uiLabelMap.OrderPurchasedFrom}:</fo:inline> ${Static['org.apache.ofbiz.party.party.PartyHelper'].getPartyName(vendorParty)}
-        </fo:block>
-    </#if>
-</#if>
 
-<#-- list all postal addresses of the order.  there should be just a billing and a shipping here. -->
-<#list orderContactMechValueMaps as orderContactMechValueMap>
-    <#assign contactMech = orderContactMechValueMap.contactMech>
-    <#assign contactMechPurpose = orderContactMechValueMap.contactMechPurposeType>
-    <#if "POSTAL_ADDRESS" == contactMech.contactMechTypeId>
-        <#assign postalAddress = orderContactMechValueMap.postalAddress>
-        <fo:block font-weight="bold">${contactMechPurpose.get("description",locale)}:</fo:block>
-        <fo:block text-indent="0.2in">
-            <#if postalAddress?has_content>
-                <#if postalAddress.toName?has_content><fo:block>${postalAddress.toName!}</fo:block></#if>
-                <#if postalAddress.attnName?has_content><fo:block>${postalAddress.attnName!}</fo:block></#if>
-                <fo:block>${postalAddress.address1!}</fo:block>
-                <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2!}</fo:block></#if>
+        <!-- Vendor Information -->
+        <fo:table-row>
+            <fo:table-cell border="1pt solid black" padding="5pt" number-columns-spanned="2">
+                <fo:block font-weight="bold">${uiLabelMap.OrderPurchasedFrom}:</fo:block>
                 <fo:block>
+                    <#if postalAddress.toName?has_content>${postalAddress.toName}</#if>
+                    <#if postalAddress.attnName?has_content>, ${postalAddress.attnName!}</#if>
+                    , ${postalAddress.address1!}
+                    <#if postalAddress.address2?has_content>, ${postalAddress.address2!}</#if>
+                    , ${postalAddress.city}
                     <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId!}, false))! />
-                    ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName!}</#if> ${postalAddress.postalCode!}
-                </fo:block>
-                <fo:block>
+                    <#if stateGeo?has_content>, ${stateGeo.geoName!}</#if>
+                    ${postalAddress.postalCode!}
                     <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId!}, false))! />
-                    <#if countryGeo?has_content>${countryGeo.geoName!}</#if>
+                    <#if countryGeo?has_content>, ${countryGeo.geoName!}</#if>
                 </fo:block>
-            </#if>
-        </fo:block>
-    </#if>
-</#list>
+            </fo:table-cell>
+        </fo:table-row>
 
-<fo:block space-after="0.2in"/>
+        <!-- Billing & Shipping Address (Side by Side) -->
+        <fo:table-row>
+            <fo:table-cell border="1pt solid black" padding="5pt" width="50%">
+                <fo:block font-weight="bold">Billing Address:</fo:block>
+                <fo:block>${billingAddress!}</fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="1pt solid black" padding="5pt" width="50%">
+                <fo:block font-weight="bold">Shipping Address:</fo:block>
+                <fo:block>${shippingAddress!}</fo:block>
+            </fo:table-cell>
+        </fo:table-row>
 
-<#if orderPaymentPreferences?has_content>
-    <fo:block font-weight="bold">${uiLabelMap.AccountingPaymentInformation}:</fo:block>
-    <#list orderPaymentPreferences as orderPaymentPreference>
-        <fo:block text-indent="0.2in">
-            <#assign paymentMethodType = orderPaymentPreference.getRelatedOne("PaymentMethodType", false)!>
-            <#if (orderPaymentPreference?? && ("CREDIT_CARD" == orderPaymentPreference.getString("paymentMethodTypeId")) && (orderPaymentPreference.getString("paymentMethodId")?has_content))>
-                <#assign creditCard = orderPaymentPreference.getRelatedOne("PaymentMethod", false).getRelatedOne("CreditCard", false)>
-                ${Static["org.apache.ofbiz.party.contact.ContactHelper"].formatCreditCard(creditCard)}
-            <#else>
-                ${paymentMethodType.get("description",locale)!}
-            </#if>
-        </fo:block>
-    </#list>
-</#if>
-<#if "SALES_ORDER" == orderHeader.getString("orderTypeId") && shipGroups?has_content>
-    <fo:block font-weight="bold">${uiLabelMap.OrderShipmentInformation}:</fo:block>
-    <#list shipGroups as shipGroup>
-        <fo:block text-indent="0.2in">
-            <#if shipGroups.size() gt 1>${shipGroup.shipGroupSeqId} - </#if>
-            <#if (shipGroup.shipmentMethodTypeId)??>
-                ${(shipGroup.getRelatedOne("ShipmentMethodType", false).get("description", locale))?default(shipGroup.shipmentMethodTypeId)}
-            </#if>
-            <#if (shipGroup.shipAfterDate)?? || (shipGroup.shipByDate)??>
-                <#if (shipGroup.shipAfterDate)??> - ${uiLabelMap.OrderShipAfterDate}: ${Static["org.apache.ofbiz.base.util.UtilDateTime"].toDateString(shipGroup.shipAfterDate)}</#if><#if (shipGroup.shipByDate)??> - ${uiLabelMap.OrderShipBeforeDate}: ${Static["org.apache.ofbiz.base.util.UtilDateTime"].toDateString(shipGroup.shipByDate)}</#if>
-            </#if>
-        </fo:block>
-    </#list>
-</#if>
+        <!-- Payment Method -->
+        <#if orderPaymentPreferences?has_content>
+            <fo:table-row>
+                <fo:table-cell border="1pt solid black" padding="5pt" number-columns-spanned="2">
+                    <fo:block font-weight="bold">${uiLabelMap.AccountingPaymentInformation}:</fo:block>
+                    <#list orderPaymentPreferences as orderPaymentPreference>
+                        <fo:block text-indent="0.2in">
+                            <#assign paymentMethodType = orderPaymentPreference.getRelatedOne("PaymentMethodType", false)!>
+                            <#if orderPaymentPreference.getString("paymentMethodTypeId") == "CREDIT_CARD">
+                                <#assign creditCard = orderPaymentPreference.getRelatedOne("PaymentMethod", false).getRelatedOne("CreditCard", false)!>
+                                ${Static["org.apache.ofbiz.party.contact.ContactHelper"].formatCreditCard(creditCard)}
+                            <#else>
+                                ${paymentMethodType.get("description", locale)!}
+                            </#if>
+                        </fo:block>
+                    </#list>
+                </fo:table-cell>
+            </fo:table-row>
+        </#if>
 
-<#if orderTerms?has_content && orderTerms.size() gt 0>
-    <fo:block font-weight="bold">${uiLabelMap.OrderOrderTerms}:</fo:block>
-    <#list orderTerms as orderTerm>
-        <fo:block text-indent="0.2in">
-            ${orderTerm.getRelatedOne("TermType", false).get("description",locale)} ${orderTerm.termValue?default("")} ${orderTerm.termDays?default("")} ${orderTerm.textValue?default("")}
-        </fo:block>
-    </#list>
-</#if>
+        <!-- Order Terms -->
+        <#if orderTerms?has_content && orderTerms.size() gt 0>
+            <fo:table-row>
+                <fo:table-cell border="1pt solid black" padding="5pt" number-columns-spanned="2">
+                    <fo:block font-weight="bold">${uiLabelMap.OrderOrderTerms}:</fo:block>
+                    <#list orderTerms as orderTerm>
+                        <fo:block text-indent="0.2in">
+                            ${orderTerm.getRelatedOne("TermType", false).get("description",locale)} 
+                            ${orderTerm.termValue?default("")} ${orderTerm.termDays?default("")} 
+                            ${orderTerm.textValue?default("")}
+                        </fo:block>
+                    </#list>
+                </fo:table-cell>
+            </fo:table-row>
+        </#if>
+
+    </fo:table-body>
+</fo:table>
+
 
 <fo:block space-after="0.2in"/>
 </#escape>
