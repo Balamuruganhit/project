@@ -17,7 +17,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 <#escape x as x?xml>
-    <fo:block border="1pt solid black" padding="8pt" margin="4pt">
+    <fo:block border="1pt solid black" padding="8pt" margin="4pt"  space-after="10pt">
         <fo:block text-align="left">
             <#if logoImageUrl?has_content>
                 <fo:external-graphic 
@@ -90,7 +90,6 @@ under the License.
             </#if>
         </fo:block>
     </fo:block>
-    <fo:block space-after="0.2in"/>
 </#escape>
 
 
