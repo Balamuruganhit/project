@@ -61,9 +61,7 @@ under the License.
                                     <widgets>
                                         <platform-specific>
                                             <xsl-fo>
-                                                
-                                                    <html-template location="component://order/template/order/CompanyHeader.fo.ftl"/>
-                                                
+                                                <html-template location="component://order/template/order/CompanyHeader.fo.ftl"/>
                                             </xsl-fo>
                                         </platform-specific>                                    
                                     </widgets>
