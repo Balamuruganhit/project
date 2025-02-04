@@ -95,7 +95,7 @@ under the License.
                 <#assign thisPartyId = requestParameters.partyId!>
               </#if>
               <tr>
-                <td class="label"><label>${uiLabelMap.CommonUserLoginId}</label></td>
+                <td class="label"><label>${uiLabelMap.orderPrepared}</label></td>
                 <td>
                   <div class='tabletext'>
                     <@htmlTemplate.lookupField value="${parameters.userLogin.userLoginId}" formName="salesentryform" name="userLoginId" id="userLoginId_sales" fieldFormName="LookupUserLoginAndPartyDetails"/>
@@ -159,7 +159,7 @@ under the License.
               </td>
             </tr>
             <tr>
-              <td class="label"><label>${uiLabelMap.CommonUserLoginId}</label></td>
+              <td class="label"><label>${uiLabelMap.orderPrepared}</label></td>
               <td valign='middle'>
                 <div class='tabletext'>
                   <@htmlTemplate.lookupField value='${parameters.userLogin.userLoginId}'formName="poentryform" name="userLoginId" id="userLoginId_purchase" fieldFormName="LookupUserLoginAndPartyDetails"/>
