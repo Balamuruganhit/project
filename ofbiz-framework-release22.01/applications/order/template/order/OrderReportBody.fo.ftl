@@ -18,25 +18,25 @@ under the License.
 -->
 <#escape x as x?xml>
     <#if orderHeader?has_content>
-        <fo:table table-layout="fixed" border-spacing="3pt">
-            <fo:table-column column-width="3in"/>
-            <fo:table-column column-width="1in"/>
-            <fo:table-column column-width="1in"/>
-            <fo:table-column column-width="1in"/>
-            <fo:table-column column-width="1in"/>
+        <fo:table table-layout="fixed" border-spacing="3pt" border="1pt solid black">
+            <fo:table-column column-width="3in" border="1pt solid black"/>
+            <fo:table-column column-width="1in" border="1pt solid black"/>
+            <fo:table-column column-width="1in" border="1pt solid black"/>
+            <fo:table-column column-width="1in" border="1pt solid black"/>
+            <fo:table-column column-width="1in" border="1pt solid black"/>
             <fo:table-header>
-                <fo:table-row>
-                    <fo:table-cell>
+                <fo:table-row border="1pt solid black">
+                    <fo:table-cell border="1pt solid black">
                         <fo:block font-weight="bold">${uiLabelMap.OrderProduct}</fo:block>
                     </fo:table-cell>
-                    <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                    <fo:table-cell text-align="right">
+                    <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
+                    <fo:table-cell border="1pt solid black" text-align="right">
                         <fo:block font-weight="bold">${uiLabelMap.OrderQuantity}</fo:block>
                     </fo:table-cell>
-                    <fo:table-cell text-align="right">
+                    <fo:table-cell border="1pt solid black" text-align="right">
                         <fo:block font-weight="bold">${uiLabelMap.OrderUnitList}</fo:block>
                     </fo:table-cell>
-                    <fo:table-cell text-align="right">
+                    <fo:table-cell border="1pt solid black" text-align="right">
                         <fo:block font-weight="bold">${uiLabelMap.OrderSubTotal}</fo:block>
                     </fo:table-cell>
                 </fo:table-row>
@@ -48,8 +48,8 @@ under the License.
                     <#assign remainingQuantity = (orderItem.quantity?default(0) - orderItem.cancelQuantity?default(0))>
                     <#assign itemAdjustment = Static["org.apache.ofbiz.order.order.OrderReadHelper"].getOrderItemAdjustmentsTotal(orderItem, orderAdjustments, true, false, false)>
                     <#assign internalImageUrl = Static["org.apache.ofbiz.product.imagemanagement.ImageManagementHelper"].getInternalImageUrl(request, productId!)!>
-                    <fo:table-row>
-                        <fo:table-cell>
+                    <fo:table-row border="1pt solid black">
+                        <fo:table-cell border="1pt solid black">
                             <fo:block>
                                 <#if orderItem.supplierProductId?has_content>
                                     ${orderItem.supplierProductId} - ${orderItem.itemDescription!}
@@ -62,7 +62,7 @@ under the License.
                                 </#if>
                             </fo:block>
                         </fo:table-cell>
-                        <fo:table-cell>
+                        <fo:table-cell border="1pt solid black">
                             <fo:block>
                                 <#if "PURCHASE_ORDER" == orderHeader.orderTypeId>
                                     <#if internalImageUrl?has_content>
@@ -71,13 +71,13 @@ under the License.
                                 </#if>
                             </fo:block>
                         </fo:table-cell>
-                        <fo:table-cell text-align="right">
+                        <fo:table-cell border="1pt solid black" text-align="right">
                             <fo:block>${remainingQuantity}</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell text-align="right">
+                        <fo:table-cell border="1pt solid black" text-align="right">
                             <fo:block><@ofbizCurrency amount=orderItem.unitPrice isoCode=currencyUomId/></fo:block>
                         </fo:table-cell>
-                        <fo:table-cell text-align="right">
+                        <fo:table-cell border="1pt solid black" text-align="right">
                             <fo:block>
                                 <#if orderItem.statusId != "ITEM_CANCELLED">
                                     <@ofbizCurrency amount=Static["org.apache.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments) isoCode=currencyUomId/>
@@ -88,8 +88,8 @@ under the License.
                         </fo:table-cell>
                     </fo:table-row>
                     <#if itemAdjustment != 0>
-                        <fo:table-row>
-                            <fo:table-cell number-columns-spanned="2">
+                        <fo:table-row border="1pt solid black">
+                            <fo:table-cell number-columns-spanned="2" border="1pt solid black">
                                 <fo:block text-indent="0.2in">
                                     <fo:inline font-style="italic">${uiLabelMap.OrderAdjustments}</fo:inline>
                                     : <@ofbizCurrency amount=itemAdjustment isoCode=currencyUomId/>
@@ -102,10 +102,10 @@ under the License.
                     <#assign adjustmentType = orderHeaderAdjustment.getRelatedOne("OrderAdjustmentType", false)>
                     <#assign adjustmentAmount = Static["org.apache.ofbiz.order.order.OrderReadHelper"].calcOrderAdjustment(orderHeaderAdjustment, orderSubTotal)>
                     <#if adjustmentAmount != 0>
-                        <fo:table-row>
-                            <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                            <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                            <fo:table-cell number-columns-spanned="2">
+                        <fo:table-row border="1pt solid black">
+                            <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
+                            <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
+                            <fo:table-cell number-columns-spanned="2" border="1pt solid black">
                                 <fo:block font-weight="bold">
                                     ${adjustmentType.get("description",locale)} :
                                     <#if orderHeaderAdjustment.get("description")?has_content>
@@ -113,67 +113,67 @@ under the License.
                                     </#if>
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell text-align="right">
+                            <fo:table-cell border="1pt solid black" text-align="right">
                                 <fo:block><@ofbizCurrency amount=adjustmentAmount isoCode=currencyUomId/></fo:block>
                             </fo:table-cell>
                         </fo:table-row>
                     </#if>
                 </#list>
                 <#-- summary of order amounts -->
-                <fo:table-row>
-                    <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                    <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                    <fo:table-cell number-columns-spanned="2">
+                <fo:table-row border="1pt solid black">
+                    <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
+                    <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
+                    <fo:table-cell number-columns-spanned="2" border="1pt solid black">
                         <fo:block font-weight="bold">${uiLabelMap.OrderItemsSubTotal}</fo:block>
                     </fo:table-cell>
-                    <fo:table-cell text-align="right">
+                    <fo:table-cell border="1pt solid black" text-align="right">
                         <fo:block><@ofbizCurrency amount=orderSubTotal isoCode=currencyUomId/></fo:block>
                     </fo:table-cell>
                 </fo:table-row>
                 <#if otherAdjAmount != 0>
-                    <fo:table-row>
-                        <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                        <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                        <fo:table-cell number-columns-spanned="2">
+                    <fo:table-row border="1pt solid black">
+                        <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
+                        <fo:table-cell number-columns-spanned="2" border="1pt solid black">
                             <fo:block font-weight="bold">${uiLabelMap.OrderTotalOtherOrderAdjustments}</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell text-align="right">
+                        <fo:table-cell border="1pt solid black" text-align="right">
                             <fo:block><@ofbizCurrency amount=otherAdjAmount isoCode=currencyUomId/></fo:block>
                         </fo:table-cell>
                     </fo:table-row>
                 </#if>
                 <#if shippingAmount != 0>
-                    <fo:table-row>
-                        <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                        <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                        <fo:table-cell number-columns-spanned="2">
+                    <fo:table-row border="1pt solid black">
+                        <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
+                        <fo:table-cell number-columns-spanned="2" border="1pt solid black">
                             <fo:block font-weight="bold">${uiLabelMap.OrderTotalShippingAndHandling}</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell text-align="right">
+                        <fo:table-cell border="1pt solid black" text-align="right">
                             <fo:block><@ofbizCurrency amount=shippingAmount isoCode=currencyUomId/></fo:block>
                         </fo:table-cell>
                     </fo:table-row>
                 </#if>
                 <#if taxAmount != 0>
-                    <fo:table-row>
-                        <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                        <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                        <fo:table-cell number-columns-spanned="2">
+                    <fo:table-row border="1pt solid black">
+                        <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
+                        <fo:table-cell number-columns-spanned="2" border="1pt solid black">
                             <fo:block font-weight="bold">${uiLabelMap.OrderTotalSalesTax}</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell text-align="right">
+                        <fo:table-cell border="1pt solid black" text-align="right">
                             <fo:block><@ofbizCurrency amount=taxAmount isoCode=currencyUomId/></fo:block>
                         </fo:table-cell>
                     </fo:table-row>
                 </#if>
                 <#if grandTotal != 0>
-                    <fo:table-row>
-                        <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                        <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                        <fo:table-cell number-columns-spanned="2" background-color="#EEEEEE">
+                    <fo:table-row border="1pt solid black">
+                        <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
+                        <fo:table-cell number-columns-spanned="2" background-color="#EEEEEE" border="1pt solid black">
                             <fo:block font-weight="bold">${uiLabelMap.OrderTotalDue}</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell text-align="right">
+                        <fo:table-cell border="1pt solid black" text-align="right">
                             <fo:block><@ofbizCurrency amount=grandTotal isoCode=currencyUomId/></fo:block>
                         </fo:table-cell>
                     </fo:table-row>
@@ -181,8 +181,8 @@ under the License.
                 <#-- notes -->
                 <#if orderNotes?has_content>
                     <#if showNoteHeadingOnPDF>
-                        <fo:table-row>
-                            <fo:table-cell number-columns-spanned="3">
+                        <fo:table-row border="1pt solid black">
+                            <fo:table-cell number-columns-spanned="3" border="1pt solid black">
                                 <fo:block font-weight="bold">${uiLabelMap.OrderNotes}</fo:block>
                                 <fo:block>
                                     <fo:leader leader-length="19cm" leader-pattern="rule"/>
@@ -192,11 +192,11 @@ under the License.
                     </#if>
                     <#list orderNotes as note>
                         <#if (note.internalNote?has_content) && (note.internalNote != "Y")>
-                            <fo:table-row>
-                                <fo:table-cell number-columns-spanned="1">
+                            <fo:table-row border="1pt solid black">
+                                <fo:table-cell number-columns-spanned="1" border="1pt solid black">
                                     <fo:block>${note.noteInfo!}</fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell number-columns-spanned="2">
+                                <fo:table-cell number-columns-spanned="2" border="1pt solid black">
                                     <fo:block>
                                     <#if note.noteParty?has_content>
                                         <#assign notePartyNameResult = dispatcher.runSync("getPartyNameForDate", Static["org.apache.ofbiz.base.util.UtilMisc"].toMap("partyId", note.noteParty, "compareDate", note.noteDateTime, "lastNameFirst", "Y", "userLogin", userLogin))/>
@@ -204,7 +204,7 @@ under the License.
                                     </#if>
                                     </fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell number-columns-spanned="1">
+                                <fo:table-cell number-columns-spanned="1" border="1pt solid black">
                                     <fo:block>${uiLabelMap.CommonAt}: ${note.noteDateTime?string!}</fo:block>
                                 </fo:table-cell>
                             </fo:table-row>
