@@ -18,59 +18,63 @@ under the License.
 -->
 <#escape x as x?xml>
     <#if orderHeader?has_content>
-        <fo:table table-layout="fixed" border="1pt solid black" border-spacing="3pt">
-    <fo:table-column column-width="3in"/>
-    <fo:table-column column-width="1in"/>
-    <fo:table-column column-width="1in"/>
-    <fo:table-column column-width="1in"/>
-    <fo:table-column column-width="1in"/>
-    <fo:table-header>
-        <fo:table-row border="1pt solid black">
-            <fo:table-cell border="1pt solid black">
-                <fo:block font-weight="bold">${uiLabelMap.OrderProduct}</fo:block>
-            </fo:table-cell>
-            <fo:table-cell border="1pt solid black"><fo:block></fo:block></fo:table-cell>
-            <fo:table-cell border="1pt solid black" text-align="right">
-                <fo:block font-weight="bold">${uiLabelMap.OrderQuantity}</fo:block>
-            </fo:table-cell>
-            <fo:table-cell border="1pt solid black" text-align="right">
-                <fo:block font-weight="bold">${uiLabelMap.OrderUnitList}</fo:block>
-            </fo:table-cell>
-            <fo:table-cell border="1pt solid black" text-align="right">
-                <fo:block font-weight="bold">${uiLabelMap.OrderSubTotal}</fo:block>
-            </fo:table-cell>
-        </fo:table-row>
-    </fo:table-header>
-    <fo:table-body>
-        <#list orderItemList as orderItem>
-            <fo:table-row border="1pt solid black">
-                <fo:table-cell border="1pt solid black">
-                    <fo:block>${orderItem.itemDescription!}</fo:block>
-                </fo:table-cell>
-                <fo:table-cell border="1pt solid black">
-                    <fo:block>
-                        <#if "PURCHASE_ORDER" == orderHeader.orderTypeId>
-                            <#if internalImageUrl?has_content>
-                                <fo:external-graphic src="${internalImageUrl}" overflow="hidden" content-width="100"/>
-                            </#if>
-                        </#if>
-                    </fo:block>
-                </fo:table-cell>
-                <fo:table-cell border="1pt solid black" text-align="right">
-                    <fo:block>${remainingQuantity}</fo:block>
-                </fo:table-cell>
-                <fo:table-cell border="1pt solid black" text-align="right">
-                    <fo:block><@ofbizCurrency amount=orderItem.unitPrice isoCode=currencyUomId/></fo:block>
-                </fo:table-cell>
-                <fo:table-cell border="1pt solid black" text-align="right">
-                    <fo:block>
-                        <@ofbizCurrency amount=Static["org.apache.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments) isoCode=currencyUomId/>
-                    </fo:block>
-                </fo:table-cell>
-            </fo:table-row>
-        </#list>
-    </fo:table-body>
-</fo:table>
+        <fo:table table-layout="fixed" border-collapse="collapse" border-spacing="3pt">
+            <fo:table-column column-width="3in"/>
+            <fo:table-column column-width="1in"/>
+            <fo:table-column column-width="1in"/>
+            <fo:table-column column-width="1in"/>
+            <fo:table-column column-width="1in"/>
+            
+            <fo:table-header>
+                <fo:table-row>
+                    <fo:table-cell border-width="1pt" border-style="solid" border-color="black">
+                        <fo:block font-weight="bold">${uiLabelMap.OrderProduct}</fo:block>
+                    </fo:table-cell>
+                    <fo:table-cell border-width="1pt" border-style="solid" border-color="black">
+                        <fo:block></fo:block>
+                    </fo:table-cell>
+                    <fo:table-cell text-align="right" border-width="1pt" border-style="solid" border-color="black">
+                        <fo:block font-weight="bold">${uiLabelMap.OrderQuantity}</fo:block>
+                    </fo:table-cell>
+                    <fo:table-cell text-align="right" border-width="1pt" border-style="solid" border-color="black">
+                        <fo:block font-weight="bold">${uiLabelMap.OrderUnitList}</fo:block>
+                    </fo:table-cell>
+                    <fo:table-cell text-align="right" border-width="1pt" border-style="solid" border-color="black">
+                        <fo:block font-weight="bold">${uiLabelMap.OrderSubTotal}</fo:block>
+                    </fo:table-cell>
+                </fo:table-row>
+            </fo:table-header>
+            
+            <fo:table-body>
+                <#list orderItemList as orderItem>
+                    <fo:table-row>
+                        <fo:table-cell border-width="1pt" border-style="solid" border-color="black">
+                            <fo:block>${orderItem.itemDescription!}</fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell border-width="1pt" border-style="solid" border-color="black">
+                            <fo:block>
+                                <#if "PURCHASE_ORDER" == orderHeader.orderTypeId>
+                                    <#if internalImageUrl?has_content>
+                                        <fo:external-graphic src="${internalImageUrl}" overflow="hidden" content-width="100"/>
+                                    </#if>
+                                </#if>
+                            </fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell text-align="right" border-width="1pt" border-style="solid" border-color="black">
+                            <fo:block>${remainingQuantity}</fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell text-align="right" border-width="1pt" border-style="solid" border-color="black">
+                            <fo:block><@ofbizCurrency amount=orderItem.unitPrice isoCode=currencyUomId/></fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell text-align="right" border-width="1pt" border-style="solid" border-color="black">
+                            <fo:block>
+                                <@ofbizCurrency amount=Static["org.apache.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments) isoCode=currencyUomId/>
+                            </fo:block>
+                        </fo:table-cell>
+                    </fo:table-row>
+                </#list>
+            </fo:table-body>
+        </fo:table>
 
     </#if>
 </#escape>
