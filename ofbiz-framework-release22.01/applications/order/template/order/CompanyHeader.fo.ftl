@@ -17,7 +17,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 <#escape x as x?xml>
-    <fo:block border="1pt solid black" padding-left="8pt" margin="20pt"  space-after="10pt">
+    <fo:block border="1pt solid black" padding-left="8pt" margin="10"  space-after="3in"">
         <fo:block text-align="left">
             <#if logoImageUrl?has_content>
                 <fo:external-graphic 
