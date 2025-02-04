@@ -67,60 +67,61 @@ under the License.
 
             <!-- Second Column (Order Details) -->
             <fo:table-cell padding="5pt">
-                <fo:table>
-                    <fo:table-body>
-                        <fo:table-row>
-                            <fo:table-cell number-columns-spanned="2">
-                                <fo:block font-weight="bold">${orderHeader.getRelatedOne("OrderType", false).get("description",locale)}</fo:block>
-                            </fo:table-cell>
-                        </fo:table-row>
+    <fo:table border="1pt solid black" padding="5pt" table-layout="fixed">
+        <fo:table-body>
+            <fo:table-row>
+                <fo:table-cell number-columns-spanned="2" border="1pt solid black" padding="3pt">
+                    <fo:block font-weight="bold">${orderHeader.getRelatedOne("OrderType", false).get("description",locale)}</fo:block>
+                </fo:table-cell>
+            </fo:table-row>
 
-                        <fo:table-row>
-                            <fo:table-cell>
-                                <fo:block font-weight="bold">${uiLabelMap.OrderDateOrdered}</fo:block>
-                            </fo:table-cell>
-                            <#assign dateFormat = Static["java.text.DateFormat"].LONG>
-                            <#assign orderDate = Static["java.text.DateFormat"].getDateInstance(dateFormat,locale).format(orderHeader.get("orderDate"))>
-                            <fo:table-cell>
-                                <fo:block>${orderDate}</fo:block>
-                            </fo:table-cell>
-                        </fo:table-row>
+            <fo:table-row>
+                <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:block font-weight="bold">${uiLabelMap.OrderDateOrdered}</fo:block>
+                </fo:table-cell>
+                <#assign dateFormat = Static["java.text.DateFormat"].LONG>
+                <#assign orderDate = Static["java.text.DateFormat"].getDateInstance(dateFormat,locale).format(orderHeader.get("orderDate"))>
+                <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:block>${orderDate}</fo:block>
+                </fo:table-cell>
+            </fo:table-row>
 
-                        <fo:table-row>
-                            <fo:table-cell>
-                                <fo:block font-weight="bold">${uiLabelMap.OrderOrder} ${uiLabelMap.CommonNbr}</fo:block>
-                            </fo:table-cell>
-                            <fo:table-cell>
-                                <fo:block>${orderId}</fo:block>
-                            </fo:table-cell>
-                        </fo:table-row>
+            <fo:table-row>
+                <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:block font-weight="bold">${uiLabelMap.OrderOrder} ${uiLabelMap.CommonNbr}</fo:block>
+                </fo:table-cell>
+                <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:block>${orderId}</fo:block>
+                </fo:table-cell>
+            </fo:table-row>
 
-                        <fo:table-row>
-                            <fo:table-cell>
-                                <fo:block font-weight="bold">${uiLabelMap.OrderCurrentStatus}</fo:block>
-                            </fo:table-cell>
-                            <fo:table-cell>
-                                <fo:block font-weight="bold">${currentStatus.get("description",locale)}</fo:block>
-                            </fo:table-cell>
-                        </fo:table-row>
+            <fo:table-row>
+                <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:block font-weight="bold">${uiLabelMap.OrderCurrentStatus}</fo:block>
+                </fo:table-cell>
+                <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:block font-weight="bold">${currentStatus.get("description",locale)}</fo:block>
+                </fo:table-cell>
+            </fo:table-row>
 
-                        <#if orderItem.cancelBackOrderDate??>
-                            <fo:table-row>
-                                <fo:table-cell>
-                                    <fo:block font-weight="bold">${uiLabelMap.FormFieldTitle_cancelBackOrderDate}</fo:block>
-                                </fo:table-cell>
-                                <#assign dateFormat = Static["java.text.DateFormat"].LONG>
-                                <#assign cancelBackOrderDate = Static["java.text.DateFormat"].getDateInstance(dateFormat,locale).format(orderItem.get("cancelBackOrderDate"))>
-                                <fo:table-cell>
-                                    <#if cancelBackOrderDate?has_content>
-                                        <fo:block>${cancelBackOrderDate}</fo:block>
-                                    </#if>
-                                </fo:table-cell>
-                            </fo:table-row>
+            <#if orderItem.cancelBackOrderDate??>
+                <fo:table-row>
+                    <fo:table-cell border="1pt solid black" padding="3pt">
+                        <fo:block font-weight="bold">${uiLabelMap.FormFieldTitle_cancelBackOrderDate}</fo:block>
+                    </fo:table-cell>
+                    <#assign dateFormat = Static["java.text.DateFormat"].LONG>
+                    <#assign cancelBackOrderDate = Static["java.text.DateFormat"].getDateInstance(dateFormat,locale).format(orderItem.get("cancelBackOrderDate"))>
+                    <fo:table-cell border="1pt solid black" padding="3pt">
+                        <#if cancelBackOrderDate?has_content>
+                            <fo:block>${cancelBackOrderDate}</fo:block>
                         </#if>
-                    </fo:table-body>
-                </fo:table>
-            </fo:table-cell>
+                    </fo:table-cell>
+                </fo:table-row>
+            </#if>
+        </fo:table-body>
+    </fo:table>
+</fo:table-cell>
+
         </fo:table-row>
     </fo:table-body>
 </fo:table>

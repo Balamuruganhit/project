@@ -56,18 +56,18 @@ under the License.
                     <widgets>
                         <decorator-screen name="FoReportDecorator" location="component://common/widget/CommonScreens.xml">
                             <!-- at the top left of every page we put the logo and company information -->
-                            
+                            <decorator-section name="topLeft">
+                                <section>
+                                    <widgets>
+                                        <include-screen name="CompanyLogo" location="component://order/widget/ordermgr/OrderPrintScreens.xml" />
+                                    </widgets>
+                                </section>
+                            </decorator-section>
                             <!-- at the top right of every page we put the order information -->
                             
                             <decorator-section name="body">
                                 <section>
-                                    <widgets>
-                                  
-                                        <platform-specific>
-                                            <xsl-fo>
-                                                <html-template location="component://order/template/order/CompanyHeader.fo.ftl"/>
-                                            </xsl-fo>
-                                        </platform-specific>                                    
+                                    <widgets>                                   
                                     
                                         <!-- the contach mechanisms, terms, payment and shipping methods are shown in the first page -->
                                         <platform-specific>
