@@ -18,7 +18,7 @@ under the License.
 -->
 <#escape x as x?xml>
     <fo:block border="1pt solid black" padding="8pt" margin="4pt">
-        <fo:block text-align="center">
+        <fo:block text-align="left">
             <#if logoImageUrl?has_content>
                 <fo:external-graphic 
                     src="<@ofbizContentUrl>${logoImageUrl}</@ofbizContentUrl>" 
@@ -29,7 +29,7 @@ under the License.
             </#if>
         </fo:block>
 
-        <fo:block font-size="8pt" text-align="center">
+        <fo:block font-size="8pt" text-align="left">
             <fo:block font-weight="bold">${companyName}</fo:block>
 
             <#if postalAddress??>
@@ -92,4 +92,6 @@ under the License.
     </fo:block>
     <fo:block space-after="0.2in"/>
 </#escape>
+
+
 
