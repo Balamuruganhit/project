@@ -18,7 +18,7 @@ under the License.
 -->
 <#escape x as x?xml>
     <#if orderHeader?has_content>
-        <fo:table table-layout="fixed" border-spacing="3pt" border="1pt solid black">
+        <fo:table table-layout="fixed" border-spacing="3pt" border="1pt solid black" width="10in">
             <fo:table-column column-width="3in" border="1pt solid black"/>
             <fo:table-column column-width="1in" border="1pt solid black"/>
             <fo:table-column column-width="1in" border="1pt solid black"/>

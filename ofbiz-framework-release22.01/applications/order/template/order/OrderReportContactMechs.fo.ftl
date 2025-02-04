@@ -56,13 +56,14 @@ under the License.
                         </#if>
                     </#if>
                 </fo:table-cell>
+                <fo:block space-after="0.2in"/>
                 <fo:table-cell>
                     <#list orderContactMechValueMaps as orderContactMechValueMap>
                         <#assign contactMech = orderContactMechValueMap.contactMech>
                         <#assign contactMechPurpose = orderContactMechValueMap.contactMechPurposeType>
                         <#if "POSTAL_ADDRESS" == contactMech.contactMechTypeId>
                             <#assign postalAddress = orderContactMechValueMap.postalAddress>
-                            <fo:block-container inline-progression-dimension="100%" text-align="right">
+                            <fo:block-container inline-progression-dimension="100%" text-align="left">
                                 <fo:block font-weight="bold">${contactMechPurpose.get("description",locale)}:</fo:block>
                                 <fo:block>
                                     <#if postalAddress?has_content>
