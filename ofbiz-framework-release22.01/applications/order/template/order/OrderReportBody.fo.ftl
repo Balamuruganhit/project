@@ -20,10 +20,10 @@ under the License.
     <#if orderHeader?has_content>
         <fo:table table-layout="fixed" border-spacing="3pt" border="0.5pt solid black" width="19cm">
             <fo:table-column column-width="20%"/>
-            <fo:table-column column-width="15%"/>
-            <fo:table-column column-width="10%"/>
-            <fo:table-column column-width="5%"/>
-            <fo:table-column column-width="5%"/>
+            <fo:table-column column-width="20%"/>
+            <fo:table-column column-width="20%"/>
+            <fo:table-column column-width="20%"/>
+            <fo:table-column column-width="20%"/>
             <fo:table-header>
                 <fo:table-row border="0.5pt solid black" background-color="#D3D3D3">
                     <fo:table-cell padding="5pt" border="0.5pt solid black" font-weight="bold">
