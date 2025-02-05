@@ -17,103 +17,146 @@ specific language governing permissions and limitations
 under the License. 
 -->
 <#escape x as x?xml>
-<fo:block  visibility="hidden" >I am ocuping space</fo:block>
+<fo:block  visibility="hidden" >I am occupying space</fo:block>
+
 <#if "PURCHASE_ORDER" == orderHeader.getString("orderTypeId")>
     <#if supplierGeneralContactMechValueMap??>
         <#assign contactMech = supplierGeneralContactMechValueMap.contactMech>
-        <fo:block font-weight="bold" border="0.5pt solid black" padding="2pt">${uiLabelMap.OrderPurchasedFrom}:</fo:block>
-        <#assign postalAddress = supplierGeneralContactMechValueMap.postalAddress>
-        <#if postalAddress?has_content>
-            <fo:block text-indent="0.2in" border="0.5pt solid black" padding="2pt">
-                <#if postalAddress.toName?has_content><fo:block>${postalAddress.toName}</fo:block></#if>
-                <#if postalAddress.attnName?has_content><fo:block>${postalAddress.attnName!}</fo:block></#if>
-                <fo:block>${postalAddress.address1!}</fo:block>
-                <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2!}</fo:block></#if>
-                <fo:block>
-                    <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId!}, false))! />
-                    ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName!}</#if> ${postalAddress.postalCode!}
-                </fo:block>
-                <fo:block>
-                    <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId!}, false))! />
-                    <#if countryGeo?has_content>${countryGeo.geoName!}</#if>
-                </fo:block>
-            </fo:block>                
-        </#if>
+        <fo:table border="0.5pt solid black" width="100%">
+            <fo:table-row>
+                <fo:table-cell font-weight="bold" padding="2pt">
+                    <fo:block>${uiLabelMap.OrderPurchasedFrom}:</fo:block>
+                </fo:table-cell>
+                <fo:table-cell padding="2pt">
+                    <#assign postalAddress = supplierGeneralContactMechValueMap.postalAddress>
+                    <#if postalAddress?has_content>
+                        <#if postalAddress.toName?has_content><fo:block>${postalAddress.toName}</fo:block></#if>
+                        <#if postalAddress.attnName?has_content><fo:block>${postalAddress.attnName!}</fo:block></#if>
+                        <fo:block>${postalAddress.address1!}</fo:block>
+                        <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2!}</fo:block></#if>
+                        <fo:block>
+                            <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId!}, false))! />
+                            ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName!}</#if> ${postalAddress.postalCode!}
+                        </fo:block>
+                        <fo:block>
+                            <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId!}, false))! />
+                            <#if countryGeo?has_content>${countryGeo.geoName!}</#if>
+                        </fo:block>
+                    </#if>
+                </fo:table-cell>
+            </fo:table-row>
+        </fo:table>
     <#else>
         <#assign vendorParty = orderReadHelper.getBillFromParty()>
-        <fo:block border="0.5pt solid black" padding="2pt">
-            <fo:inline font-weight="bold">${uiLabelMap.OrderPurchasedFrom}:</fo:inline> ${Static['org.apache.ofbiz.party.party.PartyHelper'].getPartyName(vendorParty)}
-        </fo:block>
+        <fo:table border="0.5pt solid black" width="100%">
+            <fo:table-row>
+                <fo:table-cell font-weight="bold" padding="2pt">
+                    <fo:block>${uiLabelMap.OrderPurchasedFrom}:</fo:block>
+                </fo:table-cell>
+                <fo:table-cell padding="2pt">
+                    <fo:block>${Static['org.apache.ofbiz.party.party.PartyHelper'].getPartyName(vendorParty)}</fo:block>
+                </fo:table-cell>
+            </fo:table-row>
+        </fo:table>
     </#if>
 </#if>
 
 <#-- List all postal addresses of the order -->
-<#list orderContactMechValueMaps as orderContactMechValueMap>
-    <#assign contactMech = orderContactMechValueMap.contactMech>
-    <#assign contactMechPurpose = orderContactMechValueMap.contactMechPurposeType>
-    <#if "POSTAL_ADDRESS" == contactMech.contactMechTypeId>
-        <#assign postalAddress = orderContactMechValueMap.postalAddress>
-        <fo:block font-weight="bold" border="0.5pt solid black" padding="2pt">${contactMechPurpose.get("description",locale)}:</fo:block>
-        <fo:block text-indent="0.2in" border="0.5pt solid black" padding="2pt">
-            <#if postalAddress?has_content>
-                <#if postalAddress.toName?has_content><fo:block>${postalAddress.toName!}</fo:block></#if>
-                <#if postalAddress.attnName?has_content><fo:block>${postalAddress.attnName!}</fo:block></#if>
-                <fo:block>${postalAddress.address1!}</fo:block>
-                <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2!}</fo:block></#if>
-                <fo:block>
-                    <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId!}, false))! />
-                    ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName!}</#if> ${postalAddress.postalCode!}
-                </fo:block>
-                <fo:block>
-                    <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId!}, false))! />
-                    <#if countryGeo?has_content>${countryGeo.geoName!}</#if>
-                </fo:block>
-            </#if>
-        </fo:block>
-    </#if>
-</#list>
+<fo:table border="0.5pt solid black" width="100%">
+    <#list orderContactMechValueMaps as orderContactMechValueMap>
+        <#assign contactMech = orderContactMechValueMap.contactMech>
+        <#assign contactMechPurpose = orderContactMechValueMap.contactMechPurposeType>
+        <#if "POSTAL_ADDRESS" == contactMech.contactMechTypeId>
+            <fo:table-row>
+                <fo:table-cell font-weight="bold" padding="2pt">
+                    <fo:block>${contactMechPurpose.get("description", locale)}:</fo:block>
+                </fo:table-cell>
+                <fo:table-cell padding="2pt">
+                    <#assign postalAddress = orderContactMechValueMap.postalAddress>
+                    <#if postalAddress?has_content>
+                        <#if postalAddress.toName?has_content><fo:block>${postalAddress.toName!}</fo:block></#if>
+                        <#if postalAddress.attnName?has_content><fo:block>${postalAddress.attnName!}</fo:block></#if>
+                        <fo:block>${postalAddress.address1!}</fo:block>
+                        <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2!}</fo:block></#if>
+                        <fo:block>
+                            <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId!}, false))! />
+                            ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName!}</#if> ${postalAddress.postalCode!}
+                        </fo:block>
+                        <fo:block>
+                            <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId!}, false))! />
+                            <#if countryGeo?has_content>${countryGeo.geoName!}</#if>
+                        </fo:block>
+                    </#if>
+                </fo:table-cell>
+            </fo:table-row>
+        </#if>
+    </#list>
+</fo:table>
 
 <fo:block space-after="0.2in"/>
 
 <#if orderPaymentPreferences?has_content>
-    <fo:block font-weight="bold" border="0.5pt solid black" padding="2pt">${uiLabelMap.AccountingPaymentInformation}:</fo:block>
-    <#list orderPaymentPreferences as orderPaymentPreference>
-        <fo:block text-indent="0.2in" border="0.5pt solid black" padding="2pt">
-            <#assign paymentMethodType = orderPaymentPreference.getRelatedOne("PaymentMethodType", false)!>
-            <#if (orderPaymentPreference?? && ("CREDIT_CARD" == orderPaymentPreference.getString("paymentMethodTypeId")) && (orderPaymentPreference.getString("paymentMethodId")?has_content))>
-                <#assign creditCard = orderPaymentPreference.getRelatedOne("PaymentMethod", false).getRelatedOne("CreditCard", false)>
-                ${Static["org.apache.ofbiz.party.contact.ContactHelper"].formatCreditCard(creditCard)}
-            <#else>
-                ${paymentMethodType.get("description",locale)!}
-            </#if>
-        </fo:block>
-    </#list>
+    <fo:table border="0.5pt solid black" width="100%">
+        <fo:table-row>
+            <fo:table-cell font-weight="bold" padding="2pt">
+                <fo:block>${uiLabelMap.AccountingPaymentInformation}:</fo:block>
+            </fo:table-cell>
+        </fo:table-row>
+        <#list orderPaymentPreferences as orderPaymentPreference>
+            <fo:table-row>
+                <fo:table-cell padding="2pt">
+                    <#assign paymentMethodType = orderPaymentPreference.getRelatedOne("PaymentMethodType", false)!>
+                    <#if (orderPaymentPreference?? && ("CREDIT_CARD" == orderPaymentPreference.getString("paymentMethodTypeId")) && (orderPaymentPreference.getString("paymentMethodId")?has_content))>
+                        <#assign creditCard = orderPaymentPreference.getRelatedOne("PaymentMethod", false).getRelatedOne("CreditCard", false)>
+                        ${Static["org.apache.ofbiz.party.contact.ContactHelper"].formatCreditCard(creditCard)}
+                    <#else>
+                        ${paymentMethodType.get("description", locale)!}
+                    </#if>
+                </fo:table-cell>
+            </fo:table-row>
+        </#list>
+    </fo:table>
 </#if>
 
 <#if "SALES_ORDER" == orderHeader.getString("orderTypeId") && shipGroups?has_content>
-    <fo:block font-weight="bold" border="0.5pt solid black" padding="2pt">${uiLabelMap.OrderShipmentInformation}:</fo:block>
-    <#list shipGroups as shipGroup>
-        <fo:block text-indent="0.2in" border="0.5pt solid black" padding="2pt">
-            <#if shipGroups.size() gt 1>${shipGroup.shipGroupSeqId} - </#if>
-            <#if (shipGroup.shipmentMethodTypeId)??>
-                ${(shipGroup.getRelatedOne("ShipmentMethodType", false).get("description", locale))?default(shipGroup.shipmentMethodTypeId)}
-            </#if>
-            <#if (shipGroup.shipAfterDate)?? || (shipGroup.shipByDate)??>
-                <#if (shipGroup.shipAfterDate)??> - ${uiLabelMap.OrderShipAfterDate}: ${Static["org.apache.ofbiz.base.util.UtilDateTime"].toDateString(shipGroup.shipAfterDate)}</#if>
-                <#if (shipGroup.shipByDate)??> - ${uiLabelMap.OrderShipBeforeDate}: ${Static["org.apache.ofbiz.base.util.UtilDateTime"].toDateString(shipGroup.shipByDate)}</#if>
-            </#if>
-        </fo:block>
-    </#list>
+    <fo:table border="0.5pt solid black" width="100%">
+        <fo:table-row>
+            <fo:table-cell font-weight="bold" padding="2pt">
+                <fo:block>${uiLabelMap.OrderShipmentInformation}:</fo:block>
+            </fo:table-cell>
+        </fo:table-row>
+        <#list shipGroups as shipGroup>
+            <fo:table-row>
+                <fo:table-cell padding="2pt">
+                    <#if shipGroups.size() gt 1>${shipGroup.shipGroupSeqId} - </#if>
+                    <#if (shipGroup.shipmentMethodTypeId)??>
+                        ${(shipGroup.getRelatedOne("ShipmentMethodType", false).get("description", locale))?default(shipGroup.shipmentMethodTypeId)}
+                    </#if>
+                    <#if (shipGroup.shipAfterDate)?? || (shipGroup.shipByDate)??>
+                        <#if (shipGroup.shipAfterDate)??> - ${uiLabelMap.OrderShipAfterDate}: ${Static["org.apache.ofbiz.base.util.UtilDateTime"].toDateString(shipGroup.shipAfterDate)}</#if>
+                        <#if (shipGroup.shipByDate)??> - ${uiLabelMap.OrderShipBeforeDate}: ${Static["org.apache.ofbiz.base.util.UtilDateTime"].toDateString(shipGroup.shipByDate)}</#if>
+                    </#if>
+                </fo:table-cell>
+            </fo:table-row>
+        </#list>
+    </fo:table>
 </#if>
 
 <#if orderTerms?has_content && orderTerms.size() gt 0>
-    <fo:block font-weight="bold" border="0.5pt solid black" padding="2pt">${uiLabelMap.OrderOrderTerms}:</fo:block>
-    <#list orderTerms as orderTerm>
-        <fo:block text-indent="0.2in" border="0.5pt solid black" padding="2pt">
-            ${orderTerm.getRelatedOne("TermType", false).get("description",locale)} ${orderTerm.termValue?default("")} ${orderTerm.termDays?default("")} ${orderTerm.textValue?default("")}
-        </fo:block>
-    </#list>
+    <fo:table border="0.5pt solid black" width="100%">
+        <fo:table-row>
+            <fo:table-cell font-weight="bold" padding="2pt">
+                <fo:block>${uiLabelMap.OrderOrderTerms}:</fo:block>
+            </fo:table-cell>
+        </fo:table-row>
+        <#list orderTerms as orderTerm>
+            <fo:table-row>
+                <fo:table-cell padding="2pt">
+                    ${orderTerm.getRelatedOne("TermType", false).get("description", locale)} ${orderTerm.termValue?default("")} ${orderTerm.termDays?default("")} ${orderTerm.textValue?default("")}
+                </fo:table-cell>
+            </fo:table-row>
+        </#list>
+    </fo:table>
 </#if>
-
 
 </#escape>
