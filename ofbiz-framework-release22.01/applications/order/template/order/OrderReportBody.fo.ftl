@@ -19,7 +19,7 @@ under the License.
 <#escape x as x?xml>
     <#if orderHeader?has_content>
         <fo:table table-layout="fixed" border-spacing="3pt" border="0.5pt solid black" width="19cm">
-            <fo:table-column column-width="20%"/>
+            <fo:table-column column-width="22%"/>
             <fo:table-column column-width="20%"/>
             <fo:table-column column-width="20%"/>
             <fo:table-column column-width="20%"/>
