@@ -66,12 +66,12 @@ under the License.
 
             <#if orderItem.cancelBackOrderDate??>
                 <fo:table-row>
-                    <fo:table-cell border="1pt solid black" padding="3.6pt">
+                    <fo:table-cell border="1pt solid black" padding="3.3pt">
                         <fo:block font-weight="bold">${uiLabelMap.FormFieldTitle_cancelBackOrderDate}</fo:block>
                     </fo:table-cell>
                     <#assign dateFormat = Static["java.text.DateFormat"].LONG>
                     <#assign cancelBackOrderDate = Static["java.text.DateFormat"].getDateInstance(dateFormat,locale).format(orderItem.get("cancelBackOrderDate"))>
-                    <fo:table-cell border="1pt solid black" padding="3.6pt">
+                    <fo:table-cell border="1pt solid black" padding="3.3pt">
                         <#if cancelBackOrderDate?has_content>
                             <fo:block>${cancelBackOrderDate}</fo:block>
                         </#if>
