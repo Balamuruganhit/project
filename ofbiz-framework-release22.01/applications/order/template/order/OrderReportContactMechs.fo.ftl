@@ -17,7 +17,7 @@ specific language governing permissions and limitations
 under the License. 
 -->
 <#escape x as x?xml>
-<fo:block  display="none">I am ocuping space</fo:block>
+<fo:block  visibility="hidden" >I am ocuping space</fo:block>
 <#if "PURCHASE_ORDER" == orderHeader.getString("orderTypeId")>
     <#if supplierGeneralContactMechValueMap??>
         <#assign contactMech = supplierGeneralContactMechValueMap.contactMech>
@@ -115,6 +115,5 @@ under the License.
     </#list>
 </#if>
 
-<fo:block space-after="0.2in"/>
 
 </#escape>
