@@ -22,56 +22,56 @@ under the License.
     <fo:table-column column-width="50%"/>
         <fo:table-body>
             <fo:table-row>
-                <fo:table-cell number-columns-spanned="2" border="1pt solid black" padding="3pt">
+                <fo:table-cell number-columns-spanned="2" border="1pt solid black" padding="3.4pt">
                     <fo:block font-weight="bold">${orderHeader.getRelatedOne("OrderType", false).get("description",locale)}</fo:block>
                 </fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
-                <fo:table-cell border="1pt solid black" padding="3pt">
+                <fo:table-cell border="1pt solid black" padding="3.4pt">
                     <fo:block font-weight="bold">${uiLabelMap.OrderDateOrdered}</fo:block>
                 </fo:table-cell>
                 <#assign dateFormat = Static["java.text.DateFormat"].LONG>
                 <#assign orderDate = Static["java.text.DateFormat"].getDateInstance(dateFormat,locale).format(orderHeader.get("orderDate"))>
-                <fo:table-cell border="1pt solid black" padding="3pt">
+                <fo:table-cell border="1pt solid black" padding="3.4pt">
                     <fo:block>${orderDate}</fo:block>
                 </fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
-                <fo:table-cell border="1pt solid black" padding="3pt">
+                <fo:table-cell border="1pt solid black" padding="3.4pt">
                     <fo:block font-weight="bold">${uiLabelMap.OrderOrder} ${uiLabelMap.CommonNbr}</fo:block>
                 </fo:table-cell>
-                <fo:table-cell border="1pt solid black" padding="3pt">
+                <fo:table-cell border="1pt solid black" padding="3.4pt">
                     <fo:block>${orderId}</fo:block>
                 </fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
-                <fo:table-cell border="1pt solid black" padding="3pt">
+                <fo:table-cell border="1pt solid black" padding="3.4pt">
                     <fo:block font-weight="bold">${uiLabelMap.OrderCurrentStatus}</fo:block>
                 </fo:table-cell>
-                <fo:table-cell border="1pt solid black" padding="3pt">
+                <fo:table-cell border="1pt solid black" padding="3.4pt">
                     <fo:block font-weight="bold">${currentStatus.get("description",locale)}</fo:block>
                 </fo:table-cell>
             </fo:table-row>
             <fo:table-row>
-                <fo:table-cell border="1pt solid black" padding="3pt">
+                <fo:table-cell border="1pt solid black" padding="3.4pt">
                     <fo:block font-weight="bold">Prepared By</fo:block>
                 </fo:table-cell>
-                <fo:table-cell border="1pt solid black" padding="3pt">
+                <fo:table-cell border="1pt solid black" padding="3.4pt">
                     <fo:block font-weight="bold">Admin</fo:block>
                 </fo:table-cell>
             </fo:table-row>
 
             <#if orderItem.cancelBackOrderDate??>
                 <fo:table-row>
-                    <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:table-cell border="1pt solid black" padding="3.4pt">
                         <fo:block font-weight="bold">${uiLabelMap.FormFieldTitle_cancelBackOrderDate}</fo:block>
                     </fo:table-cell>
                     <#assign dateFormat = Static["java.text.DateFormat"].LONG>
                     <#assign cancelBackOrderDate = Static["java.text.DateFormat"].getDateInstance(dateFormat,locale).format(orderItem.get("cancelBackOrderDate"))>
-                    <fo:table-cell border="1pt solid black" padding="3pt">
+                    <fo:table-cell border="1pt solid black" padding="3.4pt">
                         <#if cancelBackOrderDate?has_content>
                             <fo:block>${cancelBackOrderDate}</fo:block>
                         </#if>
