@@ -122,9 +122,14 @@ under the License.
           <div class='tabletext'>
             <select name="currencyUomId">
               <option value=""></option>
-              <#list currencies as currency>
-              <option value="${currency.uomId}" <#if currencyUomId?default('') == currency.uomId>selected="selected"</#if> >${currency.uomId}</option>
-              </#list>
+<#list currencies as currency>
+    <option value="${currency.uomId}" 
+        <#if (currencyUomId?default('') == currency.uomId) || (currencyUomId?has_content == false && currency.uomId == 'INR')>
+            selected="selected"
+        </#if>>
+        ${currency.uomId}
+    </option>
+</#list>
             </select>
           </div>
         </td>

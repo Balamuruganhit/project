@@ -21,7 +21,7 @@ under the License.
 <#if "PURCHASE_ORDER" == orderHeader.getString("orderTypeId")>
     <#if supplierGeneralContactMechValueMap??>
         <#assign contactMech = supplierGeneralContactMechValueMap.contactMech>
-        <fo:block font-weight="bold" border="0.5pt solid black" padding="2pt">${uiLabelMap.OrderPurchasedFrom}:</fo:block>
+        <fo:block font-weight="bold" border="0.5pt solid black" padding="2pt" width="19cm">${uiLabelMap.OrderPurchasedFrom}:</fo:block>
         <#assign postalAddress = supplierGeneralContactMechValueMap.postalAddress>
         <#if postalAddress?has_content>
             <fo:block text-indent="0.2in" border="0.5pt solid black" padding="2pt">
@@ -91,7 +91,7 @@ under the License.
 </#if>
 
 <#if "SALES_ORDER" == orderHeader.getString("orderTypeId") && shipGroups?has_content>
-    <fo:block font-weight="bold" border="0.5pt solid black" padding="2pt">${uiLabelMap.OrderShipmentInformation}:</fo:block>
+    <fo:block font-weight="bold" border="0.5pt solid black" padding="2pt" width="19cm">${uiLabelMap.OrderShipmentInformation}:</fo:block>
     <#list shipGroups as shipGroup>
         <fo:block text-indent="0.2in" border="0.5pt solid black" padding="2pt">
             <#if shipGroups.size() gt 1>${shipGroup.shipGroupSeqId} - </#if>

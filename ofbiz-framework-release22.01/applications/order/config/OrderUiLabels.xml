@@ -7360,6 +7360,27 @@
         <value xml:lang="zh-CN">订单</value>
         <value xml:lang="zh-TW">訂單</value>
     </property>
+    <property key="orderPrepared">
+        <value xml:lang="ar">أمر بيع/شراء</value>
+        <value xml:lang="cs">Objednávka</value>
+        <value xml:lang="de">Bestellung</value>
+        <value xml:lang="en">Prepared By</value>
+        <value xml:lang="es">Pedido</value>
+        <value xml:lang="fr">Commande</value>
+        <value xml:lang="hi-IN">आर्डर</value>
+        <value xml:lang="it">Ordine</value>
+        <value xml:lang="ja">注文</value>
+        <value xml:lang="nl">Order</value>
+        <value xml:lang="pt-BR">Pedido</value>
+        <value xml:lang="pt-PT">Encomenda</value>
+        <value xml:lang="ro">Comanda</value>
+        <value xml:lang="ru">Заказ</value>
+        <value xml:lang="th">การสั่งซื้อสินค้า</value>
+        <value xml:lang="vi">Đặt hàng</value>
+        <value xml:lang="zh">订单</value>
+        <value xml:lang="zh-CN">订单</value>
+        <value xml:lang="zh-TW">訂單</value>
+    </property>
     <property key="OrderOrderingChannel">
         <value xml:lang="en">Ordering Channel</value>
         <value xml:lang="nl">Verkoopkanaal</value>
