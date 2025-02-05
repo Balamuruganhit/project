@@ -184,7 +184,10 @@ under the License.
                 <#if orderNotes?has_content>
                     <#if showNoteHeadingOnPDF>
                         <fo:table-row>
-                            <fo:table-cell number-columns-spanned="3" padding="5pt">
+                            <fo:table-cell number-columns-spanned="3">
+                                <fo:block>
+                                    <fo:leader leader-length="19cm" leader-pattern="rule"/>
+                                </fo:block>
                                 <fo:block font-weight="bold">${uiLabelMap.OrderNotes}</fo:block>
                                 <fo:block>
                                     <fo:leader leader-length="19cm" leader-pattern="rule"/>

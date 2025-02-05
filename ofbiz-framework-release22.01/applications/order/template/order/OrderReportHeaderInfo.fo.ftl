@@ -48,18 +48,18 @@ under the License.
             </fo:table-row>
 
             <fo:table-row>
-                <fo:table-cell border="1pt solid black" padding="3.8pt">
+                <fo:table-cell border="1pt solid black" padding="3.7pt">
                     <fo:block font-weight="bold">${uiLabelMap.OrderCurrentStatus}</fo:block>
                 </fo:table-cell>
-                <fo:table-cell border="1pt solid black" padding="3.8pt">
+                <fo:table-cell border="1pt solid black" padding="3.7pt">
                     <fo:block font-weight="bold">${currentStatus.get("description",locale)}</fo:block>
                 </fo:table-cell>
             </fo:table-row>
             <fo:table-row>
-                <fo:table-cell border="1pt solid black" padding="3.8pt">
+                <fo:table-cell border="1pt solid black" padding="3.6pt">
                     <fo:block font-weight="bold">Prepared By</fo:block>
                 </fo:table-cell>
-                <fo:table-cell border="1pt solid black" padding="3.8pt">
+                <fo:table-cell border="1pt solid black" padding="3.6pt">
                     <fo:block font-weight="bold">Admin</fo:block>
                 </fo:table-cell>
             </fo:table-row>
