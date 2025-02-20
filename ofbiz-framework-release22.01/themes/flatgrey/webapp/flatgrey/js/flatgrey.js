@@ -57,6 +57,8 @@ function addMessageToChat(role, text) {
   chatBox.appendChild(messageElement);
   chatBox.scrollTop = chatBox.scrollHeight;
 }
+chatform.addEventListener("submit", async (e) => { 
+  e.preventDefault(); });
 
 function truncateResponse(response, maxLength) {
 	if (response.length > maxLength) {

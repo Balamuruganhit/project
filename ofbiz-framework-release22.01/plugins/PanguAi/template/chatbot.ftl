@@ -57,7 +57,7 @@ under the License.
   .main-container-chat {
 	display: flex;
 	width: 100%;
-	height: 30rem;
+	height: 70vh;
 	background-color: #ffffff;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
 	border-radius: 8px;
@@ -101,7 +101,7 @@ under the License.
   }
   
   .sidebar-button:hover {
-	background-color: #1abc9c;
+	background-color: white;
   }
   
   .chat-container-bot{
@@ -119,7 +119,7 @@ under the License.
 	justify-content: space-between;
 	align-items: center;
 	padding: 15px;
-	font-size: 1.2rem;
+	
   }
   
  
@@ -136,7 +136,7 @@ under the License.
 	margin-bottom: 10px;
 	padding: 10px 15px;
 	border-radius: 12px;
-	font-size: 0.9rem;
+	
   }
   
   .chat-message-area.user-res {
@@ -164,14 +164,14 @@ under the License.
   
   #user-input-area{
 	flex: 1;
-	resize: none;
-	padding: 10px;
-	font-size: 1rem;
-	width: 100%;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	height: 40px;
-	outline: none;
+    resize: none;
+    /* padding: 10px; */
+    /* font-size: 1rem; */
+    /* width: 100%; */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    height: 25px;
+    outline: none;
   }
   
   .chat-input-area-user input[type='submit'] {
@@ -179,7 +179,7 @@ under the License.
 	color: white;
 	border: none;
 	padding: 10px 20px;
-	font-size: 1rem;
+	
 	border-radius: 4px;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
