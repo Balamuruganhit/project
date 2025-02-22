@@ -151,6 +151,8 @@ under the License.
 	color: #333;
 	align-self: flex-start;
 	line-height: 1.5;
+	font-size: 1.5rem;
+    font-weight: 600;
   }
   
   .chat-input-area-user {
