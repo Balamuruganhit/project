@@ -119,7 +119,7 @@ under the License.
 	justify-content: space-between;
 	align-items: center;
 	padding: 15px;
-	
+	font-size:1.2rem;
   }
   
  
@@ -151,9 +151,9 @@ under the License.
 	color: #333;
 	align-self: flex-start;
 	line-height: 1.5;
-	font-size: 1.5rem;
-    font-weight: 600;
-  }
+	font-size: 0.9rem;
+    font-weight: 300;
+}
   
   .chat-input-area-user {
 	display: flex;
