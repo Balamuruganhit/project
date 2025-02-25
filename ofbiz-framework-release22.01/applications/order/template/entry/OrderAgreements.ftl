@@ -82,7 +82,7 @@ under the License.
       <#if "PURCHASE_ORDER" == cart.getOrderType()>
         <tr>
           <td class="label">
-            <label>${uiLabelMap.OrderOrderId}</label>
+            <label>${uiLabelMap.OrderPurchaseOrderNumber}</label>
           </td>
           <td>
             <input type='text' size='15' maxlength='100' name='orderId' value=""/>
@@ -92,7 +92,7 @@ under the License.
 
       <tr>
         <td class="label">
-           <label>${uiLabelMap.OrderOrderName}</label>
+           <label>${uiLabelMap.GstNumber}</label>
         </td>
         <td>
           <input type='text' size='60' maxlength='100' name='orderName'/>
@@ -123,8 +123,7 @@ under the License.
             <select name="currencyUomId">
               <option value=""></option>
               <#list currencies as currency>
-              <option value="${currency.uomId}" <#if  
-              ?default('') == currency.uomId>selected="selected"</#if> >${currency.uomId}</option>
+              <option value="${currency.uomId}" <#if currencyUomId?default('') == currency.uomId>selected="selected"</#if> >${currency.uomId}</option>
               </#list>
             </select>
           </div>
@@ -151,7 +150,7 @@ under the License.
 
       <tr>
         <td class="label">
-          <label>${uiLabelMap.WorkEffortWorkEffortId}</label>
+          <label>${uiLabelMap.JobOrder}</label>
         </td>
         <td>
           <@htmlTemplate.lookupField formName="agreementForm" name="workEffortId" id="workEffortId" fieldFormName="LookupWorkEffort"/>

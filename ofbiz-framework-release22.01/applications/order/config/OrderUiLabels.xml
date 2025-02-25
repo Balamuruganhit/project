@@ -16339,4 +16339,12 @@
         <value xml:lang="en">Lookup Return Header</value>
         <value xml:lang="nl">Retouren zoeken/vinden</value>
     </property>
+    <property key="JobOrder">
+        <value xml:lang="en">Job Order Number</value>
+        <value xml:lang="nl">Retouren zoeken/vinden</value>
+    </property>
+    <property key="GstNumber">
+        <value xml:lang="en">GST Number</value>
+        <value xml:lang="nl">Retouren zoeken/vinden</value>
+    </property>
 </resource>

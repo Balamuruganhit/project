@@ -925,10 +925,10 @@ public class CheckOutEvents {
             // determine whether it was a success or not
             if (callResult.get(ModelService.RESPONSE_MESSAGE).equals(ModelService.RESPOND_ERROR)) {
                 if ("ship".equals(mode)) {
-                    return "addparty";
+                    return "shipping";
                 }
                 if ("options".equals(mode)) {
-                    return "addparty";
+                    return "options";
                 }
                 return "error";
             }
@@ -1090,7 +1090,7 @@ public class CheckOutEvents {
                     if (requireNewShippingAddress) {
                         return "shippingAddress";
                     } else if (!shippingAddressSet) {
-                        return "addparty";
+                        return "shipping";
                     }
                 }
             } else if ("shipGroups".equals(currProcess)) {
@@ -1099,7 +1099,7 @@ public class CheckOutEvents {
                 }
             } else if ("options".equals(currProcess)) {
                 if (requireOptions && !shippingOptionsSet) {
-                    return "addparty";
+                    return "options";
                 }
             } else if ("term".equals(currProcess)) {
                 if (requireTerm && !cart.isOrderTermSet()) {
