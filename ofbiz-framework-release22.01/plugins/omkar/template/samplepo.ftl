@@ -45,16 +45,16 @@ under the License.
     <table class="info-table">
         <tr>
             <td>
-                <strong style="text-align: left;">To,</strong><br>
-                <textarea id="toField" rows="5">
+                <strong style="text-align: left; font-family:'Quicksand', sans-serif">To,</strong><br>
+                <textarea id="toField" rows="5" style="font-family:'Quicksand', sans-serif">
     M/s Innovative Engineers
     11142, 2nd Main, Rajajinagar Industrial Town, Bangalore 560044
     GSTIN/UIN: 29ACNPR9957Q1Z0
                 </textarea>
             </td>
             <td>
-                <strong>Place of Supply / Delivery,</strong><br>
-                <textarea id="supplyField" rows="5">
+                <strong style="font-family:'Quicksand', sans-serif">Place of Supply / Delivery,</strong><br>
+                <textarea id="supplyField" rows="5" style="font-family:'Quicksand', sans-serif">
     M/s Aniha Restore Solutions
     Special APMC For Fruits and Vegetables,
     Block-D, 1st Floor, Binnypet Tank Bund Road,
