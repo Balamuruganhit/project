@@ -29,6 +29,7 @@ under the License.
 
                 <set field="layoutSettings.companyName" from-field="uiLabelMap.OmkarCompanyName" global="true"/>
                 <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.OmkarCompanySubtitle" global="true"/>
+                <set field="layoutSettings.javaScripts[]" value="/omkar/static/omkarpo.js" global="true"/>
                 <set field="layoutSettings.styleSheets[]" value="/omkar/static/style.css" global="true"/>
                 <set field="activeApp" value="omkar" global="true"/>
                 <set field="applicationMenuName" value="MainAppBar" global="true"/>

@@ -37,8 +37,8 @@ under the License.
         
       </header>
       <main class="chat-area-bot" id="chat-box-area">
-        <p class="chat-message-area bot-res greet">Hi, Welcome To Pangun Tech!</p>
-        <p class="chat-message-area bot-res greet">"Hello there! How can I assist you today?"</p>
+        <textarea id="response" class="chat-message-area bot-res greet">Hi, Welcome To Pangun Tech!</textarea>
+        <textarea id="response" class="chat-message-area bot-res greet">"Hello there! How can I assist you today?"</textarea>
         <!-- Messages will be dynamically added here -->
       </main>
       
@@ -150,9 +150,7 @@ under the License.
 	background-color: #e0e0e0;
 	color: #333;
 	align-self: flex-start;
-	line-height: 1.5;
-	font-size: 0.9rem;
-    font-weight: 300;
+	
 }
   
   .chat-input-area-user {

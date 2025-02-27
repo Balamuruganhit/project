@@ -175,5 +175,3 @@ closeBtn.addEventListener("click",()=>{
   botImg.classList.remove("hide");
   console.log("close button clicked");
 });
-chatform.addEventListener("submit", async (e) => { 
-  e.preventDefault(); });
