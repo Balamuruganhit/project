@@ -168,4 +168,44 @@
         <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
         <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
     </property>
+    <property key="Kpi">
+        <value xml:lang="en">KPI</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="performance">
+        <value xml:lang="en">Customer OTD performance</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="TypicalRFQ">
+        <value xml:lang="en">Typical RFQ Register Report</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="FAI">
+        <value xml:lang="en">FAI</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="ECI">
+        <value xml:lang="en">ECI</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="CostBreakUp">
+        <value xml:lang="en">Cost Break Up Sheet</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="ProductionActual">
+        <value xml:lang="en">Production Plan Vs Actual Plan</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="PageTitleKpiList">
+        <value xml:lang="en"></value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
 </resource>

@@ -29,6 +29,8 @@
                 <set field="layoutSettings.companyName" from-field="uiLabelMap.AuditReportCompanyName" global="true"/>
                 <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.AuditReportCompanySubtitle" global="true"/>
                 <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/auditreport.js" global="true"/>
+                <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/kpi.js" global="true"/>
+
                 <set field="activeApp" value="AuditReport" global="true"/>
                 <set field="applicationMenuName" value="MainAppBar" global="true"/>
                 <set field="applicationMenuLocation" value="component://AuditReport/widget/AuditReportMenus.xml" global="true"/>
@@ -53,6 +55,41 @@
                             <widgets>
                              <screenlet  title="${uiLabelMap.PageTitleOspReport}" >
                                 <include-menu name="AuditAS9100Bar" location="component://AuditReport/widget/AuditReportMenus.xml"/>
+                            </screenlet>
+                            </widgets>
+                        </section>
+                        <section>
+                            <condition>
+                                <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+                            </condition>
+                            <widgets>
+                                <section>
+                                    <widgets>
+                                        <decorator-section-include name="body"/>
+                                    </widgets>
+                                </section>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3" text="${uiLabelMap.AuditReportViewPermissionError}"/>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="KpiCommonDecorator">
+        <section>
+            <actions>
+                <set field="headerItem" value="KPI"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                             <screenlet  title="List Of KPI's" >
+                                <include-menu name="KpiBar" location="component://AuditReport/widget/AuditReportMenus.xml"/>
                             </screenlet>
                             </widgets>
                         </section>
