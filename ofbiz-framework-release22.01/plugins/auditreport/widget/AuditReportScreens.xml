@@ -156,7 +156,6 @@
         <section>
             <actions>
                 <set field="titleProperty" value="PageTitleOspReport"/>
-                <set field="tabButtonItem" value="ProductionActual"/>
                 
             </actions>
             <widgets>
@@ -172,7 +171,8 @@
         <section>
             <actions>
                 <set field="titleProperty" value="PageTitleOspReport"/>
-                <set field="tabButtonItem" value="AddReportDetail"/>
+                <set field="tabButtonItem" value="ProductionActual"/>
+                
             </actions>
             <widgets>
                 <decorator-screen name="KpiCommonDecorator" location="${parameters.mainDecoratorLocation}">
