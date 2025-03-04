@@ -110,10 +110,10 @@ under the License.
             <tr>
                 <th class="part-number-cell">Part Number</th>
                 <th>Month</th>
-                <th>Planned</th>
-                <th>Actual</th>
-                <th>Efficiency</th>
-                <th>Target</th>
+                <th>Planned Production</th>
+                <th>Actual Production</th>
+                <th>Efficiency (%)</th>
+                <th>Target Achieved (>=85%)? yes/No</th>
                 <th>Remark</th>
             </tr>
         </thead>
