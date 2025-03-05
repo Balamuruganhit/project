@@ -96,29 +96,29 @@ console.log("User message:", usermessageResized);
   userInputRes.value = "";
 
   // Add placeholder bot message
-  const botPlaceholder = document.createElement("div");
+  const botPlaceholder = document.createElement("textarea");
   botPlaceholder.classList.add("chat-message-area", "bot-res");
   botPlaceholder.textContent = "Thinking...";
+ 
   chatBoxAi.appendChild(botPlaceholder);
+
 
   try {
     const botResponse = await fetchChatResponse(usermessageResized);
     console.log("Bot response:", botResponse);
-	  botPlaceholder.textContent = botResponse; // Update bot's message
+	  botPlaceholder.textContent = botResponse;
+    botPlaceholder.style.height = "auto";
+    botPlaceholder.style.height = botPlaceholder.scrollHeight + "px"; // Update bot's message
+    botPlaceholder.style.lineHeight="2rem";
   } catch (error) {
     botPlaceholder.textContent = "Error fetching response!";
   } finally {
     chatBoxAi.scrollTop = chatBoxAi.scrollHeight; // Ensure scroll stays at the bottom
   }
-});
-const collection = document.getElementsByClassName("chat-message-area");
-for (let item of collection) {
-    item.addEventListener('input', function() { 
-      this.style.height = 'auto';
-      this.style.height = `${this.scrollHeight}px`;
-    });
-  }
 
+});
+
+console.log('it is bot')
 chatform.addEventListener("submit", async (e) => { 
     e.preventDefault(); });
 

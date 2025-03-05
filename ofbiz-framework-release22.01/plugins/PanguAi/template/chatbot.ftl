@@ -85,6 +85,7 @@ under the License.
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
+	font-size:1.5rem;
   }
   
   .sidebar-button {
@@ -93,7 +94,7 @@ under the License.
 	background-color: #34495e;
 	color: white;
 	border: none;
-	font-size: 1rem;
+	font-size: 1.4rem;
 	text-align: center;
 	border-radius: 5px;
 	cursor: pointer;
@@ -119,7 +120,7 @@ under the License.
 	justify-content: space-between;
 	align-items: center;
 	padding: 15px;
-	font-size:1.2rem;
+	font-size:1.5rem;
   }
   
  
@@ -144,6 +145,7 @@ under the License.
 	color: white;
 	line-height: 1.5;
 	align-self: flex-end;
+	width:95%;
   }
   
   .chat-message-area.bot-res {
@@ -189,7 +191,17 @@ under the License.
 	background-color: #005bb5;
   }
   
-  
+  .bot-res{
+	width:95%;
+	resize:none;
+	height:auto;
+  }
+  .bot-res::-webkit-scrollbar{
+	width:0px;
+  }
+  .chat-area-bot::-webkit-scrollbar{
+	width:0px;
+  }
   .color{
 	background-color: #1abc9c
   }
