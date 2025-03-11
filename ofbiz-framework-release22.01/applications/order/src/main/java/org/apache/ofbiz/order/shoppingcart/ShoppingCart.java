@@ -100,7 +100,7 @@ public class ShoppingCart implements Iterable<ShoppingCartItem>, Serializable {
     private static final RoundingMode TAX_ROUNDING = UtilNumber.getRoundingMode("salestax.rounding");
     private static final MathContext GEN_ROUNDING = new MathContext(10);
 
-    private String orderType = "SALES_ORDER"; // default orderType
+    private String orderType = "PURCHASE_ORDER"; // default orderType
     private String channel = "UNKNWN_SALES_CHANNEL"; // default channel enum
 
     private String poNumber = null;

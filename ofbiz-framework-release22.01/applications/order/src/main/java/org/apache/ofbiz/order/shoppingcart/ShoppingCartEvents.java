@@ -1638,7 +1638,7 @@ public class ShoppingCartEvents {
             session.setAttribute("orderMode", orderMode);
         } else {
             request.setAttribute("_ERROR_MESSAGE_", UtilProperties.getMessage(RES_ERROR, "OrderPleaseSelectEitherSaleOrPurchaseOrder", locale));
-            return "error";
+            return "errorOrder";
         }
 
         // check the selected product store
@@ -1680,7 +1680,7 @@ public class ShoppingCartEvents {
                             "OrderYouDoNotHavePermissionToTakeOrdersForThisStore", locale));
                     cart.clear();
                     session.removeAttribute("orderMode");
-                    return "error";
+                    return "errorpermission";
                 }
                 cart.setProductStoreId(productStoreId);
             } else {
@@ -1717,7 +1717,7 @@ public class ShoppingCartEvents {
                     thisUserLogin = EntityQuery.use(delegator).from("UserLogin").where("userLoginId", userLoginId).queryOne();
                 } catch (GenericEntityException gee) {
                     request.setAttribute("_ERROR_MESSAGE_", gee.getMessage());
-                    return "error";
+                    return "errorlogin";
                 }
                 if (thisUserLogin != null) {
                     partyId = thisUserLogin.getString("partyId");
@@ -1751,7 +1751,7 @@ public class ShoppingCartEvents {
                 partyId = null;
             }
         }
-
+         
         return "success";
     }
 
@@ -1765,9 +1765,11 @@ public class ShoppingCartEvents {
         }
 
         // if the request is coming from the init page, then orderMode will be in the request parameters
+        
         if (request.getParameter("orderMode") != null) {
             return "agreements"; // next page after init is always agreements
         }
+
 
         // orderMode is set and there is an order in progress, so go straight to the cart
         return "cart";
@@ -1990,7 +1992,9 @@ public class ShoppingCartEvents {
 
         // set the order name
         cart.setOrderName(orderName);
-
+        Debug.logInfo("Attempting to add to cart with productId = " +request.getParameter("custRequestId"), MODULE);
+        
+        
         // set the corresponding purchase order id
         cart.setPoNumber(correspondingPoId);
 

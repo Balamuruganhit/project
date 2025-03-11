@@ -33,7 +33,10 @@ under the License.
   <div class="screenlet-body">
 <form class="basic-form" method="post" name="agreementForm" action="<@ofbizUrl>setOrderCurrencyAgreementShipDates</@ofbizUrl>">
     <table class="basic-table">
-
+      <#if custRequestId??>
+        <input type="hidden" name="custRequestId" value="${custRequestId!}"/>
+        
+      </#if>
       <#if agreements??>
       <tr>
         <td class="label"/>

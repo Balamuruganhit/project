@@ -449,6 +449,27 @@ under the License.
                 <parameter param-name="custRequestId" from-field="custRequest.custRequestId"/>
             </link>
         </menu-item>
+        <menu-item name="createPoFromRequest" title="${uiLabelMap.createPoFromRequest}">
+            <condition>
+                <and>
+                    <not><if-empty field="custRequest"/></not>
+                    <if-compare field="custRequest.custRequestTypeId" operator="equals" value="RF_QUOTE"/>
+                </and>
+            </condition>
+            <link target="setOrderCurrencyAgreement?custRequestId=${custRequest.custRequestId}&amp;orderMode=PURCHASE_ORDER&amp;supplierPartyId=DemoSupplier&amp;hasAgreements=N&amp;
+orderId=&amp;
+orderName=&amp;
+currencyUomId=USD&amp;
+CURRENT_CATALOG_ID=DemoCatalog&amp;
+workEffortId=&amp;
+shipAfterDate_i18n=&amp; 
+shipAfterDate=&amp;
+shipBeforeDate_i18n=&amp; 
+shipBeforeDate= &amp;
+cancelBackOrderDate_i18n=&amp; 
+cancelBackOrderDate="/>
+                
+        </menu-item>
     </menu>
 
     <menu name="RequestScreenletMenu" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"

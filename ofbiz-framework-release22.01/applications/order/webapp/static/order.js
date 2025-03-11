@@ -16,16 +16,16 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 */
-document.addEventListener("DOMContentLoaded", function() {
+
+
+        document.addEventListener("DOMContentLoaded", function() {
             let forms = document.querySelectorAll(".auto-submit");
             let index = 0;
-            console.log(forms);
-            console.log(forms.length);
+
             function submitNextForm() {
                 if (index < forms.length) {
                     forms[index].submit();
                     index++;
-                    console.log(forms)
                     setTimeout(submitNextForm, 1000); // Delay to avoid conflicts
                 }
             }
@@ -33,3 +33,4 @@ document.addEventListener("DOMContentLoaded", function() {
             submitNextForm(); // Start submitting forms
         });
 
+ 

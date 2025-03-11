@@ -20,8 +20,10 @@
 import org.apache.ofbiz.order.order.OrderReadHelper
 import org.apache.ofbiz.order.shoppingcart.ShoppingCartEvents
 import org.apache.ofbiz.product.catalog.CatalogWorker
-
+import org.apache.ofbiz.base.util.Debug
+requestId = parameters.custRequestId
 productId = parameters.productId
+Debug.logInfo("Received custRequestId: " + requestId,"ShowCart")
 if (productId) {
 
     quantityOnHandTotal = parameters.quantityOnHandTotal
