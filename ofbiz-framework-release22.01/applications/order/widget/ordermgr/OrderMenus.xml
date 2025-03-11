@@ -456,7 +456,7 @@ under the License.
                     <if-compare field="custRequest.custRequestTypeId" operator="equals" value="RF_QUOTE"/>
                 </and>
             </condition>
-            <link target="setOrderCurrencyAgreement?custRequestId=${custRequest.custRequestId}&amp;orderMode=PURCHASE_ORDER&amp;supplierPartyId=DemoSupplier&amp;hasAgreements=N&amp;
+           <link target="setOrderCurrencyAgreement?custRequestId=${custRequest.custRequestId}&amp;orderMode=PURCHASE_ORDER&amp;supplierPartyId=${supplierID}&amp;hasAgreements=N&amp;
 orderId=&amp;
 orderName=&amp;
 currencyUomId=USD&amp;
