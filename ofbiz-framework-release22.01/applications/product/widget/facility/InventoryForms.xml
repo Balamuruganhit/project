@@ -186,7 +186,6 @@ under the License.
         <auto-fields-entity entity-name="ShipmentReceipt" map-name="shipmentReceipt" default-field-type="display"/>
         <field name="inventoryItemId"><hidden/></field>
     </form>
-
     <form name="ListInventoryItemDetail" type="list" target="" title="" list-name="inventoryItemDetails"
         odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
         <auto-fields-entity entity-name="InventoryItemDetail" map-name="inventoryItemDetail" default-field-type="display"/>

@@ -24,6 +24,11 @@
         <value xml:lang="fr">Quatre tableau créés par Birt (Ventes des 3 derniers mois, Ventes, Ventes par codes promotionels, Demandes par produit) nécessitent d'alimenter la base de données d'Inform. décis. (notez aussi la nécessaire màj du fichier bi.properties après septembre 2026). Ensuite seules les commandes nouvellement approuvées seront prises en compte.</value>
         <value xml:lang="zh">4个Birt报告（最近3个月销售、销售、销售订单折扣优惠码、产品需求）要求提供BI数据库（注意：bi.properites文件需要在2026年9月后进行更新）。只会统计新批准的那些订单。</value>
     </property>
+    <property key="createPoFromRequest">
+        <value xml:lang="en">Create PO From Request</value>
+        <value xml:lang="fr">Quatre tableau créés par Birt (Ventes des 3 derniers mois, Ventes, Ventes par codes promotionels, Demandes par produit) nécessitent d'alimenter la base de données d'Inform. décis. (notez aussi la nécessaire màj du fichier bi.properties après septembre 2026). Ensuite seules les commandes nouvellement approuvées seront prises en compte.</value>
+        <value xml:lang="zh">4个Birt报告（最近3个月销售、销售、销售订单折扣优惠码、产品需求）要求提供BI数据库（注意：bi.properites文件需要在2026年9月后进行更新）。只会统计新批准的那些订单。</value>
+    </property>
     <property key="DeleteOrderItemShipGroup">
         <value xml:lang="de">Versandgruppe löschen</value>
         <value xml:lang="en">Delete this ship group</value>
@@ -521,7 +526,7 @@
     <property key="FormFieldTitle_internalName">
         <value xml:lang="ar">الإسم الداخلي</value>
         <value xml:lang="de">Interner Name</value>
-        <value xml:lang="en">Internal Name</value>
+        <value xml:lang="en">Part Name</value>
         <value xml:lang="es">Nombre Interno</value>
         <value xml:lang="fr">Nom interne</value>
         <value xml:lang="it">Nome Interno</value>
@@ -3134,12 +3139,12 @@
     </property>
     <property key="OrderCompanyName">
         <value xml:lang="de">OFBiz: Auftragsverwaltung</value>
-        <value xml:lang="en">OFBiz: Order Manager</value>
+        <value xml:lang="en">Pangun Tech: Order Manager</value>
         <value xml:lang="es">OFBiz: Gestión de pedidos</value>
         <value xml:lang="fr">OFBiz : Gestion commerciale</value>
         <value xml:lang="it">OFBiz: Gestione ordini</value>
         <value xml:lang="ja">OFBiz: 注文管理</value>
-        <value xml:lang="nl">OFBiz: Order Manager</value>
+        <value xml:lang="nl">Pangun Tech: Order Manager</value>
         <value xml:lang="pt-BR">OFBiz: Gestão de Pedidos</value>
         <value xml:lang="ro">OFBiz: Gestiune Comanda </value>
         <value xml:lang="ru">OFBiz: Управление заказами</value>
@@ -5994,7 +5999,7 @@
         <value xml:lang="fr">Gestion de Commandes</value>
         <value xml:lang="it">Applicazione gestione ordini</value>
         <value xml:lang="ja">注文管理業務</value>
-        <value xml:lang="nl">OFBiz: Order Manager</value>
+        <value xml:lang="nl">Pangun Tech: Order Manager</value>
         <value xml:lang="pt-BR">Aplicativo de gestão de pedidos</value>
         <value xml:lang="ro">Aplicatie Gestiune Comenzi</value>
         <value xml:lang="ru">Управление заказами</value>
@@ -7344,6 +7349,27 @@
         <value xml:lang="cs">Objednávka</value>
         <value xml:lang="de">Bestellung</value>
         <value xml:lang="en">Order</value>
+        <value xml:lang="es">Pedido</value>
+        <value xml:lang="fr">Commande</value>
+        <value xml:lang="hi-IN">आर्डर</value>
+        <value xml:lang="it">Ordine</value>
+        <value xml:lang="ja">注文</value>
+        <value xml:lang="nl">Order</value>
+        <value xml:lang="pt-BR">Pedido</value>
+        <value xml:lang="pt-PT">Encomenda</value>
+        <value xml:lang="ro">Comanda</value>
+        <value xml:lang="ru">Заказ</value>
+        <value xml:lang="th">การสั่งซื้อสินค้า</value>
+        <value xml:lang="vi">Đặt hàng</value>
+        <value xml:lang="zh">订单</value>
+        <value xml:lang="zh-CN">订单</value>
+        <value xml:lang="zh-TW">訂單</value>
+    </property>
+    <property key="orderPrepared">
+        <value xml:lang="ar">أمر بيع/شراء</value>
+        <value xml:lang="cs">Objednávka</value>
+        <value xml:lang="de">Bestellung</value>
+        <value xml:lang="en">Prepared By</value>
         <value xml:lang="es">Pedido</value>
         <value xml:lang="fr">Commande</value>
         <value xml:lang="hi-IN">आर्डर</value>
@@ -16316,6 +16342,14 @@
     </property>
     <property key="PageTitleLookupReturnHeader">
         <value xml:lang="en">Lookup Return Header</value>
+        <value xml:lang="nl">Retouren zoeken/vinden</value>
+    </property>
+    <property key="JobOrder">
+        <value xml:lang="en">Job Order Number</value>
+        <value xml:lang="nl">Retouren zoeken/vinden</value>
+    </property>
+    <property key="GstNumber">
+        <value xml:lang="en">GST Number</value>
         <value xml:lang="nl">Retouren zoeken/vinden</value>
     </property>
 </resource>

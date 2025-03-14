@@ -49,6 +49,9 @@ under the License.
         <menu-item name="ManufacturingReports" title="${uiLabelMap.ManufacturingReports}">
             <link target="ManufacturingReports"/>
         </menu-item>
+        <menu-item name="AuditReport" title="${uiLabelMap.AuditReports}">
+            <link target="productionPlantDocumentation"/>
+        </menu-item>
     </menu>
 
     <menu name="ManufacturingShortcutAppBar" title="${uiLabelMap.ManufacturingManager}">
@@ -106,6 +109,12 @@ under the License.
             </condition>
             <link target="/manufacturing/control/ManufacturingReports" url-mode="inter-app"/>
         </menu-item>
+        <menu-item name="AuditReport" title="${uiLabelMap.AuditReports}">
+             <condition>
+                <if-has-permission permission="MANUFACTURING" action="_CREATE"/>
+            </condition>
+            <link target="/manufacturing/control/productionPlantDocumentation" url-mode="inter-app"/>
+        </menu-item>
     </menu>
     <menu name="MainActionMenu" menu-container-style="button-bar button-style-2" default-selected-style="selected">
          <menu-item name="NewProdRun" title="${uiLabelMap.CommonNew} ${uiLabelMap.ManufacturingProductionRun}">
@@ -133,6 +142,20 @@ under the License.
              <link target="EditRoutingTask"/>
          </menu-item>
      </menu>
+      <menu name="AuditTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
+        <menu-item name="productionPlantDocumentation" title="${uiLabelMap.ProductionPlantDocumentation}">
+            <link target="productionPlantDocumentation"/>
+        </menu-item>
+        <menu-item name="equipmentAndMachinery" title="${uiLabelMap.EquipmentandMachinery}">
+            <link target="EquipmentAndMachinery"/>
+        </menu-item>
+        <menu-item name="inspectionAndApprovalRecords" title="${uiLabelMap.InspectionandApprovalRecords}">
+            <link target="InspectionAndApprovalRecords"/>
+        </menu-item>
+        <menu-item name="monitoringAndMaintenance" title="${uiLabelMap.MonitoringandMaintenance}">
+            <link target="MonitoringAndMaintenance"/>
+        </menu-item>
+    </menu>
     <menu name="BomTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
         <menu-item name="findBom" title="${uiLabelMap.CommonFind}">
             <link target="FindBom"/>

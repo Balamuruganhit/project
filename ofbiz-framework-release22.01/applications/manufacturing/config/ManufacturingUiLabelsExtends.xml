@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
+	<property key="AuditReports">
+        <value xml:lang="en">Audit Reports</value>
+		   <value xml:lang="es">Fecha y hora de cancelación</value>
+        <value xml:lang="fr">Date et heure d'annulation</value>
+        <value xml:lang="it">Data/ora di annullamento</value>
+        <value xml:lang="ja">取消日時</value>
+        <value xml:lang="nl">Datum/tijd annulering</value>
+        <value xml:lang="pt-BR">Data e hora de cancelamento</value>
+        <value xml:lang="th">ยกเลิกวัน เวลา</value>
+        <value xml:lang="vi">Ngày giờ hủy bỏ</value>
+        <value xml:lang="zh">取消日期时间</value>
+        <value xml:lang="zh-TW">取消日期時間</value>
+    </property>
+    <property key="ProductionPlantDocumentation">
+        <value xml:lang='en'> Production Plant Documentation</value>
+		   <value xml:lang="es">Fecha y hora de cancelación</value>
+        <value xml:lang="fr">Date et heure d'annulation</value>
+        <value xml:lang="it">Data/ora di annullamento</value>
+        <value xml:lang="ja">取消日時</value>
+        <value xml:lang="nl">Datum/tijd annulering</value>
+        <value xml:lang="pt-BR">Data e hora de cancelamento</value>
+        <value xml:lang="th">ยกเลิกวัน เวลา</value>
+        <value xml:lang="vi">Ngày giờ hủy bỏ</value>
+        <value xml:lang="zh">取消日期时间</value>
+        <value xml:lang="zh-TW">取消日期時間</value>
+    </property>
+    <property key="EquipmentandMachinery">
+        <value xml:lang='en'>Equipment and Machinery</value>
+		   <value xml:lang="es">Fecha y hora de cancelación</value>
+        <value xml:lang="fr">Date et heure d'annulation</value>
+        <value xml:lang="it">Data/ora di annullamento</value>
+        <value xml:lang="ja">取消日時</value>
+        <value xml:lang="nl">Datum/tijd annulering</value>
+        <value xml:lang="pt-BR">Data e hora de cancelamento</value>
+        <value xml:lang="th">ยกเลิกวัน เวลา</value>
+        <value xml:lang="vi">Ngày giờ hủy bỏ</value>
+        <value xml:lang="zh">取消日期时间</value>
+        <value xml:lang="zh-TW">取消日期時間</value>
+    </property>
+    <property key='InspectionandApprovalRecords'>
+        <value xml:lang='en'> Inspection and Approval Records</value>
+		   <value xml:lang="es">Fecha y hora de cancelación</value>
+        <value xml:lang="fr">Date et heure d'annulation</value>
+        <value xml:lang="it">Data/ora di annullamento</value>
+        <value xml:lang="ja">取消日時</value>
+        <value xml:lang="nl">Datum/tijd annulering</value>
+        <value xml:lang="pt-BR">Data e hora de cancelamento</value>
+        <value xml:lang="th">ยกเลิกวัน เวลา</value>
+        <value xml:lang="vi">Ngày giờ hủy bỏ</value>
+        <value xml:lang="zh">取消日期时间</value>
+        <value xml:lang="zh-TW">取消日期時間</value>
+    </property>
+    <property key="MonitoringandMaintenance">
+        <value xml:lang='en'> Monitoring and Maintenance</value>
+		   <value xml:lang="es">Fecha y hora de cancelación</value>
+        <value xml:lang="fr">Date et heure d'annulation</value>
+        <value xml:lang="it">Data/ora di annullamento</value>
+        <value xml:lang="ja">取消日時</value>
+        <value xml:lang="nl">Datum/tijd annulering</value>
+        <value xml:lang="pt-BR">Data e hora de cancelamento</value>
+        <value xml:lang="th">ยกเลิกวัน เวลา</value>
+        <value xml:lang="vi">Ngày giờ hủy bỏ</value>
+        <value xml:lang="zh">取消日期时间</value>
+        <value xml:lang="zh-TW">取消日期時間</value>
+    </property>
+    <property key="ManuSubmit">
+        <value xml:lang="en">Submit</value>
+		   <value xml:lang="es">Fecha y hora de cancelación</value>
+        <value xml:lang="fr">Date et heure d'annulation</value>
+        <value xml:lang="it">Data/ora di annullamento</value>
+        <value xml:lang="ja">取消日時</value>
+        <value xml:lang="nl">Datum/tijd annulering</value>
+        <value xml:lang="pt-BR">Data e hora de cancelamento</value>
+        <value xml:lang="th">ยกเลิกวัน เวลา</value>
+        <value xml:lang="vi">Ngày giờ hủy bỏ</value>
+        <value xml:lang="zh">取消日期时间</value>
+        <value xml:lang="zh-TW">取消日期時間</value>
+    </property>
+    <property key="ManuContentFile">
+        <value xml:lang="en">Can you provide the document for the production plant layout?</value>
+    </property>
+    <property key="PageTitleAddPlantContent">
+        <value xml:lang="en">Add Plant LayOut</value>
+    </property>
+    <property key="PlantDetail">
+        <value xml:lang="en">Plant Layout Details</value>
+		   <value xml:lang="es">Fecha y hora de cancelación</value>
+        <value xml:lang="fr">Date et heure d'annulation</value>
+        <value xml:lang="it">Data/ora di annullamento</value>
+        <value xml:lang="ja">取消日時</value>
+        <value xml:lang="nl">Datum/tijd annulering</value>
+        <value xml:lang="pt-BR">Data e hora de cancelamento</value>
+        <value xml:lang="th">ยกเลิกวัน เวลา</value>
+        <value xml:lang="vi">Ngày giờ hủy bỏ</value>
+        <value xml:lang="zh">取消日期时间</value>
+        <value xml:lang="zh-TW">取消日期時間</value>
+    </property>
+    <property key="UploadDoc">
+        <value xml:lang="en">Uploaded Document</value>
+		   <value xml:lang="es">Fecha y hora de cancelación</value>
+        <value xml:lang="fr">Date et heure d'annulation</value>
+        <value xml:lang="it">Data/ora di annullamento</value>
+        <value xml:lang="ja">取消日時</value>
+        <value xml:lang="nl">Datum/tijd annulering</value>
+        <value xml:lang="pt-BR">Data e hora de cancelamento</value>
+        <value xml:lang="th">ยกเลิกวัน เวลา</value>
+        <value xml:lang="vi">Ngày giờ hủy bỏ</value>
+        <value xml:lang="zh">取消日期时间</value>
+        <value xml:lang="zh-TW">取消日期時間</value>
+    </property>
+    <property key="PlantDetailId">
+        <value xml:lang="en">Plant Layout Id</value>
+		   <value xml:lang="es">Fecha y hora de cancelación</value>
+        <value xml:lang="fr">Date et heure d'annulation</value>
+        <value xml:lang="it">Data/ora di annullamento</value>
+        <value xml:lang="ja">取消日時</value>
+        <value xml:lang="nl">Datum/tijd annulering</value>
+        <value xml:lang="pt-BR">Data e hora de cancelamento</value>
+        <value xml:lang="th">ยกเลิกวัน เวลา</value>
+        <value xml:lang="vi">Ngày giờ hủy bỏ</value>
+        <value xml:lang="zh">取消日期时间</value>
+        <value xml:lang="zh-TW">取消日期時間</value>
+    </property>
+
+</resource>

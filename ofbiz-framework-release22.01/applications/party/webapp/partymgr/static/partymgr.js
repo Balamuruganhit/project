@@ -40,4 +40,18 @@ function collapseFindPartyOptions(currentOption) {
         }
     });
 }
+document.addEventListener("DOMContentLoaded", function () {
+    let productField = document.getElementById("productIdField");
+
+    if (productField) {
+        let productId = productField.innerText.trim(); // Get the displayed productId
+
+        if (productId) {
+            fetchInventoryInfo(productId);
+        }
+    }
+});
+
+
+
 

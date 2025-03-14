@@ -1175,4 +1175,9 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
             Locale locale, String targetMimeTypeId, boolean cache) throws GeneralException, IOException {
         return renderDataResourceAsText(null, delegator, dataResourceId, templateContext, locale, targetMimeTypeId, cache);
     }
+
+	public static void writeDataResourceFile(GenericValue dataResource, byte[] uploadedFile) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'writeDataResourceFile'");
+	}
 }

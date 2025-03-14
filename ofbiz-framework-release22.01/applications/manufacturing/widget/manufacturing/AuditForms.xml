@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns="http://ofbiz.apache.org/Widget-Form" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
+    
+   
+    
+   
+    <form name="AddPartyContent" target="updatePlantContent" type="upload" default-map-name="content"
+        focus-field-name="contentTypeId" header-row-style="header-row" default-table-style="basic-table">
+        <actions>
+            <entity-one entity-name="StatusItem" value-field="currentStatus" auto-field-map="false">
+                <field-map field-name="statusId" from-field="content.statusId"/>
+            </entity-one>
+            <entity-one entity-name="DataResource" value-field="dataResource" auto-field-map="false">
+                <field-map field-name="dataResourceId" from-field="content.dataResourceId"/>
+            </entity-one>
+        </actions>
+            <field name="dataResourceName" title="${uiLabelMap.ManuContentFile}"><file/></field>
+            <field name="textAreaField" title="${uiLableMap.ManuContentFile}" >
+            <textarea rows="10" default-value="Enter the Detail" title="${uiLableMap.ManuTextArea}"/>
+            </field>
+            <field name="submitButton" title="${uiLabelMap.CommonSubmit}">
+            <submit button-type="button"/>
+            </field>
+    </form>
+
+    <grid name="ListPartyContents" separate-columns="false"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
+        <actions>
+            <entity-and entity-name="PlantContentDetail">
+                <field-map field-name="plantId"/>
+            </entity-and>
+        </actions>
+        <field name="plantId"><hidden/></field>
+        <field name="contentId"><hidden/></field>
+        <field name="contentName">
+            <display-entity entity-name="Content" description="${contentName}" key-field-name="contentId">
+                <sub-hyperlink target="EditPlantContents" description="${contentId}" link-style="smallSubmit">
+                    <parameter param-name="contentId"/>
+                    <parameter param-name="plantId"/>
+                </sub-hyperlink>
+            </display-entity>
+        </field>
+        <field name="plantContentTypeId"><display-entity entity-name="PartyContentType"/></field>
+        <field name="description"><display/></field>
+        <field name="localeString"><display-entity entity-name="CountryCode" key-field-name="countryCode" description="${countryName}${countryCode}"></display-entity></field>
+        <field name="contentTypeId"><display-entity entity-name="ContentType"></display-entity></field>
+        
+        <field name="dataResourceId" title="${uiLabelMap.FormFieldTitle_dataResourceName}" use-when="dataResourceId==null"><display/> </field>
+        <field name="dataResourceId" title="${uiLabelMap.FormFieldTitle_dataResourceName}" use-when="dataResourceId!=null">
+            <display-entity entity-name="DataResource" description="${dataResourceName}"/>
+        </field>
+        <field name="fromDate"><display type="date-time"></display></field>
+        
+        <field name="editLink" title=" " widget-style="smallSubmit">
+           <hyperlink description="${uiLabelMap.CommonEdit}" target="EditPlantContents" also-hidden="false">
+                <parameter param-name="contentId"/>
+                <parameter param-name="plantId"/>
+                <parameter param-name="dataResourceId"/>
+                <parameter param-name="fromDate"/>
+                <parameter param-name="plantContentTypeId"/>
+            </hyperlink>
+        </field>
+        <field name="remove" title=" " widget-style="smallSubmit">
+           <hyperlink description="${uiLabelMap.CommonRemove}" target="removePartyContent" also-hidden="false">
+                <parameter param-name="contentId"/>
+                <parameter param-name="partyId"/>
+                <parameter param-name="dataResourceId"/>
+                <parameter param-name="fromDate"/>
+                <parameter param-name="partyContentTypeId"/>
+            </hyperlink>
+        </field>
+    </grid>
+
+
+</forms>

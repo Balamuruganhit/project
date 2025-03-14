@@ -44,7 +44,7 @@ under the License.
                 <property-map resource="OrderUiLabels" map-name="uiLabelMap" global="true" />
                 <property-map resource="AccountingUiLabels" map-name="uiLabelMap" global="true" />
                 <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true" />
-
+                <script location="component://order/groovyScripts/order/CompanyHeader.groovy"/>
                 <script location="component://order/groovyScripts/order/OrderView.groovy" />
                 <script location="component://order/groovyScripts/order/OrderViewWebSecure.groovy" />
             </actions>
@@ -77,7 +77,8 @@ under the License.
                             </decorator-section>
                             <decorator-section name="body">
                                 <section>
-                                    <widgets>
+                                    <widgets>                                   
+                                    
                                         <!-- the contach mechanisms, terms, payment and shipping methods are shown in the first page -->
                                         <platform-specific>
                                             <xsl-fo>
@@ -112,7 +113,13 @@ under the License.
                 <script location="component://order/groovyScripts/order/CompanyHeader.groovy"/>
             </actions>
             <widgets>
-                <platform-specific><xsl-fo><html-template location="component://order/template/order/CompanyHeader.fo.ftl"/></xsl-fo></platform-specific>
+                <platform-specific>
+                    <xsl-fo>
+                        
+                            <html-template location="component://order/template/order/CompanyHeader.fo.ftl"/>
+                           
+                    </xsl-fo>
+                </platform-specific>
             </widgets>
         </section>
     </screen>

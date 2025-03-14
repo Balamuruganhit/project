@@ -27,6 +27,10 @@ under the License.
                     <fo:list-item-label><fo:block font-size="12">${uiLabelMap.ProductProductId}</fo:block></fo:list-item-label>
                     <fo:list-item-body start-indent="body-start()"><fo:block><fo:inline font-size="14" font-weight="bold" space-end="5mm">${productionRunData.productId!}</fo:inline><#if productionRunData.product.productName??> ${productionRunData.product.productName}</#if></fo:block></fo:list-item-body>
                 </fo:list-item>
+                <fo:list-item>
+                    <fo:list-item-label><fo:block font-size="12">${uiLabelMap.ProductBrandName}</fo:block></fo:list-item-label>
+                    <fo:list-item-body start-indent="body-start()"><fo:block><#if productionRunData.product.brandName??> ${productionRunData.product.brandName}</#if></fo:block></fo:list-item-body>
+                </fo:list-item>
             </fo:list-block>
             <fo:block><fo:leader leader-length="100%" leader-pattern="rule" rule-style="solid" rule-thickness="0.1mm" color="black"/></fo:block>
             <fo:table>
