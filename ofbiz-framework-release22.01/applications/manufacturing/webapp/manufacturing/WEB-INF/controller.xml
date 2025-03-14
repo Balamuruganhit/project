@@ -36,31 +36,7 @@ under the License.
         <event name="test" type="java" path="org.apache.ofbiz.webapp.event.TestEvent" invoke="test"/>
     </postprocessor>
     -->
-    
 
-    <request-map uri="productionPlantDocumentation">
-        <security https="true" auth="true"/>
-        <response name="success" type="view" value="productionPlantDocumentation" />
-    </request-map>
-
-   <request-map uri="EditPlantContent">
-        <security auth="true" https="true"/>
-        <response name="success" type="view" value="productionPlantDocumentation"/>
-    </request-map>
-    <request-map uri="createPlantContent">
-        <security auth="true" https="true"/>
-        <event type="simple" path="component://manufacturing/minilang/report/PlantSimpleEvents.xml" invoke="createPlantContent"/>
-        <response name="success" type="request-redirect" value="productionPlantDocumentation">
-            <redirect-parameter name="partyId"></redirect-parameter>
-        </response>
-    </request-map>
-    <request-map uri="updatePlantContent">
-        <security auth="true" https="true"/>
-        <event type="simple" path="component://party/minilang/party/PartySimpleEvents.xml" invoke="updatePlantContent"/>
-        <response name="success" type="request-redirect" value="productionPlantDocumentation">
-            <redirect-parameter name="partyId"></redirect-parameter>
-        </response>
-    </request-map>
     <!-- Request Mappings -->
     <request-map uri="view">
         <security https="true" auth="true"/>
@@ -850,8 +826,6 @@ under the License.
 
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://manufacturing/widget/manufacturing/JobshopScreens.xml#FindProductionRun"/>
-    <view-map name="successScreen" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#successUpload"/>
-    <view-map name="errorScreen" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#ErrorUpload"/>
 
     <!-- Routing view mappings -->
     <view-map name="FindCalendar" type="screen" page="component://manufacturing/widget/manufacturing/CalendarScreens.xml#FindCalendar"/>
@@ -900,8 +874,6 @@ under the License.
     <view-map name="RunMrpGo" page="component://manufacturing/widget/manufacturing/MrpScreens.xml#RunMrpGo" type="screen"/>
     <view-map name="ManufacturingReports" type="screen" page="component://manufacturing/widget/manufacturing/ReportScreens.xml#ManufacturingReports"/>
 
-    <view-map name="productionPlantDocumentation" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionPlantDocumentation"/>
-  
     <!-- JobShop Management view mappings -->
     <view-map name="CreateProductionRun" type="screen" page="component://manufacturing/widget/manufacturing/JobshopScreens.xml#CreateProductionRun"/>
     <view-map name="FindProductionRun" type="screen" page="component://manufacturing/widget/manufacturing/JobshopScreens.xml#FindProductionRun"/>

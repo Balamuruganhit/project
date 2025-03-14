@@ -195,12 +195,6 @@ under the License.
         <response name="error" type="view" value="EditContactMech"/>
     </request-map>
 
-     <request-map uri="FaciltyDashboard">
-        <security https="true" auth="true"/>
-        <response name="success" type="view" value="dashboard"/>
-        <response name="error" type="view" value="EditContactMech"/>
-    </request-map>
-
     <request-map uri="updatePostalAddress">
         <security https="true" auth="true"/>
         <event type="service" invoke="updateFacilityPostalAddress"/>
@@ -1390,8 +1384,6 @@ under the License.
     <view-map name="EditFacilityParties" type="screen" page="component://product/widget/facility/FacilityScreens.xml#EditFacilityParties"/>
     <view-map name="ViewContactMechs" type="screen" page="component://product/widget/facility/FacilityScreens.xml#ViewContactMechs"/>
     <view-map name="EditContactMech" type="screen" page="component://product/widget/facility/FacilityScreens.xml#EditContactMech"/>
-    <view-map name="dashboard" type="screen" page="component://product/widget/facility/FacilityScreens.xml#dashboard"/>
-
 
     <view-map name="EditInventoryItem" type="screen" page="component://product/widget/facility/FacilityScreens.xml#EditInventoryItem"/>
     <view-map name="ViewInventoryItemDetail" type="screen" page="component://product/widget/facility/FacilityScreens.xml#ViewInventoryItemDetail"/>

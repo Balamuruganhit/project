@@ -414,7 +414,7 @@
     </property>
     <property key="MarketingCompanyName">
         <value xml:lang="de">OFBiz: Vermarktungsmanager</value>
-        <value xml:lang="en">Pangun Tech: Marketing Manager</value>
+        <value xml:lang="en">OFBiz: Marketing Manager</value>
         <value xml:lang="es">OFBiz: Gestión de Marketing</value>
         <value xml:lang="fr">OFBiz: Gestion du Marketing</value>
         <value xml:lang="it">OFBiz: Gestione vendite</value>
@@ -3106,7 +3106,7 @@
     </property>
     <property key="SfaCompanyName">
         <value xml:lang="de">OFBiz: Vertriebsmanager</value>
-        <value xml:lang="en">Pangun Tech: SFA Manager</value>
+        <value xml:lang="en">OFBiz: SFA Manager</value>
         <value xml:lang="es">Gestor de fuerzas de ventas</value>
         <value xml:lang="es-CL">OFBiz: Gestión de Fuerzas de Ventas</value>
         <value xml:lang="fr">OFBiz: gestion des ventes</value>

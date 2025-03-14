@@ -40,7 +40,6 @@ under the License.
                 <parameter param-name="facilityId"/>
             </link>
         </menu-item>
-        <menu-item name="dashboard" title="${uiLabelMap.Dashboard}"><link target="FaciltyDashboard"/></menu-item>
     </menu>
 
     <menu name="FacilityShortcutAppBar" title="${uiLabelMap.ProductFacilityManager}">

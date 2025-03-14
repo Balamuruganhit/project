@@ -42,8 +42,6 @@ under the License.
                 <!-- <set field="layoutSettings.headerMiddleBackgroundUrl" value="" global="true"/> -->
                 <!-- <set field="layoutSettings.headerRightBackgroundUrl" value="" global="true"/> -->
                 <set field="activeApp" value="ordermgr" global="true"/>
-                <set field="layoutSettings.javaScripts[]" value="/workeffort/static/workeffort.js" global="true"/>
-
                 <set field="applicationMenuName" value="OrderAppBar" global="true"/>
                 <set field="applicationMenuLocation" value="component://order/widget/ordermgr/OrderMenus.xml" global="true"/>
                 <set field="helpAnchor" from-field="helpAnchor" default-value="_order"/>

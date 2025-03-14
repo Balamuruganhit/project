@@ -33,10 +33,7 @@ under the License.
   <div class="screenlet-body">
 <form class="basic-form" method="post" name="agreementForm" action="<@ofbizUrl>setOrderCurrencyAgreementShipDates</@ofbizUrl>">
     <table class="basic-table">
-      <#if custRequestId??>
-        <input type="hidden" name="custRequestId" value="${custRequestId!}"/>
-        
-      </#if>
+
       <#if agreements??>
       <tr>
         <td class="label"/>
@@ -85,7 +82,7 @@ under the License.
       <#if "PURCHASE_ORDER" == cart.getOrderType()>
         <tr>
           <td class="label">
-            <label>${uiLabelMap.OrderPurchaseOrderNumber}</label>
+            <label>${uiLabelMap.OrderOrderId}</label>
           </td>
           <td>
             <input type='text' size='15' maxlength='100' name='orderId' value=""/>
@@ -95,7 +92,7 @@ under the License.
 
       <tr>
         <td class="label">
-           <label>${uiLabelMap.GstNumber}</label>
+           <label>${uiLabelMap.OrderOrderName}</label>
         </td>
         <td>
           <input type='text' size='60' maxlength='100' name='orderName'/>
@@ -153,7 +150,7 @@ under the License.
 
       <tr>
         <td class="label">
-          <label>${uiLabelMap.JobOrder}</label>
+          <label>${uiLabelMap.WorkEffortWorkEffortId}</label>
         </td>
         <td>
           <@htmlTemplate.lookupField formName="agreementForm" name="workEffortId" id="workEffortId" fieldFormName="LookupWorkEffort"/>

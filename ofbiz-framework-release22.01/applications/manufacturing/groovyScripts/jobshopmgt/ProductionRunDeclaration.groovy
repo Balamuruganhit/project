@@ -66,7 +66,6 @@ if (productionRunId) {
         productionRunData = [:]
         productionRunData.workEffortId = productionRunId
         productionRunData.productId = productionRun.getProductProduced().productId
-        
         productionRunData.product = productionRun.getProductProduced()
         if (maxQuantity > 0 && !"WIP".equals(productionRun.getProductProduced().productTypeId)) {
             productionRunData.quantity = maxQuantity

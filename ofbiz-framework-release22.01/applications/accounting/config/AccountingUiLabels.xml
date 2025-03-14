@@ -1088,7 +1088,7 @@
     <property key="AccountingApCompanyName">
         <value xml:lang="ar">أوفبيز: مدير ذمم دائنة</value>
         <value xml:lang="de">OFBiz: Kreditorenbuchhaltung</value>
-        <value xml:lang="en">Pangun Tech: AP Manager</value>
+        <value xml:lang="en">OFBiz: AP Manager</value>
         <value xml:lang="es">OFBiz: Gestión de Cuentas por Pagar</value>
         <value xml:lang="fr">OFBiz: gestion des comptes fourn.</value>
         <value xml:lang="hi-IN">OFBiz: खाता देय प्रबंधक</value>
@@ -1356,7 +1356,7 @@
     <property key="AccountingArCompanyName">
         <value xml:lang="ar">أوفبيز: مدير الذمم المدينة</value>
         <value xml:lang="de">OFBiz: Debitorenbuchhaltung</value>
-        <value xml:lang="en">Pangun Tech: AR Manager</value>
+        <value xml:lang="en">OFBiz: AR Manager</value>
         <value xml:lang="es">OFBiz: Gestión de Cuentas por Cobrar</value>
         <value xml:lang="fr">OFBiz: gestion des comptes clients</value>
         <value xml:lang="hi-IN">OFBiz: खाता प्राप्य प्रबंधक</value>
@@ -2833,7 +2833,7 @@
     <property key="AccountingCompanyName">
         <value xml:lang="ar">أوفبيز: مسير المحاسبة</value>
         <value xml:lang="de">OFBiz: Buchhaltung</value>
-        <value xml:lang="en">Pangun Tech: Accounting Manager</value>
+        <value xml:lang="en">OFBiz: Accounting Manager</value>
         <value xml:lang="es">OFBiz: Administrador de cuentas</value>
         <value xml:lang="es-CL">OFBiz: Administrador de Cuentas</value>
         <value xml:lang="fr">OFBiz: Gestion comptable</value>
@@ -6580,7 +6580,7 @@
     <property key="AccountingFixedAssetTypeId">
         <value xml:lang="ar">نوع الأصل</value>
         <value xml:lang="de">Anlagenart</value>
-        <value xml:lang="en">Machine Type</value>
+        <value xml:lang="en">Asset Type</value>
         <value xml:lang="es">Tipo de activo</value>
         <value xml:lang="fr">Type d'actif</value>
         <value xml:lang="hi-IN">संपत्ति प्रकार</value>
@@ -6598,7 +6598,7 @@
     <property key="AccountingFixedAssets">
         <value xml:lang="ar">الأصول الثابتة</value>
         <value xml:lang="de">Anlagen</value>
-        <value xml:lang="en">Machine ID</value>
+        <value xml:lang="en">Fixed Assets</value>
         <value xml:lang="es">Activos Fijos</value>
         <value xml:lang="fr">Actifs immobilisés</value>
         <value xml:lang="hi-IN">अचल संपत्तियां</value>
@@ -18710,7 +18710,7 @@
     <property key="FormFieldTitle_fixedAssetId">
         <value xml:lang="ar">دليل الأصل الثابت</value>
         <value xml:lang="de">Anlage ID</value>
-        <value xml:lang="en">Machine Id</value>
+        <value xml:lang="en">Fixed Asset ID</value>
         <value xml:lang="es">Código Activo fijo</value>
         <value xml:lang="es-CL">Activo Fijo</value>
         <value xml:lang="fr">Réf. immobilisation</value>
@@ -18729,7 +18729,7 @@
     <property key="FormFieldTitle_fixedAssetName">
         <value xml:lang="ar">إسم الأصل الثابت</value>
         <value xml:lang="de">Anlagename</value>
-        <value xml:lang="en">Machine Name</value>
+        <value xml:lang="en">Fixed Asset Name</value>
         <value xml:lang="es">Nombre de activo fijo</value>
         <value xml:lang="fr">Nom de l'immobilisation</value>
         <value xml:lang="hi-IN">अचल संपत्ति नाम</value>

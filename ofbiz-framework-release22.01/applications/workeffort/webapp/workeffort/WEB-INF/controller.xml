@@ -295,7 +295,7 @@ under the License.
         <response name="success" type="view" value="EditWorkEffort"/>
         <response name="error" type="view" value="EditWorkEffort"/>
     </request-map>
-   
+
     <!-- Lookup request mappings -->
     <request-map uri="LookupWorkEffort"><security https="true" auth="true"/><response name="success" type="view" value="LookupWorkEffort"/></request-map>
     <request-map uri="LookupTimesheet"><security https="true" auth="true"/><response name="success" type="view" value="LookupTimesheet"/></request-map>
