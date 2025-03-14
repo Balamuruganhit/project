@@ -34,7 +34,7 @@ under the License.
     <test-suite loader="main" location="testdef/solrtests.xml"/>
 
     <webapp name="solr"
-        title="Apache Solr Integration"
+        title="Pangun Solr Integration"
         position="22"
         server="default-server"
         location="webapp/solr"

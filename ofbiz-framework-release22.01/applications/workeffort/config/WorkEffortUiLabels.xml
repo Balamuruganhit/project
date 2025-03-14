@@ -1263,7 +1263,7 @@
         <value xml:lang="zh-TW">編輯工時表角色</value>
     </property>
     <property key="PageTitleEditWorkEffort">
-        <value xml:lang="en">Edit Work Effort</value>
+        <value xml:lang="en">Edit Work order</value>
         <value xml:lang="es">Editar esfuerzo de trabajo</value>
         <value xml:lang="fr">Modifier la tâche</value>
         <value xml:lang="it">Aggiorna impegno di lavoro</value>
@@ -1422,7 +1422,7 @@
     </property>
     <property key="PageTitleFindWorkEffort">
         <value xml:lang="de">Finde Arbeitseinsatz</value>
-        <value xml:lang="en">Find Work Effort</value>
+        <value xml:lang="en">Find Work Order</value>
         <value xml:lang="es">Buscar esfuerzo de trabajo</value>
         <value xml:lang="fr">Rechercher la tâche</value>
         <value xml:lang="it">Ricerca impegno di lavoro</value>
@@ -1646,7 +1646,7 @@
         <value xml:lang="zh-TW">按名稱查詢工作投入</value>
     </property>
     <property key="PageTitleTreeWorkEfforts">
-        <value xml:lang="en">Child Work Efforts</value>
+        <value xml:lang="en">Child Work orders</value>
         <value xml:lang="es">Esfuerzos de trabajo hijos</value>
         <value xml:lang="fr">Tâches descendantes</value>
         <value xml:lang="it">Impegni di lavoro dipendenti</value>
@@ -2378,7 +2378,7 @@
     </property>
     <property key="WorkEffortCreate">
         <value xml:lang="de">Erstelle Arbeitseinsatz</value>
-        <value xml:lang="en">Create Work Effort</value>
+        <value xml:lang="en">Create Work order</value>
         <value xml:lang="es">Crear esfuerzo de trabajo</value>
         <value xml:lang="fr">Créer une tâche</value>
         <value xml:lang="it">Nuovo impegno di lavoro</value>
@@ -5357,9 +5357,10 @@
         <value xml:lang="zh">欢迎</value>
         <value xml:lang="zh-TW">歡迎</value>
     </property>
+    
     <property key="WorkEffortWorkEffort">
         <value xml:lang="de">Arbeitseinsatz</value>
-        <value xml:lang="en">Work Effort</value>
+        <value xml:lang="en">Work Order</value>
         <value xml:lang="es">Esfuerzo de trabajo</value>
         <value xml:lang="fr">Tâche</value>
         <value xml:lang="it">Impegno di lavoro</value>
@@ -5371,6 +5372,21 @@
         <value xml:lang="zh">人工服务</value>
         <value xml:lang="zh-TW">工作投入</value>
     </property>
+    <property key="WorkOrder">
+        <value xml:lang="de">Arbeitseinsatz</value>
+        <value xml:lang="en">Work Order</value>
+        <value xml:lang="es">Esfuerzo de trabajo</value>
+        <value xml:lang="fr">Tâche</value>
+        <value xml:lang="it">Impegno di lavoro</value>
+        <value xml:lang="ja">作業成果</value>
+        <value xml:lang="nl">Actie</value>
+        <value xml:lang="ro">Sarcina de Lucru</value>
+        <value xml:lang="th">งาน</value>
+        <value xml:lang="vi">Lượng giá nguồn lực</value>
+        <value xml:lang="zh">人工服务</value>
+        <value xml:lang="zh-TW">工作投入</value>
+    </property>
+    
     <property key="WorkEffortWorkEffortAssocIdAlreadyExist">
         <value xml:lang="en">WorkEffortAssocId already Exist</value>
         <value xml:lang="es">El código de asociación del esfuerzo de trabajo ya existe.</value>
@@ -5452,6 +5468,20 @@
         <value xml:lang="vi">Xem xét của Lượng giá nguồn lực đã tồn tại</value>
         <value xml:lang="zh">人工服务 - 检查已存在</value>
         <value xml:lang="zh-TW">工作投入 - 檢查已存在</value>
+    </property>
+    <property key="ListOfBom">
+        <value xml:lang="de">Arbeitseinsätze</value>
+        <value xml:lang="en">List Of Bill Of Material</value>
+        <value xml:lang="es">Hojas de trabajo</value>
+        <value xml:lang="fr">Tâches</value>
+        <value xml:lang="it">Impegni di lavoro</value>
+        <value xml:lang="ja">作業成果</value>
+        <value xml:lang="nl">Acties</value>
+        <value xml:lang="ro">Sarcini de Lucru </value>
+        <value xml:lang="th">งาน</value>
+        <value xml:lang="vi">Lượng giá nguồn lực</value>
+        <value xml:lang="zh">人工服务</value>
+        <value xml:lang="zh-TW">工作投入</value>
     </property>
     <property key="WorkEffortWorkEfforts">
         <value xml:lang="de">Arbeitseinsätze</value>

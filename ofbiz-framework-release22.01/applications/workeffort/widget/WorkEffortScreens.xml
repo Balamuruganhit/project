@@ -444,7 +444,6 @@ under the License.
                 <set field="titleProperty" value="PageTitleListWorkEffortOrderHeaders"/>
                 <set field="tabButtonItem" value="WorkEffortOrderHeaders"/>
                 <set field="labelTitleProperty" value="PageTitleListWorkEffortOrderHeaders"/>
-
                 <set field="workEffortId" from-field="parameters.workEffortId"/>
             </actions>
             <widgets>
@@ -452,6 +451,7 @@ under the License.
                     <decorator-section name="body">
                         <include-screen name="ListWorkEffortOrderHeaders" location="component://workeffort/widget/workeffort/WorkEffortOrdersCpd.xml"/>
                     </decorator-section>
+
                 </decorator-screen>
             </widgets>
         </section>
@@ -517,12 +517,16 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleEditWorkEffortGoodStandards"/>
                 <set field="tabButtonItem" value="WorkEffortGoodStandards"/>
+                <script location="component://workeffort/groovyScripts/bom/listBom.groovy"/>
                 <set field="workEffortId" from-field="parameters.workEffortId"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonWorkEffortDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <include-screen name="ListWorkEffortGoodStandards" location="component://workeffort/widget/workeffort/WorkEffortGoodStandardsCpd.xml"/>
+                       <platform-specific>
+                              <html><html-template location="component://workeffort/template/bom/listBom.ftl"/></html>
+                         </platform-specific>
                     </decorator-section>
                 </decorator-screen>
             </widgets>

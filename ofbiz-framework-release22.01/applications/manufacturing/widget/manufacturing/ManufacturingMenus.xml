@@ -40,6 +40,9 @@ under the License.
         <menu-item name="bom" title="${uiLabelMap.ManufacturingBillOfMaterials}">
             <link target="FindBom"/>
         </menu-item>
+        <menu-item name="workeffort" title="${uiLabelMap.WorkEffortWorkEffort}">
+            <link target="/workeffort/control/FindWorkEffort" url-mode="inter-app"/>
+        </menu-item>
         <menu-item name="mrp" title="${uiLabelMap.ManufacturingMrp}">
             <link target="FindInventoryEventPlan"/>
         </menu-item>

@@ -72,6 +72,7 @@ under the License.
                 <ws:actions>
                     <ws:set field="titleProperty" value="PageTitleAddWorkEffortOrderHeaders"/>
                     <ws:entity-one entity-name="WorkEffortOrderHeaderView" value-field="workEffortOrderHeader"/>
+                    
                 </ws:actions>
                 <ws:widgets>
                     <ws:decorator-screen name="CommonEmbeddedDecorator" location="component://workeffort/widget/CommonScreens.xml">
@@ -125,7 +126,7 @@ under the License.
             <wf:field name="statusItemDescription"><wf:display/></wf:field>
             <wf:field name="orderTypeDescription"><wf:display/></wf:field>
             <wf:field name="orderDate"><wf:display type="date-time"/></wf:field>
-            <wf:field name="grandTotal"><wf:display currency="${currencyUom}" type="currency"/></wf:field>
+            <wf:field name="grandTotal" ><wf:hidden/></wf:field>
             <wf:field name="menuAction" title=" ">
                 <wf:include-menu name="ListWorkEffortOrderHeadersInLineBar" location="component://workeffort/widget/workeffort/WorkEffortOrdersCpd.xml"/>
             </wf:field>
