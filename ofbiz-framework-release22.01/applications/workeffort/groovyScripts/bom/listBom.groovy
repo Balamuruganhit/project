@@ -16,19 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-
+import org.apache.ofbiz.base.util.Debug
+def x=0
 workEffortId=parameters.workEffortId
 def bomProductList = [:]
 productList = from("WorkEffortGoodStandard")
             .select("productId")
             .where("workEffortId", parameters.workEffortId)
             .queryList()
-
+Debug.logInfo(" items for custRequestId: " + productList, "listBom")
 if(productList){
     productList.each{ product ->
         productId=product.productId
+        Debug.logInfo(" items for custRequestId: " + productId, "listBom")
         productListBom=from("ProductAssoc").where("productId",productId).queryList()
+                     Debug.logInfo(" items for productListBom: " + productListBom, "listBom")
+
         productListBom.each{ productBom ->
             Map bomListItem = [:]
             bomListItem.put("ProductId",productId)
@@ -38,10 +41,12 @@ if(productList){
             bomListItem.put("quantity",productBom.quantity)
             bomListItem.put("fromDate",productBom.fromDate)
             bomListItem.put("thruDate",productBom.thruDate)
-            bomProductList.put(productId,bomListItem)
+            bomProductList.put(x++,bomListItem)
+            Debug.logInfo(" items for bomListItem: " + bomListItem, "listBom")
+             Debug.logInfo(" items for bomProductList: " + bomProductList, "listBom")
             
         }
     }
 }
-
+Debug.logInfo(" items for custRequestId: " + bomProductList, "listBom")
 context.resultList = bomProductList.values().toList()
