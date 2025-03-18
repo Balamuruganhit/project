@@ -1160,6 +1160,7 @@ under the License.
             package-name="org.apache.ofbiz.accounting.invoice"
             title="Invoice">
       <field name="invoiceId" type="id"></field>
+      <field name="salseOrderId" type="id"></field>
       <field name="invoiceTypeId" type="id"></field>
       <field name="partyIdFrom" type="id"></field>
       <field name="partyId" type="id"></field>

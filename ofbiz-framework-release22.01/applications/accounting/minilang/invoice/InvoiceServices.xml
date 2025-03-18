@@ -25,9 +25,10 @@ under the License.
         <now-timestamp field="nowTimestamp"/>
 
         <make-value entity-name="Invoice" value-field="newEntity"/>
-
         <!-- call getNextInvoiceId service with the parameters.partyIdFrom when invoice Id is not suplied
                             else use it from the input -->
+    
+        
         <if-empty field="parameters.invoiceId">
             <set-service-fields service-name="getNextInvoiceId" map="parameters" to-map="getNextInvoiceIdMap"/>
             <set field="getNextInvoiceIdMap.partyId" from-field="parameters.partyIdFrom"/>
@@ -41,6 +42,7 @@ under the License.
         <if-empty field="parameters.invoiceDate">
             <set from-field="nowTimestamp" field="parameters.invoiceDate"/>
         </if-empty>
+       
 
         <!-- set the invoice status if not provided -->
         <if-empty field="parameters.statusId">

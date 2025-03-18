@@ -145,6 +145,7 @@ under the License.
                 <entity-one entity-name="InvoiceType" value-field="invoiceType">
                     <field-map field-name="invoiceTypeId" from-field="invoice.invoiceTypeId"/>
                 </entity-one>
+                <script location="component://accounting/groovyScripts/invoice/invoiceSaleOrderGetter.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonInvoiceDecorator" location="${parameters.invoiceDecoratorLocation}">

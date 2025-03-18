@@ -267,14 +267,23 @@ under the License.
                 <list-options key-name="invoiceTypeId" list-name="invoiceTypeList"/>
             </drop-down>
         </field>
+         <field name="salseOrderId" title="Sale Order Number" position="1">
+            <drop-down allow-empty="false">
+                <option key="" description="Select the sale order"/>
+                <entity-options description="${orderId}" entity-name="OrderHeader" key-field-name="orderId" >
+                    <entity-constraint name="orderTypeId" value="SALES_ORDER"/>
+                     <option key="" description="Select the sale order"/>
+                </entity-options>
+            </drop-down>
+        </field>
         <field position="1" name="organizationPartyId" parameter-name="partyIdFrom">
-            <drop-down allow-empty="false" no-current-selected-key="${defaultOrganizationPartyId}">
+            <drop-down allow-empty="false" no-current-selected-key="${defaultOrganizationPartyId}" >
                 <entity-options description="${groupName}" entity-name="PartyAcctgPrefAndGroup" key-field-name="partyId">
                     <entity-order-by field-name="groupName"/>
                 </entity-options>
             </drop-down>
         </field>
-        <field position="2" name="partyIdTo" parameter-name="partyId" required-field="true"><lookup target-form-name="LookupCustomerName"/></field>
+        <field position="2" name="partyIdTo" parameter-name="partyId" required-field="false"><hidden value="ACCOUNTING"/></field>
         <field position="1" name="createButton" widget-style="smallSubmit" title="${uiLabelMap.CommonCreate}">
             <submit button-type="button"/>
         </field>
@@ -304,7 +313,7 @@ under the License.
                 </entity-options>
             </drop-down>
         </field>
-        <field position="2" name="partyIdFrom" required-field="true"><lookup target-form-name="LookupSupplier"/></field>
+        <field position="2" name="partyIdFrom" required-field="false"><lookup target-form-name="LookupSupplier"/></field>
         <field position="1" name="createButton" widget-style="smallSubmit" title="${uiLabelMap.CommonCreate}">
             <submit button-type="button"/>
         </field>
@@ -314,6 +323,7 @@ under the License.
         header-row-style="header-row" default-table-style="basic-table">
         <alt-target use-when="invoice==null" target="createInvoice"/>
         <field name="invoiceId"><hidden/></field>
+        <field name="salseOrderId"><hidden/></field>
         <field position="1" name="invoiceDate"><date-time/></field>
         <field position="2" name="dueDate"><date-time/></field>
         <field position="1" name="invoiceTypeId" use-when="invoice!=null"><display-entity entity-name="InvoiceType"/></field>
@@ -379,6 +389,7 @@ under the License.
        <field name="viewSize"><hidden value="${viewSize}"/></field>
        <field name="viewIndex"><hidden value="${viewIndex}"/></field>
        <field name="invoiceId"><hidden/></field>
+       <field name="salseOrderId"><hidden/></field>
        <field name="uomId"><hidden/></field>
        <field name="taxableFlag"><hidden/></field>
        <field name="invoiceItemSeqId" widget-style="buttontext">
@@ -416,6 +427,7 @@ under the License.
     <form name="EditInvoiceItem" type="single" target="createInvoiceItem" title="" default-map-name="invoiceItem" default-entity-name="InvoiceItem"
         header-row-style="header-row" default-table-style="basic-table">
         <field name="invoiceId"><hidden/></field>
+        <field name="salseOrderId"><hidden/></field>
         <field position="1" name="invoiceItemTypeId">
             <drop-down allow-empty="false">
                 <list-options list-name="invoiceItemTypes" key-name="invoiceItemTypeId" description="${groovy:uiLabelMap.get('InvoiceItemType.description.'+invoiceItemTypeId)}"/>
@@ -460,6 +472,7 @@ under the License.
     <grid name="ListInvoiceStatus" list-name="invoiceStatus" paginate-target="ListInvoiceStatus"
         odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
         <field name="invoiceId"><hidden/></field>
+        <field name="salseOrderId"><hidden/></field>
         <field name="statusDate"><display description="${groovy:statusDate.toString().substring(0,10)}"/></field>
         <field name="statusId" title="${uiLabelMap.CommonStatus}"><display-entity entity-name="StatusItem"/></field>
         <field name="changeByUserLoginId"><display /></field>
@@ -587,6 +600,7 @@ under the License.
         odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
         <!--auto-fields-entity entity-name="InvoiceRole" default-field-type="display"/-->
         <field name="invoiceId"><hidden/></field>
+        <field name="salseOrderId"><hidden/></field>
         <field name="partyId" widget-style="buttontext">
             <hyperlink description="${partyId}" target-type="inter-app" target="/partymgr/control/viewprofile">
                 <parameter param-name="partyId"/>
@@ -614,6 +628,7 @@ under the License.
         header-row-style="header-row" default-table-style="basic-table">
         <auto-fields-entity entity-name="InvoiceRole"/>
         <field name="invoiceId"><hidden/></field>
+        <field name="salseOrderId"><hidden/></field>
         <field name="partyId"><lookup target-form-name="LookupPartyName"/></field>
         <field name="roleTypeId">
             <drop-down allow-empty="false">

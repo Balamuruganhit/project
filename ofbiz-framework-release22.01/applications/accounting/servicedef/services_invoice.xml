@@ -32,6 +32,7 @@ under the License.
         <attribute name="partyId" type="String" mode="IN" optional="false"/>
         <attribute name="invoiceId" type="String" mode="OUT" optional="false"/>
     </service>
+    
 
     <service name="invoiceSequenceEnforced" engine="groovy"
         location="component://accounting/groovyScripts/invoice/InvoiceServices.groovy" invoke="invoiceSequenceEnforced">
