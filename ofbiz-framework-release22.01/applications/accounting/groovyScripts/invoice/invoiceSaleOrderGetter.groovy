@@ -48,7 +48,9 @@ if(saleOrderId){
             "invoiceItemSeqId"   : invoiceItemSeqId,
             "productId"   : product.productId,
             "quantity"    : product.quantity,
-            "amount"   : product.unitPrice*product.quantity
+            "amount"   : product.unitPrice*product.quantity,
+            "taxableFlag":"Y",
+            "invoiceItemTypeId":"INV_FPROD_ITEM"
         ])
         delegator.create(invoiceItem)
         Debug.logInfo(" items for invoiceItem: " + invoiceItem, "invoiceSaleOrderGetter")

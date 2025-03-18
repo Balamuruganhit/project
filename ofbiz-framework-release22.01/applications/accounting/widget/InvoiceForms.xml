@@ -112,6 +112,7 @@ under the License.
             </service>
         </actions>
         <field name="invoiceId"><hidden/></field>
+        <field name="salseOrderId"><display/></field>
         <field position="1" name="invoiceTypeId"><display-entity entity-name="InvoiceType"/></field>
         <field name="statusId" title="${uiLabelMap.CommonStatus}" position="2"><display-entity entity-name="StatusItem"/></field>
         <field position="1" name="description"><display/></field>
