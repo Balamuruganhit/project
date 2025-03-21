@@ -23,6 +23,7 @@ import org.apache.ofbiz.order.shoppingcart.ShoppingCartEvents
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
+import org.apache.ofbiz.service.ServiceUtil
 
 
     // Retrieve the custRequestId from request parameters
@@ -38,3 +39,14 @@ import javax.servlet.http.HttpServletResponse
         
     }
             
+communicationId=parameters.communication
+custRequestName=parameters.custRequestName
+
+if(communicationId){
+     
+        Map commEventRequestContext = [custRequestId: requestId,
+                                       communicationEventId: communicationId]
+        run service: 'createCustRequestCommEvent', with: commEventRequestContext
+    
+        Debug.logInfo("Service Done in communication", "setterRequired")
+}

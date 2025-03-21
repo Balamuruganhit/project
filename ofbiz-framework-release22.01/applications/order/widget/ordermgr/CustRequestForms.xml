@@ -274,6 +274,14 @@ under the License.
         <field name="portalPageId"><hidden value="${parameters.portalPageId}"/></field>
         <field name="custRequestId"><hidden/></field>
         <field name="communicationEventId"><hidden value="${communicationEvent.communicationEventId}"/></field>
+        <field name="communication" title="CommunicationId" position="1">
+            <drop-down allow-empty="true">
+                <option key="" description="Select the ID"/>
+                <entity-options description="${communicationEventId}" entity-name="CommunicationEvent" key-field-name="communicationEventId" >
+                     
+                </entity-options>
+            </drop-down>
+        </field>
         <field name="custRequestTypeId">
             <drop-down allow-empty="false">
                 <entity-options entity-name="CustRequestType"/>
@@ -293,7 +301,7 @@ under the License.
                 <entity-options entity-name="CustRequestCategory"/>
             </drop-down>
         </field>
-
+        
         <field use-when="custRequest==null" name="statusId"><hidden value="CRQ_SUBMITTED"/></field>
         <field use-when="custRequest!=null" name="statusId">
             <drop-down allow-empty="false" current="first-in-list" current-description="${currentStatus.description}">
@@ -303,6 +311,7 @@ under the License.
                 </entity-options>
             </drop-down>
         </field>
+        
         <field name="priority">
             <drop-down allow-empty="true">
                 <option key="1" description="${uiLabelMap.WorkEffortPriorityOne}"/>
