@@ -11,5 +11,5 @@ echo "Build script Execute successfully"
 
 echo "execute the run script"
 
-docker run -p 9443:8443  -it ofbiz-docker -e TZ=Asia/Kolkata
+docker run -p 9443:8443 -e TZ=Asia/Kolkata -it ofbiz-docker 
 
