@@ -26,6 +26,17 @@ function addRoutingTask() {
     document.addtaskassocform.copyTask.value = "N";
     document.addtaskassocform.submit();
 }
+document.addEventListener("DOMContentLoaded", function() {
+    let fromDateField = document.getElementById("fromDate_1");
+    console.log(fromDateField)
+    let now = new Date(fromDateField.value);
+
+    now.setHours(now.getHours() + 5);
+    now.setMinutes(now.getMinutes() + 30);
+    console.log(now)
+    fromDateField.value = now.toISOString().slice(0, 19).replace("T", " ");
+    console.log(fromDateField.value)
+});
 </script>
 
 <#if security.hasEntityPermission("MANUFACTURING", "_CREATE", session)>
@@ -46,7 +57,7 @@ function addRoutingTask() {
                 ${uiLabelMap.CommonFromDate}
             </th>
             <td>
-                <@htmlTemplate.renderDateTimeField name="fromDate" event="" action="" className="" alert="" title="Format: yyyy-MM-dd HH:mm:ss.SSS" value="${nowTimestamp}" size="25" maxlength="30" id="fromDate_1" dateType="date" shortDateInput=false timeDropdownParamName="" defaultDateTimeString="" localizedIconTitle="" timeDropdown="" timeHourName="" classString="" hour1="" hour2="" timeMinutesName="" minutes="" isTwelveHour="" ampmName="" amSelected="" pmSelected="" compositeType="" formName=""/>
+                <@htmlTemplate.renderDateTimeField name="fromDate"   event="" action="" className="" alert="" title="Format: yyyy-MM-dd HH:mm:ss.SSS"  size="25" maxlength="30" id="fromDate_1" dateType="date" shortDateInput=false timeDropdownParamName="" defaultDateTimeString="" localizedIconTitle="" timeDropdown="" timeHourName="" classString="" hour1="" hour2="" timeMinutesName="" minutes="" isTwelveHour="" ampmName="" amSelected="" pmSelected="" compositeType="" formName=""/>
             </td>
             <td align="center" width="40%">&nbsp;</td>
         </tr>

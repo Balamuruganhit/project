@@ -18,25 +18,26 @@
  */
 
 import java.sql.Timestamp
-
+import org.apache.ofbiz.base.util.Debug
 import org.apache.ofbiz.base.util.UtilDateTime
 import org.apache.ofbiz.entity.GenericValue
-
+import groovy.json.JsonOutput
 /**
  * "Get the product's routing and routing tasks
  * @return
  */
+
 def getProductRouting() {
     Map result = success()
 
     // If applicableDate has been passed use the value with all filter-by-date calls
     Timestamp filterDate = parameters.applicableDate ?: UtilDateTime.nowTimestamp()
-
+    Debug.logInfo("Time: " + filterDate, "RoutingServices")
     GenericValue routingGS = null
     GenericValue routing = null
     List tasks = null
     Map lookupRouting = [productId: parameters.productId, workEffortGoodStdTypeId: "ROU_PROD_TEMPLATE"]
-
+    Debug.logInfo("Lookup Routing Criteria: " + JsonOutput.toJson(lookupRouting), "RoutingServices")
     // If a workEffortId has been passed, use it to look up the desired routing
     if (parameters.workEffortId) {
         lookupRouting.workEffortId = parameters.workEffortId
@@ -44,7 +45,7 @@ def getProductRouting() {
                 .where(lookupRouting)
                 .filterByDate(filterDate)
                 .queryFirst()
-
+        
         // If the routing is not associated with our product and it's a variant, then check to see if it's virtual product has the routing
         if (!routingGS) {
             GenericValue virtualProductAssoc = from("ProductAssoc")
@@ -99,6 +100,7 @@ def getProductRouting() {
             routing = from("WorkEffort").where(workEffortId: "DEFAULT_ROUTING").queryOne()
         }
     }
+    
     if (routing) {
         tasks = from("WorkEffortAssoc")
                 .where(workEffortIdFrom: routing.workEffortId,
@@ -107,6 +109,8 @@ def getProductRouting() {
                 .filterByDate()
                 .queryList()
     }
+    Debug.logInfo("Tasks Found: " + tasks, "RoutingServices")
+    
     result.routing = routing
     result.tasks = tasks
     return result

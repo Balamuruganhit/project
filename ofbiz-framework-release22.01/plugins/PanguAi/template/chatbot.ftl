@@ -27,8 +27,13 @@ under the License.
       <nav class="sidebar-nav">
         <button class="sidebar-button button" data-id="1">Manufacturing Intelligence</button>
         <button class="sidebar-button button" data-id="2">Supply Chain Intelligence</button>
+		<button class="sidebar-button button" >Quality Intelligence <span id="nav-arrow" class="navbar-extender"></span></button>
+		<span id="arrow">
         <button class="sidebar-button button"  data-id="3">RAM Intelligence</button>
         <button class="sidebar-button button"  data-id="4">8D Error Analysis</button>
+		<button class="sidebar-button button"  data-id="5">5 Why Analysis</button>
+		<button class="sidebar-button button"  data-id="6">FEMA</button>
+		</span>
       </nav>
     </aside>
     <div class="chat-container-bot">
@@ -51,9 +56,29 @@ under the License.
     </div>
   </div>
 </body>
+<script>
+console.log("working")
+	const navArrow=document.getElementById("nav-arrow");
+	const arrow=document.getElementById("arrow");
+	console.log(navArrow);
+	console.log(arrow);
+	navArrow.addEventListener("click",()=>{
+		arrow.classList.add("show");
+		console.log("clicked ")
+	})
+</script>
 <style>
-	
-  
+	#arrow{
+		display:none;
+	}
+  .navbar-extender {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 8px solid #000; /* Adjust color */
+	}
   .main-container-chat {
 	display: flex;
 	width: 100%;

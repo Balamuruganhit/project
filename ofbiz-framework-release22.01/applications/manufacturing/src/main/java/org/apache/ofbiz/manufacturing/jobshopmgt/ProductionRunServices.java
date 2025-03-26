@@ -227,7 +227,13 @@ public class ProductionRunServices {
                 return ServiceUtil.returnError(ServiceUtil.getErrorMessage(routingOutMap));
             }
             routing = (GenericValue) routingOutMap.get("routing");
+            if (Debug.infoOn()) {
+            Debug.logInfo("ProductionRun created: " + routing, MODULE);
+            }
             routingTaskAssocs = UtilGenerics.cast(routingOutMap.get("tasks"));
+            if (Debug.infoOn()) {
+            Debug.logInfo("ProductionRun created: " + routingTaskAssocs, MODULE);
+            }
         } catch (GenericServiceException gse) {
             Debug.logWarning(gse.getMessage(), MODULE);
         }
