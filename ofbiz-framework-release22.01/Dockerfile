@@ -20,8 +20,6 @@
 
 FROM eclipse-temurin:17 AS builder
 
-ENV TZ=Asia/Kolkata
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Git is used for various OFBiz build tasks.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends git \
