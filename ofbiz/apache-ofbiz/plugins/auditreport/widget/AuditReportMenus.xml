@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<menus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ofbiz.apache.org/Widget-Menu" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Menu http://ofbiz.apache.org/dtds/widget-menu.xsd">
+    <menu name="MainAppBar" title="${uiLabelMap.AuditReportApplication}" extends="CommonAppBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
+        <menu-item name="main" title="${uiLabelMap.CommonMain}"><link target="main"/></menu-item>
+        <menu-item name="AuditAs9100" title="${uiLabelMap.AuditAs9100}"><link target="config"/></menu-item>
+        <menu-item name="AuditIRIS" title="${uiLabelMap.AuditIRIS}"><link target="ListComputerSoftware"/></menu-item>
+        <menu-item name="AuditIso9001" title="${uiLabelMap.AuditIso9001}"><link target="ListComputerSoftware"/></menu-item>
+        <menu-item name="KPI" title="${uiLabelMap.Kpi}"><link target="kpi"/></menu-item>
+    </menu>
+    <menu name="AuditAS9100Bar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
+          menu-container-style="button-bar button-style-2">
+        <menu-item name="createConfig" title="${uiLabelMap.AuditConfig}" >
+            <condition>
+                 <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="config"/>
+        </menu-item>
+        <menu-item name="createPickReview" title="${uiLabelMap.AuditPickReview}" >
+            <condition>
+                <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="pickReview"/>
+        </menu-item>
+        <menu-item name="AuditExport" title="${uiLabelMap.AuditExport}" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="AuditExport"/>
+        </menu-item>
+    </menu>
+    <menu name="KpiBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
+          menu-container-style="button-bar button-style-2">
+        <menu-item name="CustomerOTPPerformance" title="${uiLabelMap.performance}" >
+            <condition>
+                 <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="config"/>
+        </menu-item>
+        <menu-item name="TypicalRFQ" title="${uiLabelMap.TypicalRFQ}" >
+            <condition>
+                <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="pickReview"/>
+        </menu-item>
+        <menu-item name="FAI" title="${uiLabelMap.FAI}" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="AuditExport"/>
+        </menu-item>
+        <menu-item name="ECI" title="${uiLabelMap.ECI}" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="AuditExport"/>
+        </menu-item>
+        <menu-item name="CostBreakUp" title="${uiLabelMap.CostBreakUp}" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="AuditExport"/>
+        </menu-item>
+        <menu-item name="ProductionActual" title="${uiLabelMap.ProductionActual}" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="ProductionPlan"/>
+        </menu-item>
+    </menu>
+</menus>

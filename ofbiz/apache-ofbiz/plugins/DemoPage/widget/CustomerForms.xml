@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Widget-Form" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
+<form name="AddDetail" type="single" target="FindProduct" title="" default-map-name="product"
+        header-row-style="header-row" default-table-style="basic-table">
+         <field position="1" name="customerName" title="${uiLabelMap.ProductInternalName}" required-field="true"><text size="30" maxlength="255"/></field>
+        <field position="2" name="" title="${uiLabelMap.ProductBrandName}" ><text size="30" maxlength="60"/></field>
+        <field name="productName" title="${uiLabelMap.ProductProductName}"><text size="30" maxlength="255"/></field>
+        <field name="comments" title="${uiLabelMap.CommonComments}"><text size="60" maxlength="250"/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+
+</forms>

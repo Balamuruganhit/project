@@ -1,0 +1,320 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+/* This CSS file is used for the Party Manager component. */
+
+#mech-purpose-types .basic-table {
+width: auto;
+margin-bottom: 1em;
+}
+
+.profile-left {
+float: left;
+width: 47%;
+}
+
+.profile-right {
+float: right;
+width: 47%;
+}
+
+.profile-bottom {
+float: left;
+width: 100%;
+}
+
+.dashMain{
+	display:flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.box-inventory{
+	margin: 3rem;
+    border: 1px solid black;
+    /* padding: 2rem; */
+    border-radius: 10px;
+}
+.heading{
+	padding: 1.7rem;
+    font-size: 1rem;
+}
+
+.heading_sub
+{
+	padding-left: 1.7rem;
+    padding-bottom: 1rem;
+}
+
+.boxintial{
+	display:flex;
+	align-items: center;
+	justify-content: space-evenly;
+	margin: 0px;
+ }
+ .boxFirst{
+	background:  white;
+	border-radius: 0.5rem;
+	padding: 1rem;
+	width: 11.3rem;
+ }
+ .color{
+	padding-top: 1rem;
+	background: #E7F3F1;
+	margin: 0px;
+	
+ }
+ .boxFirst p{
+	margin:0px;
+	font-weight:bold ;
+	font-size: 2rem;
+	text-align: start;
+	padding-bottom: 0.5rem;
+	border-bottom: 3px solid black;
+ }
+ .blue{
+	background: rgb(159 159 233);
+	
+ }
+ .green{
+	background: rgb(122 211 122);
+ }
+ .red{
+	background: rgb(255 124 124);
+ }
+ .skyblue{
+	background: rgb(196 140 249);
+ }
+ .boxFirst h3{
+	font-size: 0.8rem;
+    text-align: start;
+    padding-top: 0.6rem;
+	font-family: Quicksand, sans-serif;
+ }
+ .bigbox{
+	display: flex;
+	justify-content: space-evenly;
+	padding-top: 1rem;
+   	margin-left: 5rem;
+	border: 1px solid black;
+	width: 40rem;
+	margin-top: 6rem;
+	height: 16rem;
+	border-radius: 0.9rem;
+	background: whitesmoke;
+	font-family: Quicksand, sans-serif;
+ }
+ .event{
+	text-align: start;
+	font-family: Quicksand, sans-serif;
+ }
+small{
+	text-align: center;
+	color: rgb(255, 169, 169);
+}
+
+.holder{
+	display: flex;
+	justify-content: space-evenly;
+	padding-top: 1rem;
+}
+.future div{
+	border: 1px solid black;
+    /* width: 10rem; */
+    /* height: 3rem; */
+    border-radius: 0.9rem;
+    background: whitesmoke;
+    text-align: center;
+    padding: 2rem 1rem;
+    /* padding-left: 0.9rem; */
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-family: Quicksand, sans-serif;
+}
+.future h3{
+	text-align: center;
+	font-family: Quicksand, sans-serif;
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+.future p{
+	font-size: 1rem;
+}
+table#planets{
+	font-family: Quicksand, sans-serif;
+margin: 20px 0 0 0;
+border: 0px;
+color: #fff;
+width: 40rem;
+border-radius:10px;
+font-size: 1rem;
+}
+table#planets th,table#planets td{
+text-align: center;
+font-size: 1rem;
+}
+table#planets thead{
+line-height: 12px;
+background: rgb(152, 152, 236);
+text-transform: uppercase;
+color: white;
+font-size: 1rem;
+}
+table#planets thead th{
+color: white;
+font-size: 1rem;
+padding: 8px;
+vertical-align:bottom;
+}
+table#planets thead th:nth-child(1){
+width: 20%;
+text-align: left;
+padding-left: 20px;
+font-size: 1rem;
+}
+table#planets thead th:nth-child(2){
+width: 30%;
+
+}
+table#planets thead th:nth-child(3){
+width: 35%;
+
+}
+table#planets thead th:nth-child(4){
+width: 15%;
+
+}
+table#planets tbody{
+	font-size: 1rem;
+	line-height: 15px;
+}
+table#planets tbody tr{
+border-top: 1px solid #005982;
+background: #B6C6BE;
+}
+
+table#planets td{
+padding: 12px;
+}
+
+table#planets tbody td:first-child{
+text-align: left;
+font-size: 1rem;
+padding-left: 20px;
+font-weight: 700;
+background: #B6C6BE;
+transition:.6s;
+color:black;
+}
+body {
+	font-family: Quicksand, sans-serif;
+	background-color: #d3dde7;
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
+
+.dashMain {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	padding: 1rem;
+}
+
+.status {
+	background-color: #dceeff; /* Light blue */
+	border: 1px solid #b6d4f9; /* Slightly darker blue border */
+	border-radius: 8px;
+	text-align: center;
+	width: 200px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+	font-family: Quicksand, sans-serif;
+	font-size: 1rem;
+    font-weight: bold;
+    margin: 0 0 10px;
+    color: #004080;
+}
+
+.heading_sub {
+	font-family: Quicksand, sans-serif;
+	font-size: 1.22rem;
+    color: #0056b3;
+}
+
+.basic-table-inventory {
+	width: 90%;
+	border-collapse: collapse;
+	margin: 1rem auto;
+	background-color: #ffffff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	height: 400px;
+	overflow-y: auto;
+}
+
+.basic-table-inventory th, td {
+	padding: 0.5rem;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+	font-size: 0.9rem;
+}
+
+.basic-table-inventory th {
+	background-color: #007bff;
+	color: white;
+}
+
+h1 {
+	text-align: center;
+	color: #6c757d;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+    width: 100%; /* Ensures the container stretches to fill available space */
+}
+
+canvas {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+#pieChart{
+	height: 400px !important;
+	padding: 1rem;
+}
+#barChart {
+	height: 400px !important;
+}
+
+.basic-table-inventory {
+	max-width: 100%;
+	margin: 0 auto;
+}

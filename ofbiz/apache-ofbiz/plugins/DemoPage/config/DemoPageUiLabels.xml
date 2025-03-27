@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
+    <property key="DemoPageApplication">
+        <value xml:lang="en">DemoPage Application</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="DemoPageAddDetail">
+        <value xml:lang="en">Add Detail</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="DemoPageCompanyName">
+        <value xml:lang="en">OFBiz: DemoPage</value>
+        <value xml:lang="zh-TW">OFBiz: DemoPage</value>
+    </property>
+    <property key="DemoPageCompanySubtitle">
+        <value xml:lang="en">Part of the Apache OFBiz Family of Open Source Software</value>
+        <value xml:lang="it">Un modulo della famiglia di software open source Apache OFBiz</value>
+        <value xml:lang="zh">开�?软件OFBiz的组�?部分</value>
+        <value xml:lang="zh-TW">開�?軟體OFBiz的組�?部分</value>
+    </property>
+    <property key="DemoPageViewPermissionError">
+        <value xml:lang="en">You are not allowed to view this page.</value>
+        <value xml:lang="zh">�?�?许你�?览这个页�?�。</value>
+        <value xml:lang="zh-TW">�?�?許您檢視這個�?�?�.</value>
+    </property>
+    <property key="DemoPageUserName">
+        <value xml:lang="en">User Name</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="DemoPageUserId">
+        <value xml:lang="en">User Id</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="DemoPageUserMobile">
+        <value xml:lang="en">Mobile Number</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="DemoPageUserAddress">
+        <value xml:lang="en">lastName</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="DemoPageCreateNewCustomer">
+        <value xml:lang="ar">خلق عميل</value>
+        <value xml:lang="de">Neuen Kunde erstellen</value>
+        <value xml:lang="en">Create Customer</value>
+        <value xml:lang="es">Nuevo cliente</value>
+        <value xml:lang="fr">Créer un nouveau client</value>
+        <value xml:lang="hi-IN">ग्राहक बनाएँ</value>
+        <value xml:lang="it">Creare soggetto</value>
+        <value xml:lang="ja">顧客を作成</value>
+        <value xml:lang="nl">Nieuwe klant</value>
+        <value xml:lang="pt-BR">Novo cliente</value>
+        <value xml:lang="pt-PT">Criar Cliente</value>
+        <value xml:lang="ro">Creare Subiect</value>
+        <value xml:lang="ru">Создать клиента</value>
+        <value xml:lang="th">สร้างลูกค้า</value>
+        <value xml:lang="vi">Tạo mới khách hàng</value>
+        <value xml:lang="zh">创建客户</value>
+        <value xml:lang="zh-TW">新建客戶</value>
+    </property><property key="CommonUpdate">
+        <value xml:lang="en">Update</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="CommonCreate">
+        <value xml:lang="en">Create</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="FormFieldTitle_exampleName">
+        <value xml:lang="en">Customer Name</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="CommonCannotBeFound">
+        <value xml:lang="en">Not Found</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="ExampleExampleId">
+        <value xml:lang="en">Customer Id</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="CommonDescription">
+        <value xml:lang="en">Description</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    <property key="ExampleLongDescription">
+        <value xml:lang="en">Long Description</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+    
+    <property key="">
+        <value xml:lang="en">Long Description</value>
+        <value xml:lang="zh">DemoPage应用程�?</value>
+        <value xml:lang="zh-TW">DemoPage應用程�?</value>
+    </property>
+</resource>
