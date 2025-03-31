@@ -25,8 +25,8 @@ services:
     environment:
       TZ: Asia/Kolkata
     ports:
-      - 8443:8443
-      - 127.0.0.1:15005:5005
+      - 9443:8443
+      - 127.0.0.1:15006:5005
       - 127.0.0.1:8009:8009
     # command: ["ofbiz", "--debug-jvm"]
     # command: ["loadAll"]
