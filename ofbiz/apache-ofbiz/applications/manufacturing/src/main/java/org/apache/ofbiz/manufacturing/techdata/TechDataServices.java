@@ -111,19 +111,15 @@ public class TechDataServices {
         Locale locale = (Locale) context.get("locale");
         String orderId = (String) context.get("OrderNumber");
         String orderDate = (String) context.get("OrderDate");
-
-
         List<GenericValue> listPoNumber = null;
         List<EntityExpr> constraints = new LinkedList<>();
-
         if (UtilValidate.isNotEmpty(orderId)) {
             constraints.add(EntityCondition.makeCondition("orderId", EntityOperator.EQUALS, orderId));
         }
-        if (UtilValidate.isNotEmpty(orderDate) ) {
+        if (UtilValidate.isNotEmpty(orderDate)) {
             constraints.add(EntityCondition.makeCondition("orderDate", EntityOperator.EQUALS, orderDate));
         }
         constraints.add(EntityCondition.makeCondition("orderTypeId", EntityOperator.EQUALS, "SALES_ORDER"));
-
         try {
             listPoNumber = EntityQuery.use(delegator).from("OrderHeader")
                     .where(constraints)
@@ -137,8 +133,6 @@ public class TechDataServices {
         if (listPoNumber == null) {
             listPoNumber = new LinkedList<>();
         }
-        Debug.logInfo("OrderNumber" + orderId, MODULE);
-        Debug.logInfo("listPoNumber"+listPoNumber,MODULE);
         //if (listRoutingTask.size() == 0) {
             //FIXME is it correct ?
             // listRoutingTask.add(UtilMisc.toMap("label", "no Match", "value", "NO_MATCH"));
