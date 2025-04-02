@@ -1029,4 +1029,3 @@ under the License.
         <field name="submitButton" title="${uiLabelMap.CommonAdd}" widget-style="smallSubmit"><submit/></field>
     </form>
 </forms>
-

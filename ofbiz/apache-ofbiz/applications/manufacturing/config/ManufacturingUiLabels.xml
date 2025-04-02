@@ -1353,7 +1353,7 @@
     </property>
     <property key="ManufacturingCalendars">
         <value xml:lang="de">Kalender</value>
-        <value xml:lang="en">Calendars</value>
+        <value xml:lang="en">Schedule</value>
         <value xml:lang="es">Calendarios</value>
         <value xml:lang="fr">Calendriers</value>
         <value xml:lang="it">Calendari</value>
@@ -2469,7 +2469,22 @@
     </property>
     <property key="ManufacturingJobShop">
         <value xml:lang="de">Produktionsaufträge</value>
-        <value xml:lang="en">JobShop</value>
+        <value xml:lang="en">Production Planning Control</value>
+        <value xml:lang="es">Producción</value>
+        <value xml:lang="fr">Ordres de fabrication</value>
+        <value xml:lang="it">Ordine di produzione</value>
+        <value xml:lang="ja">注文生産</value>
+        <value xml:lang="nl">Productie-run(s)</value>
+        <value xml:lang="pt-BR">Pedidos de fabricação</value>
+        <value xml:lang="ro">Comanda de Productie</value>
+        <value xml:lang="th">ที่ทำงาน</value>
+        <value xml:lang="vi">Sản xuất (JobShop)</value>
+        <value xml:lang="zh">任务商店</value>
+        <value xml:lang="zh-TW">工作現場</value>
+    </property>
+    <property key="ManufacturingJobCard">
+        <value xml:lang="de">Produktionsaufträge</value>
+        <value xml:lang="en">Production Job Card</value>
         <value xml:lang="es">Producción</value>
         <value xml:lang="fr">Ordres de fabrication</value>
         <value xml:lang="it">Ordine di produzione</value>

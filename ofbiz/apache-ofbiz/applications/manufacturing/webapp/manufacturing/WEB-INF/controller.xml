@@ -81,6 +81,10 @@ under the License.
         <security auth="true" https="true"/>
         <response name="success" type="view" value="LookupCustomerName"/>
     </request-map>
+    <request-map uri="LookupPoNumber">
+        <security auth="true" https="true"/>
+        <response name="success" type="view" value="LookupPoNumber"/>
+    </request-map>
     <request-map uri="LookupRouting">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="LookupRouting"/>
@@ -875,6 +879,7 @@ under the License.
     <view-map name="EditRoutingTaskParties" type="screen" page="component://manufacturing/widget/manufacturing/RoutingScreens.xml#EditRoutingTaskParties"/>
     <view-map name="EditRoutingTaskSkills" type="screen" page="component://manufacturing/widget/manufacturing/RoutingScreens.xml#EditRoutingTaskSkills"/>
     <!-- Lookup view mappings -->
+    <view-map name="LookupPoNumber" type="screen" page="component://manufacturing/widget/manufacturing/LookupScreens.xml#LookupPoNumber"/>   
     <view-map name="LookupPartyName" type="screen" page="component://party/widget/partymgr/LookupScreens.xml#LookupPartyName"/>
     <view-map name="LookupCustomerName" type="screen" page="component://party/widget/partymgr/LookupScreens.xml#LookupCustomerName"/>
     <view-map name="LookupProduct" type="screen" page="component://product/widget/catalog/LookupScreens.xml#LookupProduct"/>
