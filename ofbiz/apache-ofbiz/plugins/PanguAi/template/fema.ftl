@@ -66,6 +66,12 @@ under the License.
             height: 5rem;
             resize:none;
         }
+        .input12{
+            width:3rem;
+            height: 2rem;
+            resize:none;
+            margin-bottom:10px;
+        }
         .HeightSetter textarea{
             resize:none;
         }
@@ -113,12 +119,12 @@ under the License.
             <th>Requirements</th>
             <th>Potential Failure Mode</th>
             <th>Potential Effects of Failure</th>
-            <th>SEV</th>
+            <th>Severity (S)</th>
             <th>Potential Cause / Mechanism of Failure</th>
-            <th>Occurrence</th>
+            <th>Occurrence (O)</th>
             <th>Current Design Control</th>
             <th>Detection Control</th>
-            <th>Detection</th>
+            <th>Deductions (D)</th>
              <th>RPN</th>
             <th>Recommended Action</th>
             <th>Responsibility & Target Date</th>
@@ -161,13 +167,25 @@ under the License.
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><select >
+                <#list 1..10 as i> 
+                    <option value="${i}">${i}</option>
+                </#list>  
+            </select></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><select>
+                <#list 1..10 as i> 
+                    <option value="${i}">${i}</option>
+                </#list>  
+            </select></td>
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><select >
+                <#list 1..10 as i> 
+                    <option value="${i}">${i}</option>
+                </#list>  
+            </select></td>
+            <td rowspan="6"><input class="input12" type="text" id="finalValue" disabled/><button id="button_submit">Calculate</button></td>
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
         </tr>
@@ -183,9 +201,9 @@ under the License.
         <tr>
             <th>Action Taken</th>
            
-            <th>SEV</th>
-            <th>Occurrence</th>
-            <th>Detection</th>
+            <th>Severity (S)</th>
+            <th>Occurrence (O)</th>
+            <th>Detection (D)</th>
             <th>RPN</th>
         </tr>
         <tr>
@@ -196,16 +214,57 @@ under the License.
         </tr>
         <tr class="HeightSetter">
             <td><textarea type="text"></textarea></td>
-            <td><textarea type="text"></textarea></td>
-            <td><textarea type="text"></textarea></td>
-            <td><textarea type="text"></textarea></td>
-            <td><textarea type="text"></textarea></td>
+            <td><select data-id="1">
+                <#list 1..10 as i> 
+                    <option value="${i}">${i}</option>
+                </#list>  
+            </select></td>
+            <td><select data-id="1">
+                <#list 1..10 as i> 
+                    <option value="${i}">${i}</option>
+                </#list>  
+            </select></td>
+            <td><select data-id="1">
+                <#list 1..10 as i> 
+                    <option value="${i}">${i}</option>
+                </#list>  
+            </select></td>
+            <td><input class="input12" type="text" id="finalValue2" disabled/><button id="button_submit2">Calculate</button></td>
         </tr>
-        <tr class="HeightSetter">
-            <td rowspan="3"><textarea type="text"></textarea></td>
-            <td rowspan="3"><textarea type="text"></textarea></td>
-            <td rowspan="3"><textarea type="text"></textarea></td>
-            <td rowspan="3"><textarea type="text"></textarea></td>
-            <td rowspan="3"><textarea type="text"></textarea></td>
-        </tr>
+       
     </table>
+<script>
+
+    var multipleValue=1;
+    var multipleValue2=1;
+    const textarea_input=document.getElementById('finalValue');
+    const textarea_input2=document.getElementById('finalValue2');
+    const select_Buttons=document.querySelectorAll('select');
+    const button_submit=document.getElementById('button_submit');
+    const button_submit2=document.getElementById('button_submit2');
+    button_submit.addEventListener('click',()=>{
+        
+            select_Buttons.forEach(select_Button => {
+            if(!select_Button.dataset.id){
+            multipleValue=select_Button.value*multipleValue;
+            }
+        }
+        )
+        textarea_input.value=multipleValue;
+        console.log(multipleValue)
+        multipleValue=1;
+    })
+    button_submit2.addEventListener('click',()=>{
+            select_Buttons.forEach(select_Button => {
+                if(select_Button.dataset.id){
+                    multipleValue2=select_Button.value*multipleValue2;
+                    console.log('multipleValue2')
+                }
+        }
+        )
+        textarea_input2.value=multipleValue2;
+        console.log(multipleValue2)
+        multipleValue2=1;
+    })
+    
+</script>

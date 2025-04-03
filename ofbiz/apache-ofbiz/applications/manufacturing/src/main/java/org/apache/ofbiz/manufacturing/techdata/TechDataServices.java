@@ -20,11 +20,13 @@ package org.apache.ofbiz.manufacturing.techdata;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.text.SimpleDateFormat;
 
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.UtilDateTime;
@@ -109,8 +111,8 @@ public class TechDataServices {
         Delegator delegator = ctx.getDelegator();
         Map<String, Object> result = new HashMap<>();
         Locale locale = (Locale) context.get("locale");
-        String orderId = (String) context.get("OrderNumber");
-        String orderDate = (String) context.get("OrderDate");
+        String orderId = (String) context.get("orderId");
+        String orderDate = (String) context.get("orderDate");
         List<GenericValue> listPoNumber = null;
         List<EntityExpr> constraints = new LinkedList<>();
         if (UtilValidate.isNotEmpty(orderId)) {
@@ -133,6 +135,8 @@ public class TechDataServices {
         if (listPoNumber == null) {
             listPoNumber = new LinkedList<>();
         }
+        Debug.logInfo("it is working here",MODULE);
+        Debug.logInfo("Order Number ${orderId} ,order Date ${orderDate}", MODULE);
         //if (listRoutingTask.size() == 0) {
             //FIXME is it correct ?
             // listRoutingTask.add(UtilMisc.toMap("label", "no Match", "value", "NO_MATCH"));

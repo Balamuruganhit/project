@@ -30,9 +30,9 @@ under the License.
 		<button class="sidebar-button button" >Quality Intelligence <span id="nav-arrow" class="navbar-extender"></span></button>
 		<span id="arrow">
         <button class="sidebar-button button"  data-id="3">RAM Intelligence</button>
-        <button class="sidebar-button button"  data-id="4">8D Error Analysis</button>
-		<button class="sidebar-button button"  data-id="5">5 Why Analysis</button>
-		<button class="sidebar-button button"  data-id="6">FEMA</button>
+        <button class="sidebar-button button handler"  data-id="4">8D Error Analysis</button>
+		<button class="sidebar-button button handler"  data-id="5">5 Why Analysis</button>
+		<button class="sidebar-button button handler"  data-id="6">FEMA</button>
 		</span>
       </nav>
     </aside>
@@ -68,8 +68,12 @@ console.log("working")
 	})
 </script>
 <style>
+.handler{
+	margin-bottom:4px;
+}
 	#arrow{
 		display:none;
+		flex-direction:column;
 	}
   .navbar-extender {
 	display: inline-block;

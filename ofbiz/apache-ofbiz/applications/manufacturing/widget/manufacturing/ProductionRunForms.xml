@@ -56,7 +56,8 @@ under the License.
                 </entity-options>
             </drop-down>
         </field>
-        
+        <field name="PONumber" title="Order Number"><lookup target-form-name="LookupPoNumber" size="16"/></field>
+        <field name="Party" title="Party"><lookup target-form-name="LookupCustomerName" size="16"/></field>
         <field name="routingId" title="${uiLabelMap.ManufacturingRoutingId}"><lookup target-form-name="LookupRouting" size="16"/></field>
         <field name="workEffortName" title="${uiLabelMap.ManufacturingProductionRunName}"><text size="30"/></field>
         <field name="description" title="${uiLabelMap.CommonDescription}"><text size="50"/></field>

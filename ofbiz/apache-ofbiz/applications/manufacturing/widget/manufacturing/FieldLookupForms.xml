@@ -84,26 +84,30 @@ under the License.
         <field name="estimatedMilliSeconds" title="${uiLabelMap.ManufacturingTaskEstimatedMilliSeconds}"><display/></field>
     </form>
     <form name="LookupPoNumber" target="LookupPoNumber" type="single"
-        header-row-style="header-row" default-table-style="basic-table">
-        <auto-fields-service service-name="lookupPONumber" default-field-type="find"/>
-        <field name="OrderNumber" title="Po Number"><text-find/></field>
-        <field name="OrderDate" title="Order Date"><date-time/></field>
-        <field name="noConditionFind"><hidden value="Y"/><!-- if this isn't there then with all fields empty no query will be done --></field>
+    header-row-style="header-row" default-table-style="basic-table">
+        <auto-fields-service service-name="lookupPO" default-field-type="find"/>
+        <field name="orderId" title="Order Number"><text-find/></field>
+        <field name="orderDate" title="Order Date"><date-time/></field>
+        <field name="noConditionFind"><hidden value="Y"/></field>
         <field name="submitButton" title="${uiLabelMap.CommonFind}"><submit button-type="button"/></field>
     </form>
+
     <form name="ListLookupPoNumber" type="list" list-name="listIt" paginate-target="LookupPoNumber"
-        odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
-        <actions>
-            <service service-name="performFind" result-map="result" result-map-list="listIt">
-                <field-map field-name="inputFields" from-field="requestParameters"/>
-                <field-map field-name="entityName" from-field="entityName"/>
-                <field-map field-name="viewIndex" from-field="viewIndex"/>
-                <field-map field-name="viewSize" from-field="viewSize"/>
-            </service>
-        </actions>
-        <field name="orderId" title="Po Number"  widget-style="smallSubmit">
-            <hyperlink description="${orderId}" target="javascript:set_value('${orderId}')" also-hidden="false" target-type="plain"/>
-        </field>
-        <field name="orderDate" title="Po Date"><display/></field>
-    </form>
+    odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
+    <actions>
+        <service service-name="performFind" result-map="result" result-map-list="listIt">
+            <field-map field-name="inputFields" from-field="requestParameters"/>
+            <field-map field-name="entityName" from-field="entityName"/>
+            <field-map field-name="viewIndex" from-field="viewIndex"/>
+            <field-map field-name="viewSize" from-field="viewSize"/>
+        </service>
+    </actions>
+    <field name="orderId" title="Po Number" widget-style="smallSubmit">
+        <hyperlink description="${orderId}" target="javascript:set_value('${orderId}')" also-hidden="false" target-type="plain"/>
+    </field>
+    <field name="orderTypeId" title="Order type"><display/></field>
+    <field name="orderDate" title="Po Date"><display/></field>
+</form>
+
+
 </forms>
