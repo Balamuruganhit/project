@@ -20,13 +20,11 @@ package org.apache.ofbiz.manufacturing.techdata;
 
 import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.text.SimpleDateFormat;
 
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.UtilDateTime;
@@ -135,7 +133,7 @@ public class TechDataServices {
         if (listPoNumber == null) {
             listPoNumber = new LinkedList<>();
         }
-        Debug.logInfo("it is working here",MODULE);
+        Debug.logInfo("it is working here", MODULE);
         Debug.logInfo("Order Number ${orderId} ,order Date ${orderDate}", MODULE);
         //if (listRoutingTask.size() == 0) {
             //FIXME is it correct ?
