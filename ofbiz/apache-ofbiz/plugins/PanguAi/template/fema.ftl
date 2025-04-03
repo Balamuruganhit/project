@@ -44,9 +44,31 @@ under the License.
             background:rgb(173, 170, 170);
         }
         .HeightSetter td{
-            height:6rem;
+            height:8rem;
         }
-        
+        .input{
+            width:10rem;
+            height:5rem;
+            resize:none;
+        }
+        .biggerInput{
+            width:40rem;
+            height:5rem;
+            resize:none;
+        }
+        .inputSize{
+            width:55rem;
+            resize:none;
+        }
+       
+        .input1{
+            width:3rem;
+            height: 5rem;
+            resize:none;
+        }
+        .HeightSetter textarea{
+            resize:none;
+        }
 </style>
 
 
@@ -61,28 +83,29 @@ under the License.
 
     <table>
         <tr>
-            <th class="bolderHeader" colspan="2">Drawing#</th>
-            <td colspan="2"></td>
+            <th class="bolderHeader" colspan="2">Drawing</th>
+            <td colspan="2"><input type="text"/></td>
             <th>Part Name:</th>
-            <td colspan="3"></td>
+            <td colspan="3" style="padding:0px;"><input type="text"/></td>
             <th>Rev:</th>
-            <td colspan="2"></td>
+            <td colspan="2"><input type="text"/></td>
             <th>DFMEA Number</th>
-            <td colspan="2"></td>
+            <td colspan="2"><input type="text"/></td>
         </tr>
         <tr>
             <th colspan="3">System Subsystem Components:</th>
-            <td colspan="2"></td>
+            <td colspan="2"><textarea class="input" type="text"></textarea></td>
             <th>Design Responsibility:</th>
-            <td colspan="5"></td>
+            <td colspan="5"><textarea class="biggerInput"  type="text"></textarea></td>
             <th>Prepared By:<br>Approved By:</th>
-            <td colspan="2"></td>
+            <td colspan="2"><textarea class="input" type="text"></textarea>
+            </td>
         </tr>
         <tr>
             <th colspan="3">Team Members</th>
-            <td colspan="8"></td>
+            <td colspan="8"><textarea class="inputSize" type="text"></textarea></td>
             <th>Date:</th>
-            <td colspan="2"></td>
+            <td colspan="2"><input type="Date"/></td>
         </tr>
         <tr>
             <th>Item</th>
@@ -96,7 +119,7 @@ under the License.
             <th>Current Design Control</th>
             <th>Detection Control</th>
             <th>Detection</th>
-            <th>RPN</th>
+             <th>RPN</th>
             <th>Recommended Action</th>
             <th>Responsibility & Target Date</th>
             
@@ -133,21 +156,22 @@ under the License.
             
         </tr>
         <tr class="HeightSetter">
-            <td rowspan="6"></td>
-            <td rowspan="6"></td>
-            <td rowspan="6"></td>
-            <td rowspan="6"></td>
-            <td rowspan="6"></td>
-            <td rowspan="6"></td>
-            <td rowspan="6"></td>
-            <td rowspan="6"></td>
-            <td rowspan="6"></td>
-            <td rowspan="6"></td>
-            <td rowspan="6"></td>
-            <td rowspan="6"></td>
-            <td rowspan="6"></td>
-            <td rowspan="6"></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+            <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
         </tr>
+        
     </table>
     <br/>
     <br/>
@@ -156,7 +180,8 @@ under the License.
             <td colspan="1" style="background-color:rgb(126, 187, 240); "></td>
             <th colspan="4">Action Result</th>
         </tr>
-        <tr><th>Action Taken</th>
+        <tr>
+            <th>Action Taken</th>
            
             <th>SEV</th>
             <th>Occurrence</th>
@@ -170,17 +195,17 @@ under the License.
             <th colspan="5">Section 6</th>
         </tr>
         <tr class="HeightSetter">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><textarea type="text"></textarea></td>
+            <td><textarea type="text"></textarea></td>
+            <td><textarea type="text"></textarea></td>
+            <td><textarea type="text"></textarea></td>
+            <td><textarea type="text"></textarea></td>
         </tr>
         <tr class="HeightSetter">
-            <td rowspan="3"></td>
-            <td rowspan="3"></td>
-            <td rowspan="3"></td>
-            <td rowspan="3"></td>
-            <td rowspan="3"></td>
+            <td rowspan="3"><textarea type="text"></textarea></td>
+            <td rowspan="3"><textarea type="text"></textarea></td>
+            <td rowspan="3"><textarea type="text"></textarea></td>
+            <td rowspan="3"><textarea type="text"></textarea></td>
+            <td rowspan="3"><textarea type="text"></textarea></td>
         </tr>
     </table>
