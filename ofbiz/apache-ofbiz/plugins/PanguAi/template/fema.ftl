@@ -299,52 +299,72 @@ under the License.
         console.log(multipleValue2)
         multipleValue2=1;
     })
-   document.getElementById("generate").addEventListener("click", async function () {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF('p', 'pt', 'a4');
+  document.getElementById("generate").addEventListener("click", async function () {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p', 'pt', 'a4');
 
-        const tables = document.querySelectorAll('.mytable');
-        const margin = 20;
-        const headerHeight = 30;
-        const lineSpacing = 10;
-        const pageHeight = doc.internal.pageSize.getHeight();
-        const pageWidth = doc.internal.pageSize.getWidth();
+    const tables = document.querySelectorAll('.mytable');
+    const margin = 20;
+    const headerHeight = 30;
+    const lineSpacing = 10;
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const pageWidth = doc.internal.pageSize.getWidth();
 
-        let yOffset = margin + headerHeight;
+    let yOffset = margin + headerHeight;
 
-        // Header function
-        function addHeader(doc, text) {
-            doc.setFontSize(14);
-            doc.setFont("helvetica", "bold");
-            doc.text(text, margin, margin + 10);
-            doc.setDrawColor(150);
-            doc.line(margin, margin + 15, pageWidth - margin, margin + 15); // underline
+    // ✅ Function to add a Header
+    function addHeader(doc, text) {
+        doc.setFontSize(14);
+        doc.setFont("helvetica", "bold");
+        doc.text(text, margin, margin + 10);
+        doc.setDrawColor(150);
+        doc.line(margin, margin + 15, pageWidth - margin, margin + 15); // Underline
+    }
+
+    addHeader(doc, "Design FMEA Report");
+
+    // ✅ Convert Input/Textarea Fields to Plain Text before rendering
+    function replaceInputsWithText(table) {
+        const inputs = table.querySelectorAll("input, textarea");
+        inputs.forEach(el => {
+            const span = document.createElement('span');
+            span.textContent = el.value; // Keep user-entered data
+            span.style.whiteSpace = 'pre-wrap'; // Ensures long words wrap
+            span.style.wordBreak = 'break-word'; // Breaks long words
+            span.style.display = 'block'; // Ensures proper visibility
+            span.style.width = el.offsetWidth + 'px';
+            span.style.height = el.offsetHeight + 'px';
+            el.replaceWith(span);
+        });
+    }
+
+    for (let i = 0; i < tables.length; i++) {
+        const table = tables[i];
+
+        // ✅ Convert text areas and inputs to text
+        replaceInputsWithText(table);
+
+        const canvas = await html2canvas(table, {
+            scale: 2,
+            useCORS: true
+        });
+
+        const imgData = canvas.toDataURL("image/png");
+        const imgProps = doc.getImageProperties(imgData);
+        const pdfWidth = pageWidth - margin * 2;
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+        if (yOffset + pdfHeight > pageHeight) {
+            doc.addPage();
+            addHeader(doc, "Design FMEA Report – April 2025");
+            yOffset = margin + headerHeight;
         }
 
-        addHeader(doc, "Design FMEA Report");
+        doc.addImage(imgData, 'PNG', margin, yOffset, pdfWidth, pdfHeight);
+        yOffset += pdfHeight + lineSpacing;
+    }
 
-        for (let i = 0; i < tables.length; i++) {
-            const table = tables[i];
-            const canvas = await html2canvas(table, {
-                scale: 2,
-                useCORS: true
-            });
+    doc.save("FMEA_Report.pdf");
+});
 
-            const imgData = canvas.toDataURL("image/png");
-            const imgProps = doc.getImageProperties(imgData);
-            const pdfWidth = pageWidth - margin * 2;
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-            if (yOffset + pdfHeight > pageHeight) {
-                doc.addPage();
-                addHeader(doc, "Design FMEA Report – April 2025");
-                yOffset = margin + headerHeight;
-            }
-
-            doc.addImage(imgData, 'PNG', margin, yOffset, pdfWidth, pdfHeight);
-            yOffset += pdfHeight + lineSpacing;
-        }
-
-        doc.save("FMEA_Report.pdf");
-    });
 </script>
