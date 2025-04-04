@@ -312,26 +312,24 @@ under the License.
 
     let yOffset = margin + headerHeight;
 
-    // ✅ Function to add a Header
     function addHeader(doc, text) {
         doc.setFontSize(14);
         doc.setFont("helvetica", "bold");
         doc.text(text, margin, margin + 10);
         doc.setDrawColor(150);
-        doc.line(margin, margin + 15, pageWidth - margin, margin + 15); // Underline
+        doc.line(margin, margin + 15, pageWidth - margin, margin + 15);
     }
 
     addHeader(doc, "Design FMEA Report");
 
-    // ✅ Convert Input/Textarea Fields to Plain Text before rendering
     function replaceInputsWithText(table) {
         const inputs = table.querySelectorAll("input, textarea");
         inputs.forEach(el => {
             const span = document.createElement('span');
-            span.textContent = el.value; // Keep user-entered data
-            span.style.whiteSpace = 'pre-wrap'; // Ensures long words wrap
-            span.style.wordBreak = 'break-word'; // Breaks long words
-            span.style.display = 'block'; // Ensures proper visibility
+            span.textContent = el.value;
+            span.style.whiteSpace = 'pre-wrap';
+            span.style.wordBreak = 'break-word';
+            span.style.display = 'block';
             span.style.width = el.offsetWidth + 'px';
             span.style.height = el.offsetHeight + 'px';
             el.replaceWith(span);
@@ -341,15 +339,16 @@ under the License.
     for (let i = 0; i < tables.length; i++) {
         const table = tables[i];
 
-        // ✅ Convert text areas and inputs to text
         replaceInputsWithText(table);
 
         const canvas = await html2canvas(table, {
-            scale: 2,
-            useCORS: true
+            scale: 2,  // ✅ Reduce resolution (was 2)
+            useCORS: true,
+            logging: false
         });
 
-        const imgData = canvas.toDataURL("image/png");
+        let imgData = canvas.toDataURL("image/jpeg",1); // ✅ Convert to JPEG with 70% quality
+
         const imgProps = doc.getImageProperties(imgData);
         const pdfWidth = pageWidth - margin * 2;
         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
@@ -360,7 +359,7 @@ under the License.
             yOffset = margin + headerHeight;
         }
 
-        doc.addImage(imgData, 'PNG', margin, yOffset, pdfWidth, pdfHeight);
+        doc.addImage(imgData, 'JPEG', margin, yOffset, pdfWidth, pdfHeight);
         yOffset += pdfHeight + lineSpacing;
     }
 
