@@ -27,7 +27,7 @@ under the License.
         </fo:list-block>
         <fo:block><fo:leader leader-length="100%" leader-pattern="rule" rule-style="solid" rule-thickness="0.1mm" color="black"/></fo:block>
          <fo:block space-after.optimum="0.3cm"></fo:block>
-        <fo:table table-layout="fixed" border="1pt solid" border-width=".1mm" width="19cm">
+        <fo:table table-layout="fixed" border="1pt solid" border-width=".1mm" width="20cm">
               <fo:table-column column-width="20%"/>
               <fo:table-column column-width="5%"/>
               <fo:table-column column-width="20%"/>
@@ -35,15 +35,15 @@ under the License.
               <fo:table-column column-width="10%"/>
             <fo:table-body>
                 <fo:table-row font-weight="bold">
-                        <fo:table-cell><fo:block>Question</fo:block></fo:table-cell>
-                        <fo:table-cell><fo:block>Rating</fo:block></fo:table-cell>
-                        <fo:table-cell><fo:block>Comment</fo:block></fo:table-cell>
-                        <fo:table-cell><fo:block>Proof</fo:block></fo:table-cell>
-                        <fo:table-cell><fo:block>Approver</fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black" text-align="center" padding="3.2pt"><fo:block>Question</fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black" text-align="center" padding="3.2pt"><fo:block>Rating</fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black" text-align="center" padding="3.2pt"><fo:block>Comment</fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black" text-align="center" padding="3.2pt"><fo:block>Proof</fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black" text-align="center" padding="3.2pt"><fo:block>Approver</fo:block></fo:table-cell>
                 </fo:table-row>
                 <#list resultList as resultList>
                         <fo:table-row>
-                            <fo:table-cell border="1pt solid" border-width=".1mm">
+                            <fo:table-cell border="1pt solid black" text-align="center" padding="3.2pt" border-width=".1mm">
                                 <fo:block text-align="center"  white-space-collapse="false" white-space-treatment="preserve">${resultList.question!}</fo:block>
                             </fo:table-cell>
                             <fo:table-cell border="1pt solid" border-width=".1mm">

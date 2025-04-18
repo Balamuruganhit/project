@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Handle File Upload
     const proofFile = proofInput.files[0];
-
+    console.log(proofFile)
     if (reportLength > 20) {
         alert('ReportId should not exceed 20 AlphaNumeric.');
         reportField.style.border = '2px solid red'; // Ensure red border on submit
