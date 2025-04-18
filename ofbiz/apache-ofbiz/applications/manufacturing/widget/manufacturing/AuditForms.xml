@@ -24,23 +24,22 @@ under the License.
    
     
    
-    <form name="AddPartyContent" target="updatePlantContent" type="upload" default-map-name="content"
-        focus-field-name="contentTypeId" header-row-style="header-row" default-table-style="basic-table">
-        <actions>
-            <entity-one entity-name="StatusItem" value-field="currentStatus" auto-field-map="false">
-                <field-map field-name="statusId" from-field="content.statusId"/>
-            </entity-one>
-            <entity-one entity-name="DataResource" value-field="dataResource" auto-field-map="false">
-                <field-map field-name="dataResourceId" from-field="content.dataResourceId"/>
-            </entity-one>
-        </actions>
-            <field name="dataResourceName" title="${uiLabelMap.ManuContentFile}"><file/></field>
-            <field name="textAreaField" title="${uiLableMap.ManuContentFile}" >
-            <textarea rows="10" default-value="Enter the Detail" title="${uiLableMap.ManuTextArea}"/>
-            </field>
-            <field name="submitButton" title="${uiLabelMap.CommonSubmit}">
+    <form name="selector" target="productionCard"  default-map-name="content"
+         header-row-style="header-row" default-table-style="basic-table">
+        
+        <field name="workEffort" title="Production Run" position="1">
+           
+                <drop-down allow-empty="false">
+                    <option key="" description="Production Run "/>
+                    <entity-options description="${workEffortId} - ${workEffortName}" entity-name="WorkEffort" key-field-name="workEffortId" >
+                        <entity-constraint name="workEffortTypeId" value="PROD_ORDER_HEADER"/>
+                    </entity-options>
+                </drop-down>
+        
+        </field>
+        <field name="submitButton" title="Open Doc">
             <submit button-type="button"/>
-            </field>
+        </field>
     </form>
 
     <grid name="ListPartyContents" separate-columns="false"
@@ -73,7 +72,7 @@ under the License.
         
         <field name="editLink" title=" " widget-style="smallSubmit">
            <hyperlink description="${uiLabelMap.CommonEdit}" target="EditPlantContents" also-hidden="false">
-                <parameter param-name="contentId"/>
+                
                 <parameter param-name="plantId"/>
                 <parameter param-name="dataResourceId"/>
                 <parameter param-name="fromDate"/>

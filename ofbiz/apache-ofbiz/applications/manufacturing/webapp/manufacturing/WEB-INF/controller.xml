@@ -38,14 +38,19 @@ under the License.
     -->
     
 
-    <request-map uri="productionPlantDocumentation">
+    <request-map uri="productionSelection">
         <security https="true" auth="true"/>
-        <response name="success" type="view" value="productionPlantDocumentation" />
+        <response name="success" type="view" value="productionSelection" />
     </request-map>
 
-   <request-map uri="EditPlantContent">
+   <request-map uri="productionCard">
         <security auth="true" https="true"/>
-        <response name="success" type="view" value="productionPlantDocumentation"/>
+        <response name="success" type="view" value="productionCard"/>
+    </request-map>
+    <request-map uri="Report.pdf">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="ReportPdf"/>
+        <response name="error" type="view" value="Export"/>
     </request-map>
     <request-map uri="createPlantContent">
         <security auth="true" https="true"/>
@@ -904,8 +909,8 @@ under the License.
     <view-map name="MrpExecution" type="screen" page="component://manufacturing/widget/manufacturing/MrpScreens.xml#MrpExecution"/>
     <view-map name="RunMrpGo" page="component://manufacturing/widget/manufacturing/MrpScreens.xml#RunMrpGo" type="screen"/>
     <view-map name="ManufacturingReports" type="screen" page="component://manufacturing/widget/manufacturing/ReportScreens.xml#ManufacturingReports"/>
-
-    <view-map name="productionPlantDocumentation" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionPlantDocumentation"/>
+    <view-map name="productionCard" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionPlantDocumentation"/>
+    <view-map name="productionSelection" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionSelection"/>
   
     <!-- JobShop Management view mappings -->
     <view-map name="CreateProductionRun" type="screen" page="component://manufacturing/widget/manufacturing/JobshopScreens.xml#CreateProductionRun"/>
@@ -939,4 +944,6 @@ under the License.
     <view-map name="SPPRunsComponentsByFeature" type="screenfop" page="component://manufacturing/widget/manufacturing/ReportScreens.xml#SPPRunsComponentsByFeature" content-type="application/pdf" encoding="none"/>
     <view-map name="PRunsInfoAndOrder" type="screenfop" page="component://manufacturing/widget/manufacturing/ReportScreens.xml#PRunsInfoAndOrder" content-type="application/pdf" encoding="none"/>
     <!-- end of view mappings -->
+    <view-map name="ReportPdf" type="screenfop" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#ReportPdf" content-type="application/pdf" encoding="none"/>
+
 </site-conf>

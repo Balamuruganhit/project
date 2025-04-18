@@ -56,8 +56,15 @@ under the License.
                 </entity-options>
             </drop-down>
         </field>
-        <field name="PONumber" title="Order Number"><lookup target-form-name="LookupPoNumber" size="16"/></field>
-        <field name="Party" title="Party"><lookup target-form-name="LookupCustomerName" size="16"/></field>
+        <field name="poNumber" title="Po / So Number"><lookup target-form-name="LookupPoNumber" size="16"/></field>
+        <field name="party" title="Prodution Type">
+            <drop-down allow-empty="false">
+                <option key="Manufacturing (New)" description="Manufacturing (New)"/>
+                <option key="Manufacturing (Rework)" description="Manufacturing (Rework)"/>
+                <option key="Sub Assembly" description="Sub Assembly"/>
+                <option key="Assembly" description="Assembly"/>
+            </drop-down>
+        </field>
         <field name="routingId" title="${uiLabelMap.ManufacturingRoutingId}"><lookup target-form-name="LookupRouting" size="16"/></field>
         <field name="workEffortName" title="${uiLabelMap.ManufacturingProductionRunName}"><text size="30"/></field>
         <field name="description" title="${uiLabelMap.CommonDescription}"><text size="50"/></field>
@@ -136,6 +143,8 @@ under the License.
         <field name="currentStatusId">
             <display-entity entity-name="StatusItem" key-field-name="statusId"/>
         </field>
+        <field name="CustomerName"><display description="${partyDetail.partyName}"></display></field>
+        <field name="OrderNumber" title="Po / So Number"><display description="${partyDetail.orderNumber}"></display></field>
         <field name="manufacturerId">
             <display-entity entity-name="PartyNameView" key-field-name="partyId" description="${groupName} ${firstName} ${lastName} [${partyId}]"/>
         </field>

@@ -21,5 +21,20 @@ under the License.
 <forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://ofbiz.apache.org/Widget-Form" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
 
-
+        <form name="selector" target="fema"  default-map-name="content"
+                header-row-style="header-row" default-table-style="basic-table">
+        
+                <field name="dfema" title="DFEMA No" position="1">
+                        
+                        <drop-down allow-empty="false">
+                                <option key="" description="Select fema No"/>
+                                <entity-options description="${femaId} " entity-name="FemaTitleDetail" key-field-name="femaId" >
+                                </entity-options>
+                        </drop-down>
+                
+                </field>
+                <field name="submitButton" title="Open Doc">
+                        <submit button-type="button"/>
+                </field>
+        </form>
 </forms>

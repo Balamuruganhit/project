@@ -49,6 +49,7 @@ under the License.
                 <entity-and entity-name="WebAnalyticsConfig" list="webAnalyticsConfigs">
                     <field-map field-name="webSiteId"/>
                 </entity-and>
+                <set field="layoutSettings.javaScripts[]" value="/ecommerce/js/main.js" global="true"/>
                 <set field="layoutSettings.javaScripts[]" value="/common/js/util/miscAjaxFunctions.js" global="true" />
                 <set field="bodyStyle" value="${groovy:
                         if(sections?.get(&quot;left-column&quot;) &amp;&amp; sections?.get(&quot;right-column&quot;)) &quot;col-lg-6&quot;

@@ -31,45 +31,6 @@ $(document).ready(function() {
   }
 });
 </script>
-<div class="container-fluid">
-  <div class="row align-items-center">
-    <div class="col">
-      <a class="navbar-brand" href="<@ofbizUrl>main</@ofbizUrl>">
-          <#if sessionAttributes.overrideLogo??>
-            <img src="<@ofbizContentUrl>${sessionAttributes.overrideLogo}</@ofbizContentUrl>" alt="Logo"/>
-          <#elseif catalogHeaderLogo??>
-            <img src="<@ofbizContentUrl>${catalogHeaderLogo}</@ofbizContentUrl>" alt="Logo"/>
-          <#elseif layoutSettings.VT_HDR_IMAGE_URL?has_content>
-            <img src="<@ofbizContentUrl>${layoutSettings.VT_HDR_IMAGE_URL}</@ofbizContentUrl>" alt="Logo"/>
-          </#if>
-        </a>
-    </div>
-    <div class="col text-center d-none d-lg-block">
-      <#if !productStore??>
-            <h3>${uiLabelMap.EcommerceNoProductStore}</h3>
-          </#if>
-          <#if (productStore.title)??>
-            <h3>${productStore.title}</h3>
-           </#if>
-          <#if (productStore.subtitle)??>
-            <div id="company-subtitle">${productStore.subtitle}</div>
-          </#if>
-          <div>
-            <#if sessionAttributes.autoName?has_content>
-              <span class="text-success">${uiLabelMap.CommonWelcome}&nbsp;${sessionAttributes.autoName}!</span>
-              (${uiLabelMap.CommonNotYou}?&nbsp;
-              <a href="<@ofbizUrl>autoLogout</@ofbizUrl>" class="linktext">${uiLabelMap.CommonClickHere}</a>)
-            <#else>
-              ${uiLabelMap.CommonWelcome}!
-            </#if>
-          </div>
-    </div>
-    <div class="col">
-      ${screens.render("component://ecommerce/widget/CartScreens.xml#microcart")}
-    </div>
-  </div>
-</div>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -97,6 +58,9 @@ $(document).ready(function() {
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<@ofbizUrl>main</@ofbizUrl>">${uiLabelMap.CommonMain}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<@ofbizUrl>liveTempTracker</@ofbizUrl>">Live Temp Tracker</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
@@ -126,6 +90,34 @@ $(document).ready(function() {
     </ul>
   </div>
 </nav>
+<div style="margin:1rem;"></div>
+<div class="container-fluid">
+  <div class="row align-items-center">
+    <div class="col text-center d-none d-lg-block">
+      <#if !productStore??>
+            <h3>${uiLabelMap.EcommerceNoProductStore}</h3>
+          </#if>
+          
+            <h3>FeatherFlow</h3>
+          
+          
+            <div id="company-subtitle">Part of the PoultryTech Family of Smart Farming Solutions</div>
+          
+          <div>
+            <#if sessionAttributes.autoName?has_content>
+              <span class="text-success">${uiLabelMap.CommonWelcome}&nbsp;${sessionAttributes.autoName}!</span>
+              
+              
+            <#else>
+              ${uiLabelMap.CommonWelcome}!
+            </#if>
+          </div>
+    </div>
+    
+  </div>
+</div>
+
+
 
 
 

@@ -1,4 +1,4 @@
-<#--
+<!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
 distributed with this work for additional information
@@ -17,18 +17,3 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<#assign nowTimestamp = Static["org.apache.ofbiz.base.util.UtilDateTime"].nowTimestamp()>
-
-<div class="footer-block">
-<div class="d-flex justify-content-center">
-  
-  <div class="p-2 text-center">
-    <a href="//ofbiz.apache.org">${uiLabelMap.EcommerceAboutUs}</a>
-    <div>Copyright &copy; 2001-${nowTimestamp?string("yyyy")} The Apache Software Foundation -
-      <a href="//www.apache.org">www.apache.org</a>
-    </div>
-    <div>Powered by <a href="//ofbiz.apache.org">Spartenz</a></div>
-  </div>
-  
-</div>
-</div>

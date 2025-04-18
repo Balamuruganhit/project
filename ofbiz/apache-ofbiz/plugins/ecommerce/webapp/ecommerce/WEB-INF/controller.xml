@@ -1887,7 +1887,13 @@ under the License.
     </request-map>
 
     <!-- End of Request Mappings -->
-
+    <request-map uri="liveTempTracker">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.apache.ofbiz.ecommerce.janrain.JanrainHelper" invoke="janrainCheckLogin"/>
+        <response name="success" type="view" value="tempDetail"/>
+        <response name="error" type="view" value="login"/>
+        <response name="userLoginMissing" type="request" value="newcustomer"/>
+    </request-map>
     <!-- View Mappings -->
     <view-map name="error" type="ftl" page="component://common/webcommon/error/Error.ftl"/>
     <view-map name="main" type="screen" page="component://ecommerce/widget/CommonScreens.xml#main"/>
@@ -1895,7 +1901,7 @@ under the License.
     <view-map name="CookiePolicy" type="screen" page="component://ecommerce/widget/CommonScreens.xml#CookiePolicy"/>
     <view-map name="login" type="screen" page="component://ecommerce/widget/CommonScreens.xml#login"/>
     <view-map name="requirePasswordChange" type="screen" page="component://ecommerce/widget/CommonScreens.xml#requirePasswordChange"/>
-
+    <view-map name="tempDetail" type="screen" page="component://ecommerce/widget/PoutryScreen.xml#tempDetail"/>
     <!-- Cart Views -->
     <view-map name="editShoppingList" type="screen" page="component://ecommerce/widget/ShoppingListScreens.xml#editShoppingList"/>
     <view-map name="showcart" type="screen" page="component://ecommerce/widget/CartScreens.xml#showcart"/>

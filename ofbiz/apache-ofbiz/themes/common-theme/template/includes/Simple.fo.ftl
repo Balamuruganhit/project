@@ -30,7 +30,7 @@ under the License.
       <fo:region-after extent="0.5in"/>
     </fo:simple-page-master>
     <fo:simple-page-master master-name="simple-landscape"
-        page-width="11in" page-height="8.5in"
+        page-width="19in" page-height="8.5in"
         margin-top="0.3in" margin-bottom="0.3in"
         margin-left="0.4in" margin-right="0.3in">
       <fo:region-body margin-top="1in" margin-bottom="0.5in"/>
@@ -39,7 +39,7 @@ under the License.
     </fo:simple-page-master>
   </fo:layout-master-set>
 
-  <fo:page-sequence master-reference="${pageLayoutName?default("simple-portrait")}" font-size="8pt">
+  <fo:page-sequence master-reference="${pageLayoutName?default("simple-landscape")}" font-size="8pt">
     <#-- Header -->
     <#-- The elements it it are positioned using a table composed by one row
          composed by two cells (each 50% of the total table that is 100% of the page):

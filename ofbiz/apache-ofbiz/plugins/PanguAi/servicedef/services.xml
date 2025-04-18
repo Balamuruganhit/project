@@ -29,5 +29,31 @@ under the License.
             Dummy service to prevent empty files and syntax error - Remove when the 1st real service will be added here 
         </description>
     </service> 
+    <service name="createFemaReport"
+    engine="groovy"
+    location="component://PanguAi/groovyScripts/femaService.groovy"
+    invoke="createFemaReport"
+    auth="true">
+   <!-- <attribute name="reportId" type="Integer" mode="IN"/>
+   <attribute name="question" type="String" mode="IN"/>
+   <attribute name="rating" type="Integer" mode="IN"/>
+   <attribute name="comment" type="String" mode="IN"/>
+   <attribute name="approve" type="String" mode="IN"/>
+   <attribute name="proof" type="java.nio.ByteBuffer" mode="IN"/> -->
+    <attribute name="femaDetails" type="java.util.List" mode="IN"/>
     
+</service>
+<service name="createFemaReportTable"
+    engine="groovy"
+    location="component://PanguAi/groovyScripts/femaService.groovy"
+    invoke="createFemaReportTable"
+    auth="true">
+   <!-- <attribute name="reportId" type="Integer" mode="IN"/>
+   <attribute name="question" type="String" mode="IN"/>
+   <attribute name="rating" type="Integer" mode="IN"/>
+   <attribute name="comment" type="String" mode="IN"/>
+   <attribute name="approve" type="String" mode="IN"/>
+   <attribute name="proof" type="java.nio.ByteBuffer" mode="IN"/> -->
+    <attribute name="femaDetails" type="java.util.List" mode="IN"/>   
+</service>
 </services>

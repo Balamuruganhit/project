@@ -38,7 +38,7 @@ under the License.
             <link target="FindProductionRun"/>
         </menu-item>
         <menu-item name="ProductionJobCard" title="${uiLabelMap.ManufacturingJobCard}">
-            <link target="productionPlantDocumentation"/>
+            <link target="productionSelection"/>
         </menu-item>
         <menu-item name="costs" title="${uiLabelMap.ManufacturingCostCalcs}">
             <link target="EditCostCalcs"/>

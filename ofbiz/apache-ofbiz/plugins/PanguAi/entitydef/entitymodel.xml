@@ -27,5 +27,42 @@ under the License.
     <description>None</description>
     <copyright></copyright>
     <version></version>
+    <entity entity-name="FemaTitleDetail" package-name="org.apache.ofbiz.PanguAi" title="Fema Entity">
+        <field name="femaId" type="id"/>
+        <field name="drawing" type="name"/>
+        <field name="part" type="name"/>
+        <field name="rev" type="numeric"/>
+        <field name="comp" type="url"/>
+        <field name="design" type="url"/>
+        <field name="prepareField" type="name"/>
+        <field name="team" type="url"/> <!-- Field to store Base64-encoded string -->
+        <field name="femaDate" type="id"/>
+        <prim-key field="femaId"/>
+    </entity>
+    <entity entity-name="FemaTableDetail" package-name="org.apache.ofbiz.PanguAi" title="Fema Entity">
+        <field name="genId" type="id"/>
+        <field name="femaId" type="id"/>
+        <field name="item" type="name"/>
+        <field name="functionPart" type="name"/>
+        <field name="achieve" type="url"/>
+        <field name="failureMode" type="url"/>
+        <field name="potentialEffects" type="url"/>
+        <field name="feverity" type="name"/>
+        <field name="potentialCause" type="url"/>
+        <field name="occurrence" type="name"/>
+        <field name="severity" type="id"/>
+        <field name="designControl" type="name"/>
+        <field name="detectionControl" type="name"/>
+        <field name="detection" type="numeric"/>
+        <field name="rPN" type="url"/>
+        <field name="action" type="url"/>
+        <field name="responsibility" type="name"/>
+        <field name="actionTaken" type="url"/> <!-- Field to store Base64-encoded string -->
+        <field name="severity1" type="id"/>
+        <field name="occurrence1" type="name"/>
+        <field name="detection1" type="name"/>
+        <field name="rPN1" type="numeric"/>
+        <prim-key field="genId"/>
+    </entity>
 
 </entitymodel>

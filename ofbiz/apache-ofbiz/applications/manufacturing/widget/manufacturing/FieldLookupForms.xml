@@ -86,8 +86,8 @@ under the License.
     <form name="LookupPoNumber" target="LookupPoNumber" type="single"
     header-row-style="header-row" default-table-style="basic-table">
         <auto-fields-service service-name="lookupPO" default-field-type="find"/>
-        <field name="orderId" title="Order Number"><text-find/></field>
-        <field name="orderDate" title="Order Date"><date-time/></field>
+        <field name="orderId" title="Po/So Number"><text-find/></field>
+        <field name="orderDate" title="Order Date"><hidden value=""/></field>
         <field name="noConditionFind"><hidden value="Y"/></field>
         <field name="submitButton" title="${uiLabelMap.CommonFind}"><submit button-type="button"/></field>
     </form>
@@ -102,11 +102,11 @@ under the License.
             <field-map field-name="viewSize" from-field="viewSize"/>
         </service>
     </actions>
-    <field name="orderId" title="Po Number" widget-style="smallSubmit">
+    <field name="orderId" title="Po/So Number" widget-style="smallSubmit">
         <hyperlink description="${orderId}" target="javascript:set_value('${orderId}')" also-hidden="false" target-type="plain"/>
     </field>
     <field name="orderTypeId" title="Order type"><display/></field>
-    <field name="orderDate" title="Po Date"><display/></field>
+    <field name="orderDate" title="Po/So Date"><display/></field>
 </form>
 
 

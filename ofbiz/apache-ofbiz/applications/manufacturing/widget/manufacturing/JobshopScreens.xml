@@ -90,6 +90,7 @@ under the License.
                 <set field="viewSize" from-field="parameters.VIEW_SIZE" type="Integer" default-value="${viewSizeDefaultValue}"/>
                 <script location="component://manufacturing/groovyScripts/jobshopmgt/ViewProductionRun.groovy"/>
                 <script location="component://manufacturing/groovyScripts/jobshopmgt/ProductionRunAllFixedAssets.groovy"/>
+                <script location="component://manufacturing/groovyScripts/find/createProductionDetail.groovy"/>
 
                 <set field="productionRunId" from-field="parameters.productionRunId"/>
                 <entity-one entity-name="WorkEffort" value-field="productionRun">

@@ -16,79 +16,153 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
  <style>
         table { width: 100%; border-collapse: collapse; }
         th, td { border: 1px solid black; padding: 5px; text-align: left; }
-        th { background-color: #f2f2f2; }
+        th { background-color: #f2f2f2; text-align:center; height:3rem; }
+        .bolder{
+            font-weight:bold;
+
+        }
+        .printButton{
+            margin-top:4rem;
+            height:2rem;
+            width:7rem;
+            padding:1rem;
+            border-radius:16px;
+        }
     </style>
- <table>
+    <table id="mytable">
+ <table class="mytable">    
+
+
         <tr>
-            <td>Customer Name:</td>
-            <td colspan="3"></td>
-            <td>PO No / SO No:</td>
-            <td></td>
-            <td>Date:</td>
-            <td></td>
+            <td class="bolder">Customer Name:</td>
+            <#if partyDetail.partyName?has_content>
+                <td colspan="3">${partyDetail.partyName}</td>
+            <#else>
+                <td></td>
+            </#if>
+            <td class="bolder">PO No / SO No:</td>
+            <#if partyDetail.orderNumber?has_content>
+                <td >${partyDetail.orderNumber}</td>
+            <#else>
+                <td></td>
+            </#if>
+            <td class="bolder">Date:</td>
+            <#if partyDetail.orderDate?has_content>
+                <td >${orderDate}</td>
+            <#else>
+                <td></td>
+            </#if>
         </tr>
         <tr>
-            <td>WO No:</td>
-            <td colspan="3"></td>
-            <td>Date:</td>
-            <td></td>
+            <td class="bolder">Product ID:</td>
+            <td colspan="3">${productionRunData.productId} </td>
+            <td class="bolder">WO No:</td>
+            <td ><input style="border:none;" value="${productionRunData.productionRunId}" id="production"/></td>
+            <td class="bolder">Date:</td>
+            <td>${proDate}</td>
         </tr>
         <tr>
-            <td>Product ID:</td>
-            <td colspan="3"></td>
-            <td>Product Description:</td>
-            <td colspan="3"></td>
+            <td class="bolder">Product Name:</td>
+            <td colspan="3">${product.internalName}</td>
+            <td class="bolder">Product Description:</td>
+            <#if product.description?has_content>
+                <td colspan="3">${product.description}</td>
+            <#else>
+                <td colspan="3"></td>
+            </#if>
         </tr>
         <tr>
-            <td>Production Run / Batch Quantity:</td>
+            <td class="bolder">Production Run / Batch Quantity:</td>
+            <td colspan="3">${quantity}</td>
+            <td class="bolder">Production Run Description:</td>
+            <#if productionRunData.description? has_content>
+            <td colspan="3">${productionRunData.description}</td>
+            <#else>
             <td colspan="3"></td>
-            <td>Production Run Description:</td>
-            <td colspan="3"></td>
+            </#if>
         </tr>
         <tr>
-            <td>Expected Completion/Delivery Date:</td>
-            <td colspan="3"></td>
-            <td>Product (New/Rework):</td>
-            <td colspan="3"></td>
+            <td class="bolder">Expected Completion/Delivery Date:</td>
+            <td colspan="3">${productionRunData.estimatedCompletionDate}</td>
+            <td class="bolder">Product Type:</td>
+            <td colspan="3">${partyDetail.poNumber}</td>
         </tr>
+
     </table>
-    <h3>RAW MATERIAL</h3>
-    <table>
+    <h1></h1>
+    <table class="mytable">
+        <tr>
+            <th colspan="4">RAW MATERIAL</th>
+        </tr>
         <tr>
             <th>Sl No</th>
             <th>Material</th>
             <th>Grade/Description</th>
             <th>Qty</th>
         </tr>
+        <#list productionRunComponents as component>
+            <#list 1..lengthProduction as i>
+            <tr>
+                <td>${i}</td>
+                <td>${component.productId}</td>
+                <td><input/></td>
+                <td>${component.estimatedQuantity}</td>
+            </tr>
+           </#list> 
+        </#list>
     </table>
-    <h3>ROUTING TASKS</h3>
-    <table>
+    <h1></h1>
+    <table class="mytable">
+        <tr>
+            <th colspan="9">ROUTING TASKS</th>
+        </tr>
         <tr>
             <th>OPERATIONS</th>
             <th>MACHINE</th>
             <th>OPERATOR</th>
             <th>DATE</th>
-            <th>SETUP TIME</th>
-            <th>TIME (FROM) - TIME (TO)</th>
-            <th>Total Time</th>
+            <th>ESTIMATED SETUP TIME </th>
+            <th>ESTIMATD RUN TIME</th>
+            <th>ACTUAL SETUP TIME</th>
+            <th>ACTUAL RUN TIME</th>
             <th>QC Remarks</th>
         </tr>
-        <tr><td>METAL CUTTING</td><td colspan="7"></td></tr>
-        <tr><td>TURNING</td><td colspan="7"></td></tr>
-        <tr><td>MILLING</td><td colspan="7"></td></tr>
-        <tr><td>BRAZING</td><td colspan="7"></td></tr>
-        <tr><td>PROFILING</td><td colspan="7"></td></tr>
-        <tr><td>GRINDING</td><td colspan="7"></td></tr>
-        <tr><td>BALANCING</td><td colspan="7"></td></tr>
-        <tr><td>FINAL INSPECTION</td><td colspan="7"></td></tr>
-        <tr><td>ETCHING</td><td colspan="7"></td></tr>
-        <tr><td>PACKING</td><td colspan="7"></td></tr>
+        <#list productionRunRoutingTasks as taskDetail>
+            <tr>
+                <td>${taskDetail.workEffortName}</td>
+                <#if taskDetail.fixedAssetId? has_content>
+                    <td>${taskDetail.fixedAssetId}</td>
+                <#else>
+                    <td ></td>
+                </#if>
+                
+                <#if taskDetail.reservPersons? has_content>
+                    <td>${taskDetail.reservPersons}</td>
+                <#else>
+                    <td ></td>
+                </#if>
+                <td>${taskDetail.estimatedStartDate}</td>
+                <td>${taskDetail.estimatedSetupMillis}</td>
+                <#if taskDetail.estimatedSetupMillis? has_content>
+                    <td>${taskDetail.estimatedSetupMillis * quantity}</td>
+                <#else>
+                    <td ></td>
+                </#if>
+                <td>${taskDetail.estimatedSetupMillis}</td>
+                <td>${taskDetail.estimatedSetupMillis * quantity}</td>
+                <td><input style="height: 3rem;border:none;"/></td>
+            </tr>
+        </#list>
     </table>
-    <h3>EXTERNAL SERVICES</h3>
-    <table>
+    <h1></h1>
+    <table class="mytable">
+        <tr>
+            <th colspan="9" sty>EXTERNAL SERVICES</th>
+        </tr>
         <tr>
             <th>Sl No</th>
             <th>VENDOR</th>
@@ -100,30 +174,74 @@ under the License.
             <th>Total Time</th>
             <th>PRICE (PER PIECE)</th>
         </tr>
-        <tr><td>1</td><td colspan="8"></td></tr>
-        <tr><td>2</td><td colspan="8"></td></tr>
-        <tr><td>3</td><td colspan="8"></td></tr>
-    </table>
-    <h3>FINAL DETAILS</h3>
-    <table>
+       <tr>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+        </tr>
         <tr>
-            <td>Date of Completion:</td>
-            <td></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+        </tr>
+        <tr>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+            <td><input type="text" style="width: 9rem;border:none;"></td>
+        </tr>
+       
+    </table>
+    <h1></h1>
+    <table class="mytable">
+        <tr>
+            <th colspan="4" >FINAL DETAILS</th>
+        </tr>
+        <tr>
+            <td colspan="1">Date of Completion:</td>
+            <#if completionProduction?has_content>
+                <td colspan="1">${completionProduction}</td>
+            <#else>
+                <td></td>
+            </#if>
+            <td rowspan="3" colspan="1">REMARKS/SPECIAL INSTRUCTIONS:</td>
+            <td rowspan="3" colspan="1"><textarea style="height:7rem;border:none;"></textarea></td>
         </tr>
         <tr>
             <td>Date of Final Inspection:</td>
             <td></td>
         </tr>
         <tr>
-            <td>PCN No and Date:</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>REMARKS/SPECIAL INSTRUCTIONS:</td>
-            <td></td>
+            <td>Inventory No and Date:</td>
+            <#list inventoryItems as inventoryItem>
+                <td>${inventoryItem.inventoryItemId} - ${invDate}</td>
+            </#list>
         </tr>
     </table>
-    <table>
+    <table class="mytable">
+         <tr>
+            <td><input type="text" style="width:25rem;height:3rem;border:none;"></td>
+            <td><input type="text" style="width:25rem;height:3rem;border:none;"></td>
+            <td><input type="text" style="width:25rem;height:3rem;border:none;""></td>
+            <td><input type="text" style="width:25rem;height:3rem;border:none;"></td>
+        </tr>
         <tr>
             <th>ISSUED BY</th>
             <th>PRODUCTION ENGINEER</th>
@@ -131,3 +249,7 @@ under the License.
             <th>PRODUCTION MANAGER</th>
         </tr>
     </table>
+</table>
+<div class="printButton">
+    <a href="Report.pdf?workEffort=${productionRunData.productionRunId}" ><button >Print Pdf</button></a>
+</div>

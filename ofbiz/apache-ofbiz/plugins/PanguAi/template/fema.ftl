@@ -17,11 +17,10 @@ specific language governing permissions and limitations
 under the License.
 
 -->
- <!-- jsPDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<!-- jsPDF AutoTable Plugin -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
 
 <style>
         
@@ -64,7 +63,7 @@ under the License.
             resize:none;
         }
         .inputSize{
-            width:55rem;
+            width:90%;
             resize:none;
         }
        
@@ -96,6 +95,11 @@ under the License.
        #generate{
         margin-top:1rem;
        }
+       #addButton{
+        width:7rem;
+        height:5rem;
+        margin-top:1rem;
+       }
        
 </style>
 
@@ -109,35 +113,73 @@ under the License.
         <br/>
     </center>
 <div class="flex">
-    <table class="mytable">
-        <tr>
-            <th class="bolderHeader" colspan="2">Drawing</th>
-            <td colspan="2"><input type="text"/></td>
-            <th>Part Name:</th>
-            <td colspan="3" style="padding:0px;"><input type="text"/></td>
-            <th>Rev:</th>
-            <td colspan="2"><input type="text"/></td>
+    <table class="mytable"  id="firstTable" >
+        <tr class="detail">
+            <th class="bolderHeader" colspan="3">Drawing</th>
+            <#if femaOutputTitle?has_content >
+            <td colspan="2"><input type="text" value="${femaOutputTitle.drawing}"/></td>
+            <#else>
+                <td colspan="2"><input type="text"/></td>
+            </#if>
+            <th colspan="3">Part Name:</th>
+            <#if femaOutputTitle?has_content >
+            <td colspan="5" style="padding:0px;"><input type="text" value="${femaOutputTitle.part}"/></td>
+            <#else>
+                <td colspan="5" style="padding:0px;"><input type="text"/></td>
+            </#if>
+            
+            <th >Rev:</th>
+            <#if femaOutputTitle?has_content >
+            <td colspan="2"><input type="text" value="${femaOutputTitle.rev}"/></td>
+            <#else>
+                <td colspan="2"><input type="text"/></td>
+            </#if>
             <th>DFMEA Number</th>
-            <td colspan="2"><input type="text"/></td>
+            <#if femaOutputTitle?has_content >
+            <td colspan="2"><input type="text" value="${femaOutputTitle.femaId}"/></td>
+            <#else>
+                <td colspan="2"><input type="text"/></td>
+            </#if>
         </tr>
-        <tr>
+        <tr class="detail">
             <th colspan="3">System Subsystem Components:</th>
+             <#if femaOutputTitle?has_content >
+            <td colspan="2"><textarea class="input" value="${femaOutputTitle.comp}" type="text">${femaOutputTitle.comp}</textarea></td>
+            <#else>
             <td colspan="2"><textarea class="input" type="text"></textarea></td>
-            <th>Design Responsibility:</th>
+            </#if>
+            <th colspan="3">Design Responsibility:</th>
+            <#if femaOutputTitle?has_content >
+            <td colspan="5"><textarea class="biggerInput" value="${femaOutputTitle.design}"  type="text">${femaOutputTitle.design}</textarea></td>
+            <#else>
             <td colspan="5"><textarea class="biggerInput"  type="text"></textarea></td>
+            </#if>
             <th>Prepared By:<br>Approved By:</th>
-            <td colspan="2"><textarea class="input" type="text"></textarea>
+            <#if femaOutputTitle?has_content >
+            <td colspan="5"><textarea class="input" style="width:90%" value="" type="text">${femaOutputTitle.prepareField}</textarea>
+            <#else>
+            <td colspan="5"><textarea class="input" style="width:90%" type="text"></textarea>
+            </#if>
             </td>
         </tr>
-        <tr>
+        <tr class="detail">
             <th colspan="3">Team Members</th>
-            <td colspan="8"><textarea class="inputSize" type="text"></textarea></td>
+            <#if femaOutputTitle?has_content >
+            <td colspan="12"><textarea class="inputSize"  type="text">${femaOutputTitle.team}</textarea></td>
+            <#else>
+            <td colspan="12"><textarea class="inputSize" type="text"></textarea></td>
+            </#if>
             <th>Date:</th>
-            <td colspan="1"><input type="Date"/></td>
+            <#if femaOutputTitle?has_content >
+            <td colspan="3"><input type="Date" value="${femaOutputTitle.femaDate}"/></td>
+            <#else>
+            <td colspan="3"><input type="Date"/></td>
+            </#if>
         </tr> 
-    </table>
     
-    <table class="mytable">
+    
+    
+    
        <tr class="change">
             <th >Item</th>
             <th>Function</th>
@@ -150,18 +192,30 @@ under the License.
             <th >Current Design Control</th>
             <th >Detection Control</th>
             <th>Deductions (D)</th>
+            <th>RPN</th>
+            <th>Recommended Action</th>
+            <th>Responsibility & Target Date</th>
+            <th>Action Taken</th>
+            <th>Severity (S)</th>
+            <th>Occurrence (O)</th>
+            <th>Detection (D)</th>
+            <th>RPN</th>
         </tr>
         <tr>
             <th colspan="8">Function and Requirement Focus:</th>
             <th colspan="6">Design Process Focus:</th>
+              <th colspan="3">Risk Mitigation Focus</th>
+            <th colspan="5">Improvement Action Focus:</th>
             
         </tr>
         <tr>
-            <th colspan="4">Section 1</th>
-            <th colspan="4">Section 2</th>
-            <th>Section 3</th>
+            <th colspan="3">Section 1</th>
+            <th colspan="3">Section 2</th>
+            <th colspan="1">Section 3</th>
             <th></th>
-            <th colspan="4">Section 4</th>
+            <th colspan="3">Section 4</th>
+            <th colspan="3">Section 5</th>
+            <th colspan="5">Section 6</th>
             
            
         </tr>
@@ -177,10 +231,129 @@ under the License.
             <td>How could this be prevented (Prevention Control)?</td>
             <td>How will you check if the cause and/or failure mode occurs (Detection Control)?</td>
             <td>How likely are you to detect the cause or failure mode if it was defective (Detection Score)?</td>
-            
+            <td>Risk Priority Number (RPN)</td>
+            <td>List of actions required to mitigate key risks identified</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             
         </tr>
+        <#if femaOutputDetail ?has_content >
+        <#list femaOutputDetail as taskDetail>
         <tr class="HeightSetter">
+            <td rowspan="6">
+            <#if taskDetail?has_content >
+           <textarea class="input1" type="text">${taskDetail.item}</textarea></td>
+            <#else>
+                <textarea class="input1" type="text"></textarea></td>
+            </#if></td>
+            <td rowspan="6">
+            <#if taskDetail?has_content >
+           <textarea class="input1" type="text">${taskDetail.functionPart}</textarea></td>
+            <#else>
+                <textarea class="input1" type="text"></textarea></td>
+            </#if></td>
+            <td rowspan="6">
+            <#if taskDetail?has_content >
+           <textarea class="input1" type="text">${taskDetail.achieve}</textarea></td>
+            <#else>
+                <textarea class="input1" type="text"></textarea></td>
+            </#if></td>
+            <td rowspan="6">
+            <#if taskDetail?has_content >
+           <textarea class="input1" type="text">${taskDetail.failureMode}</textarea></td>
+            <#else>
+                <textarea class="input1" type="text"></textarea></td>
+            </#if></td>
+           <td rowspan="6">
+            <#if taskDetail?has_content >
+           <textarea class="input1" type="text">${taskDetail.potentialEffects}</textarea></td>
+            <#else>
+                <textarea class="input1" type="text"></textarea></td>
+            </#if></td>
+            <td rowspan="6"><#if taskDetail?has_content >
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.severity}" />            
+            <#else>
+                <input class="input12" type="text" id="finalValue" />            
+            </#if></td>
+            <td rowspan="6">
+            <#if taskDetail?has_content >
+                <textarea class="input1" type="text">${taskDetail.potentialCause}</textarea></td>
+            <#else>
+                <textarea class="input1" type="text"></textarea></td>
+            </#if></td>
+             <td rowspan="6"><#if taskDetail?has_content >
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.occurrence}" disabled/>            
+            <#else>
+                <input class="input12" type="text" id="finalValue" disabled/>            
+            </#if></td>
+            <td rowspan="6">
+            <#if taskDetail?has_content >
+                <textarea class="input1" type="text">${taskDetail.designControl}</textarea></td>
+            <#else>
+                <textarea class="input1" type="text"></textarea></td>
+            </#if>
+            <td rowspan="6">
+            <#if taskDetail?has_content >
+                <textarea class="input1" type="text">${taskDetail.detectionControl}</textarea></td>
+            <#else>
+                <textarea class="input1" type="text"></textarea></td>
+            </#if></td>
+             <td rowspan="6"><#if taskDetail?has_content >
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.detection}" disabled/>            
+            <#else>
+                <input class="input12" type="text" id="finalValue" disabled/>            
+            </#if></td>
+            <td rowspan="6"><#if taskDetail?has_content >
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.rPN}" disabled/>            
+            <#else>
+                <input class="input12" type="text" id="finalValue" disabled/>            
+            </#if></td>            
+           <td rowspan="6">
+            <#if taskDetail?has_content >
+           <textarea class="input1" type="text">${taskDetail.action}</textarea></td>
+            <#else>
+                <textarea class="input1 setter" type="text"></textarea></td>
+            </#if></td>
+           <td rowspan="6">
+            <#if taskDetail?has_content >
+                <textarea class="input1" type="text">${taskDetail.responsibility}</textarea></td>
+            <#else>
+                <textarea class="input1 setter" type="text"></textarea></td>
+            </#if></td>
+            <td rowspan="6">
+            <#if taskDetail?has_content >
+                <textarea class="input1" type="text">${taskDetail.actionTaken}</textarea></td>
+            <#else>
+                <textarea class="input1 setter" type="text"></textarea></td>
+            </#if></td>
+            <td rowspan="6"><#if taskDetail?has_content >
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.severity1}" disabled/>            
+            <#else>
+                <input class="input12" type="text" id="finalValue" disabled/>            
+            </#if></td>
+            <td rowspan="6"><#if taskDetail?has_content >
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.occurrence1}" disabled/>            
+            <#else>
+                <input class="input12" type="text" id="finalValue" disabled/>            
+            </#if></td>
+            <td rowspan="6"><#if taskDetail?has_content >
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.detection1}" disabled/>            
+            <#else>
+                <input class="input12" type="text" id="finalValue" disabled/>            
+            </#if></td>
+            <td rowspan="6"><#if taskDetail?has_content >
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.rPN1}" disabled/>            
+            <#else>
+                <input class="input12" type="text" id="finalValue" disabled/>            
+            </#if></td>
+        </tr>
+       </#list>
+       <#else>
+         <tr class="HeightSetter">
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
@@ -204,43 +377,6 @@ under the License.
                     <option value="${i}">${i}</option>
                 </#list>  
             </select></td>
-            
-        </tr>
-    </table>
-    </div>
-    <br/>
-    <br/>
-    <table class="mytable">
-       
-        <tr>
-            <th>RPN</th>
-            <th>Recommended Action</th>
-            <th>Responsibility & Target Date</th>
-            <th>Action Taken</th>
-            <th>Severity (S)</th>
-            <th>Occurrence (O)</th>
-            <th>Detection (D)</th>
-            <th>RPN</th>
-        </tr>
-        <tr>
-            <th colspan="3">Risk Mitigation Focus</th>
-            <th colspan="5">Improvement Action Focus:</th>
-        </tr>
-        <tr>
-            <th colspan="3">Section 5</th>
-            <th colspan="5">Section 6</th>
-        </tr>
-        <tr class="colorAdd">
-            <td>Risk Priority Number (RPN)</td>
-            <td>List of actions required to mitigate key risks identified</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="HeightSetter">
             <td rowspan="6"><input class="input12" type="text" id="finalValue" disabled/><button id="button_submit">Calculate</button></td>
             <td rowspan="6"><textarea class="input1 setter" type="text"></textarea></td>
             <td rowspan="6"><textarea class="input1 setter" type="text"></textarea></td>
@@ -262,108 +398,128 @@ under the License.
             </select></td>
             <td><input class="input12" type="text" id="finalValue2" disabled/><button id="button_submit2">Calculate</button></td>
         </tr>
-       
+       </#if>
     </table>
-    <button id="generate">Generate PDF</button>
+    
+    <button id="addButton" type="button">Add row</button>
+    </div>
+    <button id="generate" type="button">Generate PDF</button>
+<button id="save">Save</button>
 <script>
+    
+const firstTable=document.getElementById('firstTable');
+const addTable=document.getElementById('addButton');
+addTable.addEventListener('click',()=>{
+    const row = `
+         <tr class="HeightSetter">
+        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+        <td rowspan="6"><select >
+            <#list 1..10 as i> 
+                <option value="${i}">${i}</option>
+            </#list>  
+        </select></td>
+        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+        <td rowspan="6"><select>
+            <#list 1..10 as i> 
+                <option value="${i}">${i}</option>
+            </#list>  
+        </select></td>
+        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
+        <td rowspan="6"><select >
+            <#list 1..10 as i> 
+                <option value="${i}">${i}</option>
+            </#list>  
+        </select></td>
+        <td rowspan="6"><input class="input12" type="text" id="finalValue" disabled/><button id="button_submit">Calculate</button></td>
+        <td rowspan="6"><textarea class="input1 setter" type="text"></textarea></td>
+        <td rowspan="6"><textarea class="input1 setter" type="text"></textarea></td>
+        <td><textarea class="input1 setter" type="text"></textarea></td>
+        <td><select data-id="1">
+            <#list 1..10 as i> 
+                <option value="${i}">${i}</option>
+            </#list>  
+        </select></td>
+        <td><select data-id="1">
+            <#list 1..10 as i> 
+                <option value="${i}">${i}</option>
+            </#list>  
+        </select></td>
+        <td><select data-id="1">
+            <#list 1..10 as i> 
+                <option value="${i}">${i}</option>
+            </#list>  
+        </select></td>
+        <td><input class="input12" type="text" id="finalValue2" disabled/><button id="button_submit2">Calculate</button></td>
+    </tr>
+        `;
+       firstTable.insertAdjacentHTML("beforeend", row);
+        console.log(rows)
+})
 
-    var multipleValue=1;
-    var multipleValue2=1;
-    const generate=document.getElementById('generate');
-    const textarea_input=document.getElementById('finalValue');
-    const textarea_input2=document.getElementById('finalValue2');
-    const select_Buttons=document.querySelectorAll('select');
-    const button_submit=document.getElementById('button_submit');
-    const button_submit2=document.getElementById('button_submit2');
-    button_submit.addEventListener('click',()=>{
-        
-            select_Buttons.forEach(select_Button => {
-            if(!select_Button.dataset.id){
-            multipleValue=select_Button.value*multipleValue;
-            }
-        }
-        )
-        textarea_input.value=multipleValue;
-        console.log(multipleValue)
-        multipleValue=1;
-    })
-    button_submit2.addEventListener('click',()=>{
-            select_Buttons.forEach(select_Button => {
-                if(select_Button.dataset.id){
-                    multipleValue2=select_Button.value*multipleValue2;
-                    console.log('multipleValue2')
-                }
-        }
-        )
-        textarea_input2.value=multipleValue2;
-        console.log(multipleValue2)
-        multipleValue2=1;
-    })
-  document.getElementById("generate").addEventListener("click", async function () {
+document.getElementById("generate").addEventListener("click", async function () {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF('p', 'pt', 'a4');
+    const doc = new jsPDF('landscape', 'pt', 'a3'); // A3 Landscape
 
-    const tables = document.querySelectorAll('.mytable');
-    const margin = 20;
-    const headerHeight = 30;
-    const lineSpacing = 10;
+    const tablesToExport = document.querySelectorAll('.mytable');
+
+    // Create a wrapper div with increased font size
+    let combinedDiv = document.createElement("div");
+    combinedDiv.style.padding = "20px";
+    combinedDiv.style.fontSize = "18px";         // ✅ Increase font size
+    combinedDiv.style.lineHeight = "1.6";        // ✅ Better line spacing
+    combinedDiv.style.width = "100%";            // Prevent unexpected wrapping
+
+    // Clone tables into the wrapper
+    tablesToExport.forEach(table => {
+        const clone = table.cloneNode(true);
+        clone.style.marginBottom = "40px";
+        combinedDiv.appendChild(clone);
+    });
+
+    // Add the wrapper to a hidden container
+    const hiddenContainer = document.createElement("div");
+    hiddenContainer.style.position = "fixed";
+    hiddenContainer.style.left = "-9999px";
+    hiddenContainer.appendChild(combinedDiv);
+    document.body.appendChild(hiddenContainer);
+
+    // Generate canvas from combined content
+    const canvas = await html2canvas(combinedDiv, {
+        scale: 3,           // ✅ Higher quality
+        useCORS: true
+    });
+
+    const imgData = canvas.toDataURL("image/jpeg");
+    const imgProps = doc.getImageProperties(imgData);
+    const pdfWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
-    const pageWidth = doc.internal.pageSize.getWidth();
+    const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-    let yOffset = margin + headerHeight;
+    let heightLeft = imgHeight;
+    let position = 10;
 
-    function addHeader(doc, text) {
-        doc.setFontSize(14);
-        doc.setFont("helvetica", "bold");
-        doc.text(text, margin, margin + 10);
-        doc.setDrawColor(150);
-        doc.line(margin, margin + 15, pageWidth - margin, margin + 15);
+    // Add first page
+    doc.addImage(imgData, 'JPEG', 10, position, pdfWidth - 20, imgHeight);
+    heightLeft -= pageHeight;
+
+    // Add remaining pages if needed
+    while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(imgData, 'JPEG', 10, position, pdfWidth - 20, imgHeight);
+        heightLeft -= pageHeight;
     }
 
-    addHeader(doc, "Design FMEA Report");
+    doc.save("FMEA_Report_A3.pdf");
 
-    function replaceInputsWithText(table) {
-        const inputs = table.querySelectorAll("input, textarea");
-        inputs.forEach(el => {
-            const span = document.createElement('span');
-            span.textContent = el.value;
-            span.style.whiteSpace = 'pre-wrap';
-            span.style.wordBreak = 'break-word';
-            span.style.display = 'block';
-            span.style.width = el.offsetWidth + 'px';
-            span.style.height = el.offsetHeight + 'px';
-            el.replaceWith(span);
-        });
-    }
-
-    for (let i = 0; i < tables.length; i++) {
-        const table = tables[i];
-
-        replaceInputsWithText(table);
-
-        const canvas = await html2canvas(table, {
-            scale: 2,  // ✅ Reduce resolution (was 2)
-            useCORS: true,
-            logging: false
-        });
-
-        let imgData = canvas.toDataURL("image/jpeg",1); // ✅ Convert to JPEG with 70% quality
-
-        const imgProps = doc.getImageProperties(imgData);
-        const pdfWidth = pageWidth - margin * 2;
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-        if (yOffset + pdfHeight > pageHeight) {
-            doc.addPage();
-            addHeader(doc, "Design FMEA Report – April 2025");
-            yOffset = margin + headerHeight;
-        }
-
-        doc.addImage(imgData, 'JPEG', margin, yOffset, pdfWidth, pdfHeight);
-        yOffset += pdfHeight + lineSpacing;
-    }
-
-    doc.save("FMEA_Report.pdf");
+    // Clean up
+    document.body.removeChild(hiddenContainer);
 });
+
 
 </script>

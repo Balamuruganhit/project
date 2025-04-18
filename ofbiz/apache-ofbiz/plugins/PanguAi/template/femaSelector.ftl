@@ -15,20 +15,6 @@ software distributed under the License is distributed on an
 KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
+
 -->
 
-<#assign nowTimestamp = Static["org.apache.ofbiz.base.util.UtilDateTime"].nowTimestamp()>
-
-<div class="footer-block">
-<div class="d-flex justify-content-center">
-  
-  <div class="p-2 text-center">
-    <a href="//ofbiz.apache.org">${uiLabelMap.EcommerceAboutUs}</a>
-    <div>Copyright &copy; 2001-${nowTimestamp?string("yyyy")} The Apache Software Foundation -
-      <a href="//www.apache.org">www.apache.org</a>
-    </div>
-    <div>Powered by <a href="//ofbiz.apache.org">Spartenz</a></div>
-  </div>
-  
-</div>
-</div>
