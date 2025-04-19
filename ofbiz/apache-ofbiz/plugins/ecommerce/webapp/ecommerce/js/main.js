@@ -1,3 +1,5 @@
+
+
 const apiKey = 'AIzaSyCrJYoXFPxCC4O14XYsHVAuAyLZ0JI1QhY'; // Replace this with your actual API key
     const query = 'poultry farming news in tamil';
     const maxResults = 50;
@@ -24,4 +26,3 @@ const apiKey = 'AIzaSyCrJYoXFPxCC4O14XYsHVAuAyLZ0JI1QhY'; // Replace this with y
     }
 
 loadVideos();
-console.log("hello")

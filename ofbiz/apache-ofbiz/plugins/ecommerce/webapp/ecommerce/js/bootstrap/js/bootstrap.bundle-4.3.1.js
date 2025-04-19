@@ -7011,3 +7011,54 @@
 
 }));
 //# sourceMappingURL=bootstrap.bundle.js.map
+
+
+ google.charts.load("current", { packages: ["gauge"] });
+      google.charts.setOnLoadCallback(drawGauge);
+
+      let gauge, data;
+
+      function drawGauge() {
+        data = google.visualization.arrayToDataTable([
+          ["Label", "Value"],
+          ["Temp °C", 0],
+        ]);
+
+        const options = {
+          width: 400,
+          height: 220,
+          redFrom: 35,
+          redTo: 100,
+          yellowFrom: 30,
+          yellowTo: 35,
+          minorTicks: 5,
+          max: 50,
+        };
+
+        gauge = new google.visualization.Gauge(document.getElementById("gauge_div"));
+        gauge.draw(data, options);
+
+        // Load the initial data
+        fetchData();
+        setInterval(fetchData, 10000); // Refresh every 10 seconds
+      }
+
+      function fetchData() {
+        const sheetID = "1wEmFQQFs_v2x8beXvTmfut8ExbsSXu0Myd0FfxwwX40";
+        const queryString = encodeURIComponent("SELECT B ORDER BY A DESC LIMIT 1");
+
+        const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?sheet=Sheet1&tq=${queryString}`;
+
+        fetch(url)
+          .then((res) => res.text())
+          .then((rep) => {
+            const json = JSON.parse(rep.substr(47).slice(0, -2));
+            const value = parseFloat(json.table.rows[0].c[0].v);
+            data.setValue(0, 1, value);
+            gauge.draw(data);
+          })
+          .catch((err) => {
+            console.error("Fetch error:", err);
+          });
+      }
+      

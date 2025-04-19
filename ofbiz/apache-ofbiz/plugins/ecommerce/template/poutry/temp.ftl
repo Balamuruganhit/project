@@ -51,10 +51,10 @@ under the License.
       }
 
       function fetchData() {
-        const sheetID = "1wEmFQQFs_v2x8beXvTmfut8ExbsSXu0Myd0FfxwwX40";
+        const sheetID = "";
         const queryString = encodeURIComponent("SELECT B ORDER BY A DESC LIMIT 1");
 
-        const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?sheet=Sheet1&tq=${queryString}`;
+        const url = "https://docs.google.com/spreadsheets/d/1wEmFQQFs_v2x8beXvTmfut8ExbsSXu0Myd0FfxwwX40/gviz/tq?sheet=Sheet1&tq=SELECT B ORDER BY A DESC LIMIT 1";
 
         fetch(url)
           .then((res) => res.text())
