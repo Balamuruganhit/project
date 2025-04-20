@@ -47,7 +47,7 @@ under the License.
             padding: 5px;
         }
         .colorAdd{
-            background:rgb(173, 170, 170);
+            backgroundrgb(173, 170, 170);
         }
         .HeightSetter td{
             height:8rem;
@@ -403,7 +403,7 @@ under the License.
     
     <button id="addButton" type="button">Add row</button>
     </div>
-    <button id="generate" type="button">Generate PDF</button>
+    <br/>
 <button id="save">Save</button>
 <script>
     
@@ -461,65 +461,6 @@ addTable.addEventListener('click',()=>{
         console.log(rows)
 })
 
-document.getElementById("generate").addEventListener("click", async function () {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF('landscape', 'pt', 'a3'); // A3 Landscape
-
-    const tablesToExport = document.querySelectorAll('.mytable');
-
-    // Create a wrapper div with increased font size
-    let combinedDiv = document.createElement("div");
-    combinedDiv.style.padding = "20px";
-    combinedDiv.style.fontSize = "18px";         // ✅ Increase font size
-    combinedDiv.style.lineHeight = "1.6";        // ✅ Better line spacing
-    combinedDiv.style.width = "100%";            // Prevent unexpected wrapping
-
-    // Clone tables into the wrapper
-    tablesToExport.forEach(table => {
-        const clone = table.cloneNode(true);
-        clone.style.marginBottom = "40px";
-        combinedDiv.appendChild(clone);
-    });
-
-    // Add the wrapper to a hidden container
-    const hiddenContainer = document.createElement("div");
-    hiddenContainer.style.position = "fixed";
-    hiddenContainer.style.left = "-9999px";
-    hiddenContainer.appendChild(combinedDiv);
-    document.body.appendChild(hiddenContainer);
-
-    // Generate canvas from combined content
-    const canvas = await html2canvas(combinedDiv, {
-        scale: 3,           // ✅ Higher quality
-        useCORS: true
-    });
-
-    const imgData = canvas.toDataURL("image/jpeg");
-    const imgProps = doc.getImageProperties(imgData);
-    const pdfWidth = doc.internal.pageSize.getWidth();
-    const pageHeight = doc.internal.pageSize.getHeight();
-    const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-    let heightLeft = imgHeight;
-    let position = 10;
-
-    // Add first page
-    doc.addImage(imgData, 'JPEG', 10, position, pdfWidth - 20, imgHeight);
-    heightLeft -= pageHeight;
-
-    // Add remaining pages if needed
-    while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        doc.addPage();
-        doc.addImage(imgData, 'JPEG', 10, position, pdfWidth - 20, imgHeight);
-        heightLeft -= pageHeight;
-    }
-
-    doc.save("FMEA_Report_A3.pdf");
-
-    // Clean up
-    document.body.removeChild(hiddenContainer);
-});
 
 
 </script>

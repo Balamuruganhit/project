@@ -23,7 +23,9 @@ if(defa){
     fematitle=from( 'FemaTitleDetail').where('femaId',defa).queryOne()
     context.femaOutputTitle=fematitle
     femaDetail=from('FemaTableDetail').where('femaId',defa).queryList()
-    context.femaOutputDetail=femaDetail
+    context.femaOutputDetails=femaDetail
     logInfo('It is working Fine' + fematitle)
     logInfo('It is working Fine' + femaDetail)
 }
+context.pageLayoutName="simple-landscape"
+context.ender="ender"

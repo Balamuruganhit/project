@@ -83,7 +83,12 @@ under the License.
                            
                             <include-form name="selector" location="component://PanguAi/widget/PanguAiForms.xml"/>
                             
-                    </screenlet>
+                        </screenlet>
+                        <screenlet title="">
+                           
+                            <include-form name="newDoc" location="component://PanguAi/widget/PanguAiForms.xml"/>
+                            
+                        </screenlet>
                     
                     </decorator-section>
                 </decorator-screen>

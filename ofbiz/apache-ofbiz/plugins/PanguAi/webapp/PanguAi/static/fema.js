@@ -53,6 +53,7 @@ const button_submit=document.getElementById('button_submit');
 const button_submit2=document.getElementById('button_submit2');
 const saveButton=document.getElementById('save');
 const but=document.getElementById('calrms')
+if(but){
 but.addEventListener('click',()=>{
   const timePeriod = parseFloat(document.getElementById("timePeriod").value);
     const failures = parseInt(document.getElementById("failures").value);
@@ -95,6 +96,7 @@ but.addEventListener('click',()=>{
     `;
   
 })
+}
 button_submit.addEventListener('click',()=>{
     
         select_Buttons.forEach(select_Button => {
