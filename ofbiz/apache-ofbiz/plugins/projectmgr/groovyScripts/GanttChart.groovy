@@ -137,4 +137,4 @@ if (phases) {
 }
 
 context.phaseTaskList = ganttList
-
+logInfo("ganttList"+ ganttList)

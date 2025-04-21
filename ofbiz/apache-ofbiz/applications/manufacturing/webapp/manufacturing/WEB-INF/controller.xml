@@ -52,6 +52,11 @@ under the License.
         <response name="success" type="view" value="ReportPdf"/>
         <response name="error" type="view" value="Export"/>
     </request-map>
+    <request-map uri="GanttChart">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="GanttChart"/>
+        <response name="error" type="view" value="Export"/>
+    </request-map>
     <request-map uri="createPlantContent">
         <security auth="true" https="true"/>
         <event type="simple" path="component://manufacturing/minilang/report/PlantSimpleEvents.xml" invoke="createPlantContent"/>
@@ -911,7 +916,8 @@ under the License.
     <view-map name="ManufacturingReports" type="screen" page="component://manufacturing/widget/manufacturing/ReportScreens.xml#ManufacturingReports"/>
     <view-map name="productionCard" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionPlantDocumentation"/>
     <view-map name="productionSelection" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionSelection"/>
-  
+    <view-map name="GanttChart" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#GanttChart"/>
+
     <!-- JobShop Management view mappings -->
     <view-map name="CreateProductionRun" type="screen" page="component://manufacturing/widget/manufacturing/JobshopScreens.xml#CreateProductionRun"/>
     <view-map name="FindProductionRun" type="screen" page="component://manufacturing/widget/manufacturing/JobshopScreens.xml#FindProductionRun"/>

@@ -55,7 +55,9 @@ under the License.
         <menu-item name="ManufacturingReports" title="${uiLabelMap.ManufacturingReports}">
             <link target="ManufacturingReports"/>
         </menu-item>
-        
+        <menu-item name="GanttChart" title="Gantt Chart">
+            <link target="GanttChart"/>
+        </menu-item>
     </menu>
 
     <menu name="ManufacturingShortcutAppBar" title="${uiLabelMap.ManufacturingManager}">
