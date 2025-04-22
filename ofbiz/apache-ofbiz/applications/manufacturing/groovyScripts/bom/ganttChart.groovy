@@ -89,7 +89,7 @@ productionRuns.eachWithIndex { production, i ->
         taskMap.completion = "PTS_COMPLETED".equals(task.currentStatusId) ? 100 : 0
         taskMap.workEffortTypeId = "TASK"
         taskMap.currentStatusId = task.currentStatusId
-        taskMap.url = "/manufacturing/control/ProductionRunRoutingTask?workEffortId=${task.workEffortId}"
+        taskMap.url = "/workeffort/control/EditWorkEffort?workEffortId=${task.workEffortId}"
 
         // Add predecessor if exists
         def predecessors = from("WorkEffortAssoc")

@@ -49,6 +49,7 @@ under the License.
         <field name="productId" title="${uiLabelMap.ProductProductId}" required-field="true"><lookup target-form-name="LookupProduct" size="16"/></field>
         <field name="quantity" title="${uiLabelMap.ManufacturingQuantity}" required-field="true"><text size="6"/></field>
         <field name="startDate" title="${uiLabelMap.ManufacturingStartDate}" required-field="true"><date-time default-value="${nowTimestamp}"/></field>
+        <field name="creater"><hidden value="PROD_ORDER_HEADER"/></field>
         <field name="facilityId">
             <drop-down allow-empty="false">
                 <entity-options entity-name="Facility" description="${facilityName} [${facilityId}]">
@@ -56,6 +57,7 @@ under the License.
                 </entity-options>
             </drop-down>
         </field>
+
         <field name="poNumber" title="Po / So Number"><lookup target-form-name="LookupPoNumber" size="16"/></field>
         <field name="party" title="Prodution Type">
             <drop-down allow-empty="false">

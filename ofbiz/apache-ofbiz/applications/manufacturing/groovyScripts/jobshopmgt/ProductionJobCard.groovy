@@ -39,10 +39,13 @@ if (productionRunId) {
         productionRunData.estimatedStartDate = productionRun.getEstimatedStartDate()
         productionRunData.estimatedCompletionDate = productionRun.getEstimatedCompletionDate()
         productionRunData.actualCompletionDate = productionRun.getGenericValue().getTimestamp("actualCompletionDate")
+        if(productionRunData.actualCompletionDate){
         context.completionProduction=productionRunData.actualCompletionDate.toLocalDate().toString()
+        }
         product=from('Product').where('productId',productionRun.getProductProduced().productId).queryOne()
-        
+        if(product){
         context.product=product
+        }
 		manufacturer = from("WorkEffortPartyAssignment").where("workEffortId", productionRunId, "roleTypeId", "MANUFACTURER").filterByDate().queryFirst()
         if (manufacturer){
             productionRunData.manufacturerId = manufacturer.partyId
@@ -55,17 +58,22 @@ if (productionRunId) {
         context.quantity = productionRun.getQuantity()
         inventoryItems = from("WorkEffortInventoryProduced").where("workEffortId", productionRunId).queryList()
         context.inventoryItems = inventoryItems
+        if(inventoryItems){
         inventoryItems.each {inventory ->
           context.invDate= inventory.createdStamp.toLocalDate().toString()
 
         }
+        }
         logInfo('Uploaded file found; processing sub-content'+ productionRunComponents)
     }
     partyDetail=from("partyOrder").where('productionRunId',productionRunId).queryOne()
+    if(partyDetail){
     logInfo('Uploaded file found; processing sub-content'+ partyDetail)
+
     context.orderDate=partyDetail.orderDate.toLocalDate().toString()
-    context.proDate=productionRunData.estimatedStartDate.toLocalDate().toString()
+    
     context.partyDetail=partyDetail
+    }
 }
 
 logInfo('Uploaded file found; processing sub-content'+ productionRunId)

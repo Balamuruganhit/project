@@ -17,15 +17,16 @@ specific language governing permissions and limitations
 under the License.
 -->
 <#escape x as x?xml>
-<#if partyDetail?has_content >
+<#if productionRunData?has_content >
     <fo:table table-layout="fixed" border="1pt solid" padding="5pt" border-width=".1mm" >
         <fo:table-body>
+        <#if partyDetail?has_content>
             <fo:table-row >
                         <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Customer Name:</fo:block></fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt"><#if partyDetail.partyName?has_content>
                             <fo:block number-columns-spanned="3" >${partyDetail.partyName}</fo:block>
                         <#else>
-                            <fo:block>Another Cell</fo:block>
+                            <fo:block></fo:block>
                         </#if></fo:table-cell>
                         <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block>PO No / SO No:</fo:block></fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt">
@@ -37,8 +38,33 @@ under the License.
                             </#if>
                         </fo:table-cell>
                         <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block>Date:</fo:block></fo:table-cell>
-                        <fo:table-cell border="1pt solid black" padding="3.4pt"><fo:block>${orderDate}</fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black" padding="3.4pt"><#if orderDate?has_content>
+                            <fo:block>${orderDate}</fo:block>
+                        <#else>
+                            <fo:block>Another Cell</fo:block>
+                        </#if></fo:table-cell>
             </fo:table-row>
+            <#else>
+            <fo:table-row >
+                        <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Customer Name:</fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black" padding="3.4pt">
+                            <fo:block number-columns-spanned="3" ></fo:block>
+                        
+                        </fo:table-cell>
+                        <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block>PO No / SO No:</fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black" padding="3.4pt">
+                            
+                            
+                                <fo:block></fo:block>
+                           
+                        </fo:table-cell>
+                        <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block>Date:</fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black" padding="3.4pt">
+                            <fo:block></fo:block>
+                        </fo:table-cell>
+            </fo:table-row>
+            </#if>
+
             <fo:table-row >
                         <fo:table-cell border="1pt solid black" padding="3.4pt" font-weight="bold"><fo:block>Product ID:</fo:block></fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt"><#if productionRunData.productId?has_content>
@@ -56,14 +82,14 @@ under the License.
                             </#if>
                         </fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt" font-weight="bold"><fo:block>Date:</fo:block></fo:table-cell>
-                        <fo:table-cell border="1pt solid black" padding="3.4pt"><fo:block>${proDate}</fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black" padding="3.4pt"><fo:block>${productionRunData.estimatedStartDate}</fo:block></fo:table-cell>
             </fo:table-row>
             <fo:table-row >
                         <fo:table-cell border="1pt solid black" padding="3.4pt" font-weight="bold"><fo:block>Product Name:</fo:block></fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt"><#if product.internalName?has_content>
                             <fo:block number-columns-spanned="3">${product.internalName}</fo:block>
                         <#else>
-                            <fo:block>Another Cell</fo:block>
+                            <fo:block></fo:block>
                         </#if></fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt" font-weight="bold"><fo:block>Product Description:</fo:block></fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt" number-columns-spanned="3">
@@ -71,7 +97,7 @@ under the License.
                             <#if product.description?has_content>
                                 <fo:block >${product.description}</fo:block>
                             <#else>
-                                <fo:block number-columns-spanned="3">Another Cell</fo:block>
+                                <fo:block number-columns-spanned="3"></fo:block>
                             </#if>
                         </fo:table-cell>
             </fo:table-row>
@@ -85,7 +111,7 @@ under the License.
                         <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block>Production Run Description</fo:block></fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt" number-columns-spanned="3">
                             
-                            <#if product.description?has_content>
+                            <#if productionRunData.description?has_content>
                                 <fo:block number-columns-spanned="3" padding="3.4pt">${productionRunData.description}</fo:block>
                             <#else>
                                 <fo:block number-columns-spanned="3"></fo:block>
@@ -102,7 +128,7 @@ under the License.
                         <fo:table-cell font-weight="bold" border="1pt solid black" padding="3.4pt"><fo:block>Product Type:</fo:block></fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt" number-columns-spanned="3">
                             
-                            <#if partyDetail.poNumber?has_content>
+                            <#if partyDetail?has_content>
                                 <fo:block number-columns-spanned="3">${partyDetail.poNumber}</fo:block>
                             <#else>
                                 <fo:block></fo:block>

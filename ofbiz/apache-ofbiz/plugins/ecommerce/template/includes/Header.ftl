@@ -49,13 +49,7 @@ $(document).ready(function() {
           <a class="nav-link" href="<@ofbizUrl>newcustomer</@ofbizUrl>">${uiLabelMap.EcommerceRegister}</a>
         </li>
       </#if>
-      <li class="nav-item">
-        <#if userLogin?has_content && userLogin.userLoginId != "anonymous">
-          <a class="nav-link" href="<@ofbizUrl>contactus</@ofbizUrl>">${uiLabelMap.CommonContactUs}</a>
-        <#else>
-          <a class="nav-link" href="<@ofbizUrl>AnonContactus</@ofbizUrl>">${uiLabelMap.CommonContactUs}</a>
-        </#if>
-      </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="<@ofbizUrl>main</@ofbizUrl>">${uiLabelMap.CommonMain}</a>
       </li>
@@ -69,20 +63,12 @@ $(document).ready(function() {
           <a class="nav-link" href="<@ofbizUrl>viewprofile</@ofbizUrl>">${uiLabelMap.CommonProfile}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>messagelist</@ofbizUrl>">${uiLabelMap.CommonMessages}</a>
+          <a class="nav-link" href="<@ofbizUrl>Party</@ofbizUrl>">Party</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>ListQuotes</@ofbizUrl>">${uiLabelMap.OrderOrderQuotes}</a>
+          <a class="nav-link" href="<@ofbizUrl>inventory</@ofbizUrl>">Inventory</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>ListRequests</@ofbizUrl>">${uiLabelMap.OrderRequests}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>editShoppingList</@ofbizUrl>">${uiLabelMap.EcommerceShoppingLists}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>orderhistory</@ofbizUrl>">${uiLabelMap.EcommerceOrderHistory}</a>
-        </li>
+        
       </#if>
       <#if catalogQuickaddUse>
         <li class="nav-item"><a class="nav-link" href="<@ofbizUrl>quickadd</@ofbizUrl>">${uiLabelMap.CommonQuickAdd}</a></li>

@@ -39,19 +39,19 @@ under the License.
 
         <tr>
             <td class="bolder">Customer Name:</td>
-            <#if partyDetail.partyName?has_content>
+            <#if partyDetail?has_content>
                 <td colspan="3">${partyDetail.partyName}</td>
             <#else>
-                <td></td>
+                <td colspan="3"></td>
             </#if>
             <td class="bolder">PO No / SO No:</td>
-            <#if partyDetail.orderNumber?has_content>
+            <#if partyDetail?has_content>
                 <td >${partyDetail.orderNumber}</td>
             <#else>
-                <td></td>
+                <td ></td>
             </#if>
             <td class="bolder">Date:</td>
-            <#if partyDetail.orderDate?has_content>
+            <#if orderDate?has_content>
                 <td >${orderDate}</td>
             <#else>
                 <td></td>
@@ -63,7 +63,11 @@ under the License.
             <td class="bolder">WO No:</td>
             <td ><input style="border:none;" value="${productionRunData.productionRunId}" id="production"/></td>
             <td class="bolder">Date:</td>
-            <td>${proDate}</td>
+            <#if productionRunData.actualCompletionDate?has_content>
+                <td >${productionRunData.actualCompletionDate}</td>
+            <#else>
+                <td ></td>
+            </#if>
         </tr>
         <tr>
             <td class="bolder">Product Name:</td>
@@ -89,7 +93,11 @@ under the License.
             <td class="bolder">Expected Completion/Delivery Date:</td>
             <td colspan="3">${productionRunData.estimatedCompletionDate}</td>
             <td class="bolder">Product Type:</td>
-            <td colspan="3">${partyDetail.poNumber}</td>
+            <#if partyDetail?has_content>
+                <td colspan="3">${partyDetail.poNumber}</td>
+            <#else>
+                <td colspan="3"></td>
+            </#if>
         </tr>
 
     </table>
@@ -219,7 +227,7 @@ under the License.
             <#if completionProduction?has_content>
                 <td colspan="1">${completionProduction}</td>
             <#else>
-                <td></td>
+                <td colspan="1" style="visibility: hidden;">23-11</td>
             </#if>
             <td rowspan="3" colspan="1">REMARKS/SPECIAL INSTRUCTIONS:</td>
             <td rowspan="3" colspan="1"><textarea style="height:7rem;border:none;"></textarea></td>
