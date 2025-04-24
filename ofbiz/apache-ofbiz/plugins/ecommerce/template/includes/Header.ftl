@@ -59,9 +59,7 @@ $(document).ready(function() {
     </ul>
     <ul class="navbar-nav ml-auto">
       <#if !userLogin?has_content || (userLogin.userLoginId)! != "anonymous">
-        <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>viewprofile</@ofbizUrl>">${uiLabelMap.CommonProfile}</a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="<@ofbizUrl>ListParty</@ofbizUrl>">Party</a>
         </li>
