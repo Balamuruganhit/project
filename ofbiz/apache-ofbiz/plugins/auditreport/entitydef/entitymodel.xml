@@ -41,6 +41,43 @@
         <field name="proofBase64" type="blob"/> <!-- Field to store Base64-encoded string -->
         <prim-key field="genId"/>
     </entity>
-    
-
+    <entity entity-name="FarmerParty" package-name="org.apache.ofbiz.AuditReport" title="party Entity">
+        <field name="partyId" type="id"/>
+        <field name="name" type="name"/>
+        <field name="company" type="name"/>
+        <field name="phoneNo" type="numeric"/>
+        <field name="address" type="url"/>
+        <field name="email" type="url"/>
+        <field name="partyType" type="name"/> <!-- Field to store Base64-encoded string -->
+        <field name="date" type="id"/>
+        <prim-key field="partyId"/>
+    </entity>
+    <entity entity-name="Inventoryfarmer" package-name="org.apache.ofbiz.AuditReport" title="party Entity">
+        <field name="itemId" type="id"/>
+        <field name="iname" type="name"/>
+        <field name="icategory" type="name"/>
+        <field name="iunit" type="numeric"/>
+        <field name="istockLevel" type="url"/>
+        <field name="isupplier" type="url"/>
+        <field name="purchaseDate" type="name"/> <!-- Field to store Base64-encoded string -->
+        <field name="expireDate" type="id"/>
+        <prim-key field="itemId"/>
+    </entity>
+    <entity entity-name="OrderFarmer" package-name="org.apache.ofbiz.AuditReport" title="party Entity">
+        <field name="orderId" type="id"/>
+        <field name="orderType" type="name"/>
+        <field name="customerName" type="name"/>
+        <field name="product" type="url"/>
+        <field name="quantity" type="name"/> <!-- Field to store Base64-encoded string -->
+        <field name="rate" type="id"/>
+        <prim-key field="orderId"/>
+    </entity>
+    <entity entity-name="OrderMange" package-name="org.apache.ofbiz.AuditReport" title="party Entity">
+        <field name="statusId" type="id"/>
+        <field name="typeMonitor" type="name"/>
+        <field name="product" type="url"/>
+        <field name="quantity" type="name"/> <!-- Field to store Base64-encoded string -->
+        <field name="rate" type="id"/>
+        <prim-key field="statusId"/>
+    </entity>
 </entitymodel>

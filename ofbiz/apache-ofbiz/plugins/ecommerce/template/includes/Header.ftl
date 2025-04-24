@@ -63,16 +63,19 @@ $(document).ready(function() {
           <a class="nav-link" href="<@ofbizUrl>viewprofile</@ofbizUrl>">${uiLabelMap.CommonProfile}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>Party</@ofbizUrl>">Party</a>
+          <a class="nav-link" href="<@ofbizUrl>ListParty</@ofbizUrl>">Party</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<@ofbizUrl>inventory</@ofbizUrl>">Inventory</a>
         </li>
-        
+        <li class="nav-item">
+          <a class="nav-link" href="<@ofbizUrl>order</@ofbizUrl>">Order</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="<@ofbizUrl>farm</@ofbizUrl>">Farm Management</a>
+        </li>
       </#if>
-      <#if catalogQuickaddUse>
-        <li class="nav-item"><a class="nav-link" href="<@ofbizUrl>quickadd</@ofbizUrl>">${uiLabelMap.CommonQuickAdd}</a></li>
-      </#if>
+      
     </ul>
   </div>
 </nav>

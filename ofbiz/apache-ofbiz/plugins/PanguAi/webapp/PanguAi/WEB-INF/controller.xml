@@ -64,6 +64,7 @@ under the License.
         <response name="success" type="view" value="ReportPdf"/>
         <response name="error" type="view" value="Export"/>
     </request-map>
+    
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#main"/>
     <view-map name="fema" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#fema"/>

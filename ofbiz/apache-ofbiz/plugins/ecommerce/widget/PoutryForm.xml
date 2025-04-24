@@ -19,5 +19,26 @@ under the License.
 -->
 <forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
  xmlns="http://ofbiz.apache.org/Widget-Form" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
-
+        <grid name="ListParty" list-name="allCostComponentCalcs" use-row-submit="true" target="updateCostComponentCalc"
+                odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar" paginate-target="EditCostCalcs">
+                <auto-fields-entity entity-name="CostComponentCalc" default-field-type="display"/>
+                <field name="costComponentCalcId" widget-style="buttontext"></field>
+                <field name="costGlAccountTypeId">
+                    <drop-down allow-empty="false">
+                        <entity-options entity-name="GlAccountType" key-field-name="glAccountTypeId"/>
+                    </drop-down>
+                </field>
+                <field name="offsettingGlAccountTypeId">
+                    <drop-down allow-empty="true">
+                        <entity-options entity-name="GlAccountType" key-field-name="glAccountTypeId"/>
+                    </drop-down>
+                </field>
+                <field name="updateCostComponentCalc" title="${uiLabelMap.CommonUpdate}"><submit/></field>
+                <field name="costCustomMethodId"><display-entity entity-name="CustomMethod" key-field-name="customMethodId"/></field>
+                <field name="deleteCostComponentCalc" title=" " widget-style="buttontext">
+                    <hyperlink description="${uiLabelMap.CommonDelete}" target="deleteCostComponentCalc" also-hidden="false">
+                        <parameter param-name="costComponentCalcId"/>
+                    </hyperlink>
+                </field>
+        </grid>
 </forms>

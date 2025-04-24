@@ -1901,6 +1901,20 @@ under the License.
         <response name="error" type="view" value="login"/>
         <response name="userLoginMissing" type="request" value="newcustomer"/>
     </request-map>
+    <request-map uri="createParty">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.apache.ofbiz.ecommerce.janrain.JanrainHelper" invoke="janrainCheckLogin"/>
+        <response name="success" type="view" value="Party"/>
+        <response name="error" type="view" value="login"/>
+        <response name="userLoginMissing" type="request" value="newcustomer"/>
+    </request-map>
+    <request-map uri="ListParty">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.apache.ofbiz.ecommerce.janrain.JanrainHelper" invoke="janrainCheckLogin"/>
+        <response name="success" type="view" value="ListParty"/>
+        <response name="error" type="view" value="login"/>
+        <response name="userLoginMissing" type="request" value="newcustomer"/>
+    </request-map>
     <request-map uri="inventory">
         <security https="true" auth="false"/>
         <event type="java" path="org.apache.ofbiz.ecommerce.janrain.JanrainHelper" invoke="janrainCheckLogin"/>
@@ -1908,7 +1922,75 @@ under the License.
         <response name="error" type="view" value="login"/>
         <response name="userLoginMissing" type="request" value="newcustomer"/>
     </request-map>
+    <request-map uri="createInventory">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.apache.ofbiz.ecommerce.janrain.JanrainHelper" invoke="janrainCheckLogin"/>
+        <response name="success" type="view" value="inventory"/>
+        <response name="error" type="view" value="login"/>
+        <response name="userLoginMissing" type="request" value="newcustomer"/>
+    </request-map>
+    <request-map uri="createOrder">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.apache.ofbiz.ecommerce.janrain.JanrainHelper" invoke="janrainCheckLogin"/>
+        <response name="success" type="view" value="order"/>
+        <response name="error" type="view" value="login"/>
+        <response name="userLoginMissing" type="request" value="newcustomer"/>
+    </request-map>
+    <request-map uri="ListOrder">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.apache.ofbiz.ecommerce.janrain.JanrainHelper" invoke="janrainCheckLogin"/>
+        <response name="success" type="view" value="ListOrder"/>
+        <response name="error" type="view" value="login"/>
+        <response name="userLoginMissing" type="request" value="newcustomer"/>
+    </request-map>
+    <request-map uri="ListInventory">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.apache.ofbiz.ecommerce.janrain.JanrainHelper" invoke="janrainCheckLogin"/>
+        <response name="success" type="view" value="ListInventory"/>
+        <response name="error" type="view" value="login"/>
+        <response name="userLoginMissing" type="request" value="newcustomer"/>
+    </request-map>
+    <request-map uri="Updateinventory">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.apache.ofbiz.ecommerce.janrain.JanrainHelper" invoke="janrainCheckLogin"/>
+        <response name="success" type="view" value="Updateinventory"/>
+        <response name="error" type="view" value="login"/>
+        <response name="userLoginMissing" type="request" value="newcustomer"/>
+    </request-map>
+    <request-map uri="updateInventory">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.apache.ofbiz.ecommerce.janrain.JanrainHelper" invoke="janrainCheckLogin"/>
+        <response name="success" type="view" value="ListInventory"/>
+        <response name="error" type="view" value="login"/>
+        <response name="userLoginMissing" type="request" value="newcustomer"/>
+    </request-map>
+    <request-map uri="order">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.apache.ofbiz.ecommerce.janrain.JanrainHelper" invoke="janrainCheckLogin"/>
+        <response name="success" type="view" value="order"/>
+        <response name="error" type="view" value="login"/>
+        <response name="userLoginMissing" type="request" value="newcustomer"/>
+    </request-map>
+    <request-map uri="farm">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.apache.ofbiz.ecommerce.janrain.JanrainHelper" invoke="janrainCheckLogin"/>
+        <response name="success" type="view" value="farm"/>
+        <response name="error" type="view" value="login"/>
+        <response name="userLoginMissing" type="request" value="newcustomer"/>
+    </request-map>
+    <request-map uri="createfarm">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.apache.ofbiz.ecommerce.janrain.JanrainHelper" invoke="janrainCheckLogin"/>
+        <response name="success" type="view" value="inventory"/>
+        <response name="error" type="view" value="login"/>
+        <response name="userLoginMissing" type="request" value="newcustomer"/>
+    </request-map>
     <!-- View Mappings -->
+    <view-map name="farm" type="screen" page="component://ecommerce/widget/PoutryScreen.xml#FarmManagement"/>
+    <view-map name="ListOrder" type="screen" page="component://ecommerce/widget/PoutryScreen.xml#ListOrder"/>
+    <view-map name="order" type="screen" page="component://ecommerce/widget/PoutryScreen.xml#order"/>
+    <view-map name="ListInventory" type="screen" page="component://ecommerce/widget/PoutryScreen.xml#ListInventory"/>
+    <view-map name="ListParty" type="screen" page="component://ecommerce/widget/PoutryScreen.xml#ListParty"/>
     <view-map name="inventory" type="screen" page="component://ecommerce/widget/PoutryScreen.xml#inventory"/>
     <view-map name="party" type="screen" page="component://ecommerce/widget/PoutryScreen.xml#party"/>
     <view-map name="error" type="ftl" page="component://common/webcommon/error/Error.ftl"/>

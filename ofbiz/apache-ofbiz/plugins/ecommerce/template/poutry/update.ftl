@@ -1,3 +1,4 @@
+
 <#--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -69,25 +70,26 @@ under the License.
         <li class="nav-item">
           <a class="nav-link" href="<@ofbizUrl>inventory</@ofbizUrl>">Add Item </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<@ofbizUrl>Updateinventory</@ofbizUrl>">Update Item </a>
+        </li>
       </#if>
     </ul>
   </div>
 </nav>
 <div class="container">
   <h2>Inventory Management</h2>
-  <form id="inventoryForm" action="<@ofbizUrl>createInventory</@ofbizUrl>">
+  <form id="inventoryForm" action="<@ofbizUrl>updateInventory</@ofbizUrl>">
     <div class="form-group">
       <label for="itemName">Item Name:</label>
-      <input type="text" name="itemName" required>
-    </div>
-    <div class="form-group">
-      <label for="itemCategory">Item Category:</label>
-      <select name="itemCategory" required>
-        <option value="">Select</option>
-        <option>Feed</option>
-        <option>Chicken</option>
-        <option>Equipment</option>
-      </select>
+      <#if itemName?has_content>
+          <select name="itemNameupdate">
+           <option>select</option>
+          <#list itemName as item>
+            <option>${item.iname}</option>
+          </#list>
+          </select>
+      </#if>
     </div>
     <div class="form-group">
       <label for="unit">Unit:</label>
@@ -102,17 +104,8 @@ under the License.
       <label for="quantity">Quantity :</label>
       <input type="number" name="quantity" required>
     </div>
-    <div class="form-group">
-      <label for="supplier">Supplier Name:</label>
-      <#if partyName?has_content>
-          <select name="supplier">
-           <option>select</option>
-          <#list partyName as party>
-            <option>${party.name}</option>
-          </#list>
-          </select>
-      </#if>
+    
     </div>
-    <button type="submit">Save Inventory Item</button>
+    <button type="submit">Update Inventory Item</button>
   </form>
 </div>

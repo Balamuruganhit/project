@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import org.apache.ofbiz.base.util.UtilDateTime
+ import org.apache.ofbiz.base.util.UtilDateTime
 import org.apache.ofbiz.base.util.UtilProperties
 import org.apache.ofbiz.base.util.UtilValidate
 import org.apache.ofbiz.entity.condition.EntityConditionBuilder
@@ -32,22 +32,36 @@ import java.sql.Timestamp
 import java.util.List
 
 
-if(parameters.contactPerson){
+context.partyName=from('FarmerParty').select('name').queryList()
+if(parameters.supplier){
     Map result = ServiceUtil.returnSuccess()
-    def genId = delegator.getNextSeqId("FarmerParty") 
+    def genId = delegator.getNextSeqId("OrderFarmer") 
+    item=from('Inventoryfarmer').where("iname", parameters.productName).queryOne()
+    if(item){
+        if(parameters.orderType == "Purchase"){
+        int quantity = (parameters.quantity ?: "0").toString().toInteger()
+        item.iunit = item.iunit +quantity
+        item.store()
+        logInfo("Creating new Purchase entry: ${item} ")
+        }else{
+        int quantity = (parameters.quantity ?: "0").toString().toInteger()
+        item.iunit = item.iunit - quantity
+        item.store()
+        logInfo("Creating new Salse entry: ${item}")  
+        }
+    }
     Map<String, Object> newReport = [
-                    partyId : genId,
-                    partyType : parameters.partyType,
-                    name : parameters.contactPerson,
-                    phoneNo : parameters.phone,
-                    email :parameters. email,
-                    address : parameters.address,
-                    company : parameters.partyName,
+                    orderId : genId,
+                    orderType : parameters.orderType,
+                    customerName : parameters.supplier,
+                    product : parameters.productName,
+                    quantity :parameters. quantity + parameters.unit,
+                    rate : parameters.rate,
                 ]
-                delegator.create("FarmerParty", newReport)
+                delegator.create("OrderFarmer", newReport)
      logInfo("Creating new FarmerParty entry: ${newReport}")
     result.successMessage = "Party details saved successfully."
     return result
 }
-partyDetail=from('FarmerParty').queryList()
-context.partyList=partyDetail
+
+context.orderList=from('OrderFarmer').queryList()

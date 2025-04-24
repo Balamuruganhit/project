@@ -76,22 +76,38 @@ under the License.
       background-color: #f9f9f9;
     }
   </style>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarlist" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+<div class="collapse navbar-collapse" id="navbarlist">
+    <ul class="navbar-nav ml-auto">
+      <#if !userLogin?has_content || (userLogin.userLoginId)! != "anonymous">
+        <li class="nav-item">
+          <a class="nav-link" href="<@ofbizUrl>ListParty</@ofbizUrl>">List Party</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<@ofbizUrl>Party</@ofbizUrl>">AddParty</a>
+        </li>
+      </#if>
+    </ul>
+  </div>
+</nav>
+<div style="height:1rem"><div/>
 <div class="container" id="formView">
   <h2>Add Party</h2>
- <form>
+ <form action="<@ofbizUrl>createParty</@ofbizUrl>">
     <div class="form-group">
       <label for="partyType">Party Type</label>
       <select id="partyType" name="partyType" required>
         <option value="">Select</option>
         <option value="Customer">Customer</option>
         <option value="Supplier">Supplier</option>
-        <option value="Employee">Employee</option>
-        <option value="Veterinarian">Veterinarian</option>
         <option value="Transporter">Transporter</option>
       </select>
     </div>
     <div class="form-group">
-      <label for="partyName">Full Name / Company Name</label>
+      <label for="partyName">Company Name</label>
       <input type="text" id="partyName" name="partyName" required>
     </div>
     <div class="form-group">
@@ -110,87 +126,7 @@ under the License.
       <label for="address">Full Address</label>
       <textarea id="address" name="address" rows="3" required></textarea>
     </div>
-    <div class="form-group">
-      <label for="govtId">Government ID</label>
-      <input type="text" id="govtId" name="govtId">
-    </div>
-    <div class="form-group">
-      <label for="bankDetails">Bank Details (Optional)</label>
-      <textarea id="bankDetails" name="bankDetails" rows="2" placeholder="Bank Name, A/C No, IFSC"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="notes">Remarks / Notes</label>
-      <textarea id="notes" name="notes" rows="2"></textarea>
-    </div>
     <button type="submit">Save Party</button>
   </form>
 </div>
 
-<div class="container hidden" id="listView">
-  <h2>Saved Parties</h2>
-  <div id="partyList"></div>
-  <button id="backBtn" onclick="backToForm()">← Back</button>
-</div>
-
-<div class="container hidden" id="detailView">
-  <h2>Party Details</h2>
-  <div id="partyDetail"></div>
-  <button id="backBtn" onclick="showPartyList()">← Back to List</button>
-</div>
-
-<script>
-  const parties = [];
-
-  document.getElementById("partyForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const party = {
-      type: document.getElementById("partyType").value,
-      name: document.getElementById("partyName").value,
-      phone: document.getElementById("phone").value,
-      address: document.getElementById("address").value,
-    };
-
-    parties.push(party);
-    alert("Party saved successfully!");
-    this.reset();
-  });
-
-  function showPartyList() {
-    document.getElementById("formView").classList.add("hidden");
-    document.getElementById("detailView").classList.add("hidden");
-    document.getElementById("listView").classList.remove("hidden");
-
-    const list = document.getElementById("partyList");
-    list.innerHTML = "";
-
-    parties.forEach((party, index) => {
-      const btn = document.createElement("button");
-      btn.innerText = `${party.name} (${party.type})`;
-      btn.onclick = () => showPartyDetails(index);
-      list.appendChild(btn);
-    });
-  }
-
-  function showPartyDetails(index) {
-    const party = parties[index];
-    document.getElementById("listView").classList.add("hidden");
-    document.getElementById("detailView").classList.remove("hidden");
-
-    const detail = document.getElementById("partyDetail");
-    detail.innerHTML = `
-      <div class="party-card">
-        <strong>Type:</strong> ${party.type}<br>
-        <strong>Name:</strong> ${party.name}<br>
-        <strong>Phone:</strong> ${party.phone}<br>
-        <strong>Address:</strong> ${party.address}
-      </div>
-    `;
-  }
-
-  function backToForm() {
-    document.getElementById("formView").classList.remove("hidden");
-    document.getElementById("listView").classList.add("hidden");
-    document.getElementById("detailView").classList.add("hidden");
-  }
-</script>

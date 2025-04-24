@@ -27,17 +27,7 @@
     <copyright></copyright>
     <version></version>
     
-    <entity entity-name="party" package-name="org.apache.ofbiz.party" title="party Entity">
-        <field name="partyId" type="id"/>
-        <field name="name" type="name"/>
-        <field name="company" type="name"/>
-        <field name="phoneNo" type="numeric"/>
-        <field name="address" type="url"/>
-        <field name="email" type="url"/>
-        <field name="partyType" type="name"/> <!-- Field to store Base64-encoded string -->
-        <field name="date" type="id"/>
-        <prim-key field="partyId"/>
-    </entity>
+    
     
 
 </entitymodel>

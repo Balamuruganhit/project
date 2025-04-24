@@ -48,7 +48,6 @@ under the License.
                 <actions>
                     <set field="MainColumnStyle" value="center"/>
                     <set field="titleProperty" value="PageTitleCategoryPage"/>
-                    <script location="component://order/groovyScripts/entry/catalog/Category.groovy"/>
                     <set field="tabButtonItem" value="LookupProductCategories"/>
                     <set field="layoutSettings.javaScripts[]" value="/ecommerce/static/poutry.js" global="true"/>
 
@@ -69,14 +68,39 @@ under the License.
                 </widgets>
             </section>
         </screen>
+        <screen name="ListParty">
+            <section>
+                <actions>
+                    <set field="MainColumnStyle" value="center"/>
+                    <set field="titleProperty" value="PageTitleCategoryPage"/>
+                    <script location="component://ecommerce/groovyScripts/poutry/party.groovy"/>
+                    <set field="tabButtonItem" value="LookupProductCategories"/>
+                    <set field="layoutSettings.javaScripts[]" value="/ecommerce/static/poutry.js" global="true"/>
+                </actions>
+                <widgets>
+                    <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                        
+                        <decorator-section name="body">
+                            <platform-specific>
+                                <html>
+                                    <html-template multi-block="true" location="component://ecommerce/template/poutry/listparty.ftl"/>
+                                </html>
+                            </platform-specific>
+
+                        </decorator-section>
+                       
+                    </decorator-screen>
+                </widgets>
+            </section>
+        </screen>
         <screen name="inventory">
             <section>
                 <actions>
                     <set field="MainColumnStyle" value="center"/>
                     <set field="titleProperty" value="PageTitleCategoryPage"/>
-                    <script location="component://order/groovyScripts/entry/catalog/Category.groovy"/>
                     <set field="tabButtonItem" value="LookupProductCategories"/>
                     <set field="layoutSettings.javaScripts[]" value="/ecommerce/static/poutry.js" global="true"/>
+                    <script location="component://ecommerce/groovyScripts/poutry/inventory.groovy"/>
 
                 </actions>
                 <widgets>
@@ -86,6 +110,132 @@ under the License.
                             <platform-specific>
                                 <html>
                                     <html-template multi-block="true" location="component://ecommerce/template/poutry/inventory.ftl"/>
+                                </html>
+                            </platform-specific>
+
+                        </decorator-section>
+                       
+                    </decorator-screen>
+                </widgets>
+            </section>
+        </screen>
+        <screen name="ListInventory">
+            <section>
+                <actions>
+                    <set field="MainColumnStyle" value="center"/>
+                    <set field="titleProperty" value="PageTitleCategoryPage"/>
+                    <set field="tabButtonItem" value="LookupProductCategories"/>
+                    <set field="layoutSettings.javaScripts[]" value="/ecommerce/static/poutry.js" global="true"/>
+                    <script location="component://ecommerce/groovyScripts/poutry/inventory.groovy"/>
+
+                </actions>
+                <widgets>
+                    <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                        
+                        <decorator-section name="body">
+                            <platform-specific>
+                                <html>
+                                    <html-template multi-block="true" location="component://ecommerce/template/poutry/listInventory.ftl"/>
+                                </html>
+                            </platform-specific>
+
+                        </decorator-section>
+                       
+                    </decorator-screen>
+                </widgets>
+            </section>
+        </screen>
+        <screen name="Updateinventory">
+            <section>
+                <actions>
+                    <set field="MainColumnStyle" value="center"/>
+                    <set field="titleProperty" value="PageTitleCategoryPage"/>
+                    <set field="tabButtonItem" value="LookupProductCategories"/>
+                    <set field="layoutSettings.javaScripts[]" value="/ecommerce/static/poutry.js" global="true"/>
+                    <script location="component://ecommerce/groovyScripts/poutry/inventory.groovy"/>
+                </actions>
+                <widgets>
+                    <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                        
+                        <decorator-section name="body">
+                            <platform-specific>
+                                <html>
+                                    <html-template multi-block="true" location="component://ecommerce/template/poutry/update.ftl"/>
+                                </html>
+                            </platform-specific>
+
+                        </decorator-section>
+                       
+                    </decorator-screen>
+                </widgets>
+            </section>
+        </screen>
+        <screen name="order">
+            <section>
+                <actions>
+                    <set field="MainColumnStyle" value="center"/>
+                    <set field="titleProperty" value="PageTitleCategoryPage"/>
+                    <set field="tabButtonItem" value="LookupProductCategories"/>
+                    <set field="layoutSettings.javaScripts[]" value="/ecommerce/static/poutry.js" global="true"/>
+                    <script location="component://ecommerce/groovyScripts/poutry/order.groovy"/>
+                </actions>
+                <widgets>
+                    <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                        
+                        <decorator-section name="body">
+                            <platform-specific>
+                                <html>
+                                    <html-template multi-block="true" location="component://ecommerce/template/poutry/order.ftl"/>
+                                </html>
+                            </platform-specific>
+
+                        </decorator-section>
+                       
+                    </decorator-screen>
+                </widgets>
+            </section>
+        </screen>
+        <screen name="ListOrder">
+            <section>
+                <actions>
+                    <set field="MainColumnStyle" value="center"/>
+                    <set field="titleProperty" value="PageTitleCategoryPage"/>
+                    <set field="tabButtonItem" value="LookupProductCategories"/>
+                    <set field="layoutSettings.javaScripts[]" value="/ecommerce/static/poutry.js" global="true"/>
+                    <script location="component://ecommerce/groovyScripts/poutry/order.groovy"/>
+                </actions>
+                <widgets>
+                    <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                        
+                        <decorator-section name="body">
+                            <platform-specific>
+                                <html>
+                                    <html-template multi-block="true" location="component://ecommerce/template/poutry/order/listOrder.ftl"/>
+                                </html>
+                            </platform-specific>
+
+                        </decorator-section>
+                       
+                    </decorator-screen>
+                </widgets>
+            </section>
+        </screen>
+        <screen name="FarmManagement">
+            <section>
+                <actions>
+                    <set field="MainColumnStyle" value="center"/>
+                    <set field="titleProperty" value="PageTitleCategoryPage"/>
+                    <set field="tabButtonItem" value="LookupProductCategories"/>
+                    <set field="layoutSettings.javaScripts[]" value="/ecommerce/static/poutry.js" global="true"/>
+                    <script location="component://ecommerce/groovyScripts/poutry/farm.groovy"/>
+                </actions>
+                <widgets>
+                    <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                        
+                        <decorator-section name="body">
+                            <platform-specific>
+                                <html>
+                                    <html-template multi-block="true" location="component://ecommerce/template/poutry/farm/farm.ftl"/>
                                 </html>
                             </platform-specific>
 

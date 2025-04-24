@@ -82,7 +82,6 @@ def createQuestion() {
     // if the user has the role limited position, add this product to the limit category/ies
 
 
-    return result
 }
 def createReportDetail1(){
     Map result = success()
