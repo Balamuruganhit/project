@@ -78,43 +78,33 @@ under the License.
     <div class="cal">
         <h2 class="headTitle">Availability</h2>
     
-        <label>Failure rate: <input type="number" id="timePeriod" value="1" step="0.01"></label><br><br>
-        <label>Repair time (MTTR): <input type="number" id="failures" value="5" step="1"></label><br><br>
-        <label>Planned maintenance time: <input type="number" id="failures" value="5" step="1"></label><br><br>
-        <button id="calrms">Calculate</button>
+        <label>Failure rate: <input type="number" id="failure" value="2" step="0.01"></label><br><br>
+        <label>Repair time (MTTR): <input type="number" id="repair" value="48" step="1"></label><br><br>
+        <label>Planned maintenance time: <input type="number" id="maintenance" value="72" step="1"></label><br><br>
+        <button id="calavail">Calculate</button>
     
-        <div id="output">
-        <h3>Results</h3>
-      <table>
-        <tr><th>Results</th><th></th></tr>
-        <tr><td>Availability excl. planned mtce</td><td> %</td></tr>
-        <tr><td>Availability incl. planned mtce</td><td>%</td></tr>
-      </table></div>
+        <div id="output1">
+        </div>
         </div>
     <div class="cal">
         <h2>Reliability</h2>
     
-        <label>Failure rate: <input type="number" id="timePeriod" value="1" step="0.01"></label><br><br>
-        <label>Time period: <input type="number" id="failures" value="5" step="1"></label><br><br>
-        <button onclick="calculate()">Calculate</button>
+        <label>Failure rate: <input type="text" id="time" value="0.09" ></label><br><br>
+        <label>Time period: <input type="number" id="failuresrate" value="5" step="1"></label><br><br>
+        <button  id="calreliab">Calculate</button>
     
-        <div id="output">
-        <h3>Results</h3>
-        <table>
-          <tr><th>Results</th><th></th></tr>
-        <tr><td>Probability of no failures</td><td> %</td></tr>
-        <tr><td>Probability of one or more failures</td><td>%</td></tr>
-      </table>
+        <div id="output2">
+        
       </div>
         </div>
     <div class="cal">
         <h2>Probability of r failures in a given time period</h2>
     
-        <label>Failure rate: <input type="number" id="timePeriod" value="1" step="0.01"></label><br><br>
-        <label>Time period: <input type="number" id="failures" value="5" step="1"></label><br><br>
-        <label>Number of failures of interest r: <input type="number" id="failures" value="5" step="1"></label><br><br>
+        <label>Failure rate: <input type="number" id="rtimePeriod" value="1" step="0.01"></label><br><br>
+        <label>Time period: <input type="number" id="rfailures" value="5" step="1"></label><br><br>
+        <label>Number of failures of interest r: <input type="number" id="rinterest" value="5" step="1"></label><br><br>
 
-        <button onclick="calculate()">Calculate</button>
+        <button id="calpro">Calculate</button>
     
         <div id="output">
         <table>

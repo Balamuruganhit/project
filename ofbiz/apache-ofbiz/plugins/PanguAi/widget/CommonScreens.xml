@@ -30,7 +30,6 @@ under the License.
                 <set field="layoutSettings.companyName" from-field="uiLabelMap.PanguAiCompanyName" global="true"/>
                 <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.PanguAiCompanySubtitle" global="true"/>
                 <set field="layoutSettings.javaScripts[]" value="/PanguAi/static/chatbot.js" global="true"/>
-                <set field="layoutSettings.javaScripts[]" value="/PanguAi/static/fema.js" global="true"/>
                 <set field="activeApp" value="PanguAi" global="true"/>
                 <set field="applicationMenuName" value="MainAppBar" global="true"/>
                 <set field="applicationMenuLocation" value="component://PanguAi/widget/PanguAiMenus.xml" global="true"/>

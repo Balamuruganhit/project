@@ -52,51 +52,8 @@ const select_Buttons=document.querySelectorAll('select');
 const button_submit=document.getElementById('button_submit');
 const button_submit2=document.getElementById('button_submit2');
 const saveButton=document.getElementById('save');
-const but=document.getElementById('calrms')
-if(but){
-but.addEventListener('click',()=>{
-  const timePeriod = parseFloat(document.getElementById("timePeriod").value);
-    const failures = parseInt(document.getElementById("failures").value);
-   
-    if (isNaN(timePeriod) || isNaN(failures) || timePeriod <= 0 || failures < 0) {
-      alert("Please enter valid input values.");
-      return;
-    }
-
-    const hoursPerYear = 8766;
-
-    // Best estimate of failure rate (per year)
-    
-    const mtbf = timePeriod / failures;
-
-    // Confidence bounds using Chi-square
-    const alpha = 0.10;
-    const actual=jStat.chisquare.inv(0.5, (2 * failures)+2);
-    const lowerChi = jStat.chisquare.inv(0.05, (2 * failures)+2);
-    const upperChi = jStat.chisquare.inv(0.95, (2 * failures)+2);
-
-    const actualBand= (2 * timePeriod * hoursPerYear) / actual;
-    const lowerBound =(2 * timePeriod * hoursPerYear) /  lowerChi;
-    const upperBound = (2 * timePeriod * hoursPerYear) / upperChi ;
-
-    const failLower = hoursPerYear / lowerBound;
-    const failUpper =  hoursPerYear / upperBound;
-    const failureRate =  hoursPerYear / actualBand;
 
 
-    // Display results
-    document.getElementById("output").innerHTML = `
-      <h3>Results</h3>
-      <table>
-        <tr><th>Results</th><th>Failure Rates</th><th>Equivalent MTBFs</th></tr>
-        <tr><td>Best estimate of failure rate</td><td><strong>${failureRate.toFixed(2)}</strong> per year</td><td><strong>${actualBand.toFixed(0)}</strong> hours</td></tr>
-        <tr><td>90% confidence interval - upper bound</td><td>${failLower.toFixed(2)} per year</td><td>${lowerBound.toFixed(0)} hours</td></tr>
-        <tr><td>90% confidence interval - lower bound</td><td>${failUpper.toFixed(2)} per year</td><td>${upperBound.toFixed(0)} hours</td></tr>
-      </table>
-    `;
-  
-})
-}
 button_submit.addEventListener('click',()=>{
     
         select_Buttons.forEach(select_Button => {
