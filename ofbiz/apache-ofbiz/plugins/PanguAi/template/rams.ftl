@@ -100,48 +100,36 @@ under the License.
     <div class="cal">
         <h2>Probability of r failures in a given time period</h2>
     
-        <label>Failure rate: <input type="number" id="rtimePeriod" value="1" step="0.01"></label><br><br>
-        <label>Time period: <input type="number" id="rfailures" value="5" step="1"></label><br><br>
-        <label>Number of failures of interest r: <input type="number" id="rinterest" value="5" step="1"></label><br><br>
+        <label>Failure rate: <input type="number" id="rfailures" value="0.1" step="0.01"></label><br><br>
+        <label>Time period: <input type="number" id="rtimePeriod" value="5" step="1"></label><br><br>
+        <label>Number of failures of interest r: <input type="number" id="rinterest" value="2" step="1"></label><br><br>
 
         <button id="calpro">Calculate</button>
     
-        <div id="output">
-        <table>
-          <tr><th>Results</th><th></th></tr>
-        <tr><td>Probability of r  failures</td><td> %</td></tr>
-        <tr><td>Probability of r or more failures</td><td>%</td></tr>
-      </table></div>
+        <div id="output4">
+        </div>
         </div>
     <div class="cal">
         <h2>Probability of r failures in n independent events</h2>
     
-        <label>Probability of 1 failure in 1 event: <input type="number" id="timePeriod" value="1" step="0.01"></label><br><br>
-        <label>Number of independent events n: <input type="number" id="failures" value="5" step="1"></label><br><br>
-        <label>Number of failures of interest r: <input type="number" id="failures" value="5" step="1"></label><br><br>
+        <label>Probability of 1 failure in 1 event: <input type="number" id="itime" value="0.01" step="0.01"></label><br><br>
+        <label>Number of independent events n: <input type="number" id="ifailures" value="50" step="1"></label><br><br>
+        <label>Number of failures of interest r: <input type="number" id="event" value="3" step="1"></label><br><br>
 
-        <button onclick="calculate()">Calculate</button>
+        <button id="calinde">Calculate</button>
     
-        <div id="output">
-        <table>
-          <tr><th>Results</th><th></th></tr>
-        <tr><td>Probability of r  failures</td><td> %</td></tr>
-        <tr><td>Probability of r or more failures</td><td>%</td></tr>
-      </table></div>
+        <div id="output5">
+        </div>
         </div>
         <div class="cal">
             <h2>Has Failure Rate Really Changed?</h2>
         
-            <label>Old number of failures per time period: <input type="number" id="timePeriod" value="1" step="0.01"></label><br><br>
-            <label>New number of failures per time period: <input type="number" id="failures" value="5" step="1"></label><br><br>
-            <button onclick="calculate()">Calculate</button>
+            <label>Old number of failures per time period: <input type="number" id="RateOldPeriod" value="6" step="0.01"></label><br><br>
+            <label>New number of failures per time period: <input type="number" id="RateNewfailures" value="4" step="1"></label><br><br>
+            <button id="calFinal">Calculate</button>
         
-            <div id="output">
-                <table>
-              <tr><th>Results</th><th></th></tr>
-            <tr><td>Confidence that failure rate has changed</td><td> %</td></tr>
-            
-          </table></div>
+            <div id="output6">
+                </div>
             </div>
 </div>
 <script>
