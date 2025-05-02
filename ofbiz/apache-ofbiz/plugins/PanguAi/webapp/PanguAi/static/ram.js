@@ -48,7 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
           console.log(sum)
           var excl = ((mtbf1)/sum)*100
           console.log(excl)
-          const add = imaintenance/ hoursPerYear
+          const add = (imaintenance/ hoursPerYear)*100;
+          console.log(`add ${add}`)
           var incl = excl - add ;
           console.log(incl)
           // Display results
@@ -129,8 +130,9 @@ document.addEventListener("DOMContentLoaded", () => {
               <table>
                 <tr><th>Results</th><th>Failure Rates</th><th>Equivalent MTBFs</th></tr>
                 <tr><td>Best estimate of failure rate</td><td><strong>${failureRate.toFixed(2)}</strong> per year</td><td><strong>${actualBand.toFixed(0)}</strong> hours</td></tr>
-                <tr><td>90% confidence interval - upper bound</td><td>${failLower.toFixed(2)} per year</td><td>${lowerBound.toFixed(0)} hours</td></tr>
-                <tr><td>90% confidence interval - lower bound</td><td>${failUpper.toFixed(2)} per year</td><td>${upperBound.toFixed(0)} hours</td></tr>
+                <tr><td>90% confidence interval -upper bound</td><td>${failUpper.toFixed(2)} per year</td><td>${upperBound.toFixed(0)} hours</td></tr>
+                <tr><td>90% confidence interval - lower bound</td><td>${failLower.toFixed(2)} per year</td><td>${lowerBound.toFixed(0)} hours</td></tr>
+                
               </table>
             `;
           

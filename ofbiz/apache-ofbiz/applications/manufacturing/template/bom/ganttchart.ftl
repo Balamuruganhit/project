@@ -20,7 +20,7 @@ under the License.
 
 <div style="position:relative" class="gantt" id="GanttChartDIV"></div>
 <script type="application/javascript">
-var g = new JSGantt.GanttChart('g',document.getElementById('GanttChartDIV'), 'day');
+var g = new JSGantt.GanttChart('g',document.getElementById('GanttChartDIV'), 'hour');
 
 g.setShowRes(1); // Show/Hide Responsible (0/1)
 g.setShowDur(1); // Show/Hide Duration (0/1)

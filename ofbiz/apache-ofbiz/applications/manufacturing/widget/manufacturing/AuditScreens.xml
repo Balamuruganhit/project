@@ -137,7 +137,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleListContent"/>
                 <set field="headerItem" value="GanttChart"/>
-                <set field="layoutSettings.javaScripts[]" value="/common/js/plugins/jsgantt/jsgantt.js" global="true"/>
+                <set field="layoutSettings.javaScripts[]" value="/PanguAi/static/chart.js" global="true"/>
                 <set field="layoutSettings.styleSheets[]" value="/common/js/plugins/jsgantt/jsgantt.css" global="true"/>
                 <script location="component://manufacturing/groovyScripts/bom/ganttChart.groovy"/>
 
