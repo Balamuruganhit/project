@@ -52,6 +52,14 @@ under the License.
         <response name="success" type="view" value="fema"/>
         <response name="error" type="view" value="pickReview"/>
     </request-map>
+    <request-map uri="createRam">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <event type="service" path="" invoke="createRam"/>
+        <response name="success" type="view" value="rams"/>
+        <response name="error" type="view" value="pickReview"/>
+    </request-map>
     <request-map uri="selector">
         <!-- <event type="service" invoke="createQuestion"/>
         <response name="success" type="view" value="config"/> -->
@@ -64,7 +72,18 @@ under the License.
         <response name="success" type="view" value="ReportPdf"/>
         <response name="error" type="view" value="Export"/>
     </request-map>
-    
+    <request-map uri="ramsSelector">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="ramsSelector"/>
+        <response name="error" type="view" value="selector"/>
+    </request-map>
+    <request-map uri="ReportRams.pdf">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="ReportPdfRams"/>
+        <response name="error" type="view" value="Export"/>
+    </request-map>
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#main"/>
     <view-map name="fema" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#fema"/>
@@ -72,5 +91,7 @@ under the License.
 
     <view-map name="selector" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#selector"/>
     <view-map name="ReportPdf" type="screenfop" page="component://PanguAi/widget/PanguAiScreens.xml#ReportPdf" content-type="application/pdf" encoding="none"/>
+    <view-map name="ramsSelector" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#selectorRams"/>
+    <view-map name="ReportPdfRams" type="screenfop" page="component://PanguAi/widget/PanguAiScreens.xml#ReportPdfRams" content-type="application/pdf" encoding="none"/>
 
 </site-conf>

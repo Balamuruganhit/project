@@ -64,5 +64,32 @@ under the License.
         <field name="rPN1" type="numeric"/>
         <prim-key field="genId"/>
     </entity>
+    <entity entity-name="ramsheader"  package-name="org.apache.ofbiz.PanguAi" title="Rams Entity">
+        <field name="ramsNo" type="id"></field>
+        <field name="productCode" type="id"></field>
+        <field name="system" type="name"></field>
+        <field name="subsystem" type="name"></field>
+        <field name="subsubsystem" type="name"></field>
+        <field name="rams" type="url"></field>
+        <field name="date" type="name"></field>
+        <field name="team" type="name"></field>
+        <field name="approver" type="name"></field>
+        <prim-key field="ramsNo" />
+    </entity>
+    <entity entity-name="ramsData"  package-name="org.apache.ofbiz.PanguAi" title="RamsData Entity">
+        <field name="ramsNo" type="id"></field>
+        <field name="genId" type="id"></field>
+        <field name="calculatorType" type="name"></field>
+        <field name="int1" type="name"></field>
+        <field name="int2" type="name"></field>
+        <field name="int3" type="name"></field>
+        <field name="out1" type="integer"></field>
+        <field name="out2" type="integer"></field>
+        <field name="out3" type="integer"></field>
+        <field name="out4" type="integer"></field>
+        <field name="out5" type="integer"></field>
+        <field name="out6" type="integer"></field>
+        <prim-key field="genId" />
+    </entity>
 
 </entitymodel>

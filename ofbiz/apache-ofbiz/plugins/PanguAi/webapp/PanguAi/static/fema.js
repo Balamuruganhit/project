@@ -43,41 +43,77 @@ function exportToPDF() {
     doc.save(`${document.getElementById("partNumber").value}.pdf`);
 }
 console.log("hello i am from Fema")   
-var multipleValue=1;
-var multipleValue2=1;
-const generate=document.getElementById('doc');
-const textarea_input=document.getElementById('finalValue');
-const textarea_input2=document.getElementById('finalValue2');
-const select_Buttons=document.querySelectorAll('select');
-const button_submit=document.getElementById('button_submit');
-const button_submit2=document.getElementById('button_submit2');
+// var multipleValue=1;
+// var multipleValue2=1;
+// const generate=document.getElementById('doc');
+// const textarea_input=document.getElementById('finalValue');
+// const textarea_input2=document.getElementById('finalValue2');
+// const select_Buttons=document.querySelectorAll('select');
+// const button_submit=document.getElementById('button_submit');
+// const button_submit2=document.getElementById('button_submit2');
 const saveButton=document.getElementById('save');
 
 
-button_submit.addEventListener('click',()=>{
+// button_submit.addEventListener('click',()=>{
     
-        select_Buttons.forEach(select_Button => {
-        if(!select_Button.dataset.id){
-        multipleValue=select_Button.value*multipleValue;
-        }
+//         select_Buttons.forEach(select_Button => {
+//         if(!select_Button.dataset.id){
+//         multipleValue=select_Button.value*multipleValue;
+//         }
+//     }
+//     )
+//     textarea_input.value=multipleValue;
+//     console.log(multipleValue)
+//     multipleValue=1;
+// })
+// button_submit2.addEventListener('click',()=>{
+//         select_Buttons.forEach(select_Button => {
+//             if(select_Button.dataset.id){
+//                 multipleValue2=select_Button.value*multipleValue2;
+//                 console.log('multipleValue2')
+//             }
+//     }
+//     )
+//     textarea_input2.value=multipleValue2;
+//     console.log(multipleValue2)
+//     multipleValue2=1;
+// })
+document.addEventListener('click', function (event) {
+    // Handler for .button_submit
+    if (event.target.classList.contains('button_submit')) {
+      const button = event.target;
+      const group = button.closest('.HeightSetter');
+      console.log("it is working", group);
+  
+      const val1 = parseInt(group.querySelector('.select1')?.value || 0);
+      const val2 = parseInt(group.querySelector('.select2')?.value || 0);
+      const val3 = parseInt(group.querySelector('.select3')?.value || 0);
+  
+      const product = val1 * val2 * val3;
+      console.log(product);
+  
+      const resultInput = group.querySelector('.result');
+      if (resultInput) resultInput.value = product;
     }
-    )
-    textarea_input.value=multipleValue;
-    console.log(multipleValue)
-    multipleValue=1;
-})
-button_submit2.addEventListener('click',()=>{
-        select_Buttons.forEach(select_Button => {
-            if(select_Button.dataset.id){
-                multipleValue2=select_Button.value*multipleValue2;
-                console.log('multipleValue2')
-            }
+  
+    // Handler for .button_submit2
+    if (event.target.classList.contains('button_submit2')) {
+      const button = event.target;
+      const group = button.closest('.HeightSetter');
+      console.log("it is working here2", group);
+  
+      const val1 = parseInt(group.querySelector('.select4')?.value || 0);
+      const val2 = parseInt(group.querySelector('.select5')?.value || 0);
+      const val3 = parseInt(group.querySelector('.select6')?.value || 0);
+  
+      const product = val1 * val2 * val3;
+      console.log(product);
+  
+      const resultInput = group.querySelector('.result2');
+      if (resultInput) resultInput.value = product;
     }
-    )
-    textarea_input2.value=multipleValue2;
-    console.log(multipleValue2)
-    multipleValue2=1;
-})
+  });
+  
 storedData = []; // Clear previous data if needed
 storedetail=[];
 storeObject=[];
@@ -133,7 +169,7 @@ storedData.push(rowData);
 
     // const merged = [...storedetail, ...storedData];
     console.log(merge)
-    console.log(storedetail)
+    console.log(storedetailz)
     if (storeObject.length === 0) {
         alert("No data to submit.");
         return;

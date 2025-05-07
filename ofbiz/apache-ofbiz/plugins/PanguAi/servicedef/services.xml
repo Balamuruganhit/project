@@ -56,4 +56,17 @@ under the License.
    <attribute name="proof" type="java.nio.ByteBuffer" mode="IN"/> -->
     <attribute name="femaDetails" type="java.util.List" mode="IN"/>   
 </service>
+<service name="createRam"
+    engine="groovy"
+    location="component://PanguAi/groovyScripts/ramsService.groovy"
+    invoke="createRam"
+    auth="true">
+   <!-- <attribute name="reportId" type="Integer" mode="IN"/>
+   <attribute name="question" type="String" mode="IN"/>
+   <attribute name="rating" type="Integer" mode="IN"/>
+   <attribute name="comment" type="String" mode="IN"/>
+   <attribute name="approve" type="String" mode="IN"/>
+   <attribute name="proof" type="java.nio.ByteBuffer" mode="IN"/> -->
+    <attribute name="ramsDetail" type="java.util.List" mode="IN"/>   
+</service>
 </services>

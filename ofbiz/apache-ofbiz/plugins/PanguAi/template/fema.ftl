@@ -359,44 +359,45 @@ under the License.
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-            <td rowspan="6"><select >
+            <td rowspan="6"><select class="select1">
                 <#list 1..10 as i> 
                     <option value="${i}">${i}</option>
                 </#list>  
             </select></td>
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-            <td rowspan="6"><select>
+            <td rowspan="6"><select class="select2">
                 <#list 1..10 as i> 
                     <option value="${i}">${i}</option>
                 </#list>  
             </select></td>
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
             <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-            <td rowspan="6"><select >
+            <td rowspan="6"><select class="select3">
                 <#list 1..10 as i> 
                     <option value="${i}">${i}</option>
                 </#list>  
             </select></td>
-            <td rowspan="6"><input class="input12" type="text" id="finalValue" disabled/><button id="button_submit">Calculate</button></td>
+            <td rowspan="6"><input class="input12 result" type="text"  disabled/><button class="button_submit">Calculate</button></td>
+            
             <td rowspan="6"><textarea class="input1 setter" type="text"></textarea></td>
             <td rowspan="6"><textarea class="input1 setter" type="text"></textarea></td>
             <td><textarea class="input1 setter" type="text"></textarea></td>
-            <td><select data-id="1">
+            <td><select class="select4">
                 <#list 1..10 as i> 
                     <option value="${i}">${i}</option>
                 </#list>  
             </select></td>
-            <td><select data-id="1">
+            <td><select class="select5">
                 <#list 1..10 as i> 
                     <option value="${i}">${i}</option>
                 </#list>  
             </select></td>
-            <td><select data-id="1">
+            <td><select class="select6">
                 <#list 1..10 as i> 
                     <option value="${i}">${i}</option>
                 </#list>  
             </select></td>
-            <td><input class="input12" type="text" id="finalValue2" disabled/><button id="button_submit2">Calculate</button></td>
+            <td><input class="input12 result2" type="text"  disabled/><button class="button_submit2">Calculate</button></td>
         </tr>
        </#if>
     </table>
@@ -417,48 +418,48 @@ addTable.addEventListener('click',()=>{
         <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
         <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
         <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-        <td rowspan="6"><select >
+        <td rowspan="6"><select class="select1">
             <#list 1..10 as i> 
                 <option value="${i}">${i}</option>
             </#list>  
         </select></td>
         <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-        <td rowspan="6"><select>
+        <td rowspan="6"><select class="select2">
             <#list 1..10 as i> 
                 <option value="${i}">${i}</option>
             </#list>  
         </select></td>
         <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
         <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-        <td rowspan="6"><select >
+        <td rowspan="6"><select class="select3">
             <#list 1..10 as i> 
                 <option value="${i}">${i}</option>
             </#list>  
         </select></td>
-        <td rowspan="6"><input class="input12" type="text" id="finalValue" disabled/><button id="button_submit">Calculate</button></td>
+        <td rowspan="6"><input class="input12 result" type="text" id="finalValue" disabled/><button class="button_submit">Calculate</button></td>
         <td rowspan="6"><textarea class="input1 setter" type="text"></textarea></td>
         <td rowspan="6"><textarea class="input1 setter" type="text"></textarea></td>
         <td><textarea class="input1 setter" type="text"></textarea></td>
-        <td><select data-id="1">
+        <td><select class="select4">
             <#list 1..10 as i> 
                 <option value="${i}">${i}</option>
             </#list>  
         </select></td>
-        <td><select data-id="1">
+        <td><select class="select5">
             <#list 1..10 as i> 
                 <option value="${i}">${i}</option>
             </#list>  
         </select></td>
-        <td><select data-id="1">
+        <td><select class="select6">
             <#list 1..10 as i> 
                 <option value="${i}">${i}</option>
             </#list>  
         </select></td>
-        <td><input class="input12" type="text" id="finalValue2" disabled/><button id="button_submit2">Calculate</button></td>
+        <td><input class="input12 result2" type="text"  disabled/><button class="button_submit2">Calculate</button></td>
     </tr>
         `;
        firstTable.insertAdjacentHTML("beforeend", row);
-        console.log(rows)
+        
 })
 
 

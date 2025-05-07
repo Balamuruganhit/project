@@ -59,6 +59,7 @@ under the License.
         <section>
             <actions>
                 <set field="layoutSettings.javaScripts[]" value="/PanguAi/static/ram.js" global="true"/>
+                <set field="layoutSettings.styleSheets[]" value="/PanguAi/static/rams.css" global="true"/>
                 <script location="component://PanguAi/groovyScripts/femaReport.groovy"/>
                 <set field="headerItem" value="rams"/><!-- this highlights the selected menu-item with name "main" -->
             </actions>
@@ -97,6 +98,30 @@ under the License.
             </widgets>
         </section>
     </screen>
+    <screen name="selectorRams">
+        <section>
+            <actions>
+                <set field="headerItem" value="rams"/><!-- this highlights the selected menu-item with name "main" -->
+            </actions>
+            <widgets>
+                <decorator-screen name="PanguAiCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet title="RAMS Intelligence">
+                           
+                            <include-form name="selectorrams" location="component://PanguAi/widget/PanguAiForms.xml"/>
+                            
+                        </screenlet>
+                        <screenlet title="">
+                           
+                            <include-form name="newRams" location="component://PanguAi/widget/PanguAiForms.xml"/>
+                            
+                        </screenlet>
+                    
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
     <screen name="ReportPdf">
         <section>
             <actions>
@@ -121,4 +146,28 @@ under the License.
             </widgets>
         </section>
         </screen>
+        <screen name="ReportPdfRams">
+            <section>
+                <actions>
+                    <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                    <set field="rams" from-field="parameters.rams" type="String"/>
+                    <script location="component://PanguAi/groovyScripts/ramsReport.groovy"/>
+                    <set field="viewSize" value="99999"/>
+                </actions>
+                <widgets>
+                    <decorator-screen name="SimpleDecorator" location="component://common/widget/CommonScreens.xml">
+                        <decorator-section name="body">
+                            <container>
+                                
+                                <platform-specific>
+                                    <xsl-fo>
+                                        <html-template location="component://PanguAi/template/ramsreport.fo.ftl"/>
+                                    </xsl-fo>
+                                </platform-specific>
+                            </container>
+                        </decorator-section>
+                    </decorator-screen>
+                </widgets>
+            </section>
+            </screen>
 </screens>

@@ -19,122 +19,290 @@ under the License.
 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.5/jstat.min.js"></script>
 
- <style>
-    input[type="number"] {
-      width: 100px;
-    }
-    h2 {
-      color: #800000;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-    th, td {
-      border: 1px solid #999;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: #f3f3f3;
-    }
-    .note {
-      margin-top: 20px;
-      font-size: 0.9em;
-      color: #555;
-      font-style: italic;
-    }
-    .Calculator{
-        display:flex;
-        flex-direction:row;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-    }
-    .cal{
-        border: 1px solid black;
-        border-radius: 1rem;
-        padding: 1rem;
-        text-align: left;
-        margin: 1rem;
-        
-    }
-    .headTitle{
-        text-align: center;
-    }
-  </style>
-
-<div class="Calculator">
-    <div class="cal">
-    <h2>Empirical Failure Rate Calculator</h2>
-
-    <label>Time period for observations (years): <input type="number" id="timePeriod" value="1" step="0.01"></label><br><br>
-    <label>Number of failures observed: <input type="number" id="failures" value="5" step="1"></label><br><br>
-    <button id="calrms">Calculate</button>
-
-    <div id="output">
-    </div>
-    </div>
-    <div class="cal">
-        <h2 class="headTitle">Availability</h2>
-    
-        <label>Failure rate: <input type="number" id="failure" value="2" step="0.01"></label><br><br>
-        <label>Repair time (MTTR): <input type="number" id="repair" value="48" step="1"></label><br><br>
-        <label>Planned maintenance time: <input type="number" id="maintenance" value="72" step="1"></label><br><br>
-        <button id="calavail">Calculate</button>
-    
-        <div id="output1">
+<div class="header_ram">
+    <table>
+      <tr>
+        <td>RAMS number</td>
+        <td><input type="text"  id="rams"></td>
+        <td>Product code:</td>
+        <td colspan="3"><input type="text"  id="product"></td>
+      </tr>
+      <tr>
+        <td>System: </td>
+        <td><input type="text"  id="system"></td>
+        <td>Sub-System: </td>
+        <td><input type="text"  id="SubSystem"></td>
+        <td>Sub-sub-System: </td>
+        <td><input type="text"  id="subsubsystem"></td>
+      </tr>
+      <tr>
+        <td>RAMS responsibility:</td>
+        <td colspan="3"><input type="text"  id="response"></td>
+        <td>Date:</td>
+        <td><input type="date"  id="date"></td>
+      </tr>
+      <tr>
+        <td>Team members:</td>
+        <td colspan="3"><input type="text"  id="member"></td>
+        <td>Approved by:</td>
+        <td><input type="text"  id="approver"></td>
+      </tr>
+    </table>
+   
+  </div>
+  <div class="main">
+    <div class="expander_section">
+        <div class="plus">
+          <h3>Empirical Failure Rate Calculator</h3>
+          <span class="symbol">+</span>
         </div>
+        <div class="calculator">
+          <div class="left">
+              <table>
+                <tr>
+                  <td>Time period for observations (years):</td>
+                  <td><input type="number" id="timePeriod" value="1" step="0.01"></td>
+                  <td>years</td>
+                </tr>
+                <tr>
+                  <td>Number of failures observed:</td>
+                  <td><input type="number" id="failures" value="5" step="1"></td>
+                </tr>
+                <tr colspan="2"><td><button id="calrms">Calculate</button></td></tr>
+              </table>
+          </div>
+          <div class="right" id="output">
+            <table>
+              <tr>
+                <td>Result</td>
+                <td>Failure Rate</td>
+                <td>Equivalent MTBFs</td>
+              </tr>
+              <tr>
+                <td>Best estimate of failure rate</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>90% confidence interval - upper bound</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>90% confidence interval - lower bound</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
         </div>
-    <div class="cal">
-        <h2>Reliability</h2>
-    
-        <label>Failure rate: <input type="text" id="time" value="0.09" ></label><br><br>
-        <label>Time period: <input type="number" id="failuresrate" value="5" step="1"></label><br><br>
-        <button  id="calreliab">Calculate</button>
-    
-        <div id="output2">
-        
+    </div>
+    <div class="expander_section">
+      <div class="plus">
+        <h3>Availability</h3>
+        <span class="symbol">+</span>
       </div>
+      <div class="calculator">
+        <div class="left">
+            <table>
+              <tr>
+                <td>Failure rate:</td>
+                <td> <input type="number" id="failure" value="2" step="0.01"></td>
+                <td>per year</td>
+              </tr>
+              <tr>
+                <td>Repair time (MTTR):</td>
+                <td> <input type="number" id="repair" value="48" step="1"></td>
+                <td>hours</td>
+              </tr>
+              <tr>
+                <td>Planned maintenance time:</td>
+                <td><input type="number" id="maintenance" value="72" step="1"></td>
+                <td>hours per year</td>
+              </tr>
+              <tr><td><button id="calavail">Calculate</button></td></tr>
+            </table>
         </div>
-    <div class="cal">
-        <h2>Probability of r failures in a given time period</h2>
-    
-        <label>Failure rate: <input type="number" id="rfailures" value="0.1" step="0.01"></label><br><br>
-        <label>Time period: <input type="number" id="rtimePeriod" value="5" step="1"></label><br><br>
-        <label>Number of failures of interest r: <input type="number" id="rinterest" value="2" step="1"></label><br><br>
-
-        <button id="calpro">Calculate</button>
-    
-        <div id="output4">
+        <div class="right" id="output1">
+          <table>
+            
+            <tr>
+              <td>Result</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Availability excl. planned mtce</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Availability incl. planned mtce</td>
+              <td></td> 
+            </tr>
+          </table>
         </div>
+      </div>
+    </div>
+    <div class="expander_section">
+    <div class="plus">
+      <h3>Reliability</h3>
+      <span class="symbol">+</span>
+    </div>
+    <div class="calculator">
+      <div class="left">
+          <table>
+            <tr>
+              <td>Failure rate:</td>
+              <td><input type="number" id="failuresrate" value="0.09" ></td>
+              <td>per year</td>
+            </tr>
+            <tr>
+              <td>Time period:</td>
+              <td><input type="number" id="time" value="5" step="1"></td>
+              <td>years</td>
+            </tr>
+            <tr><td><button id="calreliab">Calculate</button></td></tr>
+          </table>
+      </div>
+      <div class="right" id="output2">
+        <table>
+          <tr>
+            <td>Result</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Probability of no failures</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Probability of one or nore failures</td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    </div>
+    <div class="expander_section">
+      <div class="plus">
+        <h3>Probability of r failures in a given time period</h3>
+        <span class="symbol">+</span>
+      </div>
+      <div class="calculator">
+        <div class="left">
+            <table>
+              <tr>
+                <td>Failure rate:</td>
+                <td><input type="number" id="rfailures" value="0.1" step="0.01"></td>
+              </tr>
+              <tr>
+                <td>Time period:</td>
+                <td><input type="number" id="rtimePeriod" value="5" step="1"></td>
+              </tr>
+              <tr>
+                <td>Number of failures of interest r:</td>
+                <td><input type="number" id="rinterest" value="2" step="1"></td>
+              </tr>
+              <tr><td><button id="calpro">Calculate</button></td></tr>
+            </table>
         </div>
-    <div class="cal">
-        <h2>Probability of r failures in n independent events</h2>
-    
-        <label>Probability of 1 failure in 1 event: <input type="number" id="itime" value="0.01" step="0.01"></label><br><br>
-        <label>Number of independent events n: <input type="number" id="ifailures" value="50" step="1"></label><br><br>
-        <label>Number of failures of interest r: <input type="number" id="event" value="3" step="1"></label><br><br>
-
-        <button id="calinde">Calculate</button>
-    
-        <div id="output5">
+        <div class="right" id="output4">
+          <table>
+            <tr>
+              <td>Result</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Probability of r failures</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Probability of r or more failures</td>
+              <td></td>
+            </tr>
+          </table>
         </div>
+      </div>
+    </div>
+    <div class="expander_section">
+      <div class="plus">
+        <h3>Probability of r failures in n independent events</h3>
+        <span class="symbol">+</span>
+      </div>
+      <div class="calculator">
+        <div class="left">
+            <table>
+              <tr>
+                <td>Probability of 1 failure in 1 event:</td>
+                <td><input type="number" id="itime" value="0.01" step="0.01"></td>
+              </tr>
+              <tr>
+                <td>Number of independent events n:</td>
+                <td><input type="number" id="ifailures" value="50" step="1"></td>
+              </tr>
+              <tr>
+                <td>Number of failures of interest r:</td>
+                <td><input type="number" id="event" value="3" step="1"></td>
+              </tr>
+              <tr><td><button id="calinde">Calculate</button></td></tr>
+            </table>
         </div>
-        <div class="cal">
-            <h2>Has Failure Rate Really Changed?</h2>
-        
-            <label>Old number of failures per time period: <input type="number" id="RateOldPeriod" value="6" step="0.01"></label><br><br>
-            <label>New number of failures per time period: <input type="number" id="RateNewfailures" value="4" step="1"></label><br><br>
+        <div class="right" id="output5">
+          <table>
+            <tr>
+              <td>Result</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Probability of r failures</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Probability of r or more failures</td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="expander_section">
+      <div class="plus">
+        <h3>Has Failure Rate Really Changed?</h3>
+        <span class="symbol">+</span>
+      </div>
+      <div class="calculator">
+        <div class="left">
+            <table>
+              <tr>
+                <td>Old number of failures per time period:</td>
+                <td><input type="number" id="RateOldPeriod" value="6" step="0.01"></td>
+              </tr>
+              <tr>
+                <td>New number of failures per time period:</td>
+                <td><input type="number" id="RateNewfailures" value="4" step="1"></td>
+              </tr>
+              
+            </table>
             <button id="calFinal">Calculate</button>
-        
-            <div id="output6">
-                </div>
-            </div>
-</div>
-<script>
+        </div>
+        <div class="right" id="output6">
+          <table>
+            <tr>
+              <td>Result</td>
+              <td></td>
+              
+            </tr>
+            <tr>
+              <td>Confidence that failure rate has changed</td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <button id="save">Save the File</button>
+  </div>
 
-    
-</script>
+
+
+
 
 

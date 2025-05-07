@@ -37,6 +37,28 @@ under the License.
                         <submit button-type="button"/>
                 </field>
         </form>
+        <form name="selectorrams" target="ReportRams.pdf"  default-map-name="content"
+                header-row-style="header-row" default-table-style="basic-table">
+        
+                <field name="rams" title="RAMS No" position="1">
+                        
+                        <drop-down allow-empty="false">
+                                <option key="" description="Select Rams No"/>
+                                <entity-options description="${ramsNo} " entity-name="ramsheader" key-field-name="ramsNo" >
+                                </entity-options>
+                        </drop-down>
+                
+                </field>
+                <field name="submitButton" title="Print Doc">
+                        <submit button-type="button"/>
+                </field>
+        </form>
+        <form name="newRams" target="rams"  default-map-name="content"
+        header-row-style="header-row" default-table-style="basic-table">
+        <field name="submitButton" title="create Doc">
+                <submit button-type="button"/>
+        </field>
+        </form>
         <form name="newDoc" target="fema"  default-map-name="content"
         header-row-style="header-row" default-table-style="basic-table">
         <field name="submitButton" title="create Doc">
