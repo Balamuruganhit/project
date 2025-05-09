@@ -55,13 +55,13 @@ under the License.
         </form>
         <form name="newRams" target="rams"  default-map-name="content"
         header-row-style="header-row" default-table-style="basic-table">
-        <field name="submitButton" title="create Doc">
+        <field name="submitButton" title="Create RAMS">
                 <submit button-type="button"/>
         </field>
         </form>
         <form name="newDoc" target="fema"  default-map-name="content"
         header-row-style="header-row" default-table-style="basic-table">
-        <field name="submitButton" title="create Doc">
+        <field name="submitButton" title="Create FEMA">
                 <submit button-type="button"/>
         </field>
 </form>

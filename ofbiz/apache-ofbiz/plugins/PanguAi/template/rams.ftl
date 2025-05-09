@@ -107,7 +107,7 @@ under the License.
             <table>
               <tr>
                 <td>Failure rate:</td>
-                <td> <input type="number" id="failure" value="2" step="0.01"></td>
+                <td> <input type="number" id="failure"  step="0.001" disabled></td>
                 <td>per year</td>
               </tr>
               <tr>
@@ -152,7 +152,7 @@ under the License.
           <table>
             <tr>
               <td>Failure rate:</td>
-              <td><input type="number" id="failuresrate" value="0.09" ></td>
+              <td><input type="number" id="failuresrate"  disabled></td>
               <td>per year</td>
             </tr>
             <tr>
@@ -191,7 +191,7 @@ under the License.
             <table>
               <tr>
                 <td>Failure rate:</td>
-                <td><input type="number" id="rfailures" value="0.1" step="0.01"></td>
+                <td><input type="number" id="rfailures" disabled step="0.01"></td>
               </tr>
               <tr>
                 <td>Time period:</td>
@@ -232,11 +232,11 @@ under the License.
             <table>
               <tr>
                 <td>Probability of 1 failure in 1 event:</td>
-                <td><input type="number" id="itime" value="0.01" step="0.01"></td>
+                <td><input type="number" id="ifailures" value="0.01" step="0.01"></td>
               </tr>
               <tr>
                 <td>Number of independent events n:</td>
-                <td><input type="number" id="ifailures" value="50" step="1"></td>
+                <td><input type="number" id="itime" value="50" step="1"></td>
               </tr>
               <tr>
                 <td>Number of failures of interest r:</td>
@@ -276,7 +276,7 @@ under the License.
                 <td><input type="number" id="RateOldPeriod" value="6" step="0.01"></td>
               </tr>
               <tr>
-                <td>New number of failures per time period:</td>
+                <td style="background:white">New number of failures per time period:</td>
                 <td><input type="number" id="RateNewfailures" value="4" step="1"></td>
               </tr>
               

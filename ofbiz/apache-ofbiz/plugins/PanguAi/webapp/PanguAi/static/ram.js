@@ -51,9 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
  if(calavail){
   calavail.addEventListener('click',()=>{
     console.log("hello avauil")
-      var ifailure= parseInt(document.getElementById('failure').value);
+      var ifailure= document.getElementById('failure').value;
+      console.log(ifailure)
       if(ifailure == 0){
-         ifailure= failureRate.toFixed(2);
+         ifailure= failureRate.toFixed(8);
       }
 
       //parseInt(document.getElementById('failure').value);
@@ -82,8 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(incl)
         const resultData={
           name:"availability",
-          in1:irepair,
-          in3:imaintenance,
+          int1:irepair,
+          int3:imaintenance,
           int2:ifailure,
           out1:excl,
           out2:incl
@@ -114,10 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if(calreliab){
       calreliab.addEventListener('click',()=>{
         console.log(failureRate)
-          const failureRateStr = document.getElementById("failuresrate").value.trim();
+          const ifailureRate = document.getElementById("failuresrate").value;
           const timeStr = document.getElementById("time").value.trim();
-
-          var ifailureRate = parseFloat(failureRateStr.replace(',', '.'));
           if(ifailureRate == 0){
              ifailureRate =failureRate.toFixed(2); 
           }
@@ -166,6 +165,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if(but){
       but.addEventListener('click',()=>{
         console.log("hello rmsmain")
+        var ifailure= document.getElementById('failure');
+        var failureRateStr = document.getElementById("failuresrate");
+        var rfailureRate = document.getElementById("rfailures")
         const timePeriod = parseFloat(document.getElementById("timePeriod").value);
           const failures = parseInt(document.getElementById("failures").value);
          
@@ -193,6 +195,10 @@ document.addEventListener("DOMContentLoaded", () => {
           const failLower = hoursPerYear / lowerBound;
           const failUpper =  hoursPerYear / upperBound;
           failureRate =  hoursPerYear / actualBand;
+          ifailure.value=failureRate.toFixed(2)
+          failureRateStr.value=failureRate.toFixed(2)
+          rfailureRate.value=failureRate.toFixed(2)
+          console.log(ifailure.value,failureRateStr.value)
           const resultData={
             name:"empirical",
             int2:failures,
@@ -221,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </tr>
               <tr>
                 <td>90% confidence interval - upper bound</td>
-                <td>${failUpper.toFixed(2)} per yea</td>
+                <td>${failUpper.toFixed(2)} per year</td>
                 <td>${upperBound.toFixed(0)} hours</td>
               </tr>
               <tr>
@@ -238,8 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
         calpro.addEventListener('click',()=>{
               const rtimePeriod = parseFloat(document.getElementById("rtimePeriod").value);
               const rinterest = parseFloat(document.getElementById("rinterest").value);
-              const failureRateStr = document.getElementById("rfailures").value.trim();
-              const rfailureRate = parseFloat(failureRateStr.replace(',', '.'));
+              const rfailureRate = document.getElementById("rfailures").value;
               if(rfailureRate == 0){
                 rfailureRate = failureRate.toFixed(2);
               }
@@ -292,8 +297,8 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(`P(X ≥ ${B8}) =`, result1.toFixed(8));
             const resultData={
               name:"dependpro",
-              in1:rtimePeriod,
-              in2:rfailureRate,
+              int1:rtimePeriod,
+              int2:rfailureRate,
               in3:rinterest,
               out1:result.toFixed(5)*100,
               out2:result1.toFixed(5)*100,
@@ -371,8 +376,8 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const resultData={
           name:"indepro",
-          in1:itimePeriod,
-          in2:event,
+          int1:itimePeriod,
+          int2:event,
           int3:infailureRate,
           out1:exact.toFixed(2),
           out2:cumulative.toFixed(2)
@@ -415,8 +420,8 @@ if(calfinal){
       var finalOut=(cumulativeP*100).toFixed(1)
       const resultData={
         name:"final",
-        in1:ioldRate,
-        in2:inewRate,
+        int1:ioldRate,
+        int2:inewRate,
         out1:finalOut,
       }
       store.push(resultData)
@@ -447,7 +452,7 @@ if(calfinal){
         subSubSystem: document.getElementById('subsubsystem').value.trim(),
         ramsResponsibility: document.getElementById('response').value.trim(),
         date: document.getElementById('date').value, // Already in YYYY-MM-DD format
-        teamMembers: document.getElementById('member').value.trim().split(',').map(name => name.trim()),
+        teamMembers: document.getElementById('member').value.trim(),
         approvedBy: document.getElementById('approver').value.trim()
       };
       store.push(ramsInfo)

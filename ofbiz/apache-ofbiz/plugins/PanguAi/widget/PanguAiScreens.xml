@@ -84,14 +84,15 @@ under the License.
                     <decorator-section name="body">
                         <screenlet title="D-FEMA Intelligence">
                            
-                            <include-form name="selector" location="component://PanguAi/widget/PanguAiForms.xml"/>
+                            <include-form name="newDoc" location="component://PanguAi/widget/PanguAiForms.xml"/>
                             
                         </screenlet>
                         <screenlet title="">
                            
-                            <include-form name="newDoc" location="component://PanguAi/widget/PanguAiForms.xml"/>
+                            <include-form name="selector" location="component://PanguAi/widget/PanguAiForms.xml"/>
                             
                         </screenlet>
+                        
                     
                     </decorator-section>
                 </decorator-screen>
@@ -108,14 +109,15 @@ under the License.
                     <decorator-section name="body">
                         <screenlet title="RAMS Intelligence">
                            
-                            <include-form name="selectorrams" location="component://PanguAi/widget/PanguAiForms.xml"/>
+                            <include-form name="newRams" location="component://PanguAi/widget/PanguAiForms.xml"/>
                             
                         </screenlet>
                         <screenlet title="">
                            
-                            <include-form name="newRams" location="component://PanguAi/widget/PanguAiForms.xml"/>
+                            <include-form name="selectorrams" location="component://PanguAi/widget/PanguAiForms.xml"/>
                             
                         </screenlet>
+                        
                     
                     </decorator-section>
                 </decorator-screen>

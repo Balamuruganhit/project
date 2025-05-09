@@ -526,7 +526,7 @@ under the License.
     <screen name="FoError">
         <section>
             <actions>
-                <set field="logoImageUrl" value="/images/ofbiz_logo.png"/>
+                <set field="logoImageUrl" value="/images/main.png"/>
             </actions>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">

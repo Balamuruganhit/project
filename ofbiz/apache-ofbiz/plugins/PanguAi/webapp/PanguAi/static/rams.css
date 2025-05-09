@@ -17,7 +17,7 @@
  * under the License.
  */
  .header_ram{
-    background: rgb(30, 12, 88);
+    background: #0091DA;
     padding: 1rem;
     text-align: right;
     margin: auto;
@@ -48,7 +48,7 @@ table{
 }
 
 .expander_section{
-    background: rgb(30, 12, 88);
+    background: #0091DA;
     width: 93%;
     margin:2rem auto;
     border-radius: 1rem;
@@ -146,8 +146,13 @@ table{
     left: 70%;
 }
 #save{
-    background:  rgb(30, 12, 88);
+    background:  #0091DA;
     margin: auto;
     position: relative;
     left: 5%;
+}
+
+.left input:disabled{
+    background: white;
+    color: black;
 }

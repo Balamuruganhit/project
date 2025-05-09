@@ -83,12 +83,12 @@ under the License.
         <field name="int1" type="name"></field>
         <field name="int2" type="name"></field>
         <field name="int3" type="name"></field>
-        <field name="out1" type="integer"></field>
-        <field name="out2" type="integer"></field>
-        <field name="out3" type="integer"></field>
-        <field name="out4" type="integer"></field>
-        <field name="out5" type="integer"></field>
-        <field name="out6" type="integer"></field>
+        <field name="out1" type="name"></field>
+        <field name="out2" type="name"></field>
+        <field name="out3" type="name"></field>
+        <field name="out4" type="name"></field>
+        <field name="out5" type="name"></field>
+        <field name="out6" type="name"></field>
         <prim-key field="genId" />
     </entity>
 
