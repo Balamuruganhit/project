@@ -87,7 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
           int3:imaintenance,
           int2:ifailure,
           out1:excl,
-          out2:incl
+          out2:incl,
+          out3:mtbf1.toFixed(3)
         }
         store.push(resultData)
         // Display results

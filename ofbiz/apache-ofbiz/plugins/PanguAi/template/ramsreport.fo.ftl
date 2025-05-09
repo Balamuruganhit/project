@@ -127,19 +127,19 @@ under the License.
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt" width="8cm"><fo:block padding="3.4pt"></fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt"></fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt" width="6cm"><fo:block padding="3.4pt">Results</fo:block></fo:table-cell>
-                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt"></fo:block></fo:table-cell>
+                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">MTBFs =${ramsOut.out3} hrs</fo:block></fo:table-cell>
                 </fo:table-row>
                 <fo:table-row>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Failure rate</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.int2} per year</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Availability excl. planned mtce</fo:block></fo:table-cell>
-                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out1}</fo:block></fo:table-cell>
+                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out1} %</fo:block></fo:table-cell>
                 </fo:table-row>
                 <fo:table-row>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Repair time (MTTR)</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.int1} hours</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Availability incl. planned mtce</fo:block></fo:table-cell>
-                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out1}</fo:block></fo:table-cell>
+                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out1} %</fo:block></fo:table-cell>
                    
                 </fo:table-row>
                 <fo:table-row>
@@ -169,13 +169,13 @@ under the License.
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Failure rate</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.int2} per year</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Probability of no failures</fo:block></fo:table-cell>
-                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out1}</fo:block></fo:table-cell>
+                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out1} %</fo:block></fo:table-cell>
                 </fo:table-row>
                 <fo:table-row>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Time period</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.int1} years</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Probability of one or nore failures</fo:block></fo:table-cell>
-                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out2}</fo:block></fo:table-cell>
+                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out2} %</fo:block></fo:table-cell>
                 </fo:table-row>
                 
             </fo:table-body>
@@ -198,13 +198,13 @@ under the License.
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Failure rate</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.int1}</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Probability of r failures</fo:block></fo:table-cell>
-                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out1}</fo:block></fo:table-cell>
+                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out1} %</fo:block></fo:table-cell>
                 </fo:table-row>
                 <fo:table-row>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Time period</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.int1}</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Probability of r or more failures</fo:block></fo:table-cell>
-                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out2}</fo:block></fo:table-cell>
+                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out2} %</fo:block></fo:table-cell>
                 </fo:table-row>
                 <fo:table-row>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Number of failures of interest r</fo:block></fo:table-cell>
@@ -233,13 +233,13 @@ under the License.
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Probability of 1 failure in 1 event</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.int2}</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Probability of r failures</fo:block></fo:table-cell>
-                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out1}</fo:block></fo:table-cell>
+                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out1} %</fo:block></fo:table-cell>
                 </fo:table-row>
                 <fo:table-row>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Number of independent events n</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.int1}</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Probability of r or more failures</fo:block></fo:table-cell>
-                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out2}</fo:block></fo:table-cell>
+                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out2} %</fo:block></fo:table-cell>
                 </fo:table-row>
                 <fo:table-row>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Number of failures of interest r:</fo:block></fo:table-cell>>
@@ -268,7 +268,7 @@ under the License.
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Old number of failures per time period</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.int1}</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Confidence that failure rate has changed</fo:block></fo:table-cell>
-                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out1}</fo:block></fo:table-cell>
+                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out1} %</fo:block></fo:table-cell>
                 </fo:table-row>
                 <fo:table-row>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">New number of failures per time period</fo:block></fo:table-cell>
