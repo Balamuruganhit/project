@@ -91,5 +91,20 @@ under the License.
         <field name="out6" type="name"></field>
         <prim-key field="genId" />
     </entity>
+    <entity entity-name="ramsDataNew"  package-name="org.apache.ofbiz.PanguAi" title="RamsData Entity">
+        <field name="ramsNo" type="id"></field>
+        <field name="genId" type="id"></field>
+        <field name="calculatorType" type="name"></field>
+        <field name="int1" type="name"></field>
+        <field name="int2" type="name"></field>
+        <field name="int3" type="name"></field>
+        <field name="out1" type="name"></field>
+        <field name="out2" type="name"></field>
+        <field name="out3" type="name"></field>
+        <field name="out4" type="name"></field>
+        <field name="out5" type="name"></field>
+        <field name="out6" type="name"></field>
+        <prim-key field="genId" />
+    </entity>
 
 </entitymodel>

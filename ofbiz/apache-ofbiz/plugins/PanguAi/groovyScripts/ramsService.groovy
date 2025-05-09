@@ -49,7 +49,7 @@ def createRam(){
     delegator.create("ramsheader",newHeader)
     (0..<ramsDetails.size()-1).each{ i ->
         def rams = ramsDetails[i]
-        def genId = delegator.getNextSeqId("ramsData")
+        def genId = delegator.getNextSeqId("ramsDataNew")
         Map<String ,Object> mainReportDetails=[
             genId:genId,
             ramsNo:ramsNo,
@@ -64,7 +64,7 @@ def createRam(){
             out5:rams.out5,
             out6:rams.out6,
         ]
-    delegator.create("ramsData",mainReportDetails)
+    delegator.create("ramsDataNew",mainReportDetails)
     logInfo('Uploaded file found; processing sub-content'+mainReportDetails)
     }
     

@@ -36,7 +36,7 @@ rams=parameters.rams
 if(rams){
     fematitle=from( 'ramsheader').where('ramsNo',rams).queryOne()
     context.ramsOutputTitle=fematitle
-    femaDetail=from('ramsData').where('ramsNo',rams).queryList()
+    femaDetail=from('ramsDataNew').where('ramsNo',rams).queryList()
     context.ramsOutputDetails=femaDetail
     logInfo('It is working Fine' + fematitle)
     logInfo('It is working Fine' + femaDetail)
