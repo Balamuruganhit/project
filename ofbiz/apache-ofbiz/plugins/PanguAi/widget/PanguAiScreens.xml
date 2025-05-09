@@ -136,8 +136,9 @@ under the License.
                 <decorator-screen name="SimpleDecorator" location="component://common/widget/CommonScreens.xml">
                     <decorator-section name="body">
                         <container>
-                            
+                             <label style="h1" text="RAMS Analysis Report"/>
                             <platform-specific>
+                               
                                 <xsl-fo>
                                     <html-template location="component://PanguAi/template/femareportPdf.fo.ftl"/>
                                 </xsl-fo>

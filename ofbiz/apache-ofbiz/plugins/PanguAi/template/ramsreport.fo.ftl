@@ -77,7 +77,6 @@ under the License.
         </fo:table>
         <#list ramsOutputDetails as ramsOut>
         <#if ramsOut.calculatorType == "empirical">
-        <fo:block>${ramsOut.calculatorType} </fo:block>
         <fo:table border="1pt solid black" padding="5pt" table-layout="fixed">
             <fo:table-header>
                 <fo:table-row font-weight="bold" >
@@ -139,7 +138,7 @@ under the License.
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Repair time (MTTR)</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.int1} hours</fo:block></fo:table-cell>
                     <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Availability incl. planned mtce</fo:block></fo:table-cell>
-                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out1} %</fo:block></fo:table-cell>
+                    <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">${ramsOut.out2} %</fo:block></fo:table-cell>
                    
                 </fo:table-row>
                 <fo:table-row>
