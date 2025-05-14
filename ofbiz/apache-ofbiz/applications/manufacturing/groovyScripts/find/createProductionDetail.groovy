@@ -38,7 +38,7 @@ cal.set(Calendar.MINUTE, 0)
 cal.set(Calendar.SECOND, 0)
 cal.set(Calendar.MILLISECOND, 0)
 Timestamp todayStart = new Timestamp(cal.getTimeInMillis())
-if(parameters.poNumber){
+if(parameters.workOrderNumber){
 // Query for first record created today and within last 1 minute
 def result = EntityQuery.use(delegator)
     .from("WorkEffort") // Replace with your actual entity
@@ -52,34 +52,32 @@ def result = EntityQuery.use(delegator)
 
 productionRunId=result.workEffortId
 logInfo('Uploaded file found; processing sub-content'+productionRunId)
-productionType=parameters.party
-poNumber=parameters.poNumber
-logInfo('Uploaded file found; processing sub-content'+poNumber)
+logInfo("here")
+workOrderNumber=parameters.workOrderNumber
 if(productionRunId){
-    if(poNumber){
-        
-        partyName=from('OrderHeaderAndRoles').where('orderId',poNumber).queryList()
-        def secondWorkEffort = (partyName.size() > 1) ? partyName.get(1) : null
-        logInfo('Uploaded file found; processing sub-content'+ secondWorkEffort)
+    
         Map<String, Object> partyAndOrderdetail = [
                 productionRunId:productionRunId,
-                partyName: secondWorkEffort.partyId,
-                orderNumber:poNumber,
-                orderDate:secondWorkEffort.orderDate,
-                poNumber:productionType
+                poNumber:parameters.workOrderNumber
             ]
             delegator.create("partyOrder", partyAndOrderdetail)
             logInfo('Uploaded file found; processing sub-content'+ partyAndOrderdetail)
     }
     logInfo('Uploaded file found; processing sub-content'+ productionRunId)
-    partyDetail=from("partyOrder").where('productionRunId',productionRunId).queryFirst()
+    partyDetail=from("WorkOrder").where('workOrderNumber',workOrderNumber).queryOne()
     logInfo('Uploaded file found; processing sub-content'+ partyDetail)
     context.partyDetail=partyDetail
 }
-}
+
 if(parameters.productionRunId){
+    logInfo("here2")
     logInfo('Uploaded file found; processing sub-content'+ productionRunId)
-    partyDetail=from("partyOrder").where('productionRunId',productionRunId).queryOne()
-    logInfo('Uploaded file found; processing sub-content'+ partyDetail)
-    context.partyDetail=partyDetail
+    workorder=from("partyOrder").where('productionRunId',productionRunId).queryOne()
+    if(workorder){
+        logInfo("here3")
+        partyDetail=from("WorkOrder").where('workOrderNumber',workorder.poNumber).queryOne()
+        logInfo('Uploaded file found; processing sub-content'+ partyDetail)
+        context.partyDetail=partyDetail
+    }
+    
 }

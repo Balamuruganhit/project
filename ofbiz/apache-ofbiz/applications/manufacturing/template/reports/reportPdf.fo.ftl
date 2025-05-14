@@ -23,8 +23,8 @@ under the License.
         <#if partyDetail?has_content>
             <fo:table-row >
                         <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block padding="3.4pt">Customer Name:</fo:block></fo:table-cell>
-                        <fo:table-cell border="1pt solid black" padding="3.4pt"><#if partyDetail.partyName?has_content>
-                            <fo:block number-columns-spanned="3" >${partyDetail.partyName}</fo:block>
+                        <fo:table-cell border="1pt solid black" padding="3.4pt"><#if partyDetail.customerName?has_content>
+                            <fo:block number-columns-spanned="3" >${partyDetail.customerName}</fo:block>
                         <#else>
                             <fo:block></fo:block>
                         </#if></fo:table-cell>
@@ -38,10 +38,10 @@ under the License.
                             </#if>
                         </fo:table-cell>
                         <fo:table-cell border="1pt solid black" font-weight="bold" padding="3.4pt"><fo:block>Date:</fo:block></fo:table-cell>
-                        <fo:table-cell border="1pt solid black" padding="3.4pt"><#if orderDate?has_content>
-                            <fo:block>${orderDate}</fo:block>
+                        <fo:table-cell border="1pt solid black" padding="3.4pt"><#if partyDetail.orderDate?has_content>
+                            <fo:block>${partyDetail.orderDate}</fo:block>
                         <#else>
-                            <fo:block>Another Cell</fo:block>
+                            <fo:block></fo:block>
                         </#if></fo:table-cell>
             </fo:table-row>
             <#else>
@@ -75,14 +75,14 @@ under the License.
                         <fo:table-cell border="1pt solid black" padding="3.4pt" font-weight="bold"><fo:block>WO No:</fo:block></fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt">
                             
-                            <#if productionRunData.productionRunId?has_content>
-                                <fo:block>${productionRunData.productionRunId}</fo:block>
+                            <#if partyDetail.workOrderNumber?has_content>
+                                <fo:block>${partyDetail.workOrderNumber}</fo:block>
                             <#else>
                                 <fo:block></fo:block>
                             </#if>
                         </fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt" font-weight="bold"><fo:block>Date:</fo:block></fo:table-cell>
-                        <fo:table-cell border="1pt solid black" padding="3.4pt"><fo:block>${productionRunData.estimatedStartDate}</fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black" padding="3.4pt"><fo:block>${workDate}</fo:block></fo:table-cell>
             </fo:table-row>
             <fo:table-row >
                         <fo:table-cell border="1pt solid black" padding="3.4pt" font-weight="bold"><fo:block>Product Name:</fo:block></fo:table-cell>
@@ -112,11 +112,12 @@ under the License.
                         <fo:table-cell border="1pt solid black" padding="3.4pt" number-columns-spanned="3">
                             
                             <#if productionRunData.description?has_content>
-                                <fo:block number-columns-spanned="3" padding="3.4pt">${productionRunData.description}</fo:block>
+                                <fo:block  padding="3.4pt">${productionRunData.description}</fo:block>
                             <#else>
-                                <fo:block number-columns-spanned="3"></fo:block>
+                                <fo:block ></fo:block>
                             </#if>
                         </fo:table-cell>
+                        
             </fo:table-row>
             <fo:table-row >
                         <fo:table-cell font-weight="bold" border="1pt solid black" padding="3.4pt"><fo:block>Expected Completion/Delivery Date:</fo:block></fo:table-cell>
@@ -129,7 +130,7 @@ under the License.
                         <fo:table-cell border="1pt solid black" padding="3.4pt" number-columns-spanned="3">
                             
                             <#if partyDetail?has_content>
-                                <fo:block number-columns-spanned="3">${partyDetail.poNumber}</fo:block>
+                                <fo:block number-columns-spanned="3">${partyDetail.productType}</fo:block>
                             <#else>
                                 <fo:block></fo:block>
                             </#if>
@@ -183,11 +184,15 @@ under the License.
             <#list productionRunRoutingTasks as taskDetail>
                 <fo:table-row>
                     <fo:table-cell border="1pt solid black" padding="3.4pt" text-align="center"><fo:block>${taskDetail.workEffortName}</fo:block></fo:table-cell>
-                     <fo:table-cell border="1pt solid black" padding="3.4pt" text-align="center"><#if taskDetail.fixedAssetId?has_content>
-                            <fo:block >${taskDetail.fixedAssetId}</fo:block>
-                        <#else>
-                            <fo:block></fo:block>
-                        </#if></fo:table-cell>
+                     <fo:table-cell border="1pt solid black" padding="3.4pt" text-align="center" width="100pt">
+                        <fo:block wrap-option="wrap" linefeed-treatment="preserve" white-space-collapse="false">
+                            <#if taskDetail.fixedAssetId?has_content>
+                                ${taskDetail.fixedAssetId}
+                            <#else>
+                                
+                            </#if>
+                        </fo:block>
+                    </fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt" text-align="center"><#if taskDetail.reservPersons?has_content>
                             <fo:block >${taskDetail.reservPersons}</fo:block>
                         <#else>

@@ -82,8 +82,8 @@ productionRuns.eachWithIndex { production, i ->
         taskMap.taskName = task.workEffortName
         taskMap.phaseNr = production.workEffortId
         taskMap.taskSeqNum = index + 1
-        taskMap.estimatedStartDate = UtilDateTime.toDateString(task.estimatedStartDate ?: phase.estimatedStartDate, "MM/dd/yyyy")
-        taskMap.estimatedCompletionDate = UtilDateTime.toDateString(task.estimatedCompletionDate ?: UtilDateTime.addDaysToTimestamp(task.estimatedStartDate ?: phase.estimatedStartDate, 1), "MM/dd/yyyy")
+        taskMap.estimatedStartDate = UtilDateTime.toDateString(task.estimatedStartDate ?: phase.estimatedStartDate, "MM/dd/yyyy HH:mm")
+        taskMap.estimatedCompletionDate = UtilDateTime.toDateString(task.estimatedCompletionDate ?: UtilDateTime.addDaysToTimestamp(task.estimatedStartDate ?: phase.estimatedStartDate, 1), "MM/dd/yyyy HH:mm")
         taskMap.plannedHours = task.estimatedMilliSeconds != null ? task.estimatedMilliSeconds / 3600000 : 0
         taskMap.resource = "${taskMap.plannedHours} Hrs"
         taskMap.completion = "PTS_COMPLETED".equals(task.currentStatusId) ? 100 : 0

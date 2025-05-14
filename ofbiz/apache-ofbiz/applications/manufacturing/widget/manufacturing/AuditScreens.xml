@@ -44,10 +44,6 @@ under the License.
             </widgets>
         </section>
     </screen>
-    
-    
-                
-    
     <screen name="productionPlantDocumentation">
         <section>
             <actions>
@@ -137,7 +133,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleListContent"/>
                 <set field="headerItem" value="GanttChart"/>
-                <set field="layoutSettings.javaScripts[]" value="/PanguAi/static/chart.js" global="true"/>
+                <set field="layoutSettings.javaScripts[]" value="/PanguAi/static/gantt.js" global="true"/>
                 <set field="layoutSettings.styleSheets[]" value="/common/js/plugins/jsgantt/jsgantt.css" global="true"/>
                 <script location="component://manufacturing/groovyScripts/bom/ganttChart.groovy"/>
 
@@ -151,6 +147,45 @@ under the License.
                                    </platform-specific>
                            </screenlet>
                     </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="WorkOrder">
+        <section>
+            <actions>
+                <set field="headerItem" value="workOrder"/>
+                <set field="titleProperty" value="OrderOrderQuoteListRoles"/>
+                <set field="tabButtonItem" value="ListQuoteRoles"/>
+                <script location="component://manufacturing/groovyScripts/workorder/workorder.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonAuditDecorator" >
+                    <decorator-section name="body">
+                        <screenlet title="List Of Work order">
+                            <include-form name="ListWorkOrder" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
+                        </screenlet>
+                    </decorator-section>      
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="WorkOrders">
+        <section>
+            <actions>
+                 <set field="headerItem" value="workOrder"/>
+                <set field="titleProperty" value="OrderOrderQuoteListRoles"/>
+                <set field="tabButtonItem" value="ListQuoteRoles"/>
+                <script location="component://manufacturing/groovyScripts/workorder/workorder.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonAuditDecorator" >
+                    <decorator-section name="body">
+                        <screenlet title="Work order">
+                            <include-form name="UpdateWorkOrder" location="component://manufacturing/widget/manufacturing/AuditForms.xml"/>
+                        </screenlet>
+                        
+                    </decorator-section>      
                 </decorator-screen>
             </widgets>
         </section>

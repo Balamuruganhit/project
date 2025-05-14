@@ -47,6 +47,18 @@ under the License.
         <security auth="true" https="true"/>
         <response name="success" type="view" value="productionCard"/>
     </request-map>
+    <request-map uri="ListWorkOrder">
+        <security auth="true" https="true"/>
+        <response name="success" type="view" value="ListWorkOrder"/>
+    </request-map>
+    <request-map uri="WorkOrder">
+        <security auth="true" https="true"/>
+        <response name="success" type="view" value="workorder"/>
+    </request-map>
+    <request-map uri="ViewWorkOrder">
+        <security auth="true" https="true"/>
+        <response name="success" type="view" value="workorder"/>
+    </request-map>
     <request-map uri="Report.pdf">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="ReportPdf"/>
@@ -915,6 +927,8 @@ under the License.
     <view-map name="RunMrpGo" page="component://manufacturing/widget/manufacturing/MrpScreens.xml#RunMrpGo" type="screen"/>
     <view-map name="ManufacturingReports" type="screen" page="component://manufacturing/widget/manufacturing/ReportScreens.xml#ManufacturingReports"/>
     <view-map name="productionCard" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionPlantDocumentation"/>
+    <view-map name="ListWorkOrder" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#WorkOrder"/>
+    <view-map name="workorder" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#WorkOrders"/>
     <view-map name="productionSelection" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionSelection"/>
     <view-map name="GanttChart" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#GanttChart"/>
 

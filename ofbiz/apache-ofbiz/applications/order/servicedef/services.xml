@@ -1741,4 +1741,16 @@ under the License.
             <invoke name="createOrderContent"/>
         </group>
     </service>
+
+    <service name="createWorkOrder" engine="groovy"
+            location="component://order/groovyScripts/workorder/workorder.groovy"  invoke="createWorkOrder">
+        <description>Creates a payment using the order payment preference</description>
+        <attribute name="workOrderNumber" type="String" mode="IN" optional="true"/>
+        <attribute name="customerName" type="String" mode="IN" optional="true"/>
+        <attribute name="productId" type="String" mode="IN" optional="true"/>
+        <attribute name="poNumber" type="String" mode="IN" optional="true"/>
+        <attribute name="productType" type="String" mode="IN" optional="true"/>
+        <attribute name="quantity" type="String" mode="IN" optional="true"/>
+        <attribute name="delivery" type="Timestamp" mode="IN" optional="true"/>
+    </service>
 </services>

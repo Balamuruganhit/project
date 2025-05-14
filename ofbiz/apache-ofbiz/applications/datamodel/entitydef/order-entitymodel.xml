@@ -3095,4 +3095,27 @@ under the License.
           <key-map field-name="productId"/>
         </view-link>
     </view-entity>
+    <entity entity-name="WorkOrder"
+            package-name="org.apache.ofbiz.order.order"
+            title="Work Order Entity">
+        <field name="workOrderNumber" type="id"/>
+        <field name="customerName" type="name"/>
+        <field name="productName" type="name"/>
+        <field name="productId" type="name"/>
+        <field name="productType" type="name"/>
+        <field name="quantity" type="id"/>
+        <field name="productDescription" type="name"/>
+        <field name="deliveryDate" type="date"/>
+        <field name="orderNumber" type="id"/>
+        <field name="status" type="very-short"/>
+        <field name="orderDate" type="date"/>
+        <prim-key field="workOrderNumber"/>
+    </entity>
+    <entity entity-name="workOrderStatus"
+            package-name="org.apache.ofbiz.order.order"
+            title="Status Order Entity">
+        <field name="statusId" type="id"/>
+        <field name="orderStatus" type="name"/>
+        <prim-key field="statusId"/>
+    </entity>
 </entitymodel>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns="http://ofbiz.apache.org/Widget-Form" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
+    
+    <form name="createWorkOrder" type="single" target="createWorkOrder" title=""
+        header-row-style="header-row" default-table-style="basic-table">
+        <field position="1" name="workOrderNumber"><text/></field>
+        <field position="2" name="customerName"><text/></field>
+        <field position="1" name="productId" title="${uiLabelMap.ProductProductId}" required-field="true"><lookup target-form-name="LookupProduct" size="16"/></field>        
+        <field position="2" name="quantity"><text/></field>
+        <field position="1" name="poNumber" title="PO / SO Number"><lookup target-form-name="LookupPoNumber" size="16"/></field>
+        <field position="2" name="delivery" title="Expected Completion /Delivery Date">
+            <date-time type="date"/>
+        </field>
+       <field name="productType" position="2">
+            <drop-down >
+                <option key="Manufacturing (New)" description="Manufacturing (New)"/>
+                <option key="Manufacturing (Rework)" description="Manufacturing (Rework)"/>
+                <option key="Sub Assembly" description="Sub Assembly"/>
+                <option key="Assembly" description="Assembly"/>
+            </drop-down>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonSubmit}" widget-style="smallSubmit"><submit button-type="button"/></field>
+    </form>
+    <form name="ListWorkOrder" type="list" use-row-submit="true"  title="" list-name="ListWorkOrder"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar" paginate-target="">
+        <auto-fields-entity entity-name="WorkOrder" default-field-type="display"/>
+            <field name="workOrderNumber" widget-style="buttontext">
+                <hyperlink description="${workOrderNumber}" target="workorder">
+                    <parameter param-name="workOrderNumber"/>
+                </hyperlink>
+                
+            </field>
+            <field name="productId">
+            </field>
+            <field name="customerName"></field>
+            <field name="productName"></field>
+            <field name="productType" ></field>
+            <field name="productDescription"></field>
+            <field name="deliveryDate" title="Planned Delivery Date"></field>
+            <field name="orderNumber"/>
+            <field name="status"></field>
+            <field name="orderDate"></field>
+    </form>
+</forms>

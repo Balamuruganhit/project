@@ -40,7 +40,7 @@ under the License.
         <tr>
             <td class="bolder">Customer Name:</td>
             <#if partyDetail?has_content>
-                <td colspan="3">${partyDetail.partyName}</td>
+                <td colspan="3">${partyDetail.customerName}</td>
             <#else>
                 <td colspan="3"></td>
             </#if>
@@ -51,8 +51,8 @@ under the License.
                 <td ></td>
             </#if>
             <td class="bolder">Date:</td>
-            <#if orderDate?has_content>
-                <td >${orderDate}</td>
+            <#if partyDetail.orderDate?has_content>
+                <td >${partyDetail.orderDate}</td>
             <#else>
                 <td></td>
             </#if>
@@ -61,10 +61,10 @@ under the License.
             <td class="bolder">Product ID:</td>
             <td colspan="3">${productionRunData.productId} </td>
             <td class="bolder">WO No:</td>
-            <td ><input style="border:none;" value="${productionRunData.productionRunId}" id="production"/></td>
+            <td >${partyDetail.workOrderNumber}</td>
             <td class="bolder">Date:</td>
-            <#if productionRunData.actualCompletionDate?has_content>
-                <td >${productionRunData.actualCompletionDate}</td>
+            <#if workDate?has_content>
+                <td >${workDate}</td>
             <#else>
                 <td ></td>
             </#if>
@@ -84,17 +84,19 @@ under the License.
             <td colspan="3">${quantity}</td>
             <td class="bolder">Production Run Description:</td>
             <#if productionRunData.description? has_content>
-            <td colspan="3">${productionRunData.description}</td>
+            <td>${productionRunData.description}</td>
             <#else>
-            <td colspan="3"></td>
+            <td ></td>
             </#if>
+            <td class="bolder">Production Run No:</td>
+            <td >${productionRunData.productionRunId}</td>
         </tr>
         <tr>
             <td class="bolder">Expected Completion/Delivery Date:</td>
             <td colspan="3">${productionRunData.estimatedCompletionDate}</td>
             <td class="bolder">Product Type:</td>
             <#if partyDetail?has_content>
-                <td colspan="3">${partyDetail.poNumber}</td>
+                <td colspan="3">${partyDetail.productType}</td>
             <#else>
                 <td colspan="3"></td>
             </#if>

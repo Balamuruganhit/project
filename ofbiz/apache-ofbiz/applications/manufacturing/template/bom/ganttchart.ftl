@@ -18,13 +18,14 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+
 <div style="position:relative" class="gantt" id="GanttChartDIV"></div>
 <script type="application/javascript">
-var g = new JSGantt.GanttChart('g',document.getElementById('GanttChartDIV'), 'hour');
+var g = new JSGantt.GanttChart('g',document.getElementById('GanttChartDIV'), 'day');
 
-g.setShowRes(1); // Show/Hide Responsible (0/1)
+g.setShowRes(0); // Show/Hide Responsible (0/1)
 g.setShowDur(1); // Show/Hide Duration (0/1)
-g.setShowComp(1); // Show/Hide % Complete(0/1)
+g.setShowComp(0); // Show/Hide % Complete(0/1)
 
 // Parameters             (pID, pName,                  pStart,      pEnd,        pColor,   pLink,          pMile, pRes,  pComp, pGroup, pParent, pOpen)
 
@@ -33,7 +34,7 @@ g.setShowComp(1); // Show/Hide % Complete(0/1)
         g.AddTaskItem(new JSGantt.TaskItem("${t.phaseNr}", "${t.phaseSeqNum!}. ${t.phaseName}", "", "", "00ff00", "", 0, "", 0, 1, 0, 1));
     </#if>
     <#if "TASK" == t.workEffortTypeId>
-        g.AddTaskItem(new JSGantt.TaskItem("${t.taskNr}","${t.taskSeqNum!}. ${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","009900", "${t.url}", 0 , "${t.resource!}", ${t.completion!} , 0, ${t.phaseNr}, 1<#if t.preDecessor??>, "${t.preDecessor}"</#if>));
+        g.AddTaskItem(new JSGantt.TaskItem("${t.taskNr}","${t.taskSeqNum!}. ${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","009900", "${t.url}", 0 , "${t.resource!}", ${t.completion!} , 0, ${t.phaseNr}, 1, ${t.phaseNr} ));
     </#if>
     <#if "MILESTONE" == t.workEffortTypeId>
         g.AddTaskItem(new JSGantt.TaskItem("${t.taskNr}","${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","00ff00", "", 1 , "${t.resource!}", ${t.completion!} , 0,${t.phaseNr}, "", "" ));

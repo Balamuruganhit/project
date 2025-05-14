@@ -18,6 +18,7 @@
  */
  
 import org.apache.ofbiz.manufacturing.jobshopmgt.ProductionRun
+import org.apache.ofbiz.base.util.UtilDateTime
 productionRunId = parameters.workEffort
 
 logInfo('Uploaded file found; processing sub-content'+ productionRunId)
@@ -66,12 +67,11 @@ if (productionRunId) {
         }
         logInfo('Uploaded file found; processing sub-content'+ productionRunComponents)
     }
-    partyDetail=from("partyOrder").where('productionRunId',productionRunId).queryOne()
-    if(partyDetail){
-    logInfo('Uploaded file found; processing sub-content'+ partyDetail)
-
-    context.orderDate=partyDetail.orderDate.toLocalDate().toString()
-    
+    workorder=from("partyOrder").where('productionRunId',productionRunId).queryOne()
+    if(workorder){
+    partyDetail=from("WorkOrder").where('workOrderNumber',workorder.poNumber).queryOne()
+    context.workDate=UtilDateTime.toDateString(partyDetail.createdStamp , "MM/dd/yyyy")
+    logInfo('party'+ partyDetail)
     context.partyDetail=partyDetail
     }
 }

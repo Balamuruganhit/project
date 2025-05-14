@@ -90,6 +90,26 @@ under the License.
         <security https="true" auth="true"/>
         <response name="success" type="view" value="OrderHistory"/>
     </request-map>
+    <!-- Work Order -->
+    <request-map uri="createWorkOrder">
+        <security https="true" auth="true"/>
+        <event type="service" path="" invoke="createWorkOrder"/>
+        <response name="success" type="view" value="WorkOrder"/>
+        <response name="error" type="view" value="WorkOrder"/>
+    </request-map>
+    
+    <request-map uri="LookupPoNumber">
+        <security auth="true" https="true"/>
+        <response name="success" type="view" value="LookupPoNumber"/>
+    </request-map>
+    <request-map uri="FindWorkOrder">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="FindWorkOrder"/>
+    </request-map>
+    <request-map uri="WorkOrder">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="WorkOrder"/>
+    </request-map>
     <request-map uri="sendPOEmail">
         <security https="true" auth="true"/>
         <event type="service" path="" invoke="sendPOEmail"/>
@@ -2203,7 +2223,9 @@ under the License.
     <view-map name="splitship" type="screen" page="component://order/widget/ordermgr/OrderEntryOrderScreens.xml#splitship"/>
     <view-map name="AddOrderAttachments" type="screen" page="component://order/widget/ordermgr/OrderViewScreens.xml#AddOrderAttachments"/>
 
-
-
+    <!-- workOrder -->
+     <view-map name="LookupPoNumber" type="screen" page="component://order/widget/ordermgr/workorderScreens.xml#LookupPoNumber"/>
+    <view-map name="WorkOrder" type="screen" page="component://order/widget/ordermgr/workorderScreens.xml#WorkOrder"/>
+    <view-map name="FindWorkOrder" type="screen" page="component://order/widget/ordermgr/workorderScreens.xml#FindWorkOrder"/>
     <!-- end of view mappings -->
 </site-conf>

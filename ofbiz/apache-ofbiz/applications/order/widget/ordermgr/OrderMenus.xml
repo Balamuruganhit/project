@@ -82,6 +82,9 @@ under the License.
         <menu-item name="allocationPlan" title="${uiLabelMap.OrderAllocationPlan}">
             <link target="FindAllocationPlan"/>
         </menu-item>
+        <menu-item name="workOrder" title="Work Order">
+            <link target="WorkOrder"/>
+        </menu-item>
     </menu>
     <menu name="MainActionMenu" menu-container-style="button-bar button-style-2" default-selected-style="selected">
         <menu-item name="NewOrder" title="${uiLabelMap.CommonNew} ${uiLabelMap.CommonOrder}">
@@ -132,6 +135,14 @@ under the License.
                 </or>
             </condition>
             <link target="CreateAllocationPlan"/>
+        </menu-item>
+        <menu-item name="workOrder" title="${uiLabelMap.CommonNew} Work Order">
+            <condition>
+                <or>
+                   <if-has-permission permission="ORDERMGR" action="_CREATE"/>
+                </or>
+            </condition>
+            <link target="WorkOrder"/>
         </menu-item>
     </menu>
 

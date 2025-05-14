@@ -89,6 +89,67 @@ under the License.
             </hyperlink>
         </field>
     </grid>
-
-
+    <form name="ListWorkOrder" type="list" use-row-submit="true" target="ViewWorkOrder"  title="" list-name="ListWorkOrder"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar" paginate-target="">
+        <auto-fields-entity entity-name="WorkOrder" default-field-type="display"/>
+            <field name="workOrderNumber" widget-style="buttontext">
+                <hyperlink description="${workOrderNumber}" >
+                    <parameter param-name="workOrderNumber"/>
+                </hyperlink>
+                
+            </field>
+            <field name="productId">
+            </field>
+            <field name="listActivate"><hidden value="activate"/></field>
+            <field name="customerName"></field>
+            <field name="productName"></field>
+            <field name="productDescription"></field>
+            <field name="deliveryDate" title="Planned Delivery Date"></field>
+            <field name="orderNumber" />
+            <field name="status"></field>
+            <field name="orderDate"></field>
+            <field name="submitButton" title="View"><submit/></field>
+    </form>
+    <form name="UpdateWorkOrder" type="single" target="ViewWorkOrder" title="" default-map-name="workOrder"
+        header-row-style="header-row" default-table-style="basic-table">
+        <auto-fields-entity entity-name="WorkOrder" default-field-type="display"/>
+            <field name="workOrderNumber"></field>
+            <field name="update"><hidden value="update"/></field>
+            <field name="productId">
+                </field>
+            <field name="customerName"></field>
+            <field name="productName"></field>
+            <field name="productDescription"></field>
+            <field name="deliveryDate" title="Planned Delivery Date"></field>
+            <field name="orderNumber" title="PO / SO Number"/>
+            <field name="status">
+                <drop-down>
+                <entity-options entity-name="workOrderStatus" key-field-name="orderStatus" description="${orderStatus}">
+                    
+                </entity-options>
+             </drop-down>
+            </field>
+            <field name="orderDate"></field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}"><submit/></field>
+    </form>
+    <form name="ListLinkedProduction" type="list" use-row-submit="true" target=""  title="" list-name="ListWorkOrder"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar" paginate-target="">
+        <auto-fields-entity entity-name="WorkOrder" default-field-type="display"/>
+            <field name="workOrderNumber" widget-style="buttontext">
+                <hyperlink description="${workOrderNumber}" target="EditQuoteItemForRequest">
+                    <parameter param-name="workOrderNumber"/>
+                </hyperlink>
+                
+            </field>
+            <field name="productId">
+            </field>
+            <field name="customerName"></field>
+            <field name="productName"></field>
+            <field name="productDescription"></field>
+            <field name="deliveryDate"></field>
+            <field name="orderNumber" title=""/>
+            <field name="status"></field>
+            <field name="orderDate"></field>
+            <field name="submitButton" title="View"><submit/></field>
+    </form>
 </forms>
