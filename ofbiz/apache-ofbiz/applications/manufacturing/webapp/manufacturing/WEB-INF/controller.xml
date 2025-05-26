@@ -36,53 +36,7 @@ under the License.
         <event name="test" type="java" path="org.apache.ofbiz.webapp.event.TestEvent" invoke="test"/>
     </postprocessor>
     -->
-    
 
-    <request-map uri="productionSelection">
-        <security https="true" auth="true"/>
-        <response name="success" type="view" value="productionSelection" />
-    </request-map>
-
-   <request-map uri="productionCard">
-        <security auth="true" https="true"/>
-        <response name="success" type="view" value="productionCard"/>
-    </request-map>
-    <request-map uri="ListWorkOrder">
-        <security auth="true" https="true"/>
-        <response name="success" type="view" value="ListWorkOrder"/>
-    </request-map>
-    <request-map uri="WorkOrder">
-        <security auth="true" https="true"/>
-        <response name="success" type="view" value="workorder"/>
-    </request-map>
-    <request-map uri="ViewWorkOrder">
-        <security auth="true" https="true"/>
-        <response name="success" type="view" value="workorder"/>
-    </request-map>
-    <request-map uri="Report.pdf">
-        <security https="true" auth="true"/>
-        <response name="success" type="view" value="ReportPdf"/>
-        <response name="error" type="view" value="Export"/>
-    </request-map>
-    <request-map uri="GanttChart">
-        <security https="true" auth="true"/>
-        <response name="success" type="view" value="GanttChart"/>
-        <response name="error" type="view" value="Export"/>
-    </request-map>
-    <request-map uri="createPlantContent">
-        <security auth="true" https="true"/>
-        <event type="simple" path="component://manufacturing/minilang/report/PlantSimpleEvents.xml" invoke="createPlantContent"/>
-        <response name="success" type="request-redirect" value="productionPlantDocumentation">
-            <redirect-parameter name="partyId"></redirect-parameter>
-        </response>
-    </request-map>
-    <request-map uri="updatePlantContent">
-        <security auth="true" https="true"/>
-        <event type="simple" path="component://party/minilang/party/PartySimpleEvents.xml" invoke="updatePlantContent"/>
-        <response name="success" type="request-redirect" value="productionPlantDocumentation">
-            <redirect-parameter name="partyId"></redirect-parameter>
-        </response>
-    </request-map>
     <!-- Request Mappings -->
     <request-map uri="view">
         <security https="true" auth="true"/>
@@ -102,10 +56,6 @@ under the License.
     <request-map uri="LookupCustomerName">
         <security auth="true" https="true"/>
         <response name="success" type="view" value="LookupCustomerName"/>
-    </request-map>
-    <request-map uri="LookupPoNumber">
-        <security auth="true" https="true"/>
-        <response name="success" type="view" value="LookupPoNumber"/>
     </request-map>
     <request-map uri="LookupRouting">
         <security https="true" auth="true"/>
@@ -544,7 +494,7 @@ under the License.
     </request-map>
     <request-map uri="ShowProductionRun">
         <security https="true" auth="true"/>
-        <event type="groovy" path="component://manufacturing/groovyScripts/jobshopmgt/ShowProductionRun.groovy"/>
+        <event type="groovy" path="component://manufacturing/src/main/groovy/org/apache/ofbiz/manufacturing/jobshopmgt/ShowProductionRun.groovy"/>
         <response name="docs_not_printed" type="view" value="EditProductionRun"/>
         <response name="docs_printed" type="view" value="ProductionRunDeclaration"/>
         <response name="error" type="view" value="FindProductionRun"/>
@@ -876,8 +826,6 @@ under the License.
 
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://manufacturing/widget/manufacturing/JobshopScreens.xml#FindProductionRun"/>
-    <view-map name="successScreen" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#successUpload"/>
-    <view-map name="errorScreen" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#ErrorUpload"/>
 
     <!-- Routing view mappings -->
     <view-map name="FindCalendar" type="screen" page="component://manufacturing/widget/manufacturing/CalendarScreens.xml#FindCalendar"/>
@@ -901,7 +849,6 @@ under the License.
     <view-map name="EditRoutingTaskParties" type="screen" page="component://manufacturing/widget/manufacturing/RoutingScreens.xml#EditRoutingTaskParties"/>
     <view-map name="EditRoutingTaskSkills" type="screen" page="component://manufacturing/widget/manufacturing/RoutingScreens.xml#EditRoutingTaskSkills"/>
     <!-- Lookup view mappings -->
-    <view-map name="LookupPoNumber" type="screen" page="component://manufacturing/widget/manufacturing/LookupScreens.xml#LookupPoNumber"/>   
     <view-map name="LookupPartyName" type="screen" page="component://party/widget/partymgr/LookupScreens.xml#LookupPartyName"/>
     <view-map name="LookupCustomerName" type="screen" page="component://party/widget/partymgr/LookupScreens.xml#LookupCustomerName"/>
     <view-map name="LookupProduct" type="screen" page="component://product/widget/catalog/LookupScreens.xml#LookupProduct"/>
@@ -926,11 +873,6 @@ under the License.
     <view-map name="MrpExecution" type="screen" page="component://manufacturing/widget/manufacturing/MrpScreens.xml#MrpExecution"/>
     <view-map name="RunMrpGo" page="component://manufacturing/widget/manufacturing/MrpScreens.xml#RunMrpGo" type="screen"/>
     <view-map name="ManufacturingReports" type="screen" page="component://manufacturing/widget/manufacturing/ReportScreens.xml#ManufacturingReports"/>
-    <view-map name="productionCard" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionPlantDocumentation"/>
-    <view-map name="ListWorkOrder" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#WorkOrder"/>
-    <view-map name="workorder" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#WorkOrders"/>
-    <view-map name="productionSelection" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#productionSelection"/>
-    <view-map name="GanttChart" type="screen" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#GanttChart"/>
 
     <!-- JobShop Management view mappings -->
     <view-map name="CreateProductionRun" type="screen" page="component://manufacturing/widget/manufacturing/JobshopScreens.xml#CreateProductionRun"/>
@@ -964,6 +906,4 @@ under the License.
     <view-map name="SPPRunsComponentsByFeature" type="screenfop" page="component://manufacturing/widget/manufacturing/ReportScreens.xml#SPPRunsComponentsByFeature" content-type="application/pdf" encoding="none"/>
     <view-map name="PRunsInfoAndOrder" type="screenfop" page="component://manufacturing/widget/manufacturing/ReportScreens.xml#PRunsInfoAndOrder" content-type="application/pdf" encoding="none"/>
     <!-- end of view mappings -->
-    <view-map name="ReportPdf" type="screenfop" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#ReportPdf" content-type="application/pdf" encoding="none"/>
-
 </site-conf>

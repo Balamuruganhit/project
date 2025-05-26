@@ -22,5 +22,5 @@ plugins {
 }
 
 node {
-    nodeProjectDir = file('webapp/common/js')
+    nodeProjectDir = file('webapp/common-theme/js')
 }

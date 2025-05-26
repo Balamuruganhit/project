@@ -19,7 +19,7 @@ under the License.
 <#escape x as x?xml>
     <#-- list of orders -->
     <#if orders?has_content>
-    <fo:table table-layout="fixed" width="100%" border="1px solid black">
+    <fo:table table-layout="fixed" width="100%">
         <fo:table-column column-width="1in"/>
         <fo:table-column column-width="5.5in"/>
 
@@ -62,28 +62,28 @@ under the License.
     </fo:table>
     </#if>
 
-    <fo:table table-layout="fixed" border-spacing="3pt" border="0.5pt solid black" width="19.6cm">
-    <fo:table-column column-width="20.2%"/>
-            <fo:table-column column-width="20%"/>
-            <fo:table-column column-width="20%"/>
-            <fo:table-column column-width="20%"/>
-            <fo:table-column column-width="20%"/>
+    <fo:table table-layout="fixed" width="100%" space-before="0.2in">
+    <fo:table-column column-width="20mm"/>
+    <fo:table-column column-width="85mm"/>
+    <fo:table-column column-width="15mm"/>
+    <fo:table-column column-width="25mm"/>
+    <fo:table-column column-width="25mm"/>
 
     <fo:table-header height="14px">
-      <fo:table-row border="0.5pt solid black" background-color="#D3D3D3">
-        <fo:table-cell padding="5pt" border="0.5pt solid black" font-weight="bold">
+      <fo:table-row border-bottom-style="solid" border-bottom-width="thin" border-bottom-color="black">
+        <fo:table-cell>
           <fo:block font-weight="bold">${uiLabelMap.AccountingProduct}</fo:block>
         </fo:table-cell>
-        <fo:table-cell padding="5pt" border="0.5pt solid black" font-weight="bold">
+        <fo:table-cell>
           <fo:block font-weight="bold">${uiLabelMap.CommonDescription}</fo:block>
         </fo:table-cell>
-        <fo:table-cell padding="5pt" border="0.5pt solid black" font-weight="bold">
+        <fo:table-cell>
           <fo:block font-weight="bold" text-align="right">${uiLabelMap.CommonQty}</fo:block>
         </fo:table-cell>
-        <fo:table-cell padding="5pt" border="0.5pt solid black" font-weight="bold">
+        <fo:table-cell>
           <fo:block font-weight="bold" text-align="right">${uiLabelMap.AccountingUnitPrice}</fo:block>
         </fo:table-cell>
-        <fo:table-cell padding="5pt" border="0.5pt solid black" font-weight="bold">
+        <fo:table-cell>
           <fo:block font-weight="bold" text-align="right">${uiLabelMap.CommonAmount}</fo:block>
         </fo:table-cell>
       </fo:table-row>
@@ -130,19 +130,19 @@ under the License.
             </#if>
             <#if !isItemAdjustment>
                 <fo:table-row height="14px" space-start=".15in">
-                    <fo:table-cell padding="5pt" border="0.5pt solid black">
+                    <fo:table-cell>
                         <fo:block text-align="left">${invoiceItem.productId!} </fo:block>
                     </fo:table-cell>
-                    <fo:table-cell padding="5pt" border="0.5pt solid black">
+                    <fo:table-cell border-top-style="solid" border-top-width="thin" border-top-color="black">
                         <fo:block text-align="left">${description!}</fo:block>
                     </fo:table-cell>
-                      <fo:table-cell padding="5pt" border="0.5pt solid black">
+                      <fo:table-cell>
                         <fo:block text-align="right"> <#if invoiceItem.quantity??>${invoiceItem.quantity?string.number}</#if> </fo:block>
                     </fo:table-cell>
-                    <fo:table-cell text-align="right" padding="5pt" border="0.5pt solid black">
+                    <fo:table-cell text-align="right">
                         <fo:block> <#if invoiceItem.quantity??><@ofbizCurrency amount=invoiceItem.amount! isoCode=invoice.currencyUomId!/></#if> </fo:block>
                     </fo:table-cell>
-                    <fo:table-cell text-align="right" padding="5pt" border="0.5pt solid black">
+                    <fo:table-cell text-align="right">
                         <fo:block> <@ofbizCurrency amount=(Static["org.apache.ofbiz.accounting.invoice.InvoiceWorker"].getInvoiceItemTotal(invoiceItem)) isoCode=invoice.currencyUomId!/> </fo:block>
                     </fo:table-cell>
                 </fo:table-row>

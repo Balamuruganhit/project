@@ -16,33 +16,23 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<div class="botHolder">
-<img class="botImg" src="/flatgrey/images/bot-removebg.png" id="bot-img" alt="hello">
-<div class="chat-container" id="chat-holder">
-    <button id="close-btn">X</button>
-    <div id="chat-box" class="chat-box">
-      <!-- Messages will be dynamically added here -->
-    </div>
-   
-    <div class="chat-input">
-        <input type="text" id="user-input" placeholder="Type your message here..." />
-        <button id="send-btn">Send</button>
-    </div>
-</div>
-</div>
 <div id="footer">
     <ul>
         <li class="first">${nowTimestamp?datetime?string.short} - <a href="<@ofbizUrl>ListTimezones</@ofbizUrl>">${timeZone.toZoneId().getDisplayName(Static["java.time.format.TextStyle"].FULL_STANDALONE, locale)}</a></li>
         <li><a href="<@ofbizUrl>ListLocales</@ofbizUrl>">${locale.getDisplayName(locale)}</a></li>
         <li class="last"><a href="<@ofbizUrl>ListVisualThemes</@ofbizUrl>">${uiLabelMap.CommonVisualThemes}</a></li>
     </ul>
-  <div id="footer">
-    <span>${nowTimestamp?datetime?string.short} - <a href="<@ofbizUrl>ListTimezones</@ofbizUrl>">${timeZone.toZoneId().getDisplayName(Static["java.time.format.TextStyle"].FULL_STANDALONE, locale)}</a></span>
-    <span><a href="http://www.pangun.tech" class="noicon">Pangun NeoERP @</a> ${uiLabelMap.CommonCopyright}  2023-${nowTimestamp?string("yyyy")}
-        <a href=""http://www.pangun.tech"" target="_blank">Pangun Technologies</a>.
-       
-    </span>
-</div>
+  <p>
+    <div class="poweredBy"><span class="footerTextColour">${uiLabelMap.CommonPoweredBy}
+        <a href="http://ofbiz.apache.org" class="noicon">OFBiz </a></span><span class="footerTextColour">Copyright 2001-${nowTimestamp?string("yyyy")}
+        <a href="http://www.apache.org" class="noicon">The Apache Software Foundation - www.apache.org</a></span>
+        <span class="footerTextColour">
+            ${uiLabelMap.CommonRelease} <#include "ofbizhome://VERSION" ignore_missing=true/>
+            <#include "ofbizhome://runtime/GitInfo.ftl" ignore_missing=true/>
+        </span>
+    </div>
+
+  </p>
 </div>
 </div>
 <#if layoutSettings.VT_FTR_JAVASCRIPT?has_content>

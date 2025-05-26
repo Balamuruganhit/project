@@ -18,6 +18,9 @@
 
 # Syntax: ./pullAllPluginsSource.sh
 
+# Not needed, see https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#exit-codes-and-error-action-preference
+# set -e
+
 # Whatever, create anew
 if [ -d "plugins" ]
     then
@@ -30,6 +33,7 @@ branch=$(git branch --show-current)
 git clone --depth 1 --single-branch --branch $branch https://github.com/apache/ofbiz-plugins.git plugins
 
 # remove .git, in this case it's useless information
-cd plugins
-rm -rf .git
-cd ..
+ if [ -d "plugins" ]
+     then
+        rm -rf plugins/.git
+fi

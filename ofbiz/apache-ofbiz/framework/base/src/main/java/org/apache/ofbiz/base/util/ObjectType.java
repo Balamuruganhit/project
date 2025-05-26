@@ -45,8 +45,8 @@ public class ObjectType {
 
     public static final Object NULL = new NullObject();
 
-    public static final String LANG_PACKAGE = "java.lang."; // We will test both the raw value and this + raw value
-    public static final String SQL_PACKAGE = "java.sql.";   // We will test both the raw value and this + raw value
+    private static final String LANG_PACKAGE = "java.lang."; // We will test both the raw value and this + raw value
+    private static final String SQL_PACKAGE = "java.sql.";   // We will test both the raw value and this + raw value
 
     private static final Map<String, String> CLASS_ALIAS = new HashMap<>();
     private static final Map<String, Class<?>> PRIMITIVES = new HashMap<>();
@@ -223,7 +223,7 @@ public class ObjectType {
         return obj == null || infoClass.isInstance(obj);
     }
 
-    public static Class<?> loadInfoClass(String typeName, ClassLoader loader) {
+    private static Class<?> loadInfoClass(String typeName, ClassLoader loader) {
         try {
             return loadClass(typeName, loader);
         } catch (SecurityException se1) {
@@ -330,6 +330,11 @@ public class ObjectType {
         }
 
         if (converter != null) {
+            // numeric types : replace everything that's not in [:IsAlnum:] or [:IsPunct:] classes by an empty string
+            if (obj instanceof String && Number.class.isAssignableFrom((targetClass))) {
+                obj = ((String) obj).replaceAll("[^\\p{IsAlnum}\\p{IsPunct}]", "");
+            }
+
             if (converter instanceof LocalizedConverter) {
                 LocalizedConverter<Object, Object> localizedConverter = UtilGenerics.cast(converter);
                 if (timeZone == null) {
@@ -648,7 +653,7 @@ public class ObjectType {
 
     @SuppressWarnings("serial")
     public static final class NullObject implements Serializable {
-        public NullObject() { }
+        NullObject() { }
 
         @Override
         public String toString() {

@@ -18,18 +18,19 @@ under the License.
 -->
 <#escape x as x?xml>
 <fo:table table-layout="fixed" width="100%" space-after="0.3in">
-   <fo:table-column column-width="3.9in"/>
-   <fo:table-column column-width="3.9in"/>
+   <fo:table-column column-width="3.5in"/>
+   <fo:table-column column-width="3.5in"/>
     <fo:table-body>
       <fo:table-row >
         <fo:table-cell>
-          <fo:block visibility="hidden">_______________________________</fo:block>
+          <fo:block>_______________________________</fo:block>
       </fo:table-cell>
-       
+        <fo:table-cell>
+          <fo:block>_______________________________</fo:block>
+      </fo:table-cell>
     </fo:table-row>
-    
-      <fo:table-row border="1pt solid black"  >
-        <fo:table-cell padding="9px">
+      <fo:table-row >
+        <fo:table-cell>
           <fo:block>${uiLabelMap.CommonTo}: </fo:block>
             <#if billingAddress??>
                 <#assign billToPartyNameResult = dispatcher.runSync("getPartyNameForDate", Static["org.apache.ofbiz.base.util.UtilMisc"].toMap("partyId", billToParty.partyId, "compareDate", invoice.invoiceDate, "userLogin", userLogin))/>

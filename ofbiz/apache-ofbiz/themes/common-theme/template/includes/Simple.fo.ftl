@@ -30,7 +30,7 @@ under the License.
       <fo:region-after extent="0.5in"/>
     </fo:simple-page-master>
     <fo:simple-page-master master-name="simple-landscape"
-        page-width="27in" page-height="8.5in"
+        page-width="11in" page-height="8.5in"
         margin-top="0.3in" margin-bottom="0.3in"
         margin-left="0.4in" margin-right="0.3in">
       <fo:region-body margin-top="1in" margin-bottom="0.5in"/>
@@ -60,73 +60,38 @@ under the License.
                 </#if>
               </fo:block>
             </fo:table-cell>
-            <fo:table-cell >
+            <fo:table-cell>
               <#-- The title of the report -->
-              <#if ender?has_content>
-              <fo:block text-align="end">
-                <fo:block font-weight="bold" text-decoration="underline" space-after="0.03in">
-                  <#if titleProperty??>${uiLabelMap.get(titleProperty)}<#else>${title!}</#if>
-                </fo:block>
-                <#-- Username and date -->
-                <fo:list-block provisional-distance-between-starts="1in">
-                  <fo:list-item>
-                    <fo:list-item-label>
-                      <fo:block font-weight="bold"></fo:block>
-                    </fo:list-item-label>
-                    <fo:list-item-body start-indent="body-start()">
-                      <fo:block><#if currentOrganization??>${uiLabelMap.CommonCompany} : ${currentOrganization.partyId} - ${currentOrganization.groupName}</#if></fo:block>
-                    </fo:list-item-body>
-                  </fo:list-item>
-                  <fo:list-item>
-                    <fo:list-item-label>
-                      <fo:block font-weight="bold"></fo:block>
-                    </fo:list-item-label>
-                    <fo:list-item-body start-indent="body-start()">
-                      <fo:block><#if userLogin??>${uiLabelMap.CommonUsername} - ${userLogin.userLoginId!}</#if></fo:block>
-                    </fo:list-item-body>
-                  </fo:list-item>
-                  <fo:list-item>
-                    <fo:list-item-label>
-                      <fo:block font-weight="bold"></fo:block>
-                    </fo:list-item-label>
-                    <fo:list-item-body start-indent="body-start()">
-                      <fo:block>${uiLabelMap.CommonDate} - ${nowTimestamp!}</fo:block>
-                    </fo:list-item-body>
-                  </fo:list-item>
-                </fo:list-block>
+              <fo:block font-weight="bold" text-decoration="underline" space-after="0.03in">
+                <#if titleProperty??>${uiLabelMap.get(titleProperty)}<#else>${title!}</#if>
               </fo:block>
-              <#else>
-                <fo:block font-weight="bold" text-decoration="underline" space-after="0.03in">
-                  <#if titleProperty??>${uiLabelMap.get(titleProperty)}<#else>${title!}</#if>
-                </fo:block>
-                <#-- Username and date -->
-                <fo:list-block provisional-distance-between-starts="1in">
-                  <fo:list-item>
-                    <fo:list-item-label>
-                      <fo:block font-weight="bold">${uiLabelMap.CommonCompany} :</fo:block>
-                    </fo:list-item-label>
-                    <fo:list-item-body start-indent="body-start()">
-                      <fo:block><#if currentOrganization??> ${currentOrganization.partyId} - ${currentOrganization.groupName}</#if></fo:block>
-                    </fo:list-item-body>
-                  </fo:list-item>
-                  <fo:list-item>
-                    <fo:list-item-label>
-                      <fo:block font-weight="bold">${uiLabelMap.CommonUsername}</fo:block>
-                    </fo:list-item-label>
-                    <fo:list-item-body start-indent="body-start()">
-                      <fo:block><#if userLogin??>${userLogin.userLoginId!}</#if></fo:block>
-                    </fo:list-item-body>
-                  </fo:list-item>
-                  <fo:list-item>
-                    <fo:list-item-label>
-                      <fo:block font-weight="bold">${uiLabelMap.CommonDate}</fo:block>
-                    </fo:list-item-label>
-                    <fo:list-item-body start-indent="body-start()">
-                      <fo:block>${nowTimestamp!}</fo:block>
-                    </fo:list-item-body>
-                  </fo:list-item>
-                </fo:list-block>
-              </#if>
+              <#-- Username and date -->
+              <fo:list-block provisional-distance-between-starts="1in">
+                <fo:list-item>
+                  <fo:list-item-label>
+                    <fo:block font-weight="bold">${uiLabelMap.CommonCompany}</fo:block>
+                  </fo:list-item-label>
+                  <fo:list-item-body start-indent="body-start()">
+                    <fo:block><#if currentOrganization??>${currentOrganization.partyId} - ${currentOrganization.groupName}</#if></fo:block>
+                  </fo:list-item-body>
+                </fo:list-item>
+                <fo:list-item>
+                  <fo:list-item-label>
+                    <fo:block font-weight="bold">${uiLabelMap.CommonUsername}</fo:block>
+                  </fo:list-item-label>
+                  <fo:list-item-body start-indent="body-start()">
+                    <fo:block><#if userLogin??>${userLogin.userLoginId!}</#if></fo:block>
+                  </fo:list-item-body>
+                </fo:list-item>
+                <fo:list-item>
+                  <fo:list-item-label>
+                    <fo:block font-weight="bold">${uiLabelMap.CommonDate}</fo:block>
+                  </fo:list-item-label>
+                  <fo:list-item-body start-indent="body-start()">
+                    <fo:block>${nowTimestamp!}</fo:block>
+                  </fo:list-item-body>
+                </fo:list-item>
+              </fo:list-block>
             </fo:table-cell>
           </fo:table-row>
         </fo:table-body>

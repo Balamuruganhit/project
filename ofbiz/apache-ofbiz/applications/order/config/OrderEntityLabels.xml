@@ -615,23 +615,6 @@
         <value xml:lang="zh">销售订单</value>
         <value xml:lang="zh-TW">銷售訂單</value>
     </property>
-    <property key="orderPrepared">
-        <value xml:lang="ar">أمر بيع</value>
-        <value xml:lang="de">Kundenauftrag</value>
-        <value xml:lang="en">Prepared By</value>
-        <value xml:lang="es">Pedido de Venta</value>
-        <value xml:lang="fr">Ventes</value>
-        <value xml:lang="it">Ordine di vendita</value>
-        <value xml:lang="ja">販売注文</value>
-        <value xml:lang="nl">Verkooporder</value>
-        <value xml:lang="pt-BR">Pedido de vendas</value>
-        <value xml:lang="ro">Vanzare</value>
-        <value xml:lang="ru">Продажи</value>
-        <value xml:lang="th">รายการขาย</value>
-        <value xml:lang="vi">Đặt hàng Bán</value>
-        <value xml:lang="zh">销售订单</value>
-        <value xml:lang="zh-TW">銷售訂單</value>
-    </property>
     <property key="OrderType.description.WORK_ORDER">
         <value xml:lang="de">Arbeitsauftrag</value>
         <value xml:lang="en">WORK_ORDER</value>

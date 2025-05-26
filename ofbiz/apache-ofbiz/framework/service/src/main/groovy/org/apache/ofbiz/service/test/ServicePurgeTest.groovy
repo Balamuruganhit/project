@@ -26,23 +26,25 @@ import org.apache.ofbiz.testtools.GroovyScriptTestCase
 
 class ServicePurgeTest extends GroovyScriptTestCase {
 
+// ./gradlew "ofbiz --test component=service --test suitename=servicetests --test case=service-purge-test"
+
     void testRuntimeDataIsCleanedAfterServicePurge() {
         GenericValue sysUserLogin = delegator.findOne('UserLogin', true, 'userLoginId', 'system')
         String jobId = delegator.getNextSeqId('JobSandbox')
 
-        def createRuntimeResult = dispatcher.runSync('createRuntimeData', [
+        Map createRuntimeResult = dispatcher.runSync('createRuntimeData', [
                 runtimeInfo: 'This is a runtimeInfo',
-                userLogin  : sysUserLogin
+                userLogin: sysUserLogin
         ])
         String runtimeDataId = createRuntimeResult.runtimeDataId
 
         dispatcher.runSync('createJobSandbox', [
-                userLogin     : sysUserLogin,
-                poolId        : ServiceConfigUtil.getServiceEngine().getThreadPool().getSendToPool(),
-                jobId         : jobId,
-                runtimeDataId : runtimeDataId,
-                statusId      : 'SERVICE_FINISHED',
-                serviceName   : 'sendMail',
+                userLogin: sysUserLogin,
+                poolId: ServiceConfigUtil.getServiceEngine().getThreadPool().getSendToPool(),
+                jobId: jobId,
+                runtimeDataId: runtimeDataId,
+                statusId: 'SERVICE_FINISHED',
+                serviceName: 'sendMail',
                 finishDateTime: UtilDateTime.addDaysToTimestamp(UtilDateTime.nowTimestamp(), -10)
         ])
 
@@ -51,4 +53,5 @@ class ServicePurgeTest extends GroovyScriptTestCase {
         assert EntityQuery.use(delegator).from('JobSandbox').where('jobId', jobId).queryCount() == 0
         assert EntityQuery.use(delegator).from('RuntimeData').where('runtimeDataId', runtimeDataId).queryCount() == 0
     }
+
 }

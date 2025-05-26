@@ -39,7 +39,7 @@ under the License.
     <test-suite loader="main" location="testdef/workefforttests.xml"/>
 
      <webapp name="workeffort"
-        title="Work Effort"
+        title="WorkEffort"
         position="9"
         server="default-server"
         location="webapp/workeffort"

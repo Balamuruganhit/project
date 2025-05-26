@@ -26,9 +26,9 @@ under the License.
 <#else>
   <#assign focusName = true>
 </#if>
-<div id="loginBar"><div id="company-logo-login"></div></div>
+<div id="loginBar"><span>${uiLabelMap.CommonBeLogged}</span><div id="company-logo"></div></div>
 <center>
-  <div class="screenlet login-screenlet" id="tester">
+  <div class="screenlet login-screenlet">
     <div class="screenlet-title-bar">
       <h3>${uiLabelMap.CommonRegistered}</h3>
     </div>

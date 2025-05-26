@@ -18,7 +18,7 @@
 # under the License.
 #####################################################################
 
-FROM eclipse-temurin:17 AS builder
+FROM eclipse-temurin:17@sha256:e8d451f3b5aa6422c2b00bb913cb8d37a55a61934259109d945605c5651de9a6 AS builder
 
 # Git is used for various OFBiz build tasks.
 RUN apt-get update \
@@ -47,7 +47,7 @@ COPY lib/ lib/
 # We use a regex to match the plugins directory to avoid a build error when the directory doesn't exist.
 COPY plugin[s]/ plugins/
 COPY themes/ themes/
-COPY APACHE2_HEADER build.gradle common.gradle gradle.properties NOTICE settings.gradle .
+COPY APACHE2_HEADER build.gradle common.gradle gradle.properties NOTICE settings.gradle dependencies.gradle .
 
 # Build OFBiz while mounting a gradle cache
 RUN --mount=type=cache,id=gradle-cache,sharing=locked,target=/root/.gradle \
@@ -56,7 +56,7 @@ RUN --mount=type=cache,id=gradle-cache,sharing=locked,target=/root/.gradle \
 
 ###################################################################################
 
-FROM eclipse-temurin:17 AS runtimebase
+FROM eclipse-temurin:17@sha256:e8d451f3b5aa6422c2b00bb913cb8d37a55a61934259109d945605c5651de9a6 AS runtimebase
 
 # xsltproc is used to disable OFBiz components during first run.
 RUN apt-get update \
@@ -78,8 +78,6 @@ USER ofbiz
 WORKDIR /ofbiz
 
 # Extract the OFBiz tar distribution created by the builder stage.
-COPY --from=builder /builder/build/distributions/ofbiz.tar /mnt/ofbiz.tar
-
 RUN --mount=type=bind,from=builder,source=/builder/build/distributions/ofbiz.tar,target=/mnt/ofbiz.tar \
     ["tar", "--extract", "--strip-components=1", "--file=/mnt/ofbiz.tar"]
 
@@ -97,10 +95,9 @@ COPY --chmod=555 docker/docker-entrypoint.sh docker/send_ofbiz_stop_signal.sh .
 COPY --chmod=444 docker/disable-component.xslt .
 COPY --chmod=444 docker/templates templates
 
-EXPOSE 9443
-EXPOSE 9090
-EXPOSE 5006
-
+EXPOSE 8443
+EXPOSE 8009
+EXPOSE 5005
 
 ENTRYPOINT ["/ofbiz/docker-entrypoint.sh"]
 CMD ["bin/ofbiz"]

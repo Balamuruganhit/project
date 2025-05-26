@@ -86,7 +86,7 @@
     </property>
     <property key="FacilityCompanyName">
         <value xml:lang="de">OFBiz: Anlagen Verwaltung</value>
-        <value xml:lang="en">Pangun Tech: Facility Manager</value>
+        <value xml:lang="en">OFBiz: Facility Manager</value>
         <value xml:lang="es">OFBiz: Administrador de Almacén</value>
         <value xml:lang="es-CL">OFBiz: Administrador de Bodegas</value>
         <value xml:lang="fr">OFBiz: Gestion de stock</value>
@@ -4587,7 +4587,7 @@
     </property>
     <property key="FormFieldTitle_correspondingProductId">
         <value xml:lang="de">Dazugehörige Produkt ID</value>
-        <value xml:lang="en">Corresponding Part Number</value>
+        <value xml:lang="en">Corresponding Product ID</value>
         <value xml:lang="es">Código de producto correspondiente</value>
         <value xml:lang="fr">Réf. d'article correspondant</value>
         <value xml:lang="it">Codice prodotto corrispondente</value>
@@ -6275,18 +6275,6 @@
         <value xml:lang="zh">指定的编号</value>
         <value xml:lang="zh-TW">指定編號</value>
     </property>
-    <property key="FormFieldTitle_oldPickStartDate">
-        <value xml:lang="de">Altes Kommissionierungs-Startdatum</value>
-        <value xml:lang="en">Old Pick Start Date</value>
-        <value xml:lang="es">Antigua fecha de recogida</value>
-        <value xml:lang="fr">Ancienne date de départ du prélèvement</value>
-        <value xml:lang="it">Vecchia Data Inizio Prelievo</value>
-        <value xml:lang="ja">前回ピッキング開始日</value>
-        <value xml:lang="th">วันที่เลือกเดิม</value>
-        <value xml:lang="vi">Ngày bắt đầu Xử lý đặt hàng (Pick) trước đây</value>
-        <value xml:lang="zh">旧的分拣开始日期</value>
-        <value xml:lang="zh-TW">舊的揀貨開始日期</value>
-    </property>
     <property key="FormFieldTitle_oneInventoryFacility">
         <value xml:lang="de">Eine Lagereinrichtung</value>
         <value xml:lang="en">One Inventory Facility</value>
@@ -6919,12 +6907,12 @@
     <property key="FormFieldTitle_productId">
         <value xml:lang="cs">ID produktu</value>
         <value xml:lang="de">Produkt ID</value>
-        <value xml:lang="en">Part Number</value>
+        <value xml:lang="en">Product ID</value>
         <value xml:lang="es">Código de producto</value>
         <value xml:lang="fr">Réf. produit</value>
         <value xml:lang="it">Codice prodotto</value>
         <value xml:lang="ja">製品ID</value>
-        <value xml:lang="nl">Part Number</value>
+        <value xml:lang="nl">Product ID</value>
         <value xml:lang="ro">Cod Produs</value>
         <value xml:lang="ru">Код продукта</value>
         <value xml:lang="th">รหัสสินค้า</value>
@@ -7414,6 +7402,21 @@
         <value xml:lang="vi">Thông tin lặp lại</value>
         <value xml:lang="zh">重复使用信息标识</value>
         <value xml:lang="zh-TW">重複使用資訊識別</value>
+    </property>
+    <property key="FormFieldTitle_redeemedCodesCount">
+        <value xml:lang="de">Eingelöst</value>
+        <value xml:lang="en">Redeemed</value>
+        <value xml:lang="es">Redimido</value>
+        <value xml:lang="fr">Encaissé</value>
+        <value xml:lang="it">Riscattato</value>
+        <value xml:lang="ja">止揚された</value>
+        <value xml:lang="nl">Afgelost</value>
+        <value xml:lang="ro">Răscumpărat</value>
+        <value xml:lang="ru">выкуплено</value>
+        <value xml:lang="th">แลกแล้ว</value>
+        <value xml:lang="vi">Chuộc lại</value>
+        <value xml:lang="zh">赎回了</value>
+        <value xml:lang="zh-TW">贖回了</value>
     </property>
     <property key="FormFieldTitle_rejectionId">
         <value xml:lang="de">Ablehnung ID</value>
@@ -8271,7 +8274,7 @@
     </property>
     <property key="FormFieldTitle_supplierProductId">
         <value xml:lang="de">Lieferant Produkt ID</value>
-        <value xml:lang="en">Supplier Part Number</value>
+        <value xml:lang="en">Supplier Product ID</value>
         <value xml:lang="es">Código de producto del proveedor</value>
         <value xml:lang="fr">Réf. de l'article chez le fournisseur </value>
         <value xml:lang="it">Codice prodotto fornitore</value>
@@ -8285,7 +8288,7 @@
     </property>
     <property key="FormFieldTitle_supplierProductName">
         <value xml:lang="de">Lieferant Produkt Name</value>
-        <value xml:lang="en">Supplier Drawing Number</value>
+        <value xml:lang="en">Supplier Product Name</value>
         <value xml:lang="es">Nombre de producto del proveedor</value>
         <value xml:lang="fr">Nom chez le fournisseur</value>
         <value xml:lang="it">Nome Prodotto Fornitore</value>
@@ -8829,7 +8832,7 @@
     </property>
     <property key="ImageManagementChooseProductID">
         <value xml:lang="de">Wähle Produkt ID</value>
-        <value xml:lang="en">Choose Part Number</value>
+        <value xml:lang="en">Choose Product ID</value>
         <value xml:lang="es">Elegir ID de Producto</value>
         <value xml:lang="es-CL">Elegir Producto</value>
         <value xml:lang="ja">製品IDを選択</value>
@@ -9167,7 +9170,7 @@
         <value xml:lang="es">"Identificación de la instalación de inventario requerida"</value>
         <value xml:lang="zh">必须有库存场所标识</value>
     </property>
-    
+
     <property key="lotIdFilledInAllowed">
         <value xml:lang="de">Erlaubt</value>
         <value xml:lang="en">Allowed</value>
@@ -11198,6 +11201,7 @@
         <value xml:lang="zh-TW">尋找分類</value>
     </property>
     <property key="PageTitleFindCatalog">
+        <value xml:lang="de">Katalog suchen</value>
         <value xml:lang="en">Find Catalog</value>
         <value xml:lang="es">Buscar Catálogo</value>
         <value xml:lang="fr">Recherche de catalogues</value>
@@ -11397,6 +11401,21 @@
         <value xml:lang="vi">Tìm mã khuyến mại sản phẩm</value>
         <value xml:lang="zh">查找产品促销代码</value>
         <value xml:lang="zh-TW">尋找產品促銷代碼</value>
+    </property>
+    <property key="PageTitleFindProductPromotionCodeRedeemed">
+        <value xml:lang="de">eingelöst</value>
+        <value xml:lang="en">redeemed</value>
+        <value xml:lang="es">redimido</value>
+        <value xml:lang="fr">encaissé</value>
+        <value xml:lang="it">riscattato</value>
+        <value xml:lang="ja">止揚された</value>
+        <value xml:lang="nl">afgelost</value>
+        <value xml:lang="ro">răscumpărat</value>
+        <value xml:lang="ru">выкуплено</value>
+        <value xml:lang="th">แลกแล้ว</value>
+        <value xml:lang="vi">chuộc lại</value>
+        <value xml:lang="zh">赎回了</value>
+        <value xml:lang="zh-TW">贖回了</value>
     </property>
     <property key="PageTitleFindProductStocktake">
         <value xml:lang="en">Find Product Stocktake</value>
@@ -13817,7 +13836,7 @@
     </property>
     <property key="ProductAssociationNotFound">
         <value xml:lang="de">Zuordnung nicht gefunden: Produkt ID=${productId?if_exists}, Produkt ID Zu=${productIdTo?if_exists}, Zuordnungstyp ID=${productAssocTypeId?if_exists}, Von Datum=${fromDate?if_exists}</value>
-        <value xml:lang="en">Association not found: Part Number=${productId?if_exists}, Part Number To=${productIdTo?if_exists}, Association Type Id=${productAssocTypeId?if_exists}, From Date=${fromDate?if_exists}</value>
+        <value xml:lang="en">Association not found: Product Id=${productId?if_exists}, Product Id To=${productIdTo?if_exists}, Association Type Id=${productAssocTypeId?if_exists}, From Date=${fromDate?if_exists}</value>
         <value xml:lang="es">Asociación no encontrada: Product Id=${productId?if_exists}, Product Id To=${productIdTo?if_exists}, Association Type Id=${productAssocTypeId?if_exists}, From Date=${fromDate?if_exists}</value>
         <value xml:lang="es-CL">Asociación no encontrada: Product Id=${productId?if_exists}, Product Id To=${productIdTo?if_exists}, Tipo de asociación Id=${productAssocTypeId?if_exists}, Desde Fecha=${fromDate?if_exists}</value>
         <value xml:lang="fr">Association non trouvée : Réf. de l'article =${productId?if_exists}, Réf. de l'article de =${productIdTo?if_exists}, Réf. du type d'association =${productAssocTypeId?if_exists}, de la date=${fromDate?if_exists}.</value>
@@ -13876,7 +13895,7 @@
         <value xml:lang="zh">关联</value>
         <value xml:lang="zh-TW">結合</value>
     </property>
-    
+
     <property key="ProductOrderReturnStatus">
         <value xml:lang="de">Zurück Sendungsstatus</value>
         <value xml:lang="en">Return Shipment Status</value>
@@ -14324,7 +14343,7 @@
     <property key="ProductBrandName">
         <value xml:lang="cs">Název produktu</value>
         <value xml:lang="de">Markenname</value>
-        <value xml:lang="en">Customer Name</value>
+        <value xml:lang="en">Brand Name</value>
         <value xml:lang="es">Nombre de la Marca</value>
         <value xml:lang="fr">Appellation commerciale</value>
         <value xml:lang="it">Nome Marca</value>
@@ -14658,7 +14677,7 @@
     </property>
     <property key="ProductCatalogCompanyName">
         <value xml:lang="de">OFBiz: Katalogverwaltung</value>
-        <value xml:lang="en">Pangun Tech: Catalog Manager</value>
+        <value xml:lang="en">OFBiz: Catalog Manager</value>
         <value xml:lang="es">OFBiz: Administrador del Catálogo</value>
         <value xml:lang="fr">OFBiz: Gestion des articles</value>
         <value xml:lang="it">OFBiz: Gestione cataloghi</value>
@@ -14750,7 +14769,7 @@
         <value xml:lang="de">Katalogname [ID]</value>
         <value xml:lang="en">Catalog Name [Id]</value>
         <value xml:lang="es">Nombre de Catálogo [Código]</value>
-        <value xml:lang="fr">Catalogue ; Nom ; [Réf.]</value>
+        <value xml:lang="fr">Nom de Catalogue [Réf.]</value>
         <value xml:lang="it">Nome catalogo [Codice]</value>
         <value xml:lang="ja">カタログ名称 [ID]</value>
         <value xml:lang="nl">Catalogusnaam [ID]</value>
@@ -15411,7 +15430,7 @@
     </property>
     <property key="ProductComments">
         <value xml:lang="de">Kommentare</value>
-        <value xml:lang="en">Order Number</value>
+        <value xml:lang="en">Comments</value>
         <value xml:lang="es">Comentarios</value>
         <value xml:lang="fr">Commentaires</value>
         <value xml:lang="it">Commenti</value>
@@ -17442,7 +17461,7 @@
     </property>
     <property key="ProductEditProductWithProductId">
         <value xml:lang="de">Produkt bearbeiten mit der Produkt ID</value>
-        <value xml:lang="en">Edit Product with Part Number</value>
+        <value xml:lang="en">Edit Product with Product ID</value>
         <value xml:lang="es">Editar Producto con Código</value>
         <value xml:lang="fr">Modification de l'article (saisir ou rechercher sa référence)</value>
         <value xml:lang="it">Aggiorna prodotto con codice</value>
@@ -20167,7 +20186,7 @@
     <property key="ProductInternalName">
         <value xml:lang="cs">Interní označení</value>
         <value xml:lang="de">Interner Name</value>
-        <value xml:lang="en">Part Name</value>
+        <value xml:lang="en">Internal Name</value>
         <value xml:lang="es">Nombre interno</value>
         <value xml:lang="fr">Libellé interne</value>
         <value xml:lang="it">Nome interno</value>
@@ -20837,7 +20856,7 @@
     </property>
     <property key="ProductItemIdGiftPurchaseFreeShipping">
         <value xml:lang="de">Die Artikel ID einer Aktion ist eine Product ID für kostenlose Zugaben bei Kaufaktionen, für Aktionen mit versandkostenfreier Lieferung ist es die Liefermethoden Typ ID für die der freie Versand gilt (wenn leer ist der Versand für jede Liefermethode frei)</value>
-        <value xml:lang="en">The Item ID on an action is a Part Number for Gift With Purchase actions or for Free Shipping actions it is Shipment Method Type ID to give free shipping on (if blank any Shipment Method Types may receive free shipping)</value>
+        <value xml:lang="en">The Item ID on an action is a Product ID for Gift With Purchase actions or for Free Shipping actions it is Shipment Method Type ID to give free shipping on (if blank any Shipment Method Types may receive free shipping)</value>
         <value xml:lang="es">El código del artículo de la acción es un código para una acción de regalo con la compra o envío gratis (si se deja en blanco, cualquier método de envío puede recibir envío gratis)</value>
         <value xml:lang="fr">Ligne article cadeau lors des actions d'achat ou pour une expédition gratuite : mode d'expédition auquel la gratuité sera appliquée (si blanc, n'importe quel mode peut être utilisé)</value>
         <value xml:lang="it">Numero riga su un'azione è un Codice Prodotto per Omaggio Con azioni Acquisto o per azioni Spedizioni Gratuite c'è il Metodo di Spedizione per avere spedizioni gratuite (se vuoto qualsiasi Metodo di Spedizione potrebbe ricevere spedizioni gratuite)</value>
@@ -20868,7 +20887,7 @@
         <value xml:lang="zh-TW">這個細項缺貨</value>
     </property>
     <property key="ProductCannotReserveInventoryNotEnoughStock">
-    	<value xml:lang="it">Impossibile riservare l'articolo ${parameters.productId}: quantità in stock non sufficiente nel deposito ${parameters.facilityId}. Quantità  non riservata è ${parameters.quantityNotReserved}</value>
+        <value xml:lang="it">Impossibile riservare l'articolo ${parameters.productId}: quantità in stock non sufficiente nel deposito ${parameters.facilityId}. Quantità  non riservata è ${parameters.quantityNotReserved}</value>
         <value xml:lang="en">Cannot reserve product ${parameters.productId}: not enough quantity left in stock for facility ${parameters.facilityId}. Quantity not reserved is ${parameters.quantityNotReserved}</value>
      </property>
     <property key="ProductItemPrc">
@@ -22478,6 +22497,7 @@
         <value xml:lang="de">Neue Merkmalskategorie</value>
         <value xml:lang="en">New Feature Category</value>
         <value xml:lang="es">Nueva categoría de características</value>
+        <value xml:lang="fr">Nouvelle categorie de caractéristiques</value>
         <value xml:lang="it">Nuova categoria di caratteristiche</value>
         <value xml:lang="ja">新規機能カテゴリ</value>
         <value xml:lang="vi">Thêm mới Phân loại Quản lý cho Đặc tính SP gia tăng</value>
@@ -22596,7 +22616,7 @@
     </property>
     <property key="ProductNewProductCreate">
         <value xml:lang="de">Neue Produkt ID und Erstellen</value>
-        <value xml:lang="en">New Part Number and Create</value>
+        <value xml:lang="en">New Product Id and Create</value>
         <value xml:lang="es">Nuevo código de producto y crear</value>
         <value xml:lang="fr">Nouvelle référence d'article et création</value>
         <value xml:lang="it">Nuovo Prodotto Codice e Creazione</value>
@@ -22609,7 +22629,7 @@
     </property>
     <property key="ProductNewProductId">
         <value xml:lang="de">Neue Produkt ID</value>
-        <value xml:lang="en">New Part Number</value>
+        <value xml:lang="en">New Product ID</value>
         <value xml:lang="es">Nuevo código de producto</value>
         <value xml:lang="fr">Nouvelle référence d'article</value>
         <value xml:lang="it">Nuovo codice prodotto</value>
@@ -25474,7 +25494,7 @@
     </property>
     <property key="ProductPriceCannotRetrieveVirtualProductId">
         <value xml:lang="de">Fehler beim Lesen der Virtual Product Id aus der Datenbank während der Preiskalkulation: ${errorString}</value>
-        <value xml:lang="en">Error getting virtual part Number from the database while calculating price: ${errorString}</value>
+        <value xml:lang="en">Error getting virtual product id from the database while calculating price: ${errorString}</value>
         <value xml:lang="es">Error obteniendo la identificación del producto virtual desde base de datos al calcular el precio: ${errorString}</value>
         <value xml:lang="it">Errore nel ricavare il prodotto virtuale dal database durante il calcolo del prezzo: ${errorString}</value>
         <value xml:lang="ja">価格計算時に、データベースから仮想製品IDを取得中にエラー: ${errorString}</value>
@@ -25744,6 +25764,8 @@
         <value xml:lang="de">Produkt</value>
         <value xml:lang="en">Product</value>
         <value xml:lang="es">Producto</value>
+        <value xml:lang="es-CL">Producto</value>
+        <value xml:lang="es-MX">Producto</value>
         <value xml:lang="fr">Article</value>
         <value xml:lang="it">Prodotto</value>
         <value xml:lang="ja">製品</value>
@@ -25984,7 +26006,7 @@
     <property key="ProductProductId">
         <value xml:lang="cs">ID produktu</value>
         <value xml:lang="de">Produkt ID</value>
-        <value xml:lang="en">Part Number</value>
+        <value xml:lang="en">Product ID</value>
         <value xml:lang="es">Código de Producto</value>
         <value xml:lang="fr">Réf. de l'article</value>
         <value xml:lang="it">Codice prodotto</value>
@@ -25999,7 +26021,7 @@
     <property key="ProductProductIdMissing">
         <value xml:lang="cs">ID produktu je povinné</value>
         <value xml:lang="de">Produkt ID ist erforderlich</value>
-        <value xml:lang="en">Part Number is mandatory</value>
+        <value xml:lang="en">Product ID is mandatory</value>
         <value xml:lang="es">Código del producto es obligatorio</value>
         <value xml:lang="fr">Réf. produit obligatoire</value>
         <value xml:lang="it">Codice prodotto è obbligatorio</value>
@@ -26013,7 +26035,7 @@
     </property>
     <property key="ProductProductIdTo">
         <value xml:lang="de">Produkt ID zu</value>
-        <value xml:lang="en">Part Number To</value>
+        <value xml:lang="en">Product ID To</value>
         <value xml:lang="es">Código de producto para</value>
         <value xml:lang="fr">Réf. article associé</value>
         <value xml:lang="it">Codice prodotto a</value>
@@ -26092,7 +26114,7 @@
     <property key="ProductProductName">
         <value xml:lang="cs">Název výrobku</value>
         <value xml:lang="de">Produktname</value>
-        <value xml:lang="en">Drawing Number</value>
+        <value xml:lang="en">Product Name</value>
         <value xml:lang="es">Nombre del Producto</value>
         <value xml:lang="fr">Nom de l'article</value>
         <value xml:lang="hi-IN">सामान नाम</value>
@@ -26108,7 +26130,7 @@
     </property>
     <property key="ProductProductNameId">
         <value xml:lang="de">Produktname ID</value>
-        <value xml:lang="en">Drawing Number ID</value>
+        <value xml:lang="en">Product Name ID</value>
         <value xml:lang="es">Código del nombre de producto</value>
         <value xml:lang="fr">Réf. nom de l'article</value>
         <value xml:lang="it">Nome Prodotto</value>
@@ -26141,7 +26163,7 @@
     <property key="ProductProductNotFound">
         <value xml:lang="cs">Výrobek s uvedeným ID nenalezen</value>
         <value xml:lang="de">Produkt nicht gefunden mit der Produkt-ID</value>
-        <value xml:lang="en">Product not found for Part Number</value>
+        <value xml:lang="en">Product not found for Product ID</value>
         <value xml:lang="es">Producto no encontrado por ID</value>
         <value xml:lang="fr">Aucun d'article ayant cette réf.</value>
         <value xml:lang="hi-IN">सामान नम्बर से सामान नही मिला</value>
@@ -26543,6 +26565,10 @@
         <value xml:lang="vi">Website bán sản phẩm</value>
         <value xml:lang="zh">产品店铺网站</value>
         <value xml:lang="zh-TW">產品商店網站</value>
+    </property>
+    <property key="NoProductProductTagged">
+        <value xml:lang="en">No products tagged</value>
+        <value xml:lang="fr">Aucun produit étiqueté</value>
     </property>
     <property key="ProductProductTaggedWith">
         <value xml:lang="de">Produkt gekennzeichnet mit</value>
@@ -28629,7 +28655,7 @@
         <value xml:lang="de">Bewertungen</value>
         <value xml:lang="en">Reviews</value>
         <value xml:lang="es">Revisiones</value>
-        <value xml:lang="fr">Approbations</value>
+        <value xml:lang="fr">Approbations d'avis</value>
         <value xml:lang="it">Recensioni</value>
         <value xml:lang="ja">レビュー</value>
         <value xml:lang="nl">Klantbeoordelingen</value>
@@ -30959,7 +30985,7 @@
         <value xml:lang="vi">Để kiểm soát cách nhìn và cảm quan và cửa hàng trực tuyến</value>
         <value xml:lang="zh">用于控制一个网店的外观感受。</value>
         <value xml:lang="zh-TW">用於控制一個網店的外觀感受.</value>
-    </property>        
+    </property>
     <property key="ProductStoresFor">
         <value xml:lang="de">Läden für</value>
         <value xml:lang="en">Stores For</value>
@@ -31297,7 +31323,7 @@
     </property>
     <property key="ProductSupplierProductId">
         <value xml:lang="de">Lieferant Produkt ID</value>
-        <value xml:lang="en">Supplier Part Number</value>
+        <value xml:lang="en">Supplier product ID</value>
         <value xml:lang="es">Código de producto para el proveedor</value>
         <value xml:lang="fr">Réf. chez le fournisseur</value>
         <value xml:lang="it">Codice prodotto fornitore</value>
@@ -31311,7 +31337,7 @@
     </property>
     <property key="ProductSupplierProductName">
         <value xml:lang="de">Lieferant Produktname</value>
-        <value xml:lang="en">Supplier Drawing Number</value>
+        <value xml:lang="en">Supplier product name</value>
         <value xml:lang="es">Nombre del producto para el proveedor</value>
         <value xml:lang="fr">Nom chez le fournisseur</value>
         <value xml:lang="it">Nome prodotto Fornitore</value>
@@ -32615,7 +32641,7 @@
     </property>
     <property key="ProductVariantProductIds">
         <value xml:lang="de">Produktvarianten IDs</value>
-        <value xml:lang="en">Variant Part Numbers</value>
+        <value xml:lang="en">Variant Product IDs</value>
         <value xml:lang="es">Código de producto variante</value>
         <value xml:lang="fr">Réf. de variantes</value>
         <value xml:lang="it">Codici Prodotto Variante</value>
@@ -33249,11 +33275,5 @@
         <value xml:lang="vi">Số lượng trên giỏ hàng</value>
         <value xml:lang="zh">使用购物车数量</value>
         <value xml:lang="zh-TW">使用購物車數量</value>
-    </property>
-    <property name="Dashboard">
-        <value xml:lang="en">Dashboard</value>
-    </property>
-     <property name="DashboardElement">
-        <value xml:lang="en">Number of </value>
     </property>
 </resource>

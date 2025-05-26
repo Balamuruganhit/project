@@ -21,8 +21,11 @@ package org.apache.ofbiz.webapp.control;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -35,11 +38,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.apache.logging.log4j.ThreadContext;
 import org.apache.ofbiz.base.util.Debug;
+import org.apache.ofbiz.base.util.StringUtil;
+import org.apache.ofbiz.base.util.UtilHttp;
+import org.apache.ofbiz.base.util.UtilProperties;
+import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.GenericValue;
-import org.apache.ofbiz.security.SecurityUtil;
+import org.apache.ofbiz.security.SecuredFreemarker;
+import org.apache.ofbiz.security.SecuredUpload;
 
 /**
  * A Filter used to specify an allowlist of allowed paths to the OFBiz application.
@@ -82,6 +91,8 @@ public class ControlFilter extends HttpFilter {
     private int errorCode;
     /** The list of all path prefixes that are allowed. */
     private Set<String> allowedPaths;
+    private static final List<String> ALLOWEDTOKENS = getAllowedTokens();
+
 
     @Override
     public void init(FilterConfig conf) throws ServletException {
@@ -125,12 +136,32 @@ public class ControlFilter extends HttpFilter {
                                : Arrays.stream(paths.split(":")).collect(Collectors.toSet());
     }
 
+    private static boolean isSolrTest() {
+        return null != System.getProperty("SolrDispatchFilter");
+    }
+
+    /**
+     * Sends an HTTP response redirecting to {@code redirectPath}.
+     * @param resp The response to send
+     * @param contextPath the prefix to add to the redirection when
+     * {@code redirectPath} is a relative URI.
+     * @throws IOException when redirection has not been properly sent.
+     */
+    private void redirect(HttpServletResponse resp, String contextPath) throws IOException {
+        resp.sendRedirect(redirectPathIsUrl ? redirectPath : (contextPath + redirectPath));
+    }
+
+    private static List<String> getAllowedTokens() {
+        String allowedTokens = UtilProperties.getPropertyValue("security", "allowedTokens");
+        return UtilValidate.isNotEmpty(allowedTokens) ? StringUtil.split(allowedTokens, ",") : new ArrayList<>();
+    }
+
     /**
      * Makes allowed paths pass through while redirecting the others to a fix location.
+     * Reject wrong URLs
      */
     @Override
-    public void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)
-            throws IOException, ServletException {
+    public void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain) throws IOException, ServletException {
         String context = req.getContextPath();
         HttpSession session = req.getSession();
 
@@ -148,24 +179,52 @@ public class ControlFilter extends HttpFilter {
         } else if (req.getAttribute(FORWARDED_FROM_SERVLET) == null
                 && !allowedPaths.isEmpty()) {
             // Get the request URI without the webapp mount point.
-            String uriWithContext = req.getRequestURI();
+            String uriWithContext = UtilHttp.encodeBlanks(
+                    StringEscapeUtils.unescapeHtml4(
+                            URLDecoder.decode(req.getRequestURI(), "UTF-8")));
             String uri = uriWithContext.substring(context.length());
 
-            GenericValue userLogin = (GenericValue) session.getAttribute("userLogin");
 
-            if (!LoginWorker.hasBasePermission(userLogin, req)) { // Allows UEL and
-                if (!GenericValue.getStackTraceAsString().contains("ControlFilterTests")
-                        && null == System.getProperty("SolrDispatchFilter") // Allows Solr tests
-                        && SecurityUtil.containsFreemarkerInterpolation(req, resp, uri)) {
+            //// Block with several steps for rejecting wrong URLs, allowing specific ones
+
+            // Allows UEL and FlexibleString (OFBIZ-12602). Also allows SolrTest to pass. No need to check these URLs
+            GenericValue userLogin = (GenericValue) session.getAttribute("userLogin");
+            if (!LoginWorker.hasBasePermission(userLogin, req)) { // Allows UEL and FlexibleString (OFBIZ-12602)
+                if (isSolrTest() && SecuredFreemarker.containsFreemarkerInterpolation(req, resp, uri)) { // Reject Freemarker interpolation in URL
                     return;
                 }
             }
 
-            // normalize to remove ".." special name usage to bypass webapp filter
+            // Reject insecure URLs
+            String queryString = null;
             try {
-                uri = new URI(uri).normalize().toString();
+                queryString = new URI(uriWithContext).getQuery();
+
             } catch (URISyntaxException e) {
+                Debug.logError("Weird URI: " + e, MODULE);
                 throw new RuntimeException(e);
+            }
+            if (queryString != null) {
+                queryString = URLDecoder.decode(queryString, "UTF-8");
+                if (UtilValidate.isUrl(queryString)
+                        || !SecuredUpload.isValidText(queryString.toLowerCase(), ALLOWEDTOKENS, true)) {
+                    Debug.logError("For security reason this URL is not accepted", MODULE);
+                    throw new RuntimeException("For security reason this URL is not accepted");
+                }
+            }
+            if (uriWithContext != null) { // "null" allows tests with Mockito because ControlFilterTests sends null.
+                try {
+                    String uRIFiltered = new URI(uriWithContext)
+                            .normalize().toString()
+                            .replaceAll(";", "")
+                            .replaceAll("(?i)%2e", "");
+                    if (!uriWithContext.equals(uRIFiltered)) {
+                        Debug.logError("For security reason this URL is not accepted", MODULE);
+                        throw new RuntimeException("For security reason this URL is not accepted");
+                    }
+                } catch (URISyntaxException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             // Check if the requested URI is allowed.
@@ -190,16 +249,5 @@ public class ControlFilter extends HttpFilter {
                 }
             }
         }
-    }
-
-    /**
-     * Sends an HTTP response redirecting to {@code redirectPath}.
-     * @param resp The response to send
-     * @param contextPath the prefix to add to the redirection when
-     * {@code redirectPath} is a relative URI.
-     * @throws IOException when redirection has not been properly sent.
-     */
-    private void redirect(HttpServletResponse resp, String contextPath) throws IOException {
-        resp.sendRedirect(redirectPathIsUrl ? redirectPath : (contextPath + redirectPath));
     }
 }

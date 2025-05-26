@@ -159,7 +159,6 @@ create_ofbiz_runtime_directories() {
   fi
 }
 
-
 ###############################################################################
 # Execute the shell scripts at the paths passed to this function.
 # Args:

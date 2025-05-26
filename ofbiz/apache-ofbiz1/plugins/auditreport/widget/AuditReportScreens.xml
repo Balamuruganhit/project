@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Widget-Screen" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Screen http://ofbiz.apache.org/dtds/widget-screen.xsd">
+
+    <screen name="main">
+        <section>
+            <actions>
+                <set field="headerItem" value="main"/><!-- this highlights the selected menu-item with name "main" -->
+            </actions>
+            <widgets>
+                <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="config">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleOspReport"/>
+                <set field="tabButtonItem" value="AddQuestion"/>
+                <script location="component://AuditReport/groovyScripts/Audit/QuestionService.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet  title="${uiLabelMap.AuditConfig}" >
+                            <platform-specific>
+                                <html><html-template location="component://AuditReport/template/questionForm.ftl"/></html>
+                            </platform-specific>
+                        </screenlet>
+                        <screenlet title="${uiLabelMap.AuditQuestionList}">
+                                <platform-specific>
+                                    <html><html-template location="component://AuditReport/template/questionList.ftl"/></html>
+                                </platform-specific>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+     <screen name="pickReview">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleOspReport"/>
+                <set field="tabButtonItem" value="AddReportDetail"/>
+                <script location="component://AuditReport/groovyScripts/Audit/QuestionService.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <!-- <screenlet  title="${uiLabelMap.AuditpickReview}" >
+                            <include-form name="AddReportDetail" location="component://AuditReport/widget/AuditReportForms.xml"/>
+                        </screenlet> -->
+                        <screenlet title="${uiLabelMap.AuditpickReview}">
+                                    <platform-specific>
+                                        <html><html-template location="component://AuditReport/template/reportdetail.ftl"/></html>
+                                    </platform-specific>
+                        </screenlet>
+                        
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="export">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleOspReport"/>
+                <set field="tabButtonItem" value="AddQuestion"/>
+                <set field="reportId" from-field="parameters.reportId" type="String"/>                
+                <script location="component://AuditReport/groovyScripts/Audit/ReportService.groovy"/>
+                <script location="component://AuditReport/groovyScripts/Audit/QuestionReportList.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="AuditReportCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet  title="${uiLabelMap.AuditExport}" >
+                            <platform-specific>
+                                        <html><html-template location="component://AuditReport/template/reportSelect.ftl"/></html>
+                            </platform-specific>
+                            <link text="${uiLabelMap.AuditPdf}" style="button" target="Report.pdf" target-window="_BLANK">
+                                <parameter param-name="reportId" from-field="reportId"/>
+                            </link>
+                             <link text="${uiLabelMap.AuditCsv}" style="button" target="Report.pdf">
+                                <parameter param-name="reportId" from-field="reportId"/>
+                            </link>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ReportPdf">
+        <section>
+            <actions>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="reportId" from-field="parameters.reportId" type="String"/>
+                <script location="component://AuditReport/groovyScripts/Audit/QuestionReportList.groovy"/>
+                <set field="viewSize" value="99999"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="SimpleDecorator" location="component://common/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                        <container>
+                            <label style="h1" text="OSP Report"/>
+                            <platform-specific>
+                                <xsl-fo>
+                                    <html-template location="component://AuditReport/template/reportPdf.fo.ftl"/>
+                                </xsl-fo>
+                            </platform-specific>
+                        </container>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ReportCsv">
+        <section>
+            <actions>
+                <property-map resource="AuditReportUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="reportId" from-field="parameters.reportId" type="String"/>
+                <script location="component://AuditReport/groovyScripts/Audit/QuestionReportList.groovy"/>
+                <set field="viewSize" value="99999"/>
+            </actions>
+            <widgets>
+                <label style="h3" text="OSP Report"/>
+                <label style="h3" text="${reportNumber}"/>
+                <include-grid name="ReportList" location="component://AuditReport/widget/AuditReportForms.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="kpi">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleOspReport"/>
+                
+            </actions>
+            <widgets>
+                <decorator-screen name="KpiCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+<screen name="ProductionAndActual">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleOspReport"/>
+                <set field="tabButtonItem" value="ProductionActual"/>
+                
+            </actions>
+            <widgets>
+                <decorator-screen name="KpiCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                       
+                        <screenlet title="${uiLabelMap.ProductionActual}">
+                                    <platform-specific>
+                                        <html><html-template location="component://AuditReport/template/productionVsActual.ftl"/></html>
+                                    </platform-specific>
+                        </screenlet>
+                        
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+</screens>

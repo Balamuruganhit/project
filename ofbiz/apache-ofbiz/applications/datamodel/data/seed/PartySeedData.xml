@@ -121,7 +121,6 @@ under the License.
     <CommunicationEventType communicationEventTypeId="FILE_TRANSFER_COMM" description="File transfer" hasTable="N" parentTypeId="" contactMechTypeId="FTP_ADDRESS"/>
 
     <!-- party content types -->
-    <PlantContentType description="Internal Plant Content" partyContentTypeId="INTERNALPLANT"/>
     <PartyContentType description="Internal Content" partyContentTypeId="INTERNAL"/>
     <PartyContentType description="User Defined Content"  partyContentTypeId="USERDEF"/>
     <PartyContentType description="Logo Image URL"  partyContentTypeId="LGOIMGURL"/>
@@ -137,8 +136,8 @@ under the License.
     <Enumeration description="Unemployed" enumCode="UNEMP" enumId="EMPS_UNEMP" sequenceId="07" enumTypeId="EMPLOY_STTS"/>
 
     <EnumerationType enumTypeId="MARITAL_STATUS" description="Marital Status"/>
-    <Enumeration description="Single" enumId="SINGLE" sequenceId="01" enumTypeId="MARITAL_STATUS" enumName="Single"/>
-    <Enumeration description="Married" enumId="MARRIED" sequenceId="02" enumTypeId="MARITAL_STATUS" enumName="Married"/>
+    <Enumeration description="Single" enumId="SINGLE" sequenceId="01" enumTypeId="MARITAL_STATUS"/>
+    <Enumeration description="Married" enumId="MARRIED" sequenceId="02" enumTypeId="MARITAL_STATUS"/>
 
     <EnumerationType description="Residence Status" enumTypeId="PTY_RESID_STTS" hasTable="N"/>
     <Enumeration description="Own Home" enumCode="OWN" enumId="PRESS_OWN" sequenceId="01" enumTypeId="PTY_RESID_STTS"/>

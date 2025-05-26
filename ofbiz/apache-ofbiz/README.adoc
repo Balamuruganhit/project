@@ -21,16 +21,25 @@ under the License.
 The Apache OFBiz Project
 
 image:https://img.shields.io/badge/License-Apache%202.0-blue.svg[link=http://www.apache.org/licenses/LICENSE-2.0]
-image:https://img.shields.io/badge/Version-release22.01-blue.svg[link=https://github.com/apache/ofbiz-framework]
-image:https://ci2.apache.org/badges/ofbizBranch22FrameworkPlugins.svg[link=https://ci2.apache.org/#/builders?tags=%2BofbizBranch22FrameworkPlugins]
-image:https://github.com/apache/ofbiz-framework/actions/workflows/gradle.yaml/badge.svg?branch=release22.01[link=https://github.com/apache/ofbiz-framework/actions/workflows/gradle.yaml]
-image:https://sonarcloud.io/api/project_badges/measure?project=apache_ofbiz-framework&metric=alert_status[link=https://sonarcloud.io/dashboard?id=apache_ofbiz-framework]
+image:https://img.shields.io/badge/Version-release24.09-orange.svg[link=https://github.com/apache/ofbiz-framework]
+
+image:https://github.com/apache/ofbiz-framework/actions/workflows/gradle.yaml/badge.svg?branch=trunk[link=https://github.com/apache/ofbiz-framework/actions/workflows/gradle.yaml]
+// For the CodeQL badge to not get stuck on failing, you need to delete the last failing CodeQL workflow (AKA action)
+image:https://github.com/apache/ofbiz-framework/actions/workflows/codeql-analysis.yml/badge.svg[link=https://github.com/apache/ofbiz-framework/actions/workflows/codeql-analysis.yml]
+// For the BuildBot badge to not get stuck on failure, ALL builds of all branches handled by https://svn.apache.org/repos/infra/infrastructure/buildbot2/projects/ofbiz.py need to pass
+image:https://ci2.apache.org/badges/ofbizBranch24Framework.svg[link=https://ci2.apache.org/badges/ofbizBranch24Framework.svg]
 image:https://qpkb254zxeu.montastic.io/badge[link=https://qpkb254zxeu.montastic.io]
-//image:https://github.com/apache/ofbiz-framework/actions/workflows/codeql-analysis.yml/badge.svg[link=https://github.com/apache/ofbiz-framework/actions/workflows/codeql-analysis.yml]
+
+image:https://github.com/apache/ofbiz-framework/actions/workflows/scorecard.yml/badge.svg[https://github.com/apache/ofbiz-framework/actions/workflows/scorecard.yml]
+image:https://api.securityscorecards.dev/projects/github.com/apache/ofbiz-framework/badge[link=https://securityscorecards.dev/viewer/?uri=github.com/apache/ofbiz-framework]
+image:https://www.bestpractices.dev/projects/8708/badge[link=https://www.bestpractices.dev/projects/8708]
+
+
+
 
 If you are reading this file in AsciiDoc format you may want to see it at
-https://nightlies.apache.org/ofbiz/next/readme/html5/README.html[HTML]
-or https://nightlies.apache.org/ofbiz/next/readme/pdf/README.pdf[PDF] format
+https://nightlies.apache.org/ofbiz/trunk/readme/html5/README.html[HTML]
+or https://nightlies.apache.org/ofbiz/trunk/readme/pdf/README.pdf[PDF] format
 
 ---
 
@@ -45,32 +54,42 @@ http://ofbiz.apache.org/documentation.html[OFBiz documentation]
 
 http://www.apache.org/licenses/LICENSE-2.0[OFBiz License]
 
-____________________________________________________________________________________________________
-_Note_: If you want to use Eclipse, read the "Setup eclipse project for OFBiz"
+== Notes
+[NOTE]
+====
+If you want to use Eclipse, read the "Setup eclipse project for OFBiz"
 section to set it up.
-____________________________________________________________________________________________________
+====
 
-_____________________________________________________________________________________________________________________________________
-_Note_: If you want to use an external database like MySQL or PostgreSQL, read
+[NOTE]
+====
+If you want to use an external database like MySQL or PostgreSQL, read
 the "Setup an external database" section to set it up.
-_____________________________________________________________________________________________________________________________________
+====
 
-________________________________________________________________________________________________________________________________________
-_Note_: If you want to run OFBiz without an internet connection, read the
+[NOTE]
+====
+If you want to run OFBiz without an internet connection, read the
 "Running gradle tasks without an internet connection" section.
-________________________________________________________________________________________________________________________________________
+====
 
-__________________________________________________________________________________________________________________________________________
-_Note_: The directory structure and repositories have changed. For more
+[NOTE]
+====
+The directory structure and repositories have changed. For more
 information read the "Repository and directory structure" section.
-__________________________________________________________________________________________________________________________________________
+====
+[NOTE]
+====
+If you are in China you may encounter network issues or proxy settings. That's of course unrelated to OFBiz.
+====
+
 
 [[system-requirements]]
 == System requirements
 
 The only requirements to run OFBiz is
 
-* to have the Java Development Kit (JDK) version 11 installed on your system
+* to have the Java Development Kit (JDK) version 17 installed on your system
 (not just the JRE, but the full JDK) that you can download from the below link.
 Make sure of setting the $JAVA_HOME environment variable. +
 https://adoptopenjdk.net/[JDK download].
@@ -103,7 +122,7 @@ ____
 "Powershell is not recognized as an internal or external command, operable program or batch file"
 ____
 
-follow the advice there: https://s.apache.org/vdcv8. If you want more details see: https://s.apache.org/ac7no
+follow the advice there: https://s.apache.org/vdcv8. If you want more details see: https://s.apache.org/urnju
 
 * If you run into problems check the the execution policy of PowerShell. See https://s.apache.org/urnju for details.
 By setting the execution policy to "unrestricted", you'll be prompted to run the script once you run the init-gradle-wrapper command.
@@ -113,7 +132,6 @@ By setting the execution policy to "unrestricted", you'll be prompted to run the
 ====
 If you wonder where are stored the PowerShell Executables, here are the answers: https://s.apache.org/w5dye
 ====
-
 
 Unix-like OS: `./gradle/init-gradle-wrapper.sh`
 
@@ -144,12 +162,18 @@ _Note_: Ignore the % progress indicator because this task does not end as long
 as OFBiz is running.
 ___________________________________________________________________________________________________
 
+
+[[Docker]]
+== Docker
+If you want to set and use Docker, link:https://nightlies.apache.org/ofbiz/trunk/readme/html5/DOCKER.html[here is the documentation]
+
+
 [[visit-ofbiz-through-your-browser]]
 === Visit OFBiz through your browser:
 
-https://localhost:8443/ordermgr[Order Back Office]
+https://localhost:8443/ordermgr[Order Back Office interface]
 
-https://localhost:8443/accounting[Accounting Back Office]
+https://localhost:8443/accounting[Accounting Back Office interface]
 
 https://localhost:8443/webtools[Administrator interface]
 
@@ -175,7 +199,11 @@ You can find more information about security in OFBiz at
 https://cwiki.apache.org/confluence/display/OFBIZ/Keeping+OFBiz+secure[Keeping OFBiz secure]
 
 [CAUTION]
+====
 In production never use the credentials contained in demo data. Not only the admin credentials, but all of them.
+
+Also we recommend to not use Windows Server in production because we are not supporting specific Windows related security issues.
+====
 
 [[build-system-syntax]]
 == Build system syntax
@@ -520,12 +548,12 @@ parameters are passed:
 
 // tag::testingtasks[]
 [[execute-all-unit-tests]]
-==== Execute all unit tests
+==== Execute all unit tests (no need access to the DB)
 
 `gradlew test`
 
 [[execute-all-integration-tests]]
-==== Execute all integration tests
+==== Execute all integration tests (need access to the DB)
 
 `gradlew testIntegration`
 
@@ -554,7 +582,7 @@ verbose:
 [[execute-an-integration-test-case]]
 ==== Execute an integration test case
 
-run a test case, in this example the component is "entity" and the case name is
+Run a test case, in this example the component is "entity" and the case name is
 "entity-tests"
 
 `gradlew "ofbiz --test component=entity --test suitename=entitytests --test case=entity-query-tests"`
@@ -562,7 +590,7 @@ run a test case, in this example the component is "entity" and the case name is
 [[execute-an-integration-test-case-in-debug-mode-with-verbose-log]]
 ==== Execute an integration test case in debug mode with verbose log
 
-listens on port *5005*
+Listens on port *5005*
 
 `gradlew "ofbiz --test component=entity --test loglevel=verbose" --debug-jvm`
 
@@ -574,9 +602,23 @@ listens on port *5005*
 [[execute-an-integration-test-suite-in-debug-mode]]
 ==== Execute an integration test suite in debug mode
 
-listens on port *5005*
+Listens on port *5005*
 
 `gradlew "ofbiz --test component=entity --test suitename=entitytests" --debug-jvm`
+
+[[execute-all-component-tests]]
+==== Execute all component tests
+
+`gradlew "ofbiz --test component=entity"`
+
+[[execute-all-component-tests-in-debug-mode]]
+==== Execute all component tests in debug mode
+
+Listens on port *5005*
+
+`gradlew "ofbiz --test component=entity" --debug-jvm`
+
+
 
 // end::testingtasks[]
 
@@ -614,16 +656,6 @@ By default Xlint prints output of all warnings detected by the compiler, if you
 want to silence them
 
 `gradlew -PXlint:none build`
-
-[[run-owasp-tool-to-identify-dependency-vulnerabilities-cves]]
-==== Run OWASP tool to identify dependency vulnerabilities (CVEs)
-
-The below command activates a gradle plugin (OWASP) and Identifies and reports
-known vulnerabilities (CVEs) in OFBiz library dependencies. The task takes time
-to complete, and once done, a report will be generated in
-$OFBIZ_HOME/build/reports/dependency-check-report.html
-
-`gradlew -PenableOwasp dependencyCheckAnalyze`
 
 [[setup-eclipse-project-for-ofbiz]]
 ==== Setup eclipse project for OFBiz
@@ -844,7 +876,7 @@ options:
 
 * Search for the JDBC driver in https://bintray.com/bintray/jcenter[jcenter] and
 place it in build.gradle dependencies e.g.
-`runtime 'mysql:mysql-connector-java:5.1.36'`
+`runtime 'mysql:mysql-connector-java:8.0.30'`
 +
 OR
 * Download the JDBC driver jar and place it in $OFBIZ_HOME/lib or the lib

@@ -62,9 +62,7 @@ public final class Start {
     public static void main(String[] args) {
         List<StartupCommand> ofbizCommands = null;
         try {
-            System.out.println("Parsing OFBiz commands...");
             ofbizCommands = StartupCommandUtil.parseOfbizCommands(args);
-            System.out.println("Commands parsed successfully.");
         } catch (StartupException e) {
             // incorrect arguments passed to the command line
             StartupCommandUtil.highlightAndPrintErrorMessage(e.getMessage());

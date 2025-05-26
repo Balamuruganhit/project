@@ -56,6 +56,7 @@
         <value xml:lang="fr">Date d'achèvement réelle</value>
         <value xml:lang="it">Data fine attuale</value>
         <value xml:lang="ja">実績終了日</value>
+        <value xml:lang="nl">Einddatum</value>
         <value xml:lang="ro">Data Finala Actuala</value>
         <value xml:lang="th">วันสิ้นสุดตามความจริง</value>
         <value xml:lang="vi">Ngày kết thúc thực tế</value>
@@ -68,7 +69,7 @@
         <value xml:lang="fr">Millisecondes</value>
         <value xml:lang="it">Millisecondi attuali</value>
         <value xml:lang="ja">実績ミリ秒</value>
-        <value xml:lang="nl">Actual Milli Seconds</value>
+        <value xml:lang="nl">Werlk. milliseconden</value>
         <value xml:lang="ro">Millisecunde Actuale</value>
         <value xml:lang="th">พันวินาทีตามความจริง</value>
         <value xml:lang="vi">Số giây thực tế</value>
@@ -81,7 +82,7 @@
         <value xml:lang="fr">Configuration en millisecondes</value>
         <value xml:lang="it">Millisecondi Configurazione Attuali</value>
         <value xml:lang="ja">実績設定ミリ秒</value>
-        <value xml:lang="nl">Actual Setup Millis</value>
+        <value xml:lang="nl">Setup - werk. milliseconden</value>
         <value xml:lang="ro">Configuratie Milisecunde Actuala </value>
         <value xml:lang="th">Actual Setup Millis</value>
         <value xml:lang="vi">Thời gian Thiết lập thực tế(giây)</value>
@@ -342,7 +343,7 @@
         <value xml:lang="zh-TW">必須回複</value>
     </property>
     <property key="FormFieldTitle_newWorkEffortId">
-        <value xml:lang="en">New Work Order Number</value>
+        <value xml:lang="en">New WorkEffort ID</value>
         <value xml:lang="fr">Nvlle réf de tâche</value>
     </property>
     <property key="FormFieldTitle_orderTypeDescription">
@@ -1263,7 +1264,7 @@
         <value xml:lang="zh-TW">編輯工時表角色</value>
     </property>
     <property key="PageTitleEditWorkEffort">
-        <value xml:lang="en">Edit Work order</value>
+        <value xml:lang="en">Edit Work Effort</value>
         <value xml:lang="es">Editar esfuerzo de trabajo</value>
         <value xml:lang="fr">Modifier la tâche</value>
         <value xml:lang="it">Aggiorna impegno di lavoro</value>
@@ -1422,7 +1423,7 @@
     </property>
     <property key="PageTitleFindWorkEffort">
         <value xml:lang="de">Finde Arbeitseinsatz</value>
-        <value xml:lang="en">Find Work Order</value>
+        <value xml:lang="en">Find Work Effort</value>
         <value xml:lang="es">Buscar esfuerzo de trabajo</value>
         <value xml:lang="fr">Rechercher la tâche</value>
         <value xml:lang="it">Ricerca impegno di lavoro</value>
@@ -1646,7 +1647,7 @@
         <value xml:lang="zh-TW">按名稱查詢工作投入</value>
     </property>
     <property key="PageTitleTreeWorkEfforts">
-        <value xml:lang="en">Child Work orders</value>
+        <value xml:lang="en">Child Work Efforts</value>
         <value xml:lang="es">Esfuerzos de trabajo hijos</value>
         <value xml:lang="fr">Tâches descendantes</value>
         <value xml:lang="it">Impegni di lavoro dipendenti</value>
@@ -2378,7 +2379,7 @@
     </property>
     <property key="WorkEffortCreate">
         <value xml:lang="de">Erstelle Arbeitseinsatz</value>
-        <value xml:lang="en">Create Work order</value>
+        <value xml:lang="en">Create Work Effort</value>
         <value xml:lang="es">Crear esfuerzo de trabajo</value>
         <value xml:lang="fr">Créer une tâche</value>
         <value xml:lang="it">Nuovo impegno di lavoro</value>
@@ -3428,7 +3429,7 @@
         <value xml:lang="fr">Nouveau Projet</value>
         <value xml:lang="it">Nuovo progetto</value>
         <value xml:lang="ja">新規プロジェクト</value>
-        <value xml:lang="nl">New Project</value>
+        <value xml:lang="nl">Nieuw Project</value>
         <value xml:lang="ro">Proiect Nou</value>
         <value xml:lang="ru">Новый проект</value>
         <value xml:lang="th">โปรเจคใหม่</value>
@@ -4495,7 +4496,7 @@
         <value xml:lang="en">Required Field Missing : Num Periods.</value>
     </property>
     <property key="WorkEffortRequiredFieldMissingOldWorkEffortTypeId">
-        <value xml:lang="en">Required Field Missing : Old Work Order Number.</value>
+        <value xml:lang="en">Required Field Missing : Old WorkEffort Id.</value>
     </property>
     <property key="WorkEffortRequiredFieldMissingOrderId">
         <value xml:lang="en">Required Field Missing : Order Id.</value>
@@ -4531,7 +4532,7 @@
         <value xml:lang="en">Required Field Missing : Shopping List Id.</value>
     </property>
     <property key="WorkEffortRequiredFieldMissingSourceWorkEffortId">
-        <value xml:lang="en">Required Field Missing : Source Work Order Number.</value>
+        <value xml:lang="en">Required Field Missing : Source WorkEffort Id.</value>
     </property>
     <property key="WorkEffortRequiredFieldMissingStart">
         <value xml:lang="en">Required Field Missing : Start.</value>
@@ -4555,7 +4556,7 @@
         <value xml:lang="en">Required Field Missing : Work Effort Good Std Type Id.</value>
     </property>
     <property key="WorkEffortRequiredFieldMissingWorkEffortId">
-        <value xml:lang="en">Required Field Missing : Work Order Number.</value>
+        <value xml:lang="en">Required Field Missing : WorkEffort Id.</value>
     </property>
     <property key="WorkEffortRequiredFieldMissingWorkEffortIdFrom">
         <value xml:lang="en">Required Field Missing : Work Effort Id From.</value>
@@ -4869,13 +4870,13 @@
         <value xml:lang="zh-TW">狀態</value>
     </property>
     <property key="WorkEffortStatusChangeNotValid">
-        <value xml:lang="ar">إن تحويل الحالة من ${lookedUpValue.currentStatusId} الى ${parameters.currentStatusId} هو تحويل غير مسموح به</value>
-        <value xml:lang="en">The status change from ${lookedUpValue.currentStatusId} to ${parameters.currentStatusId} is not a valid change</value>
-        <value xml:lang="it">Il cambio di stato da ${lookedUpValue.currentStatusId} a ${parameters.currentStatusId} non è consentito</value>
-        <value xml:lang="ja">ステータス ${lookedUpValue.currentStatusId} から ${parameters.currentStatusId} へ変更は正しくありません。</value>
-        <value xml:lang="vi">Trạng thái thay đổi từ ${lookedUpValue.currentStatusId} đến ${parameters.currentStatusId} là không hợp lệ</value>
-        <value xml:lang="zh">从 ${lookedUpValue.currentStatusId} 到 ${parameters.currentStatusId} 不是一个有效的状态改变</value>
-        <value xml:lang="zh-TW">從 ${lookedUpValue.currentStatusId} 到 ${parameters.currentStatusId} 不是一個有效的狀態改變</value>
+        <value xml:lang="ar">إن تحويل الحالة من ${statusId} الى ${statusIdTo} هو تحويل غير مسموح به</value>
+        <value xml:lang="en">The status change from ${statusId} to ${statusIdTo} is not a valid change</value>
+        <value xml:lang="it">Il cambio di stato da ${statusId} a ${statusIdTo} non è consentito</value>
+        <value xml:lang="ja">ステータス ${statusId} から ${statusIdTo} へ変更は正しくありません。</value>
+        <value xml:lang="vi">Trạng thái thay đổi từ ${statusId} đến ${statusIdTo} là không hợp lệ</value>
+        <value xml:lang="zh">从 ${statusId} 到 ${statusIdTo} 不是一个有效的状态改变</value>
+        <value xml:lang="zh-TW">從 ${statusId} 到 ${statusIdTo} 不是一個有效的狀態改變</value>
     </property>
     <property key="WorkEffortStatusIdMissing">
         <value xml:lang="en">Current Status ID is missing.</value>
@@ -5357,36 +5358,20 @@
         <value xml:lang="zh">欢迎</value>
         <value xml:lang="zh-TW">歡迎</value>
     </property>
-    
     <property key="WorkEffortWorkEffort">
         <value xml:lang="de">Arbeitseinsatz</value>
-        <value xml:lang="en">Work Order</value>
+        <value xml:lang="en">Work Effort</value>
         <value xml:lang="es">Esfuerzo de trabajo</value>
         <value xml:lang="fr">Tâche</value>
         <value xml:lang="it">Impegno di lavoro</value>
         <value xml:lang="ja">作業成果</value>
-        <value xml:lang="nl">Actie</value>
+        <value xml:lang="nl">Activiteit</value>
         <value xml:lang="ro">Sarcina de Lucru</value>
         <value xml:lang="th">งาน</value>
         <value xml:lang="vi">Lượng giá nguồn lực</value>
         <value xml:lang="zh">人工服务</value>
         <value xml:lang="zh-TW">工作投入</value>
     </property>
-    <property key="WorkOrder">
-        <value xml:lang="de">Arbeitseinsatz</value>
-        <value xml:lang="en">Work Order</value>
-        <value xml:lang="es">Esfuerzo de trabajo</value>
-        <value xml:lang="fr">Tâche</value>
-        <value xml:lang="it">Impegno di lavoro</value>
-        <value xml:lang="ja">作業成果</value>
-        <value xml:lang="nl">Actie</value>
-        <value xml:lang="ro">Sarcina de Lucru</value>
-        <value xml:lang="th">งาน</value>
-        <value xml:lang="vi">Lượng giá nguồn lực</value>
-        <value xml:lang="zh">人工服务</value>
-        <value xml:lang="zh-TW">工作投入</value>
-    </property>
-    
     <property key="WorkEffortWorkEffortAssocIdAlreadyExist">
         <value xml:lang="en">WorkEffortAssocId already Exist</value>
         <value xml:lang="es">El código de asociación del esfuerzo de trabajo ya existe.</value>
@@ -5417,7 +5402,7 @@
     </property>
     <property key="WorkEffortWorkEffortId">
         <value xml:lang="de">Arbeitseinsatz ID</value>
-        <value xml:lang="en">Work Order Number</value>
+        <value xml:lang="en">WorkEffort ID</value>
         <value xml:lang="es">Código de esfuerzo de trabajo</value>
         <value xml:lang="fr">Tâche</value>
         <value xml:lang="it">Numero impegno di lavoro</value>
@@ -5431,7 +5416,7 @@
     </property>
     <property key="WorkEffortWorkEffortIdEmpty">
         <value xml:lang="de">Arbeitseinsatz ID fehlt</value>
-        <value xml:lang="en">Work Order Number is empty</value>
+        <value xml:lang="en">WorkEffort ID is empty</value>
         <value xml:lang="es">El código del esfuerzo de trabajo está vacío</value>
         <value xml:lang="fr">La réf. de tâche est vide</value>
         <value xml:lang="it">Il codice impegno di lavoro è vuoto</value>
@@ -5469,20 +5454,6 @@
         <value xml:lang="zh">人工服务 - 检查已存在</value>
         <value xml:lang="zh-TW">工作投入 - 檢查已存在</value>
     </property>
-    <property key="ListOfBom">
-        <value xml:lang="de">Arbeitseinsätze</value>
-        <value xml:lang="en">List Of Bill Of Material</value>
-        <value xml:lang="es">Hojas de trabajo</value>
-        <value xml:lang="fr">Tâches</value>
-        <value xml:lang="it">Impegni di lavoro</value>
-        <value xml:lang="ja">作業成果</value>
-        <value xml:lang="nl">Acties</value>
-        <value xml:lang="ro">Sarcini de Lucru </value>
-        <value xml:lang="th">งาน</value>
-        <value xml:lang="vi">Lượng giá nguồn lực</value>
-        <value xml:lang="zh">人工服务</value>
-        <value xml:lang="zh-TW">工作投入</value>
-    </property>
     <property key="WorkEffortWorkEfforts">
         <value xml:lang="de">Arbeitseinsätze</value>
         <value xml:lang="en">Work Efforts</value>
@@ -5490,7 +5461,7 @@
         <value xml:lang="fr">Tâches</value>
         <value xml:lang="it">Impegni di lavoro</value>
         <value xml:lang="ja">作業成果</value>
-        <value xml:lang="nl">Acties</value>
+        <value xml:lang="nl">Activiteiten</value>
         <value xml:lang="ro">Sarcini de Lucru </value>
         <value xml:lang="th">งาน</value>
         <value xml:lang="vi">Lượng giá nguồn lực</value>

@@ -130,14 +130,4 @@
         editFormName="EditCustRetStatusId"
         editFormLocation="component://order/widget/ordermgr/CustRequestForms.xml"/>
     <PortletPortletCategory portalPortletId="ListCustReturns" portletCategoryId="CUST_ORDERS"/>
-    <workOrderStatus statusId="1" orderStatus="Created"/>
-    <workOrderStatus statusId="2" orderStatus="Scheduled "/>
-    <workOrderStatus statusId="3" orderStatus="Confirmed "/>
-    <workOrderStatus statusId="4" orderStatus="Running "/>
-    <workOrderStatus statusId="5" orderStatus="Completed"/>
-    <workOrderStatus statusId="6" orderStatus="Closed "/>
-    <workOrderStatus statusId="7" orderStatus="On Hold"/>
-    <workOrderStatus statusId="8" orderStatus="Waiting"/>
-    <workOrderStatus statusId="9" orderStatus="Canceled"/>
-
 </entity-engine-xml>

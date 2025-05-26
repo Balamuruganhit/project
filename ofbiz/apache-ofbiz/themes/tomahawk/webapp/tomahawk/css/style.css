@@ -109,11 +109,9 @@ input[type="text"], input[type="password"] {
     margin: 0.2em;
     padding: 0.4em 0;
     vertical-align: middle;
-    width: 50%;
-    border-radius: 1rem;
 }
 
-input[type="button"], input[type="reset"] {
+input[type="submit"], input[type="button"], input[type="reset"] {
     background-color: #FCF9E6;
     border-bottom: #999999 solid 0.1em;
     border-top: #f7e893 solid 0.1em;
@@ -125,12 +123,6 @@ input[type="button"], input[type="reset"] {
     font-weight: bold;
     margin: 0.3em;
     padding: 0.4em 0.5em;
-
-}
-input[type="submit"]{
-    color: white;
-    font-size: 1.2rem;
-    background: #a28089;
 }
 
 input[type="submit"]:hover {
@@ -970,7 +962,7 @@ in contained elements. */
 /* ===== Masthead (Header) Styles ===== */
 /* ==================================== */
 #logo-area {
-    background: url(/images/main.png) no-repeat;
+    background: url(/images/ofbiz_logo.png) no-repeat;
     width: 385px;
     height: 50px;
     background-size: 119px 50px;
@@ -1397,9 +1389,6 @@ DIV.lists.screenlet .basic-table tr td a {
     width: 400px;
     margin: 100px auto 300px;
     padding: 0px;
-    height: 250px;
-    text-align: center;
-
 }
 
 .login-screenlet .screenlet-title-bar {
@@ -1413,7 +1402,6 @@ DIV.lists.screenlet .basic-table tr td a {
 .login-screenlet .screenlet-body {
     background-image: url(../images/login_bkgd.jpg);
     border: none;
-    background-color:#3DF9EF ;
     font-size: 12px;
 }
 
@@ -3014,8 +3002,9 @@ button.ui-button::-moz-focus-inner {
 
 .ui-dialog {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
     padding: .2em;
     width: 300px;
     overflow: hidden;

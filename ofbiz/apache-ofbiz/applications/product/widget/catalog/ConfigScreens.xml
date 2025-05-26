@@ -25,7 +25,7 @@ under the License.
             <widgets>
                 <decorator-screen name="main-decorator"  location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="pre-body">
-                        <include-menu name="MainActionMenu" location="component://product/widget/catalog/CatalogMenus.xml"/>
+                        <include-menu name="MainActionMenu" location="${parameters.mainMenuLocation}"/>
                     </decorator-section>
                     <decorator-section name="left-column">
                         <include-screen name="leftbar" location="component://product/widget/catalog/CommonScreens.xml"/>
@@ -41,7 +41,7 @@ under the License.
                                     <condition><not><if-empty field="configItemId"/></not></condition>
                                     <widgets>
                                         <container>
-                                            <include-menu name="ConfigItemTabBar" location="component://product/widget/catalog/CatalogMenus.xml"/>
+                                            <include-menu name="ConfigItemTabBar" location="${parameters.mainMenuLocation}"/>
                                             <label style="h1">${uiLabelMap[labelTitleProperty]} ${uiLabelMap.CommonFor}: ${configItem.configItemName} [${uiLabelMap.CommonId}:${configItemId}]  ${${extraFunctionName}}</label>
                                         </container>
                                         <container style="button-bar">
@@ -94,16 +94,32 @@ under the License.
                 <set field="headerItem" value="configs"/>
                 <set field="tabButtonItem" value="EditProductConfigItem"/>
                 <set field="labelTitleProperty" value="ProductConfigItem"/>
-
                 <set field="configItemId" from-field="parameters.configItemId"/>
                 <entity-one entity-name="ProductConfigItem" value-field="configItem" auto-field-map="true"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonConfigDecorator">
                     <decorator-section name="body">
-                        <screenlet title="${groovy: configItemId ? uiLabelMap.PageTitleEditConfigItem : uiLabelMap.PageTitleNewConfigItem}">
-                            <include-form name="EditProductConfigItem" location="component://product/widget/catalog/ConfigForms.xml"/>
-                        </screenlet>
+                        <section>
+                            <condition>
+                                <and>
+                                    <or>
+                                        <if-has-permission permission="CATALOG" action="_CREATE"/>
+                                        <if-has-permission permission="CATALOG" action="_UPDATE"/>
+                                    </or>
+                                </and>
+                            </condition>
+                            <widgets>
+                                <screenlet title="${groovy: configItemId ? uiLabelMap.PageTitleEditConfigItem : uiLabelMap.PageTitleNewConfigItem}">
+                                    <include-form name="EditProductConfigItem" location="component://product/widget/catalog/ConfigForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                            <fail-widgets>
+                                <screenlet id="ConfigItem">
+                                    <include-form name="ProductConfigItem" location="component://product/widget/catalog/ConfigForms.xml"/>
+                                </screenlet>
+                            </fail-widgets>
+                        </section>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
@@ -221,7 +237,7 @@ under the License.
                 <set field="configItemId" from-field="parameters.configItemId"/>
                 <entity-one entity-name="ProductConfigItem" value-field="configItem" auto-field-map="true"/>
 
-                <script location="component://product/groovyScripts/catalog/config/EditProductConfigItemContent.groovy"/>
+                <script location="component://product/src/main/groovy/org/apache/ofbiz/product/catalog/config/EditProductConfigItemContent.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonConfigDecorator">
@@ -268,7 +284,7 @@ under the License.
 
                 <set field="fromDate" from-field="requestParameters.fromDate" type="Timestamp"/>
 
-                <script location="component://product/groovyScripts/catalog/config/EditProductConfigItemContentContent.groovy"/>
+                <script location="component://product/src/main/groovy/org/apache/ofbiz/product/catalog/config/EditProductConfigItemContentContent.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonConfigDecorator">

@@ -32,13 +32,6 @@ under the License.
         <attribute name="fixedAssetId" type="String" form-display="true" form-label="${uiLabelMap.ManufacturingMachineGroup}" mode="IN" optional="true"/>
         <attribute name="lookupResult" type="List" mode="OUT" optional="false"/>
     </service>
-    <service name="lookupPO" engine="java"
-            location="org.apache.ofbiz.manufacturing.techdata.TechDataServices" invoke="lookupPONumber" auth="true">
-        <description>Only used to defined the query lookup for Routing Task</description>
-        <attribute name="orderId" type="String" form-display="true" form-label="Po Number" mode="IN" optional="true"/>
-        <attribute name="orderDate" type="String" form-display="true" form-label="Order Date" mode="IN" optional="true"/>
-        <attribute name="lookupResult" type="List" mode="OUT" optional="false"/>
-    </service>
     <service name="checkRoutingTaskAssoc" engine="java"
             location="org.apache.ofbiz.manufacturing.techdata.TechDataServices" invoke="checkRoutingTaskAssoc" auth="true">
         <description>Check if a new routingTaskAssoc is ok or not (same SeqId and Date)</description>
@@ -49,7 +42,7 @@ under the License.
         <attribute name="sequenceNumNotOk" type="String" mode="OUT" optional="false"/>
     </service>
     <service name="getProductRouting" engine="groovy" auth="true"
-                location="component://manufacturing/groovyScripts/routing/RoutingServices.groovy" invoke="getProductRouting">
+                location="component://manufacturing/src/main/groovy/org/apache/ofbiz/manufacturing/routing/RoutingServicesScript.groovy" invoke="getProductRouting">
         <description>Get the product's routing and routing tasks</description>
         <attribute mode="IN" name="productId" optional="false" type="String"/>
         <attribute mode="IN" name="workEffortId" optional="true" type="String"/>
@@ -59,7 +52,7 @@ under the License.
         <attribute mode="OUT" name="tasks" type="java.util.List" optional="true"/>
     </service>
     <service name="getRoutingTaskAssocs" engine="groovy" auth="true"
-                location="component://manufacturing/groovyScripts/routing/RoutingServices.groovy" invoke="getRoutingTaskAssocs">
+                location="component://manufacturing/src/main/groovy/org/apache/ofbiz/manufacturing/routing/RoutingServicesScript.groovy" invoke="getRoutingTaskAssocs">
         <description>Get the routing task assocs of a given routing</description>
         <attribute mode="IN" name="workEffortId" optional="false" type="String"/>
         <attribute mode="OUT" name="routingTaskAssocs" type="java.util.List" optional="true"/>

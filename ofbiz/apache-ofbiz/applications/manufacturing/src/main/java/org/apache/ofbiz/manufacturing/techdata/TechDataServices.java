@@ -99,49 +99,7 @@ public class TechDataServices {
         result.put("lookupResult", listRoutingTask);
         return result;
     }
-    /**
-     * Used to check if there is not two routing task with the same SeqId valid at the same period
-     * @param ctx            The DispatchContext that this service is operating in.
-     * @param context    a map containing workEffortIdFrom (routing) and SeqId, fromDate thruDate
-     * @return result      a map containing sequenceNumNotOk which is equal to "Y" if it's not Ok
-     */
-    public static Map<String, Object> lookupPONumber(DispatchContext ctx, Map<String, ? extends Object> context) {
-        Delegator delegator = ctx.getDelegator();
-        Map<String, Object> result = new HashMap<>();
-        Locale locale = (Locale) context.get("locale");
-        String orderId = (String) context.get("orderId");
-        String orderDate = (String) context.get("orderDate");
-        List<GenericValue> listPoNumber = null;
-        List<EntityExpr> constraints = new LinkedList<>();
-        if (UtilValidate.isNotEmpty(orderId)) {
-            constraints.add(EntityCondition.makeCondition("orderId", EntityOperator.EQUALS, orderId));
-        }
-        if (UtilValidate.isNotEmpty(orderDate)) {
-            constraints.add(EntityCondition.makeCondition("orderDate", EntityOperator.EQUALS, orderDate));
-        }
-        constraints.add(EntityCondition.makeCondition("orderTypeId", EntityOperator.EQUALS, "SALES_ORDER"));
-        try {
-            listPoNumber = EntityQuery.use(delegator).from("OrderHeader")
-                    .where(constraints)
-                    .orderBy("orderId")
-                    .queryList();
-        } catch (GenericEntityException e) {
-            Debug.logWarning(e, MODULE);
-            return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "ManufacturingTechDataWorkEffortNotExist",
-                    UtilMisc.toMap("errorString", e.toString()), locale));
-        }
-        if (listPoNumber == null) {
-            listPoNumber = new LinkedList<>();
-        }
-        Debug.logInfo("it is working here", MODULE);
-        Debug.logInfo("Order Number ${orderId} ,order Date ${orderDate}", MODULE);
-        //if (listRoutingTask.size() == 0) {
-            //FIXME is it correct ?
-            // listRoutingTask.add(UtilMisc.toMap("label", "no Match", "value", "NO_MATCH"));
-        //}
-        result.put("lookupResult", listPoNumber);
-        return result;
-    }
+
     /**
      * Used to check if there is not two routing task with the same SeqId valid at the same period
      * @param ctx            The DispatchContext that this service is operating in.
