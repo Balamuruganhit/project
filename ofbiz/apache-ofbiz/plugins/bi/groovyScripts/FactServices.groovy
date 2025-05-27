@@ -349,7 +349,7 @@ def loadSalesOrderItemFact() {
         partyAccountingPreferencesCallMap.organizationPartyId = billFromParty.partyId
         Map accountResult = run service:"getPartyAccountingPreferences", with: partyAccountingPreferencesCallMap
         GenericValue accPref = accountResult.partyAccountingPreference
-        logInfo("Party Account" + partyAccountingPreferencesCallMap)
+        logInfo("Party Account" + accountResult)
         fact.quantity = orderItem.quantity as BigDecimal
         fact.extGrossAmount = 0 as BigDecimal
         fact.extGrossCost = 0 as BigDecimal
