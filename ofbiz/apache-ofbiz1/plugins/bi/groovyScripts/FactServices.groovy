@@ -283,7 +283,7 @@ def loadSalesOrderItemFact() {
                 inMap.naturalKeyFields = naturalKeyFields
                 logInfo('NaturalKeyfield' + naturalKeyFields)
                 serviceResult = run service: "getDimensionIdFromNaturalKey", with: inMap
-                logInfo('ServiceResult' + serviceResult)
+                logInfo('ServiceResult' + serviceResult.dimensionId)
                 fact.orderDateDimId = serviceResult.dimensionId
                 if (!fact.orderDateDimId) {
                     fact.orderDateDimId = "_NF_"
