@@ -335,7 +335,7 @@ def loadSalesOrderItemFact() {
 
             // TODO
             fact.billToCustomerDimId = "_NA_"
-
+            logInfo('fact ====' + fact)
             fact.create()
             logInfo('Fact was Created' + fact)
         }
