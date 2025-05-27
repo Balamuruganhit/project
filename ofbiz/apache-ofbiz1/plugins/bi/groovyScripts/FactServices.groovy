@@ -89,6 +89,7 @@ def loadSalesInvoiceItemFact() {
                 naturalKeyFields.dateValue = invoiceDate
                 inMap.naturalKeyFields = naturalKeyFields
                 serviceResult = run service: "getDimensionIdFromNaturalKey", with: inMap
+                
                 fact.invoiceDateDimId = serviceResult.dimensionId
                 if (!fact.invoiceDateDimId) {
                     fact.invoiceDateDimId = "_NF_"
@@ -267,7 +268,7 @@ def loadSalesOrderItemFact() {
                 GenericValue brand = from("Enumeration").where(enumId: orderHeader.salesChannelEnumId).queryOne()
                 fact.brand = brand.description
             }
-
+            logInfo("Fact" + fact)
             // conversion of the order date
             orderStatus = from("OrderStatus")
                 .where(orderId: orderHeader.orderId, statusId: "ORDER_APPROVED")
@@ -280,7 +281,9 @@ def loadSalesOrderItemFact() {
                 Date statusDatetime = new Date(orderStatus.statusDatetime.getTime())
                 naturalKeyFields.dateValue = statusDatetime
                 inMap.naturalKeyFields = naturalKeyFields
+                logInfo('NaturalKeyfield' + naturalKeyFields)
                 serviceResult = run service: "getDimensionIdFromNaturalKey", with: inMap
+                logInfo('ServiceResult' + serviceResult)
                 fact.orderDateDimId = serviceResult.dimensionId
                 if (!fact.orderDateDimId) {
                     fact.orderDateDimId = "_NF_"
@@ -296,7 +299,9 @@ def loadSalesOrderItemFact() {
                 inMap.dimensionEntityName = "ProductDimension"
                 naturalKeyFields.productId = orderItem.productId
                 inMap.naturalKeyFields = naturalKeyFields
+                logInfo('NaturalField2' + naturalKeyFields)
                 serviceResult = run service: "getDimensionIdFromNaturalKey", with: inMap
+                logInfo('ServiceProduct' + serviceResult)
                 fact.productDimId = serviceResult.dimensionId
                 if (!fact.productDimId) {
                     fact.productDimId = "_NF_"
@@ -313,6 +318,8 @@ def loadSalesOrderItemFact() {
                 naturalKeyFields.currencyId = orderHeader.currencyUom
                 inMap.naturalKeyFields = naturalKeyFields
                 serviceResult = run service: "getDimensionIdFromNaturalKey", with: inMap
+                logInfo('NaturalField3' + naturalKeyFields)
+                logInfo('service3' + serviceResult)
                 fact.origCurrencyDimId = serviceResult.dimensionId
                 if (!fact.origCurrencyDimId) {
                     fact.origCurrencyDimId = "_NF_"
