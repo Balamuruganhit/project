@@ -337,18 +337,19 @@ def loadSalesOrderItemFact() {
             fact.billToCustomerDimId = "_NA_"
 
             fact.create()
+            logInfo('Fact was Created' + fact)
         }
         /*
          * facts handling
          */
         Map partyAccountingPreferencesCallMap = [:]
-
+        logInfo("Fact running top")
         OrderReadHelper orderReadHelper = new OrderReadHelper(orderHeader)
         Map billFromParty = orderReadHelper.getBillFromParty()
         partyAccountingPreferencesCallMap.organizationPartyId = billFromParty.partyId
         Map accountResult = run service:"getPartyAccountingPreferences", with: partyAccountingPreferencesCallMap
         GenericValue accPref = accountResult.partyAccountingPreference
-
+        logInfo("Party Account" + partyAccountingPreferencesCallMap)
         fact.quantity = orderItem.quantity as BigDecimal
         fact.extGrossAmount = 0 as BigDecimal
         fact.extGrossCost = 0 as BigDecimal
@@ -373,13 +374,14 @@ def loadSalesOrderItemFact() {
         convertUomCurrencyMap.uomIdTo = accPref.baseCurrencyUomId
         if (UtilValidate.isNotEmpty(orderStatus)) {
         convertUomCurrencyMap.nowDate = orderStatus.statusDatetime
+        logInfo("Fact running")
         }
         Map convertResult = run service: "convertUomCurrency", with: convertUomCurrencyMap
         BigDecimal exchangeRate = convertResult.conversionFactor
 
         if (exchangeRate) {
             BigDecimal unitPrice = orderItem.unitPrice * exchangeRate
-
+            logInfo("Fact running on factExchange")
             fact.extGrossAmount = fact.quantity * unitPrice
         }
 
@@ -392,11 +394,13 @@ def loadSalesOrderItemFact() {
             convertUomCurrencyMap.uomIdTo = accPref.baseCurrencyUomId
             if (orderStatus) {
                 convertUomCurrencyMap.nowDate = orderStatus.statusDatetime
+                logInfo("It will working")
             }
             Map grossCostResult = run service: "convertUomCurrency", with: convertUomCurrencyMap
             exchangeRate = grossCostResult.conversionFactor
 
             if (exchangeRate) {
+                logInfo("It will working")
                 BigDecimal costPrice = cost.lastPrice * exchangeRate
                 fact.extGrossCost = fact.quantity * costPrice
             }
@@ -406,6 +410,7 @@ def loadSalesOrderItemFact() {
         for (GenericValue shipping : orderAdjustments) {
             if ("SHIPPING_CHARGES".equals(shipping.orderAdjustmentTypeId)) {
                 fact.extShippingAmount = fact.extShippingAmount + shipping.amount
+                logInfo("It will working")
             }
         }
 
@@ -413,6 +418,8 @@ def loadSalesOrderItemFact() {
         for (GenericValue tax : orderAdjustments) {
             if ("SALES_TAX".equals(tax.orderAdjustmentTypeId)) {
                 fact.extTaxAmount = fact.extTaxAmount + tax.amount
+                logInfo("It will working")
+                logInfo("It will fact" + fact)
             }
         }
 
@@ -515,6 +522,8 @@ def loadSalesOrderItemFact() {
         if (countOrder == 0) {
             fact.countOrder = 1 as BigDecimal
         }
+        logInfo("It will working")
+        logInfo("Final Fact" + fact)
         fact.store()
     }
     return success()
