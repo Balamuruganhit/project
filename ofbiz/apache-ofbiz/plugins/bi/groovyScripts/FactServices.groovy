@@ -267,7 +267,7 @@ def loadSalesOrderItemFact() {
                 GenericValue brand = from("Enumeration").where(enumId: orderHeader.salesChannelEnumId).queryOne()
                 fact.brand = brand.description
             }
-
+            logInfo('Fact' + fact)
             // conversion of the order date
             orderStatus = from("OrderStatus")
                 .where(orderId: orderHeader.orderId, statusId: "ORDER_APPROVED")
@@ -280,8 +280,10 @@ def loadSalesOrderItemFact() {
                 Date statusDatetime = new Date(orderStatus.statusDatetime.getTime())
                 naturalKeyFields.dateValue = statusDatetime
                 inMap.naturalKeyFields = naturalKeyFields
+                logInfo('NaturalKeyfield' + naturalKeyFields)
                 serviceResult = run service: "getDimensionIdFromNaturalKey", with: inMap
                 fact.orderDateDimId = serviceResult.dimensionId
+                logInfo('ServiceResult' + serviceResult)
                 if (!fact.orderDateDimId) {
                     fact.orderDateDimId = "_NF_"
                 }
@@ -296,8 +298,10 @@ def loadSalesOrderItemFact() {
                 inMap.dimensionEntityName = "ProductDimension"
                 naturalKeyFields.productId = orderItem.productId
                 inMap.naturalKeyFields = naturalKeyFields
+                logInfo('NaturalKeyfield1' + naturalKeyFields)
                 serviceResult = run service: "getDimensionIdFromNaturalKey", with: inMap
                 fact.productDimId = serviceResult.dimensionId
+                logInfo('ServiceResult1' + serviceResult)
                 if (!fact.productDimId) {
                     fact.productDimId = "_NF_"
                 }
@@ -312,7 +316,9 @@ def loadSalesOrderItemFact() {
                 inMap.dimensionEntityName = "CurrencyDimension"
                 naturalKeyFields.currencyId = orderHeader.currencyUom
                 inMap.naturalKeyFields = naturalKeyFields
+                logInfo('NaturalKeyfield3' + naturalKeyFields)
                 serviceResult = run service: "getDimensionIdFromNaturalKey", with: inMap
+                logInfo('ServiceResult2' + serviceResult)
                 fact.origCurrencyDimId = serviceResult.dimensionId
                 if (!fact.origCurrencyDimId) {
                     fact.origCurrencyDimId = "_NF_"
