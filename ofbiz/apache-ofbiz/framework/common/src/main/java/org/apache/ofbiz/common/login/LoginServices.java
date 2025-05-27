@@ -20,7 +20,6 @@
 package org.apache.ofbiz.common.login;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -82,11 +81,6 @@ public class LoginServices {
         Locale locale = (Locale) context.get("locale");
         Delegator delegator = ctx.getDelegator();
 
-        // Keep track of two different kinds of errors (UserOnly and DebugLog) and set the RESPONSE_MESSAGE of the
-        // service according to what kind of errors where thrown
-        List<String> userErrMsgs = new ArrayList<>();
-        List<String> debugErrMsgs = new ArrayList<>();
-
         // load the external auth modules -- note: this will only run once and cache the objects
         if (!AuthHelper.authenticatorsLoaded()) {
             AuthHelper.loadAuthenticators(dispatcher);
@@ -126,10 +120,11 @@ public class LoginServices {
         // get the visitId for the history entity
         String visitId = (String) context.get("visitId");
 
+        String errMsg = "";
         if (UtilValidate.isEmpty(username)) {
-            userErrMsgs.add(UtilProperties.getMessage(RESOURCE, "loginservices.username_missing", locale));
+            errMsg = UtilProperties.getMessage(RESOURCE, "loginservices.username_missing", locale);
         } else if (UtilValidate.isEmpty(password) && UtilValidate.isEmpty(jwtToken)) {
-            userErrMsgs.add(UtilProperties.getMessage(RESOURCE, "loginservices.password_missing", locale));
+            errMsg = UtilProperties.getMessage(RESOURCE, "loginservices.password_missing", locale);
         } else {
 
             if ("true".equalsIgnoreCase(EntityUtilProperties.getPropertyValue("security", "username.lowercase", delegator))) {
@@ -280,9 +275,9 @@ public class LoginServices {
                             Debug.logInfo("[LoginServices.userLogin] : Password Incorrect", MODULE);
                             // password invalid...
                             if (password != null) {
-                                userErrMsgs.add(UtilProperties.getMessage(RESOURCE, "loginservices.password_incorrect", locale));
+                                errMsg = UtilProperties.getMessage(RESOURCE, "loginservices.password_incorrect", locale);
                             } else if (jwtToken != null) {
-                                userErrMsgs.add(UtilProperties.getMessage(RESOURCE, "loginservices.token_incorrect", locale));
+                                errMsg = UtilProperties.getMessage(RESOURCE, "loginservices.token_incorrect", locale);
                             }
                             // increment failed login count
                             Long currentFailedLogins = userLogin.getLong("successiveFailedLogins");
@@ -405,25 +400,20 @@ public class LoginServices {
                             continue;
                         }
                         Map<String, Object> messageMap = UtilMisc.<String, Object>toMap("username", username);
-                        userErrMsgs.add(UtilProperties.getMessage(RESOURCE, "loginservices.account_for_user_login_id_disabled", messageMap, locale));
-                        StringBuilder tmpErrMsg = new StringBuilder();
+                        errMsg = UtilProperties.getMessage(RESOURCE, "loginservices.account_for_user_login_id_disabled", messageMap, locale);
                         if (disabledDateTime != null) {
                             messageMap = UtilMisc.<String, Object>toMap("disabledDateTime", disabledDateTime);
-                            tmpErrMsg.append(" ");
-                            tmpErrMsg.append(UtilProperties.getMessage(RESOURCE, "loginservices.since_datetime", messageMap, locale));
+                            errMsg += " " + UtilProperties.getMessage(RESOURCE, "loginservices.since_datetime", messageMap, locale);
                         } else {
-                            tmpErrMsg.append(".");
+                            errMsg += ".";
                         }
 
                         if (loginDisableMinutes > 0 && reEnableTime != null) {
                             messageMap = UtilMisc.<String, Object>toMap("reEnableTime", reEnableTime);
-                            tmpErrMsg.append(" ");
-                            tmpErrMsg.append(UtilProperties.getMessage(RESOURCE, "loginservices.will_be_reenabled", messageMap, locale));
+                            errMsg += " " + UtilProperties.getMessage(RESOURCE, "loginservices.will_be_reenabled", messageMap, locale);
                         } else {
-                            tmpErrMsg.append(" ");
-                            tmpErrMsg.append(UtilProperties.getMessage(RESOURCE, "loginservices.not_scheduled_to_be_reenabled", locale));
+                            errMsg += " " + UtilProperties.getMessage(RESOURCE, "loginservices.not_scheduled_to_be_reenabled", locale);
                         }
-                        userErrMsgs.add(tmpErrMsg.toString());
                     }
                 } else {
                     // no userLogin object; there may be a non-syncing authenticator
@@ -431,7 +421,7 @@ public class LoginServices {
                     try {
                         externalAuth = AuthHelper.authenticate(username, password, isServiceAuth);
                     } catch (AuthenticatorException e) {
-                        debugErrMsgs.add(e.getMessage());
+                        errMsg = e.getMessage();
                         Debug.logError(e, "External Authenticator had fatal exception : " + e.getMessage(), MODULE);
                     }
                     if (externalAuth) {
@@ -446,33 +436,16 @@ public class LoginServices {
                         // TODO: party + security information is needed; Userlogin will need to be stored
                     } else {
                         // userLogin record not found, user does not exist
-                        String errMsg = UtilProperties.getMessage(RESOURCE, "loginservices.user_not_found", locale);
-                        userErrMsgs.add(errMsg);
+                        errMsg = UtilProperties.getMessage(RESOURCE, "loginservices.user_not_found", locale);
                         Debug.logInfo("[LoginServices.userLogin] Invalid User : '" + username + "'; " + errMsg, MODULE);
                     }
                 }
             }
         }
 
-        if (debugErrMsgs.size() > 0) {
-            result.put(ModelService.RESPONSE_MESSAGE, ModelService.RESPOND_ERROR);
-        } else if (userErrMsgs.size() > 0) {
+        if (!errMsg.isEmpty()) {
             result.put(ModelService.RESPONSE_MESSAGE, ModelService.RESPOND_FAIL);
-        }
-        // if a technical error occurred then log all error message
-        List<String> messages = new ArrayList<>();
-        if (!debugErrMsgs.isEmpty()) {
-            messages.add(String.join(" / ", debugErrMsgs));
-        }
-        if (!userErrMsgs.isEmpty()) {
-            messages.add(String.join(" / ", userErrMsgs));
-        }
-        String allErrMsg = null;
-        if (!messages.isEmpty()) {
-            allErrMsg = String.join(" / ", messages);
-        }
-        if (allErrMsg != null) {
-            result.put(ModelService.ERROR_MESSAGE, allErrMsg);
+            result.put(ModelService.ERROR_MESSAGE, errMsg);
         }
         return result;
     }

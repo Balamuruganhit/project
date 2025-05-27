@@ -549,7 +549,6 @@ under the License.
       <field name="unitListPrice" type="currency-precise"></field>
       <field name="unitAverageCost" type="currency-amount"></field>
       <field name="unitRecurringPrice" type="currency-amount"></field>
-      <field name="discountRate" type="fixed-point"></field>
       <field name="isModifiedPrice" type="indicator"></field>
       <field name="recurringFreqUomId" type="id"></field>
       <field name="itemDescription" type="description"></field>
@@ -1010,6 +1009,7 @@ under the License.
       <field name="currentPromisedDate" type="date-time"></field>
       <field name="priority" type="indicator"><description>Sets priority for Inventory Reservation</description></field>
       <field name="sequenceId" type="numeric"></field>
+      <field name="oldPickStartDate" col-name="PICK_START_DATE" type="date-time"></field> <!-- this is no longer used and is here for migration or whatever if needed -->
       <prim-key field="orderId"/>
       <prim-key field="shipGroupSeqId"/>
       <prim-key field="orderItemSeqId"/>
@@ -2951,21 +2951,6 @@ under the License.
         <key-map field-name="productId"/>
       </relation>
     </entity>
-    <entity entity-name="ShoppingListItemAttribute"
-            package-name="org.apache.ofbiz.order.shoppinglist"
-            title="Shopping List Item Attribute Entity">
-      <field name="shoppingListId" type="id"></field>
-      <field name="shoppingListItemSeqId" type="id"></field>
-      <field name="attrName" type="id-long"></field>
-      <field name="attrValue" type="value"></field>
-      <prim-key field="shoppingListId"/>
-      <prim-key field="shoppingListItemSeqId"/>
-      <prim-key field="attrName"/>
-      <relation type="one" fk-name="SHLIST_ITEM_ATTR" rel-entity-name="ShoppingListItem">
-        <key-map field-name="shoppingListId"/>
-        <key-map field-name="shoppingListItemSeqId"/>
-      </relation>
-    </entity>
     <entity entity-name="ShoppingListItemSurvey"
             package-name="org.apache.ofbiz.order.shoppinglist"
             title="Shopping List Item">
@@ -3110,4 +3095,27 @@ under the License.
           <key-map field-name="productId"/>
         </view-link>
     </view-entity>
+    <entity entity-name="WorkOrder"
+            package-name="org.apache.ofbiz.order.order"
+            title="Work Order Entity">
+        <field name="workOrderNumber" type="id"/>
+        <field name="customerName" type="name"/>
+        <field name="productName" type="name"/>
+        <field name="productId" type="name"/>
+        <field name="productType" type="name"/>
+        <field name="quantity" type="id"/>
+        <field name="productDescription" type="name"/>
+        <field name="deliveryDate" type="date"/>
+        <field name="orderNumber" type="id"/>
+        <field name="status" type="very-short"/>
+        <field name="orderDate" type="date"/>
+        <prim-key field="workOrderNumber"/>
+    </entity>
+    <entity entity-name="workOrderStatus"
+            package-name="org.apache.ofbiz.order.order"
+            title="Status Order Entity">
+        <field name="statusId" type="id"/>
+        <field name="orderStatus" type="name"/>
+        <prim-key field="statusId"/>
+    </entity>
 </entitymodel>

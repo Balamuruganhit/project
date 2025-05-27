@@ -26,7 +26,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleServiceList"/>
                 <set field="tabButtonItem" value="serviceList"/>
-                <script location="component://webtools/src/main/groovy/org/apache/ofbiz/webtools/service/AvailableServices.groovy"/>
+                <script location="component://webtools/groovyScripts/service/AvailableServices.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonServiceDecorator" location="${parameters.mainDecoratorLocation}">
@@ -64,7 +64,7 @@ under the License.
                                         <include-form name="FindJobs" location="component://webtools/widget/ServiceForms.xml"/>
                                     </decorator-section>
                                     <decorator-section name="search-results">
-                                        <include-grid name="ListJobs" location="component://webtools/widget/ServiceForms.xml"/>
+                                        <include-form name="ListJobs" location="component://webtools/widget/ServiceForms.xml"/>
                                     </decorator-section>
                                 </decorator-screen>
                             </widgets>
@@ -79,7 +79,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleJobDetails"/>
                 <set field="tabButtonItem" value="findJob"/>
-                <script location="component://webtools/src/main/groovy/org/apache/ofbiz/webtools/service/JobDetails.groovy"/>
+                <script location="component://webtools/groovyScripts/service/JobDetails.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonServiceDecorator" location="${parameters.mainDecoratorLocation}">
@@ -88,7 +88,7 @@ under the License.
                             <include-form name="JobDetails" location="component://webtools/widget/ServiceForms.xml"/>
                         </screenlet>
                         <screenlet title="${uiLabelMap.WebtoolsRunTimeDataInfo}">
-                            <include-grid name="JobRuntimeDataInfo" location="component://webtools/widget/ServiceForms.xml"/>
+                            <include-form name="JobRuntimeDataInfo" location="component://webtools/widget/ServiceForms.xml"/>
                         </screenlet>
                     </decorator-section>
                 </decorator-screen>
@@ -101,14 +101,14 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleThreadList"/>
                 <set field="tabButtonItem" value="threadList"/>
-                <script location="component://webtools/src/main/groovy/org/apache/ofbiz/webtools/service/Threads.groovy"/>
+                <script location="component://webtools/groovyScripts/service/Threads.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonServiceDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <screenlet title="${uiLabelMap.WebtoolsServiceEngineThreads}">
                             <include-form name="PoolState" location="component://webtools/widget/ServiceForms.xml"/>
-                            <include-grid name="ListJavaThread" location="component://webtools/widget/ServiceForms.xml"/>
+                            <include-form name="ListJavaThread" location="component://webtools/widget/ServiceForms.xml"/>
                         </screenlet>
                         <screenlet title="${uiLabelMap.WebtoolsGeneralJavaThreads}">
                             <platform-specific>
@@ -126,7 +126,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleScheduleJob"/>
                 <set field="tabButtonItem" value="scheduleJob"/>
-                <script location="component://webtools/src/main/groovy/org/apache/ofbiz/webtools/service/ScheduleJob.groovy"/>
+                <script location="component://webtools/groovyScripts/service/ScheduleJob.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonServiceDecorator" location="${parameters.mainDecoratorLocation}">
@@ -146,7 +146,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleRunService"/>
                 <set field="tabButtonItem" value="runService"/>
-                <script location="component://webtools/src/main/groovy/org/apache/ofbiz/webtools/service/ScheduleJob.groovy"/>
+                <script location="component://webtools/groovyScripts/service/ScheduleJob.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonServiceDecorator" location="${parameters.mainDecoratorLocation}">
@@ -166,7 +166,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleScheduleJob"/>
                 <set field="tabButtonItem" value="scheduleJob"/>
-                <script location="component://webtools/src/main/groovy/org/apache/ofbiz/webtools/service/SetServiceParameters.groovy"/>
+                <script location="component://webtools/groovyScripts/service/ScheduleJob.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonServiceDecorator" location="${parameters.mainDecoratorLocation}">
@@ -188,7 +188,7 @@ under the License.
                 <set field="titleProperty" value="PageTitleScheduleJob"/>
                 <set field="headerItem" value="services"/>
                 <set field="tabButtonItem" value="runService"/>
-                <script location="component://webtools/src/main/groovy/org/apache/ofbiz/webtools/service/SetServiceParameters.groovy"/>
+                <script location="component://webtools/groovyScripts/service/ScheduleJob.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonServiceDecorator" location="${parameters.mainDecoratorLocation}">
@@ -210,7 +210,7 @@ under the License.
                 <set field="titleProperty" value="PageTitleScheduleJob"/>
                 <set field="headerItem" value="services"/>
                 <set field="tabButtonItem" value="runService"/>
-                <script location="component://webtools/src/main/groovy/org/apache/ofbiz/webtools/service/ServiceResult.groovy"/>
+                <script location="component://webtools/groovyScripts/service/ServiceResult.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonServiceDecorator" location="${parameters.mainDecoratorLocation}">
@@ -250,7 +250,7 @@ under the License.
                         <screenlet padded="false">
                             <label style="h3" text="${uiLabelMap.CommonSearchResults}"/>
                             <container id="search-results">
-                                <include-grid name="ListJobManagerLock" location="component://webtools/widget/ServiceForms.xml"/>
+                                <include-form name="ListJobManagerLock" location="component://webtools/widget/ServiceForms.xml"/>
                             </container>
                         </screenlet>
                     </decorator-section>

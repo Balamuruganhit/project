@@ -112,7 +112,7 @@ public class MarketingServices {
                 Debug.logError(error, MODULE);
                 return ServiceUtil.returnError(error);
             }
-            /* checks if user has already requested to sign up: if yes, delete all the existing
+            /* check if user has already requested to sign up: if yes, delete all the existing
              * pending records and then add a new one.
              */
             List<GenericValue> pendingContactListPartyList = EntityUtil.filterByAnd(contactListPartyList,
@@ -135,10 +135,10 @@ public class MarketingServices {
                 Debug.logInfo("Successfully deleted " + count + " old Contact List PENDING requests.", MODULE);
             }
 
-            // create a new association at this fromDate to the anonymous party with status pending
+            // create a new association at this fromDate to the anonymous party with status accepted
             input = UtilMisc.toMap("userLogin", userLogin, "contactListId", contactList.get("contactListId"),
-                "partyId", partyId, "fromDate", fromDate, "statusId", "CLPT_PENDING", "preferredContactMechId", contactMechId, "baseLocation",
-                context.get("baseLocation"));
+                    "partyId", partyId, "fromDate", fromDate, "statusId", "CLPT_PENDING", "preferredContactMechId", contactMechId, "baseLocation",
+                    context.get("baseLocation"));
             serviceResults = dispatcher.runSync("createContactListParty", input);
             if (ServiceUtil.isError(serviceResults)) {
                 throw new GenericServiceException(ServiceUtil.getErrorMessage(serviceResults));

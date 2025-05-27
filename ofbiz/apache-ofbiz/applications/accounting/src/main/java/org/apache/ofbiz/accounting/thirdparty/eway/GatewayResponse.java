@@ -164,20 +164,8 @@ public class GatewayResponse {
      */
     public GatewayResponse(InputStream xmlstream, GatewayRequest req) throws Exception {
 
-        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-        // Below is an answer to a codeQL action on GH reporting a possible XXE
-        // I have a doubt about "load-external-dtd" feature because I did not test the changes.
-        builderFactory.setValidating(true);
-        builderFactory.setNamespaceAware(true);
-
-        builderFactory.setAttribute("http://xml.org/sax/features/validation", true);
-        builderFactory.setAttribute("http://apache.org/xml/features/validation/schema", true);
-
-        builderFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
-        builderFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-        builderFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
-        builderFactory.setXIncludeAware(false);
-        builderFactory.setExpandEntityReferences(false);
+        DocumentBuilderFactory builderFactory = DocumentBuilderFactory
+                .newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         Document doc = builder.parse(xmlstream);
 

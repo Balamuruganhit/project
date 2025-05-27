@@ -92,15 +92,11 @@ public class NetConverters implements ConverterLoader {
 
         @Override
         public URL convert(String obj) throws ConversionException {
-            URL url = null;
-            URI uri;
             try {
-                uri = new URI(obj);
-                url = uri.toURL();
-            } catch (IllegalArgumentException | URISyntaxException | MalformedURLException e) {
+                return new URL(obj);
+            } catch (MalformedURLException e) {
                 throw (ConversionException) new ConversionException(e.getMessage()).initCause(e);
             }
-            return url;
         }
     }
 

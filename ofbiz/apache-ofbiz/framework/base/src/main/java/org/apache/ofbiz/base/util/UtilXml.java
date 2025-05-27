@@ -87,7 +87,6 @@ public final class UtilXml {
     private static final String MODULE = UtilXml.class.getName();
     private static final XStream X_STREAM = createXStream();
     private UtilXml() { }
-    private static final List<String> HOSTHEADERSALLOWED = UtilMisc.getHostHeadersAllowed();
 
     private static XStream createXStream() {
         XStream xstream = new XStream();
@@ -126,7 +125,7 @@ public final class UtilXml {
      * @return A <code>LSOutput</code> instance
      * @see <a href="http://www.w3.org/TR/2004/REC-DOM-Level-3-LS-20040407/">DOM Level 3 Load and Save Specification</a>
      */
-    private static LSOutput createLSOutput(DOMImplementationLS impl, OutputStream os, String encoding) {
+    public static LSOutput createLSOutput(DOMImplementationLS impl, OutputStream os, String encoding) {
         LSOutput out = impl.createLSOutput();
         if (os != null) {
             out.setByteStream(os);
@@ -147,7 +146,7 @@ public final class UtilXml {
      * @return A <code>LSSerializer</code> instance
      * @see <a href="http://www.w3.org/TR/2004/REC-DOM-Level-3-LS-20040407/">DOM Level 3 Load and Save Specification</a>
      */
-    private static LSSerializer createLSSerializer(DOMImplementationLS impl, boolean includeXmlDeclaration, boolean enablePrettyPrint) {
+    public static LSSerializer createLSSerializer(DOMImplementationLS impl, boolean includeXmlDeclaration, boolean enablePrettyPrint) {
         LSSerializer writer = impl.createLSSerializer();
         DOMConfiguration domConfig = writer.getDomConfig();
         domConfig.setParameter("xml-declaration", includeXmlDeclaration);
@@ -396,13 +395,9 @@ public final class UtilXml {
 
     public static Document readXmlDocument(URL url, boolean validate, boolean withPosition)
             throws SAXException, ParserConfigurationException, java.io.IOException {
-
-        // url.getHost().isEmpty() when reading an XML file
-        if (!HOSTHEADERSALLOWED.contains(url.getHost()) && !url.getHost().isEmpty()) {
-            Debug.logWarning("Domain " + url.getHost() + " not accepted to prevent host header injection."
-                    + " You need to set host-headers-allowed property in security.properties file.", MODULE);
-            throw new IOException("Domain " + url.getHost() + " not accepted to prevent host header injection."
-                    + " You need to set host-headers-allowed property in security.properties file.");
+        if (url == null) {
+            Debug.logWarning("[UtilXml.readXmlDocument] URL was null, doing nothing", MODULE);
+            return null;
         }
         InputStream is = url.openStream();
         Document document = readXmlDocument(is, validate, url.toString(), withPosition);

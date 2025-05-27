@@ -22,14 +22,14 @@ under the License.
  */
 var uiLabelJsonObject = null;
 jQuery(document).ready(function() {
-    var labelObject = ["CommonUpload", "CommonSave", "CommonCompleted", "PartyNoContent"];
+    var labelObject = ["CommonUpload", "CommonSave", "CommonCompleted"];
     getJSONuiLabels(labelObject, function(result){
         uiLabelJsonObjects = result.responseJSON;
     });
     jQuery("#progress_bar").progressbar({value: 0});
 });
 
-function uploadPartyContent(event) {
+function uploadPartyContent(event){
     jQuery("#progress_bar").progressbar("option", "value", 0);
     var targetFrame = jQuery('#target_upload');
     var infodiv = jQuery('#content-messages');
@@ -47,18 +47,14 @@ function uploadPartyContent(event) {
     }
 }
 
-function uploadCompleted() {
+function uploadCompleted(){
     var iframePartyContentList = jQuery("#target_upload").contents().find("#partyContentList").html();
 
     // update partyContentList - copy the Data from the iFrame partyContentList
     // to the page partyContentList
     jQuery("#partyContentList").html(iframePartyContentList);
 
-    if (iframePartyContentList.includes(uiLabelJsonObjects.PartyNoContent)) {
-        jQuery('#progressBarSavingMsg').html(uiLabelJsonObjects.CommonCompleted);
-    } else {
-        jQuery('#progressBarSavingMsg').html("Maybe for security reason your file has not been accepted, check the log.");
-    }
+    jQuery('#progressBarSavingMsg').html(uiLabelJsonObjects.CommonCompleted);
     // reset progressbar
     jQuery("#progress_bar").progressbar("option", "value", 0);
 

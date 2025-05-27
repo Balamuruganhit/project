@@ -299,8 +299,7 @@ public class DataServices {
                     String errorMessage = UtilProperties.getMessage("SecurityUiLabels", "SupportedFileFormatsIncludingSvg", locale);
                     return ServiceUtil.returnError(errorMessage);
                 }
-                File tempFileToDelete = new File(tempFile.toString());
-                tempFileToDelete.deleteOnExit();
+                Files.delete(tempFile);
                 RandomAccessFile out = new RandomAccessFile(file, "rw");
                 out.write(binData.array());
                 out.close();
@@ -509,8 +508,7 @@ public class DataServices {
                         String errorMessage = UtilProperties.getMessage("SecurityUiLabels", "SupportedFileFormatsIncludingSvg", locale);
                         return ServiceUtil.returnError(errorMessage);
                     }
-                    File tempFileToDelete = new File(tempFile.toString());
-                    tempFileToDelete.deleteOnExit();
+                    Files.delete(tempFile);
                     RandomAccessFile out = new RandomAccessFile(file, "rw");
                     out.setLength(binData.array().length);
                     out.write(binData.array());

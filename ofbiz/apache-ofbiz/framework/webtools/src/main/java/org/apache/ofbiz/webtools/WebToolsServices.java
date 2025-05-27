@@ -160,24 +160,11 @@ public class WebToolsServices {
                         UtilMisc.toMap("filename", fmfilename, "errorString", "Template file not found."), locale));
             }
             try {
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                factory.setValidating(true);
-                factory.setNamespaceAware(true);
-
-                factory.setAttribute("http://xml.org/sax/features/validation", true);
-                factory.setAttribute("http://apache.org/xml/features/validation/schema", true);
-
-                factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
-                factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-                factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
-                factory.setXIncludeAware(false);
-                factory.setExpandEntityReferences(false);
-
-                DocumentBuilder builder = factory.newDocumentBuilder();
+                DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
                 InputSource ins = url != null ? new InputSource(url.openStream()) : new InputSource(new StringReader(fulltext));
                 Document doc;
                 try {
-                    doc = builder.parse(ins);
+                    doc = documentBuilder.parse(ins);
                 } finally {
                     if (ins.getByteStream() != null) {
                         ins.getByteStream().close();

@@ -45,7 +45,7 @@ import org.apache.ofbiz.base.util.UtilValidate;
  *
  * @see <a href="https://en.wikipedia.org/wiki/Memoization">Memoization</a>
  */
-public final class WebAppCache {
+public class WebAppCache {
     // Synchronized map storing web applications.
     // The LinkedHashMap is used to maintain insertion order (which client code depends on).
     // There is no concurrent implementation of LinkedHashMap, so we are using manual synchronization instead.
@@ -57,7 +57,7 @@ public final class WebAppCache {
      * Constructs an empty web application cache.
      * @param supplier the source from which components configurations are retrieved
      */
-    WebAppCache(Supplier<Collection<ComponentConfig>> supplier) {
+    public WebAppCache(Supplier<Collection<ComponentConfig>> supplier) {
         ccs = supplier;
         serverWebApps = new LinkedHashMap<>();
     }
@@ -107,7 +107,7 @@ public final class WebAppCache {
                         Integer key = null;
                         try {
                             key = Integer.valueOf(stringKey);
-                            key = (key != null) && !acc.containsKey(key) ? key : emptyPosition.incrementAndGet();
+                            key = (key != null) ? key : emptyPosition.incrementAndGet();
                         } catch (NumberFormatException e) {
                             key = emptyPosition.incrementAndGet();
                         }

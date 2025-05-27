@@ -2039,8 +2039,45 @@ under the License.
         <key-map field-name="partyContentTypeId"/>
       </relation>
     </entity>
+    <entity entity-name="PlantContent"
+            package-name="org.apache.ofbiz.party.party"
+            title="Plant Data Object">
+      <field name="plantId" type="id"></field>
+      <field name="contentId" type="id"></field>
+      <field name="plantContentTypeId" type="id"></field>
+      <prim-key field="plantId"/>
+      <prim-key field="contentId"/>
+      <prim-key field="plantContentTypeId"/>
+      <field name="fromDate" type="date-time"></field>
+      <field name="description" type="description"></field>
+      <prim-key field="fromDate"/>
+      <relation type="one" fk-name="PARTY_CNT_PARTY" rel-entity-name="Party">
+        <key-map field-name="plantId"/>
+      </relation>
+      <relation type="one" fk-name="PARTY_CNT_CNT" rel-entity-name="Content">
+        <key-map field-name="contentId"/>
+      </relation>
+      <relation type="one" fk-name="PARTY_CNT_TYPE" rel-entity-name="PlantContentType">
+        <key-map field-name="plantContentTypeId"/>
+      </relation>
+    </entity>
     <view-entity entity-name="PartyContentDetail" package-name="org.apache.ofbiz.content.content" title="Party Content Detail View">
         <member-entity entity-alias="PCT" entity-name="PartyContent"/>
+        <member-entity entity-alias="CNT" entity-name="Content"/>
+        <alias-all entity-alias="PCT"/>
+        <alias-all entity-alias="CNT"/>
+        <view-link entity-alias="PCT" rel-entity-alias="CNT">
+            <key-map field-name="contentId"/>
+        </view-link>
+        <relation type="one-nofk" rel-entity-name="DataResource">
+            <key-map field-name="dataResourceId"/>
+        </relation>
+        <relation type="one-nofk" rel-entity-name="ContentType">
+            <key-map field-name="contentTypeId"/>
+        </relation>
+    </view-entity>
+    <view-entity entity-name="PlantContentDetail" package-name="org.apache.ofbiz.content.content" title="Party Content Detail View">
+        <member-entity entity-alias="PCT" entity-name="PlantContent"/>
         <member-entity entity-alias="CNT" entity-name="Content"/>
         <alias-all entity-alias="PCT"/>
         <alias-all entity-alias="CNT"/>
@@ -2065,6 +2102,14 @@ under the License.
         <relation type="one" fk-name="PARTYCNT_TP_PAR" title="Parent" rel-entity-name="PartyContentType">
             <key-map field-name="parentTypeId" rel-field-name="partyContentTypeId"/>
         </relation>
+    </entity>
+    <entity entity-name="PlantContentType"
+            package-name="org.apache.ofbiz.party.party"
+            default-resource-name="PartyEntityLabels"
+            title="plant Content Type">
+        <field name="plantContentTypeId" type="id"></field>
+        <field name="description" type="description"></field>
+        <prim-key field="plantContentTypeId"/>
     </entity>
     <entity entity-name="PartyDataSource"
             package-name="org.apache.ofbiz.party.party"
@@ -2818,6 +2863,7 @@ under the License.
       <field name="height" type="floating-point"></field>
       <field name="weight" type="floating-point"></field>
       <field name="mothersMaidenName" type="long-varchar" encrypt="true"></field>
+      <field name="oldMaritalStatus" type="indicator" col-name="MARITAL_STATUS"><description>Deprecated since branch release: Upcoming branch, use martialStatusEnumId</description></field>
       <field name="maritalStatusEnumId" type="id"/>
       <field name="socialSecurityNumber" type="long-varchar" encrypt="true"></field>
       <field name="passportNumber" type="long-varchar" encrypt="true"></field>

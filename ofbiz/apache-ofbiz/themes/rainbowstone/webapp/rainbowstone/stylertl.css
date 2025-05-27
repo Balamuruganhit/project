@@ -328,6 +328,7 @@ DIV.column-left-wide {
     text-align: left;
     padding-right: 0;
     padding-left: 1.5em;
+    color: #edf7f6;
 }
 
 .basic-table tr .group-label {
@@ -373,6 +374,8 @@ DIV.column-left-wide {
     text-align: left;
     padding-right: 0;
     padding-left: 1.5em;
+    
+    color: #edf7f6;
 }
 
 .basic-form table tr .group-label {

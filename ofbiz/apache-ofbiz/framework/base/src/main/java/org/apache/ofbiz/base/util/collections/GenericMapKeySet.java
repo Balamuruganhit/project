@@ -21,7 +21,7 @@ package org.apache.ofbiz.base.util.collections;
 import java.util.Map;
 
 public abstract class GenericMapKeySet<K, V, M extends Map<K, V>> extends GenericMapSet<K, V, M, K> {
-    GenericMapKeySet(M source) {
+    public GenericMapKeySet(M source) {
         super(source);
     }
 

@@ -69,7 +69,7 @@ public class MessageString implements Serializable {
         }
         return getMessagesForField(fieldSet, convertToStrings, messageStringList);
     }
-    private static List<Object> getMessagesForField(Set<String> fieldNameSet, boolean convertToStrings, List<Object> messageStringList) {
+    public static List<Object> getMessagesForField(Set<String> fieldNameSet, boolean convertToStrings, List<Object> messageStringList) {
         if (messageStringList == null || UtilValidate.isEmpty(fieldNameSet)) {
             return Collections.emptyList();
         }
@@ -157,7 +157,7 @@ public class MessageString implements Serializable {
      * @param fieldNameSet the field name set
      * @return the boolean
      */
-    private boolean isForField(Set<String> fieldNameSet) {
+    public boolean isForField(Set<String> fieldNameSet) {
         return fieldNameSet == null || fieldNameSet.contains(this.fieldName);
     }
 

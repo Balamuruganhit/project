@@ -50,7 +50,7 @@
         <value xml:lang="zh-TW">設置應用程式</value>
     </property>
     <property key="SetupCompanyName">
-        <value xml:lang="en">OFBiz: Setup Application </value>
+        <value xml:lang="en">Pangun Tech: Setup Application </value>
         <value xml:lang="fr">Nom de l'organisation</value>
         <value xml:lang="it">OFBiz: componente di configurazione</value>
         <value xml:lang="ja">OFBiz: 設定アプリケーション</value>
@@ -62,7 +62,7 @@
     <property key="SetupCompanySubtitle">
         <value xml:lang="ar">جزء من عائلة أوفبيز للتطبيقات الحرة للتسيير</value>
         <value xml:lang="de">Teil der Apache OFBiz Familie von Open Source Software</value>
-        <value xml:lang="en">Part of the Apache OFBiz Family of Open Source Software</value>
+        <value xml:lang="en">Part of the Pangun Tech</value>
         <value xml:lang="es">Parte de la familia de software Apache OFBiz de código abierto</value>
         <value xml:lang="fr">Un module de la famille Apache OFBiz, logiciel libre de gestion d'entreprise.</value>
         <value xml:lang="it">Un modulo della famiglia di software open source Apache OFBiz</value>

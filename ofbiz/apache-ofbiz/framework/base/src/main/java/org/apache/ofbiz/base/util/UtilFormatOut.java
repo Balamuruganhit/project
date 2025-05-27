@@ -45,7 +45,7 @@ public final class UtilFormatOut {
 
     private UtilFormatOut() { }
 
-    static String safeToString(Object obj) {
+    public static String safeToString(Object obj) {
         if (obj != null) {
             return obj.toString();
         }
@@ -576,7 +576,7 @@ public final class UtilFormatOut {
         return newString.toString();
     }
     public static String makeSqlSafe(String unsafeString) {
-        return unsafeString.replace("'", "''");
+        return unsafeString.replaceAll("'", "''");
     }
 
     public static String formatPrintableCreditCard(String original) {

@@ -38,7 +38,7 @@ public final class MacroCallParameterMapValueMatcher extends TypeSafeMatcher<Obj
 
     @Override
     public void describeTo(final Description description) {
-        description.appendText("map value '");
+        description.appendText("with map value '");
         matcher.describeTo(description);
         description.appendText("' ");
     }

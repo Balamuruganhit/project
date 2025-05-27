@@ -1219,6 +1219,14 @@ ul#preferences-menu li a.help-link {
 /* ================================================= */
 /* ===== Screenlet Title Bar/Navigation Styles ===== */
 /* ================================================= */
+.screenlet-header{
+    background: #51E2F5;
+
+}
+.screenlet-header h3{
+    font-size: 30px;
+}
+
 
 .screenlet-title-bar {
     background: url("/bluelight/box-head-tl.gif") no-repeat;
@@ -2653,9 +2661,8 @@ button.ui-button::-moz-focus-inner {
 
 .ui-dialog {
     position: absolute;
-    top: 50%;
-    left:50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
     padding;
     padding: .2em;
     width: 300px;
@@ -4098,4 +4105,9 @@ html > /**/ body .jstree-default a {
 /* The custom CSS to show mouse pointer on links using featherlight plugin  */
 a[data-featherlight] {
     cursor: pointer;
+}
+/* it will control height of bluelight theme logo */
+.imager{
+    height:8rem;
+    margin-left: 0.2rem;
 }

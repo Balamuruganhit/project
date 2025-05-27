@@ -29,4 +29,18 @@ under the License.
         <description>Runs the package configurator.</description>
         <attribute mode="IN" name="shipmentId" optional="false" type="String"/>
     </service>
+   <service name="uploadPartyContentFile" engine="group" transaction-timeout="300">
+        <description>Upload and attach a file to a party</description>
+        <group>
+            <invoke name="createContentFromUploadedFile" result-to-context="true"/>
+            <invoke name="createPlantContent"/>
+        </group>
+    </service>
+    <service name="createPlantContent" default-entity-name="PlantContent" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a PartyContent record</description>
+        <auto-attributes mode="IN" include="pk" optional="false"/>
+        <auto-attributes mode="IN" include="nonpk" optional="true"/>
+        <override name="fromDate" optional="true"/>
+    </service>
+
 </services>

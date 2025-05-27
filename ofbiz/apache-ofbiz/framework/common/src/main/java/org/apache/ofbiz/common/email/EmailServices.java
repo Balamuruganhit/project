@@ -27,8 +27,6 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -403,11 +401,10 @@ public class EmailServices {
         LocalDispatcher dispatcher = ctx.getDispatcher();
 
         URL url = null;
-        URI uri;
+
         try {
-            uri = new URI(bodyUrl);
-            url = uri.toURL();
-        } catch (IllegalArgumentException | URISyntaxException | MalformedURLException e) {
+            url = new URL(bodyUrl);
+        } catch (MalformedURLException e) {
             Debug.logWarning(e, MODULE);
             return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "CommonEmailSendMalformedUrl", UtilMisc.toMap("bodyUrl",
                     bodyUrl, "errorString", e.toString()), locale));

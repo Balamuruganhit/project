@@ -39,7 +39,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.zip.Deflater;
@@ -82,7 +81,7 @@ public final class FileUtil {
      * @param path The file path to convert.
      * @return The converted file path.
      */
-    private static String localizePath(String path) {
+    public static String localizePath(String path) {
         String fileNameSeparator = ("\\".equals(File.separator) ? "\\" + File.separator : File.separator);
         return path.replaceAll("/+|\\\\+", fileNameSeparator);
     }
@@ -91,7 +90,7 @@ public final class FileUtil {
         writeString(null, fileName, s);
     }
 
-    private static void writeString(String path, String name, String s) {
+    public static void writeString(String path, String name, String s) {
 
         try (Writer out = getBufferedWriter(path, name);) {
             out.write(s + System.getProperty("line.separator"));
@@ -131,7 +130,7 @@ public final class FileUtil {
         }
     }
 
-    private static Writer getBufferedWriter(String path, String name) throws IOException {
+    public static Writer getBufferedWriter(String path, String name) throws IOException {
         String fileName = getPatchedFileName(path, name);
         if (UtilValidate.isEmpty(fileName)) {
             throw new IOException("Cannot obtain buffered writer for an empty filename!");
@@ -149,10 +148,10 @@ public final class FileUtil {
         return new BufferedOutputStream(new FileOutputStream(fileName));
     }
 
-    private static String getPatchedFileName(String path, String fileName) throws IOException {
+    public static String getPatchedFileName(String path, String fileName) throws IOException {
         // make sure the export directory exists
         if (UtilValidate.isNotEmpty(path)) {
-            path = path.replace("\\", "/");
+            path = path.replaceAll("\\\\", "/");
             File parentDir = new File(path);
             if (!parentDir.exists()) {
                 if (!parentDir.mkdir()) {
@@ -173,7 +172,7 @@ public final class FileUtil {
         return fileName;
     }
 
-    private static StringBuffer readTextFile(File file, boolean newline) throws FileNotFoundException, IOException {
+    public static StringBuffer readTextFile(File file, boolean newline) throws FileNotFoundException, IOException {
         if (!file.exists()) {
             throw new FileNotFoundException();
         }
@@ -211,7 +210,7 @@ public final class FileUtil {
         return readString;
     }
 
-    private static void searchFiles(List<File> fileList, File path, FilenameFilter filter, boolean includeSubfolders) throws IOException {
+    public static void searchFiles(List<File> fileList, File path, FilenameFilter filter, boolean includeSubfolders) throws IOException {
         // Get filtered files in the current path
         File[] files = path.listFiles(filter);
         if (files == null) {
@@ -343,28 +342,8 @@ public final class FileUtil {
      * @throws IOException
      */
     public static ByteArrayInputStream zipFileStream(InputStream fileStream, String fileName) throws IOException {
-        if (fileStream == null) {
-            return null;
-        }
-        if (fileName == null) {
-            fileName = UUID.randomUUID().toString();
-        }
-
-        // Create zip file from content input stream
-        return zipFileStreams(Map.of(fileName, fileStream));
-    }
-
-    /**
-     * For map with entries as [fileName: inputStream], create a zip stream containing all given files
-     * @param files
-     * @return
-     * @throws IOException
-     */
-    public static ByteArrayInputStream zipFileStreams(Map<String, InputStream> files) throws IOException {
-        if (files == null) {
-            return null;
-        }
-
+        if (fileStream == null) return null;
+        if (fileName == null) fileName = UUID.randomUUID().toString();
         // Create zip file from content input stream
         String zipFileName = UUID.randomUUID().toString() + ".zip";
         String zipFilePath = UtilProperties.getPropertyValue("general", "http.upload.tmprepository", "runtime/tmp");
@@ -372,16 +351,12 @@ public final class FileUtil {
         ZipOutputStream zos = new ZipOutputStream(fos);
         zos.setMethod(ZipOutputStream.DEFLATED);
         zos.setLevel(Deflater.BEST_COMPRESSION);
-
-        // parse all map to set in the zip stream
-        for (String fileName : files.keySet()) {
-            ZipEntry ze = new ZipEntry(fileName);
-            zos.putNextEntry(ze);
-            int len;
-            byte[] bufferData = new byte[8192];
-            while ((len = files.get(fileName).read(bufferData)) > 0) {
-                zos.write(bufferData, 0, len);
-            }
+        ZipEntry ze = new ZipEntry(fileName);
+        zos.putNextEntry(ze);
+        int len;
+        byte[] bufferData = new byte[8192];
+        while ((len = fileStream.read(bufferData)) > 0) {
+            zos.write(bufferData, 0, len);
         }
         zos.closeEntry();
         zos.close();

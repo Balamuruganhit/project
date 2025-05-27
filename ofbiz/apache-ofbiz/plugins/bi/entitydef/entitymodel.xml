@@ -290,8 +290,6 @@ under the License.
 
         <prim-key field="orderId"/>
         <prim-key field="orderItemSeqId"/>
-
-
     </entity>
 
     <entity entity-name="InventoryItemFact" package-name="org.apache.ofbiz.bi.fact.product" title="Inventory Item Fact">

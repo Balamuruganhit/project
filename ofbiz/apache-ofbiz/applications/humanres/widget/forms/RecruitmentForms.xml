@@ -59,8 +59,8 @@ under the License.
         <field name="qualification"><hidden/></field>
         <field name="searchButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit"><submit button-type="button"/></field>
     </form>
-    <grid name="ListJobRequisitions" list-name="listIt" paginate-target="FindJobRequisitions"  
-        default-table-style="basic-table hover-bar" odd-row-style="alternate-row" header-row-style="header-row-2">
+    <form name="ListJobRequisitions" list-name="listIt" type="list" odd-row-style="alternate-row" header-row-style="header-row-2" 
+        paginate-target="FindJobRequisitions" default-table-style="basic-table hover-bar">
         <actions>
             <set field="entityName" value="JobRequisition"/>
             <service service-name="performFind" result-map="result" result-map-list="listIt">
@@ -70,19 +70,19 @@ under the License.
                 <field-map field-name="viewSize" from-field="viewSize"/>
             </service>
         </actions>
-        <field name="jobRequisitionId" title="${uiLabelMap.CommonId}" widget-style="buttontext" use-when="hasAdminPermission">
+        <field name="jobRequisitionId" widget-style="buttontext" use-when="hasAdminPermission">
             <hyperlink description="${jobRequisitionId}" target="EditJobRequisition">
                 <parameter param-name="jobRequisitionId"/>
             </hyperlink>
         </field>
-        <field name="jobRequisitionId" title="${uiLabelMap.CommonId}" use-when="!hasAdminPermission"><display/></field>
+        <field name="jobRequisitionId" use-when="!hasAdminPermission"><display/></field>
         <field name="skillTypeId">
             <display-entity entity-name="SkillType"/>
         </field>
         <field name="jobPostingTypeEnumId"><display/></field>
         <field name="examTypeEnumId"><display/></field>
         <field name="qualification"><display/></field>
-        <field name="jobLocation" title="${uiLabelMap.CommonLocation}"><display/></field>
+        <field name="jobLocation"><display/></field>
         <field name="experienceYears"><display/></field>
         <field name="experienceMonths"><display/></field>
         <field name="applyLink" title="${uiLabelMap.CommonApply}" widget-style="buttontext">
@@ -95,7 +95,7 @@ under the License.
                 <parameter param-name="jobRequisitionId"/> 
             </hyperlink>
         </field>
-    </grid>
+    </form>
     <form name="EditJobRequisition" type="single" target="updateJobRequisition" default-map-name="jobRequisition">
         <alt-target use-when="jobRequisition==null" target="createJobRequisition"/>
         <field name="jobRequisitionId" use-when="jobRequisition==null"><ignored/></field>
@@ -161,8 +161,8 @@ under the License.
         <field name="referredByPartyId"><hidden/></field>
         <field name="searchButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit"><submit button-type="button"/></field>
     </form>
-    <grid name="ListInternalJobPosting" list-name="listIt" paginate-target="FindInternalJobPosting" 
-        odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
+    <form name="ListInternalJobPosting" list-name="listIt" type="list" odd-row-style="alternate-row" header-row-style="header-row-2" 
+        paginate-target="FindInternalJobPosting" default-table-style="basic-table hover-bar">
         <actions>
             <set field="entityName" value="EmploymentApp"/>
             <service service-name="performFind" result-map="result" result-map-list="listIt">
@@ -177,14 +177,16 @@ under the License.
             <hyperlink description="${applicationId}" target="EditInternalJobPosting">
                 <parameter param-name="applicationId"/>
             </hyperlink>
-        </field>
+        </field>        
+
         <field name="approverPartyId">
             <display-entity entity-name="PartyNameView" description="${firstName} ${lastName}" key-field-name="partyId">
                 <sub-hyperlink target="/partymgr/control/viewprofile" target-type="inter-app" description="${approverPartyId}" link-style="buttontext">
                     <parameter param-name="partyId" from-field="approverPartyId"/>
                 </sub-hyperlink>
             </display-entity>
-        </field>
+        </field>      
+
         <field name="applyingPartyId">
             <display-entity entity-name="PartyNameView" description="${firstName} ${lastName}" key-field-name="partyId">
                 <sub-hyperlink target="/partymgr/control/viewprofile" target-type="inter-app" description="${applyingPartyId}" link-style="buttontext">
@@ -192,6 +194,7 @@ under the License.
                 </sub-hyperlink>
             </display-entity>
         </field>
+
         <field name="statusId" title="${uiLabelMap.HumanResIJPStatus}"><display/></field>
         <field name="jobRequisitionId" widget-style="buttontext">
             <hyperlink description="${jobRequisitionId}" target="EditJobRequisition">
@@ -206,7 +209,7 @@ under the License.
         <field name="emplPositionId"><hidden/></field>
         <field name="employmentAppSourceTypeId"><hidden/></field>
         <field name="referredByPartyId"><hidden/></field>
-    </grid>
+    </form>
     <form name="EditInternalJobPosting" type="single" target="updateInternalJobPosting">
         <alt-target use-when="employmentApp==null" target="createInternalJobPosting"/>
         <auto-fields-service service-name="updateInternalJobPosting" map-name="employmentApp"/>
@@ -251,8 +254,7 @@ under the License.
         </field>
         <field name="searchButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit"><submit button-type="button"/></field>
     </form>
-    <grid name="ListInterview" list-name="listIt" paginate-target="FindJobInterview" 
-        odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
+    <form name="ListInterview" type="list" list-name="listIt" paginate-target="FindJobInterview" odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
         <actions>
             <set field="entityName" value="JobInterview"/>
             <service service-name="performFind" result-map="result" result-map-list="listIt">
@@ -287,7 +289,7 @@ under the License.
                 <parameter param-name="jobInterviewId"/> 
             </hyperlink>
         </field>
-    </grid>
+    </form>
     <form name="EditJobInterview" type="single" target="updateJobInterview">
         <actions>
             <entity-one entity-name="JobInterview" value-field="JobInterview"/>
@@ -343,7 +345,7 @@ under the License.
         <field name="jobRequisitionId"><lookup target-form-name="LookupJobRequisition"/></field>
         <field name="searchButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit"><submit button-type="button"/></field>
     </form>
-    <grid name="ListApprovals" list-name="listIt" odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
+    <form name="ListApprovals" list-name="listIt" type="list" odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
         <actions>
             <set field="entityName" value="EmploymentApp"/>
             <service service-name="performFind" result-map="result" result-map-list="listIt">
@@ -361,7 +363,7 @@ under the License.
                 </sub-hyperlink>
             </display-entity>
         </field>
-        <field name="approverPartyId">
+        <field name="approverPartyId" field-name="partyId">
             <display-entity entity-name="PartyNameView" description="${firstName} ${lastName}">
                 <sub-hyperlink target="/partymgr/control/viewprofile" target-type="inter-app" description="${approverPartyId}" link-style="buttontext">
                     <parameter param-name="partyId" from-field="approverPartyId"/>
@@ -376,7 +378,7 @@ under the License.
         <field name="emplPositionId"><hidden/></field>
         <field name="employmentAppSourceTypeId"><hidden/></field>
         <field name="referredByPartyId"><hidden/></field>
-    </grid>
+    </form>
     <form name="EditApprovalStatus" type="single" target="updateApprovalStatus" default-map-name="employmentApp">
         <auto-fields-service service-name="updateApprovalStatus" map-name="employmentApp"/>
         <field name="applicationId"><display/></field>
@@ -415,7 +417,7 @@ under the License.
         <field name="noConditionFind"><hidden value="Y"/><!-- if this isn't there then with all fields empty no query will be done --></field>
         <field name="searchButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit"><submit button-type="button"/></field>
     </form>
-    <grid name="ListRelocation" list-name="listIt" odd-row-style="alternate-row" header-row-style="header-row-2"
+    <form name="ListRelocation" list-name="listIt" type="list" odd-row-style="alternate-row" header-row-style="header-row-2"
         default-table-style="basic-table hover-bar">
         <actions>
             <service service-name="performFind" result-map="result" result-map-list="listIt">
@@ -444,7 +446,7 @@ under the License.
         </field>
         <field name="internalOrganisation"><display/></field>
         <field name="reportingDate"><display/></field>
-        <field name="location" title="${uiLabelMap.CommonLocation}">
+        <field name="location">
             <display description="${groovy:
                 import org.apache.ofbiz.entity.GenericValue;
                 import org.apache.ofbiz.base.util.UtilMisc;
@@ -455,5 +457,5 @@ under the License.
                 return city;
                 }"/>
         </field>
-    </grid>
+    </form>
 </forms>

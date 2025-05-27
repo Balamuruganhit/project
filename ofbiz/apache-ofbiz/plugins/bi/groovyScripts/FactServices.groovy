@@ -89,6 +89,7 @@ def loadSalesInvoiceItemFact() {
                 naturalKeyFields.dateValue = invoiceDate
                 inMap.naturalKeyFields = naturalKeyFields
                 serviceResult = run service: "getDimensionIdFromNaturalKey", with: inMap
+                
                 fact.invoiceDateDimId = serviceResult.dimensionId
                 if (!fact.invoiceDateDimId) {
                     fact.invoiceDateDimId = "_NF_"
@@ -267,7 +268,7 @@ def loadSalesOrderItemFact() {
                 GenericValue brand = from("Enumeration").where(enumId: orderHeader.salesChannelEnumId).queryOne()
                 fact.brand = brand.description
             }
-            logInfo('Fact' + fact)
+            logInfo("Fact" + fact)
             // conversion of the order date
             orderStatus = from("OrderStatus")
                 .where(orderId: orderHeader.orderId, statusId: "ORDER_APPROVED")
@@ -282,8 +283,8 @@ def loadSalesOrderItemFact() {
                 inMap.naturalKeyFields = naturalKeyFields
                 logInfo('NaturalKeyfield' + naturalKeyFields)
                 serviceResult = run service: "getDimensionIdFromNaturalKey", with: inMap
+                logInfo('ServiceResult' + serviceResult.dimensionId)
                 fact.orderDateDimId = serviceResult.dimensionId
-                logInfo('ServiceResult' + serviceResult)
                 if (!fact.orderDateDimId) {
                     fact.orderDateDimId = "_NF_"
                 }
@@ -298,10 +299,10 @@ def loadSalesOrderItemFact() {
                 inMap.dimensionEntityName = "ProductDimension"
                 naturalKeyFields.productId = orderItem.productId
                 inMap.naturalKeyFields = naturalKeyFields
-                logInfo('NaturalKeyfield1' + naturalKeyFields)
+                logInfo('NaturalField2' + naturalKeyFields)
                 serviceResult = run service: "getDimensionIdFromNaturalKey", with: inMap
+                logInfo('ServiceProduct' + serviceResult)
                 fact.productDimId = serviceResult.dimensionId
-                logInfo('ServiceResult1' + serviceResult)
                 if (!fact.productDimId) {
                     fact.productDimId = "_NF_"
                 }
@@ -316,9 +317,9 @@ def loadSalesOrderItemFact() {
                 inMap.dimensionEntityName = "CurrencyDimension"
                 naturalKeyFields.currencyId = orderHeader.currencyUom
                 inMap.naturalKeyFields = naturalKeyFields
-                logInfo('NaturalKeyfield3' + naturalKeyFields)
                 serviceResult = run service: "getDimensionIdFromNaturalKey", with: inMap
-                logInfo('ServiceResult2' + serviceResult)
+                logInfo('NaturalField3' + naturalKeyFields)
+                logInfo('service3' + serviceResult)
                 fact.origCurrencyDimId = serviceResult.dimensionId
                 if (!fact.origCurrencyDimId) {
                     fact.origCurrencyDimId = "_NF_"
@@ -335,21 +336,20 @@ def loadSalesOrderItemFact() {
 
             // TODO
             fact.billToCustomerDimId = "_NA_"
-            logInfo('fact ====' + fact)
+
             fact.create()
-            logInfo('Fact was Created' + fact)
         }
         /*
          * facts handling
          */
         Map partyAccountingPreferencesCallMap = [:]
-        logInfo("Fact running top")
+
         OrderReadHelper orderReadHelper = new OrderReadHelper(orderHeader)
         Map billFromParty = orderReadHelper.getBillFromParty()
         partyAccountingPreferencesCallMap.organizationPartyId = billFromParty.partyId
         Map accountResult = run service:"getPartyAccountingPreferences", with: partyAccountingPreferencesCallMap
         GenericValue accPref = accountResult.partyAccountingPreference
-        logInfo("Party Account" + accountResult)
+
         fact.quantity = orderItem.quantity as BigDecimal
         fact.extGrossAmount = 0 as BigDecimal
         fact.extGrossCost = 0 as BigDecimal
@@ -374,14 +374,13 @@ def loadSalesOrderItemFact() {
         convertUomCurrencyMap.uomIdTo = accPref.baseCurrencyUomId
         if (UtilValidate.isNotEmpty(orderStatus)) {
         convertUomCurrencyMap.nowDate = orderStatus.statusDatetime
-        logInfo("Fact running")
         }
         Map convertResult = run service: "convertUomCurrency", with: convertUomCurrencyMap
         BigDecimal exchangeRate = convertResult.conversionFactor
 
         if (exchangeRate) {
             BigDecimal unitPrice = orderItem.unitPrice * exchangeRate
-            logInfo("Fact running on factExchange")
+
             fact.extGrossAmount = fact.quantity * unitPrice
         }
 
@@ -394,13 +393,11 @@ def loadSalesOrderItemFact() {
             convertUomCurrencyMap.uomIdTo = accPref.baseCurrencyUomId
             if (orderStatus) {
                 convertUomCurrencyMap.nowDate = orderStatus.statusDatetime
-                logInfo("It will working")
             }
             Map grossCostResult = run service: "convertUomCurrency", with: convertUomCurrencyMap
             exchangeRate = grossCostResult.conversionFactor
 
             if (exchangeRate) {
-                logInfo("It will working")
                 BigDecimal costPrice = cost.lastPrice * exchangeRate
                 fact.extGrossCost = fact.quantity * costPrice
             }
@@ -410,7 +407,6 @@ def loadSalesOrderItemFact() {
         for (GenericValue shipping : orderAdjustments) {
             if ("SHIPPING_CHARGES".equals(shipping.orderAdjustmentTypeId)) {
                 fact.extShippingAmount = fact.extShippingAmount + shipping.amount
-                logInfo("It will working")
             }
         }
 
@@ -418,8 +414,6 @@ def loadSalesOrderItemFact() {
         for (GenericValue tax : orderAdjustments) {
             if ("SALES_TAX".equals(tax.orderAdjustmentTypeId)) {
                 fact.extTaxAmount = fact.extTaxAmount + tax.amount
-                logInfo("It will working")
-                logInfo("It will fact" + fact)
             }
         }
 
@@ -522,8 +516,6 @@ def loadSalesOrderItemFact() {
         if (countOrder == 0) {
             fact.countOrder = 1 as BigDecimal
         }
-        logInfo("It will working")
-        logInfo("Final Fact" + fact)
         fact.store()
     }
     return success()

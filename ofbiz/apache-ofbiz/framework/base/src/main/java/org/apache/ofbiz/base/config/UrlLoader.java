@@ -20,9 +20,6 @@ package org.apache.ofbiz.base.config;
 
 import java.io.InputStream;
 import java.io.Serializable;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
@@ -35,12 +32,12 @@ public class UrlLoader extends ResourceLoader implements Serializable {
     @Override
     public URL getURL(String location) throws GenericConfigException {
         String fullLocation = fullLocation(location);
+
         URL url = null;
-        URI uri;
+
         try {
-            uri = new URI(fullLocation);
-            url = uri.toURL();
-        } catch (IllegalArgumentException | URISyntaxException | MalformedURLException e) {
+            url = new URL(fullLocation);
+        } catch (java.net.MalformedURLException e) {
             throw new GenericConfigException("Error with malformed URL while trying to load URL resource at location [" + fullLocation + "]", e);
         }
         return url;

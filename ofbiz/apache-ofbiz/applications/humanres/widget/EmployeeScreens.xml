@@ -30,7 +30,7 @@ under the License.
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="pre-body">
-                        <include-menu name="MainActionMenu" location="${parameters.mainMenuLocation}"/>
+                        <include-menu name="MainActionMenu" location="component://humanres/widget/HumanresMenus.xml"/>
                     </decorator-section>
                     <decorator-section name="body">
                         <section>
@@ -101,8 +101,8 @@ under the License.
                 <set field="labelTitleProperty" value="PartyTaxAuthInfos"/>
                 <set field="partyId" from-field="parameters.partyId"/>
                 <set field="layoutSettings.javaScripts[]" value="/partymgr/static/PartyProfileContent.js" global="true"/>
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/ViewProfile.groovy"/>
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/GetUserLoginPrimaryEmail.groovy"/>
+                <script location="component://party/groovyScripts/party/ViewProfile.groovy"/>
+                <script location="component://party/groovyScripts/party/GetUserLoginPrimaryEmail.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="EmployeeDecorator" location="${parameters.mainDecoratorLocation}">
@@ -175,9 +175,7 @@ under the License.
             <widgets>
                 <decorator-screen name="EmployeeDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <screenlet>
-                            <include-grid name="ListEmployeeSkills" location="component://humanres/widget/forms/EmployeeForms.xml"/>
-                        </screenlet>
+                        <include-form name="ListEmployeeSkills" location="component://humanres/widget/forms/EmployeeForms.xml"/>
                         <screenlet id="AddPartySkillPanel" title="${uiLabelMap.HumanResAddPartySkill}" collapsible="true">
                             <include-form name="AddEmployeeSkills" location="component://humanres/widget/forms/EmployeeForms.xml"/>
                         </screenlet>
@@ -200,9 +198,7 @@ under the License.
             <widgets>
                 <decorator-screen name="EmployeeDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <screenlet>
-                            <include-grid name="ListEmployeeQualification" location="component://humanres/widget/forms/EmployeeForms.xml"/>
-                        </screenlet>
+                        <include-form name="ListEmployeeQualification" location="component://humanres/widget/forms/EmployeeForms.xml"/>
                         <screenlet id="AddPartyQualPanel" title="${uiLabelMap.HumanResAddPartyQual}" collapsible="true">
                             <include-form name="AddEmployeeQualification" location="component://humanres/widget/forms/EmployeeForms.xml"/>
                         </screenlet>
@@ -221,7 +217,7 @@ under the License.
                 <decorator-screen name="EmployeeDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <screenlet id="TrainingStatus" title="${uiLabelMap.HumanResTrainingStatus}" collapsible="true">
-                            <include-grid name="ListTrainingStatus" location="component://humanres/widget/forms/PersonTrainingForms.xml"/>
+                            <include-form name="ListTrainingStatus" location="component://humanres/widget/forms/PersonTrainingForms.xml"/>
                         </screenlet>
                     </decorator-section>
                 </decorator-screen>
@@ -301,9 +297,7 @@ under the License.
             <widgets>
                 <decorator-screen name="EmployeeDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <screenlet>
-                            <include-grid name="ListEmplLeaves" location="component://humanres/widget/forms/EmployeeForms.xml"/>
-                        </screenlet>
+                        <include-form name="ListEmplLeaves" location="component://humanres/widget/forms/EmployeeForms.xml"/>
                         <screenlet id="AddEmplLeavePanel" title="${uiLabelMap.HumanResAddEmplLeave}" collapsible="true">
                             <include-form name="AddEmplLeave" location="component://humanres/widget/forms/EmployeeForms.xml"/>
                         </screenlet>
@@ -324,15 +318,17 @@ under the License.
             </widgets>
         </section>
     </screen>
+
     <screen name="trainingsList">
         <section>
             <widgets>
                 <screenlet title="${uiLabelMap.HumanResTrainings}">
-                    <include-grid name="SimpleListTrainingStatus" location="component://humanres/widget/forms/PersonTrainingForms.xml"/>
+                    <include-form name="SimpleListTrainingStatus" location="component://humanres/widget/forms/PersonTrainingForms.xml"/>
                 </screenlet>
             </widgets>
         </section>
     </screen>
+
     <screen name="PayrollHistory">
         <section>
             <actions>
@@ -352,14 +348,13 @@ under the License.
             <widgets>
                 <decorator-screen name="EmployeeDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <screenlet>
-                            <include-grid name="PayrollHistoryList" location="component://humanres/widget/forms/EmployeeForms.xml"/>
-                        </screenlet>
+                        <include-form name="PayrollHistoryList" location="component://humanres/widget/forms/EmployeeForms.xml"/>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
         </section>
     </screen>
+
     <screen name="MyLeaveList">
         <section>
             <actions>
@@ -367,7 +362,7 @@ under the License.
             </actions>
             <widgets>
                 <screenlet title="${uiLabelMap.HumanResMyLeaves}" navigation-form-name="ListEmplLeaves">
-                    <include-grid name="ListEmplLeaves" location="component://humanres/widget/forms/EmployeeForms.xml"/>
+                    <include-form name="ListEmplLeaves" location="component://humanres/widget/forms/EmployeeForms.xml"/>
                 </screenlet>
             </widgets>
         </section>
@@ -379,7 +374,7 @@ under the License.
             </actions>
             <widgets>
                 <screenlet title="${uiLabelMap.HumanResMyTrainings}">
-                    <include-grid name="ListEmplTrainings" location="component://humanres/widget/forms/PersonTrainingForms.xml"/>
+                    <include-form name="ListEmplTrainings" location="component://humanres/widget/forms/PersonTrainingForms.xml"/>
                 </screenlet>
             </widgets>
         </section>

@@ -1084,8 +1084,7 @@ public class ProductServices {
                         String errorMessage = UtilProperties.getMessage("SecurityUiLabels", "SupportedImageFormats", locale);
                         return ServiceUtil.returnError(errorMessage);
                     }
-                    File tempFileToDelete = new File(tempFile.toString());
-                    tempFileToDelete.deleteOnExit();
+                    Files.delete(tempFile);
                     RandomAccessFile out = new RandomAccessFile(fileToCheck, "rw");
                     out.write(imageData.array());
                     out.close();
@@ -1393,8 +1392,7 @@ public class ProductServices {
                     String errorMessage = UtilProperties.getMessage("SecurityUiLabels", "SupportedImageFormats", locale);
                     return ServiceUtil.returnError(errorMessage);
                 }
-                File tempFileToDelete = new File(tempFile.toString());
-                tempFileToDelete.deleteOnExit();
+                Files.delete(tempFile);
                 RandomAccessFile out = new RandomAccessFile(file, "rw");
                 out.write(imageData.array());
                 out.close();

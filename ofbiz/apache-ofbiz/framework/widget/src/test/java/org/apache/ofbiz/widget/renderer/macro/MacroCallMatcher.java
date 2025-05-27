@@ -25,14 +25,11 @@ import org.hamcrest.TypeSafeMatcher;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 public final class MacroCallMatcher extends TypeSafeMatcher<RenderableFtl> {
     private final String macroName;
     private final MacroCallParameterMatcher[] parameterMatchers;
 
-    private boolean nameMatched;
     private final List<MacroCallParameterMatcher> failedParameterMatchers = new ArrayList<>();
 
     public MacroCallMatcher(final String macroName, final MacroCallParameterMatcher... parameterMatchers) {
@@ -45,7 +42,7 @@ public final class MacroCallMatcher extends TypeSafeMatcher<RenderableFtl> {
     @Override
     protected boolean matchesSafely(final RenderableFtl item) {
         final RenderableFtlMacroCall macroCall = (RenderableFtlMacroCall) item;
-        nameMatched = (macroName == null) || macroName.equals(macroCall.getName());
+        boolean nameMatched = (macroName == null) || macroName.equals(macroCall.getName());
 
         for (final MacroCallParameterMatcher parameterMatcher : parameterMatchers) {
             boolean matchForParameterMatcher = macroCall.getParameters()
@@ -62,7 +59,7 @@ public final class MacroCallMatcher extends TypeSafeMatcher<RenderableFtl> {
 
     @Override
     public void describeTo(final Description description) {
-        description.appendText("MacroCall named '" + macroName + "' ");
+        description.appendText("MacroCall has name '" + macroName + "' ");
         description.appendText("with Parameters[");
         for (final MacroCallParameterMatcher parameterMatcher : parameterMatchers) {
             parameterMatcher.describeTo(description);
@@ -74,27 +71,17 @@ public final class MacroCallMatcher extends TypeSafeMatcher<RenderableFtl> {
     protected void describeMismatchSafely(final RenderableFtl item, final Description mismatchDescription) {
         final RenderableFtlMacroCall macroCall = (RenderableFtlMacroCall) item;
 
-        if (!nameMatched) {
-            mismatchDescription.appendText("MacroCall has name '" + macroCall.getName() + "' but expected was '" + macroName + "'");
-        }
+        mismatchDescription.appendText("MacroCall has name '" + macroCall.getName() + "' ");
 
         if (!failedParameterMatchers.isEmpty()) {
+            mismatchDescription.appendText("with Parameters[");
             for (final MacroCallParameterMatcher failedParameterMatcher : failedParameterMatchers) {
-
-                final String failedParameterName = failedParameterMatcher.getName();
-                final Optional<Map.Entry<String, Object>> matchedParameterByName = macroCall.getParameters()
+                macroCall.getParameters()
                         .entrySet()
-                        .stream()
-                        .filter(entry -> failedParameterName.equals(entry.getKey()))
-                        .findFirst();
-
-                matchedParameterByName.ifPresent(parameterEntry ->
-                        failedParameterMatcher.describeMismatchSafely(parameterEntry, mismatchDescription));
-
-                if (!matchedParameterByName.isPresent()) {
-                    mismatchDescription.appendText("Parameter '" + failedParameterName + "' was missing, ");
-                }
+                        .forEach(entry ->
+                                failedParameterMatcher.describeMismatch(entry, mismatchDescription));
             }
+            mismatchDescription.appendText("]");
         }
     }
 

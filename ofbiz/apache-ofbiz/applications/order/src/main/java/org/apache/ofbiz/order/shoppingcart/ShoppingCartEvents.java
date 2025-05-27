@@ -695,8 +695,6 @@ public class ShoppingCartEvents {
         if (cart.viewCartOnAdd()) {
             return "viewcart";
         }
-        request.setAttribute("_EVENT_MESSAGE_", UtilProperties.getMessage("OrderUiLabels", "ItemAddedSuccessfully",
-                UtilMisc.toMap("productId", productId), UtilHttp.getLocale(request)));
         return "success";
     }
 

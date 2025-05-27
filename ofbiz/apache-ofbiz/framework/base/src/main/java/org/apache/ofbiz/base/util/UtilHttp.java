@@ -176,8 +176,7 @@ public final class UtilHttp {
         String requestURI = req.getRequestURI();
         if (params.isEmpty() && null != requestURI) {
             try {
-                List<NameValuePair> nameValuePairs = URLEncodedUtils.parse(
-                        new URI(UtilHttp.encodeBlanks(URLDecoder.decode(requestURI, "UTF-8"))),
+                List<NameValuePair> nameValuePairs = URLEncodedUtils.parse(new URI(URLDecoder.decode(requestURI, "UTF-8")),
                         Charset.forName("UTF-8"));
                 for (NameValuePair element : nameValuePairs) {
                     params.put(element.getName(), element.getValue());
@@ -381,7 +380,7 @@ public final class UtilHttp {
      * @param pred the predicate filtering parameter names
      * @return a canonicalized parameter map.
      */
-    public static Map<String, Object> getPathInfoOnlyParameterMap(String path, Predicate<String> pred) {
+    static Map<String, Object> getPathInfoOnlyParameterMap(String path, Predicate<String> pred) {
         String path1 = Optional.ofNullable(path).orElse("");
         Map<String, List<String>> allParams = Arrays.stream(path1.split("/"))
                 .filter(segment -> segment.startsWith("~") && segment.contains("="))
@@ -765,7 +764,7 @@ public final class UtilHttp {
         }
         // When you set a mountpoint which contains a slash inside its name (ie not only a slash as a trailer, which is possible),
         // as it's needed with OFBIZ-10765, OFBiz tries to create a cookie with a slash in its name and that's impossible.
-        return appName.replace("/", "_");
+        return appName.replaceAll("/", "_");
     }
 
     public static void setInitialRequestInfo(HttpServletRequest request) {
@@ -1206,7 +1205,7 @@ public final class UtilHttp {
     }
 
     public static String encodeBlanks(String htmlString) {
-        return htmlString.replace(" ", "%20");
+        return htmlString.replaceAll(" ", "%20");
     }
 
     public static String setResponseBrowserProxyNoCache(HttpServletRequest request, HttpServletResponse response) {
@@ -1268,14 +1267,7 @@ public final class UtilHttp {
          **/
         resp.addHeader("X-XSS-Protection", "1; mode=block");
         resp.setHeader("Referrer-Policy", "no-referrer-when-downgrade"); // This is the default (in Firefox at least)
-
-        if (EntityUtilProperties.getPropertyAsBoolean("security", "useContent-Security-Policy", true)) {
-            String contentSecurityPolicy = EntityUtilProperties.getPropertyValueFromDelegatorName(
-                    "security", "Content-Security-Policy", "Content-Security-Policy-Report-Only", "default");
-            String policyDirectives = EntityUtilProperties.getPropertyValueFromDelegatorName(
-                    "security", "PolicyDirectives", "default-src 'self'", "default");
-            resp.setHeader(contentSecurityPolicy, policyDirectives);
-        }
+        resp.setHeader("Content-Security-Policy-Report-Only", "default-src 'self'");
         SameSiteFilter.addSameSiteCookieAttribute(resp);
         // TODO in custom project. Public-Key-Pins-Report-Only is interesting but can't be used OOTB because of demos (the letsencrypt certificate
         // is renewed every 3 months)
@@ -1370,7 +1362,7 @@ public final class UtilHttp {
      * @param length Size (in bytes) of the content
      * @throws IOException
      */
-    private static void streamContent(OutputStream out, InputStream in, int length) throws IOException {
+    public static void streamContent(OutputStream out, InputStream in, int length) throws IOException {
         // make sure we have something to write to
         if (out == null) {
             throw new IOException("Attempt to write to null output stream");
@@ -1713,7 +1705,7 @@ public final class UtilHttp {
         return "autoId_" + uniqueIdNumber;
     }
 
-    private static void setContentDisposition(final HttpServletResponse response, final String filename) {
+    public static void setContentDisposition(final HttpServletResponse response, final String filename) {
         String dispositionType = UtilProperties.getPropertyValue("requestHandler", "content-disposition-type", "attachment");
         response.setHeader("Content-Disposition", String.format("%s; filename=\"%s\"", dispositionType, filename));
     }
@@ -1722,7 +1714,7 @@ public final class UtilHttp {
         return getAllowAllHttpClient("component://base/config/ofbizssl.jks", "changeit");
     }
 
-    private static CloseableHttpClient getAllowAllHttpClient(String jksStoreFileName, String jksStorePassword) {
+    public static CloseableHttpClient getAllowAllHttpClient(String jksStoreFileName, String jksStorePassword) {
         try {
             // Trust own CA and all self-signed certs
             SSLContext sslContext = SSLContexts.custom()

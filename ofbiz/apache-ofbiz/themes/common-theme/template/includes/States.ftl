@@ -23,7 +23,8 @@ under the License.
 
 <#-- Here is some alternate code to get states limited to a region
 <#if requestParameters.CUSTOMER_COUNTRY??>
-    <#assign stateAssocs = Static["org.apache.ofbiz.common.CommonWorkers"].getAssociatedStateList(delegator,requestParameters.CUSTOMER_COUNTRY)>
+    <#assign stateAssocs = Static[
+        "org.apache.ofbiz.common.CommonWorkers"].getAssociatedStateList(delegator,requestParameters.CUSTOMER_COUNTRY)>
 <#else>
     <#assign stateAssocs = Static["org.apache.ofbiz.common.CommonWorkers"].getAssociatedStateList(delegator,null)>
 </#if>

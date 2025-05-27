@@ -554,12 +554,12 @@ The following example imports a file formatted as Java source code.
 
   [source,java]
   ----
-  include::docs/asciidoc/resource/source.java[]
+  include::resource/source.java[]
   ----
 
 [source,java]
 ----
-include::docs/asciidoc/resource/source.java[]
+include::resource/source.java[]
 ----
 
 === Using leveloffset
@@ -583,12 +583,12 @@ This text will not be included!
 
 and include the file with the tagname in the brackets like this:
 
- include::docs/asciidoc/resource/article.adoc[tags=tagname]
+ include::resource/article.adoc[tags=tagname]
 
 The result would be
 
 ----
-include::docs/asciidoc/resource/article.adoc[tags=tagname]
+include::resource/article.adoc[tags=tagname]
 ----
 
 === Importing images

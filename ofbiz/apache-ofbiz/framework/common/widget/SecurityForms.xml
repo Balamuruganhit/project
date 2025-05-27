@@ -101,7 +101,8 @@ under the License.
         </field>
         <field name="submitButton" title="${uiLabelMap.CommonAdd}"><submit button-type="button"/></field>
     </form>
-    <grid name="CertIssuerList" list-name="issuerProvisions"
+
+    <form name="CertIssuerList" type="list" list-name="issuerProvisions"
         odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
         <actions>
             <entity-condition entity-name="X509IssuerProvision">
@@ -109,7 +110,8 @@ under the License.
             </entity-condition>
         </actions>
         <auto-fields-entity entity-name="X509IssuerProvision" default-field-type="display"/>
-    </grid>
+    </form>
+
     <form name="CreateSecurityGroup" type="single" target="createSecurityGroup" default-map-name="securityGroup">
         <field name="groupId" title="${uiLabelMap.CommonSecurityGroupId}" required-field="true"><text size="20" maxlength="20"/></field>
         <field name="groupName" title="${uiLabelMap.CommonName}"><text/></field>
@@ -128,7 +130,8 @@ under the License.
         <field name="groupName" title="${uiLabelMap.CommonName}"><text/></field>
         <field name="submitButton" title="${uiLabelMap.CommonUpdate}"><submit button-type="button"/></field>
     </form>
-    <grid name="ListSecurityGroupPermissions" list-name="securityGroupPermissions"
+
+    <form name="ListSecurityGroupPermissions" type="list" list-name="securityGroupPermissions"
         paginate-target="EditSecurityGroupPermissions" odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
         <actions>
             <entity-condition entity-name="SecurityGroupPermission">
@@ -147,8 +150,9 @@ under the License.
                 <parameter param-name="fromDate"/>
             </hyperlink>
         </field>
-    </grid>
-    <grid name="ListSecurityGroupProtectedViews" list-name="securityGroupProtectedViewsList" target="updateProtectedViewToSecurityGroup"
+    </form>
+
+    <form name="ListSecurityGroupProtectedViews" type="list" list-name="securityGroupProtectedViewsList" target="updateProtectedViewToSecurityGroup"
         odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
         <actions>
             <entity-condition entity-name="ProtectedView">
@@ -168,9 +172,10 @@ under the License.
                 <parameter param-name="viewNameId"/>
             </hyperlink>
         </field>
-    </grid>
-    <grid name="ListSecurityGroups" list-name="securityGroups" paginate-target="FindSecurityGroup"
-        odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
+    </form>
+
+    <form name="ListSecurityGroups" type="list" list-name="securityGroups"
+        paginate-target="FindSecurityGroup" odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
         <actions>
             <entity-condition entity-name="SecurityGroup">
                 <order-by field-name="groupId"/>
@@ -182,8 +187,9 @@ under the License.
             </hyperlink>
         </field>
         <field name="description" title="${uiLabelMap.CommonDescription}"><display/></field>
-    </grid>
-    <grid name="ListSecurityGroupUserLogins" list-name="userLoginSecurityGroups" target="updateUserLoginToSecurityGroup"
+    </form>
+
+    <form name="ListSecurityGroupUserLogins" type="list" list-name="userLoginSecurityGroups" target="updateUserLoginToSecurityGroup"
         odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
         <actions>
             <set field="sortField" from-field="parameters.sortField" default-value="userLoginId"/>
@@ -208,8 +214,9 @@ under the License.
                 <parameter param-name="fromDate"/>
             </hyperlink>
         </field>
-    </grid>
-    <grid name="ListUserLogins" list-name="securityGroups"
+    </form>
+
+    <form name="ListUserLogins" type="list" list-name="securityGroups"
         paginate-target="FindUserLogin" header-row-style="header-row-2" odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
         <actions>
             <set field="sortField" from-field="parameters.sortField" default-value="userLoginId"/>
@@ -225,9 +232,11 @@ under the License.
         <field name="enabled" sort-field="true"><display/></field>
         <field name="hasLoggedOut" sort-field="true"><display/></field>
         <field name="disabledDateTime" sort-field="true"><display/></field>
-    </grid>
-    <grid name="ListUserLoginSecurityGroups" list-name="userLoginSecurityGroups"  target="${updateUserLoginSecurityGroupURI}"
-        header-row-style="header-row-2" odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
+    </form>
+
+    <form name="ListUserLoginSecurityGroups" type="list"
+        list-name="userLoginSecurityGroups" header-row-style="header-row-2" target="${updateUserLoginSecurityGroupURI}"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
         <actions>
             <entity-condition entity-name="UserLoginAndSecurityGroup">
                 <condition-expr field-name="userLoginId" from-field="userLoginId"/>
@@ -255,12 +264,33 @@ under the License.
                 <parameter param-name="fromDate"/>
             </hyperlink>
         </field>
-    </grid>
+    </form>
+
     <form name="LookupUserLogin" type="single" target="LookupUserLogin">
         <field name="userLoginId" title="${uiLabelMap.CommonUserLoginId}"><text-find/></field>
         <field name="noConditionFind"><hidden value="Y"/><!-- if this isn't there then with all fields empty no query will be done --></field>
         <field name="submitButton" title="${uiLabelMap.CommonFind}"><submit button-type="button"/></field>
     </form>
+
+    <form name="ListLookedUpUserLogins" type="list" list-name="listIt" paginate-target="LookupUserLogin"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
+        <actions>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="orderBy" value="userLoginId"/>
+                <field-map field-name="entityName" value="UserLogin"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+            </service>
+        </actions>
+        <field name="userLoginId" title="${uiLabelMap.CommonUserLoginId}" widget-style="smallSubmit">
+            <hyperlink description="${userLoginId}" target="javascript:set_value('${userLoginId}', '${userLoginId}', '${parameters.webSitePublishPoint}')" also-hidden="false" target-type="plain"/>
+        </field>
+        <field name="enabled"><display/></field>
+        <field name="hasLoggedOut"><display/></field>
+        <field name="disabledDateTime"><display/></field>
+    </form>
+
     <form name="UpdatePassword" type="single" target="${updatePasswordURI}"
         focus-field-name="currentPassword" header-row-style="header-row" default-table-style="basic-table">
         <actions>
@@ -320,7 +350,8 @@ under the License.
             <display/>
         </field>
     </form>
-    <grid name="CertToKeystore"  list-name="stores" use-row-submit="true"
+    
+    <form name="CertToKeystore" type="list" list-name="stores" use-row-submit="true"
         separate-columns="true" target="importIssuerProvision" odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
         <field name="certString"><hidden/></field>
         <field name="componentName" title="${uiLabelMap.CertComponent}"><display/></field>
@@ -330,5 +361,6 @@ under the License.
         <field name="submitButton" title="${uiLabelMap.CommonSave}" widget-style="buttontext" >
             <submit button-type="button"/>
         </field>
-    </grid>
+    </form>
+
 </forms>

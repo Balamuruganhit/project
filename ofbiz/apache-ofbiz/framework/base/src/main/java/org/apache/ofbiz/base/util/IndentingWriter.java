@@ -62,7 +62,7 @@ public class IndentingWriter extends FilterWriter {
      * Check after newline.
      * @throws IOException the io exception
      */
-    private void checkAfterNewline() throws IOException {
+    protected void checkAfterNewline() throws IOException {
         if (lastWasNewline) {
             if (doSpace) {
                 if (doNewline) {

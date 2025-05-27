@@ -36,10 +36,6 @@ public final class MacroCallParameterMatcher extends TypeSafeMatcher<Map.Entry<S
         this.valueMatcher = valueMatcher;
     }
 
-    public String getName() {
-        return name;
-    }
-
     @Override
     protected boolean matchesSafely(final Map.Entry<String, Object> item) {
         if (name != null) {
@@ -56,21 +52,19 @@ public final class MacroCallParameterMatcher extends TypeSafeMatcher<Map.Entry<S
     @Override
     public void describeTo(final Description description) {
         if (name != null) {
-            description.appendText("'" + name + "' ");
+            description.appendText("has name '" + name + "' ");
         }
 
         if (valueMatcher != null) {
             valueMatcher.describeTo(description);
         }
-
-        description.appendText(", ");
     }
 
     @Override
     protected void describeMismatchSafely(final Map.Entry<String, Object> item,
                                           final Description mismatchDescription) {
         if (name != null) {
-            mismatchDescription.appendText("Parameter '" + item.getKey() + "' ");
+            mismatchDescription.appendText("has name '" + item.getKey() + "' ");
         }
 
         if (valueMatcher != null) {
@@ -86,18 +80,6 @@ public final class MacroCallParameterMatcher extends TypeSafeMatcher<Map.Entry<S
 
     public static MacroCallParameterMatcher hasNameAndStringValue(final String name, final String value) {
         return new MacroCallParameterMatcher(name, new MacroCallParameterStringValueMatcher(value));
-    }
-
-    public static MacroCallParameterMatcher hasNameAndStringValueStartsWith(final String name, final String startsWith) {
-        return new MacroCallParameterMatcher(name, new MacroCallParameterStringValueStartsWithMatcher(startsWith));
-    }
-
-    public static MacroCallParameterMatcher hasNameAndStringValueEndsWith(final String name, final String endsWith) {
-        return new MacroCallParameterMatcher(name, new MacroCallParameterStringValueEndsWithMatcher(endsWith));
-    }
-
-    public static MacroCallParameterMatcher hasNameAndIntegerValue(final String name, final int value) {
-        return new MacroCallParameterMatcher(name, new MacroCallParameterIntegerValueMatcher(value));
     }
 
     public static MacroCallParameterMatcher hasNameAndBooleanValue(final String name, final boolean value) {

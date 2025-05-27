@@ -53,26 +53,9 @@ under the License.
             <widgets>
                 <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <section>
-                            <condition>
-                                <and>
-                                    <or>
-                                        <if-has-permission permission="CATALOG" action="_CREATE"/>
-                                        <if-has-permission permission="CATALOG" action="_UPDATE"/>
-                                    </or>
-                                </and>
-                            </condition>
-                            <widgets>
-                                <screenlet id="ProductStore">
-                                    <include-form name="EditProductStore" location="component://product/widget/catalog/StoreForms.xml"/>
-                                </screenlet>
-                            </widgets>
-                            <fail-widgets>
-                                <screenlet id="ProductStore">
-                                    <include-form name="ProductStore" location="component://product/widget/catalog/StoreForms.xml"/>
-                                </screenlet>
-                            </fail-widgets>
-                        </section>
+                        <screenlet title="${uiLabelMap.ProductProductStore}">
+                            <include-form name="EditProductStore" location="component://product/widget/catalog/StoreForms.xml"/>
+                        </screenlet>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
@@ -337,7 +320,7 @@ under the License.
                 <set field="paymentMethodTypeId" from-field="parameters.paymentMethodTypeId"/>
                 <set field="paymentServiceTypeEnumId" from-field="parameters.paymentServiceTypeEnumId"/>
                 <entity-one entity-name="ProductStorePaymentSetting" value-field="productStorePaymentSetting" auto-field-map="true"/>
-                <script location="component://product/src/main/groovy/org/apache/ofbiz/product/catalog/store/EditProductStorePaySetup.groovy"/>
+                <script location="component://product/groovyScripts/catalog/store/EditProductStorePaySetup.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
@@ -397,7 +380,7 @@ under the License.
                 <set field="labelTitleProperty" value="ProductStoreSurveySettings"/>
                 <set field="productStoreId" from-field="parameters.productStoreId"/>
                 <entity-one entity-name="ProductStore" value-field="productStore" auto-field-map="true"/>
-                <script location="component://product/src/main/groovy/org/apache/ofbiz/product/catalog/store/EditProductStoreSurveys.groovy"/>
+                <script location="component://product/groovyScripts/catalog/store/EditProductStoreSurveys.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonProductStoreDecorator" location="${parameters.mainDecoratorLocation}">
@@ -560,7 +543,7 @@ under the License.
             <widgets>
                 <container id="ProductStoreFacilityEditArea"/>
                 <screenlet title="${uiLabelMap.ProductStoreFacilityAssocList}" navigation-menu-name="ProductStoreFacility">
-                    <include-menu name="ProductStoreFacility" location="${parameters.mainMenuLocation}"/>
+                    <include-menu name="ProductStoreFacility" location="component://product/widget/catalog/CatalogMenus.xml"/>
                     <include-grid name="ListProductStoreFacility" location="component://product/widget/catalog/StoreForms.xml"/>
                 </screenlet>
             </widgets>

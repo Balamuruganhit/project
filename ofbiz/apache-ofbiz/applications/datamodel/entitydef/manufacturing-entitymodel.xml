@@ -162,6 +162,18 @@ under the License.
       <field name="description" type="description"></field>
       <prim-key field="mrpEventTypeId"/>
     </entity>
+    <entity entity-name="partyOrder"
+            package-name="org.apache.ofbiz.manufacturing.mrp"
+            default-resource-name="ManufacturingEntityLabels"
+            title="Production run detail">
+      <description></description>
+      <field name="productionRunId" type="id"></field>
+      <field name="partyName" type="description"></field>
+      <field name="orderNumber" type="description"></field>
+       <field name="orderDate" type="date-time"></field>
+      <field name="poNumber" type="description"></field>
+      <prim-key field="productionRunId"/>
+    </entity>
 
     <entity entity-name="MrpEvent"
             package-name="org.apache.ofbiz.manufacturing.mrp"

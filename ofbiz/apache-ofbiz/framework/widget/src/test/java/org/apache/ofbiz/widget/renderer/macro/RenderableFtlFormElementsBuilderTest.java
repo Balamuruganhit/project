@@ -26,7 +26,6 @@ import mockit.Mocked;
 import mockit.Tested;
 import org.apache.ofbiz.webapp.control.ConfigXMLReader;
 import org.apache.ofbiz.webapp.control.RequestHandler;
-import org.apache.ofbiz.widget.content.StaticContentUrlProvider;
 import org.apache.ofbiz.widget.model.ModelForm;
 import org.apache.ofbiz.widget.model.ModelFormField;
 import org.apache.ofbiz.widget.model.ModelScreenWidget;
@@ -60,9 +59,6 @@ public class RenderableFtlFormElementsBuilderTest {
 
     @Injectable
     private HttpServletResponse response;
-
-    @Injectable
-    private StaticContentUrlProvider staticContentUrlProvider;
 
     @Mocked
     private HttpSession httpSession;
@@ -238,107 +234,6 @@ public class RenderableFtlFormElementsBuilderTest {
                 MacroCallParameterMatcher.hasNameAndStringValue("ajaxUrl",
                         "areaId1,http://host.domain/target1,param1=ThisIsParam1&param2=ThisIsParam2,"
                                 + "areaId2,http://host.domain/target2,")));
-    }
-
-    @Test
-    public void textareaFieldSetsIdValueLengthAndSize(@Mocked final ModelFormField.TextareaField textareaField) {
-        final int maxLength = 142;
-        final int cols = 80;
-        final int rows = 5;
-        new Expectations() {
-            {
-                modelFormField.getCurrentContainerId(withNotNull());
-                result = "CurrentTextareaId";
-
-                modelFormField.getEntry(withNotNull(), anyString);
-                result = "TEXTAREAVALUE";
-
-                textareaField.getMaxlength();
-                result = maxLength;
-
-                textareaField.getCols();
-                result = cols;
-
-                textareaField.getRows();
-                result = rows;
-            }
-        };
-
-        final HashMap<String, Object> context = new HashMap<>();
-
-        final RenderableFtl renderableFtl = renderableFtlFormElementsBuilder.textArea(context, textareaField);
-        assertThat(renderableFtl, MacroCallMatcher.hasNameAndParameters("renderTextareaField",
-                MacroCallParameterMatcher.hasNameAndStringValue("id", "CurrentTextareaId"),
-                MacroCallParameterMatcher.hasNameAndStringValue("value", "TEXTAREAVALUE"),
-                MacroCallParameterMatcher.hasNameAndIntegerValue("cols", cols),
-                MacroCallParameterMatcher.hasNameAndIntegerValue("rows", rows),
-                MacroCallParameterMatcher.hasNameAndIntegerValue("maxlength", maxLength)));
-    }
-
-    @Test
-    public void textareaFieldSetsDisabledParameters(@Mocked final ModelFormField.TextareaField textareaField) {
-        new Expectations() {
-            {
-                modelFormField.getDisabled(withNotNull());
-                result = true;
-            }
-        };
-
-        final HashMap<String, Object> context = new HashMap<>();
-
-        final RenderableFtl renderableFtl = renderableFtlFormElementsBuilder.textArea(context, textareaField);
-        assertThat(renderableFtl, MacroCallMatcher.hasNameAndParameters("renderTextareaField",
-                MacroCallParameterMatcher.hasNameAndBooleanValue("disabled", true)));
-    }
-
-    @Test
-    public void textareaFieldVisualEditorEnabledNoButtons(@Mocked final ModelFormField.TextareaField textareaField) {
-        new Expectations() {
-            {
-                modelFormField.getDisabled(withNotNull());
-                result = true;
-
-                textareaField.getVisualEditorEnable();
-                result = true;
-
-                textareaField.getVisualEditorButtons(withNotNull());
-                result = "";
-            }
-        };
-
-        final HashMap<String, Object> context = new HashMap<>();
-
-        final RenderableFtl renderableFtl = renderableFtlFormElementsBuilder.textArea(context, textareaField);
-        assertThat(renderableFtl, MacroCallMatcher.hasNameAndParameters("renderTextareaField",
-                MacroCallParameterMatcher.hasNameAndBooleanValue("visualEditorEnable", true)));
-    }
-
-    @Test
-    public void textareaFieldVisualEditorEnabledButtons(@Mocked final ModelFormField.TextareaField textareaField) {
-        String editorConfiguration = "[['formatting'],['strong','em','del'],['link'],['unorderedList','orderedList'],"
-                + "['horizontalRule'],['removeformat'],['indent','outdent'],['fullscreen']]";
-
-        new Expectations() {
-            {
-                modelFormField.getDisabled(withNotNull());
-                result = true;
-
-                textareaField.getVisualEditorEnable();
-                result = true;
-
-                textareaField.getVisualEditorButtons(withNotNull());
-                result = editorConfiguration;
-            }
-        };
-
-        final HashMap<String, Object> context = new HashMap<>();
-
-        final RenderableFtl renderableFtl = renderableFtlFormElementsBuilder.textArea(context, textareaField);
-        assertThat(renderableFtl, MacroCallMatcher.hasNameAndParameters("renderTextareaField",
-                MacroCallParameterMatcher.hasNameAndBooleanValue("visualEditorEnable", true)));
-        assertThat(renderableFtl, MacroCallMatcher.hasNameAndParameters(
-                "renderTextareaField",
-                MacroCallParameterMatcher.hasNameAndStringValue("buttons", editorConfiguration)));
     }
 
     @Test

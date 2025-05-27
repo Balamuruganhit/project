@@ -26,7 +26,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public abstract class GenericMapValues<K, V, M extends Map<K, V>> extends GenericMapCollection<K, V, M, V> {
-    GenericMapValues(M source) {
+    public GenericMapValues(M source) {
         super(source);
     }
 

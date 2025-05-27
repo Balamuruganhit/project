@@ -552,7 +552,7 @@ public final class UtilValidate {
     }
 
     /** isZIPCode returns true if string s is a valid U.S. ZIP code.  Must be 5 or 9 digits only. */
-    private static boolean isZipCode(String s) {
+    public static boolean isZipCode(String s) {
         if (isEmpty(s)) {
             return DEFAULT_EMPTY_OK;
         }
@@ -633,12 +633,12 @@ public final class UtilValidate {
     }
 
     /**
-     * urlInString returns true if the string contains :// and does not start with "component://"
+     * urlInString returns true if the string contains :// and not "component://"
      * @param s String to validate
-     * @return true if s contains :// and does not start with "component://"
+     * @return true if s contains :// and not "component://"
      */
     public static boolean urlInString(String s) {
-        if (isEmpty(s) || s.startsWith("component://")) {
+        if (isEmpty(s) || s.contains("component://")) {
             return false;
         }
         return s.indexOf("://") != -1;

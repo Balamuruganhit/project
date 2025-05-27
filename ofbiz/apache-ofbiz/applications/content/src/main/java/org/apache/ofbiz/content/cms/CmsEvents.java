@@ -294,7 +294,7 @@ public final class CmsEvents {
                 if (statusCode == HttpServletResponse.SC_OK || hasErrorPage) {
                     // create the template map
                     MapStack<String> templateMap = MapStack.create();
-                    ScreenRenderer.populateContextForRequest(templateMap, null, request, response, servletContext, true);
+                    ScreenRenderer.populateContextForRequest(templateMap, null, request, response, servletContext);
                     templateMap.put("statusCode", statusCode);
 
                     // make the link prefix

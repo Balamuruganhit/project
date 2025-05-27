@@ -950,7 +950,7 @@ public final class SqlJdbcUtil {
         } else {
             buffer.append('\'');
             if (value instanceof String) {
-                buffer.append(((String) value).replace("'", "''"));
+                buffer.append(((String) value).replaceAll("'", "''"));
             } else {
                 buffer.append(value);
             }

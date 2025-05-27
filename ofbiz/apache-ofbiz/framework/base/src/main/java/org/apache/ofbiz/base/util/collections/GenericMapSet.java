@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 public abstract class GenericMapSet<K, V, M extends Map<K, V>, I> extends GenericMapCollection<K, V, M, I> implements Set<I> {
-    GenericMapSet(M source) {
+    public GenericMapSet(M source) {
         super(source);
     }
 

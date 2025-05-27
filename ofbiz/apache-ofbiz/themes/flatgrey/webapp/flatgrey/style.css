@@ -2270,3 +2270,103 @@ html > /**/ body .jstree-default a {
 a[data-featherlight] {
     cursor: pointer;
 }
+.hide{
+	display: none !important;
+  }
+  .show{
+	display: flex !important;
+  }
+  #close-btn{
+	width: 2rem;
+	height: 2rem;
+	border-radius: 3rem;
+	position: absolute;
+	right:0.1rem;
+	background: transparent;
+	z-index: 100;
+	border: 0px;
+	color: red;
+	top: 0rem;
+  }
+  .botImg{
+	position: absolute;
+	bottom: 1.2rem;
+	right: 1rem;
+	width: 3.5rem;
+	height: 3.5rem;
+	background: transparent;
+  }
+  .chat-container {
+	width: 300px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 1rem;
+	background-color: white;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	display: flex;
+	height: 25rem;
+	flex-direction: column;
+	overflow: scroll;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	display: none;
+  }
+  
+  .chat-box {
+	flex: 1;
+	padding: 10px;
+	overflow-y: auto;
+	border-bottom: 1px solid #ddd;
+  }
+  
+  .chat-box .message {
+	margin: 10px 0;
+	background: rgb(116, 116, 145);
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+	letter-spacing: 1px;
+	cursor: pointer;
+  }
+  
+  .chat-box .user {
+	text-align: right;
+  }
+  
+  .chat-box .bot {
+	text-align: left;
+  }
+  
+  .chat-input {
+	display: flex;
+	border-top: 1px solid #ddd;
+  }
+  
+  .chat-input input {
+	flex: 1;
+    height:2rem;
+    background: aquamarine;
+	padding: 10px;
+	border: none;
+	border-right: 1px solid #ddd;
+  }
+  
+  .chat-input button {
+	padding: 10px;
+	background-color: #4caf50;
+	color: black;
+	border: none;
+	cursor: pointer;
+  }
+  
+  .chat-input button:hover {
+	background-color: #45a049;
+  }
+  
+.botHolder{
+  position: fixed;
+  bottom: 1.2rem;
+  width: 100%;
+}

@@ -38,8 +38,8 @@ under the License.
         <override name="workEffortName" allow-html="safe"/>
         <override name="description" allow-html="safe"/>
     </service>
-    <service name="createWorkEffort" default-entity-name="WorkEffort" engine="groovy" invoke="createWorkEffort"
-            location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="createWorkEffort" default-entity-name="WorkEffort" engine="simple"
+        location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="createWorkEffort">
         <description>Create a WorkEffort Entity</description>
         <permission-service service-name="workEffortGenericPermission" main-action="CREATE"/>
         <implements service="interfaceWorkEffort"/>
@@ -54,23 +54,23 @@ under the License.
         <override name="currentStatusId" optional="false"/>
         <override name="description" allow-html="safe"/>
     </service>
-    <service name="createWorkEffortAndPartyAssign" default-entity-name="WorkEffort" engine="groovy" invoke="createWorkEffortAndPartyAssign"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="createWorkEffortAndPartyAssign" default-entity-name="WorkEffort" engine="simple"
+        location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="createWorkEffortAndPartyAssign">
         <description>Create a WorkEffort Entity and assign to a party</description>
         <permission-service service-name="workEffortGenericPermission" main-action="CREATE"/>
         <implements service="interfaceWorkEffort"/>
         <auto-attributes mode="INOUT" include="pk" optional="true"/>
-        <attribute name="partyId" type="String" mode="IN">
+        <attribute name="partyId" type="String" mode="IN" optional="false">
             <type-validate>
                 <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingPartyId"/>
             </type-validate>
         </attribute>
-        <attribute name="roleTypeId" type="String" mode="IN" default-value="CAL_OWNER">
+        <attribute name="roleTypeId" type="String" mode="IN" optional="false">
             <type-validate>
                 <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingRoleTypeId"/>
             </type-validate>
         </attribute>
-        <attribute name="statusId" type="String" mode="IN">
+        <attribute name="statusId" type="String" mode="IN" optional="false">
             <type-validate>
                 <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingStatusId"/>
             </type-validate>
@@ -82,12 +82,12 @@ under the License.
         <override name="workEffortName" optional="false"/>
         <override name="currentStatusId" optional="false"/>
     </service>
-    <service name="updateWorkEffort" default-entity-name="WorkEffort" engine="groovy" invoke="updateWorkEffort"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="updateWorkEffort" default-entity-name="WorkEffort" engine="simple"
+            location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="updateWorkEffort">
         <description>Update a WorkEffort Entity</description>
         <permission-service service-name="workEffortGenericPermission" main-action="UPDATE"/>
         <implements service="interfaceWorkEffort"/>
-        <auto-attributes mode="IN" include="pk"/>
+        <auto-attributes mode="IN" include="pk" optional="false"/>
         <attribute name="communicationEventId" type="String" mode="IN" optional="true"/>
         <attribute name="reason" type="String" mode="IN" optional="true"/>
         <attribute name="webSiteId" type="String" mode="IN" optional="true"/><!-- for notification services -->
@@ -97,24 +97,19 @@ under the License.
             </type-validate>
         </override>
     </service>
-    <service name="deleteWorkEffort" default-entity-name="WorkEffort" engine="groovy" invoke="deleteWorkEffort"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="deleteWorkEffort" default-entity-name="WorkEffort" engine="simple"
+            location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="deleteWorkEffort">
         <description>Delete a WorkEffort Entity</description>
-        <auto-attributes mode="IN" include="pk"/>
+        <auto-attributes mode="IN" include="pk" optional="false"/>
         <override name="workEffortId" optional="false">
             <type-validate>
                 <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingWorkEffortId"/>
             </type-validate>
         </override>
     </service>
-    <service name="createWorkEffortStatus" default-entity-name="WorkEffortStatus" engine="entity-auto"
-             invoke="create" auth="true">
-        <auto-attributes include="pk" mode="IN"/>
-        <auto-attributes include="nonpk" mode="IN" optional="true"/>
-    </service>
 
-    <service name="copyWorkEffort" engine="groovy" auth="true" transaction-timeout="300" invoke="copyWorkEffort"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="copyWorkEffort" engine="simple" auth="true" transaction-timeout="300"
+            location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="copyWorkEffort">
         <description>Copies an existing WorkEffort to a new WorkEffort.</description>
         <permission-service service-name="workEffortGenericPermission" main-action="CREATE"/>
         <attribute name="sourceWorkEffortId" mode="IN" type="String" optional="false">
@@ -148,19 +143,18 @@ under the License.
         </attribute>
     </service>
 
-    <service name="duplicateWorkEffort" engine="groovy" invoke="duplicateWorkEffort" auth="true"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="duplicateWorkEffort" engine="simple"
+        location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="duplicateWorkEffort" auth="true">
         <description>Duplicate a Work Effort. If workEffortId is empty a new workEffortId will be generated.
             Set the statusId of the new WorkEffort to this status, otherwise, set the status to the first of the
             sequenceId of the statusTypeId</description>
         <permission-service service-name="workEffortGenericPermission" main-action="CREATE"/>
-        <attribute name="oldWorkEffortId" type="String" mode="IN">
-            <type-validate>
-                <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingOldWorkEffortTypeId"/>
-            </type-validate>
-        </attribute>
         <attribute name="workEffortId" type="String" mode="IN" optional="true"/>
-        <attribute name="statusId" type="String" mode="IN" optional="true"/>
+        <attribute name="oldWorkEffortId" type="String" mode="IN" optional="false">
+        <type-validate>
+            <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingOldWorkEffortTypeId"/>
+        </type-validate>
+        </attribute>
         <attribute name="duplicateWorkEffortAssocs" type="String" mode="IN" optional="true"/>
         <attribute name="duplicateWorkEffortContents" type="String" mode="IN" optional="true"/>
         <attribute name="duplicateWorkEffortNotes" type="String" mode="IN" optional="true"/>
@@ -169,7 +163,8 @@ under the License.
         <attribute name="removeWorkEffortContents" type="String" mode="IN" optional="true"/>
         <attribute name="removeWorkEffortNotes" type="String" mode="IN" optional="true"/>
         <attribute name="removeWorkEffortAssignmentRates" type="String" mode="IN" optional="true"/>
-        <attribute name="workEffortId" type="String" mode="OUT"/>
+        <attribute name="workEffortId" type="String" mode="OUT" optional="false"/>
+        <attribute name="statusId" type="String" mode="IN" optional="true"/>
     </service>
 
     <!-- Communication Event WorkEffort -->
@@ -183,39 +178,90 @@ under the License.
     </service>
 
     <!-- WorkEffortPartyAssignment services -->
-    <service name="createWorkEffortPartyAssignment" default-entity-name="WorkEffortPartyAssignment" engine="entity-auto"
-             invoke="create" auth="true">
-        <permission-service service-name="workEffortGenericPermission" main-action="UPDATE"/>
-        <auto-attributes include="pk" mode="IN"/>
-        <auto-attributes include="nonpk" mode="IN" optional="true"/>
-        <override name="fromDate" mode="INOUT" optional="true"/>
-    </service>
-    <service name="updateWorkEffortPartyAssignment" default-entity-name="WorkEffortPartyAssignment" engine="entity-auto"
-             invoke="update" auth="true">
-        <permission-service service-name="workEffortGenericPermission" main-action="UPDATE"/>
-        <auto-attributes include="pk" mode="IN"/>
-        <auto-attributes include="nonpk" mode="IN" optional="true"/>
-    </service>
-    <service name="expireWorkEffortPartyAssignment" default-entity-name="WorkEffortPartyAssignment" engine="entity-auto"
-             invoke="expire" auth="true">
-        <permission-service service-name="workEffortGenericPermission" main-action="UPDATE"/>
-        <auto-attributes include="pk" mode="IN"/>
-        <attribute name="thruDate" type="Timestamp" mode="IN" optional="true"/>
-    </service>
-    <service name="assignPartyToWorkEffort" default-entity-name="WorkEffortPartyAssignment" engine="groovy" invoke="assignPartyToWorkEffort"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="assignPartyToWorkEffort" default-entity-name="WorkEffortPartyAssignment" engine="simple"
+            location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="assignPartyToWorkEffort">
         <description>Create a WorkEffortPartyAssignment Entity</description>
-        <implements service="createWorkEffortPartyAssignment"/>
+        <permission-service service-name="workEffortGenericPermission" main-action="UPDATE"/>
+        <auto-attributes mode="IN" include="pk" optional="false"/>
+        <auto-attributes mode="IN" include="nonpk" optional="true">
+            <exclude field-name="statusDateTime"/>
+        </auto-attributes>
+        <override name="fromDate" mode="INOUT" optional="true"/>
+        <override name="partyId" optional="false">
+            <type-validate>
+                <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingPartyId"/>
+            </type-validate>
+        </override>
+        <override name="roleTypeId" optional="false">
+            <type-validate>
+                <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingRoleTypeId"/>
+            </type-validate>
+        </override>
+        <override name="statusId" optional="false">
+            <type-validate>
+                <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingStatusId"/>
+            </type-validate>
+        </override>
+        <override name="workEffortId" optional="false">
+            <type-validate>
+                <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingWorkEffortId"/>
+            </type-validate>
+        </override>
     </service>
-    <service name="updatePartyToWorkEffortAssignment" default-entity-name="WorkEffortPartyAssignment" engine="groovy" invoke="updatePartyToWorkEffortAssignment"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="updatePartyToWorkEffortAssignment" default-entity-name="WorkEffortPartyAssignment" engine="simple"
+        location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="updatePartyToWorkEffortAssignment">
         <description>Update a WorkEffortPartyAssignment Entity</description>
-        <implements service="updateWorkEffortPartyAssignment"/>
+        <permission-service service-name="workEffortGenericPermission" main-action="UPDATE"/>
+        <auto-attributes mode="IN" include="pk" optional="false"/>
+        <auto-attributes mode="IN" include="nonpk" optional="true">
+            <exclude field-name="statusDateTime"/>
+        </auto-attributes>
+        <override name="fromDate" optional="false">
+            <type-validate>
+                <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingFromDate"/>
+            </type-validate>
+        </override>
+        <override name="partyId" optional="false">
+            <type-validate>
+                <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingPartyId"/>
+            </type-validate>
+        </override>
+        <override name="roleTypeId" optional="false">
+            <type-validate>
+                <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingRoleTypeId"/>
+            </type-validate>
+        </override>
+        <override name="workEffortId" optional="false">
+            <type-validate>
+                <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingWorkEffortId"/>
+            </type-validate>
+        </override>
     </service>
-    <service name="deletePartyToWorkEffortAssignment" default-entity-name="WorkEffortPartyAssignment" engine="entity-auto" invoke="expire">
+    <service name="deletePartyToWorkEffortAssignment" default-entity-name="WorkEffortPartyAssignment" engine="simple"
+        location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="deletePartyToWorkEffortAssignment">
         <description>delete/set the thrudate on the WorkEffortPartyAssignment Entity to today</description>
-        <deprecated use-instead="expireWorkEffortPartyAssignment" since="UpComingBranch"/>
-        <implements service="expireWorkEffortPartyAssignment"/>
+        <permission-service service-name="workEffortGenericPermission" main-action="UPDATE"/>
+        <auto-attributes mode="IN" include="pk" optional="false"/>
+        <override name="fromDate" optional="false">
+            <type-validate>
+                <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingFromDate"/>
+            </type-validate>
+        </override>
+        <override name="partyId" optional="false">
+            <type-validate>
+                <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingPartyId"/>
+            </type-validate>
+        </override>
+        <override name="roleTypeId" optional="false">
+            <type-validate>
+                <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingRoleTypeId"/>
+            </type-validate>
+        </override>
+        <override name="workEffortId" optional="false">
+            <type-validate>
+                <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingWorkEffortId"/>
+            </type-validate>
+        </override>
     </service>
     <service name="unassignPartyFromWorkEffort" default-entity-name="WorkEffortPartyAssignment" engine="entity-auto" invoke="delete">
         <description>Delete a WorkEffortPartyAssignment Entity</description>
@@ -243,35 +289,34 @@ under the License.
         </override>
     </service>
 
-    <service name="quickAssignPartyToWorkEffort" engine="groovy" invoke="quickAssignPartyToWorkEffort"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="quickAssignPartyToWorkEffort" engine="simple"
+            location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="quickAssignPartyToWorkEffort">
         <description>Quick Assign Party To WorkEffort as Owner</description>
-        <attribute name="workEffortId" type="String" mode="IN">
+        <attribute name="workEffortId" type="String" mode="IN" optional="false">
             <type-validate>
                 <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingWorkEffortId"/>
             </type-validate>
         </attribute>
-        <attribute name="roleTypeId" type="String" mode="IN" default-value="CAL_OWNER"/>
-        <attribute name="quickAssignPartyId" type="String" mode="IN">
+        <attribute name="quickAssignPartyId" type="String" mode="IN" optional="false">
             <type-validate>
                 <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingQuickAssignPartyId"/>
             </type-validate>
         </attribute>
     </service>
-    <service name="quickAssignPartyToWorkEffortWithRole" engine="groovy" invoke="quickAssignPartyToWorkEffort"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="quickAssignPartyToWorkEffortWithRole" engine="simple"
+            location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="quickAssignPartyToWorkEffortWithRole">
         <description>Quick Assign Party To WorkEffort as Owner</description>
-        <attribute name="workEffortId" type="String" mode="IN">
+        <attribute name="workEffortId" type="String" mode="IN" optional="false">
             <type-validate>
                 <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingWorkEffortId"/>
             </type-validate>
         </attribute>
-        <attribute name="quickAssignPartyId" type="String" mode="IN">
+        <attribute name="quickAssignPartyId" type="String" mode="IN" optional="false">
             <type-validate>
                 <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingQuickAssignPartyId"/>
             </type-validate>
         </attribute>
-        <attribute name="roleTypeId" type="String" mode="IN">
+        <attribute name="roleTypeId" type="String" mode="IN" optional="false">
             <type-validate>
                 <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingRoleTypeId"/>
             </type-validate>
@@ -419,13 +464,13 @@ under the License.
         <attribute name="workEfforts" type="java.util.List" mode="INOUT" optional="true"/>
     </service>
     <service name="checkAndCreateWorkEffort" auth="true" engine="groovy" default-entity-name="Shipment"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy" invoke="checkAndCreateWorkEffort">
+             location="component://workeffort/groovyScripts/workeffort/workeffort/WorkEffortServices.groovy" invoke="checkAndCreateWorkEffort">
         <description>Check And Create WorkEffort after Shipment Create</description>
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
     <service name="checkAndUpdateWorkEffort" auth="true" engine="groovy" default-entity-name="Shipment"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy" invoke="checkAndUpdateWorkEffort">
+             location="component://workeffort/groovyScripts/workeffort/workeffort/WorkEffortServices.groovy" invoke="checkAndUpdateWorkEffort">
         <description>Check And Update WorkEffort after Shipment Update</description>
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
@@ -832,11 +877,6 @@ under the License.
         <description>Checks to see if a CustRequestItem exists</description>
         <auto-attributes include="pk" mode="IN" optional="true" entity-name="CustRequestItem"/>
         <attribute name="custRequestItemExists" type="java.lang.String" mode="OUT" optional="true"/>
-    </service>
-    <service name="assocAcceptedCustRequestToWorkEffort" engine="groovy" default-entity-name="CustRequestWorkEffort" invoke="assocAcceptedCustRequestToWorkEffort" auth="true"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
-        <description>For a custRequest approved, link it to a workEffort and copy associate content</description>
-        <auto-attributes include="pk" mode="IN"/>
     </service>
 
     <service name="createWorkEffortQuote" engine="entity-auto" default-entity-name="QuoteWorkEffort" invoke="create" auth="true">
@@ -1419,31 +1459,31 @@ under the License.
     </service>
 
     <!-- WorkEffort Contact Mech Services -->
-    <service name="createWorkEffortContactMech" engine="groovy" invoke="createWorkEffortContactMech" auth="true"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="createWorkEffortContactMech" engine="simple"
+            location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="createWorkEffortContactMech" auth="true">
         <description>Create WorkEffortContactMech; if contactMechId is not provided, a new contact mech is created (if partyId is set then the new contact mech is also associated to the party)</description>
         <permission-service service-name="workEffortGenericPermission" main-action="CREATE"/>
         <auto-attributes entity-name="WorkEffortContactMech" mode="IN" include="nonpk" optional="true"/>
-        <auto-attributes entity-name="PartyContactMech" mode="IN" optional="true"/>
-        <attribute name="workEffortId" mode="IN" type="String">
+        <auto-attributes entity-name="PartyContactMech" include="all" mode="IN" optional="true"/>
+        <attribute name="workEffortId" mode="IN" type="String" optional="false">
             <type-validate>
                 <fail-property resource="WorkEffortUiLabels" property="WorkEffortRequiredFieldMissingWorkEffortId"/>
             </type-validate>
         </attribute>
         <attribute name="contactMechTypeId" mode="IN" type="String" optional="true"/>
-        <attribute name="infoString" mode="IN" type="String" optional="true"/>
+        <attribute name="infoString" mode="IN" type="String" optional="true"></attribute>
         <attribute name="contactMechPurposeTypeId" type="String" mode="IN" optional="true"/>
         <attribute name="contactMechId" type="String" mode="INOUT" optional="true"/>
     </service>
-    <service name="updateWorkEffortContactMech" engine="groovy" invoke="updateWorkEffortContactMech" auth="true"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="updateWorkEffortContactMech" engine="simple"
+             location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="updateWorkEffortContactMech" auth="true">
         <description>Update WorkEffortContactMech</description>
         <permission-service service-name="workEffortGenericPermission" main-action="UPDATE"/>
         <auto-attributes entity-name="WorkEffortContactMech" mode="IN" include="nonpk" optional="true"/>
-        <auto-attributes entity-name="PartyContactMech" mode="IN" optional="true"/>
-        <attribute name="workEffortId" mode="IN" type="String"/>
-        <attribute name="contactMechTypeId" mode="IN" type="String" optional="true"/>
-        <attribute name="infoString" mode="IN" type="String" optional="true"/>
+        <auto-attributes entity-name="PartyContactMech" include="all" mode="IN" optional="true"/>
+        <attribute name="workEffortId" mode="IN" type="String" optional="false"></attribute>
+        <attribute name="contactMechTypeId" mode="IN" type="String" optional="true"></attribute>
+        <attribute name="infoString" mode="IN" type="String" optional="true"></attribute>
         <attribute name="contactMechPurposeTypeId" type="String" mode="IN" optional="true"/>
         <attribute name="newContactMechId" type="String" mode="IN" optional="true"/>
         <attribute name="contactMechId" type="String" mode="INOUT" optional="true"/>
@@ -1453,57 +1493,47 @@ under the License.
         <permission-service service-name="workEffortGenericPermission" main-action="DELETE"/>
         <auto-attributes mode="IN" include="pk" optional="false"/>
     </service>
-    <service name="createWorkEffortPostalAddress" engine="groovy" invoke="createWorkEffortContactMech" auth="true"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="createWorkEffortPostalAddress" engine="simple"
+             location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="createWorkEffortPostalAddress">
         <description>Create WorkEffort PostalAddress</description>
         <permission-service service-name="workEffortGenericPermission" main-action="CREATE"/>
         <implements service="createPostalAddress"/>
         <implements service="createPartyPostalAddress"/>
         <implements service="createWorkEffortContactMech"/>
-        <attribute name="relationEntityName" type="String" mode="IN" default-value="PostalAddress"/>
-        <override name="contactMechTypeId" default-value="POSTAL_ADDRESS"/>
     </service>
-    <service name="updateWorkEffortPostalAddress" engine="groovy" invoke="updateWorkEffortContactMech" auth="true"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="updateWorkEffortPostalAddress" engine="simple"
+             location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="updateWorkEffortPostalAddress">
         <description>Update WorkEffort PostalAddress</description>
         <permission-service service-name="workEffortGenericPermission" main-action="UPDATE"/>
         <implements service="updatePostalAddress"/>
         <implements service="updateWorkEffortContactMech"/>
-        <attribute name="relationEntityName" type="String" mode="IN" default-value="PostalAddress"/>
-        <override name="contactMechTypeId" default-value="POSTAL_ADDRESS"/>
     </service>
-    <service name="createWorkEffortTelecomNumber" engine="groovy" invoke="createWorkEffortContactMech" auth="true"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="createWorkEffortTelecomNumber" engine="simple"
+             location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="createWorkEffortTelecomNumber">
         <description>Create WorkEffort TelecomNumber</description>
         <permission-service service-name="workEffortGenericPermission" main-action="CREATE"/>
         <implements service="createTelecomNumber"/>
         <implements service="createPartyTelecomNumber"/>
         <implements service="createWorkEffortContactMech"/>
-        <attribute name="relationEntityName" type="String" mode="IN" default-value="TelecomNumber"/>
-        <override name="contactMechTypeId" default-value="TELECOM_NUMBER"/>
     </service>
-    <service name="updateWorkEffortTelecomNumber" engine="groovy" invoke="updateWorkEffortContactMech" auth="true"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="updateWorkEffortTelecomNumber" engine="simple"
+             location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="updateWorkEffortTelecomNumber">
         <description>Update WorkEffort TelecomNumber</description>
         <permission-service service-name="workEffortGenericPermission" main-action="UPDATE"/>
         <implements service="updateTelecomNumber"/>
         <implements service="updateWorkEffortContactMech"/>
-        <attribute name="relationEntityName" type="String" mode="IN" default-value="PostalAddress"/>
-        <override name="contactMechTypeId" default-value="TELECOM_NUMBER"/>
     </service>
-    <service name="createWorkEffortEmailAddress" engine="groovy" invoke="createWorkEffortContactMech" auth="true"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="createWorkEffortEmailAddress" engine="simple"
+             location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="createWorkEffortEmailAddress">
         <description>Create WorkEffort Email Address</description>
         <permission-service service-name="workEffortGenericPermission" main-action="CREATE"/>
         <implements service="createWorkEffortContactMech"/>
-        <override name="contactMechTypeId" default-value="EMAIL_ADDRESS"/>
     </service>
-    <service name="updateWorkEffortEmailAddress" engine="groovy" invoke="updateWorkEffortContactMech" auth="true"
-             location="component://workeffort/src/main/groovy/org/apache/ofbiz/workeffort/workeffort/workeffort/WorkEffortServicesScript.groovy">
+    <service name="updateWorkEffortEmailAddress" engine="simple"
+             location="component://workeffort/minilang/workeffort/WorkEffortSimpleServices.xml" invoke="updateWorkEffortEmailAddress">
         <description>Update WorkEffort Email Address</description>
         <permission-service service-name="workEffortGenericPermission" main-action="UPDATE"/>
         <implements service="updateWorkEffortContactMech"/>
-        <override name="contactMechTypeId" default-value="EMAIL_ADDRESS"/>
     </service>
 
     <!--WorkEffortInventoryProduced Services   -->
@@ -1715,4 +1745,5 @@ under the License.
         <permission-service service-name="workEffortGenericPermission" main-action="DELETE"/>
         <auto-attributes include="pk" mode="IN" optional="false"/>
     </service>
+    
 </services>

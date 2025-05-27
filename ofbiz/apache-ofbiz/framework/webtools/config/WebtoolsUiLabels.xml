@@ -1154,9 +1154,9 @@
         <value xml:lang="en">Clear Selected Caches</value>
     </property>
     <property key="WebtoolsCompanyName">
-        <value xml:lang="de">OFBiz: Web Tools</value>
-        <value xml:lang="en">OFBiz: Web Tools</value>
-        <value xml:lang="es">OFBiz: Herramientas Web</value>
+        <value xml:lang="de">Pangun Tech: Web Tools</value>
+        <value xml:lang="en">Pangun Tech: Web Tools</value>
+        <value xml:lang="es">Pangun Tech: Herramientas Web</value>
         <value xml:lang="fr">OFBiz: outils web</value>
         <value xml:lang="it">OFBiz: Strumenti web</value>
         <value xml:lang="ja">OFBiz: Webツール</value>
@@ -1171,7 +1171,7 @@
     <!--value xml:lang="ar">جزء من عائلة أوفبيز للبرمجيات الحرة</value-->
         <value xml:lang="ar">جزء من عائلة أوفبيز للتطبيقات الحرة للتسيير</value>
         <value xml:lang="de">Teil der Apache OFBiz Familie von Open Source Software</value>
-        <value xml:lang="en">Part of the Apache OFBiz Family of Open Source Software</value>
+        <value xml:lang="en">Part of the Pangun Tech</value>
     <!--value xml:lang="es">Parte de la familia "Open for Bussiness" de Software Libre</value-->
         <value xml:lang="es">Parte de la familia de software Apache OFBiz de código abierto</value>
         <value xml:lang="fr">Un module de la famille Apache OFBiz, logiciel libre de gestion d'entreprise.</value>

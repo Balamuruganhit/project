@@ -33,7 +33,7 @@ public class GeneralException extends Exception {
         return GeneralException.<T>checkException(t.getMessage(), t);
     }
 
-    private static <T> T checkException(String message, Throwable t) throws GeneralException {
+    public static <T> T checkException(String message, Throwable t) throws GeneralException {
         if (t instanceof Error) {
             throw (Error) t;
         }

@@ -22,8 +22,6 @@ under the License.
         xmlns="http://ofbiz.apache.org/Site-Conf" xsi:schemaLocation="http://ofbiz.apache.org/Site-Conf http://ofbiz.apache.org/dtds/site-conf.xsd">
     <include location="component://common/webcommon/WEB-INF/common-controller.xml"/>
     <include location="component://commonext/webapp/WEB-INF/controller.xml"/>
-    <include location="component://accounting/webapp/accounting/WEB-INF/accounting-controller.xml"/>
-
     <description>Accounting Manager Module Site Configuration File</description>
 
     <!-- Events to run on every request before security (chains exempt) -->
@@ -43,7 +41,7 @@ under the License.
         <security https="true" auth="false"/>
         <response name="success" type="request" value="main"/>
     </request-map>
-
+    
     <request-map uri="main">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="main"/>
@@ -147,9 +145,9 @@ under the License.
         <security https="true" auth="true"/>
         <response name="success" type="view" value="findInvoices"/>
     </request-map>
-    <request-map uri="viewInvoice">
+    <request-map uri="invoiceOverview">
         <security https="true" auth="true"/>
-        <response name="success" type="view" value="ViewInvoice"/>
+        <response name="success" type="view" value="invoiceOverview"/>
     </request-map>
     <request-map uri="newInvoice">
         <security https="true" auth="true"/>
@@ -168,8 +166,8 @@ under the License.
     <request-map uri="copyInvoice">
         <security https="true" auth="true"/>
         <event type="service" invoke="copyInvoice"/>
-        <response name="success" type="view" value="ViewInvoice"/>
-        <response name="error" type="view" value="ViewInvoice"/>
+        <response name="success" type="view" value="invoiceOverview"/>
+        <response name="error" type="view" value="invoiceOverview"/>
     </request-map>
     <request-map uri="updateInvoice">
         <security https="true" auth="true"/>
@@ -189,7 +187,7 @@ under the License.
     </request-map>
     <request-map uri="createInvoiceItemPayrol">
         <security https="true" auth="true"/>
-        <event type="groovy" invoke="createInvoiceItemPayrol" path="component://accounting/src/main/groovy/org/apache/ofbiz/accounting/invoice/InvoiceEvents.groovy"/>
+        <event type="groovy" invoke="createInvoiceItemPayrol" path="component://accounting/groovyScripts/invoice/InvoiceEvents.groovy"/>
         <response name="success" type="view" value="listInvoiceItems"/>
         <response name="error" type="view" value="listInvoiceItems"/>
     </request-map>
@@ -251,7 +249,7 @@ under the License.
         <security https="true" auth="true"/>
         <response name="success" type="view" value="invoiceNotes"/>
     </request-map>
-
+    
     <!-- re Invoice Roles -->
     <request-map uri="invoiceRoles">
         <security https="true" auth="true"/>
@@ -269,14 +267,14 @@ under the License.
         <response name="success" type="view" value="invoiceRoles"/>
         <response name="error" type="view" value="invoiceRoles"/>
     </request-map>
-
+    
     <request-map uri="setInvoiceStatus">
         <security https="true" auth="true"/>
         <event type="service" invoke="setInvoiceStatus"/>
-        <response name="success" type="view" value="ViewInvoice"/>
-        <response name="error" type="view" value="ViewInvoice"/>
+        <response name="success" type="view" value="invoiceOverview"/>
+        <response name="error" type="view" value="invoiceOverview"/>
     </request-map>
-
+    
     <!-- re Invoice Terms -->
     <request-map uri="invoiceTerms">
         <security https="true" auth="true"/>
@@ -305,7 +303,7 @@ under the License.
         <response name="success" type="view" value="invoiceTerms"/>
         <response name="error" type="view" value="invoiceTerms"/>
     </request-map>
-
+    
     <request-map uri="sendPerEmail">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="sendPerEmail"/>
@@ -313,8 +311,8 @@ under the License.
     <request-map uri="executeSendPerEmail">
         <security https="true" auth="true"/>
         <event type="service" invoke="sendInvoicePerEmail"/>
-        <response name="success" type="view" value="ViewInvoice"/>
-        <response name="error" type="view" value="ViewInvoice"/>
+        <response name="success" type="view" value="invoiceOverview"/>
+        <response name="error" type="view" value="invoiceOverview"/>
     </request-map>
     <request-map uri="copyInvoiceToTemplate">
         <security https="true" auth="true"/>
@@ -403,7 +401,7 @@ under the License.
         <security https="true" auth="true"/>
         <response name="success" type="view" value="PrintChecks"/>
     </request-map>
-
+    
     <request-map uri="InvoiceAcctgTransEntriesPdf">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="InvoiceAcctgTransEntriesPdf"/>
@@ -789,7 +787,7 @@ under the License.
         <security https="true" auth="true"/>
         <response name="success" type="view" value="ListGlAccountOrgCsv"/>
     </request-map>
-
+    
     <!-- Import export -->
     <request-map uri="ImportExport">
         <security https="true" auth="true"/>
@@ -1090,7 +1088,7 @@ under the License.
         <response name="success" type="view" value="EditFixedAssetMaintOrders"/>
         <response name="error" type="view" value="EditFixedAssetMaintOrders"/>
     </request-map>
-
+    
     <!-- =============== Budget mapping =================-->
     <request-map uri="ListBudgets"><security https="true" auth="true"/><response name="success" type="view" value="ListBudgets"/></request-map>
     <request-map uri="BudgetSearchResults"><security https="true" auth="false"/><response name="success" type="view" value="BudgetSearchResults"/></request-map>
@@ -1159,7 +1157,7 @@ under the License.
         <response name="success" type="view" value="BudgetReviews"/>
         <response name="error" type="view" value="BudgetReviews"/>
     </request-map>
-
+    
     <!-- =============== Agreement mapping =================-->
     <request-map uri="FindAgreement"><security https="true" auth="true"/><response name="success" type="view" value="FindAgreement"/></request-map>
     <request-map uri="cancelAgreement">
@@ -1531,7 +1529,7 @@ under the License.
         <response name="success" type="view" value="FindTaxAuthorityReport"/>
         <response name="error" type="view" value="FindTaxAuthorityReport"/>
     </request-map>
-
+    
 
     <!-- ================ Administratvie Requests ================ -->
     <request-map uri="ListCompanies">
@@ -2536,7 +2534,7 @@ under the License.
         <security https="true" auth="true"/>
         <response name="success" type="view" value="CommissionRun"/>
     </request-map>
-
+    
     <request-map uri="processCommissionRun">
         <security https="true" auth="true"/>
         <event type="service" invoke="createCommissionInvoices"/>
@@ -2546,9 +2544,9 @@ under the License.
     <!--Add Tax Settings -->
     <request-map uri="addtax">
         <security auth="true" https="true"/>
-        <event type="service" invoke="addTaxOnInvoice"/>
-        <response name="success" type="view" value="ViewInvoice"/>
-        <response name="error" type="view" value="ViewInvoice"/>
+        <event type="service" invoke="addtax"/>
+        <response name="success" type="view" value="invoiceOverview"/>
+        <response name="error" type="view" value="invoiceOverview"/>
     </request-map>
 
     <request-map uri="FindGlAccountCategory">
@@ -2630,7 +2628,7 @@ under the License.
     <!-- end of request mappings -->
 
     <!-- View Mappings -->
-    <view-map name="main" type="screen" page="component://accounting/widget/CommonScreens.xml#main" auth="false"/>
+    <view-map name="main" type="screen" page="component://accounting/widget/CommonScreens.xml#main"/>
 
     <!-- BillingAccount -->
     <view-map name="FindBillingAccount" type="screen" page="component://accounting/widget/BillingAccountScreens.xml#FindBillingAccount"/>
@@ -2642,7 +2640,7 @@ under the License.
     <view-map name="BillingAccountOrders" type="screen" page="component://accounting/widget/BillingAccountScreens.xml#BillingAccountOrders"/>
 
     <!-- Invoice -->
-    <view-map name="ViewInvoice" type="screen" page="component://accounting/widget/InvoiceScreens.xml#ViewInvoice"/>
+    <view-map name="invoiceOverview" type="screen" page="component://accounting/widget/InvoiceScreens.xml#invoiceOverview"/>
     <view-map name="findInvoices" type="screen" page="component://accounting/widget/InvoiceScreens.xml#FindInvoices"/>
     <view-map name="newInvoice" type="screen" page="component://accounting/widget/InvoiceScreens.xml#NewInvoice"/>
     <view-map name="editInvoice" type="screen" page="component://accounting/widget/InvoiceScreens.xml#EditInvoice"/>
@@ -2792,7 +2790,7 @@ under the License.
     <view-map name="ListTaxAuthorityParties" type="screen" page="component://accounting/widget/TaxAuthorityScreens.xml#ListTaxAuthorityParties"/>
     <view-map name="EditTaxAuthorityPartyInfo" type="screen" page="component://accounting/widget/TaxAuthorityScreens.xml#EditTaxAuthorityPartyInfo"/>
     <view-map name="FindTaxAuthorityReport" type="screen" page="component://accounting/widget/TaxAuthorityScreens.xml#FindTaxAuthorityReport"/>
-
+    
     <!-- administrative pages -->
     <view-map name="ListCompanies" type="screen" page="component://accounting/widget/GlSetupScreens.xml#ListCompanies"/>
     <view-map name="AddCompany" type="screen" page="component://accounting/widget/GlSetupScreens.xml#AddCompany"/>

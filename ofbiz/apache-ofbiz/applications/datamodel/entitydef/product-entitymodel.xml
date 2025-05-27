@@ -286,7 +286,7 @@ under the License.
       <view-link entity-alias="PCC" rel-entity-alias="CO">
         <key-map field-name="contentId"/>
       </view-link>
-      <view-link entity-alias="CO" rel-entity-alias="DR" rel-optional="true">
+      <view-link entity-alias="CO" rel-entity-alias="DR">
         <key-map field-name="dataResourceId"/>
       </view-link>
       <relation type="one-nofk" rel-entity-name="ElectronicText">
@@ -1001,6 +1001,7 @@ under the License.
         <field name="defaultInventoryItemTypeId" type="id"></field>
         <field name="facilityName" type="name"></field>
         <field name="primaryFacilityGroupId" type="id"></field>
+        <field name="oldSquareFootage" type="numeric" col-name="SQUARE_FOOTAGE"></field>
         <field name="facilitySize" type="fixed-point"></field>
         <field name="facilitySizeUomId" type="id"></field>
         <field name="productStoreId" type="id"></field>
@@ -1972,6 +1973,8 @@ under the License.
       <field name="quantityOnHandTotal" type="fixed-point"></field>
       <field name="availableToPromiseTotal" type="fixed-point"></field>
       <field name="accountingQuantityTotal" type="fixed-point"></field>
+      <field name="oldQuantityOnHand" col-name="QUANTITY_ON_HAND" type="fixed-point"></field>
+      <field name="oldAvailableToPromise" col-name="AVAILABLE_TO_PROMISE" type="fixed-point"></field>
       <field name="serialNumber" type="value"></field>
       <field name="softIdentifier" type="value"></field>
       <field name="activationNumber" type="value"></field>
@@ -2112,6 +2115,8 @@ under the License.
         <alias entity-alias="II" name="quantityOnHandTotal"/>
         <alias entity-alias="II" name="availableToPromiseTotal"/>
         <alias entity-alias="II" name="accountingQuantityTotal"/>
+        <alias entity-alias="II" name="oldQuantityOnHand"/>
+        <alias entity-alias="II" name="oldAvailableToPromise"/>
         <alias entity-alias="II" name="serialNumber"/>
         <alias entity-alias="II" name="softIdentifier"/>
         <alias entity-alias="II" name="activationNumber"/>
@@ -3103,7 +3108,7 @@ under the License.
       <view-link entity-alias="PC" rel-entity-alias="CO">
         <key-map field-name="contentId"/>
       </view-link>
-      <view-link entity-alias="CO" rel-entity-alias="DR" rel-optional="true">
+      <view-link entity-alias="CO" rel-entity-alias="DR">
         <key-map field-name="dataResourceId"/>
       </view-link>
       <relation type="one-nofk" rel-entity-name="ElectronicText">

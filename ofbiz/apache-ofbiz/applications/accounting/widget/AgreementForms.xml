@@ -62,7 +62,7 @@ under the License.
             </service>
         </actions>
         <row-actions>
-            <script location="component://accounting/src/main/groovy/org/apache/ofbiz/accounting/agreement/GetPartyNameForDate.groovy"/>
+            <script location="component://accounting/groovyScripts/agreement/GetPartyNameForDate.groovy"/>
         </row-actions>         
         <auto-fields-entity entity-name="Agreement" default-field-type="display"/>
         <field name="agreementId" title="${uiLabelMap.CommonEdit}" widget-style="buttontext" sort-field="true">
@@ -99,6 +99,7 @@ under the License.
             </hyperlink>
         </field>
     </grid>
+
     <form name="EditAgreement" type="single" target="updateAgreement" title="" default-map-name="agreement"
         header-row-style="header-row" default-table-style="basic-table">
         <alt-target use-when="agreement==null" target="createAgreement"/>
@@ -135,33 +136,7 @@ under the License.
             <submit button-type="button"/>
         </field>
     </form>
-    <form name="Agreement" type="single" default-map-name="agreement"
-        header-row-style="header-row" default-table-style="basic-table">
-        <auto-fields-service service-name="updateAgreement" default-field-type="display" map-name="agreement"/>
-        <field name="agreementId" title="${uiLabelMap.CommonId}"><display/></field>
-        <field name="agreementTypeId" title="${uiLabelMap.CommonType}" position="2"><display-entity entity-name="AgreementType"/></field>
-        <field name="agreementDate" title="${uiLabelMap.CommonDate}"><display type="date-time"/></field>
-        <field name="productId" title="${uiLabelMap.CommonProduct}">
-            <display-entity entity-name="Product" key-field-name="productId" description="${internalName}"/>
-        </field>
-        <field name="partyIdFrom" title="${uiLabelMap.AccountingPartyIdFrom}">
-            <display-entity also-hidden="false" entity-name="PartyNameView" 
-                key-field-name="partyId" description="[${partyId}] ${groupName}${firstName} ${lastName}"/>
-        </field>
-        <field name="partyIdTo" title="${uiLabelMap.AccountingPartyIdTo}" position="2">
-            <display-entity entity-name="PartyNameView" 
-                key-field-name="partyId" description="[${partyId}] ${groupName}${firstName} ${lastName}"/>
-        </field>
-        <field name="roleTypeIdFrom" title="${uiLabelMap.AccountingRoleTypeIdFrom}">
-            <display-entity entity-name="RoleType" key-field-name="roleTypeId" description="[${roleTypeId}] ${description}"/>
-        </field>
-        <field name="roleTypeIdTo" title="${uiLabelMap.AccountingRoleTypeIdTo}" position="2">
-            <display-entity entity-name="RoleType" key-field-name="roleTypeId" description="[${roleTypeId}] ${description}"/>
-        </field>
-        <field name="fromDate" title="${uiLabelMap.CommonFrom}"><display type="date-time"/></field>
-        <field name="thruDate" title="${uiLabelMap.CommonThru}" position="2"><display type="date-time"/></field>
-        <field name="statusId" title="${uiLabelMap.CommonStatus}"><display-entity entity-name="StatusItem"/></field>
-    </form>
+
     <grid name="ListAgreementItems" list-name="agreementItems" target=""  title="" paginate-target="ListAgreementItems"
         odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
         <auto-fields-entity entity-name="AgreementItem" default-field-type="display"/>
@@ -729,25 +704,18 @@ under the License.
             </hyperlink>
         </field>
     </grid>
-    <grid name="AgreementRoles" list-name="agreementRoles" paginate-target="EditAgreementRoles"
-        odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
-        <auto-fields-entity entity-name="AgreementRole" default-field-type="display"/>
-        <field name="agreementId"><hidden/></field>
-        <field name="partyId" title="${uiLabelMap.PartyPartyId}">
-            <display-entity also-hidden="false" entity-name="PartyNameView" 
-                key-field-name="partyId" description="[${partyId}] ${groupName}${firstName} ${lastName}"/>
-        </field>
-        <field name="roleTypeId" title="${uiLabelMap.PartyRoleTypeId}"><display-entity entity-name="RoleType"/></field>
-    </grid>
+    
     <grid name="ListAgreementRoles" list-name="agreementRoles" paginate-target="EditAgreementRoles"
         odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
-        <auto-fields-entity entity-name="AgreementRole" default-field-type="edit"/>
+        <actions>
+            <entity-and entity-name="AgreementRole" use-cache="true" list="agreementRoles">
+                <field-map field-name="agreementId" from-field="agreementId"/>
+            </entity-and>
+        </actions>
+        <auto-fields-entity entity-name="AgreementRole" default-field-type="display"/>
         <field name="agreementId"><hidden/></field>
-        <field name="partyId" title="${uiLabelMap.PartyPartyId}">
-            <display-entity also-hidden="false" entity-name="PartyNameView" 
-                key-field-name="partyId" description="[${partyId}] ${groupName}${firstName} ${lastName}"/>
-        </field>
-        <field name="roleTypeId" title="${uiLabelMap.PartyRoleTypeId}"><display-entity entity-name="RoleType"/></field>
+        <field name="partyId" title="${uiLabelMap.PartyPartyId}"><display/></field>
+        <field name="roleTypeId" title="${uiLabelMap.PartyRoleTypeId}"><display/></field>
         <field name="deleteLink" title=" " widget-style="buttontext">
             <hyperlink description="${uiLabelMap.CommonRemove}" target="deleteAgreementRole" also-hidden="false">
                 <parameter param-name="agreementId"/>

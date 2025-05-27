@@ -22,8 +22,6 @@ under the License.
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/test-suite.xsd">
     <test-case case-name="service-tests"><junit-test-suite class-name="org.apache.ofbiz.service.test.ServiceEngineTests"/></test-case>
-    <test-case case-name="service-groovy-DSL-tests"><junit-test-suite
-            class-name="org.apache.ofbiz.service.test.GroovyDslServiceEngineTests"/></test-case>
     <!-- <test-case case-name="service-soap-tests"><junit-test-suite class-name="org.apache.ofbiz.service.test.ServiceSOAPTests"/></test-case> -->
     <test-case case-name="service-entity-auto-tests"><junit-test-suite class-name="org.apache.ofbiz.service.test.ServiceEntityAutoTests"/></test-case>
 
@@ -77,7 +75,7 @@ under the License.
     </test-case>
 
     <test-case case-name="service-purge-test">
-        <junit-test-suite class-name="org.apache.ofbiz.service.test.ServicePurgeTest"/>
+        <groovy-test-suite name="ServicePurgeTest" location="component://service/src/main/groovy/org/apache/ofbiz/service/test/ServicePurgeTest.groovy"/>
     </test-case>
 
 </test-suite>

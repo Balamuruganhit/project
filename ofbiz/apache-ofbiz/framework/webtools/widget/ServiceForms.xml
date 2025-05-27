@@ -76,7 +76,8 @@ under the License.
             <submit button-type="button"/>
         </field>
     </form>
-    <grid name="ListJobs" list-name="listIt" paginate-target="FindJob" default-entity-name="JobSandbox" separate-columns="true"
+
+    <form name="ListJobs" type="list" list-name="listIt" paginate-target="FindJob" default-entity-name="JobSandbox" separate-columns="true"
         odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar" view-size="50">
         <actions>
             <set field="orderBy" default-value="-runTime" from-field="parameters.sortField"/>
@@ -109,14 +110,14 @@ under the License.
                 <parameter param-name="jobId"/>
             </hyperlink>
         </field>
-    </grid>
+    </form>
     <form name="JobDetails" type="single">
         <auto-fields-entity entity-name="JobSandbox" map-name="job" default-field-type="display"/>
     </form>
-    <grid name="JobRuntimeDataInfo" list-name="runtimeInfoList" default-table-style="basic-table hover-bar" paginate="false">
+    <form name="JobRuntimeDataInfo" type="list" list-name="runtimeInfoList" default-table-style="basic-table hover-bar" paginate="false">
         <field name="key"><display/></field>
         <field name="value"><display/></field>
-    </grid>
+    </form>
     <form name="PoolState" type="single" default-map-name="poolState">
         <field name="keepAliveTimeInSeconds"><display/></field>
         <field name="numberOfCoreInvokerThreads"><display/></field>
@@ -126,22 +127,22 @@ under the License.
         <field name="greatestNumberOfInvokerThreads"><display/></field>
         <field name="numberOfCompletedTasks"><display/></field>
     </form>
-    <grid name="ListJavaThread" list-name="threads" paginate-target="threadList" separate-columns="true"
+    <form name="ListJavaThread" type="list" list-name="threads" paginate-target="threadList" separate-columns="true"
         odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
         <field name="id" title="${uiLabelMap.WebtoolsThread}"><display description="${threadId} ${threadName}"/></field>
         <field name="name" title="${uiLabelMap.WebtoolsJob}"><display default-value="${uiLabelMap.CommonNone}"/></field>
         <field name="serviceName" title="${uiLabelMap.WebtoolsService}"><display default-value="${uiLabelMap.CommonNone}"/></field>
         <field name="time" title="${uiLabelMap.CommonStartDateTime}"><display/></field>
         <field name="runTime" title="${uiLabelMap.CommonTime} (ms)"><display/></field>
-    </grid>
-    <grid name="ListServices" list-name="services" paginate-target="ServiceLog" separate-columns="true"
+    </form>
+    <form name="ListServices" type="list" list-name="services" paginate-target="ServiceLog" separate-columns="true"
         odd-row-style="alternate-row" default-table-style="basic-table hover-bar" header-row-style="header-row-2">
         <field name="serviceName" title="${uiLabelMap.WebtoolsServiceName}" sort-field="true"><display/></field>
         <field name="localName" title="${uiLabelMap.WebtoolsDispatcherName}" sort-field="true"><display/></field>
         <field name="modeStr" title="${uiLabelMap.WebtoolsMode}" sort-field="true"><display default-value="${uiLabelMap.CommonNone}"/></field>
         <field name="startTime" title="${uiLabelMap.CommonStartDateTime}" sort-field="true"><display/></field>
         <field name="endTime" title="${uiLabelMap.CommonEndDateTime}" sort-field="true"><display default-value="${uiLabelMap.WebtoolsStatusRunning}"/></field>
-    </grid>
+    </form>
     <form name="FindJobManagerLock" type="single" target="FindJobManagerLock" default-entity-name="JobManagerLock">
         <field name="noConditionFind"><hidden value="Y"/><!-- if this isn't there then with all fields empty no query will be done --></field>
         <field name="instanceId">
@@ -162,7 +163,7 @@ under the License.
         </field>
         <field name="searchButton"><submit/></field>
     </form>
-    <grid name="ListJobManagerLock" list-name="listIt" paginate-target="FindJobManagerLock" default-entity-name="JobManagerLock" separate-columns="true"
+    <form name="ListJobManagerLock" type="list" list-name="listIt" paginate-target="FindJobManagerLock" default-entity-name="JobManagerLock" separate-columns="true"
         odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
         <actions>
             <service service-name="performFind" result-map="result" result-map-list="listIt">
@@ -189,7 +190,7 @@ under the License.
                 <parameter param-name="thruDate" value="${nowTimestamp}"/>
             </hyperlink>
         </field>
-    </grid>
+    </form>
     <form name="AddJobManagerLock" type="single" target="createJobManagerLock" default-entity-name="JobManagerLock">
         <field name="instanceId">
             <drop-down>

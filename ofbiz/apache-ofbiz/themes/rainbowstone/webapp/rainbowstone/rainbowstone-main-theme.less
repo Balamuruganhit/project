@@ -19,6 +19,7 @@
 
 /* common colors */
 @black: #000;
+@color:#fff;
 @white: #fff;
 @grey: #e6e6e6;
 @greydark: #929292;
@@ -58,13 +59,14 @@
 
 @box-border-color: #d7d7d7;
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap");
 
 /* ---------------------------------- */
 /* Begin special checkbox type switch */
 /* ---------------------------------- */
 
-[type="checkbox"]:not(:checked).nrd-chkbox, [type="checkbox"]:checked.nrd-chkbox {
+[type="checkbox"]:not(:checked).nrd-chkbox,
+[type="checkbox"]:checked.nrd-chkbox {
   display: none;
 }
 
@@ -96,13 +98,13 @@
   padding-left: 4px;
   padding-right: 5px;
   border-radius: 8px 8px 8px 8px;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 
 [type="checkbox"]:checked.nrd-chkbox + label:after {
   position: relative;
   left: -15px;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 
 /* ---------------------------------- */
@@ -121,18 +123,17 @@
 
 [type="checkbox"]:not(:checked).nrd-square-chkbox + label,
 [type="checkbox"]:checked.nrd-square-chkbox + label {
-  content: '';
+  content: "";
   padding-left: 35px;
   position: relative;
   cursor: pointer;
   font-family: "Quicksand", Arial, "Lucida Grande", sans-serif;
   font-size: 12px;
-
 }
 
 [type="checkbox"]:not(:checked).nrd-square-chkbox + label:before,
 [type="checkbox"]:checked.nrd-square-chkbox + label:before {
-  content: '';
+  content: "";
   position: absolute;
   left: 10px;
   top: -4px;
@@ -153,13 +154,13 @@
 
 [type="checkbox"]:not(:checked).nrd-square-chkbox + label:after,
 [type="checkbox"]:checked.nrd-square-chkbox + label:after {
-  content: '✔';
+  content: "✔";
   position: absolute;
   top: -4px;
   left: 14px;
   font-size: 16px;
   color: @font-color-for-main;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 
 [type="checkbox"]:not(:checked).nrd-square-chkbox + label:after {
@@ -179,7 +180,6 @@
 /* ---------------------------------*/
 /*  Begin class content mgmt        */
 /* ---------------------------------*/
-
 
 .flex-row {
   display: flex;
@@ -245,7 +245,6 @@
 /*    End class content mgmt        */
 /* ---------------------------------*/
 
-
 /* ---------------------------------- */
 /*  Begin btn-sort         */
 /* ---------------------------------- */
@@ -260,7 +259,7 @@
 }
 
 .btn-sort:before {
-  content: '';
+  content: "";
   position: absolute;
   left: -1px;
   width: 0;
@@ -271,7 +270,7 @@
 }
 
 .btn-sort:after {
-  content: '';
+  content: "";
   position: absolute;
   right: -1px;
   width: 0;
@@ -295,7 +294,6 @@
 /* ---------------------------------- */
 /*  End btn-sort           */
 /* ---------------------------------- */
-
 
 /* ---------------------------------- */
 /*  Begin defaut colour class         */
@@ -349,6 +347,18 @@
     background-color: @light-color-theme;
   }
 }
+/* Login logo */ 
+#company-logo-login{
+  position: absolute;
+  left: 34rem;
+    top: 0.8rem;
+    width: 4.2rem;
+    height: 6.3rem;
+    background: url(/rainbowstone/images/main.png) no-repeat left top / cover;
+    @media  screen and (min-width: 1232px){
+      left: 40rem;
+    }
+}
 
 /* end lookup widget */
 
@@ -360,18 +370,36 @@
   font-weight: bold;
 }
 
-#company-logo {
-  right: 10px;
-  top: 2px;
-  background: url("images/ofbiz-simple-white.svg") no-repeat left top / cover;
-  min-height: 50px;
-  min-width: 50px;
-  margin-right: 15px;
+
+#company-logo1 {
+  // right: 20px;
+  // top: 0.1rem;
+  // width: 3.5rem;
+  // height: 5rem;
+  // background: url("images/main.png") no-repeat left top / cover;
+    position: absolute;
+    left: -3.3rem;
+    top: 0rem;
+    width: 4rem;
+    height: 6.3rem;
+    background: url(/rainbowstone/images/main.png) no-repeat left top / cover;
+    align-self: center;
+    background-size: 2.6rem 3rem;
+
   align-self: center;
   @media screen and (min-width: 1232px) {
-    min-height: 50px;
-    min-width: 129px;
-    background: url("images/ofbiz_logo.svg") no-repeat left top / cover;
+  //   height: 5rem;
+  // width: 3.5rem;
+  //   background: url("images/main.png") no-repeat left top / cover;
+        // height: 6rem;
+        // width: 4rem;
+        position: absolute;
+        top:0 px;
+        margin-right: 0.9rem;
+        background: url(/rainbowstone/images/main.png) no-repeat left top / cover;
+        left: -3.5rem;
+        /* height: 10px; */
+        background-size: 2.5rem 3rem;
   }
 }
 
@@ -380,7 +408,7 @@
   display: flex;
   flex-direction: column;
   background-color: @grey;
-  opacity: .93;
+  opacity: 0.93;
   position: fixed;
   top: 0;
   left: 0;
@@ -540,13 +568,6 @@ li.line-odd {
   }
 }
 
-.cssImgThumb{
-    max-width: 128px;
-    max-height: 128px;
-    width: auto;
-    height: auto;
-}
-
 #main-navigation-bar {
   position: relative;
   width: 100%;
@@ -556,7 +577,7 @@ li.line-odd {
   align-items: center;
   justify-content: space-between;
   font-family: Quicksand, sans-serif;
-  background-color: @dark-color-theme;
+  background-color: #002333;
   z-index: 5;
   height: @app-bar-height;
 }
@@ -628,7 +649,7 @@ li.line-odd {
   background-color: @main-color-theme;
   box-shadow: 1px -2px 12px @shadow-color;
   z-index: 0;
-  opacity: .99;
+  opacity: 0.99;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 
@@ -760,7 +781,7 @@ li.line-odd {
   z-index: 15;
   box-shadow: 3px 3px 12px @shadow-color;
   border-radius: 3px;
-  transition: all .1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 
   img {
     height: 50px;
@@ -783,7 +804,7 @@ li.line-odd {
 }
 
 #user-details:after {
-  content: '';
+  content: "";
   position: absolute;
   top: -10px;
   right: 5px;
@@ -939,7 +960,7 @@ a.user-pref-btn {
   border-bottom: none;
 
   :after {
-    content: '';
+    content: "";
     position: absolute;
     top: -2px;
     left: calc(50% - 10px);
@@ -949,9 +970,7 @@ a.user-pref-btn {
     border-top: 10px solid @main-color-theme;
     border-left: 10px solid transparent;
   }
-
 }
-
 
 /* End sub Menu section */
 
@@ -1032,7 +1051,8 @@ a.user-pref-btn {
   padding-right: 3px;
   border-top: solid 1px @main-color-theme;
 
-  a, a:visited {
+  a,
+  a:visited {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1048,13 +1068,14 @@ a.user-pref-btn {
   position: relative;
   border-left: solid 9px @main-color-theme;
 
-  a, a:visited {
+  a,
+  a:visited {
     background-color: @white;
     color: @dark-color-theme !important;
   }
 
   :after {
-    content: '';
+    content: "";
     position: absolute;
     top: 5px;
     left: 0;
@@ -1073,7 +1094,6 @@ a.user-pref-btn {
 }
 
 /* End 3rd level menu */
-
 
 /* Begin Home Menu for IB section */
 .fixed-nav-bar {
@@ -1140,7 +1160,6 @@ a.user-pref-btn {
       right: 5px;
     }
   }
-
 }
 
 .hp-applist .app-title span a:hover {
@@ -1188,22 +1207,32 @@ a.user-pref-btn {
   top: 0;
   left: 0;
   width: 100%;
-  height: @app-bar-height;
-  background-color: @dark-color-theme;
+  // height: @app-bar-height;
+  // background-color: #DEF3FD;
 
   span {
-    background-color: @white;
-    color: @main-color-theme;
+    // background-color: @white;
+    // color: yellow;
+    // border-top-right-radius: 5px;
+    // border-top-left-radius: 5px;
+    // font-size: 25px;
+    // position: relative;
+    // top: @app-bar-height - 32px;
+    // left: 15px;
+    // padding: 5px 10px 5px 10px;
+    background-color: #394A53;
+    color: yellow;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
-    font-size: 25px;
+    font-size: 35px;
     position: relative;
-    top: @app-bar-height - 32px;
+    top: 13px;
+    font-weight: bolder;
     left: 15px;
     padding: 5px 10px 5px 10px;
   }
 
-  #company-logo {
+  #company-logo1 {
     position: absolute;
   }
 }
@@ -1212,10 +1241,12 @@ a.user-pref-btn {
   display: flex;
   flex-direction: column;
   min-width: 300px;
-  max-width: 50em;
+  max-width: 60em;
   border-radius: 8px !important;
-  margin-top: 15%;
-  box-shadow: 3px 3px 12px @shadow-color;
+  /* margin-top: 15%; */
+  position: relative;
+  box-shadow: 3px 3px 12px #000000;
+  top: 7rem;
 
   .screenlet-title-bar {
     display: flex;
@@ -1225,11 +1256,11 @@ a.user-pref-btn {
     padding: 0;
 
     h3 {
-      padding-top: 2px;
+      padding-top: 6px;
       padding-bottom: 2px;
-      background-color: @dark-color-theme !important;
-      color: @font-color-for-dark;
-      height: 100%;
+      background-color: #394a53 !important;
+      color: yellow;
+
       width: 100%;
       text-shadow: none;
       font-size: 25px;
@@ -1237,15 +1268,18 @@ a.user-pref-btn {
   }
 
   .screenlet-body {
-    background-color: @main-color-theme !important;
+    background-color: #394a53 !important;
 
     form {
+      height: 23rem;
+      background-color: #394a53;
       .button {
         width: 150px;
         border-radius: 4px;
         background: none;
-        background-color: @dark-color-theme;
-        color: @font-color-for-dark;
+        background-color: yellow;
+        color: #394a53;
+        height: 40px;
         text-shadow: none;
         margin-top: 20px;
         margin-bottom: 10px;
@@ -1262,17 +1296,21 @@ a.user-pref-btn {
           }
 
           input {
-            width: 100%;
+            width: 19rem;
+            margin: 1rem;
+            border-radius: 20px;
+            height: 2rem;
           }
 
           .buttontext,
           [type="submit"] {
-            width: 150px;
-            border-radius: 4px;
+            width: 10rem;
+            border-radius: px;
             background: none;
-            background-color: @dark-color-theme;
-            color: @font-color-for-dark;
+            background-color: yellow;
+            color: #394a53;
             text-shadow: none;
+            height: 3rem;
           }
 
           [name="GET_PASSWORD_HINT"] {
@@ -1290,6 +1328,7 @@ a.user-pref-btn {
           }
 
           td {
+            text-align: center;
             padding: 5px;
             color: @font-color-for-main;
             font-size: 15px;
@@ -1301,6 +1340,7 @@ a.user-pref-btn {
 
     a {
       color: @font-color-for-main;
+      font-size: 15px;
     }
   }
 }
@@ -1311,7 +1351,6 @@ a.user-pref-btn {
 
 /* End Login screenlet */
 
-
 /* --------------------------------------------- */
 /*      Begin Screenlet style                    */
 /* --------------------------------------------- */
@@ -1319,7 +1358,7 @@ a.user-pref-btn {
   text-decoration: none;
   color: @dark-color-theme;
   background-color: @grey;
-  height: 1%; /* IE fix */
+  height: 3; /* IE fix */
   min-height: 1.5em;
   padding: 0.8em 0.2em;
 }
@@ -1333,16 +1372,14 @@ a.user-pref-btn {
 }
 
 .screenlet-body {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   height: auto !important;
   height: 1%;
   padding: 0.4em;
 }
 
-/* this rule is way too broad, targets all divs in screenlets (which is a lot of divs :) */
-/* just excluding Trumbowyg elements to avoid a visual glitch */
-.screenlet-body div:not([class^="trumbowyg"]) {
-  margin: 0.8em 0.1em
+.screenlet-body div {
+  margin: 0.8em 0.1em;
 }
 
 /* Special Screenlet style for locale and timezone window */
@@ -1391,7 +1428,6 @@ a.user-pref-btn {
   text-decoration: none;
 }
 
-
 /* --------------------------------------------- */
 /*      End Screenlet style                      */
 /* --------------------------------------------- */
@@ -1412,6 +1448,7 @@ form .basic-table,
 .screenlet-body .basic-table {
   background: transparent;
   margin-bottom: 0;
+  padding: 2rem;
 }
 
 .basic-table tr td {
@@ -1464,31 +1501,31 @@ form .basic-table,
 }
 
 .basic-table .selected {
-  background: #FFFCCF;
+  background: #fffccf;
 }
 
 .basic-table .alternate-rowSelected {
-  background: #FFF55F;
+  background: #fff55f;
 }
 
 .basic-table .Validate {
   /*Style use by alt-row-style on list*/
-  background: #A0D5F7;
+  background: #a0d5f7;
 }
 
 .basic-table .alternate-rowValidate {
   /*Style use by alt-row-style on list*/
-  background: #72A8F2;
+  background: #72a8f2;
 }
 
 .basic-table .Warn {
   /*Style use by alt-row-style on list*/
-  background: #f55C5C;
+  background: #f55c5c;
 }
 
 .basic-table .alternate-rowWarn {
   /*Style use by alt-row-style on list*/
-  background: #FC7455;
+  background: #fc7455;
 }
 
 .basic-table tr .button-col {
@@ -1550,9 +1587,8 @@ form .basic-table,
   background: url(/images/arrow-gr.png) no-repeat right;
   padding-left: 0.5em;
   padding-right: 20px; /* Setting must be in px */
-  color: #fff
+  color: #fff;
 }
-
 
 /* --------------------------------------------- */
 /*      Begin Message Info                       */
@@ -1713,7 +1749,6 @@ table.msg-list {
       }
 
       .paginate-disable {
-
       }
     }
 
@@ -1725,7 +1760,8 @@ table.msg-list {
       }
     }
 
-    li:first-child, li:last-child {
+    li:first-child,
+    li:last-child {
       width: 20px;
     }
 
@@ -1740,7 +1776,6 @@ table.msg-list {
       border-bottom-right-radius: 3px;
     }
   }
-
 }
 
 select.paginate-select {
@@ -1843,11 +1878,9 @@ ul.paginate-pg-list li:hover {
   cursor: not-allowed;
 }
 
-
 .nav-pager ul .nav-displaying {
   border-right: none;
 }
-
 
 /* ---------------------------- */
 /*     Multi-Column Styles      */
@@ -1982,13 +2015,12 @@ input[type="button"] {
   }
 }
 
-
 /* ---------------------- */
 /*      Footer Style      */
 /* ---------------------- */
 
 #footer {
-  background: @dark-color-theme;
+  background: #394A53;
   border-top: 0.1em inset #000;
   padding: 0.5em 0 0.5em 0.5em;
 
@@ -2004,12 +2036,12 @@ input[type="button"] {
   z-index: 10;
 
   span {
-    color: @font-color-for-dark;
+    color: yellow;
     padding: 10px;
   }
 
   a {
-    color: @font-color-for-dark;
+    color:yellow;
     font-weight: normal;
   }
 }
@@ -2020,5 +2052,103 @@ input[type="button"] {
 
 #footer-offset {
   height: @footer-height + 10px;
+  width: 100%;
+}
+.hide{
+	display: none !important;
+  }
+  .show{
+	display: flex !important;
+  }
+  #close-btn{
+	width: 2rem;
+	height: 2rem;
+	border-radius: 3rem;
+	position: absolute;
+	right:0.1rem;
+	background: transparent;
+	z-index: 100;
+	border: 0px;
+	color: red;
+	top: 0rem;
+  }
+  .botImg{
+	position: absolute;
+	bottom: 1.2rem;
+	right: 1rem;
+	width: 3.5rem;
+	height: 3.5rem;
+	background: transparent;
+  }
+  .chat-container {
+	width: 300px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 1rem;
+	background-color: white;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	display: flex;
+	height: 25rem;
+	flex-direction: column;
+	overflow: scroll;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	display: none;
+  }
+  
+  .chat-box {
+	flex: 1;
+	padding: 10px;
+	overflow-y: auto;
+	border-bottom: 1px solid #ddd;
+  }
+  
+  .chat-box .message {
+	margin: 10px 0;
+	background: rgb(116, 116, 145);
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+	letter-spacing: 1px;
+	cursor: pointer;
+  }
+  
+  .chat-box .user {
+	text-align: right;
+  }
+  
+  .chat-box .bot {
+	text-align: left;
+  }
+  
+  .chat-input {
+	display: flex;
+	border-top: 1px solid #ddd;
+  }
+  
+  .chat-input input {
+	flex: 1;
+	padding: 10px;
+	border: none;
+	border-right: 1px solid #ddd;
+  }
+  
+  .chat-input button {
+	padding: 10px;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	cursor: pointer;
+  }
+  
+  .chat-input button:hover {
+	background-color: #45a049;
+  }
+  
+.botHolder{
+  position: fixed;
+  bottom: 1.2rem;
   width: 100%;
 }

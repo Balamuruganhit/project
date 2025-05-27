@@ -17,5 +17,5 @@ specific language governing permissions and limitations
 under the License.
 -->
     <#if entityName?has_content>
-        ${StringUtil.wrapString(dynamicAutoEntitySearchForm)}
+        ${dynamicAutoEntitySearchForm?string}
     </#if>

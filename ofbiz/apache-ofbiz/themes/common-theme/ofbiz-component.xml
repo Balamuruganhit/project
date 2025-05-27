@@ -32,7 +32,7 @@ under the License.
     <webapp name="common-theme"
         title="common theme"
         server="default-server"
-        location="webapp/common-theme"
+        location="webapp/common"
         mount-point="/common"
         app-bar-display="false"/>
     <webapp name="images"

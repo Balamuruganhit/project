@@ -35,22 +35,16 @@ under the License.
 <script type="application/javascript">
     var autocomp = [
         <#if autocompleteOptions?has_content>
-          <#if displayFieldFormat?has_content>
-            <#assign displayStringExpdander = Static["org.apache.ofbiz.base.util.string.FlexibleStringExpander"].getInstance(displayFieldFormat)>
-          </#if>
           <#list autocompleteOptions as autocompleteOption>
               {
                 <#assign displayString = ""/>
                 <#assign returnField = ""/>
-                <#if displayStringExpdander?has_content>
-                  <#assign displayString = displayStringExpdander.expand(autocompleteOption.getAllFields())>
-                </#if>
                 <#list displayFieldsSet as key>
                   <#assign field = autocompleteOption.get(key)!>
                   <#if field?has_content>
                     <#if (key == context.returnField)>
                       <#assign returnField = field/>
-                    <#elseif !displayStringExpdander?has_content>
+                    <#else>
                       <#assign displayString = displayString + StringUtil.wrapString(field?string) + " ">
                     </#if>
                   </#if>

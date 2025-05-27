@@ -55,9 +55,9 @@ public class HashCrypt {
 
     private static final SecureRandom SECURE_RANDOM = new SecureRandom();
 
-    private static final String CRYPT_CHAR_SET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789./";
+    public static final String CRYPT_CHAR_SET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789./";
 
-    private static MessageDigest getMessageDigest(String type) {
+    public static MessageDigest getMessageDigest(String type) {
         try {
             return MessageDigest.getInstance(type);
         } catch (NoSuchAlgorithmException e) {

@@ -34,12 +34,12 @@ under the License.
         <junit-test-suite class-name="org.apache.ofbiz.order.test.SalesOrderTest"/>
     </test-case>
     <test-case case-name="order-tests-xml">
-        <junit-test-suite class-name="org.apache.ofbiz.order.order.test.OrderTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.order.OrderTests"/>
     </test-case>
     <test-case case-name="order-return-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.order.order.test.OrderReturnTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.order.OrderReturnTests"/>
     </test-case>
     <test-case case-name="order-requirement-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.order.order.test.OrderRequirementTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.order.OrderRequirementTests"/>
     </test-case>
 </test-suite>

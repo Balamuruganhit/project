@@ -35,11 +35,11 @@ public final class MacroCallParameterStringValueMatcher extends TypeSafeMatcher<
 
     @Override
     public void describeTo(final Description description) {
-        description.appendText("string value '" + value + "'");
+        description.appendText("with string value '" + value + "'");
     }
 
     @Override
     protected void describeMismatchSafely(final Object item, final Description mismatchDescription) {
-        mismatchDescription.appendText("with value '" + item + "'");
+        mismatchDescription.appendText("with string value '" + item + "'");
     }
 }

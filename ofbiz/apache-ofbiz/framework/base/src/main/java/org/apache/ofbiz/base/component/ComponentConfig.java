@@ -206,7 +206,7 @@ public final class ComponentConfig {
         return componentConfig;
     }
 
-    static String getFullLocation(String componentName, String resourceLoaderName, String location) throws ComponentException {
+    public static String getFullLocation(String componentName, String resourceLoaderName, String location) throws ComponentException {
         ComponentConfig cc = getComponentConfig(componentName, null);
         return cc.getFullLocation(resourceLoaderName, location);
     }
@@ -231,7 +231,7 @@ public final class ComponentConfig {
         return cc.rootLocation().toString();
     }
 
-    static InputStream getStream(String componentName, String resourceLoaderName, String location) throws ComponentException {
+    public static InputStream getStream(String componentName, String resourceLoaderName, String location) throws ComponentException {
         ComponentConfig cc = getComponentConfig(componentName);
         return cc.getStream(resourceLoaderName, location);
     }
@@ -474,11 +474,11 @@ public final class ComponentConfig {
         return this.configurations;
     }
 
-    private List<EntityResourceInfo> getEntityResourceInfos() {
+    public List<EntityResourceInfo> getEntityResourceInfos() {
         return this.entityResourceInfos;
     }
 
-    private String getFullLocation(String resourceLoaderName, String location) throws ComponentException {
+    public String getFullLocation(String resourceLoaderName, String location) throws ComponentException {
         ResourceLoaderInfo resourceLoaderInfo = resourceLoaderInfos.get(resourceLoaderName);
         if (resourceLoaderInfo == null) {
             throw new ComponentException("Could not find resource-loader named: " + resourceLoaderName);
@@ -519,7 +519,7 @@ public final class ComponentConfig {
         return this.dependsOnInfos;
     }
 
-    private List<KeystoreInfo> getKeystoreInfos() {
+    public List<KeystoreInfo> getKeystoreInfos() {
         return this.keystoreInfos;
     }
 
@@ -535,11 +535,11 @@ public final class ComponentConfig {
         return rootLocation;
     }
 
-    private List<ServiceResourceInfo> getServiceResourceInfos() {
+    public List<ServiceResourceInfo> getServiceResourceInfos() {
         return this.serviceResourceInfos;
     }
 
-    private InputStream getStream(String resourceLoaderName, String location) throws ComponentException {
+    public InputStream getStream(String resourceLoaderName, String location) throws ComponentException {
         URL url = getURL(resourceLoaderName, location);
         try {
             return url.openStream();
@@ -548,7 +548,7 @@ public final class ComponentConfig {
         }
     }
 
-    private List<TestSuiteInfo> getTestSuiteInfos() {
+    public List<TestSuiteInfo> getTestSuiteInfos() {
         return this.testSuiteInfos;
     }
 
@@ -596,7 +596,7 @@ public final class ComponentConfig {
         return isFileResourceLoader(resourceInfo.loader);
     }
 
-    boolean isFileResourceLoader(String resourceLoaderName) throws ComponentException {
+    public boolean isFileResourceLoader(String resourceLoaderName) throws ComponentException {
         ResourceLoaderInfo resourceLoaderInfo = resourceLoaderInfos.get(resourceLoaderName);
         if (resourceLoaderInfo == null) {
             throw new ComponentException("Could not find resource-loader named: " + resourceLoaderName);
@@ -818,7 +818,7 @@ public final class ComponentConfig {
         private final String loader;
         private final String location;
 
-        ResourceInfo(ComponentConfig componentConfig, Element element) {
+        protected ResourceInfo(ComponentConfig componentConfig, Element element) {
             this.componentConfig = componentConfig;
             this.loader = element.getAttribute("loader");
             this.location = element.getAttribute("location");
@@ -885,7 +885,7 @@ public final class ComponentConfig {
      * @see <code>ofbiz-component.xsd</code>
      */
     public static final class TestSuiteInfo extends ResourceInfo {
-        TestSuiteInfo(ComponentConfig componentConfig, Element element) {
+        public TestSuiteInfo(ComponentConfig componentConfig, Element element) {
             super(componentConfig, element);
         }
     }

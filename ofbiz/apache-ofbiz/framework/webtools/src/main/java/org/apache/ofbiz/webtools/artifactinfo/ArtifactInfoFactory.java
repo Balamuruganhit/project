@@ -39,7 +39,6 @@ import org.apache.ofbiz.base.concurrent.ExecutionPool;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.FileUtil;
 import org.apache.ofbiz.base.util.GeneralException;
-import org.apache.ofbiz.base.util.UtilURL;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.base.util.cache.UtilCache;
 import org.apache.ofbiz.entity.GenericEntityException;
@@ -603,11 +602,11 @@ public class ArtifactInfoFactory {
             } else if ("screen".equals(type)) {
                 return this.getScreenWidgetArtifactInfo(artifactName, artifactLocation);
             } else if ("request".equals(type)) {
-                return this.getControllerRequestArtifactInfo(UtilURL.fromUrlString(artifactLocation), artifactName);
+                return this.getControllerRequestArtifactInfo(new URL(artifactLocation), artifactName);
             } else if ("view".equals(type)) {
-                return this.getControllerViewArtifactInfo(UtilURL.fromUrlString(artifactLocation), artifactName);
+                return this.getControllerViewArtifactInfo(new URL(artifactLocation), artifactName);
             }
-        } catch (GeneralException e) {
+        } catch (GeneralException | MalformedURLException e) {
             Debug.logError(e, "Error getting artifact info: " + e.toString(), MODULE);
         }
         return null;

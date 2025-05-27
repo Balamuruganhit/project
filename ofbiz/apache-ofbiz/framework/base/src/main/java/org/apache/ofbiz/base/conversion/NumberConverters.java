@@ -31,7 +31,7 @@ import org.apache.ofbiz.base.util.StringUtil;
 /** Number Converter classes. */
 public class NumberConverters implements ConverterLoader {
 
-    private static Number fromString(String str, Locale locale) throws ConversionException {
+    protected static Number fromString(String str, Locale locale) throws ConversionException {
         NumberFormat nf = NumberFormat.getNumberInstance(locale);
         if (nf instanceof DecimalFormat) {
             // CHECKSTYLE_OFF: ALMOST_ALL
@@ -46,7 +46,7 @@ public class NumberConverters implements ConverterLoader {
     }
 
     public abstract static class AbstractStringToNumberConverter<N extends Number> extends AbstractNumberConverter<String, N> {
-        AbstractStringToNumberConverter(Class<N> targetClass) {
+        public AbstractStringToNumberConverter(Class<N> targetClass) {
             super(String.class, targetClass);
         }
 
@@ -63,7 +63,7 @@ public class NumberConverters implements ConverterLoader {
     }
 
     public abstract static class AbstractNumberConverter<S, T> extends AbstractLocalizedConverter<S, T> {
-        AbstractNumberConverter(Class<S> sourceClass, Class<T> targetClass) {
+        protected AbstractNumberConverter(Class<S> sourceClass, Class<T> targetClass) {
             super(sourceClass, targetClass);
         }
 
@@ -74,7 +74,7 @@ public class NumberConverters implements ConverterLoader {
     }
 
     public abstract static class AbstractNumberToStringConverter<N extends Number> extends AbstractNumberConverter<N, String> {
-        AbstractNumberToStringConverter(Class<N> sourceClass) {
+        public AbstractNumberToStringConverter(Class<N> sourceClass) {
             super(sourceClass, String.class);
         }
 
@@ -92,7 +92,7 @@ public class NumberConverters implements ConverterLoader {
     }
 
     public static class GenericNumberToDouble<N extends Number> extends AbstractConverter<N, Double> {
-        GenericNumberToDouble(Class<N> sourceClass) {
+        public GenericNumberToDouble(Class<N> sourceClass) {
             super(sourceClass, Double.class);
         }
 
@@ -103,7 +103,7 @@ public class NumberConverters implements ConverterLoader {
     }
 
     public static class GenericNumberToFloat<N extends Number> extends AbstractConverter<N, Float> {
-        GenericNumberToFloat(Class<N> sourceClass) {
+        public GenericNumberToFloat(Class<N> sourceClass) {
             super(sourceClass, Float.class);
         }
 
@@ -114,7 +114,7 @@ public class NumberConverters implements ConverterLoader {
     }
 
     public static class GenericNumberToInteger<N extends Number> extends AbstractConverter<N, Integer> {
-        GenericNumberToInteger(Class<N> sourceClass) {
+        public GenericNumberToInteger(Class<N> sourceClass) {
             super(sourceClass, Integer.class);
         }
 
@@ -125,7 +125,7 @@ public class NumberConverters implements ConverterLoader {
     }
 
     public static class GenericNumberToLong<N extends Number> extends AbstractConverter<N, Long> {
-        GenericNumberToLong(Class<N> sourceClass) {
+        public GenericNumberToLong(Class<N> sourceClass) {
             super(sourceClass, Long.class);
         }
 
@@ -136,7 +136,7 @@ public class NumberConverters implements ConverterLoader {
     }
 
     public static class GenericNumberToShort<N extends Number> extends AbstractConverter<N, Short> {
-        GenericNumberToShort(Class<N> sourceClass) {
+        public GenericNumberToShort(Class<N> sourceClass) {
             super(sourceClass, Short.class);
         }
 

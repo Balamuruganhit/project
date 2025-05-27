@@ -522,18 +522,6 @@ under the License.
             <xs:attribute name="send-if-empty" type="xs:boolean" default="true"/>
         </xs:complexType>
     </xs:element>
-    <xs:element name="auto-parameters-form">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element minOccurs="0" ref="exclude" />
-            </xs:sequence>
-            <xs:attribute name="form-name" type="xs:string">
-                <xs:annotation>
-                    <xs:documentation>See OFBIZ-12684.</xs:documentation>
-                </xs:annotation>
-            </xs:attribute>
-        </xs:complexType>
-    </xs:element>
     <xs:element name="exclude">
         <xs:complexType>
             <xs:attribute name="field-name" type="xs:string" use="required" />
@@ -543,7 +531,6 @@ under the License.
         <xs:sequence>
             <xs:element minOccurs="0" ref="auto-parameters-service"/>
             <xs:element minOccurs="0" ref="auto-parameters-entity"/>
-            <xs:element minOccurs="0" ref="auto-parameters-form"/>
             <xs:element minOccurs="0" maxOccurs="unbounded" ref="parameter" />
             <xs:element minOccurs="0" name="image" type="image" />
             <xs:element minOccurs="0" ref="set-callback"/>
@@ -643,7 +630,6 @@ under the License.
             <xs:sequence>
                 <xs:element minOccurs="0" ref="auto-parameters-service"/>
                 <xs:element minOccurs="0" ref="auto-parameters-entity"/>
-                <xs:element minOccurs="0" ref="auto-parameters-form"/>
                 <xs:element minOccurs="0" maxOccurs="unbounded" ref="parameter"/>
             </xs:sequence>
             <xs:attribute name="area-id" type="xs:string">

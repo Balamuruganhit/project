@@ -38,11 +38,11 @@ under the License.
                 <set field="layoutSettings.companyName" from-field="uiLabelMap.SfaCompanyName" global="true"/>
                 <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.MarketingCompanySubtitle" global="true"/>
                 <set field="applicationMenuName" value="SfaAppBar" global="true"/>
-                <set field="applicationMenuLocation" value="${parameters.mainMenuLocation}" global="true"/>
+                <set field="applicationMenuLocation" value="component://marketing/widget/sfa/SfaMenus.xml" global="true"/>
                 <set field="helpAnchor" from-field="helpAnchor" default-value="_sfa"/>
                 <set field="applicationTitle" from-field="uiLabelMap.SfaManagerApplication" global="true"/>
                 <set field="parameters.parentPortalPageId" from-field="parameters.parentPortalPageId" default-value="SFA" global="true"/>
-                <script location="component://common/src/main/groovy/org/apache/ofbiz/common/GetParentPortalPageId.groovy"/>
+                <script location="component://common/groovyScripts/GetParentPortalPageId.groovy"/>
             </actions>
             <widgets>
                 <include-screen name="ApplicationDecorator" location="component://commonext/widget/CommonScreens.xml"/>
@@ -61,10 +61,6 @@ under the License.
             </actions>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
-                    <decorator-section name="pre-body">
-                        <include-menu name="MainActionMenu" location="${parameters.mainMenuLocation}"/>
-                        <decorator-section-include name="pre-body"/>
-                    </decorator-section>
                     <decorator-section name="left-column">
                         <include-screen name="leftbar"/>
                     </decorator-section>
@@ -81,12 +77,11 @@ under the License.
             <actions>
                 <property-map resource="MarketingUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
-                <set field="mainMenuLocation" from-field="parameters.mainMenuLocation" default-value="component://marketing/widget/sfa/SfaMenus.xml"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShortcutDecorator" location="component://common/widget/CommonScreens.xml">
                     <decorator-section name="body">
-                        <include-menu name="SfaShortcutAppBar" location="${mainMenuLocation}"/>
+                        <include-menu name="SfaShortcutAppBar" location="component://marketing/widget/sfa/SfaMenus.xml"/>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
@@ -115,8 +110,7 @@ under the License.
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="pre-body">
-                        <include-menu name="MainActionMenu" location="${parameters.mainMenuLocation}"/>
-                        <include-menu name="OpportunityTabBar" location="${parameters.mainMenuLocation}"/>
+                        <include-menu name="OpportunityTabBar" location="component://marketing/widget/sfa/SfaMenus.xml"/>
                     </decorator-section>
                     <decorator-section name="left-column">
                         <include-screen name="leftbar"/>
@@ -225,8 +219,8 @@ under the License.
 
                 <set field="layoutSettings.javaScripts[]" value="/partymgr/static/PartyProfileContent.js" global="true"/>
 
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/ViewProfile.groovy"/>
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/SetRoleVars.groovy"/>
+                <script location="component://party/groovyScripts/party/ViewProfile.groovy"/>
+                <script location="component://party/groovyScripts/party/SetRoleVars.groovy"/>
                 <set field="parameters.partyId" from-field="partyId"/>
                 <set field="parameters.partyGroupId" from-field="partyGroupId"/>
             </actions>
@@ -380,8 +374,8 @@ under the License.
 
                 <set field="layoutSettings.javaScripts[]" value="/partymgr/static/PartyProfileContent.js" global="true"/>
 
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/ViewProfile.groovy"/>
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/SetRoleVars.groovy"/>
+                <script location="component://party/groovyScripts/party/ViewProfile.groovy"/>
+                <script location="component://party/groovyScripts/party/SetRoleVars.groovy"/>
                 <set field="parameters.partyId" from-field="partyId"/>
                 <set field="parameters.partyGroupId" from-field="partyGroupId"/>
                 <set field="DONE_PAGE" value="ViewLeadProfile"/>
@@ -401,8 +395,8 @@ under the License.
 
                 <set field="layoutSettings.javaScripts[]" value="/partymgr/static/PartyProfileContent.js" global="true"/>
 
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/ViewProfile.groovy"/>
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/SetRoleVars.groovy"/>
+                <script location="component://party/groovyScripts/party/ViewProfile.groovy"/>
+                <script location="component://party/groovyScripts/party/SetRoleVars.groovy"/>
                 <set field="parameters.partyId" from-field="partyId"/>
                 <set field="parameters.partyGroupId" from-field="partyGroupId"/>
                 <set field="DONE_PAGE" value="ViewContactProfile"/>
@@ -481,8 +475,8 @@ under the License.
                 <set field="parameters.roleTypeId" value="ACCOUNT"/>
                 <set field="layoutSettings.javaScripts[]" value="/partymgr/static/PartyProfileContent.js" global="true"/>
 
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/ViewProfile.groovy"/>
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/SetRoleVars.groovy"/>
+                <script location="component://party/groovyScripts/party/ViewProfile.groovy"/>
+                <script location="component://party/groovyScripts/party/SetRoleVars.groovy"/>
                 <set field="parameters.partyId" from-field="partyId"/>
                 <set field="parameters.partyGroupId" from-field="partyGroupId"/>
                 <set field="DONE_PAGE" value="ViewAccountProfile"/>
@@ -560,8 +554,8 @@ under the License.
 
                 <set field="layoutSettings.javaScripts[]" value="/partymgr/static/PartyProfileContent.js" global="true"/>
 
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/ViewProfile.groovy"/>
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/SetRoleVars.groovy"/>
+                <script location="component://party/groovyScripts/party/ViewProfile.groovy"/>
+                <script location="component://party/groovyScripts/party/SetRoleVars.groovy"/>
                 <set field="parameters.partyId" from-field="partyId"/>
                 <set field="parameters.partyGroupId" from-field="partyGroupId"/>
                 <set field="DONE_PAGE" value="ViewAccountLeadProfile"/>
@@ -726,7 +720,7 @@ under the License.
                     <widgets>
                         <decorator-screen name="CommonPartyDecorator" location="${parameters.mainDecoratorLocation}">
                             <decorator-section name="body">
-                                <include-menu name="OpportunitySubTabBar" location="${parameters.mainMenuLocation}"/>
+                                <include-menu name="OpportunitySubTabBar" location="component://marketing/widget/sfa/SfaMenus.xml"/>
                                 <screenlet title="${uiLabelMap.PageTitleListCommunications}">
                                     <decorator-section-include name="body"/>
                                 </screenlet>
@@ -736,13 +730,13 @@ under the License.
                     <fail-widgets>
                         <decorator-screen name="main-decorator">
                             <decorator-section name="pre-body">
-                                <include-menu name="OpportunityTabBar" location="${parameters.mainMenuLocation}"/>
+                                <include-menu name="OpportunityTabBar" location="component://marketing/widget/sfa/SfaMenus.xml"/>
                             </decorator-section>
                             <decorator-section name="left-column">
                                 <include-screen name="leftbar"/>
                             </decorator-section>
                             <decorator-section name="body">
-                                <include-menu name="OpportunitySubTabBar" location="${parameters.mainMenuLocation}"/>
+                                <include-menu name="OpportunitySubTabBar" location="component://marketing/widget/sfa/SfaMenus.xml"/>
                                 <decorator-section-include name="body"/>
                             </decorator-section>
                         </decorator-screen>
@@ -756,14 +750,13 @@ under the License.
             <widgets>
                 <decorator-screen name="main-decorator">
                     <decorator-section name="pre-body">
-                        <include-menu name="MainActionMenu" location="${parameters.mainMenuLocation}"/>
-                        <include-menu name="AccountTabBar" location="${parameters.mainMenuLocation}"/>
+                        <include-menu name="AccountTabBar" location="component://marketing/widget/sfa/SfaMenus.xml"/>
                     </decorator-section>
                     <decorator-section name="left-column">
                         <include-screen name="leftbar"/>
                     </decorator-section>
                     <decorator-section name="body">
-                        <include-menu name="AccountSubTabBar" location="${parameters.mainMenuLocation}"/>
+                        <include-menu name="AccountSubTabBar" location="component://marketing/widget/sfa/SfaMenus.xml"/>
                         <decorator-section-include name="body"/>
                     </decorator-section>
                 </decorator-screen>
@@ -775,14 +768,13 @@ under the License.
             <widgets>
                 <decorator-screen name="main-decorator">
                     <decorator-section name="pre-body">
-                        <include-menu name="MainActionMenu" location="${parameters.mainMenuLocation}"/>
-                        <include-menu name="ContactTabBar" location="${parameters.mainMenuLocation}"/>
+                        <include-menu name="ContactTabBar" location="component://marketing/widget/sfa/SfaMenus.xml"/>
                     </decorator-section>
                     <decorator-section name="left-column">
                         <include-screen name="leftbar"/>
                     </decorator-section>
                     <decorator-section name="body">
-                        <include-menu name="ContactSubTabBar" location="${parameters.mainMenuLocation}"/>
+                        <include-menu name="ContactSubTabBar" location="component://marketing/widget/sfa/SfaMenus.xml"/>
                         <decorator-section-include name="body"/>
                     </decorator-section>
                 </decorator-screen>
@@ -802,11 +794,10 @@ under the License.
             <widgets>
                 <decorator-screen name="main-decorator">
                     <decorator-section name="pre-body">
-                        <include-menu name="MainActionMenu" location="${parameters.mainMenuLocation}"/>
-                        <include-menu name="LeadTabBar" location="${parameters.mainMenuLocation}"/>
+                        <include-menu name="LeadTabBar" location="component://marketing/widget/sfa/SfaMenus.xml"/>
                     </decorator-section>
                     <decorator-section name="body">
-                        <include-menu name="LeadSubTabBar" location="${parameters.mainMenuLocation}"/>
+                        <include-menu name="LeadSubTabBar" location="component://marketing/widget/sfa/SfaMenus.xml"/>
                         <decorator-section-include name="body"/>
                     </decorator-section>
                 </decorator-screen>
@@ -821,14 +812,13 @@ under the License.
             <widgets>
                 <decorator-screen name="main-decorator">
                     <decorator-section name="pre-body">
-                        <include-menu name="MainActionMenu" location="${parameters.mainMenuLocation}"/>
-                        <include-menu name="EventTabBar" location="${parameters.mainMenuLocation}"/>
+                        <include-menu name="EventTabBar" location="component://marketing/widget/sfa/SfaMenus.xml"/>
                     </decorator-section>
                     <decorator-section name="left-column">
                         <include-screen name="leftbar"/>
                     </decorator-section>
                     <decorator-section name="body">
-                        <include-menu name="EventSubTabBar" location="${parameters.mainMenuLocation}"/>
+                        <include-menu name="EventSubTabBar" location="component://marketing/widget/sfa/SfaMenus.xml"/>
                         <decorator-section-include name="body"/>
                     </decorator-section>
                 </decorator-screen>

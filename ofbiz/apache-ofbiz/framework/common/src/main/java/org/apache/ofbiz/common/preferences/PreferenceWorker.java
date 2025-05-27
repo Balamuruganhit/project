@@ -60,7 +60,7 @@ public final class PreferenceWorker {
      * @throws GeneralException
      * @return user preference map
      */
-    private static Map<String, Object> addPrefToMap(GenericValue rec, Map<String, Object> userPrefMap) throws GeneralException {
+    public static Map<String, Object> addPrefToMap(GenericValue rec, Map<String, Object> userPrefMap) throws GeneralException {
         String prefDataType = rec.getString("userPrefDataType");
         if (UtilValidate.isEmpty(prefDataType)) {
             // default to String
@@ -133,7 +133,7 @@ public final class PreferenceWorker {
      * @throws GeneralException
      * @return user preference map
      */
-    static Map<String, Object> createUserPrefMap(GenericValue rec) throws GeneralException {
+    public static Map<String, Object> createUserPrefMap(GenericValue rec) throws GeneralException {
         return addPrefToMap(rec, new LinkedHashMap<>());
     }
 
@@ -143,7 +143,7 @@ public final class PreferenceWorker {
      * @throws GeneralException
      * @return user preference map
      */
-    static Map<String, Object> createUserPrefMap(List<GenericValue> recList) throws GeneralException {
+    public static Map<String, Object> createUserPrefMap(List<GenericValue> recList) throws GeneralException {
         Map<String, Object> userPrefMap = new LinkedHashMap<>();
         if (recList != null) {
             for (GenericValue value: recList) {
@@ -163,7 +163,7 @@ public final class PreferenceWorker {
      * @param returnDefault return <a href="#DEFAULT_UID">DEFAULT_UID</a> if no userLoginId is found.
      * @return userLoginId String
      */
-    static String getUserLoginId(Map<String, ?> context, boolean returnDefault) {
+    public static String getUserLoginId(Map<String, ?> context, boolean returnDefault) {
         String userLoginId = (String) context.get(LOGINID_PARAMETER_NAME);
         if (UtilValidate.isEmpty(userLoginId)) {
             GenericValue userLogin = (GenericValue) context.get("userLogin");
@@ -194,7 +194,7 @@ public final class PreferenceWorker {
      * @param context Map containing the input arguments.
      * @return true if the userLoginId arguments are valid
      */
-    static boolean isValidGetId(DispatchContext ctx, Map<String, ?> context) {
+    public static boolean isValidGetId(DispatchContext ctx, Map<String, ?> context) {
         String currentUserLoginId = null;
         GenericValue userLogin = (GenericValue) context.get("userLogin");
         if (userLogin == null) {
@@ -228,7 +228,7 @@ public final class PreferenceWorker {
      * @param context Map containing the input arguments.
      * @return true if arguments are valid
      */
-    private static boolean isValidSetId(DispatchContext ctx, Map<String, ?> context) {
+    public static boolean isValidSetId(DispatchContext ctx, Map<String, ?> context) {
         GenericValue userLogin = (GenericValue) context.get("userLogin");
         if (userLogin == null) {
             return false;

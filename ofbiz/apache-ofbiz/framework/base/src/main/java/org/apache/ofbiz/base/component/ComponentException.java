@@ -27,19 +27,19 @@ import org.apache.ofbiz.base.config.GenericConfigException;
 @SuppressWarnings("serial")
 public class ComponentException extends GenericConfigException {
 
-    ComponentException() {
+    public ComponentException() {
         super();
     }
 
-    ComponentException(String str) {
+    public ComponentException(String str) {
         super(str);
     }
 
-    ComponentException(Throwable nested) {
+    public ComponentException(Throwable nested) {
         super(nested);
     }
 
-    ComponentException(String str, Throwable nested) {
+    public ComponentException(String str, Throwable nested) {
         super(str, nested);
     }
 }

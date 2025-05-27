@@ -358,7 +358,7 @@ public class HttpClient {
      * @return the string
      * @throws HttpClientException the http client exception
      */
-    private String sendHttpRequest(String method) throws HttpClientException {
+    public String sendHttpRequest(String method) throws HttpClientException {
         InputStream in = sendHttpRequestStream(method);
         if (in == null) {
             return null;
@@ -402,7 +402,7 @@ public class HttpClient {
                 }
 
                 if (charset != null) {
-                    charset = charset.trim().replace("\"", "");
+                    charset = charset.trim().replaceAll("\"", "");
                 }
                 if (Debug.verboseOn() || debug) {
                     Debug.logVerbose("Getting text from HttpClient with charset: " + charset, MODULE);
@@ -466,7 +466,7 @@ public class HttpClient {
 
         // Create the URL and open the connection.
         try {
-            requestUrl = UtilURL.fromUrlString(url);
+            requestUrl = new URL(url);
             if (overrideTrust) {
                 con = URLConnector.openUntrustedConnection(requestUrl, timeout, clientCertAlias, hostVerification);
             } else {

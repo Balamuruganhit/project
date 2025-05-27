@@ -21,7 +21,6 @@ package org.apache.ofbiz.service.engine
 import org.apache.ofbiz.base.util.Debug
 import org.apache.ofbiz.base.util.UtilProperties
 import org.apache.ofbiz.entity.GenericValue
-import org.apache.ofbiz.entity.model.DynamicViewEntity
 import org.apache.ofbiz.entity.util.EntityQuery
 import org.apache.ofbiz.service.DispatchContext
 import org.apache.ofbiz.service.ExecutionServiceException
@@ -29,10 +28,8 @@ import org.apache.ofbiz.service.LocalDispatcher
 import org.apache.ofbiz.service.ModelService
 import org.apache.ofbiz.service.ServiceUtil
 
-// codenarc-disable AbstractClassWithoutAbstractMethod
 abstract class GroovyBaseScript extends Script {
-
-    static final String MODULE = GroovyBaseScript.getName()
+    public static final String module = GroovyBaseScript.class.getName()
 
     String getModule() {
         return this.class.getName()
@@ -41,31 +38,37 @@ abstract class GroovyBaseScript extends Script {
     Map runService(String serviceName, Map inputMap) throws ExecutionServiceException {
         LocalDispatcher dispatcher = binding.getVariable('dispatcher')
         DispatchContext dctx = dispatcher.getDispatchContext()
-        inputMap.userLogin = inputMap.userLogin ?: this.binding.hasVariable('userLogin')
-                ? this.binding.getVariable('userLogin')
-                : this.binding.getVariable('parameters').userLogin
-        inputMap.timeZone = inputMap.timeZone ?: this.binding.hasVariable('timeZone')
-                ? this.binding.getVariable('timeZone')
-                : this.binding.getVariable('parameters').timeZone
-        inputMap.locale = inputMap.locale ?: this.binding.hasVariable('locale')
-                ? this.binding.getVariable('locale')
-                : this.binding.getVariable('parameters').locale
-        if (serviceName == 'createAnonFile') {
-            String fileName = inputMap.get('dataResourceName')
-            String fileNameAndPath = inputMap.get('objectInfo')
+        if (!inputMap.userLogin) {
+            inputMap.userLogin = this.binding.hasVariable('userLogin')
+                    ? this.binding.getVariable('userLogin')
+                    : this.binding.getVariable('parameters').userLogin
+        }
+        if (!inputMap.timeZone) {
+            inputMap.timeZone = this.binding.hasVariable('timeZone')
+                    ? this.binding.getVariable('timeZone')
+                    : this.binding.getVariable('parameters').timeZone
+        }
+        if (!inputMap.locale) {
+            inputMap.locale = this.binding.hasVariable('locale')
+                    ? this.binding.getVariable('locale')
+                    : this.binding.getVariable('parameters').locale
+        }
+        if (serviceName.equals("createAnonFile")) {
+            String fileName = inputMap.get("dataResourceName")
+            String fileNameAndPath = inputMap.get("objectInfo")
             File file = new File(fileNameAndPath)
             if (!fileName.isEmpty()) {
                 // Check the file name
                 if (!org.apache.ofbiz.security.SecuredUpload.isValidFileName(fileName, delegator)) {
-                    String errorMessage = UtilProperties.getMessage('SecurityUiLabels', 'SupportedFileFormatsIncludingSvg', inputMap.locale)
+                    String errorMessage = UtilProperties.getMessage("SecurityUiLabels", "SupportedFileFormatsIncludingSvg", inputMap.locale)
                     throw new ExecutionServiceException(errorMessage)
                 }
                 // TODO we could verify the file type (here "All") with dataResourceTypeId. Anyway it's done with isValidFile()
                 // We would just have a better error message
                 if (file.exists()) {
                     // Check if a webshell is not uploaded
-                    if (!org.apache.ofbiz.security.SecuredUpload.isValidFile(fileNameAndPath, 'All', delegator)) {
-                        String errorMessage = UtilProperties.getMessage('SecurityUiLabels', 'SupportedFileFormatsIncludingSvg', inputMap.locale)
+                    if (!org.apache.ofbiz.security.SecuredUpload.isValidFile(fileNameAndPath, "All", delegator)) {
+                        String errorMessage = UtilProperties.getMessage("SecurityUiLabels", "SupportedFileFormatsIncludingSvg", inputMap.locale)
                         throw new ExecutionServiceException(errorMessage)
                     }
                 }
@@ -80,7 +83,7 @@ abstract class GroovyBaseScript extends Script {
     }
 
     Map run(Map args) throws ExecutionServiceException {
-        return runService((String)args.get('service'), (Map)args.get('with', [:]))
+        return runService((String)args.get('service'), (Map)args.get('with', new HashMap()))
     }
 
     Map makeValue(String entityName) throws ExecutionServiceException {
@@ -91,12 +94,8 @@ abstract class GroovyBaseScript extends Script {
         return binding.getVariable('delegator').makeValidValue(entityName, inputMap)
     }
 
-    EntityQuery from(String entityName) {
-        return EntityQuery.use(binding.getVariable('delegator')).from(entityName)
-    }
-
-    EntityQuery from(DynamicViewEntity dynamicViewEntity) {
-        return EntityQuery.use(binding.getVariable('delegator')).from(dynamicViewEntity)
+    EntityQuery from(def entity) {
+        return EntityQuery.use(binding.getVariable('delegator')).from(entity)
     }
 
     EntityQuery select(String... fields) {
@@ -112,7 +111,6 @@ abstract class GroovyBaseScript extends Script {
         return from(entityName).where(fields).cache(useCache).queryOne()
     }
 
-    /* codenarc-disable NoDef, MethodReturnTypeRequired */
     def success() {
         return success(null, null)
     }
@@ -127,7 +125,7 @@ abstract class GroovyBaseScript extends Script {
         if (this.binding.hasVariable('request')) {
             // the script is invoked as an "event"
             if (message) {
-                this.binding.getVariable('request').setAttribute('_EVENT_MESSAGE_', message)
+                this.binding.getVariable('request').setAttribute("_EVENT_MESSAGE_", message)
             }
             if (returnValues) {
                 returnValues.each {
@@ -135,67 +133,70 @@ abstract class GroovyBaseScript extends Script {
                 }
             }
             return 'success'
+        } else {
+            // the script is invoked as a "service"
+            Map result = message ? ServiceUtil.returnSuccess(message) : ServiceUtil.returnSuccess()
+            if (returnValues) {
+                result.putAll(returnValues)
+            }
+            return result
         }
-        // the script is invoked as a "service"
-        Map result = message ? ServiceUtil.returnSuccess(message) : ServiceUtil.returnSuccess()
-        if (returnValues) {
-            result.putAll(returnValues)
-        }
-        return result
     }
-    /* codenarc-enable */
     Map failure(String message) {
         // TODO: implement some clever i18n mechanism based on the userLogin and locale in the binding
         if (message) {
             return ServiceUtil.returnFailure(message)
+        } else {
+            return ServiceUtil.returnFailure()
         }
-        return ServiceUtil.returnFailure()
     }
-    /* codenarc-disable NoDef, MethodReturnTypeRequired */
     def error(String message) {
         // TODO: implement some clever i18n mechanism based on the userLogin and locale in the binding
         if (this.binding.hasVariable('request')) {
             // the script is invoked as an "event"
             if (message) {
-                this.binding.getVariable('request').setAttribute('_ERROR_MESSAGE_', message)
+                this.binding.getVariable('request').setAttribute("_ERROR_MESSAGE_", message)
             }
             return 'error'
+        } else {
+            if (message) {
+                return ServiceUtil.returnError(message)
+            } else {
+                return ServiceUtil.returnError()
+            }
         }
-        if (message) {
-            return ServiceUtil.returnError(message)
-        }
-        return ServiceUtil.returnError()
     }
-    /* codenarc-enable */
 
-    void logInfo(String message) {
+    def logInfo(String message) {
         Debug.logInfo(message, getModule())
     }
-    void logWarning(String message) {
+    def logWarning(String message) {
         Debug.logWarning(message, getModule())
     }
-    void logError(String message) {
+    def logError(String message) {
         Debug.logError(message, getModule())
     }
-    void logError(Throwable t, String message) {
+    def logError(Throwable t, String message) {
         Debug.logError(t, message, getModule())
     }
-    void logError(Throwable t) {
+    def logError(Throwable t) {
         Debug.logError(t, null, getModule())
     }
-    void logVerbose(String message) {
+    def logVerbose(String message) {
         Debug.logVerbose(message, getModule())
     }
 
-    String label(String ressource, String message) {
+    def label(String ressource, String message) {
         return label(ressource, message, null)
     }
-    String label(String ressource, String message, Map context) {
-        Locale locale = this.binding.getVariable('locale') ?: Locale.getDefault()
+    def label(String ressource, String message, Map context) {
+        Locale locale = this.binding.getVariable('locale')
+        if (!locale) {
+            locale = Locale.getDefault()
+        }
         if (context) {
             return UtilProperties.getMessage(ressource, message, context, locale)
         }
         return UtilProperties.getMessage(ressource, message, locale)
     }
-
 }

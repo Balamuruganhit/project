@@ -30,8 +30,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
+import java.util.stream.Collectors;
 import org.apache.ofbiz.base.conversion.ConversionException;
 import org.apache.ofbiz.base.conversion.JSONConverters;
 import org.apache.ofbiz.base.lang.JSON;
@@ -61,7 +61,6 @@ import org.apache.ofbiz.widget.renderer.FormStringRenderer;
 import org.apache.ofbiz.widget.renderer.VisualTheme;
 import org.codehaus.groovy.control.CompilationFailedException;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  * Abstract base class for the &lt;form&gt; and &lt;grid&gt; elements.
@@ -2310,29 +2309,15 @@ public abstract class ModelForm extends ModelWidget {
             this.defaultServiceName = defaultServiceName;
             this.defaultEntityName = defaultEntityName;
             List<? extends Element> parameterElementList = UtilXml.childElementList(updateAreaElement, "parameter");
-
-            List<CommonWidgetModels.Parameter> parameterList = new ArrayList<>(parameterElementList.size());
-            for (Element parameterElement : parameterElementList) {
-                parameterList.add(new CommonWidgetModels.Parameter(parameterElement));
-            }
-            Element autoFormParamsElement = UtilXml.firstChildElement(updateAreaElement, "auto-parameters-form");
-            if (autoFormParamsElement != null) {
-                String formName = null;
-                if (autoFormParamsElement.hasAttribute("form-name") && autoFormParamsElement.getAttribute("form-name") != null) {
-                    formName = autoFormParamsElement.getAttribute("form-name");
-                } else {
-                    Node formElement = autoFormParamsElement;
-                    while (formElement != null
-                            && formElement.getLocalName() != "form") {
-                        formElement = formElement.getParentNode();
-                    }
-                    if (formElement != null && formElement.getLocalName() != null) {
-                        formName = ((Element) formElement).getAttribute("name");
-                    }
+            if (parameterElementList.isEmpty()) {
+                this.parameterList = Collections.emptyList();
+            } else {
+                List<CommonWidgetModels.Parameter> parameterList = new ArrayList<>(parameterElementList.size());
+                for (Element parameterElement : parameterElementList) {
+                    parameterList.add(new CommonWidgetModels.Parameter(parameterElement));
                 }
-                parameterList.add(new CommonWidgetModels.Parameter("_FORM_NAME_", formName + "_AS_PARAM_", false));
+                this.parameterList = Collections.unmodifiableList(parameterList);
             }
-            this.parameterList = Collections.unmodifiableList(parameterList);
             Element autoServiceParamsElement = UtilXml.firstChildElement(updateAreaElement, "auto-parameters-service");
             if (autoServiceParamsElement != null) {
                 this.autoServiceParameters = new CommonWidgetModels.AutoServiceParameters(autoServiceParamsElement);
@@ -2510,14 +2495,18 @@ public abstract class ModelForm extends ModelWidget {
         }
 
         /**
-         * Retrieve a Jwt from context, validate it and generate UpdateArea Object
+         * Retrieva Jwt from context, validate it and generate UpdateArea Object
          * @return UpdateArea object
          */
         public static ModelForm.UpdateArea fromJwtToken(Map<String, Object> context) {
             Delegator delegator = (Delegator) context.get("delegator");
 
-            String jwtToken = WidgetWorker.getJwtCallback(context);
-            if (UtilValidate.isEmpty(jwtToken)) return null;
+            String jwtToken = (String) context.get(CommonWidgetModels.JWT_CALLBACK);
+            if (jwtToken == null && context.containsKey("parameters")) {
+                Map<String, Object> parameters = UtilGenerics.cast(context.get("parameters"));
+                jwtToken = (String) parameters.get(CommonWidgetModels.JWT_CALLBACK);
+            }
+            if (jwtToken == null) return null;
 
             Map<String, Object> claims = JWTManager.validateToken(jwtToken, JWTManager.getJWTKey(delegator));
             if (claims.containsKey(ModelService.ERROR_MESSAGE)) {
@@ -2542,7 +2531,7 @@ public abstract class ModelForm extends ModelWidget {
                     parameters != null
                             ? parameters.entrySet()
                             .stream()
-                            .map(entry -> CommonWidgetModels.ParameterFactory.create(entry))
+                            .map(entry -> new CommonWidgetModels.Parameter(entry.getKey(), (String) entry.getValue(), false))
                             .collect(Collectors.toList())
                             : new ArrayList<>());
         }

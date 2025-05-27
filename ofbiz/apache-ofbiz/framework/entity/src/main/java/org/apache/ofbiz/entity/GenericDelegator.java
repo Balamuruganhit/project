@@ -1634,7 +1634,7 @@ public class GenericDelegator implements Delegator {
 
             List<GenericValue> cacheList = this.cache.get(entityName, entityCondition, orderBy);
             if (cacheList != null) {
-                return Collections.unmodifiableList(cacheList);
+                return cacheList;
             }
         }
 
@@ -1649,7 +1649,7 @@ public class GenericDelegator implements Delegator {
                 list = eli.getCompleteList();
             }
 
-            if (useCache && UtilValidate.isEmpty(fieldsToSelect)) {
+            if (useCache) {
                 ecaRunner.evalRules(EntityEcaHandler.EV_CACHE_PUT, EntityEcaHandler.OP_FIND, dummyValue, false);
                 this.cache.put(entityName, entityCondition, orderBy, list);
             }

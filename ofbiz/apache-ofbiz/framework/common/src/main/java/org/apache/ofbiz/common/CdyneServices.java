@@ -85,7 +85,7 @@ public class CdyneServices {
         }
     }
 
-    private static void populateCdyneAddress(Element addressRootElement, Map<String, Object> targetContext) {
+    public static void populateCdyneAddress(Element addressRootElement, Map<String, Object> targetContext) {
         targetContext.put("ServiceError", UtilXml.childElementValue(addressRootElement, "ServiceError"));
         targetContext.put("AddressError", UtilXml.childElementValue(addressRootElement, "AddressError"));
         targetContext.put("AddressFoundBeMoreSpecific", UtilXml.childElementValue(addressRootElement, "AddressFoundBeMoreSpecific"));

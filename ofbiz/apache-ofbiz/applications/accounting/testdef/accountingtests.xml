@@ -27,43 +27,43 @@
     </test-case>
 
     <test-case case-name="accounting-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.order.test.FinAccountTest"/>
+        <junit-test-suite class-name="org.apache.ofbiz.accounting.test.FinAccountTests"/>
     </test-case>
 
     <test-case case-name="auto-accounting-transaction-tests-sales">
-        <junit-test-suite class-name="org.apache.ofbiz.accounting.accounting.AutoAcctgTransSalesTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.accounting.AutoAcctgTransTestsSales"/>
     </test-case>
     <test-case case-name="auto-accounting-transaction-tests-purchase">
-        <junit-test-suite class-name="org.apache.ofbiz.accounting.accounting.AutoAcctgTransPurchaseTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.accounting.AutoAcctgTransTestsPurchase"/>
     </test-case>
     <test-case case-name="auto-accounting-admin-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.accounting.accounting.AutoAcctgAdminTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.accounting.AutoAcctgAdminTests"/>
     </test-case>
     <test-case case-name="auto-accounting-agreement-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.accounting.accounting.AutoAcctgAgreementTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.accounting.AutoAcctgAgreementTests"/>
     </test-case>
     <test-case case-name="auto-accounting-budget-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.accounting.accounting.AutoAcctgBudgetTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.accounting.AutoAcctgBudgetTests"/>
     </test-case>
     <test-case case-name="auto-accounting-cost-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.accounting.accounting.AutoAcctgCostTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.accounting.AutoAcctgCostTests"/>
     </test-case>
     <test-case case-name="auto-accounting-finaccount-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.accounting.accounting.AutoAcctgFinAccountTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.accounting.AutoAcctgFinAccountTests"/>
     </test-case>
     <test-case case-name="auto-accounting-fixedasset-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.accounting.accounting.AutoAcctgFixedAssetTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.accounting.AutoAcctgFixedAssetTests"/>
     </test-case>
     <test-case case-name="auto-accounting-invoice-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.accounting.accounting.AutoAcctgInvoiceTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.accounting.AutoAcctgInvoiceTests"/>
     </test-case>
     <test-case case-name="auto-accounting-payment-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.accounting.accounting.AutoAcctgPaymentTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.accounting.AutoAcctgPaymentTests"/>
     </test-case>
     <test-case case-name="auto-accounting-paymentgateway-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.accounting.accounting.AutoAcctgPaymentGatewayTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.accounting.AutoAcctgPaymentGatewayTests"/>
     </test-case>
     <test-case case-name="auto-accounting-ledger-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.accounting.accounting.AutoAcctgLedgerTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.accounting.AutoAcctgLedgerTests"/>
     </test-case>
 </test-suite>

@@ -131,12 +131,7 @@ public class XmlWidgetFieldVisitor extends XmlAbstractWidgetVisitor implements M
         visitAttribute("current-description", dropDownField.getCurrentDescription());
         visitAttribute("other-field-size", dropDownField.getOtherFieldSize());
         visitAttribute("size", dropDownField.getSize());
-
-        var textSizeOptional = dropDownField.getTextSize();
-        if (textSizeOptional.isPresent()) {
-            visitAttribute("text-size", textSizeOptional.get());
-        }
-
+        visitAttribute("text-size", dropDownField.getTextSize());
         visitFieldInfoWithOptions(dropDownField);
         visitAutoComplete(dropDownField.getAutoComplete());
         visitSubHyperlink(dropDownField.getSubHyperlink());
@@ -317,7 +312,6 @@ public class XmlWidgetFieldVisitor extends XmlAbstractWidgetVisitor implements M
         visitAttribute("rows", textareaField.getRows());
         visitAttribute("visual-editor-buttons", textareaField.getVisualEditorButtons());
         visitAttribute("visual-editor-enable", textareaField.getVisualEditorEnable());
-        visitAttribute("placeholder", textareaField.getPlaceholder());
         writer.append("/></field>");
     }
 
@@ -367,10 +361,10 @@ public class XmlWidgetFieldVisitor extends XmlAbstractWidgetVisitor implements M
 
     private void visitDateTimeFieldAttrs(DateTimeField field) throws Exception {
         visitAttribute("default-value", field.getDefaultValue());
-        visitAttribute("type", field.isDateType() ? "date" : field.isTimeType() ? "time" : "timestamp");
+        visitAttribute("type", field.getType());
         visitAttribute("input-method", field.getInputMethod());
-        visitAttribute("isTwelveHour", field.isTwelveHour());
-        visitAttribute("mask", field.useMask() ? "Y" : "N");
+        visitAttribute("clock", field.getClock());
+        visitAttribute("mask", field.getMask());
         visitAttribute("step", field.getStep());
     }
 

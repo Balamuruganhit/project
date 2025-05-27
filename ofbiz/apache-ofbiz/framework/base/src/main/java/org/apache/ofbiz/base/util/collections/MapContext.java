@@ -72,7 +72,7 @@ public class MapContext<K, V> implements Map<K, V>, LocalizedMap<V> {
 
     /** Puts an existing Map on the BOTTOM of the stack (bottom meaning will be overriden by lower layers on the stack,
      * ie everything else already there) */
-    void addToBottom(Map<K, V> existingMap) {
+    public void addToBottom(Map<K, V> existingMap) {
         if (existingMap == null) {
             throw new IllegalArgumentException("Error: cannot add null existing Map to bottom of a MapContext");
         }

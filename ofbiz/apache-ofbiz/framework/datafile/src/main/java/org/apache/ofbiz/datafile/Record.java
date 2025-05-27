@@ -246,8 +246,7 @@ public class Record implements Serializable {
      * little endian reader for 8 byte long.
      */
     private static long readLELong(byte[] byteArray) {
-        return (long) (byteArray[7]) << 56
-                /* long cast needed or shift done modulo 32 */
+        return (long) (byteArray[7]) << 56 /* long cast needed or shift done modulo 32 */
                 | (long) (byteArray[6] & 0xff) << 48 | (long) (byteArray[5] & 0xff) << 40 | (long) (byteArray[4] & 0xff) << 32 | (long) (byteArray[3]
                 & 0xff) << 24 | (long) (byteArray[2] & 0xff) << 16 | (long) (byteArray[1] & 0xff) << 8 | (byteArray[0] & 0xff);
     }
@@ -356,7 +355,7 @@ public class Record implements Serializable {
      * @param name the name
      * @return the fixed string
      */
-    private String getFixedString(String name) {
+    public String getFixedString(String name) {
         if (name == null) {
             return null;
         }
@@ -441,7 +440,7 @@ public class Record implements Serializable {
      * @return the string
      * @throws DataFileException the data file exception
      */
-    String writeLineString(ModelDataFile modelDataFile) throws DataFileException {
+    public String writeLineString(ModelDataFile modelDataFile) throws DataFileException {
         ModelRecord modelRecord = getModelRecord();
         boolean isFixedRecord = ModelDataFile.SEP_FIXED_RECORD.equals(modelDataFile.getSeparatorStyle());
         boolean isFixedLength = ModelDataFile.SEP_FIXED_LENGTH.equals(modelDataFile.getSeparatorStyle());
@@ -589,7 +588,7 @@ public class Record implements Serializable {
      * @throws DataFileException Exception thown for various errors, generally has a nested exception
      * @return return the Record Object created
      */
-    static Record createRecord(String line, int lineNum, ModelRecord modelRecord) throws DataFileException {
+    public static Record createRecord(String line, int lineNum, ModelRecord modelRecord) throws DataFileException {
         Record record = new Record(modelRecord);
 
         for (ModelField modelField : modelRecord.getFields()) {

@@ -20,17 +20,12 @@ under the License.
 <#assign nowTimestamp = Static["org.apache.ofbiz.base.util.UtilDateTime"].nowTimestamp()>
 
 <div id="footer">
-  <ul>
-    <li>
-      ${uiLabelMap.CommonCopyright} (c) 2001-${nowTimestamp?string("yyyy")} The Apache Software Foundation - <a href="http://www.apache.org" target="_blank">www.apache.org</a><br/>
-      ${uiLabelMap.CommonPoweredBy} <a href="http://ofbiz.apache.org" target="_blank">Apache OFBiz</a>  ${uiLabelMap.CommonRelease}
-       <#include "ofbizhome://VERSION" ignore_missing=true/>
-       <#include "ofbizhome://runtime/GitInfo.ftl" ignore_missing=true/>
-    </li>
-    <li class="opposed">${nowTimestamp?datetime?string.short} -
-  <a href="<@ofbizUrl>ListTimezones</@ofbizUrl>">${timeZone.toZoneId().getDisplayName(Static["java.time.format.TextStyle"].FULL_STANDALONE, locale)}</a>
-    </li>
-  </ul>
+    <span>${nowTimestamp?datetime?string.short} - <a href="<@ofbizUrl>ListTimezones</@ofbizUrl>">${timeZone.toZoneId().getDisplayName(Static["java.time.format.TextStyle"].FULL_STANDALONE, locale)}</a></span>
+    <span> ${uiLabelMap.CommonCopyright} (c)  2023-${nowTimestamp?string("yyyy")}
+        <a href=""http://www.pangun.tech"" target="_blank">Pangun Technologies</a>.
+        Powered By <a href="http://www.pangun.tech" class="noicon">Pangun NeoERP </a>
+       
+    </span>
 </div>
 
 <#if layoutSettings.VT_FTR_JAVASCRIPT?has_content>

@@ -38,16 +38,6 @@ under the License.
         <param-name>mainDecoratorLocation</param-name>
         <param-value>component://order/widget/ordermgr/CommonScreens.xml</param-value>
     </context-param>
-    <context-param>
-        <description>The location of the menus file to be used in this webapp; referred to as a context variable in screen def XML files.</description>
-        <param-name>mainMenuLocation</param-name>
-        <param-value>component://order/widget/ordermgr/OrderMenus.xml</param-value>
-    </context-param>
-    <context-param>
-        <description>The location of the request menus file to be used in this webapp; referred to as a context variable in screen def XML files.</description>
-        <param-name>requestMenuLocation</param-name>
-        <param-value>component://order/widget/ordermgr/OrderMenus.xml</param-value>
-    </context-param>
 
     <filter>
         <display-name>ControlFilter</display-name>
@@ -55,7 +45,7 @@ under the License.
         <filter-class>org.apache.ofbiz.webapp.control.ControlFilter</filter-class>
         <init-param>
             <param-name>allowedPaths</param-name>
-            <param-value>/error:/control:/products:/select:/index.html:/index.jsp:/default.html:/default.jsp:/js</param-value>
+            <param-value>/error:/control:/products:/select:/index.html:/index.jsp:/default.html:/default.jsp:/static</param-value>
         </init-param>
         <init-param>
             <param-name>redirectPath</param-name>

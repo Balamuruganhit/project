@@ -21,7 +21,10 @@ under the License.
 
 <#macro renderTooltip tooltip="" tooltipStyle="">
   <#if tooltip?has_content>
-      <i class="hoverTooltip" title="${tooltip}"></i>
-      <#rt/>
+    <span class="tooltipContainer<#if tooltipStyle?has_content> ${tooltipStyle}<#else> tooltip</#if>">
+    ${tooltip}
+    </span>
+    <i class="hidden"></i>
+  <#rt/>
   </#if>
 </#macro>

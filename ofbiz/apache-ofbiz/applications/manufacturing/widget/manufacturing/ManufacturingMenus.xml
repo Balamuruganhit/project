@@ -22,35 +22,41 @@ under the License.
  xmlns="http://ofbiz.apache.org/Widget-Menu" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Menu http://ofbiz.apache.org/dtds/widget-menu.xsd">
 
     <menu name="ManufacturingAppBar" title="${uiLabelMap.ManufacturingManager}" extends="CommonAppBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
-        <menu-item name="jobshop" title="${uiLabelMap.ManufacturingJobShop}">
-            <link target="FindProductionRun"/>
-        </menu-item>
-        <menu-item name="routing" title="${uiLabelMap.ManufacturingRoutings}">
-            <link target="FindRouting"/>
-        </menu-item>
-        <menu-item name="routingTask" title="${uiLabelMap.ManufacturingRoutingTasks}">
-            <link target="FindRoutingTask"/>
-        </menu-item>
-        <menu-item name="calendar" title="${uiLabelMap.ManufacturingCalendars}">
-            <link target="FindCalendar"/>
-        </menu-item>
-        <menu-item name="costs" title="${uiLabelMap.ManufacturingCostCalcs}">
-            <link target="EditCostCalcs"/>
+        <menu-item name="workOrder" title="Work Order">
+            <link target="ListWorkOrder"/>
         </menu-item>
         <menu-item name="bom" title="${uiLabelMap.ManufacturingBillOfMaterials}">
             <link target="FindBom"/>
         </menu-item>
-        <menu-item name="ManufacturingRules" title="${uiLabelMap.ManufacturingManufacturingRules}">
-            <link target="EditProductManufacturingRules"/>
+       <menu-item name="routingTask" title="${uiLabelMap.ManufacturingRoutingTasks}">
+            <link target="FindRoutingTask"/>
         </menu-item>
-        <menu-item name="mrp" title="${uiLabelMap.ManufacturingMrp}">
-            <link target="FindInventoryEventPlan"/>
+        <menu-item name="routing" title="${uiLabelMap.ManufacturingRoutings}">
+            <link target="FindRouting"/>
+        </menu-item>
+         <menu-item name="jobshop" title="${uiLabelMap.ManufacturingJobShop}">
+            <link target="FindProductionRun"/>
+        </menu-item>
+        <menu-item name="ProductionJobCard" title="${uiLabelMap.ManufacturingJobCard}">
+            <link target="productionSelection"/>
+        </menu-item>
+        <menu-item name="costs" title="${uiLabelMap.ManufacturingCostCalcs}">
+            <link target="EditCostCalcs"/>
+        </menu-item>
+        <menu-item name="calendar" title="${uiLabelMap.ManufacturingCalendars}">
+            <link target="FindCalendar"/>
         </menu-item>
         <menu-item name="ShipmentPlans" title="${uiLabelMap.ManufacturingShipmentPlans}">
             <link target="WorkWithShipmentPlans"/>
         </menu-item>
+         <menu-item name="mrp" title="${uiLabelMap.ManufacturingMrp}">
+            <link target="FindInventoryEventPlan"/>
+        </menu-item>
         <menu-item name="ManufacturingReports" title="${uiLabelMap.ManufacturingReports}">
             <link target="ManufacturingReports"/>
+        </menu-item>
+        <menu-item name="GanttChart" title="Gantt Chart">
+            <link target="GanttChart"/>
         </menu-item>
     </menu>
 
@@ -109,6 +115,12 @@ under the License.
             </condition>
             <link target="/manufacturing/control/ManufacturingReports" url-mode="inter-app"/>
         </menu-item>
+        <menu-item name="AuditReport" title="${uiLabelMap.AuditReports}">
+             <condition>
+                <if-has-permission permission="MANUFACTURING" action="_CREATE"/>
+            </condition>
+            <link target="/manufacturing/control/productionPlantDocumentation" url-mode="inter-app"/>
+        </menu-item>
     </menu>
     <menu name="MainActionMenu" menu-container-style="button-bar button-style-2" default-selected-style="selected">
          <menu-item name="NewProdRun" title="${uiLabelMap.CommonNew} ${uiLabelMap.ManufacturingProductionRun}">
@@ -119,7 +131,7 @@ under the License.
              </condition>
              <link target="CreateProductionRun"/>
          </menu-item>
-         <menu-item name="NewRouting" title="${uiLabelMap.ManufacturingNewRouting}">
+         <menu-item name="NewRouting" title="${uiLabelMap.CommonNew} ${uiLabelMap.ManufacturingRouting}">
              <condition>
                  <or>
                      <if-has-permission permission="MANUFACTURING" action="_CREATE"/>
@@ -127,7 +139,7 @@ under the License.
              </condition>
              <link target="EditRouting"/>
          </menu-item>
-         <menu-item name="NewRoutingTask" title="${uiLabelMap.ManufacturingNewRoutingTask}">
+         <menu-item name="NewRoutingTask" title="${uiLabelMap.CommonNew} ${uiLabelMap.ManufacturingRoutingTask}">
              <condition>
                  <or>
                      <if-has-permission permission="MANUFACTURING" action="_CREATE"/>
@@ -136,6 +148,20 @@ under the License.
              <link target="EditRoutingTask"/>
          </menu-item>
      </menu>
+      <menu name="AuditTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
+        <menu-item name="productionPlantDocumentation" title="${uiLabelMap.ProductionPlantDocumentation}">
+            <link target="productionPlantDocumentation"/>
+        </menu-item>
+        <menu-item name="equipmentAndMachinery" title="${uiLabelMap.EquipmentandMachinery}">
+            <link target="EquipmentAndMachinery"/>
+        </menu-item>
+        <menu-item name="inspectionAndApprovalRecords" title="${uiLabelMap.InspectionandApprovalRecords}">
+            <link target="InspectionAndApprovalRecords"/>
+        </menu-item>
+        <menu-item name="monitoringAndMaintenance" title="${uiLabelMap.MonitoringandMaintenance}">
+            <link target="MonitoringAndMaintenance"/>
+        </menu-item>
+    </menu>
     <menu name="BomTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
         <menu-item name="findBom" title="${uiLabelMap.CommonFind}">
             <link target="FindBom"/>
@@ -145,6 +171,9 @@ under the License.
         </menu-item>
         <menu-item name="EditProductBom" title="${uiLabelMap.ManufacturingEditProductBom}">
             <link target="EditProductBom"/>
+        </menu-item>
+        <menu-item name="productManufacturingRules" title="${uiLabelMap.ManufacturingManufacturingRules}">
+            <link target="EditProductManufacturingRules"/>
         </menu-item>
     </menu>
     <menu name="ProductionRunTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml">

@@ -21,6 +21,8 @@ package org.apache.ofbiz.webapp.control;
 import static org.apache.ofbiz.base.util.UtilGenerics.checkMap;
 
 import java.math.BigInteger;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.cert.X509Certificate;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -1243,7 +1245,7 @@ public final class LoginWorker {
                         Map<String, String> x500Map = KeyStoreUtil.getCertX500Map(clientCerts[i]);
                         if (i == 0) {
                             String cn = x500Map.get("CN");
-                            cn = cn.replace("\\", "");
+                            cn = cn.replaceAll("\\\\", "");
                             Matcher m = pattern.matcher(cn);
                             if (m.matches()) {
                                 userLoginId = m.group(1);
@@ -1372,6 +1374,13 @@ public final class LoginWorker {
             if (UtilValidate.isEmpty(contextPath)) {
                 contextPath = "/";
             }
+
+            try {
+                contextPath = new URI(contextPath).normalize().toString();
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+
             ComponentConfig.WebappInfo info = ComponentConfig.getWebAppInfo(serverId, contextPath);
             if (info != null) {
                 return hasApplicationPermission(info, security, userLogin);
@@ -1381,7 +1390,7 @@ public final class LoginWorker {
                 }
             }
         } else {
-            if (Debug.warningOn() && !GenericValue.getStackTraceAsString().contains("ControlFilter")) {
+            if (Debug.warningOn()) {
                 Debug.logWarning("Received a null Security object from HttpServletRequest", MODULE);
             }
         }

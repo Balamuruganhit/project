@@ -48,7 +48,7 @@ under the License.
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="pre-body">
-                        <include-menu name="MainActionMenu" location="${parameters.mainMenuLocation}"/>
+                        <include-menu name="MainActionMenu" location="component://order/widget/ordermgr/OrderMenus.xml"/>
                     </decorator-section>
                     <decorator-section name="body">
                         <decorator-screen name="FindScreenDecorator"
@@ -161,6 +161,7 @@ under the License.
                 <set field="headerItem" value="request"/>
                 <set field="titleProperty" value="PageTitleViewRequest"/>
                 <set field="showRequestManagementLinks" value="Y"/>
+                <script location="component://order/groovyScripts/entry/setterRequired.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonRequestDecorator" location="${parameters.mainDecoratorLocation}">
@@ -182,6 +183,7 @@ under the License.
                 <set field="statusId" from-field="custRequest.statusId"/>
                 <entity-one entity-name="StatusItem" value-field="currentStatus"/>
                 <entity-one entity-name="CommunicationEvent" value-field="communicationEvent"/>
+                <script location="component://order/groovyScripts/entry/setterRequired.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonRequestDecorator" location="${parameters.mainDecoratorLocation}">
@@ -238,29 +240,10 @@ under the License.
             <widgets>
                 <decorator-screen name="CommonRequestDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <section>
-                            <condition>
-                                <and>
-                                    <or>
-                                        <if-has-permission permission="ORDERMGR" action="_CREATE"/>
-                                        <if-has-permission permission="ORDERMGR" action="_UPDATE"/>
-                                    </or>
-                                </and>
-                            </condition>
-                            <widgets>
-                                <screenlet id="EditRequestRolePanel" title="${uiLabelMap.PageTitleEditRequestRoles}" collapsible="true">
-                                    <include-form name="EditRequestRole" location="component://order/widget/ordermgr/CustRequestForms.xml"/>
-                                </screenlet>
-                                <screenlet id="RequestRoles">
-                                    <include-form name="ListRequestRoles" location="component://order/widget/ordermgr/CustRequestForms.xml"/>
-                                </screenlet>
-                            </widgets>
-                            <fail-widgets>
-                                <screenlet id="RequestRoles">
-                                    <include-form name="ViewRequestRoles" location="component://order/widget/ordermgr/CustRequestForms.xml"/>
-                                </screenlet>
-                            </fail-widgets>
-                        </section>
+                        <screenlet id="EditRequestRolePanel" title="${uiLabelMap.PageTitleEditRequestRoles}" collapsible="true">
+                            <include-form name="EditRequestRole" location="component://order/widget/ordermgr/CustRequestForms.xml"/>
+                        </screenlet>
+                        <include-form name="ListRequestRoles" location="component://order/widget/ordermgr/CustRequestForms.xml"/>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
@@ -282,11 +265,15 @@ under the License.
                     <order-by field-name="sequenceNum"/>
                     <order-by field-name="custRequestItemSeqId"/>
                 </entity-and>
+                <script location="component://order/groovyScripts/entry/setterRequired.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonRequestDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <screenlet title="${uiLabelMap.PageTitleRequestItems}">
+                            <link target="requestitem" text="${uiLabelMap.OrderNewRequestItem}" style="buttontext">
+                                <parameter param-name="custRequestId"/>
+                            </link>
                             <include-form name="ListRequestItems" location="component://order/widget/ordermgr/CustRequestForms.xml"/>
                         </screenlet>
                     </decorator-section>
@@ -306,12 +293,18 @@ under the License.
                 <entity-one entity-name="CustRequestItem" value-field="custRequestItem"/>
                 <set field="statusId" from-field="custRequestItem.statusId"/>
                 <entity-one entity-name="StatusItem" value-field="currentStatus"/>
-                <script location="component://order/src/main/groovy/org/apache/ofbiz/order/request/GetNextSequenceNum.groovy"/>
+                <script location="component://order/groovyScripts/entry/setterRequired.groovy"/>
+                <script location="component://order/groovyScripts/request/GetNextSequenceNum.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonRequestDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <screenlet title="${uiLabelMap.CommonId}:${custRequestItem.custRequestItemSeqId} ${custRequestItem.description}">
+                            <container>
+                                <link target="requestitem" text="${uiLabelMap.OrderNewRequestItem}" style="buttontext">
+                                    <parameter param-name="custRequestId"/>
+                                </link>
+                            </container>
                             <include-form name="EditCustRequestItem" location="component://order/widget/ordermgr/CustRequestForms.xml"/>
                             <platform-specific>
                                 <html><html-template location="component://order/template/request/CopyRequestItem.ftl"/></html>
@@ -333,7 +326,7 @@ under the License.
                 <set field="custRequestItemSeqId" from-field="parameters.custRequestItemSeqId"/>
                 <entity-one entity-name="CustRequest" value-field="custRequest"/>
                 <entity-one entity-name="CustRequestItem" value-field="custRequestItem"/>
-                <script location="component://order/src/main/groovy/org/apache/ofbiz/order/request/RequestItemNotes.groovy"/>
+                <script location="component://order/groovyScripts/request/RequestItemNotes.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonRequestDecorator" location="${parameters.mainDecoratorLocation}">
@@ -396,7 +389,7 @@ under the License.
                     <field-map field-name="custRequestId" from-field="custRequestItem.custRequestId"/>
                     <field-map field-name="custRequestItemSeqId" from-field="custRequestItem.custRequestItemSeqId"/>
                 </entity-and>
-                <script location="component://order/src/main/groovy/org/apache/ofbiz/order/request/SetRequestQuote.groovy"/>
+                <script location="component://order/groovyScripts/request/SetRequestQuote.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonRequestDecorator" location="${parameters.mainDecoratorLocation}">
@@ -570,7 +563,7 @@ under the License.
                     </condition>
                     <widgets>
                         <screenlet title="${uiLabelMap.OrderIncomingCustRequests}" navigation-menu-name="RequestScreenletMenu">
-                            <include-menu name="RequestScreenletMenu" location="${parameters.requestMenuLocation}"/>
+                            <include-menu name="RequestScreenletMenu" location="component://order/widget/ordermgr/OrderMenus.xml"/>
                             <include-form name="ListRequestList" location="component://order/widget/ordermgr/CustRequestForms.xml"/>
                         </screenlet>
                     </widgets>
@@ -591,7 +584,7 @@ under the License.
                         <if-compare field="otherContacts" operator="equals" value="Y"/>
                     </condition>
                     <actions>
-                        <script location="component://party/src/main/groovy/org/apache/ofbiz/party/party/GetMyCompany.groovy"/>
+                        <script location="component://party/groovyScripts/party/GetMyCompany.groovy"/>
                         <set field="fromPartyId" from-field=""/>
                         <set field="notFromPartyId" from-field="userLogin.partyId"/>
                         <set field="screenletTitle" from-field="uiLabelMap.OrderOpenCompanyCustomerRequests"/>

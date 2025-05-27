@@ -20,7 +20,6 @@ package org.apache.ofbiz.webapp.view;
 
 import java.io.IOException;
 
-import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +28,6 @@ import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.HttpClient;
 import org.apache.ofbiz.base.util.HttpClientException;
 import org.apache.ofbiz.base.util.UtilValidate;
-import org.apache.ofbiz.webapp.control.ConfigXMLReader;
 
 /**
  * ViewHandlerException - View Handler Exception
@@ -43,13 +41,8 @@ public class HttpViewHandler extends AbstractViewHandler {
     }
 
     @Override
-    public Map<String, Object> prepareViewContext(HttpServletRequest request, HttpServletResponse response, ConfigXMLReader.ViewMap viewMap) {
-        return Map.of();
-    }
-
-    @Override
     public void render(String name, String page, String info, String contentType, String encoding, HttpServletRequest request, HttpServletResponse
-            response, Map<String, Object> context) throws ViewHandlerException {
+            response) throws ViewHandlerException {
         // some containers call filters on EVERY request, even forwarded ones,
         // so let it know that it came from the control servlet
 

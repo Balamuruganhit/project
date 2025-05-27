@@ -183,7 +183,7 @@ public class NotificationServices {
      * @return A new Map indicating success or error containing the
      * body generated from the template and the input parameters.
      */
-    private static Map<String, Object> prepareNotification(DispatchContext ctx, Map<String, ? extends Object> context) {
+    public static Map<String, Object> prepareNotification(DispatchContext ctx, Map<String, ? extends Object> context) {
         Delegator delegator = ctx.getDelegator();
         String templateName = (String) context.get("templateName");
         Map<String, Object> templateData = UtilGenerics.cast(context.get("templateData"));
@@ -193,8 +193,6 @@ public class NotificationServices {
         if (templateData == null) {
             templateData = new LinkedHashMap<>();
         }
-        templateData.put("delegator", delegator);
-        templateData.put("dispatcher", ctx.getDispatcher());
 
         try {
             // ensure the baseURl is defined

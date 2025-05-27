@@ -42,7 +42,7 @@ public final class UtilPlist {
     /** simple 4 char indentation */
     private static final String INDENT_FOUR_STRING = "    ";
 
-    private static void writePlistProperty(String name, Object value, int indentLevel, PrintWriter writer) {
+    public static void writePlistProperty(String name, Object value, int indentLevel, PrintWriter writer) {
         for (int i = 0; i < indentLevel; i++) {
             writer.print(INDENT_FOUR_STRING);
         }
@@ -77,7 +77,7 @@ public final class UtilPlist {
             writer.println("}");
         }
     }
-    private static void writePlistPropertyValueList(List<Object> propertyValueList, int indentLevel, PrintWriter writer) {
+    public static void writePlistPropertyValueList(List<Object> propertyValueList, int indentLevel, PrintWriter writer) {
         for (int i = 0; i < indentLevel; i++) {
             writer.print(INDENT_FOUR_STRING);
         }
@@ -103,7 +103,7 @@ public final class UtilPlist {
         writer.println(");");
     }
 
-    private static void writePlistPropertyXml(String name, Object value, int indentLevel, PrintWriter writer) {
+    public static void writePlistPropertyXml(String name, Object value, int indentLevel, PrintWriter writer) {
         for (int i = 0; i < indentLevel; i++) {
             writer.print(INDENT_FOUR_STRING);
         }
@@ -125,7 +125,7 @@ public final class UtilPlist {
             writer.println("</string>");
         }
     }
-    private static void writePlistPropertyMapXml(Map<String, Object> propertyMap, int indentLevel, PrintWriter writer) {
+    public static void writePlistPropertyMapXml(Map<String, Object> propertyMap, int indentLevel, PrintWriter writer) {
         for (int i = 0; i < indentLevel; i++) {
             writer.print(INDENT_FOUR_STRING);
         }
@@ -138,7 +138,7 @@ public final class UtilPlist {
         }
         writer.println("</dict>");
     }
-    private static void writePlistPropertyValueListXml(List<Object> propertyValueList, int indentLevel, PrintWriter writer) {
+    public static void writePlistPropertyValueListXml(List<Object> propertyValueList, int indentLevel, PrintWriter writer) {
         for (int i = 0; i < indentLevel; i++) {
             writer.print(INDENT_FOUR_STRING);
         }

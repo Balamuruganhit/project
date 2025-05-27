@@ -27,7 +27,7 @@ under the License.
       <tr>
         <td class="label">${serviceParameter.name} (${serviceParameter.type})</td>
         <td>
-          ${StringUtil.wrapString(serviceParameter.field!)}
+          <input type="text" size="20" name="${serviceParameter.name}" value="<#if serviceParameter.value??>${serviceParameter.value?string}</#if>"<#if "N" == serviceParameter.optional> class="required"</#if>/>
           <#if "N" == serviceParameter.optional><span class="tooltip">${uiLabelMap.CommonRequired}</span></#if>
           <#if serviceParameter.defaultValue?has_content>${uiLabelMap.WebtoolsServiceDefault} ${serviceParameter.defaultValue?string}</#if>
           <#if serviceParameter_index == 0>

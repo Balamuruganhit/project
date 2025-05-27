@@ -33,7 +33,6 @@ import java.io.StringReader;
 import java.nio.ByteBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -43,14 +42,12 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.util.XMLResourceDescriptor;
@@ -69,13 +66,11 @@ import org.apache.commons.imaging.formats.tiff.TiffImageParser;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.ofbiz.base.crypto.HashCrypt;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.FileUtil;
 import org.apache.ofbiz.base.util.StringUtil;
 import org.apache.ofbiz.base.util.UtilProperties;
 import org.apache.ofbiz.base.util.UtilValidate;
-import org.apache.ofbiz.base.util.UtilXml;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.util.EntityUtilProperties;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -92,15 +87,13 @@ import org.apache.tika.parser.RecursiveParserWrapper;
 import org.apache.tika.sax.BasicContentHandlerFactory;
 import org.apache.tika.sax.ContentHandlerFactory;
 import org.apache.tika.sax.RecursiveParserWrapperHandler;
-import org.mustangproject.ZUGFeRD.ZUGFeRDImporter;
-import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import com.lowagie.text.pdf.PdfReader;
 
 public class SecuredUpload {
 
-    // To check if a webshell is not uploaded or a reverse shell put in the query string
+    // To check if a webshell is not uploaded
 
     // This can be helpful:
     // https://en.wikipedia.org/wiki/File_format
@@ -111,42 +104,18 @@ public class SecuredUpload {
     private static final String MODULE = SecuredUpload.class.getName();
     private static final List<String> DENIEDFILEEXTENSIONS = getDeniedFileExtensions();
     private static final List<String> DENIEDWEBSHELLTOKENS = getDeniedWebShellTokens();
-    private static final Integer MAXLINELENGTH = UtilProperties.getPropertyAsInteger("security", "maxLineLength", 0);
+    private static final Integer MAXLINELENGTH = UtilProperties.getPropertyAsInteger("security", "maxLineLength", 10000);
     private static final Boolean ALLOWSTRINGCONCATENATIONINUPLOADEDFILES =
             UtilProperties.getPropertyAsBoolean("security", "allowStringConcatenationInUploadedFiles", false);
 
-    // "(" and ")" for duplicates files
-    private static final String FILENAMEVALIDCHARACTERS_DUPLICATES =
-            UtilProperties.getPropertyValue("security", "fileNameValidCharactersDuplicates", "[a-zA-Z0-9-_ ()]");
-    private static final String FILENAMEVALIDCHARACTERS =
-            UtilProperties.getPropertyValue("security", "fileNameValidCharacters", "[a-zA-Z0-9-_ ]");
-
-    // Cover method of the same name below. Historically used with 84 references when below was created
-    // check there is no web shell in the uploaded file
-    // A file containing a reverse shell will be rejected.
     public static boolean isValidText(String content, List<String> allowed) throws IOException {
-        return isValidText(content, allowed, false);
-    }
-
-    public static boolean isValidText(String content, List<String> allowed, boolean isQuery) throws IOException {
-        if (content == null) {
+        String contentWithoutSpaces = content.replace(" ", "");
+        if ((contentWithoutSpaces.contains("\"+\"") || contentWithoutSpaces.contains("'+'"))
+                && !ALLOWSTRINGCONCATENATIONINUPLOADEDFILES) {
+            Debug.logInfo("The uploaded file contains a string concatenation. It can't be uploaded for security reason", MODULE);
             return false;
         }
-        if (!isQuery) {
-            String contentWithoutSpaces = content.replaceAll(" ", "");
-            if ((contentWithoutSpaces.contains("\"+\"") || contentWithoutSpaces.contains("'+'"))
-                    && !ALLOWSTRINGCONCATENATIONINUPLOADEDFILES) {
-                Debug.logInfo("The uploaded file contains a string concatenation. It can't be uploaded for security reason", MODULE);
-                return false;
-            }
-        } else {
-            // Check the query string is safe, notably no reverse shell
-            List<String> queryParameters = StringUtil.split(content, "&");
-            return DENIEDWEBSHELLTOKENS.stream().allMatch(token -> isValid(queryParameters, token.toLowerCase(), allowed));
-        }
-
-        // Check there is no web shell in an uploaded file
-        return DENIEDWEBSHELLTOKENS.stream().allMatch(token -> isValid(content.toLowerCase(), token.toLowerCase(), allowed));
+        return content != null ? DENIEDWEBSHELLTOKENS.stream().allMatch(token -> isValid(content, token.toLowerCase(), allowed)) : false;
     }
 
     public static boolean isValidFileName(String fileToCheck, Delegator delegator) throws IOException {
@@ -188,18 +157,10 @@ public class SecuredUpload {
                     Debug.logError("Uploaded file name too long", MODULE);
                 } else if (p.toString().contains(imageServerUrl.replace("/", "\\"))) {
                     // TODO check this is still useful in at least 1 case
-                    if (fileName.matches(
-                            FILENAMEVALIDCHARACTERS_DUPLICATES
-                            .concat("{1,249}.")
-                            .concat(FILENAMEVALIDCHARACTERS)
-                            .concat("{1,10}"))) {
+                    if (fileName.matches("[a-zA-Z0-9-_ ()]{1,249}.[a-zA-Z0-9-_ ]{1,10}")) { // "(" and ")" for duplicates files
                         wrongFile = false;
                     }
-                } else if (fileName.matches(
-                        FILENAMEVALIDCHARACTERS
-                        .concat("{1,249}.")
-                        .concat(FILENAMEVALIDCHARACTERS)
-                        .concat("{1,10}"))) {
+                } else if (fileName.matches("[a-zA-Z0-9-_ ]{1,249}.[a-zA-Z0-9-_ ]{1,10}")) {
                     wrongFile = false;
                 }
             } else { // Suppose a *nix system
@@ -207,18 +168,10 @@ public class SecuredUpload {
                     Debug.logError("Uploaded file name too long", MODULE);
                 } else if (p.toString().contains(imageServerUrl)) {
                     // TODO check this is still useful in at least 1 case
-                    if (fileName.matches(
-                            FILENAMEVALIDCHARACTERS_DUPLICATES
-                            .concat("{1,4086}.")
-                            .concat(FILENAMEVALIDCHARACTERS)
-                            .concat("{1,10}"))) {
+                    if (fileName.matches("[a-zA-Z0-9-_ ()]{1,4086}.[a-zA-Z0-9-_ ]{1,10}")) { // "(" and ")" for duplicates files
                         wrongFile = false;
                     }
-                } else if (fileName.matches(
-                        FILENAMEVALIDCHARACTERS
-                        .concat("{1,4086}.")
-                        .concat(FILENAMEVALIDCHARACTERS)
-                        .concat("{1,10}"))) {
+                } else if (fileName.matches("[a-zA-Z0-9-_ ]{1,4086}.[a-zA-Z0-9-_ ]{1,10}")) {
                     wrongFile = false;
                 }
             }
@@ -256,30 +209,10 @@ public class SecuredUpload {
 
         // Check the file content
 
-        /* Check max line length, default 10000.
-         PDF files are not concerned because they may contain several CharSet encodings
-         hence no possibility to use Files::readAllLines that needs a sole CharSet
-         MsOffice files are not accepted. This is why:
-         https://www.cvedetails.com/vulnerability-list/vendor_id-26/product_id-529/Microsoft-Word.html
-         https://www.cvedetails.com/version-list/26/410/1/Microsoft-Excel.html
-         You name it...
-         Also, the file may have been created using another charset than the one used to read it (default to OS' one).
-         I remember having searched bout that. But even
-         http://illegalargumentexception.blogspot.com/2009/05/java-rough-guide-to-character-encoding.html#javaencoding_autodetect
-         is not a 100% solution.
-         So even for text files it can be a problem and according to above there is no complete solution.
-        */
-        if (!isPdfFile(fileToCheck)) {
-            if (getMimeTypeFromFileName(fileToCheck).equals("application/x-tika-msoffice")) {
-                Debug.logError("File : " + fileToCheck + ", is a MS Office file."
-                        + " It can't be uploaded for security reason. Try to transform a Word file to PDF, "
-                        + "and an Excel file to CSV. For other file types try PDF.", MODULE);
-                return false;
-            }
-            if (!isValidImageIncludingSvgFile(fileToCheck) && !checkMaxLinesLength(fileToCheck)) {
-                Debug.logError("For security reason lines over " + MAXLINELENGTH.toString() + " are not allowed", MODULE);
-                return false;
-            }
+        // Check max line length, default 10000
+        if (!checkMaxLinesLength(fileToCheck)) {
+            Debug.logError("For security reason lines over " + MAXLINELENGTH.toString() + " are not allowed", MODULE);
+            return false;
         }
 
         if (isExecutable(fileToCheck)) {
@@ -351,7 +284,7 @@ public class SecuredUpload {
                     || isValidCompressedFile(fileToCheck, delegator)
                     || isValidAudioFile(fileToCheck)
                     || isValidVideoFile(fileToCheck)
-                    || isPdfFile(fileToCheck) && isValidPdfFile(fileToCheck)
+                    || isValidPdfFile(fileToCheck)
                     || isValidCsvFile(fileToCheck)) {
                 return true;
             }
@@ -509,81 +442,32 @@ public class SecuredUpload {
 
     /**
      * @param fileName
-     * @return true if it's a PDF file
+     * @return true if it's a safe PDF file: is PDF and does not contains embedded files
+     * @throws IOException If there is an error parsing the document
      */
-    private static boolean isPdfFile(String fileName) {
-        File file = new File(fileName);
-        try {
-            if (Objects.isNull(file) || !file.exists()) {
-                return false;
-            }
-            // Load stream in PDF parser
-            new PdfReader(file.getAbsolutePath()); // Just a check
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    /**
-     * @param fileName
-     * @return true if it's a safe PDF file: is a PDF, and contains only 1 embedded readable (valid and secure) XML file (zUGFeRD)
-     */
-    private static boolean isValidPdfFile(String fileName) {
+    private static boolean isValidPdfFile(String fileName) throws IOException {
         File file = new File(fileName);
         boolean safeState = false;
-        boolean canParseZUGFeRD = true;
         try {
-            if (Objects.isNull(file) || !file.exists()) {
-                return safeState;
-            }
-            // Load stream in PDF parser
-            // If the stream is not a PDF then exception will be thrown and safe state will be set to FALSE
-            PdfReader reader = new PdfReader(file.getAbsolutePath());
-            // Check 1: detect if the document contains any JavaScript code
-            String jsCode = reader.getJavaScript();
-            if (!Objects.isNull(jsCode)) {
-                return safeState;
-            }
-            // OK no JS code, pass to check 2: detect if the document has any embedded files
-            PDEmbeddedFilesNameTreeNode efTree = null;
-            try (PDDocument pdDocument = PDDocument.load(file)) {
-                PDDocumentNameDictionary names = new PDDocumentNameDictionary(pdDocument.getDocumentCatalog());
-                efTree = names.getEmbeddedFiles();
-            }
-            boolean zUGFeRDCompliantUploadAllowed = UtilProperties.getPropertyAsBoolean("security", "allowZUGFeRDCompliantUpload", false);
-            if (zUGFeRDCompliantUploadAllowed && !Objects.isNull(efTree)) {
-                canParseZUGFeRD = false;
-                Integer numberOfEmbeddedFiles = efTree.getNames().size();
-                if (numberOfEmbeddedFiles.equals(1)) {
-                    ZUGFeRDImporter importer = new ZUGFeRDImporter(file.getAbsolutePath());
-                    boolean allowZUGFeRDnotSecure = UtilProperties.getPropertyAsBoolean("security", "allowZUGFeRDnotSecure", false);
-                    if (allowZUGFeRDnotSecure) {
-                        canParseZUGFeRD = importer.canParse();
-                    } else {
-                        try {
-                            Document document = UtilXml.readXmlDocument(importer.getUTF8());
-                            if (document.toString().equals("[#document: null]")) {
-                                safeState = false;
-                                Debug.logInfo("The file " + file.getAbsolutePath()
-                                        + " is not a readable (valid and secure) PDF file. For security reason it's not accepted as a such file",
-                                        MODULE);
-
-                            }
-                        } catch (SAXException | ParserConfigurationException | IOException e) {
-                            safeState = false;
-                            Debug.logInfo(e, "The file " + file.getAbsolutePath()
-                                    + " is not a readable (valid and secure) PDF file. For security reason it's not accepted as a such file",
-                                    MODULE);
-                        }
+            if ((file != null) && file.exists()) {
+                // Load stream in PDF parser
+                // If the stream is not a PDF then exception will be thrown and safe state will be set to FALSE
+                PdfReader reader = new PdfReader(file.getAbsolutePath());
+                // Check 1: detect if the document contains any JavaScript code
+                String jsCode = reader.getJavaScript();
+                if (jsCode == null) {
+                    // OK no JS code, pass to check 2: detect if the document has any embedded files
+                    PDEmbeddedFilesNameTreeNode efTree = null;
+                    try (PDDocument pdDocument = PDDocument.load(file)) {
+                        PDDocumentNameDictionary names = new PDDocumentNameDictionary(pdDocument.getDocumentCatalog());
+                        efTree = names.getEmbeddedFiles();
                     }
+                    safeState = efTree == null;
                 }
             }
-            safeState = Objects.isNull(efTree) || canParseZUGFeRD;
         } catch (Exception e) {
             safeState = false;
-            Debug.logInfo(e, "The file " + file.getAbsolutePath() + " is not a readable (valid and secure) PDF file. "
-                    + "For security reason it's not accepted as a such file",
+            Debug.logInfo(e, "The file " + file.getAbsolutePath() + " is not a valid PDF file. For security reason it's not accepted as a such file",
                     MODULE);
         }
         return safeState;
@@ -619,12 +503,8 @@ public class SecuredUpload {
         }
 
         // cf. https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html
-        if (!content.contains("</svg>")) {
-            try (CSVParser parser = new CSVParser(in, cvsFormat)) {
-                parser.getRecords();
-            }
-        } else {
-            Debug.logInfo("The file " + fileName + " is not a valid CSV file. For security reason it's not accepted as a such file", MODULE);
+        try (CSVParser parser = new CSVParser(in, cvsFormat)) {
+            parser.getRecords();
         }
         return isValidTextFile(fileName, false); // Validate content to prevent webshell
     }
@@ -850,30 +730,10 @@ public class SecuredUpload {
         return isValidText(content, allowed);
     }
 
-    // Check there is no web shell
     private static boolean isValid(String content, String string, List<String> allowed) {
-        boolean isOK = !content.contains(string) || allowed.contains(string);
+        boolean isOK = !content.toLowerCase().contains(string) || allowed.contains(string);
         if (!isOK) {
             Debug.logInfo("The uploaded file contains the string '" + string + "'. It can't be uploaded for security reason", MODULE);
-        }
-        return isOK;
-    }
-
-    // Check there is no reverse shell in query string
-    private static boolean isValid(List<String> queryParameters, String string, List<String> allowed) {
-        boolean isOK = true;
-
-        for (String parameter : queryParameters) {
-            if (!parameter.contains(string)
-                    || allowed.contains(HashCrypt.cryptBytes("SHA", "OFBiz", parameter.toLowerCase().getBytes(StandardCharsets.UTF_8)))) {
-                continue;
-            } else {
-                isOK = false;
-                break;
-            }
-        }
-        if (!isOK) {
-            Debug.logInfo("The HTTP query string contains the string '" + string + "'. It can't be uploaded for security reason", MODULE);
         }
         return isOK;
     }
@@ -897,9 +757,6 @@ public class SecuredUpload {
     }
 
     private static boolean checkMaxLinesLength(String fileToCheck) {
-        if (MAXLINELENGTH == 0) {
-            return true;
-        }
         try {
             File file = new File(fileToCheck);
             List<String> lines = FileUtils.readLines(file, Charset.defaultCharset());
@@ -909,7 +766,6 @@ public class SecuredUpload {
                 }
             }
         } catch (IOException e) {
-            Debug.logError(e, "File : " + fileToCheck + ", can't be uploaded for security reason", MODULE);
             return false;
         }
         return true;

@@ -20,7 +20,6 @@ package org.apache.ofbiz.base.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -36,7 +35,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
-import org.apache.ofbiz.base.lang.IsEmpty;
 
 /**
  * Misc String Utility Functions
@@ -135,20 +133,6 @@ public final class StringUtil {
             }
         }
         return splitList;
-    }
-
-    /**
-     * Splits a String on a String Separator into a List of Strings.
-     * @param str the String to split
-     * @param separator the String Separator to split the str String
-     * @return a list of Strings or null if one of the parameters is null
-     */
-    public static List<String> splitWithStringSeparator(String str, String separator) {
-        if (str == null || separator == null) {
-            return null;
-        }
-
-        return Arrays.asList(str.split(separator));
     }
 
     /**
@@ -423,25 +407,20 @@ public final class StringUtil {
     }
 
     /**
-     * A super-lightweight object to wrap a String object. Mainly used with FTL
-     * templates to avoid the general HTML auto-encoding that is now done through
-     * the Screen Widget.
+     * A super-lightweight object to wrap a String object. Mainly used with FTL templates
+     * to avoid the general HTML auto-encoding that is now done through the Screen Widget.
      */
-    public static class StringWrapper implements IsEmpty {
+    public static class StringWrapper {
         public static final StringWrapper EMPTY_STRING_WRAPPER = new StringWrapper("");
 
         private String theString;
-
-        protected StringWrapper() {
-        }
-
+        protected StringWrapper() { }
         public StringWrapper(String theString) {
             this.theString = theString;
         }
 
         /**
          * Fairly simple method used for the plus (+) base concatenation in Groovy.
-         *
          * @param value
          * @return the wrapped string, plus the value
          */
@@ -460,7 +439,6 @@ public final class StringUtil {
         /**
          * @return true, if wrapped string is null or empty; false otherwise
          */
-        @Override
         public boolean isEmpty() {
             return (theString == null || theString.isEmpty());
         }

@@ -35,7 +35,7 @@ under the License.
         <menu-item name="Imagemanagement" title="${uiLabelMap.ImageManagement}"><link target="Imagemanagement"/></menu-item>
     </menu>
     <menu name="MainActionMenu" menu-container-style="button-bar button-style-2" default-selected-style="selected">
-        <menu-item name="newProduct" title="${uiLabelMap.ProductCreateNewProduct}">
+        <menu-item name="newProduct" title="${uiLabelMap.CommonNew} ${uiLabelMap.CommonProduct}">
             <condition>
                 <and>
                     <or>
@@ -45,7 +45,7 @@ under the License.
             </condition>
             <link target="EditProduct"/>
         </menu-item>
-        <menu-item name="newStore" title="${uiLabelMap.ProductCreateNewProductStore}">
+        <menu-item name="newStore" title="${uiLabelMap.CommonNew} ${uiLabelMap.ProductStore}">
             <condition>
                 <and>
                     <or>
@@ -55,7 +55,7 @@ under the License.
             </condition>
             <link target="EditProductStore"/>
         </menu-item>
-        <menu-item name="newCatalog" title="${uiLabelMap.ProductCreateNewCatalog}">
+        <menu-item name="newCatalog" title="${uiLabelMap.CommonNew} ${uiLabelMap.Catalog}">
             <condition>
                 <and>
                     <or>
@@ -65,7 +65,7 @@ under the License.
             </condition>
             <link target="EditProdCatalog"/>
         </menu-item>
-        <menu-item name="newCategory" title="${uiLabelMap.ProductCreateNewCategory}">
+        <menu-item name="newCategory" title="${uiLabelMap.CommonNew} ${uiLabelMap.ProductCategory}">
             <condition>
                 <and>
                     <or>
@@ -709,37 +709,6 @@ under the License.
             </condition>
             <link target="ImageResize">
                 <parameter param-name="productId"/>
-            </link>
-        </menu-item>
-    </menu>
-    <menu name="EditSubscription" default-selected-style="selected" type="simple"
-        menu-container-style="button-bar tab-bar" selected-menuitem-context-field-name="tabButtonItem">
-        <menu-item name="EditSubscription" title="${uiLabelMap.ProductSubscription}">
-            <link target="EditSubscription">
-                <parameter param-name="subscriptionId"/>
-            </link>
-        </menu-item>
-        <menu-item name="EditSubscriptionAttributes" title="${uiLabelMap.ProductSubscriptionAttributes}">
-            <link target="EditSubscriptionAttributes">
-                <parameter param-name="subscriptionId"/>
-            </link>
-        </menu-item>
-        <menu-item name="EditSubscriptionCommEvent" title="${uiLabelMap.ProductSubscriptionCommEvent}">
-            <link target="EditSubscriptionCommEvent">
-                <parameter param-name="subscriptionId"/>
-            </link>
-        </menu-item>
-    </menu>
-    <menu name="EditSubscriptionResource" default-selected-style="selected" type="simple"
-        menu-container-style="button-bar tab-bar" selected-menuitem-context-field-name="tabButtonItem">
-        <menu-item name="EditSubscriptionResource" title="${uiLabelMap.ProductSubscriptionResource}">
-            <link target="EditSubscriptionResource">
-                <parameter param-name="subscriptionResourceId"/>
-            </link>
-        </menu-item>
-        <menu-item name="EditSubscriptionResourceProducts" title="${uiLabelMap.ProductProducts}">
-            <link target="EditSubscriptionResourceProducts">
-                <parameter param-name="subscriptionResourceId"/>
             </link>
         </menu-item>
     </menu>

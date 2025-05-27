@@ -25,7 +25,7 @@ public abstract class CacheSoftReference<V> extends ReferenceCleaner.Soft<V> {
 
     private static final String MODULE = CacheSoftReference.class.getName();
 
-    CacheSoftReference(V o) {
+    public CacheSoftReference(V o) {
         super(o);
     }
 

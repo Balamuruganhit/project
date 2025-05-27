@@ -28,16 +28,16 @@ under the License.
         <junit-test-suite class-name="org.apache.ofbiz.product.test.InventoryItemTransferTest"/>
     </test-case>
     <test-case case-name="inventory-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.product.product.test.InventoryTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.product.InventoryTests"/>
     </test-case>
 
     <test-case case-name="shipment-tests">
-        <junit-test-suite class-name="org.apache.ofbiz.product.product.test.ShipmentTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.product.ShipmentTests"/>
     </test-case>
 
     <test-group case-name="shipmentcost-tests">
         <entity-xml action="load" entity-xml-url="component://product/testdef/data/ShipmentCostTestData.xml"/>
-        <junit-test-suite class-name="org.apache.ofbiz.product.shipment.test.ShipmentCostTests"/>
+        <junit-test-suite class-name="org.apache.ofbiz.shipment.ShipmentCostTests"/>
     </test-group>
 
     <test-case case-name="loadIssuanceTestData">

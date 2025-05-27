@@ -83,4 +83,31 @@ under the License.
         <field name="estimatedSetupMillis" title="${uiLabelMap.ManufacturingTaskEstimatedSetupMillis}"><display/></field>
         <field name="estimatedMilliSeconds" title="${uiLabelMap.ManufacturingTaskEstimatedMilliSeconds}"><display/></field>
     </form>
+    <form name="LookupPoNumber" target="LookupPoNumber" type="single"
+    header-row-style="header-row" default-table-style="basic-table">
+        <auto-fields-service service-name="lookupPO" default-field-type="find"/>
+        <field name="orderId" title="Po/So Number"><text-find/></field>
+        <field name="orderDate" title="Order Date"><hidden value=""/></field>
+        <field name="noConditionFind"><hidden value="Y"/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonFind}"><submit button-type="button"/></field>
+    </form>
+
+    <form name="ListLookupPoNumber" type="list" list-name="listIt" paginate-target="LookupPoNumber"
+    odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
+    <actions>
+        <service service-name="performFind" result-map="result" result-map-list="listIt">
+            <field-map field-name="inputFields" from-field="requestParameters"/>
+            <field-map field-name="entityName" from-field="entityName"/>
+            <field-map field-name="viewIndex" from-field="viewIndex"/>
+            <field-map field-name="viewSize" from-field="viewSize"/>
+        </service>
+    </actions>
+    <field name="orderId" title="Po/So Number" widget-style="smallSubmit">
+        <hyperlink description="${orderId}" target="javascript:set_value('${orderId}')" also-hidden="false" target-type="plain"/>
+    </field>
+    <field name="orderTypeId" title="Order type"><display/></field>
+    <field name="orderDate" title="Po/So Date"><display/></field>
+</form>
+
+
 </forms>

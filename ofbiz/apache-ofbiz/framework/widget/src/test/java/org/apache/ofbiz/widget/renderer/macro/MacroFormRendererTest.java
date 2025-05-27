@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -43,7 +42,6 @@ import org.apache.ofbiz.base.util.UtilHttp;
 import org.apache.ofbiz.base.util.UtilProperties;
 import org.apache.ofbiz.base.util.template.FreeMarkerWorker;
 import org.apache.ofbiz.entity.Delegator;
-import org.apache.ofbiz.webapp.control.ConfigXMLReader;
 import org.apache.ofbiz.webapp.control.RequestHandler;
 import org.apache.ofbiz.widget.model.FieldInfo;
 import org.apache.ofbiz.widget.model.ModelForm;
@@ -132,6 +130,7 @@ public class MacroFormRendererTest {
         new UtilPropertiesMockUp();
     }
 
+    @SuppressWarnings("checkstyle:InnerAssignment")
     @Test
     public void labelRenderedAsSingleMacro(@Mocked ModelScreenWidget.Label label) {
         new Expectations() {
@@ -223,46 +222,72 @@ public class MacroFormRendererTest {
     }
 
     @Test
-    public void textAreaMacroRendered(@Mocked ModelFormField.TextareaField textareaField) {
+    public void textAreaMacroRendered(@Mocked ModelFormField.TextareaField textareaField) throws IOException {
         new Expectations() {
             {
-                renderableFtlFormElementsBuilder.textArea(withNotNull(), textareaField);
-                result = genericMacroCall;
+                modelFormField.getEntry(withNotNull(), anyString);
+                result = "TEXTAREAVALUE";
+
+                textareaField.getCols();
+                result = 11;
+
+                textareaField.getRows();
+                result = 22;
             }
         };
-
-        genericTooltipRenderedExpectation(textareaField);
 
         macroFormRenderer.renderTextareaField(appendable, ImmutableMap.of(), textareaField);
 
-        genericSingleMacroRenderedVerification();
-        genericTooltipRenderedVerification();
+        assertAndGetMacroString("renderTextareaField", ImmutableMap.of(
+                "value", "TEXTAREAVALUE",
+                "cols", "11",
+                "rows", "22"));
     }
 
     @Test
-    public void dateTimeMacroRendered(@Mocked ModelFormField.DateTimeField dateTimeField) {
+    public void dateTimeMacroRendered(@Mocked ModelFormField.DateTimeField dateTimeField) throws IOException {
         new Expectations() {
             {
-                renderableFtlFormElementsBuilder.dateTime(withNotNull(), dateTimeField);
-                result = genericMacroCall;
+                modelFormField.getEntry(withNotNull(), anyString);
+                result = "2020-01-02";
+
+                dateTimeField.getInputMethod();
+                result = "date";
             }
         };
 
-        genericTooltipRenderedExpectation(dateTimeField);
-
         macroFormRenderer.renderDateTimeField(appendable, ImmutableMap.of(), dateTimeField);
+        assertAndGetMacroString("renderDateTimeField", ImmutableMap.of("value", "2020-01-02"));
+    }
 
-        genericSingleMacroRenderedVerification();
-        genericTooltipRenderedVerification();
+    @Test
+    public void dropDownMacroRendered(@Mocked ModelFormField.DropDownField dropDownField) throws IOException {
+        final List<ModelFormField.OptionValue> optionValues = ImmutableList.of(
+                new ModelFormField.OptionValue("KEY1", "DESC1"),
+                new ModelFormField.OptionValue("KEY2", "DESC2"));
+
+        new Expectations() {
+            {
+                modelFormField.getEntry(withNotNull());
+                result = "KEY2";
+
+                dropDownField.getAllOptionValues(withNotNull(), (Delegator) any);
+                result = optionValues;
+            }
+        };
+
+        macroFormRenderer.renderDropDownField(appendable, ImmutableMap.of(), dropDownField);
+        assertAndGetMacroString("renderDropDownField", ImmutableMap.of(
+                "currentValue", "KEY2",
+                "options", ImmutableList.of("{'key':'KEY1','description':'DESC1'}",
+                        "{'key':'KEY2','description':'DESC2'}")));
     }
 
     @Test
     public void checkFieldMacroRendered(@Mocked ModelFormField.CheckField checkField) throws IOException {
         final List<ModelFormField.OptionValue> optionValues = ImmutableList.of(
                 new ModelFormField.OptionValue("KEY1", "DESC1"),
-                new ModelFormField.OptionValue("KEY2", "DESC2"),
-                new ModelFormField.OptionValue("KEY3", "DESC3"),
-                new ModelFormField.OptionValue("KEY4", "DESC4"));
+                new ModelFormField.OptionValue("KEY2", "DESC2"));
 
         new Expectations() {
             {
@@ -277,42 +302,10 @@ public class MacroFormRendererTest {
         macroFormRenderer.renderCheckField(appendable, ImmutableMap.of(), checkField);
         assertAndGetMacroString("renderCheckField", ImmutableMap.of(
                 "currentValue", "KEY2",
-                "items", ImmutableList.of(
-                        "{'value':'KEY1', 'description':'DESC1', 'checked':'false'}",
-                        "{'value':'KEY2', 'description':'DESC2', 'checked':'true'}",
-                        "{'value':'KEY3', 'description':'DESC3', 'checked':'false'}",
-                        "{'value':'KEY4', 'description':'DESC4', 'checked':'false'}")));
-        new Expectations() {
-            {
-                modelFormField.getEntry(withNotNull());
-                result = "";
-
-                checkField.getModelFormField().getAttributeName();
-                result = "FieldName";
-            }
-        };
-
-        StringWriter writer = new StringWriter();
-        Map<String, Object> context = new HashMap<>();
-        LinkedList<String> fieldName = new LinkedList<>();
-        fieldName.add("KEY1");
-        fieldName.add("KEY3");
-        context.put("FieldName", fieldName);
-
-        try {
-            macroFormRenderer.renderCheckField(writer, context, checkField);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        assertAndGetMacroString("renderCheckField", ImmutableMap.of(
-                "items", ImmutableList.of(
-                        "{'value':'KEY1', 'description':'DESC1', 'checked':'true'}",
-                        "{'value':'KEY2', 'description':'DESC2', 'checked':'false'}",
-                        "{'value':'KEY3', 'description':'DESC3', 'checked':'true'}",
-                        "{'value':'KEY4', 'description':'DESC4', 'checked':'false'}")));
-
+                "items", ImmutableList.of("{'value':'KEY1', 'description':'DESC1'}",
+                        "{'value':'KEY2', 'description':'DESC2', 'checked':'true'}")));
     }
+
     @Test
     public void radioFieldMacroRendered(@Mocked ModelFormField.RadioField radioField) throws IOException {
         final List<ModelFormField.OptionValue> optionValues = ImmutableList.of(
@@ -601,6 +594,29 @@ public class MacroFormRendererTest {
                 "alert", "true",
                 "value", "AAA",
                 "value2", "BBB"));
+    }
+
+    @Test
+    public void dateFindFieldMacroRendered(@Mocked ModelFormField modelFormField,
+                                           @Mocked ModelFormField.DateFindField dateFindField) throws IOException {
+        new Expectations() {
+            {
+                dateFindField.getModelFormField();
+                result = modelFormField;
+
+                modelFormField.getEntry(withNotNull(), withNull());
+                result = "2020-01-01";
+
+                modelFormField.getParameterName(withNotNull());
+                result = "FIELDNAME";
+            }
+        };
+
+        ImmutableMap<String, Object> context = ImmutableMap.of();
+        macroFormRenderer.renderDateFindField(appendable, context, dateFindField);
+        assertAndGetMacroString("renderDateFindField", ImmutableMap.of(
+                "name", "FIELDNAME",
+                "value", "2020-01-01"));
     }
 
     @Test
@@ -922,54 +938,6 @@ public class MacroFormRendererTest {
         assertAndGetMacroString("makeHyperlinkString", ImmutableMap.of("description", "DESCR…", "title", description));
     }
 
-    @Test
-    public void hyperlinkFieldMacroRenderedModalParameters(@Mocked ModelFormField.HyperlinkField hyperlinkField) throws IOException {
-        final String title = "TitleValue";
-        final String text = "TextValue";
-        final String description = "DescriptionValue";
-        final String target = "Encoded Target";
-        final String id = "IdValue";
-        final String uniqueItemName = "UniqueItemName";
-        final String width = "650";
-        final String height = "150";
-        final String confirmation = "Are you sure ?";
-        final String targetWindow = "_blank";
-        final Map<String, ConfigXMLReader.RequestMap> requestMapMap = new HashMap<>();
-        final Map<String, String> parameterMap = new HashMap<>();
-        parameterMap.put("k1", "v1");
-        parameterMap.put("k2", "v2");
-
-        new Expectations() {
-            {
-                hyperlinkField.getDescription(withNotNull()); result = description;
-                hyperlinkField.getTarget(withNotNull()); result = target;
-                hyperlinkField.getParameterMap(withNotNull(), withNull(), withNull()); result = parameterMap;
-                hyperlinkField.getConfirmation(withNotNull()); result = confirmation;
-                hyperlinkField.getTargetWindow(withNotNull()); result = targetWindow;
-                request.getAttribute("title"); result = title;
-                request.getAttribute("text"); result = text;
-                request.getAttribute("requestMapMap"); result = requestMapMap;
-                request.getAttribute("id"); result = id;
-                request.getAttribute("uniqueItemName"); result = uniqueItemName;
-                request.getAttribute("width"); result = width;
-                request.getAttribute("height"); result = height;
-            }
-        };
-
-        macroFormRenderer.renderHyperlinkField(appendable, new HashMap<>(), hyperlinkField);
-        ImmutableMap<String, Object> result = ImmutableMap.<String, Object>builder()
-                .put("title", title)
-                .put("description", description)
-                .put("linkUrl", "Encoded%20Target")
-                .put("id", id)
-                .put("targetParameters", "{'k1':'v1','k2':'v2'}")
-                .put("width", width)
-                .put("confirmation", confirmation)
-                .put("targetWindow", targetWindow)
-                .build();
-        assertAndGetMacroString("makeHyperlinkString", result);
-    }
-
     private String assertAndGetMacroString(final String expectedName) {
         return assertAndGetMacroString(expectedName, ImmutableMap.of());
     }
@@ -1042,6 +1010,27 @@ public class MacroFormRendererTest {
         new Verifications() {
             {
                 ftlWriter.processFtl(appendable, genericTooltipMacroCall);
+            }
+        };
+    }
+
+    private void genericSubHyperlinkRenderedExpectation(final ModelFormField.SubHyperlink subHyperlink) {
+        new Expectations() {
+            {
+                subHyperlink.shouldUse(withNotNull());
+                result = true;
+
+                subHyperlink.getStyle(withNotNull());
+                result = "buttontext";
+
+                subHyperlink.getUrlMode();
+                result = "inter-app";
+
+                subHyperlink.getTarget(withNotNull());
+                result = "/path/to/target";
+
+                subHyperlink.getDescription(withNotNull());
+                result = "LinkDescription";
             }
         };
     }

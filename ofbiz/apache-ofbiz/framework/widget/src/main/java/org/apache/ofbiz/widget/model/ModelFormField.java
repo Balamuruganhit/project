@@ -88,7 +88,7 @@ import org.w3c.dom.Element;
 /**
  * Models the &lt;field&gt; element.
  *
- * @see <a href="https://ofbiz.apache.org/dtds/widget-form.xsd">widget-form.xsd</a>
+ * @see <code>widget-form.xsd</code>
  */
 public final class ModelFormField {
 
@@ -160,7 +160,7 @@ public final class ModelFormField {
     private final String parentFormName;
     private final String tabindex;
     private final String conditionGroup;
-    private final FlexibleStringExpander disabled;
+    private final boolean disabled;
 
     private ModelFormField(ModelFormFieldBuilder builder) {
         this.action = builder.getAction();
@@ -215,7 +215,7 @@ public final class ModelFormField {
         this.parentFormName = builder.getParentFormName();
         this.tabindex = builder.getTabindex();
         this.conditionGroup = builder.getConditionGroup();
-        this.disabled = builder.getDisabledSpec();
+        this.disabled = builder.getDisabled();
     }
 
     public FlexibleStringExpander getAction() {
@@ -483,15 +483,8 @@ public final class ModelFormField {
         return conditionGroup;
     }
 
-    public FlexibleStringExpander getDisabledSpec() {
+    public boolean getDisabled() {
         return disabled;
-    }
-
-    public boolean getDisabled(Map<String, Object> context) {
-        if (UtilValidate.isNotEmpty(this.disabled)) {
-            return "true".equals(disabled.expandString(context));
-        }
-        return false;
     }
 
     public Map<String, ? extends Object> getMap(Map<String, ? extends Object> context) {
@@ -1073,7 +1066,6 @@ public final class ModelFormField {
         public static final String ROW_SUBMIT_FIELD_NAME = "_rowSubmit";
         private final FlexibleStringExpander allChecked;
 
-
         private CheckField(CheckField original, ModelFormField modelFormField) {
             super(original, modelFormField);
             this.allChecked = original.allChecked;
@@ -1273,11 +1265,11 @@ public final class ModelFormField {
      * @see <code>widget-form.xsd</code>
      */
     public static class DateTimeField extends FieldInfo {
-        private final boolean isTwelveHour;
+        private final String clock;
         private final FlexibleStringExpander defaultValue;
         private final String inputMethod;
-        private final boolean useMask;
-        private final int step;
+        private final String mask;
+        private final String step;
         private final String type;
 
         protected DateTimeField(DateTimeField original, ModelFormField modelFormField) {
@@ -1285,8 +1277,8 @@ public final class ModelFormField {
             this.defaultValue = original.defaultValue;
             this.type = original.type;
             this.inputMethod = original.inputMethod;
-            this.isTwelveHour = original.isTwelveHour;
-            this.useMask = original.useMask;
+            this.clock = original.clock;
+            this.mask = original.mask;
             this.step = original.step;
         }
 
@@ -1295,22 +1287,13 @@ public final class ModelFormField {
             this.defaultValue = FlexibleStringExpander.getInstance(element.getAttribute("default-value"));
             this.type = element.getAttribute("type");
             this.inputMethod = element.getAttribute("input-method");
-            this.isTwelveHour = "12".equals(element.getAttribute("clock"));
-            this.useMask = "Y".equals(element.getAttribute("mask"));
-
-            final String stepAttribute = element.getAttribute("step");
-            if (stepAttribute.isEmpty()) {
-                this.step = 1;
-            } else {
-                try {
-                    this.step = Integer.parseInt(stepAttribute);
-                } catch (IllegalArgumentException e) {
-                    final String msg = "Could not read the step value of the datetime element: [" + stepAttribute
-                            + "]. Value must be an integer.";
-                    Debug.logError(msg, MODULE);
-                    throw new RuntimeException(msg, e);
-                }
+            this.clock = element.getAttribute("clock");
+            this.mask = element.getAttribute("mask");
+            String step = element.getAttribute("step");
+            if (step.isEmpty()) {
+                step = "1";
             }
+            this.step = step;
         }
 
         public DateTimeField(int fieldSource, ModelFormField modelFormField) {
@@ -1318,9 +1301,9 @@ public final class ModelFormField {
             this.defaultValue = FlexibleStringExpander.getInstance("");
             this.type = "";
             this.inputMethod = "";
-            this.isTwelveHour = false;
-            this.useMask = false;
-            this.step = 1;
+            this.clock = "";
+            this.mask = "";
+            this.step = "1";
         }
 
         public DateTimeField(int fieldSource, String type) {
@@ -1328,9 +1311,9 @@ public final class ModelFormField {
             this.defaultValue = FlexibleStringExpander.getInstance("");
             this.type = type;
             this.inputMethod = "";
-            this.isTwelveHour = false;
-            this.useMask = false;
-            this.step = 1;
+            this.clock = "";
+            this.mask = "";
+            this.step = "1";
         }
 
         public DateTimeField(ModelFormField modelFormField) {
@@ -1338,9 +1321,9 @@ public final class ModelFormField {
             this.defaultValue = FlexibleStringExpander.getInstance("");
             this.type = "";
             this.inputMethod = "";
-            this.isTwelveHour = false;
-            this.useMask = false;
-            this.step = 1;
+            this.clock = "";
+            this.mask = "";
+            this.step = "1";
         }
 
         @Override
@@ -1354,10 +1337,11 @@ public final class ModelFormField {
         }
 
         /**
-         * @return True if this field uses a 12-hour clock. If false then a 24-hour clock should be used.
+         * Gets clock.
+         * @return the clock
          */
-        public boolean isTwelveHour() {
-            return this.isTwelveHour;
+        public String getClock() {
+            return this.clock;
         }
 
         /**
@@ -1409,32 +1393,26 @@ public final class ModelFormField {
 
         /**
          * Gets mask.
-         *
          * @return the mask
          */
-        public boolean useMask() {
-            return this.useMask;
+        public String getMask() {
+            return this.mask;
         }
 
         /**
          * Gets step.
-         *
          * @return the step
          */
-        public int getStep() {
+        public String getStep() {
             return this.step;
         }
 
-        public final boolean isDateType() {
-            return "date".equals(type);
-        }
-
-        public final boolean isTimeType() {
-            return "time".equals(type);
-        }
-
-        public final boolean isTimestampType() {
-            return "timestamp".equals(type);
+        /**
+         * Gets type.
+         * @return the type
+         */
+        public String getType() {
+            return type;
         }
 
         @Override
@@ -1786,7 +1764,7 @@ public final class ModelFormField {
             if (UtilValidate.isEmpty(retVal)) {
                 retVal = this.getDefaultValue(context);
             } else if ("currency".equals(type)) {
-                retVal = retVal.replace("&nbsp;", " ");
+                retVal = retVal.replaceAll("&nbsp;", " ");
                 // FIXME : encoding currency is a problem for some locale, we should not have any &nbsp; in retVal other case may arise in future...
                 Locale locale = (Locale) context.get("locale");
                 if (locale == null) {
@@ -1953,7 +1931,7 @@ public final class ModelFormField {
         private final int otherFieldSize;
         private final String size;
         private final SubHyperlink subHyperlink;
-        private final Optional<Integer> textSize;
+        private final String textSize;
 
         private DropDownField(DropDownField original, ModelFormField modelFormField) {
             super(original, modelFormField);
@@ -2006,8 +1984,11 @@ public final class ModelFormField {
             } else {
                 this.subHyperlink = null;
             }
-
-            this.textSize = parseElementAttributeAsOptionalInteger(element, "text-size");
+            String textSize = element.getAttribute("text-size");
+            if (textSize.isEmpty()) {
+                textSize = "0";
+            }
+            this.textSize = textSize;
         }
 
         public DropDownField(int fieldSource, List<OptionSource> optionSources) {
@@ -2020,7 +2001,7 @@ public final class ModelFormField {
             this.otherFieldSize = 0;
             this.size = "1";
             this.subHyperlink = null;
-            this.textSize = Optional.empty();
+            this.textSize = "0";
         }
 
         public DropDownField(int fieldSource, ModelFormField modelFormField) {
@@ -2033,7 +2014,7 @@ public final class ModelFormField {
             this.otherFieldSize = 0;
             this.size = "1";
             this.subHyperlink = null;
-            this.textSize = Optional.empty();
+            this.textSize = "0";
         }
 
         public DropDownField(ModelFormField modelFormField) {
@@ -2046,7 +2027,7 @@ public final class ModelFormField {
             this.otherFieldSize = 0;
             this.size = "1";
             this.subHyperlink = null;
-            this.textSize = Optional.empty();
+            this.textSize = "0";
         }
 
         @Override
@@ -2156,7 +2137,7 @@ public final class ModelFormField {
          * Gets text size.
          * @return the text size
          */
-        public Optional<Integer> getTextSize() {
+        public String getTextSize() {
             return this.textSize;
         }
 
@@ -2757,30 +2738,25 @@ public final class ModelFormField {
      */
     public static class HiddenField extends FieldInfo {
         private final FlexibleStringExpander value;
-        private final FlexibleStringExpander disabled;
 
         public HiddenField(Element element, ModelFormField modelFormField) {
             super(element, modelFormField);
             this.value = FlexibleStringExpander.getInstance(element.getAttribute("value"));
-            this.disabled = FlexibleStringExpander.getInstance(element.getAttribute("disabled"));
         }
 
         private HiddenField(HiddenField original, ModelFormField modelFormField) {
             super(original.getFieldSource(), original.getFieldType(), modelFormField);
             this.value = original.value;
-            this.disabled = original.disabled;
         }
 
         public HiddenField(int fieldSource, ModelFormField modelFormField) {
             super(fieldSource, FieldInfo.HIDDEN, modelFormField);
             this.value = FlexibleStringExpander.getInstance("");
-            this.disabled = FlexibleStringExpander.getInstance("");
         }
 
         public HiddenField(ModelFormField modelFormField) {
             super(FieldInfo.SOURCE_EXPLICIT, FieldInfo.HIDDEN, modelFormField);
             this.value = FlexibleStringExpander.getInstance("");
-            this.disabled = FlexibleStringExpander.getInstance("");
         }
 
         @Override
@@ -2821,18 +2797,6 @@ public final class ModelFormField {
                 return valueEnc;
             }
             return getModelFormField().getEntry(context);
-        }
-
-        /**
-         *
-         * @param context the context
-         * @return evaluated value
-         */
-        public boolean getDisabled(Map<String, Object> context) {
-            if (UtilValidate.isNotEmpty(this.disabled)) {
-                return "true".equals(disabled.expandString(context));
-            }
-            return false;
         }
 
         @Override
@@ -4911,7 +4875,6 @@ public final class ModelFormField {
     public static class SubmitField extends FieldInfo {
         private final FlexibleStringExpander backgroundSubmitRefreshTargetExdr;
         private final String buttonType;
-        private final boolean propagateCallback;
         private final FlexibleStringExpander confirmationMsgExdr;
         private final FlexibleStringExpander imageLocation;
         private final boolean requestConfirmation;
@@ -4924,7 +4887,6 @@ public final class ModelFormField {
             this.confirmationMsgExdr = FlexibleStringExpander.getInstance(element.getAttribute("confirmation-message"));
             this.imageLocation = FlexibleStringExpander.getInstance(element.getAttribute("image-location"));
             this.requestConfirmation = "true".equals(element.getAttribute("request-confirmation"));
-            this.propagateCallback = "true".equals(element.getAttribute("propagate-callback"));
         }
 
         public SubmitField(int fieldInfo, ModelFormField modelFormField) {
@@ -4934,7 +4896,6 @@ public final class ModelFormField {
             this.confirmationMsgExdr = FlexibleStringExpander.getInstance("");
             this.imageLocation = FlexibleStringExpander.getInstance("");
             this.requestConfirmation = false;
-            this.propagateCallback = false;
         }
 
         public SubmitField(ModelFormField modelFormField) {
@@ -4948,7 +4909,6 @@ public final class ModelFormField {
             this.backgroundSubmitRefreshTargetExdr = original.backgroundSubmitRefreshTargetExdr;
             this.requestConfirmation = original.requestConfirmation;
             this.confirmationMsgExdr = original.confirmationMsgExdr;
-            this.propagateCallback = original.propagateCallback;
         }
 
         @Override
@@ -5045,14 +5005,6 @@ public final class ModelFormField {
             return this.requestConfirmation;
         }
 
-        /**
-         * Gets keep callback.
-         * @return
-         */
-        public boolean getPropagateCallback() {
-            return this.propagateCallback;
-        }
-
         @Override
         public void renderFieldString(Appendable writer, Map<String, Object> context, FormStringRenderer formStringRenderer)
                 throws IOException {
@@ -5072,7 +5024,6 @@ public final class ModelFormField {
         private final FlexibleStringExpander visualEditorButtons;
         private final boolean visualEditorEnable;
         private final Integer maxlength;
-        private final FlexibleStringExpander placeholder;
 
         public TextareaField(Element element, ModelFormField modelFormField) {
             super(element, modelFormField);
@@ -5113,7 +5064,6 @@ public final class ModelFormField {
             this.maxlength = maxlength;
             this.visualEditorButtons = FlexibleStringExpander.getInstance(element.getAttribute("visual-editor-buttons"));
             this.visualEditorEnable = "true".equals(element.getAttribute("visual-editor-enable"));
-            this.placeholder = FlexibleStringExpander.getInstance(element.getAttribute("placeholder"));
         }
 
         public TextareaField(int fieldSource, ModelFormField modelFormField) {
@@ -5125,7 +5075,6 @@ public final class ModelFormField {
             this.maxlength = null;
             this.visualEditorButtons = FlexibleStringExpander.getInstance("");
             this.visualEditorEnable = false;
-            this.placeholder = FlexibleStringExpander.getInstance("");
         }
 
         public TextareaField(ModelFormField modelFormField) {
@@ -5141,7 +5090,6 @@ public final class ModelFormField {
             this.cols = original.cols;
             this.rows = original.rows;
             this.maxlength = original.maxlength;
-            this.placeholder = original.placeholder;
         }
 
         @Override
@@ -5229,22 +5177,6 @@ public final class ModelFormField {
          */
         public boolean isReadOnly() {
             return readOnly;
-        }
-
-        /**
-         * Returns the placeholder
-         * @return the placeholder
-         */
-        public FlexibleStringExpander getPlaceholder() {
-            return this.placeholder;
-        }
-
-        /**
-         * Returns the placeholder
-         * @return the placeholder
-         */
-        public String getPlaceholder(Map<String, Object> context) {
-            return this.placeholder.expandString(context);
         }
 
         @Override
@@ -5596,18 +5528,5 @@ public final class ModelFormField {
                 throws IOException {
             formStringRenderer.renderTextFindField(writer, context, this);
         }
-    }
-
-    private static Optional<Integer> parseElementAttributeAsOptionalInteger(Element element, String attributeName) {
-        String attributeValue = element.getAttribute(attributeName);
-        if (UtilValidate.isNotEmpty(attributeValue)) {
-            try {
-                return Optional.of(Integer.parseInt(attributeValue));
-            } catch (NumberFormatException e) {
-                Debug.logError("Could not parse the " + attributeName + " value of the text element: ["
-                        + attributeValue + "],", MODULE);
-            }
-        }
-        return Optional.empty();
     }
 }

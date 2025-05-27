@@ -49,7 +49,6 @@ import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericEntity;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.util.EntityUtilProperties;
-import org.apache.ofbiz.security.SecuredFreemarker;
 import org.apache.ofbiz.security.Security;
 import org.apache.ofbiz.service.DispatchContext;
 import org.apache.ofbiz.service.GenericServiceException;
@@ -220,13 +219,12 @@ public class ScreenRenderer {
      * @param response
      * @param servletContext
      */
-    public void populateContextForRequest(HttpServletRequest request, HttpServletResponse response,
-                                          ServletContext servletContext, boolean secureParameters) {
-        populateContextForRequest(context, this, request, response, servletContext, secureParameters);
+    public void populateContextForRequest(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext) {
+        populateContextForRequest(context, this, request, response, servletContext);
     }
 
     public static void populateContextForRequest(MapStack<String> context, ScreenRenderer screens, HttpServletRequest request,
-                                                 HttpServletResponse response, ServletContext servletContext, boolean secureParameters) {
+                                                 HttpServletResponse response, ServletContext servletContext) {
         HttpSession session = request.getSession();
 
         // attribute names to skip for session and application attributes; these are all handled as special cases,
@@ -234,9 +232,6 @@ public class ScreenRenderer {
         Set<String> attrNamesToSkip = UtilMisc.toSet("delegator", "dispatcher", "security", "webSiteId",
                 "org.apache.catalina.jsp_classpath");
         Map<String, Object> parameterMap = UtilHttp.getCombinedMap(request, attrNamesToSkip);
-        if (secureParameters) {
-            parameterMap = SecuredFreemarker.sanitizeParameterMap(parameterMap);
-        }
 
         GenericValue userLogin = (GenericValue) session.getAttribute("userLogin");
 
@@ -293,7 +288,7 @@ public class ScreenRenderer {
         context.put("requestAttributes", new HttpRequestHashModel(request, FreeMarkerWorker.getDefaultOfbizWrapper()));
         TaglibFactory jspTaglibs = new TaglibFactory(servletContext);
         context.put("JspTaglibs", jspTaglibs);
-        context.put("requestParameters", SecuredFreemarker.sanitizeParameterMap(UtilHttp.getParameterMap(request)));
+        context.put("requestParameters", UtilHttp.getParameterMap(request));
 
         ServletContextHashModel ftlServletContext = (ServletContextHashModel) request.getAttribute("ftlServletContext");
         context.put("Application", ftlServletContext);

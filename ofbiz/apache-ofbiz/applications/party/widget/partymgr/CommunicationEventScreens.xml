@@ -24,19 +24,18 @@ under the License.
         <section>
             <actions>
                 <set field="headerItem" value="comm"/>
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/communication/GetMyCommunicationEventRole.groovy"/>
+                <script location="component://party/groovyScripts/communication/GetMyCommunicationEventRole.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="pre-body">
-                        <include-menu name="MainActionMenu" location="${parameters.mainMenuLocation}"/>
                         <section>
                             <condition>
                                 <if-has-permission permission="PARTYMGR" action="_VIEW"/>
                             </condition>
                             <widgets>
-                                <include-menu name="CommEventTabBar" location="${parameters.communicationMenuLocation}"/>
-                                <include-menu name="CommSubTabBar" location="${parameters.communicationMenuLocation}"/>
+                                <include-menu name="CommEventTabBar" location="component://party/widget/partymgr/PartyMenus.xml"/>
+                                <include-menu name="CommSubTabBar" location="component://party/widget/partymgr/PartyMenus.xml"/>
                             </widgets>
                         </section>
                     </decorator-section>
@@ -61,13 +60,13 @@ under the License.
     <screen name="CommonMyCommunicationEventDecorator">
         <section>
             <actions>
-                <script location="component://party/src/main/groovy/org/apache/ofbiz/party/communication/GetMyCommunicationEventRole.groovy"/>
+                <script location="component://party/groovyScripts/communication/GetMyCommunicationEventRole.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="pre-body">
-                                <include-menu name="CommEventTabBar" location="${parameters.communicationMenuLocation}"/>
-                                <include-menu name="CommSubTabBar" location="${parameters.communicationMenuLocation}"/>
+                                <include-menu name="CommEventTabBar" location="component://party/widget/partymgr/PartyMenus.xml"/>
+                                <include-menu name="CommSubTabBar" location="component://party/widget/partymgr/PartyMenus.xml"/>
                     </decorator-section>
                     <decorator-section name="body">
                         <section>
@@ -111,10 +110,10 @@ under the License.
                                         <not><if-empty field="partyId"/></not>
                                     </condition>
                                     <widgets>
-                                        <include-menu name="ProfileTabBar" location="${parameters.mainMenuLocation}"/>
+                                        <include-menu name="ProfileTabBar" location="component://party/widget/partymgr/PartyMenus.xml"/>
                                     </widgets>
                                 </section>
-                                <include-menu name="CommFindTabBar" location="${parameters.mainMenuLocation}"/>
+                                <include-menu name="CommFindTabBar" location="component://party/widget/partymgr/PartyMenus.xml"/>
                                 <container><label style="h1" text="${uiLabelMap.PartyPendingCommunicationEvents}"/></container>
                                 <container>
                                     <link style="smallSubmit" target="ViewCommunicationEvent" text="${uiLabelMap.PartyNewCommunication}">
@@ -803,7 +802,7 @@ under the License.
                                         <not><if-empty field="partyId"/></not>
                                     </condition>
                                     <widgets>
-                                        <include-menu name="ProfileTabBar" location="${parameters.mainMenuLocation}"/>
+                                        <include-menu name="ProfileTabBar" location="component://party/widget/partymgr/PartyMenus.xml"/>
                                     </widgets>
                                 </section>
                                 <container style="h1"><label text="${uiLabelMap.PageTitleEditCommContent}"/></container>
@@ -877,7 +876,7 @@ under the License.
             <widgets>
                 <screenlet title="${uiLabelMap.PartyCommunicationsOfParty}: ${partyName.firstName} ${partyName.middleName} ${partyName.lastName} ${partyName.groupName} [${partyId}] "
                     navigation-menu-name="CommunicationsMenu" navigation-form-name="ListPartyCommEvents" name="myComms">
-                    <include-menu name="CommunicationsMenu" location="${parameters.communicationMenuLocation}"/>
+                    <include-menu name="CommunicationsMenu" location="component://party/widget/partymgr/PartyMenus.xml"/>
                     <section><!-- List my communication events -->
                         <condition>
                             <or>
@@ -901,7 +900,7 @@ under the License.
                             <set field="partyIdFrom" from-field="parameters.partyId" default-value="${userLogin.partyId}"/>
                         </actions>
                         <widgets>
-                            <include-menu name="MyCommSubTabBar" location="${parameters.communicationMenuLocation}"/>
+                            <include-menu name="MyCommSubTabBar" location="component://party/widget/partymgr/PartyMenus.xml"/>
                             <include-screen name="commOverview"/>
                         </widgets>
                     </section>
@@ -965,7 +964,7 @@ under the License.
                                 </condition>
                                 <actions>
                                     <set field="fromPartyId" from-field="communicationEvent.partyIdFrom"/>
-                                    <script location="component://projectmgr/src/main/groovy/org/apache/ofbiz/projectmgr/GetLastRequestAssignment.groovy"/>
+                                    <script location="component://projectmgr/groovyScripts/GetLastRequestAssignment.groovy"/>
                                 </actions>
                                 <widgets>
                                     <screenlet title="${uiLabelMap.OrderRequest}">

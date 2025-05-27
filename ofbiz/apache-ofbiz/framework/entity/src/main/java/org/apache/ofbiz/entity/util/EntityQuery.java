@@ -473,10 +473,7 @@ public class EntityQuery {
             }
         }
         if (filterByDate && useCache) {
-            result = EntityUtil.filterByCondition(result, this.makeDateCondition());
-        }
-        if (UtilValidate.isNotEmpty(fieldsToSelect) && useCache) {
-            result = EntityUtil.getSelectedFieldValueListFromEntityList(delegator, result, fieldsToSelect);
+            return EntityUtil.filterByCondition(result, this.makeDateCondition());
         }
         return result;
     }

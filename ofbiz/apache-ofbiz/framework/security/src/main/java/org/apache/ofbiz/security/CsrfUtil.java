@@ -46,13 +46,16 @@ import org.apache.ofbiz.webapp.control.WebAppConfigurationException;
 public final class CsrfUtil {
 
     private static final String MODULE = CsrfUtil.class.getName();
-    private static String tokenNameNonAjax = UtilProperties.getPropertyValue("security", "csrf.tokenName.nonAjax", "csrf");
+    private static String tokenNameNonAjax = UtilProperties.getPropertyValue("security", "csrf.tokenName.nonAjax",
+            "csrf");
     private static ICsrfDefenseStrategy strategy;
     private static String strategyCanonicalName;
-    private static int cacheSize = (int) Long.parseLong(UtilProperties.getPropertyValue("security", "csrf.cache.size", "5000"));
+    private static int cacheSize = (int) Long
+            .parseLong(UtilProperties.getPropertyValue("security", "csrf.cache.size", "5000"));
     private static LinkedHashMap<String, Map<String, Map<String, String>>> csrfTokenCache =
             new LinkedHashMap<String, Map<String, Map<String, String>>>() {
                 private static final long serialVersionUID = 1L;
+
                 @Override
                 protected boolean removeEldestEntry(Map.Entry<String, Map<String, Map<String, String>>> eldest) {
                     return size() > cacheSize; // TODO use also csrf.cache.size here?
@@ -182,7 +185,7 @@ public final class CsrfUtil {
         }
 
         if (pathOrRequestUri.contains("&#x2f;")) {
-            pathOrRequestUri = pathOrRequestUri.replace("&#x2f;", "/");
+            pathOrRequestUri = pathOrRequestUri.replaceAll("&#x2f;", "/");
         }
 
         String requestUri = getRequestUriWithSubFolderLimit(getRequestUriFromPath(pathOrRequestUri));
