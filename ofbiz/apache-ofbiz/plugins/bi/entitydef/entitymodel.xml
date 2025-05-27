@@ -291,13 +291,6 @@ under the License.
         <prim-key field="orderId"/>
         <prim-key field="orderItemSeqId"/>
 
-        
-        <relation type="one" fk-name="SOIF_CURRENCY" rel-entity-name="CurrencyDimension">
-            <key-map field-name="origCurrencyDimId" rel-field-name="dimensionId"/>
-        </relation>
-        <relation type="one" fk-name="SOIF_PRODUCT" rel-entity-name="ProductDimension">
-            <key-map field-name="productDimId" rel-field-name="dimensionId"/>
-        </relation>
 
     </entity>
 
