@@ -325,10 +325,7 @@ public class ProductionRunServices {
                 // Calculate the estimatedCompletionDate
                 long totalTime = ProductionRun.getEstimatedTaskTime(routingTask, pRQuantity, dispatcher);
                 Timestamp endDate = TechDataServices.addForward(TechDataServices.getTechDataCalendar(routingTask), startDate, totalTime);
-                if (Debug.infoOn()) {
-                     Debug.logInfo("TotalTime created: " + totalTime, MODULE);
-                     Debug.logInfo("EndDAte created: " + endDate, MODULE);
-                 }
+
                 serviceContext.clear();
                 serviceContext.put("priority", routingTaskAssoc.get("sequenceNum"));
                 serviceContext.put("workEffortPurposeTypeId", "WEPT_PRODUCTION_RUN");
