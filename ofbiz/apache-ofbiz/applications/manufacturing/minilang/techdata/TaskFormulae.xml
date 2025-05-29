@@ -33,7 +33,7 @@ under the License.
         <calculate field="totalTime">
             <calcop operator="multiply">
                 <calcop operator="get" field="taskTime"/>
-                <number value="10"/>
+                <number value="60000"/>
             </calcop>
         </calculate>
         <field-to-result field="totalTime" result-name="totalTime"/>

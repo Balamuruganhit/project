@@ -262,8 +262,13 @@ public class ProductionRun {
                 if (priority.compareTo(routingTask.getLong("priority")) <= 0) {
                     // Calculate the estimatedCompletionDate
                     long totalTime = ProductionRun.getEstimatedTaskTime(routingTask, quantity, dispatcher);
+                    
                     endDate = TechDataServices.addForward(TechDataServices.getTechDataCalendar(routingTask), startDate, totalTime);
                     // update the routingTask
+                    if (Debug.infoOn()) {
+                    Debug.logInfo("endDate Result" + endDate, MODULE);
+                    Debug.logInfo("totalTime Result" + totalTime, MODULE);
+                    }
                     routingTask.set("estimatedStartDate", startDate);
                     routingTask.set("estimatedCompletionDate", endDate);
                     startDate = endDate;
@@ -431,17 +436,24 @@ public class ProductionRun {
                 GenericValue genericService = task.getRelatedOne("CustomMethod", false);
                 if (genericService != null && genericService.getString("customMethodName") != null) {
                     serviceName = genericService.getString("customMethodName");
+                    
                     // call the service
                     // and put the value in totalTaskTime
                     Map<String, Object> estimateCalcServiceMap = UtilMisc.<String, Object>toMap("workEffort", task, "quantity", quantity, "productId",
                             productId, "routingId", routingId);
                     Map<String, Object> serviceContext = UtilMisc.<String, Object>toMap("arguments", estimateCalcServiceMap);
                     Map<String, Object> serviceResult = dispatcher.runSync(serviceName, serviceContext);
+                    
                     if (ServiceUtil.isError(serviceResult)) {
                         String errorMessage = ServiceUtil.getErrorMessage(serviceResult);
                         Debug.logError(errorMessage, MODULE);
                     }
                     totalTaskTime = ((BigDecimal) serviceResult.get("totalTime")).doubleValue();
+                    if (Debug.infoOn()) {
+                    Debug.logInfo("total Task Time" + totalTaskTime, MODULE);
+                    Debug.logInfo("service Result" + serviceResult, MODULE);
+                    Debug.logInfo("service name" + serviceName, MODULE);
+                }
                 }
             } catch (GenericEntityException | GenericServiceException exc) {
                 Debug.logError(exc, "Problem calling the customMethod service " + serviceName);

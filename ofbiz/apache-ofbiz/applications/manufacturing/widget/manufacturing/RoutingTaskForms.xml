@@ -157,11 +157,7 @@ under the License.
         <field name="estimatedSetupMillis" title="${uiLabelMap.ManufacturingTaskEstimatedSetupMillis}"><text/></field>
         <field name="estimatedMilliSeconds" title="${uiLabelMap.ManufacturingTaskEstimatedMilliSeconds}"><text/></field>
         <field name="estimateCalcMethod">
-            <drop-down allow-empty="true">
-                <entity-options entity-name="CustomMethod" key-field-name="customMethodId">
-                    <entity-constraint name="customMethodTypeId" operator="equals" value="TASK_FORMULA"/>
-                </entity-options>
-            </drop-down>
+           <hidden value="6000"/>
         </field>
         <field name="reservPersons"><text/></field>
         <field name="submitButton" title="${uiLabelMap.CommonSubmit}">
@@ -290,6 +286,8 @@ under the License.
         header-row-style="header-row" default-table-style="basic-table">
         <alt-target use-when="routingProductLink==null" target="AddRoutingProductLink"/>
         <auto-fields-entity entity-name="WorkEffortGoodStandard" default-field-type="edit"/>
+        <field name="atp"><hidden/></field>
+        <field name="qht"><hidden/></field>
         <field name="workEffortId"><hidden/></field>
         <field name="statusId"><hidden/></field>
         <field name="workEffortGoodStdTypeId"><hidden value="ROU_PROD_TEMPLATE"/></field>
