@@ -39,20 +39,20 @@ under the License.
 
         <tr>
             <td class="bolder">Customer Name:</td>
-            <#if partyDetail?has_content>
-                <td colspan="3">${partyDetail.customerName}</td>
+            <#if customer?has_content>
+                <td colspan="3">${customer}</td>
             <#else>
                 <td colspan="3"></td>
             </#if>
             <td class="bolder">PO No / SO No:</td>
-            <#if partyDetail?has_content>
-                <td >${partyDetail.orderNumber}</td>
+            <#if order?has_content>
+                <td >${order}</td>
             <#else>
                 <td ></td>
             </#if>
             <td class="bolder">Date:</td>
-            <#if partyDetail.orderDate?has_content>
-                <td >${partyDetail.orderDate}</td>
+            <#if orderDate?has_content>
+                <td >${orderDate}</td>
             <#else>
                 <td></td>
             </#if>
@@ -61,7 +61,11 @@ under the License.
             <td class="bolder">Product ID:</td>
             <td colspan="3">${productionRunData.productId} </td>
             <td class="bolder">WO No:</td>
-            <td >${partyDetail.workOrderNumber}</td>
+             <#if workOrderNumber?has_content>
+                <td >${workOrderNumber}</td>
+            <#else>
+                <td ></td>
+            </#if>
             <td class="bolder">Date:</td>
             <#if workDate?has_content>
                 <td >${workDate}</td>
@@ -95,8 +99,8 @@ under the License.
             <td class="bolder">Expected Completion/Delivery Date:</td>
             <td colspan="3">${productionRunData.estimatedCompletionDate}</td>
             <td class="bolder">Product Type:</td>
-            <#if partyDetail?has_content>
-                <td colspan="3">${partyDetail.productType}</td>
+            <#if productType?has_content>
+                <td colspan="3">${productType}</td>
             <#else>
                 <td colspan="3"></td>
             </#if>

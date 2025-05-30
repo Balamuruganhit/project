@@ -211,8 +211,10 @@ under the License.
         <field name="workEffortId"  title="${uiLabelMap.ManufacturingTaskName}"><display description="${workEffortName} [${workEffortId}]"/></field>
         <field name="fixedAssetId"  title="${uiLabelMap.ManufacturingMachine}"><display/></field>
         <field name="reservPersons"><display/></field>
-        <field name="estimatedStartDate"  title="${uiLabelMap.ManufacturingStartDate}"><display/></field>
-        <field name="estimatedCompletionDate" title="${uiLabelMap.ManufacturingEstimatedCompletionDate}"><display/></field>
+        <field name="estimatedStartDate"  title="${uiLabelMap.ManufacturingStartDate}">
+            <display description="${groovy: new java.text.SimpleDateFormat('dd-MM-yyyy HH:mm').format(estimatedStartDate)}"/>
+        </field>
+        <field name="estimatedCompletionDate" title="${uiLabelMap.ManufacturingEstimatedCompletionDate}"><display description="${groovy: new java.text.SimpleDateFormat('dd-MM-yyyy HH:mm').format(estimatedCompletionDate)}"/></field>
         <field name="estimatedSetupMillis" title="${uiLabelMap.ManufacturingTaskEstimatedSetupMillis}" ><display/></field>
         <!--<field name="estimatedMilliSeconds" title="${uiLabelMap.ManufacturingTaskEstimatedMilliSeconds}" ><display/></field>-->
         <field name="estimatedTotalMilliSeconds" title="${uiLabelMap.ManufacturingTaskEstimatedTotalMilliSeconds}" ><display/></field>
@@ -276,8 +278,8 @@ under the License.
         <field name="workEffortName" title="${uiLabelMap.ManufacturingTaskName}"><text/></field>
         <field name="description"><text/></field>
         <field name="reservPersons"><text/></field>
-        <field name="estimatedStartDate" title="${uiLabelMap.ManufacturingStartDate}"><date-time default-value="${nowTimestamp}"/></field>
-        <field name="estimatedCompletionDate" title="${uiLabelMap.ManufacturingEstimatedCompletionDate}"><display/></field>
+        <field name="estimatedStartDate" title="${uiLabelMap.ManufacturingStartDate}"><date-time  default-value="${nowTimestamp}"/></field>
+        <field name="estimatedCompletionDate" title="${uiLabelMap.ManufacturingEstimatedCompletionDate}"><display /></field>
         <field name="estimatedSetupMillis" title="${uiLabelMap.ManufacturingTaskEstimatedSetupMillis}"><text/></field>
         <field name="estimatedMilliSeconds" title="${uiLabelMap.ManufacturingTaskEstimatedMilliSeconds}"><text/></field>
         <field name="submitButton" title="${uiLabelMap.CommonEdit}"><submit/></field>

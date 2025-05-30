@@ -77,7 +77,6 @@ def createRam(){
 }
 
 if(parameters.approver == 'update'){
-    logInfo('Date' + parameters.date_fld0_value)
 if(parameters.system || parameters.subSystem||parameters.subSubSystem||parameters.ramsno||parameters.date_fld0_value){
     def conditions = []
 
@@ -94,11 +93,18 @@ if(parameters.system || parameters.subSystem||parameters.subSubSystem||parameter
             conditions << EntityCondition.makeCondition("ramsNo", EntityOperator.LIKE, "%" + parameters.ramsno + "%")
         }
         if (parameters.date_fld0_value) {
-            def sdf = new SimpleDateFormat("yyyy-MM-dd")
-            def utilDate = sdf.parse(parameters.date_fld0_value)
-            def sqlDate = new java.sql.Date(utilDate.getTime())
-            logInfo('Date for converter' + sqlDate)
-            conditions << EntityCondition.makeCondition("date", EntityOperator.EQUALS,sqlDate)
+            try {
+                def sdf = new SimpleDateFormat("yyyy-MM-dd")
+                sdf.setLenient(false) // enforce strict format parsing
+                def utilDate = sdf.parse(parameters.date_fld0_value.trim())
+                def sqlDate = new java.sql.Date(utilDate.getTime())
+                logInfo("Converted sqlDate: ${sqlDate} (class: ${sqlDate.getClass().getName()})")
+                
+                // Add to query condition
+                conditions << EntityCondition.makeCondition("date", EntityOperator.EQUALS, sqlDate)
+            } catch (Exception e) {
+                logError("Failed to parse date_fld0_value: ${parameters.date_fld0_value}, Error: ${e.message}")
+            }
         }
 
         if (conditions) {

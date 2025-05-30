@@ -48,7 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const calinde=document.getElementById('calinde')
   const calfinal=document.getElementById('calFinal')
   var store=[]
-  
+  function updateRamsNumber(ramsno, rev) {
+    let cleaned = ramsno.replace(/_R\d+$/, ""); // remove _R followed by digits at the end
+    return cleaned + "_R" + rev;
+}
  if(calavail){
   calavail.addEventListener('click',()=>{
     console.log("hello avauil")
@@ -451,8 +454,9 @@ if(calfinal){
       savebutton.classList.add('remover')
       const ramsno=document.getElementById('rams').value.trim();
       const rev=document.getElementById('revision').value;
+      let ramsNumber = updateRamsNumber(ramsno, rev);
       const ramsInfo = {
-        ramsNumber: ramsno + "_R" + rev,
+        ramsNumber: ramsNumber,
         revision:document.getElementById('revision').value,
         productCode: document.getElementById('product').value.trim(),
         system: document.getElementById('system').value.trim(),

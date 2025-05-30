@@ -71,7 +71,12 @@ if (productionRunId) {
     if(workorder){
     partyDetail=from("WorkOrder").where('workOrderNumber',workorder.poNumber).queryOne()
     context.workDate=UtilDateTime.toDateString(partyDetail.createdStamp , "MM/dd/yyyy")
-    logInfo('party'+ partyDetail)
+    context.customer=partyDetail.customerName
+    context.order=partyDetail.orderNumber
+    context.workOrderNumber=partyDetail.workOrderNumber
+    context.orderDate=UtilDateTime.toDateString(partyDetail.orderDate, "MM/dd/yyyy")
+    context.productType=partyDetail.productType
+    logInfo('party changes'+ partyDetail)
     context.partyDetail=partyDetail
     }
 }
