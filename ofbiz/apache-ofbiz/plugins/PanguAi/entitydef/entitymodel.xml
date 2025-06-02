@@ -72,7 +72,7 @@ under the License.
         <field name="subsystem" type="name"></field>
         <field name="subsubsystem" type="name"></field>
         <field name="rams" type="url"></field>
-        <field name="date" type="date"></field>
+        <field name="date" type="name"></field>
         <field name="team" type="name"></field>
         <field name="approver" type="name"></field>
         <prim-key field="ramsNo" />

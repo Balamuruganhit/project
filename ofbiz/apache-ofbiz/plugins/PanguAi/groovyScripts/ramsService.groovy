@@ -32,6 +32,7 @@ import org.apache.ofbiz.entity.*
 import java.sql.Timestamp
 import java.util.List
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.sql.Date
 def createRam(){
     List<Map<String, Object>> ramsDetails = parameters.ramsDetail
@@ -97,11 +98,19 @@ if(parameters.system || parameters.subSystem||parameters.subSubSystem||parameter
                 def sdf = new SimpleDateFormat("yyyy-MM-dd")
                 sdf.setLenient(false) // enforce strict format parsing
                 def utilDate = sdf.parse(parameters.date_fld0_value.trim())
-                def sqlDate = new java.sql.Date(utilDate.getTime())
-                logInfo("Converted sqlDate: ${sqlDate} (class: ${sqlDate.getClass().getName()})")
+                def startTimestamp = new Timestamp(utilDate.getTime())
+                Calendar cal = Calendar.getInstance()
+                cal.setTime(utilDate)
+                cal.add(Calendar.DAY_OF_MONTH, 1)
+                def endTimestamp = new Timestamp(cal.getTimeInMillis())
+
+                logInfo("Searching between: ${startTimestamp} and ${endTimestamp}")
                 
                 // Add to query condition
-                conditions << EntityCondition.makeCondition("date", EntityOperator.EQUALS, sqlDate)
+                conditions << EntityCondition.makeCondition([
+                    EntityCondition.makeCondition("lastUpdatedStamp", EntityOperator.GREATER_THAN_EQUAL_TO, startTimestamp),
+                    EntityCondition.makeCondition("lastUpdatedStamp", EntityOperator.LESS_THAN, endTimestamp)
+                ], EntityOperator.AND)
             } catch (Exception e) {
                 logError("Failed to parse date_fld0_value: ${parameters.date_fld0_value}, Error: ${e.message}")
             }

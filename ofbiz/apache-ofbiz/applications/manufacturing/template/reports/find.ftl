@@ -48,7 +48,7 @@ under the License.
             <#if order?has_content>
                 <td >${order}</td>
             <#else>
-                <td ></td>
+                <td style="width:6.5rem"></td>
             </#if>
             <td class="bolder">Date:</td>
             <#if orderDate?has_content>
@@ -159,15 +159,15 @@ under the License.
                 <#else>
                     <td ></td>
                 </#if>
-                <td>${taskDetail.estimatedStartDate}</td>
-                <td>${taskDetail.estimatedSetupMillis}</td>
+                <td>${taskDetail.estimatedStartDate!0}</td>
+                <td>${taskDetail.estimatedSetupMillis!0}</td>
                 <#if taskDetail.estimatedSetupMillis? has_content>
                     <td>${taskDetail.estimatedSetupMillis * quantity}</td>
                 <#else>
                     <td ></td>
                 </#if>
-                <td>${taskDetail.estimatedSetupMillis}</td>
-                <td>${taskDetail.estimatedSetupMillis * quantity}</td>
+                <td>${taskDetail.estimatedSetupMillis!0}</td>
+                <td>${(taskDetail.estimatedSetupMillis!0) * quantity}</td>
                 <td><input style="height: 3rem;border:none;"/></td>
             </tr>
         </#list>

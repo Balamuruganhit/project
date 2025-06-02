@@ -62,7 +62,13 @@ under the License.
                                 
                         </fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt" font-weight="bold"><fo:block>Date:</fo:block></fo:table-cell>
-                        <fo:table-cell border="1pt solid black" padding="3.4pt"><fo:block>${workDate}</fo:block></fo:table-cell>
+                        <fo:table-cell border="1pt solid black" padding="3.4pt">
+                            <#if workDate?has_content>
+                                <fo:block number-columns-spanned="3">${workDate}</fo:block>
+                            <#else>
+                                <fo:block></fo:block>
+                            </#if>
+                        </fo:table-cell>
             </fo:table-row>
             <fo:table-row >
                         <fo:table-cell border="1pt solid black" padding="3.4pt" font-weight="bold"><fo:block>Product Name:</fo:block></fo:table-cell>
