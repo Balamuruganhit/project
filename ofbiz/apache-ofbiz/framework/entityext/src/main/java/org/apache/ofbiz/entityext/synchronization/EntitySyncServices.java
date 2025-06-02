@@ -527,7 +527,6 @@ public class EntitySyncServices {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
                     fileName = "offline_entitySync-" + esc.getEntitySyncId() + "-" + sdf.format(new Date()) + ".xml";
                 }
-
                 // write the XML file
                 try {
                     UtilXml.writeXmlDocument(fileName, mainDoc);

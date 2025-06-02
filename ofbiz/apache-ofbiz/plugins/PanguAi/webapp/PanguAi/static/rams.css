@@ -84,10 +84,22 @@ table{
 
 .expander_section.active .calculator{
     display: flex;
+    margin-top: 2rem;
     align-items: center;
+    flex-wrap: wrap;
+    row-gap: 50px;
     justify-content: space-around;
 }
 
+.middle{
+    background: white;
+    width: 80%;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    line-height: 2.6rem;
+    font-size: 1.4rem;
+    font-stretch: 100%;
+}
 .left table{
     text-align: right;
     width: 30rem;
@@ -163,3 +175,27 @@ table{
 .remover{
     display: none;
 }
+
+td .tooltip-text {
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    padding: 5px;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 1;
+    width: 250px;
+    left: 5rem;
+    top: -0.2rem;
+    font-size: 12px;
+  }
+
+  .tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip-wrapper:hover .tooltip-text {
+    visibility: visible;
+  }

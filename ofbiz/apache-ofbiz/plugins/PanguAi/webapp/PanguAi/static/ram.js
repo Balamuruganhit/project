@@ -223,21 +223,42 @@ document.addEventListener("DOMContentLoaded", () => {
               <tr>
                 <td>Result</td>
                 <td>Failure Rate</td>
-                <td>Equivalent MTBFs</td>
+                <td><div class="tooltip-wrapper">
+                          Equivalent MTBFs
+                          <div class="tooltip-text">
+                              MTBF = Mean Time Between Failures
+                          </div>
+                      </div></td>
               </tr>
               <tr>
                 <td>Best estimate of failure rate</td>
-                <td><strong>${failureRate.toFixed(2)}</strong> per year</td>
+                <td><strong>${failureRate.toFixed(2)}</strong> <div class="tooltip-wrapper">
+                          per year
+                          <div class="tooltip-text">
+                              This is the median, or central best estmate of failure rate
+
+                          </div>
+                      </div></td>
                 <td><strong>${actualBand.toFixed(0)}</strong> hours</td>
               </tr>
               <tr>
                 <td>90% confidence interval - upper bound</td>
-                <td>${failUpper.toFixed(2)} per year</td>
+                <td>${failUpper.toFixed(2)} <div class="tooltip-wrapper">
+                          per year
+                          <div class="tooltip-text">
+                              95% probability that failure rate is less than this value
+                          </div>
+                      </div></td>
                 <td>${upperBound.toFixed(0)} hours</td>
               </tr>
               <tr>
                 <td>90% confidence interval - lower bound</td>
-                <td>${failLower.toFixed(2)} per year</td>
+                <td>${failLower.toFixed(2)} <div class="tooltip-wrapper">
+                          per year
+                          <div class="tooltip-text">
+                              95% probability that failure rate is more than this value
+                          </div>
+                      </div></td>
                 <td>${lowerBound.toFixed(0)} hours</td>
               </tr>
             </table>
@@ -441,7 +462,13 @@ if(calfinal){
             </tr>
             <tr>
               <td>Confidence that failure rate has changed</td>
-              <td>${finalOut}%</td>
+              <td>
+              <div class="tooltip-wrapper">
+                          ${finalOut}%
+                          <div class="tooltip-text">
+                              This returns the probability that the observation is not just due to random chance with an unchanged failure rate.
+                          </div>
+                      </div></td>
             </tr>
           </table>
         `; 

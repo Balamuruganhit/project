@@ -149,6 +149,11 @@ under the License.
                 </tr>
               </table>
             </div>
+            <div class="middle">
+              <p>Use this calculation to find out the failure rate and MTBF from your observed failure history. Notice how the confidence bounds move in towards the best estimate as you collect more data.  This calculation assumes you are counting failures over 
+              a given time period, as is the usual case, rather than measuring the time period for a
+               given number of failures.</p>
+            </div>
           </div>
       </div>
     <#elseif ramsOut.calculatorType == "availability" >
@@ -376,12 +381,26 @@ under the License.
                 <table>
                   <tr>
                     <td>Time period for observations (years):</td>
-                    <td><input type="number" id="timePeriod" value="1" step="0.01"></td>
+                    <td>
+                    <div class="tooltip-wrapper">
+                          <input type="number" id="timePeriod" value="1" step="0.01">
+                          <div class="tooltip-text">
+                              Enter the time period of your failure data
+                          </div>
+                      </div>
+                    </td>
                     <td>years</td>
                   </tr>
                   <tr>
                     <td>Number of failures observed:</td>
-                    <td><input type="number" id="failures" value="5" step="1"></td>
+                    <td>
+                      <div class="tooltip-wrapper">
+                          <input type="number" id="failures" value="5" step="1">
+                          <div class="tooltip-text">
+                            Enter the number of failures you observed in the time period
+                          </div>
+                      </div>
+                    </td>
                   </tr>
                   <tr colspan="2"><td><button id="calrms">Calculate</button></td></tr>
                 </table>
@@ -410,7 +429,11 @@ under the License.
                 </tr>
               </table>
             </div>
-            
+             <div class="middle">
+              <p>Use this calculation to find out the failure rate and MTBF from your observed failure history. Notice how the confidence bounds move in towards the best estimate as you collect more data.  This calculation assumes you are counting failures over 
+              a given time period, as is the usual case, rather than measuring the time period for a
+               given number of failures.</p>
+            </div>
           </div>
           
       </div>
@@ -427,17 +450,38 @@ under the License.
               <table>
                 <tr>
                   <td>Failure rate:</td>
-                  <td> <input type="number" id="failure"  step="0.001" disabled></td>
+                  <td> 
+                    <div class="tooltip-wrapper">
+                          <input type="number" id="failure"  step="0.001" disabled>
+                          <div class="tooltip-text">
+                            Enter the component or system failure rate here
+                          </div>
+                      </div>
+                  </td>
                   <td>per year</td>
                 </tr>
                 <tr>
                   <td>Repair time (MTTR):</td>
-                  <td> <input type="number" id="repair" value="48" step="1"></td>
+                  <td> 
+                    <div class="tooltip-wrapper">
+                          <input type="number" id="repair" value="48" step="1">
+                          <div class="tooltip-text">
+                            Enter the mean total time taken to get the system or component back in service each time it fails
+                          </div>
+                      </div>
+                  </td>
                   <td>hours</td>
                 </tr>
                 <tr>
                   <td>Planned maintenance time:</td>
-                  <td><input type="number" id="maintenance" value="72" step="1"></td>
+                  <td>
+                    <div class="tooltip-wrapper">
+                          <input type="number" id="maintenance" value="72" step="1">
+                          <div class="tooltip-text">
+                            Enter any down time for planned maintenance
+                          </div>
+                      </div>
+                  </td>
                   <td>hours per year</td>
                 </tr>
                 <tr><td><button id="calavail">Calculate</button></td></tr>
@@ -460,6 +504,11 @@ under the License.
               </tr>
             </table>
           </div>
+          <div class="middle">
+          <p>Use this calculation to find out the Availability (also known as 'Uptime') for your plant or equipment, 
+          based on failure rate and MTTR (Mean Time to Repair).
+            Availability can be calculated excluding or including downtime for planned maintenance.
+          </p></div>
         </div>
       </div>
       <div class="expander_section">
@@ -475,12 +524,26 @@ under the License.
               <table>
                 <tr>
                   <td>Failure rate:</td>
-                  <td><input type="number" id="failuresrate"  disabled></td>
+                  <td>
+                    <div class="tooltip-wrapper">
+                          <input type="number" id="failuresrate"  disabled>
+                          <div class="tooltip-text">
+                            Enter the component or system failure rate here
+                          </div>
+                      </div>
+                  </td>
                   <td>per year</td>
                 </tr>
                 <tr>
                   <td>Time period:</td>
-                  <td><input type="number" id="time" value="5" step="1"></td>
+                  <td>
+                    <div class="tooltip-wrapper">
+                          <input type="number" id="time" value="5" step="1">
+                          <div class="tooltip-text">
+                            Enter the time period that the component or system is required to be in operation.
+                          </div>
+                      </div>
+                  </td>
                   <td>years</td>
                 </tr>
                 <tr><td><button id="calreliab">Calculate</button></td></tr>
@@ -502,6 +565,11 @@ under the License.
               </tr>
             </table>
           </div>
+          <div class="middle">
+          <p>Use this calculation to find out the Reliability (the probability of no failures) in a given time period.  This is used for low-likelihood high-consequence 
+            events to determine if the likelihood is acceptable. 
+            The calculation assumes constant failure rate.</p>
+          </div>
         </div>
       </div>
       <div class="expander_section">
@@ -517,15 +585,34 @@ under the License.
               <table>
                 <tr>
                   <td>Failure rate:</td>
-                  <td><input type="number" id="rfailures" disabled step="0.01"></td>
+                  <td>
+                  <div class="tooltip-wrapper">
+                          <input type="number" id="rfailures" disabled step="0.01">
+                          <div class="tooltip-text">
+                              Enter the component or system failure rate here
+                          </div>
+                      </div></td>
                 </tr>
                 <tr>
                   <td>Time period:</td>
-                  <td><input type="number" id="rtimePeriod" value="5" step="1"></td>
+                  <td>
+                  <div class="tooltip-wrapper">
+                          <input type="number" id="rtimePeriod" value="5" step="1">
+                          <div class="tooltip-text">
+                              Enter the time period that the component or system is required to be in operation. 
+                            </div>
+                      </div>
+                      </td>
                 </tr>
                 <tr>
                   <td>Number of failures of interest r:</td>
-                  <td><input type="number" id="rinterest" value="2" step="1"></td>
+                  <td>
+                  <div class="tooltip-wrapper">
+                          <input type="number" id="rinterest" value="2" step="1">
+                          <div class="tooltip-text">
+                              Enter the number of failures of interest, known as 'r'
+                          </div>
+                      </div></td>
                 </tr>
                 <tr><td><button id="calpro">Calculate</button></td></tr>
               </table>
@@ -546,6 +633,11 @@ under the License.
               </tr>
             </table>
           </div>
+          <div class="middle">
+          <p>Use this calculation to determine the probability of a particular number of 
+          failures occuring over a given time period.  Usually, 'r or more failures' is of most relevance.  
+          The calculation assumes constant failure rate.</p>
+          </div>
         </div>
       </div>
       <div class="expander_section">
@@ -561,15 +653,34 @@ under the License.
               <table>
                 <tr>
                   <td>Probability of 1 failure in 1 event:</td>
-                  <td><input type="number" id="ifailures" value="0.01" step="0.01"></td>
+                  <td>
+                  <div class="tooltip-wrapper">
+                          <input type="number" id="ifailures" value="0.01" step="0.01">
+                          <div class="tooltip-text">
+                              Enter the probability of one failure in one event; this would typically be the probability of single component failure. Must be between 0 and 1.
+                          </div>
+                      </div></td>
                 </tr>
                 <tr>
                   <td>Number of independent events n:</td>
-                  <td><input type="number" id="itime" value="50" step="1"></td>
+                  <td>
+                  <div class="tooltip-wrapper">
+                          <input type="number" id="itime" value="50" step="1">
+                          <div class="tooltip-text">
+                              Enter the number of independent events; this would typically be the number of identical components.
+                          </div>
+                      </div></td>
                 </tr>
                 <tr>
                   <td>Number of failures of interest r:</td>
-                  <td><input type="number" id="event" value="3" step="1"></td>
+                  <td>
+                  <div class="tooltip-wrapper">
+                          <input type="number" id="event" value="3" step="1">
+                          <div class="tooltip-text">
+                              Enter the number of failures of interest (or concern).
+                          </div>
+                      </div>
+                 </td>
                 </tr>
                 <tr><td><button id="calinde">Calculate</button></td></tr>
               </table>
@@ -590,6 +701,12 @@ under the License.
               </tr>
             </table>
           </div>
+          <div class="middle">
+          <p>Use this calculation to determine the probability of a particular number of failures r out of a total number of possible failures ('events'). 
+           For example, the number of events could be a number of identical components each with a given failure probability.  
+           Usually, 'r or more failures' is of most relevance.  
+          Events are assumed to be independent: in practice common mode failure should also be addressed.</p>
+          </div>
         </div>
       </div>
       <div class="expander_section">
@@ -609,7 +726,14 @@ under the License.
                 </tr>
                 <tr>
                   <td style="background:white">New number of failures per time period:</td>
-                  <td><input type="number" id="RateNewfailures" value="4" step="1"></td>
+                  <td> 
+                        <div class="tooltip-wrapper">
+                          <input type="number"  id="RateNewfailures" value="4" step="1">
+                          <div class="tooltip-text">
+                              Enter the number of events that occurred in the following time period
+                          </div>
+                      </div>
+                  </td>
                 </tr>
                 
               </table>
@@ -627,6 +751,14 @@ under the License.
                 <td></td>
               </tr>
             </table>
+          </div>
+          <div class="middle">
+          <p>When we see a reduction in failures (or safety incidents) from one period to the next we tend to 
+          think that performance has improved.  Conversely, when we see an increase in failures we think performance 
+          has worsened.  In practice, where the number of events is relatively small, the effects of random chance can easily mislead us.  
+          This calculation shows the confidence level that a change in number of failures in a given time period truly represents a change in underlying failure rate.  
+          For Engineering purposes, to really believe that the failure rate has changed we need to see a result of at least 90%.  
+          Notice how the confidence increases when larger numbers are used.</p>
           </div>
         </div>
       </div>
