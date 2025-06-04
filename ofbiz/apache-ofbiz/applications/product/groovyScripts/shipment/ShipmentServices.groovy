@@ -384,6 +384,7 @@ def setShipmentSettingsFromPrimaryOrder() {
             shipmentRouteSegmentMap.carrierPartyId = orderItemShipGroup.carrierPartyId
             shipmentRouteSegmentMap.shipmentMethodTypeId = orderItemShipGroup.shipmentMethodTypeId
         }
+        logInfo("shipmentRouteSegmentMap" + shipmentRouteSegmentMap)
         run service: "createShipmentRouteSegment", with: shipmentRouteSegmentMap
     }
     run service: "updateShipment", with: shipment.getAllFields()

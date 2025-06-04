@@ -18,12 +18,13 @@ under the License.
 -->
 
 <#escape x as x?xml>
-            <fo:block>
+            <fo:block border="1pt solid black" text-align="center">
                 <fo:instream-foreign-object>
                     <barcode:barcode xmlns:barcode="http://barcode4j.krysalis.org/ns"
                             message="${shipment.shipmentId}">
                         <barcode:code128>
-                            <barcode:height>8mm</barcode:height>
+                            <barcode:height>38mm</barcode:height>
+                            <barcode:module-width>0.9mm</barcode:module-width>
                         </barcode:code128>
                     </barcode:barcode>
                 </fo:instream-foreign-object>
