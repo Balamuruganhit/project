@@ -19,22 +19,26 @@
 
 
 
- import org.apache.ofbiz.entity.condition.EntityCondition
+import org.apache.ofbiz.entity.condition.EntityCondition
 import org.apache.ofbiz.entity.condition.EntityOperator
 import org.apache.ofbiz.entity.util.EntityUtilProperties
 import java.sql.Timestamp
 import java.util.Calendar
 import org.apache.ofbiz.entity.util.EntityQuery
+import org.apache.ofbiz.service.ServiceUtil
 import org.apache.ofbiz.manufacturing.jobshopmgt.ProductionRun
 // Get the delegator and parameters
 def delegator = delegator
 def parameters = parameters
 def context = context
+def userLogin = context.userLogin
+def statusId = "PRUN_SCHEDULED" 
+status=parameters.statusId
+// Get the master productistatuson ID from input parameters
 
-// Get the master production ID from input parameters
 String masterProductionId = parameters.productionRunId
 
-
+if(status){
 Set<String> collectedIds = new HashSet<>()
 collectedIds.add(masterProductionId)
 
@@ -61,7 +65,23 @@ findSubProductions(masterProductionId)
 
 
 context.productionList = collectedIds
+collectedIds.each { workEffortId ->
+    def serviceContext = [:]
+    serviceContext.put("productionRunId", workEffortId)
+    serviceContext.put("statusId", statusId)
+    serviceContext.put("userLogin", userLogin)
 
+    try {
+        def result = dispatcher.runSync("quickChangeProductionRunStatus", serviceContext)
+        if (ServiceUtil.isError(result)) {
+            logError("Failed for ID: ${workEffortId}, Reason: ${ServiceUtil.getErrorMessage(result)}")
+        } else {
+            logInfo("Successfully updated: ${workEffortId}")
+        }
+    } catch (Exception e) {
+        logError("Exception while updating ${workEffortId}: ${e.message}")
+    }
+}
 logInfo("output FileId" + collectedIds)
 
-
+}
