@@ -19,10 +19,13 @@
 
 
 
-import org.apache.ofbiz.entity.util.EntityUtil
-import org.apache.ofbiz.entity.condition.EntityCondition
+ import org.apache.ofbiz.entity.condition.EntityCondition
 import org.apache.ofbiz.entity.condition.EntityOperator
-
+import org.apache.ofbiz.entity.util.EntityUtilProperties
+import java.sql.Timestamp
+import java.util.Calendar
+import org.apache.ofbiz.entity.util.EntityQuery
+import org.apache.ofbiz.manufacturing.jobshopmgt.ProductionRun
 // Get the delegator and parameters
 def delegator = delegator
 def parameters = parameters
@@ -31,37 +34,34 @@ def context = context
 // Get the master production ID from input parameters
 String masterProductionId = parameters.productionRunId
 
-// Initialize the set to store related production IDs
-Set<String> allProductionIds = new LinkedHashSet<>()
-allProductionIds.add(masterProductionId)
 
-// Define recursive function to collect sub-productions
-def collectSubProductions
-collectSubProductions = { String workEffortId ->
-    def assocList = delegator.findList("WorkEffortAssoc",
-        EntityCondition.makeCondition([
-            EntityCondition.makeCondition("workEffortIdFrom", workEffortId),
-            EntityCondition.makeCondition("workEffortAssocTypeId", "WORK_EFF_PRECEDENCY") // Or your specific type
-        ]),
-        null, null, null, false)
+Set<String> collectedIds = new HashSet<>()
+collectedIds.add(masterProductionId)
+
+def findSubProductions
+findSubProductions = { String parentId ->
+    def assocList = EntityQuery.use(delegator)
+        .from("WorkEffortAssoc")
+        .where([workEffortIdTo: parentId, workEffortAssocTypeId: "WORK_EFF_PRECEDENCY"])
+        .queryList()
 
     assocList.each { assoc ->
-        String childId = assoc.workEffortIdTo
-        if (!allProductionIds.contains(childId)) {
-            allProductionIds.add(childId)
-            collectSubProductions(childId)
+        def childId = assoc.workEffortIdFrom
+        if (!collectedIds.contains(childId)) {
+            collectedIds.add(childId)
+            findSubProductions(childId)
         }
     }
 }
 
-// Start the recursion
-collectSubProductions(masterProductionId)
+// Start recursion
+findSubProductions(masterProductionId)
 
-// Now fetch all WorkEffort records
-def relatedWorkEfforts = delegator.findList("WorkEffort",
-    EntityCondition.makeCondition("workEffortId", EntityOperator.IN, allProductionIds.toList()),
-    null, null, null, false)
-logInfo("output FileId" + allProductionIds)
-// Put into context
-context.allProductionWorkEfforts = relatedWorkEfforts
+// Optional: Fetch full WorkEffort data
+
+
+context.productionList = collectedIds
+
+logInfo("output FileId" + collectedIds)
+
 
