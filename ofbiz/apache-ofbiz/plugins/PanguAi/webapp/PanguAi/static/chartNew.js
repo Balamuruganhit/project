@@ -1,4 +1,25 @@
-﻿
+/*.
+
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+*/
+
+
+
 
 var JSGantt; if (!JSGantt) JSGantt = {};
 var vTimeout = 0;
@@ -439,7 +460,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
         
 		   // DRAW the Left-side of the chart (names, resources, comp%)
          vLeftTable =
-            '<DIV class=scroll id=leftside style="width:' + 15 + 'rem"><TABLE cellSpacing=0 cellPadding=0 border=0><TBODY>' +
+            '<DIV class=scroll id=leftside style="width:' + 30 + 'rem"><TABLE cellSpacing=0 cellPadding=0 border=0><TBODY>' +
             '<TR style="HEIGHT: 17px">' +
             '  <TD style="WIDTH: 15px; HEIGHT: 17px"></TD>' +
             '  <TD style="WIDTH: ' + vNameWidth + 'px; HEIGHT: 17px"><NOBR></NOBR></TD>'; 
@@ -474,15 +495,14 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
                }
                console.log(vTaskList.length)
                vID = vTaskList[i].getID();
-
   		         if(vTaskList[i].getVisible() == 0) 
                   vLeftTable += '<TR id=child_' + vID + ' bgcolor=#' + vBGColor + ' style="display:none"  onMouseover=g.mouseOver(this,' + vID + ',"left","' + vRowType + '") onMouseout=g.mouseOut(this,' + vID + ',"left","' + vRowType + '")>' ;
 			      else
                  vLeftTable += '<TR id=child_' + vID + ' bgcolor=#' + vBGColor + ' onMouseover=g.mouseOver(this,' + vID + ',"left","' + vRowType + '") onMouseout=g.mouseOut(this,' + vID + ',"left","' + vRowType + '") style="'+ (vTaskList[i].getGroup() == 0? ' DISPLAY: none;' : '') +'"> ' ;
 
 			      vLeftTable += 
-                  '  <TD class=gdatehead style="WIDTH: 15px; HEIGHT: 3rem; BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #efefef 1px solid;">&nbsp;</TD>' +
-                  '  <TD class=gname; style="WIDTH: ' + vNameWidth + 'px; HEIGHT: 20px; BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; '+(vTaskList[i].getGroup() == 0 ? ' DISPLAY: none;' : '') +'" nowrap><NOBR><span style="color: #aaaaaa">';
+                  '  <TD class=gdatehead style="WIDTH: 15px; HEIGHT: 3rem; BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px;DISPLAY:none; BORDER-LEFT: #efefef 1px solid;">&nbsp;</TD>' +
+                  '  <TD class=gname; style="WIDTH: ' + vNameWidth + 'px; HEIGHT: 3rem; BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; '+(vTaskList[i].getGroup() == 0 ? ' DISPLAY: none;' : '') +'" nowrap><NOBR><span style="color: #aaaaaa">';
 
                for(j=1; j<vTaskList[i].getLevel(); j++) {
                   vLeftTable += '&nbsp&nbsp&nbsp&nbsp';
@@ -557,7 +577,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
             // Draw the Chart Rows
             vRightTable = 
             '<TD style="width: ' + vChartWidth + 'px;" vAlign=top bgColor=#ffffff>' +
-            '<DIV class=scroll2 id=rightside style="width:61rem">' +
+            '<DIV class=scroll2 id=rightside style="width:90rem">' +
             '<TABLE style="width: ' + vChartWidth + 'px;" cellSpacing=0 cellPadding=0 border=0>' +
             '<TBODY><TR style="HEIGHT: 18px">';
 
@@ -895,7 +915,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
                   vRightTable += '<DIV><TABLE style="position:relative; top:0px; width: ' + 2 + 'rem;" cellSpacing=0 cellPadding=0 border=0>' +
                      '<TR id=childrow_' + vID + ' class=yesdisplay style="HEIGHT: 20px" bgColor=#f3f3f3 onMouseover=g.mouseOver(this,' + vID + ',"right","group") onMouseout=g.mouseOut(this,' + vID + ',"right","group")>' + vItemRowStr + '</TR></TABLE></DIV>';
                   vRightTable +=
-                     '<div id=bardiv_' + vID + ' style="position:absolute; display:none; top:5px; left:' + Math.ceil(vTaskLeft * (vDayWidth)- (270)) + 'px; height: 7px; width:' + Math.ceil((vTaskRight) * (vDayWidth) -(330)) + 'px">' +
+                     '<div id=bardiv_' + vID + ' style="position:absolute; display:none; top:5px; left:' + Math.ceil(vTaskLeft * (vDayWidth)- (270))  + 'px; height: 7px; width:' + Math.ceil((vTaskRight) * (vDayWidth) -(330)) + 'px">' +
                        '<div id=taskbar_' + vID + ' title="' + vTaskList[i].getName() + ': ' + vDateRowStr + '" class=gtask style="background-color:#000000; height: 7px; width:' + Math.ceil((vTaskRight) * (vDayWidth) -(330)) + 'px;  cursor: pointer;opacity:0.9;">' +
                          '<div style="Z-INDEX: -4; float:left; background-color:#666666; height:3px; overflow: hidden; margin-top:1px; ' +
                                'margin-left:1px; margin-right:1px; filter: alpha(opacity=80); opacity:0.8; width:' + vTaskList[i].getCompStr() + '; ' + 

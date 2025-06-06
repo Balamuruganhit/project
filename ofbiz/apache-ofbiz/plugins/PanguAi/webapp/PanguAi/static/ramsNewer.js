@@ -1,4 +1,4 @@
-﻿
+
 
 var JSGantt; if (!JSGantt) JSGantt = {};
 var vTimeout = 0;

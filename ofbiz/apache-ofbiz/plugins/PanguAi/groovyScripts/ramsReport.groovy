@@ -40,7 +40,7 @@ if(ramsno){
 
 if(rams){
     fematitle=from( 'ramsheader').where('ramsNo',rams).queryOne()
-    context.date=UtilDateTime.toDateString(fematitle.date, "yyyy-MM-dd")
+    context.date=fematitle.date
     logInfo("dt"+ context.date)
     context.ramsOutputTitle=fematitle
     femaDetail=from('ramsDataNew').where('ramsNo',rams).queryList()

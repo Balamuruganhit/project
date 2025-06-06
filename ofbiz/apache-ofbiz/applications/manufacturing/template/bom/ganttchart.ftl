@@ -21,23 +21,25 @@ under the License.
 
 <div style="position:relative" class="gantt" id="GanttChartDIV"></div>
 <script type="application/javascript">
-var g = new JSGantt.GanttChart('g',document.getElementById('GanttChartDIV'), 'day');
+var g = new JSGantt.GanttChart('g',document.getElementById('GanttChartDIV'), 'hour');
 
-g.setShowRes(0); // Show/Hide Responsible (0/1)
-g.setShowDur(1); // Show/Hide Duration (0/1)
-g.setShowComp(0); // Show/Hide % Complete(0/1)
-
-// Parameters             (pID, pName,                  pStart,      pEnd,        pColor,   pLink,          pMile, pRes,  pComp, pGroup, pParent, pOpen)
+ g.setShowStartDate(0); // Show/Hide Start Date(0/1)
+  g.setShowEndDate(0);
+	g.setShowRes(0); // Show/Hide Responsible (0/1)
+	g.setShowDur(0); // Show/Hide Duration (0/1)
+	g.setShowComp(0); // Show/Hide % Complete(0/1)
+  g.setCaptionType('Resource');  // Set to Show Caption (None,Caption,Resource,Duration,Complete)
+	g.setDateDisplayFormat('dd/mm/yyyy')
 
 <#list phaseTaskList as t>
     <#if "PHASE" == t.workEffortTypeId>
         g.AddTaskItem(new JSGantt.TaskItem("${t.phaseNr}", "${t.phaseSeqNum!}. ${t.phaseName}", "", "", "00ff00", "", 0, "", 0, 1, 0, 1));
     </#if>
     <#if "TASK" == t.workEffortTypeId>
-        g.AddTaskItem(new JSGantt.TaskItem("${t.taskNr}","${t.taskSeqNum!}. ${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","009900", "${t.url}", 0 , "${t.resource!}", ${t.completion!} , 0, ${t.phaseNr}, 1, ${t.phaseNr} ));
+        g.AddTaskItem(new JSGantt.TaskItem("${t.taskNr}","${t.taskSeqNum!}. ${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","009900", "${t.url}", 0 , "${t.resource!}", ${t.completion!} , 0, "", 1, "" ));
     </#if>
     <#if "MILESTONE" == t.workEffortTypeId>
-        g.AddTaskItem(new JSGantt.TaskItem("${t.taskNr}","${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","00ff00", "", 1 , "${t.resource!}", ${t.completion!} , 0,${t.phaseNr}, "", "" ));
+        g.AddTaskItem(new JSGantt.TaskItem("${t.taskNr}","${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","00ff00", "", 1 , "${t.resource!}", ${t.completion!} , 0,"", "", "" ));
     </#if>
 </#list>
 
