@@ -148,11 +148,7 @@ under the License.
         </field>
         <field name="description"><text/></field>
         <field name="fixedAssetId">
-            <drop-down allow-empty="true">
-                <entity-options description="${fixedAssetName} [${fixedAssetId}]" entity-name="FixedAsset">
-                    <entity-constraint name="fixedAssetTypeId" operator="equals" value="GROUP_EQUIPMENT"/>
-                </entity-options>
-            </drop-down>
+             <lookup target-form-name="LookupFixedAsset"/>
         </field>
         <field name="estimatedSetupMillis" title="${uiLabelMap.ManufacturingTaskEstimatedSetupMillis}"><text/></field>
         <field name="estimatedMilliSeconds" title="${uiLabelMap.ManufacturingTaskEstimatedMilliSeconds}"><text/></field>

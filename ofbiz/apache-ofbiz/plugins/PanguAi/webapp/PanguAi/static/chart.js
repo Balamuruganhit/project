@@ -1,4 +1,4 @@
-/*.
+﻿/*.
 
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -460,7 +460,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
         
 		   // DRAW the Left-side of the chart (names, resources, comp%)
          vLeftTable =
-            '<DIV class=scroll id=leftside style="width:' + 15 + 'rem"><TABLE cellSpacing=0 cellPadding=0 border=0><TBODY>' +
+            '<DIV class=scroll id=leftside style="width:' + 24 + 'rem"><TABLE cellSpacing=0 cellPadding=0 border=0><TBODY>' +
             '<TR style="HEIGHT: 17px">' +
             '  <TD style="WIDTH: 15px; HEIGHT: 17px"></TD>' +
             '  <TD style="WIDTH: ' + vNameWidth + 'px; HEIGHT: 17px"><NOBR></NOBR></TD>'; 
@@ -577,7 +577,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
             // Draw the Chart Rows
             vRightTable = 
             '<TD style="width: ' + vChartWidth + 'px;" vAlign=top bgColor=#ffffff>' +
-            '<DIV class=scroll2 id=rightside style="width:61rem">' +
+            '<DIV class=scroll2 id=rightside style="width:97.6rem">' +
             '<TABLE style="width: ' + vChartWidth + 'px;" cellSpacing=0 cellPadding=0 border=0>' +
             '<TBODY><TR style="HEIGHT: 18px">';
 
@@ -668,8 +668,8 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
 			
 			   if(  vTmpDate.getHours() ==0  ) {
                   vWeekdayColor = "ccccff";
-                  vDateRowStr += '<td class="ghead" style="BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; HEIGHT:3rem; BORDER-RIGHT: black 2px solid;"  bgcolor=#' + vWeekdayColor + ' align=center><div style="width:10rem">'+ "00:00 - 24:00" + '</div></td>';
-                  vItemRowStr += '<td class="ghead" style="BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; HEIGHT:3rem; BORDER-RIGHT: black 2px solid; cursor: default;"  bgcolor=#' + vWeekdayColor + ' align=center><div style="width:10rem">&nbsp&nbsp</div></td>';
+                  vDateRowStr += '<td class="ghead" style="BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; HEIGHT:3rem; BORDER-RIGHT: black 2px solid;"  bgcolor=#' + vWeekdayColor + ' align=center><div style="WIDTH:16rem">'+ "00:00 - 24:00" + '</div></td>';
+                  vItemRowStr += '<td class="ghead" style="BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; HEIGHT:3rem; BORDER-RIGHT: black 2px solid; cursor: default;"  bgcolor=#' + vWeekdayColor + ' align=center><div style="WIDTH:16rem">&nbsp&nbsp</div></td>';
             }    else{
                   vWeekdayColor = "ccccff";
             }
@@ -954,7 +954,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
                   // Draw Task Bar  which has outer DIV with enclosed colored bar div, and opaque completion div
 	            vRightTable +=
                      '<div id=bardiv_' + vID + ' style="position:absolute; top:-'+ (3 ) +'rem; left:' + Math.ceil(vTaskLeft * (6.5) -1) + 'px; height:18px; width:' + Math.ceil((vTaskRight) * (vDayWidth) - 1) + 'px">' +
-                        '<div id=taskbar_' + vID + ' title="' + vTaskList[i].getName() +  ':\n ' + vDateRowStr + '" class=gtask style="background-color:#' + vTaskList[i].getColor() +'; height: 2.8rem; width:' + Math.ceil((vTaskRight) * (6.8) - 1) + 'px; cursor: pointer;opacity:0.9;" ' +
+                        '<div id=taskbar_' + vID + ' title="' + vTaskList[i].getName() +  ':\n ' + vDateRowStr + '" class=gtask style="background-color:' + vTaskList[i].getColor() +'; height: 2.8rem; width:' + Math.ceil((vTaskRight) * (6.8) - 1) + 'px; cursor: pointer;opacity:0.9;" ' +
                            'onclick=JSGantt.taskLink("' + vTaskList[i].getLink() + '",300,200); >' +
 
                         '</div>';

@@ -439,7 +439,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
         
 		   // DRAW the Left-side of the chart (names, resources, comp%)
          vLeftTable =
-            '<DIV class=scroll id=leftside style="width:' + 15 + 'rem"><TABLE cellSpacing=0 cellPadding=0 border=0><TBODY>' +
+            '<DIV class=scroll id=leftside style="width:' + 24 + 'rem"><TABLE cellSpacing=0 cellPadding=0 border=0><TBODY>' +
             '<TR style="HEIGHT: 17px">' +
             '  <TD style="WIDTH: 15px; HEIGHT: 17px"></TD>' +
             '  <TD style="WIDTH: ' + vNameWidth + 'px; HEIGHT: 17px"><NOBR></NOBR></TD>'; 
@@ -481,7 +481,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
                  vLeftTable += '<TR id=child_' + vID + ' bgcolor=#' + vBGColor + ' onMouseover=g.mouseOver(this,' + vID + ',"left","' + vRowType + '") onMouseout=g.mouseOut(this,' + vID + ',"left","' + vRowType + '") style="'+ (vTaskList[i].getGroup() == 0? ' DISPLAY: none;' : '') +'"> ' ;
 
 			      vLeftTable += 
-                  '  <TD class=gdatehead style="WIDTH: 15px; HEIGHT: 3rem; BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #efefef 1px solid;">&nbsp;</TD>' +
+                  '  <TD class=gdatehead style="WIDTH: 0px; HEIGHT: 3rem; BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #efefef 1px solid;">&nbsp;</TD>' +
                   '  <TD class=gname; style="WIDTH: ' + vNameWidth + 'px; HEIGHT: 20px; BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; '+(vTaskList[i].getGroup() == 0 ? ' DISPLAY: none;' : '') +'" nowrap><NOBR><span style="color: #aaaaaa">';
 
                for(j=1; j<vTaskList[i].getLevel(); j++) {
@@ -558,7 +558,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
             vRightTable = 
             '<TD style="width: ' + vChartWidth + 'px;" vAlign=top bgColor=#ffffff>' +
             '<DIV class=scroll2 id=rightside style="width:61rem">' +
-            '<TABLE style="width: ' + vChartWidth + 'px;" cellSpacing=0 cellPadding=0 border=0>' +
+            '<TABLE style="width: ' + 24+ 'rem;" cellSpacing=0 cellPadding=0 border=0>' +
             '<TBODY><TR style="HEIGHT: 18px">';
 
             vTmpDate.setFullYear(vMinDate.getFullYear(), vMinDate.getMonth(), vMinDate.getDate());
@@ -1648,6 +1648,10 @@ JSGantt.benchMark = function(pItem){
    var vEndTime=new Date().getTime();
    alert(pItem + ': Elapsed time: '+((vEndTime-vBenchTime)/1000)+' seconds.');
    vBenchTime=new Date().getTime();
+}
+
+
+;
 }
 
 

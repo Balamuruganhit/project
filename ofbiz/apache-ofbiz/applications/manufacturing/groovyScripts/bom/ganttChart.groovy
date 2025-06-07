@@ -22,7 +22,7 @@ import org.apache.ofbiz.entity.condition.EntityOperator
 
 userLogin = parameters.userLogin
 ganttList = new LinkedList()
-
+def machineToWorkEfforts = []
 def productionRuns = from("WorkEffort")
     .where(EntityCondition.makeCondition([
         EntityCondition.makeCondition("workEffortTypeId", EntityOperator.EQUALS, "PROD_ORDER_HEADER"),
@@ -30,8 +30,31 @@ def productionRuns = from("WorkEffort")
     ], EntityOperator.AND))
     .orderBy("estimatedStartDate")
     .queryList()
+def listOfMachine=from('FixedAsset').where(EntityCondition.makeCondition([
+        EntityCondition.makeCondition("fixedAssetTypeId", EntityOperator.EQUALS, "PRODUCTION_EQUIPMENT"),
+        EntityCondition.makeCondition("fixedAssetTypeId", EntityOperator.EQUALS, "GROUP_EQUIPMENT"),
+    ], EntityOperator.OR)).queryList()
+// logInfo("List Of production run Machine:"+ listOfMachine)
+listOfMachine.each { machine ->
+    String fixedAssetId = machine.fixedAssetId
 
-logInfo("GanttList for Manufacturing: ${productionRuns}")
+    // Get all production runs assigned to this machine
+    def assignedWorkEfforts = select('workEffortId')
+        .from('WorkEffort')
+        .where(['fixedAssetId':fixedAssetId,'workEffortTypeId':"PROD_ORDER_TASK"])
+        .orderBy('createdDate')
+        .queryList()
+
+    // Collect only the IDs in a list
+    def workEffortIds = assignedWorkEfforts.collect { it.workEffortId }
+
+    // Store in the array as a map
+    machineToWorkEfforts << [
+        fixedAssetId    : fixedAssetId,
+        workEffortIds   : workEffortIds
+    ]
+}
+// logInfo("List Of Routing Under the Machine:"+ machineToWorkEfforts)
 
 // Use date from first production run for chart start
 if (productionRuns && productionRuns.first().estimatedStartDate)
@@ -47,58 +70,47 @@ else
 
 if (!productionRuns) return
 
-productionRuns.eachWithIndex { production, i ->
+listOfMachine.eachWithIndex { production, i ->
 
     def phase = [:]
-    phase.phaseId = production.workEffortId
-    phase.phaseNr = production.workEffortId
-    phase.phaseName = production.workEffortName
+    phase.phaseId = production.fixedAssetId
+    phase.phaseNr = production.fixedAssetId
+    phase.phaseName = production.fixedAssetName
     phase.workEffortTypeId = "PHASE"
     phase.sequenceId = i.toString()
     phase.phaseSeqNum = i + 1
-    phase.estimatedStartDate = production.estimatedStartDate ?: UtilDateTime.nowTimestamp()
-    phase.estimatedCompletionDate = production.estimatedCompletionDate ?: UtilDateTime.addDaysToTimestamp(phase.estimatedStartDate, 3)
-    phase.startDate = phase.estimatedStartDate
-    phase.completionDate = phase.estimatedCompletionDate
-    phase.plannedHours = production.estimatedMilliSeconds != null ? production.estimatedMilliSeconds / 3600000 : 0
-    phase.currentStatusId = production.currentStatusId
     ganttList.add(phase)
 
-    // Get associated routing tasks
-    def taskConds = EntityCondition.makeCondition([
-        EntityCondition.makeCondition("workEffortParentId", EntityOperator.EQUALS, production.workEffortId),
-        EntityCondition.makeCondition("workEffortTypeId", EntityOperator.EQUALS, "PROD_ORDER_TASK")
-    ], EntityOperator.AND)
-
-    def routingTasks = from("WorkEffort")
-        .where(taskConds)
-        .orderBy("sequenceNum")
+    def routingTasks = from('WorkEffort')
+        .where(['fixedAssetId':production.fixedAssetId,'workEffortTypeId':"PROD_ORDER_TASK"])
+        .orderBy('createdDate')
         .queryList()
-
+    def routingTask = select("workEffortId").from('WorkEffort')
+        .where(['fixedAssetId':production.fixedAssetId,'workEffortTypeId':"PROD_ORDER_TASK"])
+        .orderBy('createdDate')
+        .queryList()
+    logInfo('Routing' + routingTask)
+    loader = 987
     routingTasks.eachWithIndex { task, index ->
         def taskMap = [:]
         taskMap.taskId = task.workEffortId
         taskMap.taskNr = task.workEffortId
         taskMap.taskName = task.workEffortName
-        taskMap.phaseNr = production.workEffortId
+        taskMap.phaseNr = production.fixedAssetId
         taskMap.taskSeqNum = index + 1
         taskMap.estimatedStartDate = UtilDateTime.toDateString(task.estimatedStartDate ?: phase.estimatedStartDate, "MM/dd/yyyy HH:mm")
         taskMap.estimatedCompletionDate = UtilDateTime.toDateString(task.estimatedCompletionDate ?: UtilDateTime.addDaysToTimestamp(task.estimatedStartDate ?: phase.estimatedStartDate, 1), "MM/dd/yyyy HH:mm")
-        taskMap.plannedHours = task.estimatedMilliSeconds != null ? task.estimatedMilliSeconds / 3600000 : 0
-        taskMap.resource = "${taskMap.plannedHours} Hrs"
+        taskMap.plannedHours = task.workEffortParentId
+        taskMap.resource = "${taskMap.plannedHours} "
+        def r = (loader + index * 7) % 256
+        def g = (loader + index * 13) % 256
+        def b = (loader + index * 19) % 256
+        taskMap.color = String.format("#%02X%02X%02X", r, g, b)
         taskMap.completion = "PTS_COMPLETED".equals(task.currentStatusId) ? 100 : 0
         taskMap.workEffortTypeId = "TASK"
         taskMap.currentStatusId = task.currentStatusId
         taskMap.url = "/workeffort/control/EditWorkEffort?workEffortId=${task.workEffortId}"
 
-        // Add predecessor if exists
-        def predecessors = from("WorkEffortAssoc")
-            .where("workEffortIdTo", task.workEffortId)
-            .queryList()
-
-        if (predecessors) {
-            taskMap.preDecessor = predecessors.collect { it.workEffortIdFrom }.join(", ")
-        }
 
         ganttList.add(taskMap)
     }

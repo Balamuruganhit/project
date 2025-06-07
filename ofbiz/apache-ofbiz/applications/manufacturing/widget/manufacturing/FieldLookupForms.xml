@@ -108,6 +108,36 @@ under the License.
     <field name="orderTypeId" title="Order type"><display/></field>
     <field name="orderDate" title="Po/So Date"><display/></field>
 </form>
-
+<form name="LookupFixedAsset" target="LookupFixedAsset" title="" type="single"
+        header-row-style="header-row" default-table-style="basic-table">
+        <auto-fields-entity entity-name="FixedAsset" default-field-type="hidden"/>
+        <field name="fixedAssetId"><text-find/></field>
+        <field name="fixedAssetName"><text-find/></field>
+        <field name="fixedAssetTypeId" title="${uiLabelMap.AccountingFixedAssetTypeId}">
+            <drop-down allow-empty="true">
+                <entity-options entity-name="FixedAssetType">
+                    <entity-order-by field-name="description"/>
+                </entity-options>
+             </drop-down>
+        </field>
+        <field name="noConditionFind"><hidden value="Y"/><!-- if this isn't there then with all fields empty no query will be done --></field>
+        <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit"><submit button-type="button"/></field>
+    </form>
+    <grid name="ListLookupFixedAsset" list-name="listIt" title="" paginate-target="LookupFixedAsset"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
+        <actions>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="FixedAsset"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+            </service>
+        </actions>
+        <field name="fixedAssetId" widget-style="buttontext">
+            <hyperlink description="${fixedAssetId}" target="javascript:set_value('${fixedAssetId}')" also-hidden="false" target-type="plain"/>
+        </field>
+        <field name="fixedAssetName" title="${uiLabelMap.CommonName}"><display/></field>
+        <field name="fixedAssetTypeId" title="${uiLabelMap.AccountingFixedAssetTypeId}"><display-entity entity-name="FixedAssetType"/></field>
+    </grid>
 
 </forms>
