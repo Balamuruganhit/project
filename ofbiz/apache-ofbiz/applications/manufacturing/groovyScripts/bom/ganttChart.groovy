@@ -75,7 +75,7 @@ listOfMachine.eachWithIndex { production, i ->
     def phase = [:]
     phase.phaseId = production.fixedAssetId
     phase.phaseNr = production.fixedAssetId
-    phase.phaseName = production.fixedAssetName
+    phase.phaseName = production.fixedAssetId
     phase.workEffortTypeId = "PHASE"
     phase.sequenceId = i.toString()
     phase.phaseSeqNum = i + 1
