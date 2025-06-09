@@ -94,9 +94,14 @@ listOfMachine.eachWithIndex { production, i ->
     loader = 987
     routingTasks.eachWithIndex { task, index ->
         def taskMap = [:]
+        def partyDetail=[:]
         def routingDetails = from('WorkEffortAssocFromView').where(['workEffortAssocTypeId':'WORK_EFF_TEMPLATE','workEffortIdTo':task.workEffortId]).queryList()
         def proDetails=from('WorkEffort').where(['workEffortId':task.workEffortParentId,'workEffortTypeId':"PROD_ORDER_HEADER"]).queryList()
         def productDetails=from('WorkEffortAndProduct').where(['workEffortId':task.workEffortParentId,'workEffortTypeId':"PROD_ORDER_HEADER"]).queryList()
+        workorder=from("partyOrder").where('productionRunId',task.workEffortParentId).queryOne()
+        if(workorder){
+        partyDetail=from("WorkOrder").where('workOrderNumber',workorder.poNumber).queryOne()
+        }
         taskMap.taskId = task.workEffortId
         taskMap.taskNr = task.workEffortId
         taskMap.taskName = task.workEffortName
@@ -110,7 +115,7 @@ listOfMachine.eachWithIndex { production, i ->
         def g = (loader + index * 13) % 256
         def b = (loader + index * 19) % 256
         taskMap.color = String.format("#%02X%02X%02X", r, g, b)
-        taskMap.completion = "Production Order No:${task.workEffortParentId} \\nProduction Order Name:${proDetails.workEffortName} \\nPart No: ${productDetails.productId} \\nQuantity:${proDetails.quantityToProduce} \\nPart Name: ${productDetails.internalName}\\nstatus: ${proDetails.currentStatusId?"Scheduled":0} \\nRouting Id: ${routingDetails.workEffortIdFrom} \\nRouting Name: ${routingDetails.workEffortName}"
+        taskMap.completion = "PO/SO No:${partyDetail.orderNumber?:" "} \\n WorkOrder Number:${partyDetail.workOrderNumber?:" "} \\nProduction Order No:${task.workEffortParentId} \\nProduction Order Name:${proDetails.workEffortName} \\nPart No: ${productDetails.productId} \\nQuantity:${proDetails.quantityToProduce} \\nPart Name: ${productDetails.internalName} \\nRouting Id: ${routingDetails.workEffortIdFrom} \\nRouting Name: ${routingDetails.workEffortName}\\n Routing Task Id: ${task.workEffortId} \\n Routing Task Name:${task.workEffortName} \\nstatus: ${proDetails.currentStatusId?"Scheduled":0}\\n Estimate Setup time: ${task.estimatedSetupMillis?:" "}\\n Estimate Run Time${task.estimatedStartDate} - ${task.estimatedCompletionDate} \\n Actual Setup Time: ${task.actualSetupMillis?:" "} \\n Actual Completion Date: ${task.actualStartDate?:" "}"
         taskMap.workEffortTypeId = "TASK"
         taskMap.currentStatusId = task.currentStatusId
         taskMap.url = "/workeffort/control/EditWorkEffort?workEffortId=${task.workEffortId}"

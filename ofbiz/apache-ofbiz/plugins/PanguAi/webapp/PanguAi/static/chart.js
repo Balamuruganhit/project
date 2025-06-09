@@ -601,7 +601,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
             
             if(vFormat == 'hour')
             {
-                vRightTable += '<td class=gdatehead style="FONT-SIZE: 12px; HEIGHT: 19px;" align=center colspan=0>' ;
+                vRightTable += '<td class=gdatehead style="FONT-SIZE: 12px; HEIGHT: 19px;" align=center colspan=24>' ;
                 vRightTable += JSGantt.formatDateStr(vTmpDate, vDateDisplayFormat) + '</td>';
                 vTmpDate.setDate(vTmpDate.getDate()+1);
             }
@@ -667,10 +667,12 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
             {
 			
 			   if(  vTmpDate.getHours() ==0  ) {
+for(j=0;j<24;j++){
                   vWeekdayColor = "ccccff";
-                  vDateRowStr += '<td class="ghead" style="BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; HEIGHT:3rem; BORDER-RIGHT: black 2px solid;"  bgcolor=#' + vWeekdayColor + ' align=center><div style="WIDTH:16rem">'+ "00:00 - 24:00" + '</div></td>';
-                  vItemRowStr += '<td class="ghead" style="BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; HEIGHT:3rem; BORDER-RIGHT: black 2px solid; cursor: default;"  bgcolor=#' + vWeekdayColor + ' align=center><div style="WIDTH:16rem">&nbsp&nbsp</div></td>';
-            }    else{
+                  vDateRowStr += '<td class="ghead" style="BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; HEIGHT:3rem; BORDER-RIGHT: black 2px solid;"  bgcolor=#' + vWeekdayColor + ' align=center><div style="WIDTH:5rem">'+ `${j}:00 - ${j+1}:00` + '</div></td>';
+                  vItemRowStr += '<td class="ghead" style="BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; HEIGHT:3rem; BORDER-RIGHT: black 2px solid; cursor: default;"  bgcolor=#' + vWeekdayColor + ' align=center><div style="WIDTH:5rem">&nbsp&nbsp</div></td>';
+}            
+}    else{
                   vWeekdayColor = "ccccff";
             }
                 vTmpDate.setHours(vTmpDate.getHours() + 6);
@@ -893,8 +895,6 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
                 {
                     vTaskRight = (Date.parse(vTaskList[i].getEnd()) - Date.parse(vTaskList[i].getStart())) / ( 60 * 60 * 1000) + 0.1 ;
                     vTaskLeft = (Date.parse(vTaskList[i].getStart()) - Date.parse(vMinDate)) / ( 60 * 60 * 1000);
-                    console.log(vDayWidth)
-               console.log((Date.parse(vTaskList[i].getEnd()) - Date.parse(vTaskList[i].getStart()) )/ ( 60 * 60 * 1000) )
                 }
                 else
                 {
@@ -953,8 +953,8 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
                   
                   // Draw Task Bar  which has outer DIV with enclosed colored bar div, and opaque completion div
 	            vRightTable +=
-                     '<div id=bardiv_' + vID + ' style="position:absolute; top:-'+ (3 ) +'rem; left:' + Math.ceil(vTaskLeft * (6.754) -1) + 'px; height:18px; width:' + Math.ceil((vTaskRight) * (vDayWidth) - 1) + 'px">' +
-                        '<div id=taskbar_' + vID + ' title="' + vTaskList[i].getCompVal() +  ':\n ' +"Running Duration: "+ vDateRowStr + '" class=gtask style="background-color:' + vTaskList[i].getColor() +'; height: 2.8rem; width:' + Math.ceil((vTaskRight) * (6.8) - 1) + 'px; cursor: pointer;opacity:0.9;" ' +
+                     '<div id=bardiv_' + vID + ' style="position:absolute; top:-'+ (2.9 ) +'rem; left:' + Math.ceil(vTaskLeft * (50)) + 'px; height:18px; width:' + Math.ceil((vTaskRight) * (vDayWidth) - 1) + 'px">' +
+                        '<div id=taskbar_' + vID + ' title="' + vTaskList[i].getCompVal() +  ':\n ' +"Running Duration: "+ vDateRowStr + '" class=gtask style="background-color:' + vTaskList[i].getColor() +'; height: 2.8rem; width:' + Math.ceil((vNumUnits) * (0.833)-2 ) + 'px; cursor: pointer;opacity:0.9;" ' +
                            'onclick=JSGantt.taskLink("' + vTaskList[i].getLink() + '",300,200); >' +
 
                         '</div>';
@@ -1663,7 +1663,6 @@ JSGantt.ChromeXMLParse = function (pGanttVar){
 		}
 	}
 }
-
 JSGantt.benchMark = function(pItem){
    var vEndTime=new Date().getTime();
    alert(pItem + ': Elapsed time: '+((vEndTime-vBenchTime)/1000)+' seconds.');

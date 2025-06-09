@@ -1,4 +1,4 @@
-/*.
+﻿/*.
 
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -460,7 +460,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
         
 		   // DRAW the Left-side of the chart (names, resources, comp%)
          vLeftTable =
-            '<DIV class=scroll id=leftside style="width:' + 30 + 'rem"><TABLE cellSpacing=0 cellPadding=0 border=0><TBODY>' +
+            '<DIV class=scroll id=leftside style="width:' + 24 + 'rem"><TABLE cellSpacing=0 cellPadding=0 border=0><TBODY>' +
             '<TR style="HEIGHT: 17px">' +
             '  <TD style="WIDTH: 15px; HEIGHT: 17px"></TD>' +
             '  <TD style="WIDTH: ' + vNameWidth + 'px; HEIGHT: 17px"><NOBR></NOBR></TD>'; 
@@ -577,7 +577,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
             // Draw the Chart Rows
             vRightTable = 
             '<TD style="width: ' + vChartWidth + 'px;" vAlign=top bgColor=#ffffff>' +
-            '<DIV class=scroll2 id=rightside style="width:90rem">' +
+            '<DIV class=scroll2 id=rightside style="width:97.6rem">' +
             '<TABLE style="width: ' + vChartWidth + 'px;" cellSpacing=0 cellPadding=0 border=0>' +
             '<TBODY><TR style="HEIGHT: 18px">';
 
@@ -601,7 +601,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
             
             if(vFormat == 'hour')
             {
-                vRightTable += '<td class=gdatehead style="FONT-SIZE: 12px; HEIGHT: 19px;" align=center colspan=0>' ;
+                vRightTable += '<td class=gdatehead style="FONT-SIZE: 12px; HEIGHT: 19px;" align=center colspan=24>' ;
                 vRightTable += JSGantt.formatDateStr(vTmpDate, vDateDisplayFormat) + '</td>';
                 vTmpDate.setDate(vTmpDate.getDate()+1);
             }
@@ -667,10 +667,12 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
             {
 			
 			   if(  vTmpDate.getHours() ==0  ) {
+for(j=0;j<24;j++){
                   vWeekdayColor = "ccccff";
-                  vDateRowStr += '<td class="ghead" style="BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; HEIGHT:3rem; BORDER-RIGHT: black 2px solid;"  bgcolor=#' + vWeekdayColor + ' align=center><div style="width:10rem">'+ "00:00 - 24:00" + '</div></td>';
-                  vItemRowStr += '<td class="ghead" style="BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; HEIGHT:3rem; BORDER-RIGHT: black 2px solid; cursor: default;"  bgcolor=#' + vWeekdayColor + ' align=center><div style="width:10rem">&nbsp&nbsp</div></td>';
-            }    else{
+                  vDateRowStr += '<td class="ghead" style="BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; HEIGHT:3rem; BORDER-RIGHT: black 2px solid;"  bgcolor=#' + vWeekdayColor + ' align=center><div style="WIDTH:5rem">'+ `${j}:00 - ${j+1}:00` + '</div></td>';
+                  vItemRowStr += '<td class="ghead" style="BORDER-TOP: #efefef 1px solid; FONT-SIZE: 12px; HEIGHT:3rem; BORDER-RIGHT: black 2px solid; cursor: default;"  bgcolor=#' + vWeekdayColor + ' align=center><div style="WIDTH:5rem">&nbsp&nbsp</div></td>';
+}            
+}    else{
                   vWeekdayColor = "ccccff";
             }
                 vTmpDate.setHours(vTmpDate.getHours() + 6);
@@ -832,7 +834,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
 	       if (vFormat=='hour')
 	       {
                 vNumUnits = (vTaskList[i].getEnd() - vTaskList[i].getStart()) / (  60 * 1000) + 1;
-                console.log(vNumUnits)
+                console.log('Unit'+ vNumUnits)
 	       }
 	       else if (vFormat=='minute')
 	       {
@@ -893,8 +895,6 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
                 {
                     vTaskRight = (Date.parse(vTaskList[i].getEnd()) - Date.parse(vTaskList[i].getStart())) / ( 60 * 60 * 1000) + 0.1 ;
                     vTaskLeft = (Date.parse(vTaskList[i].getStart()) - Date.parse(vMinDate)) / ( 60 * 60 * 1000);
-                    console.log(vDayWidth)
-               console.log((Date.parse(vTaskList[i].getEnd()) - Date.parse(vTaskList[i].getStart()) )/ ( 60 * 60 * 1000) )
                 }
                 else
                 {
@@ -908,14 +908,15 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
                             vTaskLeft+=.5
                     }
                 }
-
+                console.log('Left' + vTaskLeft)
+                console.log('Right' + vTaskRight)
                // Draw Group Bar  which has outer div with inner group div and several small divs to left and right to create angled-end indicators
                if( vTaskList[i].getGroup()) {
                   
                   vRightTable += '<DIV><TABLE style="position:relative; top:0px; width: ' + 2 + 'rem;" cellSpacing=0 cellPadding=0 border=0>' +
                      '<TR id=childrow_' + vID + ' class=yesdisplay style="HEIGHT: 20px" bgColor=#f3f3f3 onMouseover=g.mouseOver(this,' + vID + ',"right","group") onMouseout=g.mouseOut(this,' + vID + ',"right","group")>' + vItemRowStr + '</TR></TABLE></DIV>';
                   vRightTable +=
-                     '<div id=bardiv_' + vID + ' style="position:absolute; display:none; top:5px; left:' + Math.ceil(vTaskLeft * (vDayWidth)- (270))  + 'px; height: 7px; width:' + Math.ceil((vTaskRight) * (vDayWidth) -(330)) + 'px">' +
+                     '<div id=bardiv_' + vID + ' style="position:absolute; display:none; top:5px; left:' + Math.ceil(vTaskLeft * (vDayWidth)- (270)) + 'px; height: 7px; width:' + Math.ceil((vTaskRight) * (vDayWidth) -(330)) + 'px">' +
                        '<div id=taskbar_' + vID + ' title="' + vTaskList[i].getName() + ': ' + vDateRowStr + '" class=gtask style="background-color:#000000; height: 7px; width:' + Math.ceil((vTaskRight) * (vDayWidth) -(330)) + 'px;  cursor: pointer;opacity:0.9;">' +
                          '<div style="Z-INDEX: -4; float:left; background-color:#666666; height:3px; overflow: hidden; margin-top:1px; ' +
                                'margin-left:1px; margin-right:1px; filter: alpha(opacity=80); opacity:0.8; width:' + vTaskList[i].getCompStr() + '; ' + 
@@ -953,8 +954,8 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
                   
                   // Draw Task Bar  which has outer DIV with enclosed colored bar div, and opaque completion div
 	            vRightTable +=
-                     '<div id=bardiv_' + vID + ' style="position:absolute; top:-'+ (3 ) +'rem; left:' + Math.ceil(vTaskLeft * (6.5) -1) + 'px; height:18px; width:' + Math.ceil((vTaskRight) * (vDayWidth) - 1) + 'px">' +
-                        '<div id=taskbar_' + vID + ' title="' + vTaskList[i].getName() +  ':\n ' + vDateRowStr + '" class=gtask style="background-color:#' + vTaskList[i].getColor() +'; height: 2.8rem; width:' + Math.ceil((vTaskRight) * (6.8) - 1) + 'px; cursor: pointer;opacity:0.9;" ' +
+                     '<div id=bardiv_' + vID + ' style="position:absolute; top:-'+ (2.9 ) +'rem; left:' + Math.ceil(vTaskLeft * (52)) + 'px; height:18px; width:' + Math.ceil((vTaskRight) * (vDayWidth) - 1) + 'px">' +
+                        '<div id=taskbar_' + vID + ' title="' + vTaskList[i].getCompVal() +  ':\n ' +"Running Duration: "+ vDateRowStr + '" class=gtask style="background-color:' + vTaskList[i].getColor() +'; height: 2.8rem; width:' + Math.ceil((vNumUnits) * (0.833)-2 ) + 'px; cursor: pointer;opacity:0.9;" ' +
                            'onclick=JSGantt.taskLink("' + vTaskList[i].getLink() + '",300,200); >' +
 
                         '</div>';
@@ -968,7 +969,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
                               case 'Complete':   vCaptionStr = vTaskList[i].getCompStr();  break;
 		                     }
                            //vRightTable += '<div style="FONT-SIZE:12px; position:absolute; left: 6px; top:-3px;">' + vCaptionStr + '</div>';
-                           vRightTable += '<div style="FONT-SIZE:12px; position:absolute; top:10px; width:120px; left:' + 2 + 'px">' + vCaptionStr + '</div>';
+                           vRightTable += '<div style="FONT-SIZE:12px; position:absolute; top:10px;color:white; width:10px; left:' + 2 + 'px">' + vCaptionStr + '</div>';
 	                  }
                   vRightTable += '</div>' ;
 
@@ -1663,7 +1664,6 @@ JSGantt.ChromeXMLParse = function (pGanttVar){
 		}
 	}
 }
-
 JSGantt.benchMark = function(pItem){
    var vEndTime=new Date().getTime();
    alert(pItem + ': Elapsed time: '+((vEndTime-vBenchTime)/1000)+' seconds.');
