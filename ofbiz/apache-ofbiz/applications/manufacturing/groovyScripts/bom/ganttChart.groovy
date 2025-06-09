@@ -89,10 +89,14 @@ listOfMachine.eachWithIndex { production, i ->
         .where(['fixedAssetId':production.fixedAssetId,'workEffortTypeId':"PROD_ORDER_TASK"])
         .orderBy('createdDate')
         .queryList()
+    
     logInfo('Routing' + routingTask)
     loader = 987
     routingTasks.eachWithIndex { task, index ->
         def taskMap = [:]
+        def routingDetails = from('WorkEffortAssocFromView').where(['workEffortAssocTypeId':'WORK_EFF_TEMPLATE','workEffortIdTo':task.workEffortId]).queryList()
+        def proDetails=from('WorkEffort').where(['workEffortId':task.workEffortParentId,'workEffortTypeId':"PROD_ORDER_HEADER"]).queryList()
+        def productDetails=from('WorkEffortAndProduct').where(['workEffortId':task.workEffortParentId,'workEffortTypeId':"PROD_ORDER_HEADER"]).queryList()
         taskMap.taskId = task.workEffortId
         taskMap.taskNr = task.workEffortId
         taskMap.taskName = task.workEffortName
@@ -106,7 +110,7 @@ listOfMachine.eachWithIndex { production, i ->
         def g = (loader + index * 13) % 256
         def b = (loader + index * 19) % 256
         taskMap.color = String.format("#%02X%02X%02X", r, g, b)
-        taskMap.completion = "PTS_COMPLETED".equals(task.currentStatusId) ? 100 : 0
+        taskMap.completion = "Production Order No:${task.workEffortParentId} Production Order Name:${proDetails.workEffortName} Part No: ${productDetails.productId}  Quantity: ${proDetails.quantityToProduce} Part Name: ${productDetails.internalName} status: ${proDetails.currentStatusId} Routing Id: ${routingDetails.workEffortIdFrom} Routing Name: ${routingDetails.workEffortName}"
         taskMap.workEffortTypeId = "TASK"
         taskMap.currentStatusId = task.currentStatusId
         taskMap.url = "/workeffort/control/EditWorkEffort?workEffortId=${task.workEffortId}"

@@ -175,10 +175,10 @@ under the License.
                             <#if taskDetail.fixedAssetId?has_content>
                                 ${taskDetail.fixedAssetId}
                             <#else>
-                                
+                                <fo:block></fo:block>
                             </#if>
                         </fo:block>
-                    </fo:table-cell>
+                     </fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt" text-align="center"><#if taskDetail.reservPersons?has_content>
                             <fo:block >${taskDetail.reservPersons}</fo:block>
                         <#else>

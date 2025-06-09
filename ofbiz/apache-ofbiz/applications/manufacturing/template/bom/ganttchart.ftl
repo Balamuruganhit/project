@@ -36,10 +36,10 @@ var g = new JSGantt.GanttChart('g',document.getElementById('GanttChartDIV'), 'ho
         g.AddTaskItem(new JSGantt.TaskItem("${t.phaseNr}", "${t.phaseSeqNum!}. ${t.phaseName}", "", "", "00ff00", "", 0, "", 0, 1, 0, 1));
     </#if>
     <#if "TASK" == t.workEffortTypeId>
-        g.AddTaskItem(new JSGantt.TaskItem("${t.taskNr}","${t.taskSeqNum!}. ${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","${t.color}", "${t.url}", 0 , "${t.resource!}", ${t.completion!} , 0, "", 1, "" ));
+        g.AddTaskItem(new JSGantt.TaskItem("${t.taskNr}","${t.taskSeqNum!}. ${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","${t.color}", "${t.url}", 0 , "${t.resource!}", "${t.completion!}" , 0, "", 1, "" ));
     </#if>
     <#if "MILESTONE" == t.workEffortTypeId>
-        g.AddTaskItem(new JSGantt.TaskItem("${t.taskNr}","${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","00ff00", "", 1 , "${t.resource!}", ${t.completion!} , 0,"", "", "" ));
+        g.AddTaskItem(new JSGantt.TaskItem("${t.taskNr}","${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","00ff00", "", 1 , "${t.resource!}", "${t.completion!}" , 0,"", "", "" ));
     </#if>
 </#list>
 
