@@ -110,7 +110,7 @@ listOfMachine.eachWithIndex { production, i ->
         def g = (loader + index * 13) % 256
         def b = (loader + index * 19) % 256
         taskMap.color = String.format("#%02X%02X%02X", r, g, b)
-        taskMap.completion = "Production Order No:${task.workEffortParentId} Production Order Name:${proDetails.workEffortName} Part No: ${productDetails.productId}  Quantity: ${proDetails.quantityToProduce} Part Name: ${productDetails.internalName} status: ${proDetails.currentStatusId} Routing Id: ${routingDetails.workEffortIdFrom} Routing Name: ${routingDetails.workEffortName}"
+        taskMap.completion = "Production Order No:${task.workEffortParentId} \\nProduction Order Name:${proDetails.workEffortName} \\nPart No: ${productDetails.productId} \\nQuantity:${proDetails.quantityToProduce} \\nPart Name: ${productDetails.internalName}\\nstatus: ${proDetails.currentStatusId?"Scheduled":0} \\nRouting Id: ${routingDetails.workEffortIdFrom} \\nRouting Name: ${routingDetails.workEffortName}"
         taskMap.workEffortTypeId = "TASK"
         taskMap.currentStatusId = task.currentStatusId
         taskMap.url = "/workeffort/control/EditWorkEffort?workEffortId=${task.workEffortId}"

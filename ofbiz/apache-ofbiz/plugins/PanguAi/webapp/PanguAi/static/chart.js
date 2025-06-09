@@ -954,7 +954,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
                   // Draw Task Bar  which has outer DIV with enclosed colored bar div, and opaque completion div
 	            vRightTable +=
                      '<div id=bardiv_' + vID + ' style="position:absolute; top:-'+ (3 ) +'rem; left:' + Math.ceil(vTaskLeft * (6.754) -1) + 'px; height:18px; width:' + Math.ceil((vTaskRight) * (vDayWidth) - 1) + 'px">' +
-                        '<div id=taskbar_' + vID + ' title="' + vTaskList[i].getCompVal() +  ':\n ' + vDateRowStr + '" class=gtask style="background-color:' + vTaskList[i].getColor() +'; height: 2.8rem; width:' + Math.ceil((vTaskRight) * (6.8) - 1) + 'px; cursor: pointer;opacity:0.9;" ' +
+                        '<div id=taskbar_' + vID + ' title="' + vTaskList[i].getCompVal() +  ':\n ' +"Running Duration: "+ vDateRowStr + '" class=gtask style="background-color:' + vTaskList[i].getColor() +'; height: 2.8rem; width:' + Math.ceil((vTaskRight) * (6.8) - 1) + 'px; cursor: pointer;opacity:0.9;" ' +
                            'onclick=JSGantt.taskLink("' + vTaskList[i].getLink() + '",300,200); >' +
 
                         '</div>';
