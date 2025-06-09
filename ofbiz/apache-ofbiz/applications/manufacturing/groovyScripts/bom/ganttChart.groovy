@@ -82,7 +82,7 @@ listOfMachine.eachWithIndex { production, i ->
     ganttList.add(phase)
 
     def routingTasks = from('WorkEffort')
-        .where(['fixedAssetId':production.fixedAssetId,'workEffortTypeId':"PROD_ORDER_TASK"])
+        .where(['fixedAssetId':production.fixedAssetId,'workEffortTypeId':"PROD_ORDER_TASK",'currentStatusId':"PRUN_SCHEDULED"])
         .orderBy('createdDate')
         .queryList()
     def routingTask = select("workEffortId").from('WorkEffort')

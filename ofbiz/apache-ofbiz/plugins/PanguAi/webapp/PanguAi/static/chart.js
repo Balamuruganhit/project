@@ -953,7 +953,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
                   
                   // Draw Task Bar  which has outer DIV with enclosed colored bar div, and opaque completion div
 	            vRightTable +=
-                     '<div id=bardiv_' + vID + ' style="position:absolute; top:-'+ (3 ) +'rem; left:' + Math.ceil(vTaskLeft * (6.5) -1) + 'px; height:18px; width:' + Math.ceil((vTaskRight) * (vDayWidth) - 1) + 'px">' +
+                     '<div id=bardiv_' + vID + ' style="position:absolute; top:-'+ (3 ) +'rem; left:' + Math.ceil(vTaskLeft * (6.754) -1) + 'px; height:18px; width:' + Math.ceil((vTaskRight) * (vDayWidth) - 1) + 'px">' +
                         '<div id=taskbar_' + vID + ' title="' + vTaskList[i].getName() +  ':\n ' + vDateRowStr + '" class=gtask style="background-color:' + vTaskList[i].getColor() +'; height: 2.8rem; width:' + Math.ceil((vTaskRight) * (6.8) - 1) + 'px; cursor: pointer;opacity:0.9;" ' +
                            'onclick=JSGantt.taskLink("' + vTaskList[i].getLink() + '",300,200); >' +
 
@@ -968,7 +968,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
                               case 'Complete':   vCaptionStr = vTaskList[i].getCompStr();  break;
 		                     }
                            //vRightTable += '<div style="FONT-SIZE:12px; position:absolute; left: 6px; top:-3px;">' + vCaptionStr + '</div>';
-                           vRightTable += '<div style="FONT-SIZE:12px; position:absolute; top:10px; width:120px; left:' + 2 + 'px">' + vCaptionStr + '</div>';
+                           vRightTable += '<div style="FONT-SIZE:12px; position:absolute; top:10px; width:10px; left:' + 2 + 'px">' + vCaptionStr + '</div>';
 	                  }
                   vRightTable += '</div>' ;
 
@@ -1669,5 +1669,6 @@ JSGantt.benchMark = function(pItem){
    alert(pItem + ': Elapsed time: '+((vEndTime-vBenchTime)/1000)+' seconds.');
    vBenchTime=new Date().getTime();
 }
+
 
 
