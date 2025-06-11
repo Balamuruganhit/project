@@ -495,11 +495,15 @@ if(calfinal){
         approvedBy: document.getElementById('approver').value.trim()
       };
       store.push(ramsInfo)
+      const lastUniqueByName = Array.from(
+          store.reduce((map, item) => map.set(item.name, item), new Map()).values()
+        );
+        console.log(lastUniqueByName)
       if (store.length === 0) {
           alert("No data to submit.");
           return;
       }
-      const payload = JSON.stringify({ ramsDetail : store });
+      const payload = JSON.stringify({ ramsDetail : lastUniqueByName });
   
       // Prepare the XHR request
       const xhr = new XMLHttpRequest();
