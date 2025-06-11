@@ -346,11 +346,12 @@ def loadSalesOrderItemFact() {
 
         OrderReadHelper orderReadHelper = new OrderReadHelper(orderHeader)
         Map billFromParty = orderReadHelper.getBillFromParty()
+        logInfo("Test with the Error" + billFromParty.partyId)
         partyAccountingPreferencesCallMap.organizationPartyId = billFromParty.partyId
         Map accountResult = run service:"getPartyAccountingPreferences", with: partyAccountingPreferencesCallMap
         GenericValue accPref = accountResult.partyAccountingPreference
         logInfo("Test with the Error" + accPref)
-        logInfo("Test with the Error" + accPref.baseCurrencyUomId)
+        logInfo("Test with the accountResult" + accountResult)
         fact.quantity = orderItem.quantity as BigDecimal
         fact.extGrossAmount = 0 as BigDecimal
         fact.extGrossCost = 0 as BigDecimal
