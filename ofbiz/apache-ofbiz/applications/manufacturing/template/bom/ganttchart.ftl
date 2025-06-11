@@ -63,31 +63,33 @@ pDepend: dependency: need previous task finished.
 -->
 
     // Split into first 1/4 and remaining
-    const quarterSize = Math.ceil(allTasks.length / 9);
-    let currentIndex = 0;
+   const batchSize = 50;
+  let currentIndex = 0;
 
-    // Render first 1/4
-    for (let i = 0; i < quarterSize; i++) {
+  // Initial batch
+  for (let i = 0; i < batchSize && i < allTasks.length; i++) {
+    g.AddTaskItem(allTasks[i]);
+  }
+
+  g.Draw();
+  g.DrawDependencies();
+  currentIndex = batchSize;
+
+  // Progressive batch loading every 300ms
+  const interval = setInterval(() => {
+    if (currentIndex >= allTasks.length) {
+      clearInterval(interval);
+      return;
+    }
+
+    const end = Math.min(currentIndex + batchSize, allTasks.length);
+
+    for (let i = currentIndex; i < end; i++) {
       g.AddTaskItem(allTasks[i]);
     }
+
     g.Draw();
-    g.DrawDependencies();
-    currentIndex = quarterSize;
-
-    // Progressive loading for remaining tasks
-    const batchSize = 1;
-    const interval = setInterval(() => {
-      if (currentIndex >= allTasks.length) {
-        clearInterval(interval);
-        return;
-      }
-
-      const end = Math.min(currentIndex + batchSize, allTasks.length);
-      for (let i = currentIndex; i < end; i++) {
-        g.AddTaskItem(allTasks[i]);
-      }
-      g.Draw();
-      currentIndex = end;
-    }, 500);
+    currentIndex = end;
+  }, 500);
 </script>
 
