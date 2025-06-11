@@ -176,13 +176,13 @@ button{
             </#list>
             </ul>
           </td>
-          <td>
+          <td style="width:10rem">
           <ul>
               <#list group.objective as objective>
               <li>${objective}</li>
             </#list>
             </ul></td>
-          <td></td>
+          <td style="width:10rem"></td>
         </tr>
         </#list>
       </tbody>

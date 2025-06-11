@@ -49,7 +49,7 @@ under the License.
         <fo:table-cell border="1pt solid black"><fo:block font-weight="bold">Description of risk</fo:block></fo:table-cell>
         <fo:table-cell border="1pt solid black"><fo:block font-weight="bold">Risk Value</fo:block></fo:table-cell>
         <fo:table-cell border="1pt solid black"><fo:block font-weight="bold">Opportunities / Mitigation</fo:block></fo:table-cell>
-        <fo:table-cell border="1pt solid black"><fo:block/>Objective</fo:table-cell>
+        <fo:table-cell border="1pt solid black"><fo:block font-weight="bold">Objective</fo:block></fo:table-cell>
         <fo:table-cell border="1pt solid black"><fo:block/></fo:table-cell>
       </fo:table-row>
     </fo:table-header>
@@ -101,7 +101,7 @@ under the License.
         <fo:table-cell border="1pt solid black"><fo:block font-weight="bold">Description of risk</fo:block></fo:table-cell>
         <fo:table-cell border="1pt solid black"><fo:block font-weight="bold">Risk Value</fo:block></fo:table-cell>
         <fo:table-cell border="1pt solid black"><fo:block font-weight="bold">Opportunities / Mitigation</fo:block></fo:table-cell>
-        <fo:table-cell border="1pt solid black"><fo:block/>Objective</fo:table-cell>
+        <fo:table-cell border="1pt solid black"><fo:block font-weight="bold">Objective</fo:block></fo:table-cell>
         <fo:table-cell border="1pt solid black"><fo:block/></fo:table-cell>
       </fo:table-row>
     </fo:table-header>
