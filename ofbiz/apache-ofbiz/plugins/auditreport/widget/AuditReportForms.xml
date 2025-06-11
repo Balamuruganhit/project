@@ -54,5 +54,33 @@
                        </display>
                 </field> -->
         </grid>
+        <form name="selectorParties" target="openParties"  default-map-name="content"
+                header-row-style="header-row" default-table-style="basic-table">
         
+                <field name="parties" title="Select the Report No" position="1">
+                        
+                        <drop-down allow-empty="false">
+                                <option key="" description=" "/>
+                                <entity-options description="${docId} -${revision}" entity-name="partiesOrganisationHeader" key-field-name="docId" >
+                                </entity-options>
+                        </drop-down>
+                
+                </field>
+                <field name="submitButton" title="Print Doc">
+                        <submit button-type="button"/>
+                </field>
+        </form>
+        <form name="selectorOrganisation" target="openOraganisationReport"  default-map-name="content"
+                header-row-style="header-row" default-table-style="basic-table">
+                <field name="organisation" title="Select the Report No" position="1">
+                        <drop-down allow-empty="false">
+                                <option key="" description=" "/>
+                                <entity-options description="${docId} -${revision}" entity-name="OrganisationHeader" key-field-name="docId" >
+                                </entity-options>
+                        </drop-down>
+                </field>
+                <field name="submitButton" title="Open Doc">
+                        <submit button-type="button"/>
+                </field>
+        </form>
 </forms>

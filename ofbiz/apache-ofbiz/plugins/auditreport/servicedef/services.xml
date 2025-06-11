@@ -69,7 +69,20 @@
         <attribute name="proof" type="java.nio.ByteBuffer" mode="IN"/> -->
          <attribute name="reportDetails" type="java.util.List" mode="IN"/>
     </service>
-    
+    <service name="createPartiesReport"
+        engine="groovy"
+        location="component://AuditReport/groovyScripts/Audit/isoReport/partiesreport.groovy"
+        invoke="createPartiesReport"
+        auth="true">
+        <attribute name="partiesDetail" type="java.util.List" mode="IN"/>   
+    </service>
+    <service name="createOrganisationReport"
+        engine="groovy"
+        location="component://AuditReport/groovyScripts/Audit/isoReport/organisationreport.groovy"
+        invoke="createOrganisationReport"
+        auth="true">
+        <attribute name="rganisationDetail" type="java.util.List" mode="IN"/>   
+    </service>
 
 
 </services>
