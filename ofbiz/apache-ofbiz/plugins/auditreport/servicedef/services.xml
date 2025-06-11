@@ -81,8 +81,14 @@
         location="component://AuditReport/groovyScripts/Audit/isoReport/organisationreport.groovy"
         invoke="createOrganisationReport"
         auth="true">
-        <attribute name="rganisationDetail" type="java.util.List" mode="IN"/>   
+        <attribute name="OrganisationDetail" type="java.util.List" mode="IN"/>   
     </service>
-
+    <service name="findReport"
+        engine="groovy"
+        location="component://AuditReport/groovyScripts/Audit/isoReport/findReport.groovy"
+        invoke="createOrganisationReport"
+        auth="true">
+        <attribute name="OrganisationDetail" type="java.util.List" mode="IN"/>   
+    </service>
 
 </services>
