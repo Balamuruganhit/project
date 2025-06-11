@@ -176,7 +176,7 @@ button{
             </#list>
             </ul>
           </td>
-          <td style="width:10rem">
+          <td >
           <ul>
               <#list group.objective as objective>
               <li>${objective}</li>
