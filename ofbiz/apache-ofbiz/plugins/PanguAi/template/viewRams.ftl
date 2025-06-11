@@ -329,7 +329,9 @@ under the License.
         </div>
       </div>
     </div>
-    <button ><a style="color:black" href="ReportRams.pdf?rams=${ramsOutputTitle.ramsNo}">Print Document</a></button>
+    
   </div>
   </#if>
+  
   </#list>
+  <button ><a style="color:black" href="ReportRams.pdf?rams=${ramsOutputTitle.ramsNo}">Print Document</a></button>
