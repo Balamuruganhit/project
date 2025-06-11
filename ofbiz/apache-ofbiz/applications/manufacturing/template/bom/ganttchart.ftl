@@ -30,7 +30,7 @@ var g = new JSGantt.GanttChart('g',document.getElementById('GanttChartDIV'), 'ho
 	g.setShowComp(0); // Show/Hide % Complete(0/1)
   g.setCaptionType('Resource');  // Set to Show Caption (None,Caption,Resource,Duration,Complete)
 	g.setDateDisplayFormat('dd/mm/yyyy')
-
+const allTasks = [
 <#list phaseTaskList as t>
     <#if "PHASE" == t.workEffortTypeId>
         g.AddTaskItem(new JSGantt.TaskItem("${t.phaseNr}", "${t.phaseSeqNum!}. ${t.phaseName}", "", "", "00ff00", "", 0, "", 0, 1, 0, 1));
@@ -42,7 +42,7 @@ var g = new JSGantt.GanttChart('g',document.getElementById('GanttChartDIV'), 'ho
         g.AddTaskItem(new JSGantt.TaskItem("${t.taskNr}","${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","00ff00", "", 1 , "${t.resource!}", "${t.completion!}" , 0,"", "", "" ));
     </#if>
 </#list>
-
+]
 <#--
 
 TaskItem(pID, pName, pStart, pEnd, pColor, pLink, pMile, pRes, pComp, pGroup, pParent, pOpen, pDepend)
@@ -61,7 +61,33 @@ pOpen: UNUSED - in future can be initially set to close folder when chart is fir
 pDepend: dependency: need previous task finished.
 
 -->
-g.Draw();
-g.DrawDependencies();
+
+    // Split into first 1/4 and remaining
+    const quarterSize = Math.ceil(allTasks.length / 9);
+    let currentIndex = 0;
+
+    // Render first 1/4
+    for (let i = 0; i < quarterSize; i++) {
+      g.AddTaskItem(allTasks[i]);
+    }
+    g.Draw();
+    g.DrawDependencies();
+    currentIndex = quarterSize;
+
+    // Progressive loading for remaining tasks
+    const batchSize = 1;
+    const interval = setInterval(() => {
+      if (currentIndex >= allTasks.length) {
+        clearInterval(interval);
+        return;
+      }
+
+      const end = Math.min(currentIndex + batchSize, allTasks.length);
+      for (let i = currentIndex; i < end; i++) {
+        g.AddTaskItem(allTasks[i]);
+      }
+      g.Draw();
+      currentIndex = end;
+    }, 500);
 </script>
 
