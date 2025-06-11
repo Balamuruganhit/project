@@ -317,4 +317,28 @@
             </widgets>
         </section>
     </screen>
+    <screen name="ReportPdfOrganisation">
+            <section>
+                <actions>
+                    <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                    <set field="rams" from-field="parameters.rams" type="String"/>
+                <script location="component://AuditReport/groovyScripts/Audit/isoReport/organisationreport.groovy"/>
+                    <set field="viewSize" value="99999"/>
+                </actions>
+                <widgets>
+                    <decorator-screen name="SimpleDecorator" location="component://common/widget/CommonScreens.xml">
+                        <decorator-section name="body">
+                            <container>
+                                
+                                <platform-specific>
+                                    <xsl-fo>
+                                        <html-template location="component://AuditReport/template/ISO/organisationreport.fo.ftl"/>
+                                    </xsl-fo>
+                                </platform-specific>
+                            </container>
+                        </decorator-section>
+                    </decorator-screen>
+                </widgets>
+            </section>
+        </screen>
 </screens>

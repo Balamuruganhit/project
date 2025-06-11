@@ -98,6 +98,7 @@ under the License.
     <request-map uri="openParties"><security https="true" auth="true"/><response name="success" type="view" value="parties"/></request-map>
     <request-map uri="ReportPdfparties"><security https="true" auth="true"/><response name="success" type="view" value="ReportPdfparties"/></request-map>
     <request-map uri="openOraganisationReport"><security https="true" auth="true"/><response name="success" type="view" value="organisation"/></request-map>
+    <request-map uri="ReportPdfOrganisation"><security https="true" auth="true"/><response name="success" type="view" value="ReportPdfOrganisation"/></request-map>
 
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#main"/>
@@ -113,5 +114,6 @@ under the License.
      <view-map name="parties" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#parties" />
     <view-map name="ReportPdfparties" type="screenfop" page="component://AuditReport/widget/AuditReportScreens.xml#ReportPdfparties" content-type="application/pdf" encoding="none"/>
     <view-map name="organisation" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#organisation"/>
+    <view-map name="ReportPdfOrganisation" type="screenfop" page="component://AuditReport/widget/AuditReportScreens.xml#ReportPdfOrganisation" content-type="application/pdf" encoding="none"/>
 
 </site-conf>

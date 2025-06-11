@@ -951,7 +951,7 @@ button{
     </footer>
     </#if> 
     <#if data?has_content>
-          <button ><a style="color:black" href="ReportPdfparties?parties=${header.docId}">Print Document</a></button>
+          <button ><a style="color:black" href="ReportPdfOrganisation?organisation=${header.docId}">Print Document</a></button>
     <#else>
       <button id="addRowBtn">Add Row</button>
       <button id="SaveBtn">Save</button>
