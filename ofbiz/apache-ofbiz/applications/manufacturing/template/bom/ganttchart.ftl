@@ -62,34 +62,25 @@ pDepend: dependency: need previous task finished.
 
 -->
 
-    // Split into first 1/4 and remaining
-   const batchSize = 50;
-  let currentIndex = 0;
+  let index = 0;
+  const batchSize = 50;
 
-  // Initial batch
-  for (let i = 0; i < batchSize && i < allTasks.length; i++) {
-    g.AddTaskItem(allTasks[i]);
-  }
-
-  g.Draw();
-  g.DrawDependencies();
-  currentIndex = batchSize;
-
-  // Progressive batch loading every 300ms
-  const interval = setInterval(() => {
-    if (currentIndex >= allTasks.length) {
-      clearInterval(interval);
-      return;
-    }
-
-    const end = Math.min(currentIndex + batchSize, allTasks.length);
-
-    for (let i = currentIndex; i < end; i++) {
+  function addTasksInBatches() {
+    const end = Math.min(index + batchSize, allTasks.length);
+    for (let i = index; i < end; i++) {
       g.AddTaskItem(allTasks[i]);
     }
+    index = end;
 
-    g.Draw();
-    currentIndex = end;
-  }, 500);
+    if (index < allTasks.length) {
+      requestIdleCallback(addTasksInBatches);  // Browser will yield between calls
+    } else {
+      g.Draw();
+      g.DrawDependencies();
+    }
+  }
+
+  // Start batch processing
+  requestIdleCallback(addTasksInBatches);
 </script>
 
