@@ -64,6 +64,12 @@ under the License.
         <response name="success" type="view" value="ReportPdf"/>
         <response name="error" type="view" value="Export"/>
     </request-map>
+    <request-map uri="getganttchart">
+        <security auth="false" https="true"/>
+        <event type="groovy" path="component://manufacturing/groovyScripts/bom/ganttChart.groovy" invoke="loadGanttchart"/>
+        <response name="success" type="request" value="json"/>
+        <response name="error" type="request" value="json"/>
+    </request-map>
     <request-map uri="GanttChart">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="GanttChart"/>

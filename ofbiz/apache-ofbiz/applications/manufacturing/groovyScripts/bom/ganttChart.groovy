@@ -19,9 +19,10 @@
 import org.apache.ofbiz.base.util.UtilDateTime
 import org.apache.ofbiz.entity.condition.EntityCondition
 import org.apache.ofbiz.entity.condition.EntityOperator
-
+import org.apache.ofbiz.base.util.UtilHttp
+import org.apache.ofbiz.webapp.control.*
 userLogin = parameters.userLogin
-ganttList = new LinkedList()
+def loadGanttchart(){
 def machineToWorkEfforts = []
 def productionRuns = from("WorkEffort")
     .where(EntityCondition.makeCondition([
@@ -70,60 +71,118 @@ else
 
 if (!productionRuns) return
 
+def ganttList = []
+
+
 listOfMachine.eachWithIndex { production, i ->
 
-    def phase = [:]
-    phase.phaseId = production.fixedAssetId
-    phase.phaseNr = production.fixedAssetId
-    phase.phaseName = production.fixedAssetId
-    phase.workEffortTypeId = "PHASE"
-    phase.sequenceId = i.toString()
-    phase.phaseSeqNum = i + 1
+    // Add PHASE (machine as group)
+    def phase = [
+        pID    : production.fixedAssetId,
+        pName  : "${i + 1}. ${production.fixedAssetId}",
+        pStart : "",
+        pEnd   : "",
+        pColor : "00ff00",
+        pLink  : "",
+        pMile  : 0,
+        pRes   : "",
+        pComp  : 0,
+        pGroup : 1,
+        pParent: 0,
+        pOpen  : 1
+    ]
     ganttList.add(phase)
 
+    // Fetch related PROD_ORDER_TASKs
     def routingTasks = from('WorkEffort')
-        .where(['fixedAssetId':production.fixedAssetId,'workEffortTypeId':"PROD_ORDER_TASK",'currentStatusId':"PRUN_SCHEDULED"])
+        .where([
+            fixedAssetId     : production.fixedAssetId,
+            workEffortTypeId : "PROD_ORDER_TASK",
+            currentStatusId  : "PRUN_SCHEDULED"
+        ])
         .orderBy('createdDate')
         .queryList()
-    def routingTask = select("workEffortId").from('WorkEffort')
-        .where(['fixedAssetId':production.fixedAssetId,'workEffortTypeId':"PROD_ORDER_TASK"])
-        .orderBy('createdDate')
-        .queryList()
-    
-    logInfo('Routing' + routingTask)
-    loader = 987
+
+    def loader = 987
+
     routingTasks.eachWithIndex { task, index ->
-        def taskMap = [:]
-        def partyDetail=[:]
-        def routingDetails = from('WorkEffortAssocFromView').where(['workEffortAssocTypeId':'WORK_EFF_TEMPLATE','workEffortIdTo':task.workEffortId]).queryList()
-        def proDetails=from('WorkEffort').where(['workEffortId':task.workEffortParentId,'workEffortTypeId':"PROD_ORDER_HEADER"]).queryList()
-        def productDetails=from('WorkEffortAndProduct').where(['workEffortId':task.workEffortParentId,'workEffortTypeId':"PROD_ORDER_HEADER"]).queryList()
-        workorder=from("partyOrder").where('productionRunId',task.workEffortParentId).queryOne()
-        if(workorder){
-        partyDetail=from("WorkOrder").where('workOrderNumber',workorder.poNumber).queryOne()
-        }
-        taskMap.taskId = task.workEffortId
-        taskMap.taskNr = task.workEffortId
-        taskMap.taskName = task.workEffortName
-        taskMap.phaseNr = production.fixedAssetId
-        taskMap.taskSeqNum = index + 1
-        taskMap.estimatedStartDate = UtilDateTime.toDateString(task.estimatedStartDate ?: phase.estimatedStartDate, "MM/dd/yyyy HH:mm")
-        taskMap.estimatedCompletionDate = UtilDateTime.toDateString(task.estimatedCompletionDate ?: UtilDateTime.addDaysToTimestamp(task.estimatedStartDate ?: phase.estimatedStartDate, 1), "MM/dd/yyyy HH:mm")
-        taskMap.plannedHours = task.workEffortParentId
-        taskMap.resource = "${taskMap.plannedHours} "
+
+        // Fetch additional details
+        def routingDetails = from('WorkEffortAssocFromView')
+            .where([
+                workEffortAssocTypeId: 'WORK_EFF_TEMPLATE',
+                workEffortIdTo       : task.workEffortId
+            ]).queryFirst()
+
+        def proDetails = from('WorkEffort')
+            .where([
+                workEffortId     : task.workEffortParentId,
+                workEffortTypeId : "PROD_ORDER_HEADER"
+            ]).queryFirst()
+
+        def productDetails = from('WorkEffortAndProduct')
+            .where([
+                workEffortId: task.workEffortParentId
+            ]).queryFirst()
+
+        def workorder = from("partyOrder")
+            .where("productionRunId", task.workEffortParentId)
+            .queryOne()
+
+        def partyDetail = workorder ?
+            from("WorkOrder").where("workOrderNumber", workorder.poNumber).queryOne() : [:]
+
+        // Generate task color
         def r = (loader + index * 7) % 256
         def g = (loader + index * 13) % 256
         def b = (loader + index * 19) % 256
-        taskMap.color = String.format("#%02X%02X%02X", r, g, b)
-        taskMap.completion = "PO/SO No:${partyDetail.orderNumber?:" "} \\n WorkOrder Number:${partyDetail.workOrderNumber?:" "} \\nProduction Order No:${task.workEffortParentId} \\nProduction Order Name:${proDetails.workEffortName} \\nPart No: ${productDetails.productId} \\nQuantity:${proDetails.quantityToProduce} \\nPart Name: ${productDetails.internalName} \\nRouting Id: ${routingDetails.workEffortIdFrom} \\nRouting Name: ${routingDetails.workEffortName}\\n Routing Task Id: ${task.workEffortId} \\n Routing Task Name:${task.workEffortName} \\nstatus: ${proDetails.currentStatusId?"Scheduled":0}\\n Estimate Setup time: ${task.estimatedSetupMillis?:" "}\\n Estimate Run Time${task.estimatedStartDate} - ${task.estimatedCompletionDate} \\n Actual Setup Time: ${task.actualSetupMillis?:" "} \\n Actual Completion Date: ${task.actualStartDate?:" "}"
-        taskMap.workEffortTypeId = "TASK"
-        taskMap.currentStatusId = task.currentStatusId
-        taskMap.url = "/workeffort/control/EditWorkEffort?workEffortId=${task.workEffortId}"
+        def color = String.format("#%02X%02X%02X", r, g, b)
 
+        // Dates
+        def startDate = task.estimatedStartDate ? UtilDateTime.toDateString(task.estimatedStartDate, "MM/dd/yyyy HH:mm") : ""
+        def endDate = task.estimatedCompletionDate ? UtilDateTime.toDateString(task.estimatedCompletionDate, "MM/dd/yyyy HH:mm") : ""
 
-        ganttList.add(taskMap)
+        // Add TASK
+        ganttList.add([
+            pID    : task.workEffortId,
+            pName  : "${index + 1}. ${task.workEffortName}",
+            pStart : startDate,
+            pEnd   : endDate,
+            pColor : color,
+            pLink  : "/workeffort/control/EditWorkEffort?workEffortId=${task.workEffortId}",
+            pMile  : 0,
+            pRes   : task.workEffortParentId ?: "",
+            pComp  : 0,
+            pGroup : 0,
+            pParent: production.fixedAssetId,
+            pOpen  : 1,
+            pDepend: "" // Add predecessor logic here if needed
+        ])
     }
 }
+logInfo("Way" + ganttList)
+ganttList.add([
+    workEffortTypeId: "PHASE",
+    phaseNr: "PHASE1",
+    phaseName: "Initial Planning",
+    phaseSeqNum: 1,
+    color: "#FF0000"
+])
 
-context.phaseTaskList = ganttList
-logInfo("Gantt Chart Data: ${ganttList}")
+// Sample TASK
+ganttList.add([
+    workEffortTypeId: "TASK",
+    taskNr: "TASK1",
+    taskName: "Requirement Analysis",
+    taskSeqNum: 1,
+    phaseNr: "PHASE1",
+    estimatedStartDate: "06/13/2025 10:00",
+    estimatedCompletionDate: "06/14/2025 18:00",
+    color: "#00AA00",
+    url: "/workeffort/control/EditWorkEffort?workEffortId=TASK1",
+    resource: "John Doe"
+])
+// Return JSON to frontend
+JSON.jsonresponse(response, [tasks: ganttList])
+return "success"
+}
