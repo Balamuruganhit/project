@@ -973,5 +973,5 @@ under the License.
     <view-map name="PRunsInfoAndOrder" type="screenfop" page="component://manufacturing/widget/manufacturing/ReportScreens.xml#PRunsInfoAndOrder" content-type="application/pdf" encoding="none"/>
     <!-- end of view mappings -->
     <view-map name="ReportPdf" type="screenfop" page="component://manufacturing/widget/manufacturing/AuditScreens.xml#ReportPdf" content-type="application/pdf" encoding="none"/>
-
+    <view-map name="json" type="json" page="org.apache.ofbiz.common.CommonEvents#jsonResponseFromRequestAttributes"/>
 </site-conf>

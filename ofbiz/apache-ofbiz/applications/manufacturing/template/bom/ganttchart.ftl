@@ -34,34 +34,36 @@ var g = new JSGantt.GanttChart('g',document.getElementById('GanttChartDIV'), 'ho
 fetch('/manufacturing/control/getganttchart')
   .then(res => res.text())
   .then(text => {
-    // Remove OFBiz XSSI prefix (//) if present
+    console.log("Raw response:", text);
+
+    // ✅ Remove the leading // prefix properly
     const cleanText = text.replace(/^\/\/\s*/, '');
+    console.log("Clean JSON:", cleanText);
+
     const data = JSON.parse(cleanText);
 
     if (!data.tasks || data.tasks.length === 0) {
-      console.log("No tasks found");
+      console.warn("No tasks found");
       return;
     }
 
-    // Add tasks to Gantt chart
     data.tasks.forEach(task => {
       g.AddTaskItem(new JSGantt.TaskItem(
         task.taskNr || task.phaseNr,
-        task.taskSeqNum ? `${task.taskSeqNum}. ${task.taskName}` : `${task.phaseSeqNum}. ${task.phaseName}`,
+        task.taskName || task.phaseName,
         task.estimatedStartDate || '',
         task.estimatedCompletionDate || '',
         task.color || '#00ff00',
         task.url || '',
-        task.workEffortTypeId === 'MILESTONE' ? 1 : 0,
+        0,
         task.resource || '',
-        0, // % complete (optional)
-        task.workEffortTypeId === 'PHASE' ? 1 : 0,
+        0,
+        task.taskName ? 0 : 1,
         task.phaseNr || 0,
-        1 // open
+        1
       ));
     });
 
-    // Render the Gantt chart
     g.Draw();
   })
   .catch(err => console.error("Error loading Gantt data:", err));
