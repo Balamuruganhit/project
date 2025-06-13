@@ -22,7 +22,7 @@ import org.apache.ofbiz.entity.condition.EntityCondition
 import org.apache.ofbiz.entity.condition.EntityOperator
 
 userLogin = parameters.userLogin
-
+def loadGanttchart() { 
 def machineToWorkEfforts = []
 def productionRuns = from("WorkEffort")
     .where(EntityCondition.makeCondition([
@@ -128,5 +128,5 @@ listOfMachine.eachWithIndex { production, i ->
 
 request.setAttribute("tasks", ganttList)
 return "success"
-
+}
 }
