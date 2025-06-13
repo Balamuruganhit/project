@@ -88,7 +88,7 @@ listOfMachine.eachWithIndex { production, i ->
         .orderBy('createdDate')
         .queryList()
     
-    logInfo('Routing' + routingTask)
+    
     loader = 987
     routingTasks.eachWithIndex { task, index ->
         
@@ -125,7 +125,7 @@ listOfMachine.eachWithIndex { production, i ->
     }
 
 
-
+logInfo('List Of task' + ganttList)
 request.setAttribute("tasks", ganttList)
 return "success"
 }
