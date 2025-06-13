@@ -57,7 +57,7 @@ fetch('/manufacturing/control/getganttchart')
         task.url || '',
         0,
         task.resource || '',
-        0,
+        task.completion || '',
         task.taskName ? 0 : 1,
         task.phaseNr || 0,
         1

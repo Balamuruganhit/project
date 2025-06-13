@@ -135,7 +135,7 @@ under the License.
                 <set field="headerItem" value="GanttChart"/>
                 <set field="layoutSettings.javaScripts[]" value="/PanguAi/static/chartNew.js" global="true"/>
                 <set field="layoutSettings.styleSheets[]" value="/common/js/plugins/jsgantt/jsgantt.css" global="true"/>
-                
+                <script location="component://manufacturing/groovyScripts/bom/ganttChart.groovy"/>
 
             </actions>
             <widgets>
