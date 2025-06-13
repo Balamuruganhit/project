@@ -23,7 +23,7 @@ import org.apache.ofbiz.base.util.UtilHttp
 import org.apache.ofbiz.webapp.control.*
 userLogin = parameters.userLogin
 def loadGanttchart(){
-    logInfo("Way")
+   
 def machineToWorkEfforts = []
 def productionRuns = from("WorkEffort")
     .where(EntityCondition.makeCondition([
@@ -161,9 +161,9 @@ listOfMachine.eachWithIndex { production, i ->
         ])
     }
 }
-
 logInfo("Way" + ganttList)
+logInfo("It is working")
 // Return JSON to frontend
-JSON.jsonresponse(response, [tasks: ganttList])
+request.setAttribute("tasks", ganttList)
 return "success"
 }
