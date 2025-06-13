@@ -115,7 +115,7 @@ listOfMachine.eachWithIndex { production, i ->
             estimatedStartDate = UtilDateTime.toDateString(task.estimatedStartDate ?: phase.estimatedStartDate, "MM/dd/yyyy HH:mm"),
             estimatedCompletionDate = UtilDateTime.toDateString(task.estimatedCompletionDate ?: UtilDateTime.addDaysToTimestamp(task.estimatedStartDate ?: phase.estimatedStartDate, 1), "MM/dd/yyyy HH:mm"),
             plannedHours = task.workEffortParentId,
-            resource = "${taskMap.plannedHours} ",
+            resource = "${plannedHours} ",
             color = String.format("#%02X%02X%02X", r, g, b),
             completion = "PO/SO No:${partyDetail.orderNumber?:" "} \\n WorkOrder Number:${partyDetail.workOrderNumber?:" "} \\nProduction Order No:${task.workEffortParentId} \\nProduction Order Name:${proDetails.workEffortName} \\nPart No: ${productDetails.productId} \\nQuantity:${proDetails.quantityToProduce} \\nPart Name: ${productDetails.internalName} \\nRouting Id: ${routingDetails.workEffortIdFrom} \\nRouting Name: ${routingDetails.workEffortName}\\n Routing Task Id: ${task.workEffortId} \\n Routing Task Name:${task.workEffortName} \\nstatus: ${proDetails.currentStatusId?"Scheduled":0}\\n Estimate Setup time: ${task.estimatedSetupMillis?:" "}\\n Estimate Run Time${task.estimatedStartDate} - ${task.estimatedCompletionDate} \\n Actual Setup Time: ${task.actualSetupMillis?:" "} \\n Actual Completion Date: ${task.actualStartDate?:" "}",
             workEffortTypeId = "TASK",
