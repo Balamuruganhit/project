@@ -24,6 +24,7 @@ import org.apache.ofbiz.entity.condition.EntityOperator
 userLogin = parameters.userLogin
 def loadGanttchart() { 
 def machineToWorkEfforts = []
+logInfo("Workong")
 def productionRuns = from("WorkEffort")
     .where(EntityCondition.makeCondition([
         EntityCondition.makeCondition("workEffortTypeId", EntityOperator.EQUALS, "PROD_ORDER_HEADER"),
@@ -55,21 +56,8 @@ listOfMachine.each { machine ->
         workEffortIds   : workEffortIds
     ]
 }
-// logInfo("List Of Routing Under the Machine:"+ machineToWorkEfforts)
 
-// Use date from first production run for chart start
-if (productionRuns && productionRuns.first().estimatedStartDate)
-    context.chartStart = productionRuns.first().estimatedStartDate
-else
-    context.chartStart = UtilDateTime.nowTimestamp()
 
-// Use end date from last production run for chart end
-if (productionRuns && productionRuns.last().estimatedCompletionDate)
-    context.chartEnd = productionRuns.last().estimatedCompletionDate
-else
-    context.chartEnd = UtilDateTime.addDaysToTimestamp(UtilDateTime.nowTimestamp(), 14)
-
-if (!productionRuns) return
 def ganttList=[]
 listOfMachine.eachWithIndex { production, i ->
    
@@ -78,7 +66,7 @@ listOfMachine.eachWithIndex { production, i ->
     workEffortTypeId : "PHASE",
     sequenceId : i.toString(),
     phaseSeqNum : i + 1])
-
+ 
     def routingTasks = from('WorkEffort')
         .where(['fixedAssetId':production.fixedAssetId,'workEffortTypeId':"PROD_ORDER_TASK",'currentStatusId':"PRUN_SCHEDULED"])
         .orderBy('createdDate')
@@ -107,26 +95,26 @@ listOfMachine.eachWithIndex { production, i ->
         
 
         ganttList.add([
-            taskId = task.workEffortId,
-            taskNr = task.workEffortId,
-            taskName = task.workEffortName,
-            phaseNr = production.fixedAssetId,
-            taskSeqNum = index + 1,
-            estimatedStartDate = UtilDateTime.toDateString(task.estimatedStartDate ?: phase.estimatedStartDate, "MM/dd/yyyy HH:mm"),
-            estimatedCompletionDate = UtilDateTime.toDateString(task.estimatedCompletionDate ?: UtilDateTime.addDaysToTimestamp(task.estimatedStartDate ?: phase.estimatedStartDate, 1), "MM/dd/yyyy HH:mm"),
-            plannedHours = task.workEffortParentId,
-            resource = "${plannedHours} ",
-            color = String.format("#%02X%02X%02X", r, g, b),
-            completion = "PO/SO No:${partyDetail.orderNumber?:" "} \\n WorkOrder Number:${partyDetail.workOrderNumber?:" "} \\nProduction Order No:${task.workEffortParentId} \\nProduction Order Name:${proDetails.workEffortName} \\nPart No: ${productDetails.productId} \\nQuantity:${proDetails.quantityToProduce} \\nPart Name: ${productDetails.internalName} \\nRouting Id: ${routingDetails.workEffortIdFrom} \\nRouting Name: ${routingDetails.workEffortName}\\n Routing Task Id: ${task.workEffortId} \\n Routing Task Name:${task.workEffortName} \\nstatus: ${proDetails.currentStatusId?"Scheduled":0}\\n Estimate Setup time: ${task.estimatedSetupMillis?:" "}\\n Estimate Run Time${task.estimatedStartDate} - ${task.estimatedCompletionDate} \\n Actual Setup Time: ${task.actualSetupMillis?:" "} \\n Actual Completion Date: ${task.actualStartDate?:" "}",
-            workEffortTypeId = "TASK",
-            currentStatusId = task.currentStatusId,
-            url = "/workeffort/control/EditWorkEffort?workEffortId=${task.workEffortId}",
+            taskId :task.workEffortId,
+            taskNr : task.workEffortId,
+            taskName :task.workEffortName,
+            phaseNr : production.fixedAssetId,
+            taskSeqNum : index + 1,
+            estimatedStartDate : UtilDateTime.toDateString(task.estimatedStartDate ?: phase.estimatedStartDate, "MM/dd/yyyy HH:mm"),
+            estimatedCompletionDate : UtilDateTime.toDateString(task.estimatedCompletionDate ?: UtilDateTime.addDaysToTimestamp(task.estimatedStartDate ?: phase.estimatedStartDate, 1), "MM/dd/yyyy HH:mm"),
+            
+            color : String.format("#%02X%02X%02X", r, g, b),
+            completion : "PO/SO No:${partyDetail.orderNumber?:" "} \\n WorkOrder Number:${partyDetail.workOrderNumber?:" "} \\nProduction Order No:${task.workEffortParentId} \\nProduction Order Name:${proDetails.workEffortName} \\nPart No: ${productDetails.productId} \\nQuantity:${proDetails.quantityToProduce} \\nPart Name: ${productDetails.internalName} \\nRouting Id: ${routingDetails.workEffortIdFrom} \\nRouting Name: ${routingDetails.workEffortName}\\n Routing Task Id: ${task.workEffortId} \\n Routing Task Name:${task.workEffortName} \\nstatus: ${proDetails.currentStatusId?"Scheduled":0}\\n Estimate Setup time: ${task.estimatedSetupMillis?:" "}\\n Estimate Run Time${task.estimatedStartDate} - ${task.estimatedCompletionDate} \\n Actual Setup Time: ${task.actualSetupMillis?:" "} \\n Actual Completion Date: ${task.actualStartDate?:" "}",
+            workEffortTypeId : "TASK",
+            currentStatusId : task.currentStatusId,
+            url : "/workeffort/control/EditWorkEffort?workEffortId=${task.workEffortId}",
     ])
     }
 
 
+
+}
 logInfo('List Of task' + ganttList)
 request.setAttribute("tasks", ganttList)
 return "success"
-}
 }

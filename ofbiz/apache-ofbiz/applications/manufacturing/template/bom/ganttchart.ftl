@@ -66,7 +66,7 @@ fetch('/manufacturing/control/getganttchart')
 
     g.Draw();
   })
-  .catch(err => console.error("Error loading Gantt data:", err));
+  
 
 
 </script>
