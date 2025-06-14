@@ -19,8 +19,38 @@
 import org.apache.ofbiz.base.util.UtilDateTime
 import org.apache.ofbiz.entity.condition.EntityCondition
 import org.apache.ofbiz.entity.condition.EntityOperator
-
+import org.apache.ofbiz.entity.serialize.XmlSerializer
+import org.apache.ofbiz.product.product.KeywordIndex
+import org.apache.ofbiz.product.product.ProductWorker
+import org.apache.ofbiz.service.*
+import org.apache.ofbiz.base.util.*
+import org.apache.ofbiz.entity.*
+import java.sql.Timestamp
+import java.util.List
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.sql.Date
 userLogin = parameters.userLogin
+Timestamp startTimestamp= new Timestamp(System.currentTimeMillis());
+def calendar = Calendar.getInstance()
+calendar.setTimeInMillis(System.currentTimeMillis())
+calendar.add(Calendar.DAY_OF_MONTH, 2)
+
+def endTimestamp = new Timestamp(calendar.getTimeInMillis())
+
+def conditions = []
+ if (parameters.fromDate) {
+            
+                def sdf = new SimpleDateFormat("yyyy-MM-dd")
+                sdf.setLenient(false) // enforce strict format parsing
+                def utilDate = sdf.parse(parameters.fromDate.trim())
+                 startTimestamp = new Timestamp(utilDate.getTime())
+                def utilDate2 = sdf.parse(parameters.toDate.trim())
+                 endTimestamp = new Timestamp(utilDate2.getTime())
+
+               
+        }
+ logInfo("Searching between: ${startTimestamp} and ${endTimestamp}")
 ganttList = new LinkedList()
 def machineToWorkEfforts = []
 def productionRuns = from("WorkEffort")
@@ -69,15 +99,16 @@ machineToWorkEfforts.eachWithIndex { production, i ->
     ganttList.add(phase)
 
     def routingTasks = from('WorkEffort')
-        .where(['fixedAssetId':production.fixedAssetId,'workEffortTypeId':"PROD_ORDER_TASK",'currentStatusId':"PRUN_SCHEDULED"])
-        .orderBy('createdDate')
-        .queryList()
-    def routingTask = select("workEffortId").from('WorkEffort')
-        .where(['fixedAssetId':production.fixedAssetId,'workEffortTypeId':"PROD_ORDER_TASK"])
+        .where(EntityCondition.makeCondition([
+                    EntityCondition.makeCondition("lastUpdatedStamp", EntityOperator.GREATER_THAN_EQUAL_TO, startTimestamp),
+                    EntityCondition.makeCondition("lastUpdatedStamp", EntityOperator.LESS_THAN, endTimestamp),
+                    EntityCondition.makeCondition("fixedAssetId", EntityOperator.EQUALS, production.fixedAssetId),
+                    EntityCondition.makeCondition("workEffortTypeId", EntityOperator.EQUALS, "PROD_ORDER_TASK"),
+                    EntityCondition.makeCondition("currentStatusId", EntityOperator.EQUALS, "PRUN_SCHEDULED"),
+                ], EntityOperator.AND))
         .orderBy('createdDate')
         .queryList()
     
-    logInfo('Routing' + routingTask)
     loader = 987
     routingTasks.eachWithIndex { task, index ->
         def taskMap = [:]

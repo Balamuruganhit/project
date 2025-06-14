@@ -18,8 +18,15 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-
+<div>
+<form>
+  <h2>Select the Range of Date</h2>
+  <input name="fromDate" type="date"/>
+  <input name="toDate" type="date"/>
+  <button>Submit</button>
+</form></div>
 <div style="position:relative" class="gantt" id="GanttChartDIV"></div>
+
 <script type="application/javascript">
 var g = new JSGantt.GanttChart('g',document.getElementById('GanttChartDIV'), 'hour');
 const startTime = performance.now();
