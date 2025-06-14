@@ -43,49 +43,28 @@ const allTasks = [
     </#if>
 </#list>
 ]
-<#--
-
-TaskItem(pID, pName, pStart, pEnd, pColor, pLink, pMile, pRes, pComp, pGroup, pParent, pOpen, pDepend)
-pID: (required) is a unique ID used to identify each row for parent functions and for setting dom id for hiding/showing
-pName: (required) is the task Label
-pStart: (required) the task start date, can enter empty date ('') for groups
-pEnd: (required) the task end date, can enter empty date ('') for groups
-pColor: (required) the html color for this task; e.g. '00ff00'
-pLink: (optional) any http link navigated to when task bar is clicked.
-pMile:(optional) represent a milestone
-pRes: (optional) resource name
-pComp: (required) completion percent
-pGroup: (optional) indicates whether this is a group(parent) - 0=NOT Parent; 1=IS Parent
-pParent: (required) identifies a parent pID, this causes this task to be a child of identified task
-pOpen: UNUSED - in future can be initially set to close folder when chart is first drawn
-pDepend: dependency: need previous task finished.
-
--->
-
-async function addTasksInBatchesAsync() {
-  const batchSize = 50;
+const batchSize = 50;
   let index = 0;
 
-  const startTime = performance.now(); // ⏱️ Start timing
 
-  while (index < allTasks.length) {
-    const end = Math.min(index + batchSize, allTasks.length);
-    for (let i = index; i < end; i++) {
-      g.AddTaskItem(allTasks[i]);
+  function addTasksInChunks(deadline) {
+    while (index < allTasks.length && deadline.timeRemaining() > 0) {
+      const end = Math.min(index + batchSize, allTasks.length);
+      for (let i = index; i < end; i++) {
+        g.AddTaskItem(allTasks[i]);
+      }
+      index = end;
+
+      // Optional: Show loading progress
     }
-    index = end;
 
-    // Yield control to UI thread briefly
-    await new Promise(resolve => setTimeout(resolve, 0));
+    if (index < allTasks.length) {
+      requestIdleCallback(addTasksInChunks);
+    } else {
+      g.Draw();
+      g.DrawDependencies();
+    }
   }
 
-  g.Draw();
-  g.DrawDependencies();
-
-  const endTime = performance.now(); // ⏱️ End timing
-  console.log("Gantt chart rendered in " + (endTime - startTime).toFixed(2));
-}
-
-  // Start async chart load
-  addTasksInBatchesAsync();
+  requestIdleCallback(addTasksInChunks);
 </script>
