@@ -18,13 +18,39 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<div>
-<form>
-  <h2>Select the Range of Date</h2>
-  <input name="fromDate" type="date"/>
-  <input name="toDate" type="date"/>
+<style>
+
+  .rangeSelector{
+    border-radius:2rem;
+    text-align:center;
+    display:inline-block;
+    width:30rem;
+    background-color:#c5943f12;
+    padding:2rem;
+  }
+  input{
+    margin:1rem;
+  }
+  button{
+    margin:auto;
+
+  }
+
+</style>
+<div >
+<form class="rangeSelector">
+  <h2 style="padding:12px;">Select the Range of Date</h2>
+  <lable>From Date:</lable>
+  <input name="fromDate" type="date"/><br/>
+  <lable>To Date:</lable>
+  <input name="toDate" type="date"/><br/>
   <button>Submit</button>
-</form></div>
+
+</form>
+</div>
+<#if start?has_content>
+<div class="rangeSelector"><strong>Start:</strong>${start} -- <strong>End</strong>:${end}</div>
+</#if>
 <div style="position:relative" class="gantt" id="GanttChartDIV"></div>
 
 <script type="application/javascript">
