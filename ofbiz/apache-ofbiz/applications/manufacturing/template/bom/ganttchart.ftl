@@ -43,10 +43,25 @@ const allTasks = [
     </#if>
 </#list>
 ]
-const batchSize = 50;
+ const batchSize = 50;
   let index = 0;
+  let drawingStarted = false;
 
+  // Assume allTasks is pre-rendered on the page from backend
+ // Already populated
 
+  // Step 1: Show initial batch immediately
+  function drawInitialBatch() {
+    const end = Math.min(index + batchSize, allTasks.length);
+    for (let i = index; i < end; i++) {
+      g.AddTaskItem(allTasks[i]);
+    }
+    index = end;
+    g.Draw();
+    g.DrawDependencies();
+  }
+
+  // Step 2: Add more tasks in the background on scroll
   function addTasksInChunks(deadline) {
     while (index < allTasks.length && deadline.timeRemaining() > 0) {
       const end = Math.min(index + batchSize, allTasks.length);
@@ -54,8 +69,6 @@ const batchSize = 50;
         g.AddTaskItem(allTasks[i]);
       }
       index = end;
-
-      // Optional: Show loading progress
     }
 
     if (index < allTasks.length) {
@@ -66,5 +79,15 @@ const batchSize = 50;
     }
   }
 
-  requestIdleCallback(addTasksInChunks);
+  // Step 3: Lazy load the rest on scroll
+  window.addEventListener('scroll', () => {
+    const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 300;
+    if (nearBottom && !drawingStarted) {
+      drawingStarted = true;
+      requestIdleCallback(addTasksInChunks);
+    }
+  });
+
+  // Start with initial batch
+  drawInitialBatch();
 </script>
