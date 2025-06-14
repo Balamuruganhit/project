@@ -100,8 +100,8 @@ machineToWorkEfforts.eachWithIndex { production, i ->
 
     def routingTasks = from('WorkEffort')
         .where(EntityCondition.makeCondition([
-                    EntityCondition.makeCondition("lastUpdatedStamp", EntityOperator.GREATER_THAN_EQUAL_TO, startTimestamp),
-                    EntityCondition.makeCondition("lastUpdatedStamp", EntityOperator.LESS_THAN, endTimestamp),
+                    EntityCondition.makeCondition("estimatedStartDate", EntityOperator.GREATER_THAN_EQUAL_TO, startTimestamp),
+                    EntityCondition.makeCondition("estimatedStartDate", EntityOperator.LESS_THAN, endTimestamp),
                     EntityCondition.makeCondition("fixedAssetId", EntityOperator.EQUALS, production.fixedAssetId),
                     EntityCondition.makeCondition("workEffortTypeId", EntityOperator.EQUALS, "PROD_ORDER_TASK"),
                     EntityCondition.makeCondition("currentStatusId", EntityOperator.EQUALS, "PRUN_SCHEDULED"),
