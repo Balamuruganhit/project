@@ -1,4 +1,3 @@
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -22,9 +21,8 @@ import org.apache.ofbiz.entity.condition.EntityCondition
 import org.apache.ofbiz.entity.condition.EntityOperator
 
 userLogin = parameters.userLogin
-def loadGanttchart() { 
+ganttList = new LinkedList()
 def machineToWorkEfforts = []
-logInfo("Workong")
 def productionRuns = from("WorkEffort")
     .where(EntityCondition.makeCondition([
         EntityCondition.makeCondition("workEffortTypeId", EntityOperator.EQUALS, "PROD_ORDER_HEADER"),
@@ -56,17 +54,20 @@ listOfMachine.each { machine ->
         workEffortIds   : workEffortIds
     ]
 }
+// logInfo("List Of Routing Under the Machine:"+ machineToWorkEfforts)
 
 
-def ganttList=[]
-listOfMachine.eachWithIndex { production, i ->
-   
-    ganttList.add([ phaseNr : production.fixedAssetId,
-    phaseName : production.fixedAssetId,
-    workEffortTypeId : "PHASE",
-    sequenceId : i.toString(),
-    phaseSeqNum : i + 1])
- 
+machineToWorkEfforts.eachWithIndex { production, i ->
+
+    def phase = [:]
+    phase.phaseId = production.fixedAssetId
+    phase.phaseNr = production.fixedAssetId
+    phase.phaseName = production.fixedAssetId
+    phase.workEffortTypeId = "PHASE"
+    phase.sequenceId = i.toString()
+    phase.phaseSeqNum = i + 1
+    ganttList.add(phase)
+
     def routingTasks = from('WorkEffort')
         .where(['fixedAssetId':production.fixedAssetId,'workEffortTypeId':"PROD_ORDER_TASK",'currentStatusId':"PRUN_SCHEDULED"])
         .orderBy('createdDate')
@@ -76,10 +77,10 @@ listOfMachine.eachWithIndex { production, i ->
         .orderBy('createdDate')
         .queryList()
     
-    
+    logInfo('Routing' + routingTask)
     loader = 987
     routingTasks.eachWithIndex { task, index ->
-        
+        def taskMap = [:]
         def partyDetail=[:]
         def routingDetails = from('WorkEffortAssocFromView').where(['workEffortAssocTypeId':'WORK_EFF_TEMPLATE','workEffortIdTo':task.workEffortId]).queryList()
         def proDetails=from('WorkEffort').where(['workEffortId':task.workEffortParentId,'workEffortTypeId':"PROD_ORDER_HEADER"]).queryList()
@@ -88,33 +89,28 @@ listOfMachine.eachWithIndex { production, i ->
         if(workorder){
         partyDetail=from("WorkOrder").where('workOrderNumber',workorder.poNumber).queryOne()
         }
-        
+        taskMap.taskId = task.workEffortId
+        taskMap.taskNr = task.workEffortId
+        taskMap.taskName = task.workEffortName
+        taskMap.phaseNr = production.fixedAssetId
+        taskMap.taskSeqNum = index + 1
+        taskMap.estimatedStartDate = UtilDateTime.toDateString(task.estimatedStartDate ?: phase.estimatedStartDate, "MM/dd/yyyy HH:mm")
+        taskMap.estimatedCompletionDate = UtilDateTime.toDateString(task.estimatedCompletionDate ?: UtilDateTime.addDaysToTimestamp(task.estimatedStartDate ?: phase.estimatedStartDate, 1), "MM/dd/yyyy HH:mm")
+        taskMap.plannedHours = task.workEffortParentId
+        taskMap.resource = "${taskMap.plannedHours} "
         def r = (loader + index * 7) % 256
         def g = (loader + index * 13) % 256
         def b = (loader + index * 19) % 256
-        
+        taskMap.color = String.format("#%02X%02X%02X", r, g, b)
+        taskMap.completion = "PO/SO No:${partyDetail.orderNumber?:" "} \\n WorkOrder Number:${partyDetail.workOrderNumber?:" "} \\nProduction Order No:${task.workEffortParentId} \\nProduction Order Name:${proDetails.workEffortName} \\nPart No: ${productDetails.productId} \\nQuantity:${proDetails.quantityToProduce} \\nPart Name: ${productDetails.internalName} \\nRouting Id: ${routingDetails.workEffortIdFrom} \\nRouting Name: ${routingDetails.workEffortName}\\n Routing Task Id: ${task.workEffortId} \\n Routing Task Name:${task.workEffortName} \\nstatus: ${proDetails.currentStatusId?"Scheduled":0}\\n Estimate Setup time: ${task.estimatedSetupMillis?:" "}\\n Estimate Run Time${task.estimatedStartDate} - ${task.estimatedCompletionDate} \\n Actual Setup Time: ${task.actualSetupMillis?:" "} \\n Actual Completion Date: ${task.actualStartDate?:" "}"
+        taskMap.workEffortTypeId = "TASK"
+        taskMap.currentStatusId = task.currentStatusId
+        taskMap.url = "/workeffort/control/EditWorkEffort?workEffortId=${task.workEffortId}"
 
-        ganttList.add([
-            taskId :task.workEffortId,
-            taskNr : task.workEffortId,
-            taskName :task.workEffortName,
-            phaseNr : production.fixedAssetId,
-            taskSeqNum : index + 1,
-            estimatedStartDate : UtilDateTime.toDateString(task.estimatedStartDate ?: phase.estimatedStartDate, "MM/dd/yyyy HH:mm"),
-            estimatedCompletionDate : UtilDateTime.toDateString(task.estimatedCompletionDate ?: UtilDateTime.addDaysToTimestamp(task.estimatedStartDate ?: phase.estimatedStartDate, 1), "MM/dd/yyyy HH:mm"),
-            
-            color : String.format("#%02X%02X%02X", r, g, b),
-            completion : "PO/SO No:${partyDetail.orderNumber?:" "} \\n WorkOrder Number:${partyDetail.workOrderNumber?:" "} \\nProduction Order No:${task.workEffortParentId} \\nProduction Order Name:${proDetails.workEffortName} \\nPart No: ${productDetails.productId} \\nQuantity:${proDetails.quantityToProduce} \\nPart Name: ${productDetails.internalName} \\nRouting Id: ${routingDetails.workEffortIdFrom} \\nRouting Name: ${routingDetails.workEffortName}\\n Routing Task Id: ${task.workEffortId} \\n Routing Task Name:${task.workEffortName} \\nstatus: ${proDetails.currentStatusId?"Scheduled":0}\\n Estimate Setup time: ${task.estimatedSetupMillis?:" "}\\n Estimate Run Time${task.estimatedStartDate} - ${task.estimatedCompletionDate} \\n Actual Setup Time: ${task.actualSetupMillis?:" "} \\n Actual Completion Date: ${task.actualStartDate?:" "}",
-            workEffortTypeId : "TASK",
-            currentStatusId : task.currentStatusId,
-            url : "/workeffort/control/EditWorkEffort?workEffortId=${task.workEffortId}",
-    ])
+
+        ganttList.add(taskMap)
     }
-
-
-
 }
-logInfo('List Of task' + ganttList)
-request.setAttribute("tasks", ganttList)
-return "success"
-}
+
+context.phaseTaskList = ganttList
+logInfo("Gantt Chart Data: ${ganttList}")

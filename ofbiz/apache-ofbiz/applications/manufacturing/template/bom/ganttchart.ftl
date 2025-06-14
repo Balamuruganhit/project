@@ -1,4 +1,4 @@
-<#-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+
 <#--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -22,7 +22,7 @@ under the License.
 <div style="position:relative" class="gantt" id="GanttChartDIV"></div>
 <script type="application/javascript">
 var g = new JSGantt.GanttChart('g',document.getElementById('GanttChartDIV'), 'hour');
-
+const startTime = performance.now();
  g.setShowStartDate(0); // Show/Hide Start Date(0/1)
   g.setShowEndDate(0);
 	g.setShowRes(0); // Show/Hide Responsible (0/1)
@@ -30,44 +30,62 @@ var g = new JSGantt.GanttChart('g',document.getElementById('GanttChartDIV'), 'ho
 	g.setShowComp(0); // Show/Hide % Complete(0/1)
   g.setCaptionType('Resource');  // Set to Show Caption (None,Caption,Resource,Duration,Complete)
 	g.setDateDisplayFormat('dd/mm/yyyy')
-   
-fetch('/manufacturing/control/getganttchart')
-  .then(res => res.text())
-  .then(text => {
-    console.log("Raw response:", text);
+const allTasks = [
+<#list phaseTaskList as t>
+    <#if "PHASE" == t.workEffortTypeId>
+        new JSGantt.TaskItem("${t.phaseNr}", "${t.phaseSeqNum!}. ${t.phaseName}", "", "", "00ff00", "", 0, "", 0, 1, 0, 1),
+    </#if>
+    <#if "TASK" == t.workEffortTypeId>
+        new JSGantt.TaskItem("${t.taskNr}","${t.taskSeqNum!}. ${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","${t.color}", "${t.url}", 0 , "${t.resource!}", "${t.completion!}" , 0, "", 1, "" ),
+    </#if>
+    <#if "MILESTONE" == t.workEffortTypeId>
+        new JSGantt.TaskItem(new JSGantt.TaskItem("${t.taskNr}","${t.taskName}","${StringUtil.wrapString(t.estimatedStartDate)}", "${StringUtil.wrapString(t.estimatedCompletionDate)}","00ff00", "", 1 , "${t.resource!}", "${t.completion!}" , 0,"", "", "" ));
+    </#if>
+</#list>
+]
+<#--
 
-    // ✅ Remove the leading // prefix properly
-    const cleanText = text.replace(/^\/\/\s*/, '');
-    console.log("Clean JSON:", cleanText);
+TaskItem(pID, pName, pStart, pEnd, pColor, pLink, pMile, pRes, pComp, pGroup, pParent, pOpen, pDepend)
+pID: (required) is a unique ID used to identify each row for parent functions and for setting dom id for hiding/showing
+pName: (required) is the task Label
+pStart: (required) the task start date, can enter empty date ('') for groups
+pEnd: (required) the task end date, can enter empty date ('') for groups
+pColor: (required) the html color for this task; e.g. '00ff00'
+pLink: (optional) any http link navigated to when task bar is clicked.
+pMile:(optional) represent a milestone
+pRes: (optional) resource name
+pComp: (required) completion percent
+pGroup: (optional) indicates whether this is a group(parent) - 0=NOT Parent; 1=IS Parent
+pParent: (required) identifies a parent pID, this causes this task to be a child of identified task
+pOpen: UNUSED - in future can be initially set to close folder when chart is first drawn
+pDepend: dependency: need previous task finished.
 
-    const data = JSON.parse(cleanText);
+-->
 
-    if (!data.tasks || data.tasks.length === 0) {
-      console.warn("No tasks found");
-      return;
+async function addTasksInBatchesAsync() {
+  const batchSize = 50;
+  let index = 0;
+
+  const startTime = performance.now(); // ⏱️ Start timing
+
+  while (index < allTasks.length) {
+    const end = Math.min(index + batchSize, allTasks.length);
+    for (let i = index; i < end; i++) {
+      g.AddTaskItem(allTasks[i]);
     }
+    index = end;
 
-    data.tasks.forEach(task => {
-      g.AddTaskItem(new JSGantt.TaskItem(
-        task.taskNr || task.phaseNr,
-        task.taskName || task.phaseName,
-        task.estimatedStartDate || '',
-        task.estimatedCompletionDate || '',
-        task.color || '#00ff00',
-        task.url || '',
-        0,
-        task.resource || '',
-        task.completion || '',
-        task.taskName ? 0 : 1,
-        task.phaseNr || 0,
-        1
-      ));
-    });
+    // Yield control to UI thread briefly
+    await new Promise(resolve => setTimeout(resolve, 0));
+  }
 
-    g.Draw();
-  })
-  
+  g.Draw();
+  g.DrawDependencies();
 
+  const endTime = performance.now(); // ⏱️ End timing
+  console.log("Gantt chart rendered in " + (endTime - startTime).toFixed(2));
+}
 
+  // Start async chart load
+  addTasksInBatchesAsync();
 </script>
-
