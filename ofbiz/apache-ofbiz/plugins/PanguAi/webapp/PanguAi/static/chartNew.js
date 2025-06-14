@@ -463,7 +463,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
             '<DIV class=scroll id=leftside style="width:' + 24 + 'rem"><TABLE cellSpacing=0 cellPadding=0 border=0><TBODY>' +
             '<TR style="HEIGHT: 17px">' +
             '  <TD style="WIDTH: 15px; HEIGHT: 17px"></TD>' +
-            '  <TD style="WIDTH: ' + vNameWidth + 'px; HEIGHT: 17px"><NOBR></NOBR></TD>'; 
+            '  <TD style="WIDTH: ' + vNameWidth + 'px; HEIGHT: 17px">List Of Machines</TD>'; 
 
          if(vShowRes ==1) vLeftTable += '  <TD style="WIDTH: ' + vStatusWidth + 'px; HEIGHT: 17px"></TD>' ;
          if(vShowDur ==1) vLeftTable += '  <TD style="WIDTH: ' + vStatusWidth + 'px; HEIGHT: 17px"></TD>' ;

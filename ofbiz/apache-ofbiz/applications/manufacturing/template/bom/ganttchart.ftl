@@ -17,14 +17,39 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+<style>
 
-<div>
-<form>
-  <h2>Select the Range of Date</h2>
-  <input name="fromDate" type="date"/>
-  <input name="toDate" type="date"/>
+  .rangeSelector{
+    border-radius:2rem;
+    text-align:center;
+    display:inline-block;
+    width:30rem;
+    background-color:#c5943f12;
+    padding:2rem;
+  }
+  input{
+    margin:1rem;
+  }
+  button{
+    margin:auto;
+
+  }
+
+</style>
+<div >
+<form class="rangeSelector">
+  <h2 style="padding:12px;">Select the Range of Date</h2>
+  <lable>From Date:</lable>
+  <input name="fromDate" type="date"/><br/>
+  <lable>To Date:</lable>
+  <input name="toDate" type="date"/><br/>
   <button>Submit</button>
-</form></div>
+
+</form>
+</div>
+<#if start?has_content>
+<div class="rangeSelector"><strong>Start:</strong>${start} -- <strong>End</strong>:${end}</div>
+</#if>
 <div style="position:relative" class="gantt" id="GanttChartDIV"></div>
 
 <script type="application/javascript">
@@ -50,51 +75,30 @@ const allTasks = [
     </#if>
 </#list>
 ]
- const batchSize = 50;
-  let index = 0;
-  let drawingStarted = false;
+  const quarterSize = Math.ceil(allTasks.length / 9);
+    let currentIndex = 0;
 
-  // Assume allTasks is pre-rendered on the page from backend
- // Already populated
-
-  // Step 1: Show initial batch immediately
-  function drawInitialBatch() {
-    const end = Math.min(index + batchSize, allTasks.length);
-    for (let i = index; i < end; i++) {
+    // Render first 1/4
+    for (let i = 0; i < quarterSize; i++) {
       g.AddTaskItem(allTasks[i]);
     }
-    index = end;
     g.Draw();
     g.DrawDependencies();
-  }
+    currentIndex = quarterSize;
 
-  // Step 2: Add more tasks in the background on scroll
-  function addTasksInChunks(deadline) {
-    while (index < allTasks.length && deadline.timeRemaining() > 0) {
-      const end = Math.min(index + batchSize, allTasks.length);
-      for (let i = index; i < end; i++) {
+    // Progressive loading for remaining tasks
+    const batchSize = 1;
+    const interval = setInterval(() => {
+      if (currentIndex >= allTasks.length) {
+        clearInterval(interval);
+        return;
+      }
+
+      const end = Math.min(currentIndex + batchSize, allTasks.length);
+      for (let i = currentIndex; i < end; i++) {
         g.AddTaskItem(allTasks[i]);
       }
-      index = end;
-    }
-
-    if (index < allTasks.length) {
-      requestIdleCallback(addTasksInChunks);
-    } else {
       g.Draw();
-      g.DrawDependencies();
-    }
-  }
-
-  // Step 3: Lazy load the rest on scroll
-  window.addEventListener('scroll', () => {
-    const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 300;
-    if (nearBottom && !drawingStarted) {
-      drawingStarted = true;
-      requestIdleCallback(addTasksInChunks);
-    }
-  });
-
-  // Start with initial batch
-  drawInitialBatch();
+      currentIndex = end;
+    }, 500);
 </script>

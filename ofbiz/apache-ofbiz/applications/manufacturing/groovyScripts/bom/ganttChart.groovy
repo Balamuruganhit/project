@@ -51,6 +51,8 @@ def conditions = []
                
         }
  logInfo("Searching between: ${startTimestamp} and ${endTimestamp}")
+ context.start= UtilDateTime.toDateString(startTimestamp ?: startTimestamp, "dd/MM/yyyy")
+ context.end=UtilDateTime.toDateString(endTimestamp ?: endTimestamp, "dd/MM/yyyy")
 ganttList = new LinkedList()
 def machineToWorkEfforts = []
 def productionRuns = from("WorkEffort")

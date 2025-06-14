@@ -462,8 +462,8 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
          vLeftTable =
             '<DIV class=scroll id=leftside style="width:' + 24 + 'rem"><TABLE cellSpacing=0 cellPadding=0 border=0><TBODY>' +
             '<TR style="HEIGHT: 17px">' +
-            '  <TD style="WIDTH: 15px; HEIGHT: 17px"></TD>' +
-            '  <TD style="WIDTH: ' + vNameWidth + 'px; HEIGHT: 17px"><NOBR></NOBR></TD>'; 
+            '  <TD style="WIDTH: 15px; HEIGHT: 17px">List Of Machines</TD>' +
+            '  <TD style="WIDTH: ' + vNameWidth + 'px; HEIGHT: 17px"></TD>'; 
 
          if(vShowRes ==1) vLeftTable += '  <TD style="WIDTH: ' + vStatusWidth + 'px; HEIGHT: 17px"></TD>' ;
          if(vShowDur ==1) vLeftTable += '  <TD style="WIDTH: ' + vStatusWidth + 'px; HEIGHT: 17px"></TD>' ;
@@ -834,7 +834,7 @@ for(j=0;j<24;j++){
 	       if (vFormat=='hour')
 	       {
                 vNumUnits = (vTaskList[i].getEnd() - vTaskList[i].getStart()) / (  60 * 1000) + 1;
-                console.log(vNumUnits)
+                console.log('Unit'+ vNumUnits)
 	       }
 	       else if (vFormat=='minute')
 	       {
@@ -908,7 +908,8 @@ for(j=0;j<24;j++){
                             vTaskLeft+=.5
                     }
                 }
-
+                console.log('Left' + vTaskLeft)
+                console.log('Right' + vTaskRight)
                // Draw Group Bar  which has outer div with inner group div and several small divs to left and right to create angled-end indicators
                if( vTaskList[i].getGroup()) {
                   
@@ -953,7 +954,7 @@ for(j=0;j<24;j++){
                   
                   // Draw Task Bar  which has outer DIV with enclosed colored bar div, and opaque completion div
 	            vRightTable +=
-                     '<div id=bardiv_' + vID + ' style="position:absolute; top:-'+ (2.9 ) +'rem; left:' + Math.ceil(vTaskLeft * (50)) + 'px; height:18px; width:' + Math.ceil((vTaskRight) * (vDayWidth) - 1) + 'px">' +
+                     '<div id=bardiv_' + vID + ' style="position:absolute; top:-'+ (2.9 ) +'rem; left:' + Math.ceil(vTaskLeft * (52)) + 'px; height:18px; width:' + Math.ceil((vTaskRight) * (vDayWidth) - 1) + 'px">' +
                         '<div id=taskbar_' + vID + ' title="' + vTaskList[i].getCompVal() +  ':\n ' +"Running Duration: "+ vDateRowStr + '" class=gtask style="background-color:' + vTaskList[i].getColor() +'; height: 2.8rem; width:' + Math.ceil((vNumUnits) * (0.833)-2 ) + 'px; cursor: pointer;opacity:0.9;" ' +
                            'onclick=JSGantt.taskLink("' + vTaskList[i].getLink() + '",300,200); >' +
 
