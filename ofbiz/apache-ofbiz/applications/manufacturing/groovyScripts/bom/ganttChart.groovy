@@ -50,7 +50,9 @@ def conditions = []
                 def cal = Calendar.getInstance()
                 cal.setTime(endWithTime)
                 cal.set(Calendar.HOUR_OF_DAY, 23)
-                cal.set(Calendar.MINUTE, 30)
+                cal.set(Calendar.MINUTE, 59);
+                cal.set(Calendar.SECOND, 59);
+                cal.set(Calendar.MILLISECOND, 999);
                 endTimestamp =  new Timestamp(cal.getTimeInMillis())
                 
 
@@ -61,7 +63,7 @@ def conditions = []
  context.start= UtilDateTime.toDateString(startTimestamp ?: startTimestamp, "dd/MM/yyyy")
  context.end=UtilDateTime.toDateString(endTimestamp ?: endTimestamp, "dd/MM/yyyy ")
  context.startInput= UtilDateTime.toDateString(startTimestamp ?: startTimestamp, "yyyy/MM/dd")
- context.endInput=UtilDateTime.toDateString(endTimestamp ?: endTimestamp, "yyyy/MM/dd HH:MM:ss")
+ context.endInput=endTimestamp
  logInfo("Searching between: ${UtilDateTime.toDateString(endTimestamp ?: endTimestamp, "dd/MM/yyyy HH:MM:ss")} and ${endTimestamp}")
 ganttList = new LinkedList()
 def machineToWorkEfforts = []
