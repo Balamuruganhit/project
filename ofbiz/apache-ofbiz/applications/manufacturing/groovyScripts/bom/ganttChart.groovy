@@ -49,8 +49,8 @@ def conditions = []
                 endWithTime = new Timestamp(utilDate2.getTime())
                 def cal = Calendar.getInstance()
                 cal.setTime(endWithTime)
-                cal.set(Calendar.HOUR_OF_DAY, 24)
-                cal.set(Calendar.MINUTE, 00)
+                cal.set(Calendar.HOUR_OF_DAY, 23)
+                cal.set(Calendar.MINUTE, 30)
                 endTimestamp =  new Timestamp(cal.getTimeInMillis())
                 
 
