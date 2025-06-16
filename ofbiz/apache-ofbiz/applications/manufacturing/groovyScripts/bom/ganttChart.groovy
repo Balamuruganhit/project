@@ -49,7 +49,7 @@ def conditions = []
                 endWithTime = new Timestamp(utilDate2.getTime())
                 def cal = Calendar.getInstance()
                 cal.setTime(endWithTime)
-                cal.set(Calendar.HOUR_OF_DAY, 23)
+                cal.set(Calendar.HOUR_OF_DAY, 00)
                 cal.set(Calendar.MINUTE, 59);
                 cal.set(Calendar.SECOND, 59);
                 cal.set(Calendar.MILLISECOND, 999);

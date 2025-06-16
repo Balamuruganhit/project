@@ -839,7 +839,8 @@ for(j=0;j<24;j++){
             vNumUnits = (vTaskList[i].getEnd() - vTaskList[i].getStart()) / (24 * 60 * 60 * 1000) + 1;
 	       if (vFormat=='hour')
 	       {
-                vNumUnits = (vTaskList[i].getEnd() - vTaskList[i].getStart()) / (  60 * 1000) + 1;
+                               vNumUnits = ((vTaskList[i].getEnd()>vMaxDate?new Date(vMaxDate.getTime() + 86400000):vTaskList[i].getEnd()) - vTaskList[i].getStart()) / (  60 * 1000) + 1;
+
                 console.log('Unit'+ vNumUnits)
 	       }
 	       else if (vFormat=='minute')
