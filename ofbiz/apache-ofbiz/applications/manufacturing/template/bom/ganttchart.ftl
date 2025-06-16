@@ -50,6 +50,8 @@ under the License.
 </div>
 <#if start?has_content>
 <div class="rangeSelector"><strong>Start:</strong>${start} -- <strong>End</strong>:${end}</div>
+<input id=start hidden value=${startInput}/>
+<input id=end hidden value="${endInput}"/>
 </#if>
 <div style="position:relative" class="gantt" id="GanttChartDIV"></div>
 

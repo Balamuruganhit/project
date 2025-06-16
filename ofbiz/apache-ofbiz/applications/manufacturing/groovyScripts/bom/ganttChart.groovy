@@ -46,13 +46,23 @@ def conditions = []
                 def utilDate = sdf.parse(parameters.fromDate.trim())
                  startTimestamp = new Timestamp(utilDate.getTime())
                 def utilDate2 = sdf.parse(parameters.toDate.trim())
-                 endTimestamp = new Timestamp(utilDate2.getTime())
+                endWithTime = new Timestamp(utilDate2.getTime())
+                def cal = Calendar.getInstance()
+                cal.setTime(endWithTime)
+                cal.set(Calendar.HOUR_OF_DAY, 24)
+                cal.set(Calendar.MINUTE, 00)
+                endTimestamp =  new Timestamp(cal.getTimeInMillis())
+                
 
                
         }
  logInfo("Searching between: ${startTimestamp} and ${endTimestamp}")
+ 
  context.start= UtilDateTime.toDateString(startTimestamp ?: startTimestamp, "dd/MM/yyyy")
- context.end=UtilDateTime.toDateString(endTimestamp ?: endTimestamp, "dd/MM/yyyy")
+ context.end=UtilDateTime.toDateString(endTimestamp ?: endTimestamp, "dd/MM/yyyy ")
+ context.startInput= UtilDateTime.toDateString(startTimestamp ?: startTimestamp, "yyyy/MM/dd")
+ context.endInput=UtilDateTime.toDateString(endTimestamp ?: endTimestamp, "yyyy/MM/dd HH:MM:ss")
+ logInfo("Searching between: ${UtilDateTime.toDateString(endTimestamp ?: endTimestamp, "dd/MM/yyyy HH:MM:ss")} and ${endTimestamp}")
 ganttList = new LinkedList()
 def machineToWorkEfforts = []
 def productionRuns = from("WorkEffort")
@@ -86,9 +96,28 @@ listOfMachine.each { machine ->
         workEffortIds   : workEffortIds
     ]
 }
-// logInfo("List Of Routing Under the Machine:"+ machineToWorkEfforts)
-
-
+    loader = 987
+    // logInfo("List Of Routing Under the Machine:"+ machineToWorkEfforts)
+    def productionIdColor=select('workEffortId').from('WorkEffort').where(EntityCondition.makeCondition([
+                        EntityCondition.makeCondition("workEffortTypeId", EntityOperator.EQUALS, "PROD_ORDER_HEADER"),
+                        EntityCondition.makeCondition("currentStatusId", EntityOperator.EQUALS, "PRUN_SCHEDULED"),
+                    ], EntityOperator.AND)).queryList()
+    def productionCount = productionIdColor.size()
+    def colorPalette = []
+    (0..<productionCount).each { i ->
+        def r = (loader + i * 7) % 256
+        def g = (loader + i * 13) % 256
+        def b = (loader + i * 19) % 256
+        colorPalette << String.format("#%02X%02X%02X", r, g, b)// Convert each to hex
+    }
+    logInfo('Color array' + colorPalette)
+    def productionColorMap = [:]
+    def colorIndex = 0
+    productionIdColor.each { productionId ->
+        productionColorMap[productionId.workEffortId] = colorPalette[colorIndex]
+        colorIndex++
+    }
+    logInfo('Color array' + productionColorMap)
 machineToWorkEfforts.eachWithIndex { production, i ->
 
     def phase = [:]
@@ -110,8 +139,7 @@ machineToWorkEfforts.eachWithIndex { production, i ->
                 ], EntityOperator.AND))
         .orderBy('createdDate')
         .queryList()
-    
-    loader = 987
+
     routingTasks.eachWithIndex { task, index ->
         def taskMap = [:]
         def partyDetail=[:]
@@ -131,10 +159,8 @@ machineToWorkEfforts.eachWithIndex { production, i ->
         taskMap.estimatedCompletionDate = UtilDateTime.toDateString(task.estimatedCompletionDate ?: UtilDateTime.addDaysToTimestamp(task.estimatedStartDate ?: phase.estimatedStartDate, 1), "MM/dd/yyyy HH:mm")
         taskMap.plannedHours = task.workEffortParentId
         taskMap.resource = "${taskMap.plannedHours} "
-        def r = (loader + index * 7) % 256
-        def g = (loader + index * 13) % 256
-        def b = (loader + index * 19) % 256
-        taskMap.color = String.format("#%02X%02X%02X", r, g, b)
+        
+        taskMap.color = productionColorMap[task.workEffortParentId]
         taskMap.completion = "PO/SO No:${partyDetail.orderNumber?:" "} \\n WorkOrder Number:${partyDetail.workOrderNumber?:" "} \\nProduction Order No:${task.workEffortParentId} \\nProduction Order Name:${proDetails.workEffortName} \\nPart No: ${productDetails.productId} \\nQuantity:${proDetails.quantityToProduce} \\nPart Name: ${productDetails.internalName} \\nRouting Id: ${routingDetails.workEffortIdFrom} \\nRouting Name: ${routingDetails.workEffortName}\\n Routing Task Id: ${task.workEffortId} \\n Routing Task Name:${task.workEffortName} \\nstatus: ${proDetails.currentStatusId?"Scheduled":0}\\n Estimate Setup time: ${task.estimatedSetupMillis?:" "}\\n Estimate Run Time${task.estimatedStartDate} - ${task.estimatedCompletionDate} \\n Actual Setup Time: ${task.actualSetupMillis?:" "} \\n Actual Completion Date: ${task.actualStartDate?:" "}"
         taskMap.workEffortTypeId = "TASK"
         taskMap.currentStatusId = task.currentStatusId

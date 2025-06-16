@@ -407,8 +407,15 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
          JSGantt.processRows(vTaskList, 0, -1, 1, 1);
 
          // get overall min/max dates plus padding
-         vMinDate = JSGantt.getMinDate(vTaskList, vFormat);
-         vMaxDate = JSGantt.getMaxDate(vTaskList, vFormat);
+         let input = document.getElementById('start').value; // or .defaultValue
+         let input2 = document.getElementById('end').value;
+         console.log(input)
+         let dateObj = new Date(input);
+         let dateObj2=new Date(input2)
+         vMinDate = dateObj;
+         console.log(vMinDate)
+         vMaxDate = dateObj2
+         console.log(vMaxDate)
 
          // Calculate chart width variables.  vColWidth can be altered manually to change each column width
          // May be smart to make this a parameter of GanttChart or set it based on existing pWidth parameter
@@ -462,8 +469,7 @@ JSGantt.GanttChart =  function(pGanttVar, pDiv, pFormat)
          vLeftTable =
             '<DIV class=scroll id=leftside style="width:' + 24 + 'rem"><TABLE cellSpacing=0 cellPadding=0 border=0><TBODY>' +
             '<TR style="HEIGHT: 17px">' +
-            '  <TD style="WIDTH: 15px; HEIGHT: 17px"></TD>' +
-            '  <TD style="WIDTH: ' + vNameWidth + 'px; HEIGHT: 17px">List Of Machines</TD>'; 
+            '  <TD style="WIDTH: 15px; HEIGHT: 17px">List Of Machines</TD>' ; 
 
          if(vShowRes ==1) vLeftTable += '  <TD style="WIDTH: ' + vStatusWidth + 'px; HEIGHT: 17px"></TD>' ;
          if(vShowDur ==1) vLeftTable += '  <TD style="WIDTH: ' + vStatusWidth + 'px; HEIGHT: 17px"></TD>' ;
@@ -833,7 +839,7 @@ for(j=0;j<24;j++){
             vNumUnits = (vTaskList[i].getEnd() - vTaskList[i].getStart()) / (24 * 60 * 60 * 1000) + 1;
 	       if (vFormat=='hour')
 	       {
-                vNumUnits = (vTaskList[i].getEnd() - vTaskList[i].getStart()) / (  60 * 1000) + 1;
+                vNumUnits = ((vTaskList[i].getEnd()>vMaxDate?vMaxDate:vTaskList[i].getEnd()) - vTaskList[i].getStart()) / (  60 * 1000) + 1;
                 console.log('Unit'+ vNumUnits)
 	       }
 	       else if (vFormat=='minute')
@@ -951,10 +957,10 @@ for(j=0;j<24;j++){
                   vDivStr = '<DIV><TABLE style="position:relative; top:0px; width: ' + vChartWidth + 'px;" cellSpacing=0 cellPadding=0 border=0>' +
                      '<TR id=childrow_' + vID + ' class=yesdisplay style="HEIGHT: 20px;'+(i > 0 ? ' DISPLAY: none;' : '') +'" bgColor=#ffffff onMouseover=g.mouseOver(this,' + vID + ',"right","row") onMouseout=g.mouseOut(this,' + vID + ',"right","row")>' + vItemRowStr + '</TR></TABLE></DIV>';
                   vRightTable += vDivStr;
-                  
+                  console.log(vNumUnits)
                   // Draw Task Bar  which has outer DIV with enclosed colored bar div, and opaque completion div
 	            vRightTable +=
-                     '<div id=bardiv_' + vID + ' style="position:absolute; top:-'+ (2.9 ) +'rem; left:' + Math.ceil(vTaskLeft * (52)) + 'px; height:18px; width:' + Math.ceil((vTaskRight) * (vDayWidth) - 1) + 'px">' +
+                     '<div id=bardiv_' + vID + ' style="position:absolute; top:-'+ (2.9 ) +'rem; left:' + Math.ceil(vTaskLeft * (52)) + 'px; height:18px; width:' + Math.ceil((vNumUnits) * (0.833)-2 ) + 'px">' +
                         '<div id=taskbar_' + vID + ' title="' + vTaskList[i].getCompVal() +  ':\n ' +"Running Duration: "+ vDateRowStr + '" class=gtask style="background-color:' + vTaskList[i].getColor() +'; height: 2.8rem; width:' + Math.ceil((vNumUnits) * (0.833)-2 ) + 'px; cursor: pointer;opacity:0.9;" ' +
                            'onclick=JSGantt.taskLink("' + vTaskList[i].getLink() + '",300,200); >' +
 
