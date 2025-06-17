@@ -49,6 +49,39 @@ under the License.
         </section>
     </screen>
     
+     <screen name="VendorManagement">
+        <section>
+            <actions>
+                <set field="userTabButtonImage" value="main"/>
+                <script location="component://product/groovyScripts/product/vendor/vendor.groovy"/>
+
+            </actions>
+            <widgets>
+                <decorator-screen name="VendorManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <if-has-permission permission="IMAGE_MANAGEMENT_ADMIN"/>
+                            </condition>
+                            <widgets>
+                               <screenlet title="${uiLabelMap.ImageManagementGallery}">
+                                            <platform-specific>
+                                                <html><html-template location="component://product/template/vendor/vendorManagement.ftl"/></html>
+                                            </platform-specific>
+                                    </screenlet>
+                            </widgets>
+                            <fail-widgets>
+                                <screenlet title="${uiLabelMap.ImageManagementApplication}">
+                                    <container><label style="label" text="${uiLabelMap.ImageManagementWelcomeMessage}"/></container>
+                                </screenlet>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
     <screen name="ImageGallery">
         <section>
             <actions>

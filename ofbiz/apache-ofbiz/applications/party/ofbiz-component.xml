@@ -41,7 +41,7 @@ under the License.
     <test-suite loader="main" location="testdef/PartyStatusChangeTests.xml"/>
 
     <webapp name="party"
-        title="Party"
+        title="Organisation Management"
         position="1"
         description="PartyComponentDescription"
         server="default-server"

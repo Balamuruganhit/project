@@ -33,6 +33,8 @@ under the License.
         <menu-item name="Subscription" title="${uiLabelMap.ProductSubscriptions}"><link target="FindSubscription"/></menu-item>
         <menu-item name="shipping" title="${uiLabelMap.ProductShipping}"><link target="ListShipmentMethodTypes"/></menu-item>
         <menu-item name="Imagemanagement" title="${uiLabelMap.ImageManagement}"><link target="Imagemanagement"/></menu-item>
+        <menu-item name="vendorManagement" title="Vendor Management"><link target="vendorManagement"/></menu-item>
+
     </menu>
     <menu name="MainActionMenu" menu-container-style="button-bar button-style-2" default-selected-style="selected">
         <menu-item name="newProduct" title="${uiLabelMap.CommonNew} ${uiLabelMap.CommonProduct}">

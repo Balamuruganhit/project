@@ -41,7 +41,7 @@ under the License.
         </a>
     </div>
 <#if userLogin?has_content>
-    <#assign appMax = Static["org.apache.ofbiz.base.util.UtilProperties"].getPropertyAsInteger("rainbowstone", "appMax", 8)/>
+    <#assign appMax = Static["org.apache.ofbiz.base.util.UtilProperties"].getPropertyAsInteger("helveticus", "appMax", 5)/>
     <#assign alreadySelected = false>
 <div id="main-navigation-bar">
     <div id="main-nav-bar-left">

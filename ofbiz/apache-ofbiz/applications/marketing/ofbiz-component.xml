@@ -44,7 +44,7 @@ under the License.
         app-shortcut-screen="component://marketing/widget/CommonScreens.xml#ShortcutApp"
         mount-point="/marketing"/>
     <webapp name="SalesForceAutomation"
-        title="SFA"
+        title="Sale Force Automation"
         position="8"
         server="default-server"
         location="webapp/sfa"
@@ -52,4 +52,3 @@ under the License.
         app-shortcut-screen="component://marketing/widget/sfa/CommonScreens.xml#ShortcutApp"
         mount-point="/sfa"/>
 </ofbiz-component>
-

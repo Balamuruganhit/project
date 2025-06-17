@@ -76,7 +76,7 @@ under the License.
     <test-suite loader="main" location="testdef/ProductConfigTests.xml"/>
 
     <webapp name="catalog"
-        title="Catalog"
+        title="Product Management"
         position="2"
         description="CatalogComponentDescription"
         server="default-server"
@@ -85,7 +85,7 @@ under the License.
         app-shortcut-screen="component://product/widget/catalog/CatalogScreens.xml#ShortcutApp"
         mount-point="/catalog"/>
     <webapp name="facility"
-        title="Facility"
+        title="Inventory Management"
         position="3"
         description="FacilityComponentDescription"
         server="default-server"

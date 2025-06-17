@@ -2062,7 +2062,7 @@
     <property key="NewProspect">
         <value xml:lang="ar">تم إنشاء بروسبكت جديد بنجاح.</value>
         <value xml:lang="de">Neuer Prospect wurde erfolgreich erstellt.</value>
-        <value xml:lang="en">New Prospect created Successfully.</value>
+        <value xml:lang="en">New Supplier created Successfully.</value>
         <value xml:lang="es">Nueva perspectiva creada con éxito.</value>
         <value xml:lang="fr">Nouveau prospect créé avec succès.</value>
         <value xml:lang="hi-IN">नई संभावना सफलतापूर्वक बनाया</value>
@@ -5817,7 +5817,7 @@
     <property key="PartyCreateNewProspect">
         <value xml:lang="ar">خلق عميل محتمل</value>
         <value xml:lang="de">Neuen potentiellen Kunden erstellen</value>
-        <value xml:lang="en">Create Prospect</value>
+        <value xml:lang="en">Create Supplier</value>
         <value xml:lang="es">Nuevo cliente potencial</value>
         <value xml:lang="fr">Créer un nouveau prospect</value>
         <value xml:lang="hi-IN">संभावना बनाएँ</value>

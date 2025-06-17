@@ -3402,7 +3402,7 @@
     </property>
     <property key="RoleType.description.PROSPECT">
         <value xml:lang="de">Potentieller Kunde</value>
-        <value xml:lang="en">Prospect</value>
+        <value xml:lang="en">Supplier</value>
         <value xml:lang="es">Cliente potencial</value>
         <value xml:lang="fr">Prospect</value>
         <value xml:lang="hi-IN">अपेक्षा</value>

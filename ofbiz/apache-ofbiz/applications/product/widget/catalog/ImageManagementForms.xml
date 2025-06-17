@@ -62,7 +62,29 @@ under the License.
             <hyperlink description="${uiLabelMap.CommonView}" target="${origContentDataResourceViews[0].drObjectInfo}" target-window="_blank" also-hidden="false" target-type="content"/>
         </field>
     </grid>
-    
+ 
+    <form name="ListVendorManagement" type="list"  paginate="true"  list-name="vendorProductList" default-table-style="basic-table" odd-row-style="alternate-row">
+        <field name="rowType"><hidden/></field>
+
+  <!-- Party Row -->
+  <field name="partyId" use-when="rowType == 'party'"><display/></field>
+  <field name="partyName" use-when="rowType == 'party'"><display/></field>
+  <field name="role" use-when="rowType == 'party'"><display/></field>
+  <field name="status" use-when="rowType == 'party'"><display/></field>
+  <field name="contactNumber" use-when="rowType == 'party'"><display/></field>
+  <field name="email" use-when="rowType == 'party'"><display/></field>
+  <field name="website" use-when="rowType == 'party'"><display/></field>
+
+  <!-- Product Row (Only show under party row) -->
+  <field name="partNo" use-when="rowType == 'product'"><display/></field>
+  <field name="partName" use-when="rowType == 'product'"><display/></field>
+  <field name="productType" use-when="rowType == 'product'"><display/></field>
+  <field name="dimensions" use-when="rowType == 'product'"><display/></field>
+  <field name="uom" use-when="rowType == 'product'"><display/></field>
+  <field name="quantity" use-when="rowType == 'product'"><display/></field>
+  <field name="price" use-when="rowType == 'product'"><display/></field>
+    </form>
+
     <form name="ImageGallery" type="single" title="" header-row-style="header-row" default-table-style="basic-table" target="ListImageGallery"> 
         <field name="productId" title="${uiLabelMap.ImageManagementChooseProductID}"><lookup target-form-name="LookupProduct"/></field>
         <field name="submitButton" title="${uiLabelMap.CommonSubmit}" widget-style="smallSubmit"><submit button-type="button"/></field>

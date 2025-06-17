@@ -839,9 +839,12 @@ for(j=0;j<24;j++){
             vNumUnits = (vTaskList[i].getEnd() - vTaskList[i].getStart()) / (24 * 60 * 60 * 1000) + 1;
 	       if (vFormat=='hour')
 	       {
-                               vNumUnits = ((vTaskList[i].getEnd()>vMaxDate?new Date(vMaxDate.getTime() + 86400000):vTaskList[i].getEnd()) - vTaskList[i].getStart()) / (  60 * 1000) + 1;
-
-                console.log('Unit'+ vNumUnits)
+		let vMaxDatePlusOne = new Date(vMaxDate);
+			vMaxDatePlusOne.setDate(vMaxDatePlusOne.getDate() + 1);
+			vMaxDatePlusOne.setHours(0, 0, 0, 0); 
+			console.log(vMaxDatePlusOne)
+                vNumUnits = ((vTaskList[i].getEnd()>vMaxDate?vMaxDatePlusOne :vTaskList[i].getEnd()) - vTaskList[i].getStart()) / (60 * 1000) + 1;
+                console.log("It is working " + Math.ceil((vNumUnits) * (0.833)-2 ))
 	       }
 	       else if (vFormat=='minute')
 	       {
@@ -1676,5 +1679,7 @@ JSGantt.benchMark = function(pItem){
    alert(pItem + ': Elapsed time: '+((vEndTime-vBenchTime)/1000)+' seconds.');
    vBenchTime=new Date().getTime();
 }
+
+
 
 
