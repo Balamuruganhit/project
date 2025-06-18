@@ -74,21 +74,25 @@ under the License.
                     <#if layoutSettings.suppressTab?exists && display.name == layoutSettings.suppressTab>
                     <#-- do not display this component-->
                     <#else>
+                    
                         <#if appCount<=appMax>
-                            <li class="app-btn<#if selected> selected</#if>">
-                                <#if selected>
-                                <div id="app-selected">
-                                    <#assign alreadySelected = true>
-                                </#if>
-                                <a href="${thisURL}${StringUtil.wrapString(externalKeyParam)}"<#if uiLabelMap?exists> title="${uiLabelMap[display.description]}">${uiLabelMap[display.title]}<#else> title="${display.description}">${display.title}</#if></a>
-                                <#if selected>
-                                </div>
-                                </#if>
-                            </li>
+                           
+                                <li class="app-btn<#if selected> selected</#if>">
+                                    <#if selected>
+                                    <div id="app-selected">
+                                        <#assign alreadySelected = true>
+                                    </#if>
+                                    <a href="${thisURL}${StringUtil.wrapString(externalKeyParam)}"<#if uiLabelMap?exists> title="${uiLabelMap[display.description]}">${uiLabelMap[display.title]}<#else> title="${display.description}">${display.title}</#if></a>
+                                    <#if selected>
+                                    </div>
+                                    </#if>
+                                </li>
+                            
                         <#else>
                             <#break>
                         </#if>
                         <#assign appCount = appCount + 1>
+                       
                     </#if>
                 </#if>
             </#list>
@@ -115,6 +119,7 @@ under the License.
                         <#assign thisURL = thisURL + "/control/main">
                     </#if>
                     <#if appCount<=appMax>
+                        
                         <li class="app-btn<#if selected> selected</#if>">
                             <#if selected>
                             <div id="app-selected">
@@ -125,6 +130,7 @@ under the License.
                             </div>
                             </#if>
                         </li>
+                        
                     <#else>
                         <#break>
                     </#if>

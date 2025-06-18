@@ -38,6 +38,7 @@ under the License.
                 <set field="applicationMenuLocation" value="component://content/widget/content/ContentMenus.xml" global="true"/>
                 <set field="applicationTitle" from-field="uiLabelMap.ContentContentManagerApplication"/>
                 <set field="helpAnchor" from-field="helpAnchor" default-value="_content_management"/>
+                <set field="layoutSettings.suppressTab" value="content"/>
             </actions>
             <widgets>
                 <include-screen name="ApplicationDecorator" location="component://commonext/widget/CommonScreens.xml"/>

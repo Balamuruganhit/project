@@ -58,6 +58,9 @@ under the License.
         <menu-item name="GanttChart" title="Gantt Chart">
             <link target="GanttChart"/>
         </menu-item>
+        <menu-item name="workEffort" title="WorkEffort">
+            <link target="/workeffort/control/FindWorkEffort" url-mode="inter-app"/>
+        </menu-item>
     </menu>
 
     <menu name="ManufacturingShortcutAppBar" title="${uiLabelMap.ManufacturingManager}">

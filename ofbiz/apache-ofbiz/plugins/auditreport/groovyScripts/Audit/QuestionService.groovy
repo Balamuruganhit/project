@@ -26,6 +26,7 @@ import org.apache.ofbiz.entity.GenericValue
 import org.apache.ofbiz.entity.serialize.XmlSerializer
 import org.apache.ofbiz.product.product.KeywordIndex
 import org.apache.ofbiz.product.product.ProductWorker
+import javax.sql.rowset.serial.SerialBlob
 import org.apache.ofbiz.service.*
 import org.apache.ofbiz.base.util.*
 import org.apache.ofbiz.entity.*
@@ -140,6 +141,7 @@ def createReportDetail() {
             String approve = report.approve
             String proofBase64 = report.proof
             byte[] proofBytes = Base64.decoder.decode(proofBase64.split(",")[1])
+            SerialBlob blob = new SerialBlob(proofBytes)
             def genId=delegator.getNextSeqId("ReportContent")
             // Create a new entity in the database
             Map<String, Object> newReport = [
@@ -149,7 +151,7 @@ def createReportDetail() {
                 rating: rating,
                 comment: comment,
                 approve: approve,
-                proofBase64: proofBytes,
+                proofBase64: blob,
              
             ]
             delegator.create("ReportContent", newReport)

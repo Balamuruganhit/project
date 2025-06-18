@@ -25,6 +25,8 @@ under the License.
         <menu-item name="Segment" title="${uiLabelMap.MarketingSegment}"><link target="FindSegmentGroup"/></menu-item>
         <menu-item name="ContactList" title="${uiLabelMap.MarketingContactList}"><link target="FindContactLists"/></menu-item>
         <menu-item name="Reports" title="${uiLabelMap.MarketingReports}"><link target="MarketingReport"/></menu-item>
+        <menu-item name="content" title="Content"><link target="/content/control/main" url-mode="inter-app"/></menu-item>
+
     </menu>
     <menu name="MainActionMenu" menu-container-style="button-bar button-style-2" default-selected-style="selected">
         <menu-item name="NewCampaign" title="${uiLabelMap.CommonNew} ${uiLabelMap.MarketingCampaign}">

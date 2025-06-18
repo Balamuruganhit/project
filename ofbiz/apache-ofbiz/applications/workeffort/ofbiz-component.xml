@@ -41,6 +41,7 @@ under the License.
      <webapp name="workeffort"
         title="Work Effort"
         position="9"
+        app-bar-display="false"
         server="default-server"
         location="webapp/workeffort"
         base-permission="OFBTOOLS,WORKEFFORTMGR"
