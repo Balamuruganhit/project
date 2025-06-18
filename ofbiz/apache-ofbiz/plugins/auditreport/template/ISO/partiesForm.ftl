@@ -106,10 +106,15 @@ button{
       </div>
       </#if>
     </header>
-
+  <#if header?has_content>
     <div class="sub-header">
       <div>Next review Date: <input type="date" id="previewDate" value="${header.previewDate!""}"/></div>
     </div>
+   <#else>
+    <div class="sub-header">
+      <div>Next review Date: <input type="date" id="previewDate" /></div>
+    </div>
+   </#if>
 <#if data?has_content>
   <table>
       <thead>
