@@ -38,7 +38,7 @@
         <field name="rating" type="numeric"/>
         <field name="comment" type="url"/>
         <field name="approve" type="name"/>
-        <field name="proofBase64" type="blob"/> <!-- Field to store Base64-encoded string -->
+        <field name="proofBase64" type="byte-array"/> <!-- Field to store Base64-encoded string -->
         <prim-key field="genId"/>
     </entity>
    <entity entity-name="partiesOrganisationHeader" package-name="org.apache.ofbiz.AuditReport" title="AuditReport Entity">
