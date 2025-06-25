@@ -27,10 +27,12 @@ under the License.
                 <set field="headerItem" value="main"/><!-- this highlights the selected menu-item with name "main" -->
             </actions>
             <widgets>
-                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="DemoPageCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <screenlet title="Add Ofbiz Demo">
-                            
+                        <screenlet>
+                            <platform-specific>
+                                    <html><html-template location="component://DemoPage/template/navigator.ftl"/></html>
+                                </platform-specific> 
                         </screenlet>
                     </decorator-section>
                 </decorator-screen>
@@ -40,18 +42,19 @@ under the License.
     <screen name="EditCustomer">
         <section>
             <actions>
-                <set field="titleProperty" value="PageTitleEditExample"/>
+                <set field="titleProperty" value="Domain"/>
                 <set field="tabButtonItem" value="EditCustomer"/>
                 <set field="CustomerId" from-field="parameters.CustomerId"/>
                 <entity-one entity-name="CustomerDetail" value-field="customer"/>
             </actions>
             <widgets>
-                <decorator-screen name="DemoPageCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="DemoCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <include-form name="EditCustomer" location="component://DemoPage/widget/DemoPageForms.xml"/>
-                    </decorator-section>
-                    <decorator-section name="search-results">
-                                        <include-grid name="ListCustomer" location="component://DemoPage/widget/DemoPageForms.xml"/>
+                        <screenlet>
+                            <platform-specific>
+                                    <html><html-template location="component://DemoPage/template/mainDomainList.ftl"/></html>
+                                </platform-specific> 
+                        </screenlet>
                     </decorator-section>
                 </decorator-screen>
                 

@@ -99,3 +99,63 @@ def createFemaReport(){
     }
 
 }
+
+if(parameters.approver == 'update'){
+if(parameters.system || parameters.subSystem||parameters.subSubSystem||parameters.ramsno||parameters.date_fld0_value){
+    def conditions = []
+
+        if (parameters.system) {
+            conditions << EntityCondition.makeCondition("system", EntityOperator.LIKE,"%" + parameters.system+ "%")
+        }
+        if (parameters.subSystem) {
+            conditions << EntityCondition.makeCondition("subsystem", EntityOperator.LIKE,"%" + parameters.subSystem+ "%")
+        }
+        if (parameters.subSubSystem) {
+            conditions << EntityCondition.makeCondition("subsubsystem", EntityOperator.LIKE,"%" + parameters.subSubSystem+ "%")
+        }
+        if (parameters.ramsno) {
+            conditions << EntityCondition.makeCondition("ramsNo", EntityOperator.LIKE, "%" + parameters.ramsno + "%")
+        }
+        if (parameters.date_fld0_value) {
+            try {
+                def sdf = new SimpleDateFormat("yyyy-MM-dd")
+                sdf.setLenient(false) // enforce strict format parsing
+                def utilDate = sdf.parse(parameters.date_fld0_value.trim())
+                def startTimestamp = new Timestamp(utilDate.getTime())
+                Calendar cal = Calendar.getInstance()
+                cal.setTime(utilDate)
+                cal.add(Calendar.DAY_OF_MONTH, 1)
+                def endTimestamp = new Timestamp(cal.getTimeInMillis())
+
+                logInfo("Searching between: ${startTimestamp} and ${endTimestamp}")
+                
+                // Add to query condition
+                conditions << EntityCondition.makeCondition([
+                    EntityCondition.makeCondition("lastUpdatedStamp", EntityOperator.GREATER_THAN_EQUAL_TO, startTimestamp),
+                    EntityCondition.makeCondition("lastUpdatedStamp", EntityOperator.LESS_THAN, endTimestamp)
+                ], EntityOperator.AND)
+            } catch (Exception e) {
+                logError("Failed to parse date_fld0_value: ${parameters.date_fld0_value}, Error: ${e.message}")
+            }
+        }
+
+        if (conditions) {
+            condition = EntityCondition.makeCondition(conditions, EntityOperator.AND)
+    }
+
+// Now query only with .where(condition) if condition is not null:
+    def query = from("FemaTitleDetail")
+    if (condition != null) {
+        query = query.where(condition)
+    }
+    def ramsList = query.queryList()
+    context.ramsList = ramsList
+    logInfo("It will run on the condition" +ramsList )
+}
+else{
+    def query = from("FemaTitleDetail")
+    def ramsList = query.queryList()
+    context.ramsList = ramsList
+    logInfo("It will run out of condition")
+}
+}

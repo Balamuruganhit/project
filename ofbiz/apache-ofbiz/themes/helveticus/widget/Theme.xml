@@ -48,6 +48,8 @@ under the License.
         <property name="VT_HDR_TMPLT_LOC" value="component://helveticus/template/includes/Header.ftl"/>
         <property name="VT_FTR_TMPLT_LOC" value="component://helveticus/template/includes/Footer.ftl"/>
         <property name="VT_NAV_TMPLT_LOC" value="component://helveticus/template/includes/TopAppBar.ftl"/>
+        <property name="VT_NAV_AUDIT_TMPLT_LOC" value="component://helveticus/template/includes/TopAppBarAudit.ftl"/>
+        <property name="VT_NAV_RELAIBLITY_TMPLT_LOC" value="component://helveticus/template/includes/TopAppBarReliablity.ftl"/>
         <property name="VT_CHPWD_TMPLT_LOC" value="component://helveticus/template/ChangePassword.ftl"/>
         <property name="VT_FGPWD_TMPLT_LOC" value="component://helveticus/template/ForgotPassword.ftl"/>
         <property name="VT_LOGIN_TMPLT_LOC" value="component://helveticus/template/Login.ftl"/>

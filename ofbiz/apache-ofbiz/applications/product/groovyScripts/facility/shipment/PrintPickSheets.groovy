@@ -36,6 +36,7 @@ if (printGroupName != null) {
     }
 }
 else {
+    logInfo('hello' + pickMoveInfoList)
     pickMoveInfoList.each { pickMoveInfo ->
         toPrintOrders.add(pickMoveInfo.orderReadyToPickInfoList)
     }

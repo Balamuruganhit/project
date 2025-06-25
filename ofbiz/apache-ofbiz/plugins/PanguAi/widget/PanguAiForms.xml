@@ -134,4 +134,14 @@ under the License.
                 <submit button-type="button"/>
                 </field>
         </form>
+        <form name="FindFema" target="ramsfinder" title="" type="single" 
+                header-row-style="header-row" default-table-style="basic-table">
+                <field name="part"  position="1" ><text/></field>
+                <field name="comp" position="2"><text></text></field>
+                <field name="subSubSystem" position="3"><text></text></field>
+                <field name="femaId" title="RAMS Number" position="1"><text></text></field>
+                <field name="date" position="2"><date-find  type="date"/></field>
+                <field name="submitButton" title="${uiLabelMap.CommonFind}"><submit/></field>
+                <field name="approver" ><hidden value="update"/></field>
+        </form>
 </forms>

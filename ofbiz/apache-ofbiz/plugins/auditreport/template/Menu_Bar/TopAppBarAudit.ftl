@@ -46,9 +46,7 @@ under the License.
 <div id="main-navigation-bar">
     <div id="main-nav-bar-left">
         <a id="homeButton" href="<@ofbizUrl controlPath="/DemoPage/control">main</@ofbizUrl>"><div id="company-logo"></div></a>
-        <#if contextPath?contains("AuditReport") || contextPath?contains("PanguAi") || contextPath?contains("DemoPage")>
-          
-        <#else>
+        
         <ul id="app-bar-list">
             <#assign appCount = 0>
             <#assign firstApp = true>
@@ -79,7 +77,7 @@ under the License.
                     <#else>
                     
                         <#if appCount<=appMax>
-                           
+                           <#if display.name == 'AuditReport'>
                                 <li class="app-btn<#if selected> selected</#if>">
                                     <#if selected>
                                     <div id="app-selected">
@@ -90,7 +88,7 @@ under the License.
                                     </div>
                                     </#if>
                                 </li>
-                            
+                            </#if>
                         <#else>
                             <#break>
                         </#if>
@@ -122,7 +120,7 @@ under the License.
                         <#assign thisURL = thisURL + "/control/main">
                     </#if>
                     <#if appCount<=appMax>
-                        
+                        <#if display.name == 'AuditReport'>
                         <li class="app-btn<#if selected> selected</#if>">
                             <#if selected>
                             <div id="app-selected">
@@ -133,14 +131,13 @@ under the License.
                             </div>
                             </#if>
                         </li>
-                        
+                        </#if>
                     <#else>
                         <#break>
                     </#if>
                     <#assign appCount = appCount + 1>
                 </#if>
             </#list>
-            </#if>
             </#if>
         </ul>
         <!-- If the number of applications is greater than the maximum number of applications that can be displayed, the rest is put
@@ -149,16 +146,8 @@ under the License.
     <div class="container-more-app">
         <#assign appCount = 0>
         <#assign moreApp = false>
-  
-        <#if contextPath?contains("AuditReport") || contextPath?contains("PanguAi") || contextPath?contains("DemoPage")>
-        
-        <#else>
-        
-        
         <#if displayApps??>
-        
         <#list displayApps as display>
-        
             <#assign thisApp = display.getContextRoot()>
             <#assign permission = true>
             <#assign selected = false>
@@ -192,23 +181,23 @@ under the License.
                         <ul id="more-app-list">
                             <#assign moreApp = true>
                         </#if>
-                        <#if display.name == "content"||display.name == 'AuditReport'||display.name == "PanguAi">  
-                        <#else>
-                            <li class="app-btn-sup<#if selected> selected</#if>">
+                        <#if display.name == 'AuditReport'>
+                                <li class="app-btn-sup<#if selected> selected</#if>">
                             <a class="more-app-a" href="${thisURL}${StringUtil.wrapString(externalKeyParam)}"<#if uiLabelMap?exists> title="${uiLabelMap[display.description]}">${uiLabelMap[display.title]}<#else> title="${display.description}">${display.title}</#if></a>
                             <#if selected>
                                 <#assign currentMoreApp = display>
                             </#if>
+                        <#else>
+                            
                         </li>
                         </#if>
-                    
+                        
                     </#if>
                     <#assign appCount = appCount + 1>
                 </#if>
             </#if>
         </#list>
         </#if>
-       
         <#if displaySecondaryApps??>
         <#list displaySecondaryApps as display>
             <#assign thisApp = display.getContextRoot()>
@@ -252,7 +241,6 @@ under the License.
             </#if>
         </#list>
         </#if>
-         </#if>
         <#if moreApp>
         </ul> <!-- more-app-list -->
         </div> <!-- more-app -->
