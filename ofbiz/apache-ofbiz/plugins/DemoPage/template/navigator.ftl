@@ -56,7 +56,8 @@ body{
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
-  min-width: 200px;
+  height:10rem;
+  display:block;
 }
 
 .menu-item:hover {
@@ -73,6 +74,7 @@ body{
 a{
     text-decoration:none;
     color:white;
+    text-align:center;
 }
 </style>
 
@@ -81,9 +83,9 @@ a{
   </header>
 
   <main class="menu-container">
-    <div class="menu-item"><a href="<@ofbizUrl controlPath="/DemoPage/control">EditCustomer</@ofbizUrl>">AI Integrated ERP</a></div>
-    <div class="menu-item"><a href="<@ofbizUrl controlPath="/AuditReport/control">main</@ofbizUrl>">ISO Audit Pro</a></div>
-    <div class="menu-item"><a href="<@ofbizUrl controlPath="/PanguAi/control">main</@ofbizUrl>">Reliability Tools</a></div>
+    <div ><a class="menu-item" href="<@ofbizUrl controlPath="/DemoPage/control">EditCustomer</@ofbizUrl>">AI Integrated ERP</a></div>
+    <div ><a class="menu-item" href="<@ofbizUrl controlPath="/AuditReport/control">main</@ofbizUrl>">ISO Audit Pro</a></div>
+    <div ><a class="menu-item" href="<@ofbizUrl controlPath="/PanguAi/control">main</@ofbizUrl>">Reliability Tools</a></div>
   </main>
 
   <footer class="footer">
