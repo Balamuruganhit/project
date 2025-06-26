@@ -13,7 +13,7 @@ RUN chmod +x /ofbiz/gradle/init-gradle-wrapper.sh && /ofbiz/gradle/init-gradle-w
 RUN /ofbiz/gradle/init-gradle-wrapper.sh
 
 EXPOSE 8080
-EXPOSE 9443
+EXPOSE 8443
 EXPOSE 8009
 RUN chmod +x gradlew
 RUN ./gradlew build
