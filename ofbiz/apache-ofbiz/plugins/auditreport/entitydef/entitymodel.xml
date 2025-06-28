@@ -75,4 +75,22 @@
         <field name="contentDetail" type="long-varchar"/> <!-- Field to store Base64-encoded string -->
         <prim-key field="genId"/>
     </entity>
+     <entity entity-name="DesignHeader" package-name="org.apache.ofbiz.AuditReport" title="AuditReport Entity">
+        <field name="docId" type="id"/>
+        <field name="revision" type="id"/>
+        <field name="date" type="name"/>
+        <field name="approve" type="name"/>
+        <field name="previewer" type="name"/>
+        <field name="prepared" type="name"/> <!-- Field to store Base64-encoded string -->
+        <prim-key field="docId"/>
+    </entity>
+     <entity entity-name="DesignDatas" package-name="org.apache.ofbiz.AuditReport" title="AuditReport Entity">
+        <field name="genId" type="id"/>
+        <field name="docId" type="id"/>
+        <field name="process" type="name"/>
+        <field name="tools" type="name"/>
+        <field name="status" type="name"/>
+        <field name="remark" type="long-varchar"/> <!-- Field to store Base64-encoded string -->
+        <prim-key field="genId"/>
+    </entity>
 </entitymodel>

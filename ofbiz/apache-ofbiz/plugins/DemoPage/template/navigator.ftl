@@ -29,20 +29,21 @@ body{
   font-size: 1em;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  height:6rem;
+  width:100%;
 }
 .header h1{
     margin:0px;
     text-align:center;
     padding:2%;
+    color:white;
 }
 .menu-container {
-    margin-top:10rem;
+    margin-top:15rem;
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 7rem;
   flex-wrap: wrap;
   padding: 20px;
 }
@@ -56,7 +57,7 @@ body{
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
-  height:10rem;
+ padding:3.5rem;
   display:block;
 }
 
@@ -71,15 +72,21 @@ body{
   bottom:0%;
   color: #333;
 }
+.header-main{
+ position: absolute;
+ width:99%;
+ top:0;
+ left:0.3%;
+}
 a{
     text-decoration:none;
     color:white;
     text-align:center;
 }
 </style>
-
+<div class="header-main">
 <header class="header">
-    <h1>Welcome to Pangun Tech</h1>
+    <h1 style="color:white">Welcome to Pangun Tech</h1>
   </header>
 
   <main class="menu-container">
@@ -91,3 +98,5 @@ a{
   <footer class="footer">
     <p>Experience Our Services to Increase your productivity</p>
   </footer>
+
+</div>

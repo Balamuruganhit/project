@@ -90,5 +90,25 @@
         auth="true">
         <attribute name="OrganisationDetail" type="java.util.List" mode="IN"/>   
     </service>
-
+    <service name="createDesignReport"
+        engine="groovy"
+        location="component://AuditReport/groovyScripts/Audit/isoReport/clause8.groovy"
+        invoke="createDesignReport"
+        auth="true">
+        <attribute name="designsDetail" type="java.util.List" mode="IN"/>   
+    </service>
+    <service name="createConfigurationManagementReport"
+        engine="groovy"
+        location="component://AuditReport/groovyScripts/Audit/isoReport/clause8.groovy"
+        invoke="createPartiesReport"
+        auth="true">
+        <attribute name="managementDetail" type="java.util.List" mode="IN"/>   
+    </service>
+    <service name="createRequirementReport"
+        engine="groovy"
+        location="component://AuditReport/groovyScripts/Audit/isoReport/clause8.groovy"
+        invoke="createRequirementReport"
+        auth="true">
+        <attribute name="requirementDetail" type="java.util.List" mode="IN"/>   
+    </service>
 </services>

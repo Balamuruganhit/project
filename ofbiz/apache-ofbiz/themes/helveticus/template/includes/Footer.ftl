@@ -16,6 +16,10 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+<#assign contextPath = request.getContextPath()>
+<#if contextPath?contains("DemoPage")>
+
+    <#else>
 <div class="botHolder">
 <img class="botImg" src="/helveticus/images/bot-removebg.png" id="bot-img" alt="hello">
 <div class="chat-container" id="chat-holder">
@@ -47,3 +51,4 @@ under the License.
 <@scriptTagsFooter/>
 </body>
 </html>
+</#if>

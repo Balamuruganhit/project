@@ -35,7 +35,7 @@ under the License.
                 <set field="applicationTitle" from-field="uiLabelMap.DemoPageApplication" global="true"/>
             </actions>
             <widgets>
-                <include-screen name="ShortcutDecorator" location="component://common/widget/CommonScreens.xml"/>
+                <include-screen name="GlobalDecorator" location="component://common/widget/CommonScreens.xml"/>
             </widgets>
         </section>
     </screen>

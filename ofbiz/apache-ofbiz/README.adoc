@@ -767,7 +767,7 @@ Create a new plugin. The following project parameters are passed:
 * webappName: optional, default is the value of pluginId
 * basePermission: optional, default is the UPPERCASE value of pluginId
 
-`gradlew createPlugin -PpluginId=myplugin`
+`./gradlew createPlugin -PpluginId=myplugin`
 
 `gradlew createPlugin -PpluginId=myplugin -PpluginResourceName=MyPlugin -PwebappName=mypluginweb -PbasePermission=MYSECURITY`
 
@@ -786,7 +786,7 @@ a maven repository. Currently, pushing is limited to localhost maven repository
 * pluginDescription: optional, defaults to "Publication of OFBiz plugin
 $\{pluginId}"
 
-`gradlew pushPlugin -PpluginId=myplugin`
+`./gradlew pushPlugin -PpluginId=myplugin`
 
 `gradlew pushPlugin -PpluginId=mycompany -PpluginGroup=com.mycompany.ofbiz.plugin -PpluginVersion=1.2.3 -PpluginDescription="Introduce special functionality X"`
 
