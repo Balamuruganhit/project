@@ -60,25 +60,74 @@ document.addEventListener("DOMContentLoaded", () => {
         XLSX.writeFile(wb, "table.xlsx");
     }
    });
- function exportToPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        doc.text("Production Plan Vs Actual Plan ERP Report", 14, 10);
+  async function exportToPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-        doc.autoTable({
-            head: [["Part Number", "Month", "Planned", "Actual", "Efficiency", "Target", "Remark"]],
-            body: [...document.querySelectorAll("tbody tr")].map((row, i) => {
-                const rowData = [...row.querySelectorAll("td")].map(td => 
-                    td.querySelector("input") ? td.querySelector("input").value : td.textContent
-                );
-               
+    doc.setFontSize(14);
+    doc.text("Production Plan Vs Actual Plan ERP Report", 14, 15);
 
-                return rowData;
-            }),
-        });
+    const tableBody = [];
 
-        doc.text(`Prepared By: ${document.getElementById("preparedBy").value}`, 10, doc.lastAutoTable.finalY + 10);
-        doc.text(`Checked By: ${document.getElementById("checkedBy").value}`, 10, doc.lastAutoTable.finalY + 20);
+    let currentPartNumber = "";
 
-        doc.save("KPI.pdf");
-    }
+    const rows = document.querySelectorAll("#table-body tr");
+
+    rows.forEach((row) => {
+      const cells = row.querySelectorAll("td");
+      const rowData = [];
+
+      // Check if this row has a part number cell
+      const partNumberCell = cells[0];
+      const partInput = partNumberCell.querySelector("textarea");
+      if (partInput) {
+        currentPartNumber = partInput.value.trim(); // Update current product ID
+        rowData.push(currentPartNumber);
+      } else {
+        rowData.push(currentPartNumber); // Repeat for non-rowspan rows
+      }
+
+      // Now get the rest of the fields (skip first cell if part number was already added)
+      const startIndex = partInput ? 1 : 0;
+
+      for (let i = startIndex; i < cells.length; i++) {
+        const cell = cells[i];
+        const input = cell.querySelector("input, textarea");
+        if (input) {
+          rowData.push(input.value || input.textContent.trim());
+        } else {
+          rowData.push(cell.textContent.trim());
+        }
+      }
+
+      tableBody.push(rowData);
+    });
+
+    doc.autoTable({
+      startY: 20,
+      head: [["Part Number", "Month", "Planned", "Actual", "Efficiency", "Target", "Remark"]],
+      body: tableBody,
+      styles: {
+        halign: "center",
+        valign: "middle",
+        fontSize: 10
+      },
+      headStyles: {
+        fillColor: [52, 73, 235],
+        textColor: 255,
+        fontStyle: 'bold'
+      },
+      theme: 'striped'
+    });
+
+    const finalY = doc.lastAutoTable.finalY || 30;
+    const preparedBy = document.getElementById("preparedBy")?.value || "";
+    const checkedBy = document.getElementById("checkedBy")?.value || "";
+
+    doc.setFontSize(12);
+    doc.text(`Prepared By: ${preparedBy}`, 14, finalY + 10);
+    doc.text(`Checked By: ${checkedBy}`, 14, finalY + 20);
+
+    doc.save("KPI_Report.pdf");
+  }
+
