@@ -116,4 +116,15 @@
         <field name="submitButton" title="${uiLabelMap.CommonFind}"><submit/></field>
         <field name="approver" ><hidden value="update"/></field>
     </form>
+     <form name="kpiDecider" target="ProductionAndActual" title="" type="single" 
+        header-row-style="header-row" default-table-style="basic-table">
+        <field name="productId" position="1" title="Part Number">
+            <lookup target-form-name="LookupProduct"/>
+        </field>
+        <field name="date" title="Enter the between date" position="1" ><date-find  type="date" /></field>
+        <field name="submitButton" title=""><submit/></field>
+       
+    </form>
+
+
 </forms>

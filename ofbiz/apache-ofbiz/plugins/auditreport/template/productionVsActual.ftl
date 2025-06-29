@@ -20,10 +20,6 @@ under the License.
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.6.0/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            
-        }
         .table-container {
             overflow-x: auto;
             position: relative;
@@ -103,8 +99,8 @@ under the License.
         
        
     </style>
-
-<div class="table-container">
+<#if femaList?has_content>
+    <div class="table-container">
     <table>
         <thead>
             <tr>
@@ -119,92 +115,28 @@ under the License.
         </thead>
         <tbody id="table-body">
             <!-- Merged Part Number Cell -->
-            <tr>
-                <td class="part-number-cell" rowspan="9">
-                    <textarea type="text" id="partNumber" style="width: 80%;" rows="30"></textarea>
-                </td>
-                <td><input type="month" class="month"></td>
-                <td><input type="number" class="planned" oninput="calculateEfficiency(0)"></td>
-                <td><input type="number" class="actual" oninput="calculateEfficiency(0)"></td>
-                <td class="efficiency"></td>
-                <td class="target"></td>
-                <td><textarea type="text" class="remark" rows="2"></textarea></td>
-            </tr>
-            <!-- Remaining rows without Part Number -->
             
-            <tr>
-                <td><input type="month" class="month"></td>
-                <td><input type="number" class="planned" oninput="calculateEfficiency(1)"></td>
-                <td><input type="number" class="actual" oninput="calculateEfficiency(1)"></td>
-                
-                <td class="efficiency"></td>
-                <td class="target"></td>
-                <td><textarea type="text" class="remark" rows="2"></textarea></td>
-            </tr>
-            <tr>
-                <td><input type="month" class="month"></td>
-                <td><input type="number" class="planned" oninput="calculateEfficiency(2)"></td>
-                <td><input type="number" class="actual" oninput="calculateEfficiency(2)"></td>
-                
-                <td class="efficiency"></td>
-                <td class="target"></td>
-                <td><textarea type="text" class="remark" rows="2"></textarea></td>
-            </tr>   
-            <tr>
-                <td><input type="month" class="month"></td>
-                <td><input type="number" class="planned" oninput="calculateEfficiency(3)"></td>
-                <td><input type="number" class="actual" oninput="calculateEfficiency(3)"></td>
-                
-                <td class="efficiency"></td>
-                <td class="target"></td>
-                <td><textarea type="text" class="remark" rows="2"></textarea></td>
-            </tr>   
-            <tr>
-                <td><input type="month" class="month"></td>
-                <td><input type="number" class="planned" oninput="calculateEfficiency(4)"></td>
-                <td><input type="number" class="actual" oninput="calculateEfficiency(4)"></td>
-                
-                <td class="efficiency"></td>
-                <td class="target"></td>
-                <td><textarea type="text" class="remark" rows="2"></textarea></td>
-            </tr>   
-            <tr>
-                <td><input type="month" class="month"></td>
-                <td><input type="number" class="planned" oninput="calculateEfficiency(5)"></td>
-                <td><input type="number" class="actual" oninput="calculateEfficiency(5)"></td>
-                
-                <td class="efficiency"></td>
-                <td class="target"></td>
-                <td><textarea type="text" class="remark" rows="2"></textarea></td>
-            </tr>   
-            <tr>
-                <td><input type="month" class="month"></td>
-                <td><input type="number" class="planned" oninput="calculateEfficiency(6)"></td>
-                <td><input type="number" class="actual" oninput="calculateEfficiency(6)"></td>
-                
-                <td class="efficiency"></td>
-                <td class="target"></td>
-                <td><textarea type="text" class="remark" rows="2"></textarea></td>
-            </tr>   
-            <tr>
-                <td><input type="month" class="month"></td>
-                <td><input type="number" class="planned" oninput="calculateEfficiency(7)"></td>
-                <td><input type="number" class="actual" oninput="calculateEfficiency(7)"></td>
-                
-                <td class="efficiency"></td>
-                <td class="target"></td>
-                <td><textarea type="text" class="remark" rows="2"></textarea></td>
-            </tr>   
-            <tr>
-                <td><input type="month" class="month"></td>
-                <td><input type="number" class="planned" oninput="calculateEfficiency(8)"></td>
-                <td><input type="number" class="actual" oninput="calculateEfficiency(8)"></td>
-                
-                <td class="efficiency"></td>
-                <td class="target"></td>
-                <td><textarea type="text" class="remark" rows="2"></textarea></td>
-            </tr>   
-                                      
+           <#list femaList as data>
+  <#assign entrySize = data.entries?size>
+  <#list data.entries as detailData>
+    <#if detailData_index == 0>
+      <tr>
+        <td class="part-number-cell" rowspan="${entrySize}">
+          <textarea name="part" style="width: 80%;">${data.productId}</textarea>
+        </td>
+    <#else>
+      <tr>
+    </#if>
+        <td><input type="date" name="date" class="month" value="${detailData.lastUpdatedDate}" /></td>
+        <td><input type="number" name="planned" class="planned" value="${detailData.quantityRejected}" oninput="calculateEfficiency(${data_index}_${detailData_index})" /></td>
+        <td><input type="number" name="actual" class="actual" value="${detailData.quantityProduced!detailData.quantityRejected}" oninput="calculateEfficiency(${data_index}_${detailData_index})" /></td>
+        <td class="efficiency"></td>
+        <td class="target"></td>
+        <td><textarea class="remark" rows="2"></textarea></td>
+      </tr>
+  </#list>
+</#list>
+                            
                     
         </tbody>
     </table>
@@ -220,5 +152,9 @@ under the License.
     <button class="pdf-btn" onclick="exportToPDF()">Export to PDF</button>
     <button class="excel-btn" onclick="exportToExcel()">Export to Excel</button>
 </div>
+<#else>
+    <div>No Data Found Between the Date</div>
+</#if>
+
 
 

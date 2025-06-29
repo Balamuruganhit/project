@@ -189,13 +189,35 @@
             </widgets>
         </section>
     </screen>
-    
-    <screen name="ProductionAndActual">
+    <screen name="ProductionAndActualFrontPage">
         <section>
             <actions>
                 <set field="titleProperty" value="PageTitleOspReport"/>
                 <set field="tabButtonItem" value="ProductionActual"/>
                 
+            </actions>
+            <widgets>
+                <decorator-screen name="KpiCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                       
+                        <screenlet title="${uiLabelMap.ProductionActual}">
+                                   
+                            <include-form name="kpiDecider" location="component://AuditReport/widget/AuditReportForms.xml"/>
+                    
+                        </screenlet>
+                        
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ProductionAndActual">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleOspReport"/>
+                <set field="tabButtonItem" value="ProductionActual"/>
+                 <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/kpi.js" global="true"/>
+                <script location="component://AuditReport/groovyScripts/Audit/kpiProduction.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="KpiCommonDecorator" location="${parameters.mainDecoratorLocation}">

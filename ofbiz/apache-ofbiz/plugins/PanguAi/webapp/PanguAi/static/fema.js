@@ -169,7 +169,7 @@ storedData.push(rowData);
 
     // const merged = [...storedetail, ...storedData];
     console.log(merge)
-    console.log(storedetailz)
+    console.log(storedetail)
     if (storeObject.length === 0) {
         alert("No data to submit.");
         return;

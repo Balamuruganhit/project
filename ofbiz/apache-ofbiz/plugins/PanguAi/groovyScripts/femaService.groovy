@@ -30,6 +30,9 @@ import org.apache.ofbiz.base.util.*
 import org.apache.ofbiz.entity.*
 import java.sql.Timestamp
 import java.util.List
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.sql.Date
 
 def createFemaReport(){
     try {
@@ -101,20 +104,23 @@ def createFemaReport(){
 }
 
 if(parameters.approver == 'update'){
-if(parameters.system || parameters.subSystem||parameters.subSubSystem||parameters.ramsno||parameters.date_fld0_value){
+if(parameters.part || parameters.comp||parameters.femaId||parameters.prepareField||parameters.date_fld0_value|| parameters.design){
     def conditions = []
 
-        if (parameters.system) {
-            conditions << EntityCondition.makeCondition("system", EntityOperator.LIKE,"%" + parameters.system+ "%")
+        if (parameters.part) {
+            conditions << EntityCondition.makeCondition("part", EntityOperator.LIKE,"%" + parameters.part+ "%")
         }
-        if (parameters.subSystem) {
-            conditions << EntityCondition.makeCondition("subsystem", EntityOperator.LIKE,"%" + parameters.subSystem+ "%")
+        if (parameters.comp) {
+            conditions << EntityCondition.makeCondition("comp", EntityOperator.LIKE,"%" + parameters.comp+ "%")
         }
-        if (parameters.subSubSystem) {
-            conditions << EntityCondition.makeCondition("subsubsystem", EntityOperator.LIKE,"%" + parameters.subSubSystem+ "%")
+        if (parameters.prepareField) {
+            conditions << EntityCondition.makeCondition("prepareField", EntityOperator.LIKE,"%" + parameters.prepareField+ "%")
         }
-        if (parameters.ramsno) {
-            conditions << EntityCondition.makeCondition("ramsNo", EntityOperator.LIKE, "%" + parameters.ramsno + "%")
+        if (parameters.femaId) {
+            conditions << EntityCondition.makeCondition("femaId", EntityOperator.LIKE, "%" + parameters.femaId + "%")
+        }
+        if (parameters.design) {
+            conditions << EntityCondition.makeCondition("design", EntityOperator.LIKE, "%" + parameters.design + "%")
         }
         if (parameters.date_fld0_value) {
             try {
@@ -148,14 +154,14 @@ if(parameters.system || parameters.subSystem||parameters.subSubSystem||parameter
     if (condition != null) {
         query = query.where(condition)
     }
-    def ramsList = query.queryList()
-    context.ramsList = ramsList
+    def femaList = query.queryList()
+    context.femaList = femaList
     logInfo("It will run on the condition" +ramsList )
 }
 else{
     def query = from("FemaTitleDetail")
-    def ramsList = query.queryList()
-    context.ramsList = ramsList
+    def femaList = query.queryList()
+    context.femaList = femaList
     logInfo("It will run out of condition")
 }
 }

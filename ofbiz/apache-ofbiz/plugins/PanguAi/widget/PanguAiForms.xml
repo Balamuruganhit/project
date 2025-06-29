@@ -134,14 +134,30 @@ under the License.
                 <submit button-type="button"/>
                 </field>
         </form>
-        <form name="FindFema" target="ramsfinder" title="" type="single" 
+        <form name="FindFema" target="selector" title="" type="single" 
                 header-row-style="header-row" default-table-style="basic-table">
-                <field name="part"  position="1" ><text/></field>
-                <field name="comp" position="2"><text></text></field>
-                <field name="subSubSystem" position="3"><text></text></field>
-                <field name="femaId" title="RAMS Number" position="1"><text></text></field>
-                <field name="date" position="2"><date-find  type="date"/></field>
-                <field name="submitButton" title="${uiLabelMap.CommonFind}"><submit/></field>
+                <field name="part" title="Part Number" position="1" ><text/></field>
+                <field name="comp" title="Component" position="2"><text></text></field>
+                <field name="femaId" title="Fema Number" position="3"><text></text></field>
+                <field name="prepareField" title="Approver and Preparer" position="1"><text></text></field>
+                 <field name="date" position="2"><date-find  type="date"/></field>
+                <field name="design"  position="1"><text></text></field>
+                 <field name="submitButton" title="${uiLabelMap.CommonFind}"><submit/></field>
                 <field name="approver" ><hidden value="update"/></field>
         </form>
+         <form name="ListSearchFema" type="list" use-row-submit="true" target=""  title="" list-name="femaList"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar" paginate-target="">
+            <field name="femaId" widget-style="buttontext">
+                <hyperlink description="${femaId}" target="Report.pdf">
+                    <parameter param-name="femaId"/>
+                </hyperlink>  
+            </field>
+            <field name="part"><display/>
+            </field>
+            <field name="comp"><display/></field>
+            <field name="team"><display/></field>
+            <field name="prepareField"><display/></field>
+            <field name="design"><display/></field>
+            <field name="date"><display/></field>
+    </form>
 </forms>
