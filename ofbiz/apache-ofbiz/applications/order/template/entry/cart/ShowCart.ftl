@@ -131,7 +131,7 @@ under the License.
                   <td align="right"><div>${uiLabelMap.OrderShipBeforeDate} :</div></td>
                   <td>
                     <div>
-                      <@htmlTemplate.renderDateTimeField name="shipBeforeDate" value="${shoppingCart.getDefaultShipBeforeDate()!''}" className="" alert="" title="Format: yyyy-MM-dd HH:mm:ss.SSS" size="25" maxlength="30" id="item3" dateType="date" shortDateInput=false timeDropdownParamName="" defaultDateTimeString="" localizedIconTitle="" timeDropdown="" timeHourName="" classString="" hour1="" hour2="" timeMinutesName="" minutes="" isTwelveHour="" ampmName="" amSelected="" pmSelected="" compositeType="" formName=""/>
+                      <@htmlTemplate.renderDateTimeField name="shipBeforeDate" value="${shoppingCart.getDefaultShipBeforeDate()!''}" className="" alert="This field is important" title="Format: yyyy-MM-dd HH:mm:ss.SSS" size="25" maxlength="30" id="item3" dateType="date" shortDateInput=false timeDropdownParamName="" defaultDateTimeString="" localizedIconTitle="" timeDropdown="" timeHourName="" classString="" hour1="" hour2="" timeMinutesName="" minutes="" isTwelveHour="" ampmName="" amSelected="" pmSelected="" compositeType="" formName=""/>
                     </div>
                   </td>
                 </tr>

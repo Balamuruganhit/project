@@ -121,9 +121,16 @@
         <field name="productId" position="1" title="Part Number">
             <lookup target-form-name="LookupProduct"/>
         </field>
+        <field name="plan" ><hidden value="update"/></field>
         <field name="date" title="Enter the between date" position="1" ><date-find  type="date" /></field>
         <field name="submitButton" title=""><submit/></field>
        
+    </form>
+    <form name="kpiotdDecider" target="otdCreator" title="" type="single" 
+        header-row-style="header-row" default-table-style="basic-table">
+        <field name="date" title="Enter the between date" position="1" ><date-find  type="date" /></field>
+        <field name="submitButton" title=""><submit/></field>
+        <field name="ontime" ><hidden value="update"/></field>
     </form>
 
 

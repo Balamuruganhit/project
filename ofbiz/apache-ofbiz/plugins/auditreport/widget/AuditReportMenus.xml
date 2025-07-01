@@ -277,7 +277,7 @@
             <condition>
                  <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
             </condition>
-            <link target="config"/>
+            <link target="OtdRangeSetter"/>
         </menu-item>
         <menu-item name="TypicalRFQ" title="${uiLabelMap.TypicalRFQ}" >
             <condition>

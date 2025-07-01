@@ -34,7 +34,7 @@ import java.sql.Timestamp
 import java.util.List
 import java.text.SimpleDateFormat
 
-
+if(parameters.plan){
 if(parameters.productId || parameters.date_fld0_value){
     def conditions = []
 
@@ -42,6 +42,7 @@ if(parameters.productId || parameters.date_fld0_value){
             conditions << EntityCondition.makeCondition("productId", EntityOperator.LIKE,"%" + parameters.productId+ "%")
         }
         if (parameters.date_fld0_value) {
+            
             try {
                 def sdf = new SimpleDateFormat("yyyy-MM-dd")
                 sdf.setLenient(false) // enforce strict format parsing
@@ -114,3 +115,124 @@ context.femaList = outputList
 logInfo("Filtered FEMA List: ${outputList}")
 }
 
+}
+
+if(parameters.ontime){
+    def conditions = []
+    if (parameters.date_fld0_value && parameters.date_fld1_value) {
+    try {
+        context.start=parameters.date_fld0_value
+            context.end=parameters.date_fld1_value
+        def sdf = new SimpleDateFormat("yyyy-MM")
+        sdf.setLenient(false)
+
+        def startDate = sdf.parse(parameters.date_fld0_value.trim())
+        def endDate = sdf.parse(parameters.date_fld1_value.trim())
+
+        // Start timestamp: yyyy-MM-01 00:00:00.000
+        Calendar startCal = Calendar.getInstance()
+        startCal.setTime(startDate)
+        startCal.set(Calendar.DAY_OF_MONTH, 1)
+        startCal.set(Calendar.HOUR_OF_DAY, 0)
+        startCal.set(Calendar.MINUTE, 0)
+        startCal.set(Calendar.SECOND, 0)
+        startCal.set(Calendar.MILLISECOND, 0)
+        Timestamp startTimestamp = new Timestamp(startCal.getTimeInMillis())
+
+        // End timestamp: last day of end month at 23:59:59.999
+        Calendar endCal = Calendar.getInstance()
+        endCal.setTime(endDate)
+        endCal.set(Calendar.DAY_OF_MONTH, endCal.getActualMaximum(Calendar.DAY_OF_MONTH))
+        endCal.set(Calendar.HOUR_OF_DAY, 23)
+        endCal.set(Calendar.MINUTE, 59)
+        endCal.set(Calendar.SECOND, 59)
+        endCal.set(Calendar.MILLISECOND, 999)
+        Timestamp endTimestamp = new Timestamp(endCal.getTimeInMillis())
+
+        logInfo("Filtering orders between: ${startTimestamp} and ${endTimestamp}")
+
+        // Ensure conditions is initialized
+       
+           
+        
+
+        conditions << EntityCondition.makeCondition([
+            EntityCondition.makeCondition("orderDate", EntityOperator.GREATER_THAN_EQUAL_TO, startTimestamp),
+            EntityCondition.makeCondition("orderDate", EntityOperator.LESS_THAN_EQUAL_TO, endTimestamp)
+        ], EntityOperator.AND)
+
+    } catch (Exception e) {
+        logError("Date parsing failed: ${e.message}")
+    }
+
+    if (!conditions) {
+        conditions = []
+    }
+
+    conditions.add(EntityCondition.makeCondition('orderTypeId', EntityOperator.EQUALS, "SALES_ORDER"))
+}
+
+// Query OrderHeader
+def query = from("OrderHeader")
+if (conditions) {
+    query = query.where(conditions)
+
+
+def femaList = query.queryList()
+def orderDataList = []
+def dateFormatter = new SimpleDateFormat("yyyy-MM")
+def dateFormatterDay = new SimpleDateFormat("yyyy-MM-dd")
+femaList.each { orderHeader ->
+    def orderItem = from("OrderItem")
+        .where("orderId", orderHeader.orderId)
+        .queryFirst()
+    def daysDiff  = null
+    def actualdiff=null
+    def performaceEfficency= null
+    if(orderHeader.orderDate && orderItem.shipBeforeDate){
+        def orderDate = orderHeader.orderDate
+    def shipBeforeDate = orderItem.shipBeforeDate
+
+    long millisDiff = shipBeforeDate.time - orderDate.time
+    daysDiff = (millisDiff / (1000 * 60 * 60 * 24)) as long
+    logInfo("Date difference in days: ${daysDiff}")
+    
+    }
+    
+    if(orderHeader.orderDate && orderItem.estimatedShipDate){
+        def orderDate = orderHeader.orderDate
+    def estimatedShipDate = orderItem.estimatedShipDate
+
+    long millisDiff = estimatedShipDate.time - orderDate.time
+    actualdiff = (millisDiff / (1000 * 60 * 60 * 24)) as long
+    logInfo("Date difference in days: ${actualdiff}")
+    
+    }
+    if(actualdiff && daysDiff){
+        performaceEfficency=(actualdiff/daysDiff)*100
+
+    }
+    
+     if (orderItem) {
+      orderDataList << [
+            orderHeader: orderHeader.orderId,
+            month: dateFormatter.format(orderHeader.orderDate),
+            orderDate:dateFormatterDay.format(orderHeader.orderDate),
+            orderItem: [
+                quantity:orderItem.quantity,
+                estimatedDeliveryDate:daysDiff,
+                estimatedShipDate: actualdiff,
+                shipBeforeDate: (orderItem.shipBeforeDate instanceof Date)
+                    ? dateFormatterDay.format(orderItem.shipBeforeDate)
+                    : '',
+                performaceEfficency:performaceEfficency,
+                
+            ]
+        ]
+    }
+}
+context.otdDatas=orderDataList
+logInfo("output for orderItem" + orderDataList)
+}
+
+}

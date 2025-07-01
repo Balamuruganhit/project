@@ -17,3 +17,9 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+<form  class="basic-form" id="questionAddForm" name="questionAddForm" action="<@ofbizUrl>otdCreator</@ofbizUrl>" method="post">
+    <input type="month" name="date_fld0_value"/>
+    <input type="month" name="date_fld1_value"/>
+    <input name="ontime" value="it has" hidden/>
+    <input type="submit"/>
+</form>

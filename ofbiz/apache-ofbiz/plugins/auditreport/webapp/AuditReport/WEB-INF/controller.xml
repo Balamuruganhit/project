@@ -103,6 +103,9 @@ under the License.
     <request-map uri="kpi"><security https="true" auth="true"/><response name="success" type="view" value="kpi"/></request-map>
     <request-map uri="ProductionPlan"><security https="true" auth="true"/><response name="success" type="view" value="ProductionPlan"/></request-map>
     <request-map uri="ProductionAndActual"><security https="true" auth="true"/><response name="success" type="view" value="ProductionAndActual"/></request-map>
+    <request-map uri="otdCreator"><security https="true" auth="true"/><response name="success" type="view" value="otdCreator"/></request-map>
+    <request-map uri="OtdRangeSetter"><security https="true" auth="true"/><response name="success" type="view" value="OtdRangeSetter"/></request-map>
+    <request-map uri="PrintOTD"><security https="true" auth="true"/><response name="success" type="view" value="PrintOTD"/></request-map>  
     <request-map uri="ListOfReport"><security https="true" auth="true"/><response name="success" type="view" value="ListOfReport"/></request-map>
     <request-map uri="classFour"><security https="true" auth="true"/><response name="success" type="view" value="classFour"/></request-map>
     <request-map uri="parties"><security https="true" auth="true"/><response name="success" type="view" value="parties"/></request-map>
@@ -133,10 +136,15 @@ under the License.
     <view-map name="ReportPdf" type="screenfop" page="component://AuditReport/widget/AuditReportScreens.xml#ReportPdf" content-type="application/pdf" encoding="none"/>
     <view-map name="kpi" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#kpi" />
     <view-map name="ProductionPlan" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#ProductionAndActualFrontPage" />
-        <view-map name="ProductionAndActual" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#ProductionAndActual" />
+    <view-map name="ProductionAndActual" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#ProductionAndActual" />
+    <view-map name="OtdRangeSetter" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#OntimeDeliveryFrontPage" />
+    <view-map name="otdCreator" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#otdCreator" />
+    <view-map name="PrintOTD" type="screenfop" page="component://AuditReport/widget/AuditReportScreens.xml#PrintOTD" content-type="application/pdf" encoding="none"/>
+
+
     <view-map name="ListOfReport" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#Iso" />
     <view-map name="classFour" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#classFour" />
-     <view-map name="parties" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#parties" />
+    <view-map name="parties" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#parties" />
     <view-map name="ReportPdfparties" type="screenfop" page="component://AuditReport/widget/AuditReportScreens.xml#ReportPdfparties" content-type="application/pdf" encoding="none"/>
     <view-map name="organisation" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#organisation"/>
     <view-map name="ReportPdfOrganisation" type="screenfop" page="component://AuditReport/widget/AuditReportScreens.xml#ReportPdfOrganisation" content-type="application/pdf" encoding="none"/>
