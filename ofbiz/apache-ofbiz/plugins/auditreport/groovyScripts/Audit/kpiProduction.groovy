@@ -186,22 +186,26 @@ femaList.each { orderHeader ->
     def orderItem = from("OrderItem")
         .where("orderId", orderHeader.orderId)
         .queryFirst()
+     logInfo("Estimate Delivery date" + orderItem)
+    def shipmentInfo = from('Shipment').where([primaryOrderId:orderHeader.orderId,statusId:"SHIPMENT_DELIVERED"]).queryFirst()
     def daysDiff  = null
     def actualdiff=null
     def performaceEfficency= null
-    if(orderHeader.orderDate && orderItem.shipBeforeDate){
+    if(shipmentInfo){
+       
+    if(orderHeader.orderDate && orderItem.estimatedDeliveryDate){
         def orderDate = orderHeader.orderDate
-    def shipBeforeDate = orderItem.shipBeforeDate
+    def estimatedDeliveryDate = orderItem.estimatedDeliveryDate
 
-    long millisDiff = shipBeforeDate.time - orderDate.time
+    long millisDiff = estimatedDeliveryDate.time - orderDate.time
     daysDiff = (millisDiff / (1000 * 60 * 60 * 24)) as long
-    logInfo("Date difference in days: ${daysDiff}")
+    logInfo("Date difference in here days: ${daysDiff}")
     
     }
-    
-    if(orderHeader.orderDate && orderItem.estimatedShipDate){
+    logInfo("Work here" + shipmentInfo)
+    if(orderHeader.orderDate && shipmentInfo.lastModifiedDate){
         def orderDate = orderHeader.orderDate
-    def estimatedShipDate = orderItem.estimatedShipDate
+    def estimatedShipDate = shipmentInfo.lastModifiedDate
 
     long millisDiff = estimatedShipDate.time - orderDate.time
     actualdiff = (millisDiff / (1000 * 60 * 60 * 24)) as long
@@ -209,10 +213,10 @@ femaList.each { orderHeader ->
     
     }
     if(actualdiff && daysDiff){
-        performaceEfficency=(actualdiff/daysDiff)*100
+        performaceEfficency=((daysDiff)/actualdiff)*100
 
     }
-    
+    }
      if (orderItem) {
       orderDataList << [
             orderHeader: orderHeader.orderId,
@@ -229,6 +233,7 @@ femaList.each { orderHeader ->
                 
             ]
         ]
+        logInfo("output for orderItem" + orderDataList)
     }
 }
 context.otdDatas=orderDataList
