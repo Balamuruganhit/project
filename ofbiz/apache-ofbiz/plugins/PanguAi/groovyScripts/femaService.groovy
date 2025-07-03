@@ -22,6 +22,8 @@ import org.apache.ofbiz.base.util.UtilProperties
 import org.apache.ofbiz.base.util.UtilValidate
 import org.apache.ofbiz.entity.condition.EntityConditionBuilder
 import org.apache.ofbiz.entity.GenericValue
+import org.apache.ofbiz.entity.condition.EntityOperator
+import org.apache.ofbiz.entity.condition.EntityCondition
 import org.apache.ofbiz.entity.serialize.XmlSerializer
 import org.apache.ofbiz.product.product.KeywordIndex
 import org.apache.ofbiz.product.product.ProductWorker
@@ -156,7 +158,7 @@ if(parameters.part || parameters.comp||parameters.femaId||parameters.prepareFiel
     }
     def femaList = query.queryList()
     context.femaList = femaList
-    logInfo("It will run on the condition" +ramsList )
+    logInfo("It will run on the condition" +femaList )
 }
 else{
     def query = from("FemaTitleDetail")

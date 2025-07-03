@@ -17,7 +17,7 @@
 * under the License.
 */
 
-defa=parameters.dfema
+defa=parameters.femaId
  logInfo('It is working Fine' + defa)
 if(defa){
     fematitle=from( 'FemaTitleDetail').where('femaId',defa).queryOne()
