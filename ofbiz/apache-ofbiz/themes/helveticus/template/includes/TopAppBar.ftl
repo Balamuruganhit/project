@@ -49,7 +49,7 @@ under the License.
         <#assign alreadySelected = false>
     <div id="main-navigation-bar">
         <div id="main-nav-bar-left">
-            <a id="homeButton" href="<@ofbizUrl controlPath="/DemoPage/control">main</@ofbizUrl>"><div id="company-logo"></div></a>
+            <a id="homeButton" style="<#if contextPath?contains("AuditReport") || contextPath?contains("PanguAi")>border-radius:1rem</#if>" href="<@ofbizUrl controlPath="/DemoPage/control" >main</@ofbizUrl>"><div style="<#if contextPath?contains("AuditReport") || contextPath?contains("PanguAi")>top:0.7rem</#if>" id="company-logo"></div></a>
             <#if contextPath?contains("AuditReport") || contextPath?contains("PanguAi") || contextPath?contains("DemoPage")>
             
             <#else>

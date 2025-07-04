@@ -41,7 +41,7 @@ under the License.
             text-align:center;
         }
         .ofbiz{
-            background: url(/rainbowstone/images/main.png) no-repeat left top / cover;
+            background: url(/rainbowstone/images/main.jpg) no-repeat left top / cover;
             margin: 10px auto;
             width: 4.2rem;
             height: 6.3rem;
