@@ -19,32 +19,7 @@ under the License.
 -->
 
 <fo:block font-weight="bold" font-size="18pt" space-after="30pt">RAMS ANALYSIS MASTER REPORT</fo:block>
-<fo:table table-layout="fixed"  border="1pt solid" padding="5pt" width="66cm" font-size="16pt" border-width=".1mm" >
-        <fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.2cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
-<fo:table-column column-width="3.5cm"/>
+<fo:table table-layout="fixed"  border="1pt solid" padding="5pt" width="34in" font-size="16pt" border-width=".1mm" >
        
         <fo:table-body>
             <fo:table-row >

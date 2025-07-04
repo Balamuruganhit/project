@@ -53,7 +53,7 @@ under the License.
             height:8rem;
         }
         .input{
-            width:10rem;
+            width:18rem;
             height:5rem;
             resize:none;
         }

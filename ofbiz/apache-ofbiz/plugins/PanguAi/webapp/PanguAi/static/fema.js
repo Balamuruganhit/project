@@ -128,24 +128,26 @@ saveButton.addEventListener("click", async (event) => {
     const rows = document.querySelectorAll('.HeightSetter');
     const detailrows=document.querySelectorAll('.detail');
     console.log(detailrows)
-   
+   const savebutton=document.getElementById('save')
+      savebutton.classList.add('remover')
     var placedetector=0;
     detailrows.forEach(detail =>{
         const inputs = detail.querySelectorAll('textarea, input');
         detailData={};
         const inputfield=['drawing','part','rev','dfema','comp','design','prepare','team','date'];
         inputs.forEach(step=>{
-            if(placedetector == 2){
-                detailData[inputfield[placedetector]]=step.value.trim();
-                placedetector++;
+            if(placedetector == 3){
+                
                 femaNo=inputs[3].value.trim();
                 rev=inputs[2].value.trim();
                 femaNumber = updateFemaNumber(femaNo, rev);
                 detailData[inputfield[placedetector]]=femaNumber;
                 placedetector++;
+                
                 console.log(placedetector)
             }
             else if (inputfield[placedetector]){
+                console.log(step.value.trim())
                 detailData[inputfield[placedetector]]=step.value.trim();
                 placedetector++;
                 console.log(placedetector)

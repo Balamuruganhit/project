@@ -406,5 +406,5 @@ under the License.
     
     </div>
     <br/>
-  <button ><a style="color:black" href="Report.pdf?femaId=${femaOutputTitle.femaId}">Print Document</a></button>
+  <button style="margin:1rem;margin-bottom:2rem;"><a style="color:black" href="Report.pdf?femaId=${femaOutputTitle.femaId}">Print Document</a></button>
 
