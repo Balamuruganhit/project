@@ -18,6 +18,12 @@ specific language governing permissions and limitations
 under the License.
 */
 document.addEventListener("DOMContentLoaded", () => {
+  function updateFemaNumber(femano, rev) {
+    let cleaned = femano.replace(/_R\d+$/, ""); // remove _R followed by digits at the end
+    return cleaned + "_R" + rev;
+}
+let femaNo;
+let femaNumber;
 function exportToPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
@@ -126,11 +132,20 @@ saveButton.addEventListener("click", async (event) => {
     var placedetector=0;
     detailrows.forEach(detail =>{
         const inputs = detail.querySelectorAll('textarea, input');
-        console.log(inputs)
         detailData={};
         const inputfield=['drawing','part','rev','dfema','comp','design','prepare','team','date'];
         inputs.forEach(step=>{
-            if(inputfield[placedetector]){
+            if(placedetector == 2){
+                detailData[inputfield[placedetector]]=step.value.trim();
+                placedetector++;
+                femaNo=inputs[3].value.trim();
+                rev=inputs[2].value.trim();
+                femaNumber = updateFemaNumber(femaNo, rev);
+                detailData[inputfield[placedetector]]=femaNumber;
+                placedetector++;
+                console.log(placedetector)
+            }
+            else if (inputfield[placedetector]){
                 detailData[inputfield[placedetector]]=step.value.trim();
                 placedetector++;
                 console.log(placedetector)
@@ -172,6 +187,10 @@ storedData.push(rowData);
     console.log(storedetail)
     if (storeObject.length === 0) {
         alert("No data to submit.");
+        return;
+    }
+     if (femaNo == femaNumber) {
+        alert("The Revision number needs to be changed");
         return;
     }
     const payload = JSON.stringify({ femaDetails : merge });

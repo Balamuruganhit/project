@@ -148,7 +148,7 @@ under the License.
          <form name="ListSearchFema" type="list" use-row-submit="true" target=""  title="" list-name="femaList"
         odd-row-style="alternate-row" default-table-style="basic-table hover-bar" paginate-target="">
             <field name="femaId" widget-style="buttontext">
-                <hyperlink description="${femaId}" target="Report.pdf">
+                <hyperlink description="${femaId}" target="viewFema">
                     <parameter param-name="femaId"/>
                 </hyperlink>  
             </field>
@@ -159,5 +159,10 @@ under the License.
             <field name="prepareField"><display/></field>
             <field name="design"><display/></field>
             <field name="date"><display/></field>
+             <field name="updateLink" title="Create" widget-style="buttontext">
+                <hyperlink description="create" target="fema" >
+                        <parameter param-name="femaId"/>
+                </hyperlink>
+            </field>
     </form>
 </forms>

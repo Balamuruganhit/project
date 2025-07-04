@@ -403,66 +403,8 @@ under the License.
        </#if>
     </table>
     
-    <button id="addButton" type="button">Add row</button>
+    
     </div>
     <br/>
-<button id="save">Save</button>
-<script>
-    
-const firstTable=document.getElementById('firstTable');
-const addTable=document.getElementById('addButton');
-addTable.addEventListener('click',()=>{
-    const row = `
-         <tr class="HeightSetter">
-        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-        <td rowspan="6"><select class="select1">
-            <#list 1..10 as i> 
-                <option value="${i}">${i}</option>
-            </#list>  
-        </select></td>
-        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-        <td rowspan="6"><select class="select2">
-            <#list 1..10 as i> 
-                <option value="${i}">${i}</option>
-            </#list>  
-        </select></td>
-        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-        <td rowspan="6"><textarea class="input1" type="text"></textarea></td>
-        <td rowspan="6"><select class="select3">
-            <#list 1..10 as i> 
-                <option value="${i}">${i}</option>
-            </#list>  
-        </select></td>
-        <td rowspan="6"><input class="input12 result" type="text" id="finalValue" disabled/><button class="button_submit">Calculate</button></td>
-        <td rowspan="6"><textarea class="input1 setter" type="text"></textarea></td>
-        <td rowspan="6"><textarea class="input1 setter" type="text"></textarea></td>
-        <td><textarea class="input1 setter" type="text"></textarea></td>
-        <td><select class="select4">
-            <#list 1..10 as i> 
-                <option value="${i}">${i}</option>
-            </#list>  
-        </select></td>
-        <td><select class="select5">
-            <#list 1..10 as i> 
-                <option value="${i}">${i}</option>
-            </#list>  
-        </select></td>
-        <td><select class="select6">
-            <#list 1..10 as i> 
-                <option value="${i}">${i}</option>
-            </#list>  
-        </select></td>
-        <td><input class="input12 result2" type="text"  disabled/><button class="button_submit2">Calculate</button></td>
-    </tr>
-        `;
-       firstTable.insertAdjacentHTML("beforeend", row);
-        
-})
+  <button ><a style="color:black" href="Report.pdf?femaId=${femaOutputTitle.femaId}">Print Document</a></button>
 
-
-
-</script>

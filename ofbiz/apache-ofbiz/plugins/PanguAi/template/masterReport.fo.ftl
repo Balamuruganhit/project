@@ -18,8 +18,34 @@ under the License.
 
 -->
 
-
-<fo:table table-layout="fixed"  border="1pt solid" padding="5pt" width="66cm" font-size="14pt" border-width=".1mm" >
+<fo:block font-weight="bold" font-size="18pt" space-after="30pt">RAMS ANALYSIS MASTER REPORT</fo:block>
+<fo:table table-layout="fixed"  border="1pt solid" padding="5pt" width="66cm" font-size="16pt" border-width=".1mm" >
+        <fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.2cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+<fo:table-column column-width="3.5cm"/>
+       
         <fo:table-body>
             <fo:table-row >
                         <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" width="4cm" text-align="center" font-weight="bold"  padding="4pt" number-columns-spanned="8"><fo:block padding="4pt" ></fo:block></fo:table-cell>
@@ -29,63 +55,63 @@ under the License.
                         <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" width="4cm" text-align="center" font-weight="bold"  padding="4pt" number-columns-spanned="2"><fo:block padding="4pt"></fo:block></fo:table-cell>
             </fo:table-row>
             <fo:table-row >
-                        <fo:table-cell  background-color="rgb(126, 187, 240)" border="1pt solid black"  text-align="center" font-weight="bold"  padding="4pt" width="10pt" number-columns-spanned="2"><fo:block padding="4pt" width="6cm">RAMS Num</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black"  text-align="center" font-weight="bold" padding="4pt"><fo:block padding="4pt">Date</fo:block></fo:table-cell>  
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Product Code:</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Revision:</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">System:</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Sub System:</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Sub Sub System:</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Time period for observation (years)</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">No of Failures observed:</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Best Estimated of failure rate (per year)</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Equiv MTBFs (hours)</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">90% confidence interval - upper bound (per year)</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Equiv MTBFs (hours)</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">90% confidence interval - lower bound (per year)</fo:block></fo:table-cell>
-                         <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Equiv MTBFs (hours)</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Repair Time (hours)</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Planned maintenance time hours per year</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Availability excl. planned mtce </fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Availability incl. planned mtce </fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Time period (years)</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Probability of no failures:</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Probability of one or more failures:</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black" text-align="center" font-weight="bold"  padding="4pt"><fo:block padding="4pt">RAMS Resp</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="1pt solid black"  text-align="center" font-weight="bold" padding="4pt"><fo:block padding="4pt">Approver</fo:block></fo:table-cell>  
+                        <fo:table-cell  background-color="rgb(126, 187, 240)" border="2pt solid black"  text-align="center" font-weight="bold"  padding="4pt" width="10pt" number-columns-spanned="2"><fo:block padding="4pt" width="6cm">RAMS Num</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black"  text-align="center" font-weight="bold" padding="4pt"><fo:block padding="8pt">Date</fo:block></fo:table-cell>  
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Product Code:</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Revision:</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">System:</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Sub System:</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Sub Sub System:</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Time period for observation (years)</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">No of Failures observed:</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Best Estimated of failure rate (per year)</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Equiv MTBFs (hours)</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">90% confidence interval - upper bound (per year)</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Equiv MTBFs (hours)</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">90% confidence interval - lower bound (per year)</fo:block></fo:table-cell>
+                         <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Equiv MTBFs (hours)</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Repair Time (hours)</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Planned maintenance time hours per year</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Availability excl. planned mtce </fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Availability incl. planned mtce </fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Time period (years)</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Probability of no failures:</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Probability of one or more failures:</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" text-align="center" font-weight="bold"  padding="4pt"><fo:block padding="4pt">RAMS Resp</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black"  text-align="center" font-weight="bold" padding="4pt"><fo:block padding="4pt">Approver</fo:block></fo:table-cell>  
             </fo:table-row>
             <#list combinedRamsData as ramsData>
                 <fo:table-row >
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" text-align="center" font-weight="bold"  padding="2pt" number-columns-spanned="2"><fo:block padding="4pt">${ramsData.header.ramsNo!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black"  text-align="center" font-weight="bold" padding="2pt"><fo:block padding="4pt">${ramsData.header.date!" "}</fo:block></fo:table-cell>  
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${ramsData.header.product!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${ramsData.header.rev!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${ramsData.header.system!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${ramsData.header.sub!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${ramsData.header.subsub!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" text-align="center" font-weight="bold"  padding="2pt" number-columns-spanned="2"><fo:block padding="8pt">${ramsData.header.ramsNo!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black"  text-align="center" font-weight="bold" width="2pt"><fo:block padding="10pt">${ramsData.header.date!" "}</fo:block></fo:table-cell>  
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${ramsData.header.product!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${ramsData.header.rev!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${ramsData.header.system!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${ramsData.header.sub!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${ramsData.header.subsub!" "}</fo:block></fo:table-cell>
                             <#list ramsData.details as data>
                             <#if data.calculatorType == "empirical">
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.int1!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.int2!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.out1!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.out2!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.out3!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.out4!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.out5!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.out6!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.int1!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.int2!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out1!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out2!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out3!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out4!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out5!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out6!" "}</fo:block></fo:table-cell>
                             <#elseif data.calculatorType == "availability" >
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.int1!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.int3!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.out1!" "} %</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.out2!" "} %</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.int1!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.int3!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out1!" "} %</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out2!" "} %</fo:block></fo:table-cell>
                             <#elseif data.calculatorType == "reliability" >
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.int1!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.out1!" "} %</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">${data.out2!" "} %</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.int1!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out1!" "} %</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out2!" "} %</fo:block></fo:table-cell>
                             </#if>
                             </#list>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black" text-align="center" font-weight="bold"  padding="4pt"><fo:block padding="4pt">${ramsData.header.rams!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell background-color="rgb(170, 185, 198)" border="1pt solid black"  text-align="center" font-weight="bold" padding="4pt"><fo:block padding="4pt">${ramsData.header.approver!" "}</fo:block></fo:table-cell>  
+                            <fo:table-cell  border="2pt solid black" text-align="center" font-weight="bold"  padding="4pt"><fo:block padding="8pt">${ramsData.header.rams!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black"  text-align="center" font-weight="bold" padding="4pt"><fo:block padding="8pt">${ramsData.header.approver!" "}</fo:block></fo:table-cell>  
                 </fo:table-row> 
             </#list>  
         </fo:table-body>

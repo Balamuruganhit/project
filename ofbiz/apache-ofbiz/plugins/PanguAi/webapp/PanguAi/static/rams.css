@@ -42,7 +42,7 @@ table{
 .header_ram td input{
     width: 90%;
     height: 1.7rem;
-    font-size: 1rem;
+    font-size: 1.3rem;
     border-radius: 0.4rem;
     
 }
@@ -117,16 +117,19 @@ table{
     margin: 0.4rem;
     
 }
+.contentarea{
+    padding:0;
+}
 .left td input{
     padding: 0.3rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
     border-radius: 0.3rem;
     width: 4rem;
 }
 
 .left button{
     padding: 0.5rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
     border-radius: 0.4rem;
     cursor: pointer;
 

@@ -30,9 +30,9 @@ under the License.
       <fo:region-after extent="0.5in"/>
     </fo:simple-page-master>
     <fo:simple-page-master master-name="simple-landscape"
-        page-width="27in" page-height="8.5in"
+        page-width="${pageLayoutWidth?default("27in")}" page-height="11.5in"
         margin-top="0.3in" margin-bottom="0.3in"
-        margin-left="0.4in" margin-right="0.3in">
+        margin-left="0.4in" margin-right="0.6in">
       <fo:region-body margin-top="1in" margin-bottom="0.5in"/>
       <fo:region-before extent="1in"/>
       <fo:region-after extent="0.5in"/>
@@ -55,7 +55,7 @@ under the License.
             <fo:table-cell>
               <fo:block>
                 <#if logoImageUrl??>
-                  <fo:external-graphic src="${logoImageUrl}" overflow="hidden" height="40px"
+                  <fo:external-graphic src="${logoImageUrl}" overflow="hidden" height="60px"
                       content-height="scale-to-fit"/>
                 </#if>
               </fo:block>
@@ -74,7 +74,7 @@ under the License.
                       <fo:block font-weight="bold"></fo:block>
                     </fo:list-item-label>
                     <fo:list-item-body start-indent="body-start()">
-                      <fo:block><#if currentOrganization??>${uiLabelMap.CommonCompany} : ${currentOrganization.partyId} - ${currentOrganization.groupName}</#if></fo:block>
+                      <fo:block><#if currentOrganization??>${uiLabelMap.CommonCompany}: ${currentOrganization.groupName}</#if></fo:block>
                     </fo:list-item-body>
                   </fo:list-item>
                   <fo:list-item>
@@ -82,7 +82,7 @@ under the License.
                       <fo:block font-weight="bold"></fo:block>
                     </fo:list-item-label>
                     <fo:list-item-body start-indent="body-start()">
-                      <fo:block><#if userLogin??>${uiLabelMap.CommonUsername} - ${userLogin.userLoginId!}</#if></fo:block>
+                      <fo:block><#if userLogin??>${uiLabelMap.CommonUsername} : ${userLogin.userLoginId!}</#if></fo:block>
                     </fo:list-item-body>
                   </fo:list-item>
                   <fo:list-item>
@@ -90,7 +90,7 @@ under the License.
                       <fo:block font-weight="bold"></fo:block>
                     </fo:list-item-label>
                     <fo:list-item-body start-indent="body-start()">
-                      <fo:block>${uiLabelMap.CommonDate} - ${nowTimestamp!}</fo:block>
+                      <fo:block>${uiLabelMap.CommonDate} : ${nowTimestamp!}</fo:block>
                     </fo:list-item-body>
                   </fo:list-item>
                 </fo:list-block>

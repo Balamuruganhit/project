@@ -20,6 +20,7 @@ under the License.
 
 <#escape x as x?xml>
     <#if ramsOutputTitle?has_content>
+    <fo:block font-weight="bold" font-size="12pt" space-after="20pt">RAMS ANALYSIS REPORT</fo:block>
         <fo:table table-layout="fixed"  border="1pt solid" padding="5pt"   border-width=".1mm" >
             <fo:table-body>
                 <fo:table-row >

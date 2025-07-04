@@ -45,7 +45,8 @@ under the License.
     <request-map uri="rams"><security https="true" auth="true"/><response name="success" type="view" value="rams"/></request-map>
     <request-map uri="view"><security https="true" auth="true"/><response name="success" type="view" value="view"/></request-map>
     <request-map uri="MasterReport"><security https="true" auth="true"/><response name="success" type="view" value="MasterReport"/></request-map>
-    
+    <request-map uri="viewFema"><security https="true" auth="true"/><response name="success" type="view" value="viewFema"/></request-map>
+
     <request-map uri="delete">
         <security https="true" auth="true"/>
         <event type="service" path="" invoke="findRams"/>
@@ -109,5 +110,6 @@ under the License.
     <view-map name="ramsSelector" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#selectorRams"/>
     <view-map name="ReportPdfRams" type="screenfop" page="component://PanguAi/widget/PanguAiScreens.xml#ReportPdfRams" content-type="application/pdf" encoding="none"/>
     <view-map name="MasterReport" type="screenfop" page="component://PanguAi/widget/PanguAiScreens.xml#MasterReport" content-type="application/pdf" encoding="none"/>
+    <view-map name="viewFema" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#viewFema"/>
 
 </site-conf>
