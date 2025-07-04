@@ -17,6 +17,8 @@ specific language governing permissions and limitations
 under the License.
 
 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.5/jstat.min.js"></script>
+
 
 <#if ramsOutputTitle?has_content>
   <div class="header_ram">
