@@ -197,8 +197,8 @@ under the License.
                     <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
                     <script location="component://PanguAi/groovyScripts/masterrams.groovy"/>
                     <set field="viewSize" value="99999"/>
-                   <set field="headerFontSize" value="17pt" type="String"/>
-                   <set field="pageLayoutWidth" value="35in" type="String"/>
+                   <set field="headerFontSize" value="19pt" type="String"/>
+                   <set field="pageLayoutWidth" value="42.7in" type="String"/>
                     <set field="footerFontSize" value="17pt" type="String"/>
                 </actions>
                 <widgets>

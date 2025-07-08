@@ -38,7 +38,8 @@ under the License.
             
         }
         th {
-            background-color:rgb(126, 187, 240);
+            background-color:#0c2d7c;
+            color:white
         }
         .header-table td {
             font-weight: bold;
@@ -47,7 +48,7 @@ under the License.
             padding: 5px;
         }
         .colorAdd{
-            backgroundrgb(173, 170, 170);
+            background:rgb(173, 170, 170);
         }
         .HeightSetter td{
             height:8rem;

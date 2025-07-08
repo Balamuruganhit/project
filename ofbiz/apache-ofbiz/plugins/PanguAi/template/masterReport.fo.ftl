@@ -19,8 +19,33 @@ under the License.
 -->
 
 <fo:block font-weight="bold" font-size="18pt" space-after="30pt">RAMS ANALYSIS MASTER REPORT</fo:block>
-<fo:table table-layout="fixed"  border="1pt solid" padding="5pt" width="34in" font-size="16pt" border-width=".1mm" >
-       
+<fo:table table-layout="fixed"  border="1pt solid" padding="5pt" width="39in" font-size="16pt" border-width=".1mm" >
+        <fo:table-column column-width="3cm"/> <#-- Rams no -->
+        <fo:table-column column-width="3cm"/> <#-- another field for ra  -->
+        <fo:table-column column-width="3.7cm"/><#-- Date -->
+        <fo:table-column column-width="4.6cm"/><#-- product code  -->
+        <fo:table-column column-width="2.5cm"/><#-- rev  -->
+        <fo:table-column column-width="7cm"/><#-- system  -->
+        <fo:table-column column-width="7cm"/><#-- subsystem  -->
+        <fo:table-column column-width="7cm"/><#-- subsubsystem  -->
+        <fo:table-column column-width="4cm"/><#-- S  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+        <fo:table-column column-width="4cm"/><#-- Date  -->
+
         <fo:table-body>
             <fo:table-row >
                         <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" width="4cm" text-align="center" font-weight="bold"  padding="4pt" number-columns-spanned="8"><fo:block padding="4pt" ></fo:block></fo:table-cell>
@@ -33,7 +58,7 @@ under the License.
                         <fo:table-cell  background-color="rgb(126, 187, 240)" border="2pt solid black"  text-align="center" font-weight="bold"  padding="4pt" width="10pt" number-columns-spanned="2"><fo:block padding="4pt" width="6cm">RAMS Num</fo:block></fo:table-cell>
                         <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black"  text-align="center" font-weight="bold" padding="4pt"><fo:block padding="8pt">Date</fo:block></fo:table-cell>  
                         <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Product Code:</fo:block></fo:table-cell>
-                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Revision:</fo:block></fo:table-cell>
+                        <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt" text-align="center">Rev:</fo:block></fo:table-cell>
                         <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">System:</fo:block></fo:table-cell>
                         <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Sub System:</fo:block></fo:table-cell>
                         <fo:table-cell background-color="rgb(126, 187, 240)" border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="4pt">Sub Sub System:</fo:block></fo:table-cell>
@@ -59,30 +84,30 @@ under the License.
                 <fo:table-row >
                             <fo:table-cell  border="2pt solid black" text-align="center" font-weight="bold"  padding="2pt" number-columns-spanned="2"><fo:block padding="8pt">${ramsData.header.ramsNo!" "}</fo:block></fo:table-cell>
                             <fo:table-cell  border="2pt solid black"  text-align="center" font-weight="bold" width="2pt"><fo:block padding="10pt">${ramsData.header.date!" "}</fo:block></fo:table-cell>  
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${ramsData.header.product!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${ramsData.header.rev!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${ramsData.header.system!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${ramsData.header.sub!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${ramsData.header.subsub!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${ramsData.header.product!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${ramsData.header.rev!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${ramsData.header.system!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${ramsData.header.sub!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${ramsData.header.subsub!" "}</fo:block></fo:table-cell>
                             <#list ramsData.details as data>
                             <#if data.calculatorType == "empirical">
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.int1!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.int2!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out1!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out2!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out3!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out4!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out5!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out6!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${data.int1!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${data.int2!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${data.out1!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${data.out2!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${data.out3!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${data.out4!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${data.out5!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${data.out6!" "}</fo:block></fo:table-cell>
                             <#elseif data.calculatorType == "availability" >
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.int1!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.int3!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out1!" "} %</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out2!" "} %</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${data.int1!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${data.int3!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${data.out1!" "} %</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt" text-align="center">${data.out2!" "} %</fo:block></fo:table-cell>
                             <#elseif data.calculatorType == "reliability" >
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.int1!" "}</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out1!" "} %</fo:block></fo:table-cell>
-                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt">${data.out2!" "} %</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt"  text-align="center">${data.int1!" "}</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt"   text-align="center">${data.out1!" "} %</fo:block></fo:table-cell>
+                            <fo:table-cell  border="2pt solid black" font-weight="bold" padding="4pt"><fo:block padding="8pt"   text-align="center">${data.out2!" "} %</fo:block></fo:table-cell>
                             </#if>
                             </#list>
                             <fo:table-cell  border="2pt solid black" text-align="center" font-weight="bold"  padding="4pt"><fo:block padding="8pt">${ramsData.header.rams!" "}</fo:block></fo:table-cell>
