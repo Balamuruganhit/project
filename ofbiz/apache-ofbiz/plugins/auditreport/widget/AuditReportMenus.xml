@@ -22,7 +22,7 @@
 
         <menu-item name="MainMenu" title="Main Menu"><link target="/DemoPage/control/main" url-mode="inter-app"/></menu-item>
         <menu-item name="AuditAs9100" title="${uiLabelMap.AuditAs9100}"><link target="config"/></menu-item>
-        <menu-item name="AuditIRIS" title="${uiLabelMap.AuditIRIS}"><link target="ListComputerSoftware"/></menu-item>
+        <menu-item name="AuditIRIS" title="${uiLabelMap.AuditIRIS}"><link target="irismenu"/></menu-item>
         <menu-item name="AuditIso9001" title="${uiLabelMap.AuditIso9001}"><link target="ListOfReport"/></menu-item>
         <menu-item name="KPI" title="${uiLabelMap.Kpi}"><link target="kpi"/></menu-item>
     </menu>
@@ -428,6 +428,45 @@
             <link target="parties"/>
         </menu-item>
         <menu-item name="information" title="8.4.3 Information for external providers" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="AuditExport"/>
+        </menu-item>
+    </menu>
+    <menu name="IrisBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
+          menu-container-style="button-bar button-style-2">
+        <menu-item name="IrisClauses" title="IRIS Clauses" >
+            <condition>
+                 <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="organisation"/>
+        </menu-item>
+        <menu-item name="riskRegister" title="Risk Register" >
+            <condition>
+                <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="riskRegisterSearch"/>
+        </menu-item>
+        <menu-item name="turtleDiagram" title="Turtle Diagram" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="riskRegisterSearch"/>
+        </menu-item>
+        <menu-item name="kpiIris" title="KPI" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="AuditExport"/>
+        </menu-item>
+        <menu-item name="internalAuditormatrix" title="Internal Auditor Competence Matrix" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="AuditExport"/>
+        </menu-item>
+        <menu-item name="internalAuditorSchedule" title="Internal Auditor Schedule" >
             <condition>
                      <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
             </condition>

@@ -95,7 +95,32 @@ under the License.
         <response name="error" type="view" value="classFour"/>
     </request-map>
     <request-map uri="LookupProduct"><security auth="true" https="true"/><response name="success" type="view" value="LookupProduct"/></request-map>
-    
+    <!-- Audit IRIS-->
+     <request-map uri="irismenu">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="irismenu"/>
+        <response name="error" type="view" value="classFour"/>
+    </request-map>
+        <request-map uri="riskRegisterSearch">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="riskRegisterSearch"/>
+        <response name="error" type="view" value="classFour"/>
+    </request-map>
+    <request-map uri="createriskRegister">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="createriskRegister"/>
+        <response name="error" type="view" value="classFour"/>
+    </request-map>
+
+
+    <!-- Audit AS9100 and ISO9100-->
+
     <request-map uri="AuditExport"><security https="true" auth="true"/><response name="success" type="view" value="export"/></request-map>    
     <request-map uri="ospreport"><security https="true" auth="true"/><response name="success" type="view" value="config"/></request-map>
     <request-map uri="config"><security https="true" auth="true"/><response name="success" type="view" value="config"/></request-map>
@@ -162,5 +187,9 @@ under the License.
     <view-map name="classNine" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#classNine" />
     
     <view-map name="classTen" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#classTen" />
-    
+    <!-- Audit IRIS-->
+    <view-map name="irismenu" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#irismenu" />
+    <view-map name="riskRegisterSearch" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#riskRegisterSearch" />
+    <view-map name="createriskRegister" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#createriskRegister" />
+
 </site-conf>
