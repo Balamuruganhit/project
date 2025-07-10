@@ -111,4 +111,11 @@
         auth="true">
         <attribute name="requirementDetail" type="java.util.List" mode="IN"/>   
     </service>
+    <service name="createRiskRegister"
+        engine="groovy"
+        location="component://AuditReport/groovyScripts/Audit/IRIS/riskregister.groovy"
+        invoke="createRiskRegister"
+        auth="true">
+        <attribute name="riskRegister" type="java.util.List" mode="IN"/>   
+    </service>
 </services>

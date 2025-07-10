@@ -93,4 +93,39 @@
         <field name="remark" type="long-varchar"/> <!-- Field to store Base64-encoded string -->
         <prim-key field="genId"/>
     </entity>
+    <entity entity-name="RiskHeader" package-name="org.apache.ofbiz.AuditReport" title="AuditReport Entity">
+        <field name="docId" type="id"/>
+        <field name="revision" type="id"/>
+        <field name="date" type="name"/>
+        <field name="approve" type="name"/>
+        <field name="previewer" type="name"/>
+        <field name="typeHeader" type="name"/>
+        <field name="prepared" type="name"/> <!-- Field to store Base64-encoded string -->
+        <prim-key field="docId"/>
+    </entity>
+    <entity entity-name="RiskData" package-name="org.apache.ofbiz.PanguAi" title="Fema Entity">
+        <field name="genId" type="id"/>
+        <field name="docId" type="id"/>
+        <field name="riskId" type="id"/>
+        <field name="description" type="name"/>
+        <field name="owner" type="url"/>
+        <field name="category" type="url"/>
+        <field name="dateIdentified" type="url"/>
+        <field name="hazard" type="url"/>
+        <field name="consequence" type="url"/>
+        <field name="controls" type="url"/>
+        <field name="effectiveness" type="url"/>
+        <field name="likelihood" type="numeric"/>
+        <field name="severity" type="numeric"/>
+        <field name="initialRiskRating" type="numeric"/>
+        <field name="mitigation" type="url"/>
+        <field name="actionsTaken" type="url"/>
+        <field name="residualRisk" type="url"/>
+        <field name="actiondate" type="name"/>
+        <field name="status" type="name"/> <!-- Field to store Base64-encoded string -->
+        <field name="evidence" type="url"/>
+        <field name="warrantyFrom" type="name"/>
+        <field name="warrantyTo" type="name"/>
+        <prim-key field="genId"/>
+    </entity>
 </entitymodel>

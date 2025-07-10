@@ -95,6 +95,8 @@ under the License.
         <response name="error" type="view" value="classFour"/>
     </request-map>
     <request-map uri="LookupProduct"><security auth="true" https="true"/><response name="success" type="view" value="LookupProduct"/></request-map>
+    
+    
     <!-- Audit IRIS-->
      <request-map uri="irismenu">
         <!-- <event type="service" invoke="createQuestion"/>
@@ -108,7 +110,7 @@ under the License.
         <response name="success" type="view" value="config"/> -->
         <security https="true" auth="true"/>
         <response name="success" type="view" value="riskRegisterSearch"/>
-        <response name="error" type="view" value="classFour"/>
+        <response name="error" type="view" value="riskRegisterSearch"/>
     </request-map>
     <request-map uri="createriskRegister">
         <!-- <event type="service" invoke="createQuestion"/>
@@ -117,8 +119,28 @@ under the License.
         <response name="success" type="view" value="createriskRegister"/>
         <response name="error" type="view" value="classFour"/>
     </request-map>
-
-
+    <request-map uri="createRiskRegister">
+            <!-- <event type="service" invoke="createQuestion"/>
+            <response name="success" type="view" value="config"/> -->
+            <security https="true" auth="true"/>
+            <event type="service" path="" invoke="createRiskRegister"/>
+            <response name="success" type="view" value="createriskRegister"/>
+            <response name="error" type="view" value="createriskRegister"/>
+    </request-map>
+    <request-map uri="viewriskRegister">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="viewriskRegister"/>
+        <response name="error" type="view" value="riskRegisterSearch"/>
+    </request-map>
+    <request-map uri="RiskRegisterReport">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="RiskRegisterReport"/>
+        <response name="error" type="view" value="riskRegisterSearch"/>
+    </request-map>
     <!-- Audit AS9100 and ISO9100-->
 
     <request-map uri="AuditExport"><security https="true" auth="true"/><response name="success" type="view" value="export"/></request-map>    
@@ -191,5 +213,7 @@ under the License.
     <view-map name="irismenu" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#irismenu" />
     <view-map name="riskRegisterSearch" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#riskRegisterSearch" />
     <view-map name="createriskRegister" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#createriskRegister" />
+    <view-map name="viewriskRegister" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#viewriskRegister" />
+    <view-map name="RiskRegisterReport" type="screenfop" page="component://AuditReport/widget/IRISReportScreens.xml#RiskRegisterReport" content-type="application/pdf" encoding="none"/>
 
 </site-conf>
