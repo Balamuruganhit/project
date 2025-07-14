@@ -210,98 +210,74 @@ under the License.
     font-size: 1.2rem;
     color: #0c2d7c;
   }
+    #turtleBtn{
+        display:none;
+    }
 
+</style>
 
-  </style>
 <div class="container">
-  <header class="header">
-    <h1 style="color:white;">Risk Register</h1>
-    <#if ramsOutputTitle?has_content>
-      <div class="header-info">
-        <div>Ref No: <input id="docId" value="${ramsOutputTitle.docId!""}"/></div>
-        <div>Rev No: <input id="revision" value="${ramsOutputTitle.revision!""}"/></div>
-        <div style="margin-top:1rem;">Date: <input type="date" id="saveDate" value="${ramsOutputTitle.date!""}"/></div>
-      </div>
-      <#else>
-            <div class="header-info">
-        <div>Ref No: <input id="docId" /></div>
-        <div>Rev No: <input id="revision" /></div>
-        <div style="margin-top:1rem;">Date: <input type="date" id="saveDate" /></div>
-      </div>
-      </#if>
-  </header>
-
-  <div class="scroll-wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th>Risk Id</th>
-          <th>Risk Description</th>
-          <th>Risk Owner</th>
-          <th>Risk Category</th>
-          <th>Date Identified</th>
-          <th>Hazard/Cause</th>
-          <th>Potential Consequence</th>
-          <th>Existing Controls</th>
-          <th>Effectiveness of Controls</th>
-          <th>Likelihood</th>
-          <th>Consequence/Severity</th>
-          <th>Initial Risk Rating</th>
-          <th>Additional Mitigation Actions</th>
-          <th>Effectiveness of Actions Taken</th>
-          <th>Residual Risk Rating</th>
-          <th>Action Due Date</th>
-          <th>Status</th>
-          <th>Evidence/References</th>
-          <th>Warranty</th>
-        </tr>
-      </thead>
-      <tbody>
-      <#list ramsOutputDetails as group>
-        <tr>
-          
-            <td><div >${group.riskId!" "}</div></td>
-             <td><div >${group.description!" "}</div></td>
-              <td><div >${group.owner!" "}</div></td>
-             <td><div >${group.category!" "}</div></td>
-              <td><div >${group.dateIdentified!" "}</div></td>
-            <td><div >${group.hazard!" "}</div></td>
-            <td><div >${group.consequence!" "}</div></td>
-            <td><div >${group.controls!" "}</div></td>
-            <td><div >${group.effectiveness!" "}</div></td>
-            <td><div >${group.likelihood!" "}</div></td>
-            <td><div >${group.severity!" "}</div></td>
-            <td><div >${group.initialRiskRating!" "}</div></td>
-            <td><div >${group.mitigation!" "}</div></td>
-            <td><div >${group.actionsTaken!" "}</div></td>
-            <td><div >${group.residualRisk!" "}</div></td>
-            <td><div >${group.actiondate!" "}</div></td>
-            <td><div >${group.status!" "}</div></td>
-            <td><div >${group.evidence!" "}</div></td>
-          <td style="width:7rem">
-            <strong>From date</strong> ${group.warrantyFrom}
-            <strong>To date</strong> ${group.warrantyTo}
-          </td>
-        </tr>
-      </#list>
-      </tbody>
-    </table>
-  </div>
-
-  <#if ramsOutputTitle?has_content>  
-    <footer class="footer">
-      <div>Auditee:<input  id="preparer" value="${ramsOutputTitle.prepared!""}"/></div>
-      <div>Internal Auditor:<input id="previewer" value="${ramsOutputTitle.previewer!""}"/></div>
-      <div>External Auditor:<input id="approver" value="${ramsOutputTitle.approve!""}"/></div>
-    </footer>
-    <#else>
+    <header class="header">
+        <h1 style="color:white;">Turtle Diagram</h1>
+        
+        <div class="header-info">
+            <div>Doc No: <input id="docId" /></div>
+            <div>Rev No: <input id="revision" /></div>
+            <div style="margin-top:1rem;">Date: <input type="date" id="saveDate" /></div>
+        </div>
+      
+    </header>
+    <div class="scroll-wrapper">
+        <table>
+            <thead>
+                <th>Input</th>
+                <th>Resources</th>
+                <th>Risks</th>
+                <th>Content/Work Instruction</th>
+                <th>Personnel</th>
+                <th>oppurtunities</th>
+                <th>Process</th>
+                <th>KPI's</th>
+                <th>Outputs</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="cell-editable" contenteditable="true"></div></td>
+                    <td><div class="cell-editable" contenteditable="true"></div></td>
+                    <td><div class="cell-editable" contenteditable="true"></div></td>
+                    <td><div class="cell-editable" contenteditable="true"></div></td>
+                    <td><div class="cell-editable" contenteditable="true"></div></td>
+                    <td><div class="cell-editable" contenteditable="true"></div></td>
+                    <td><div class="cell-editable" contenteditable="true"></div></td>
+                    <td><div class="cell-editable" contenteditable="true"></div></td>
+                    <td><div class="cell-editable" contenteditable="true"></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <footer class="footer">
       <div>Auditee:<input  id="preparer" /></div>
       <div>Internal Auditor:<input id="previewer" /></div>
       <div>External Auditor:<input id="approver" /></div>
     </footer>
-  </#if>
-
-    <button ><a style="color:white; font-size:1.2rem;" href="RiskRegisterReport?printdoc=done&docId=${ramsOutputTitle.docId}">Print Document</a></button>
-
+     <button id="SaveBtn" style="color:white; font-size:1.2rem;">Save</button>
+     <button id="turtleBtn"><a style="color:white; font-size:1.2rem;" id="turtleNewBtn">Convert Turtle Diagram</a></button>
 </div>
+
+<div id="loadingOverlay" class="loading-overlay">
+  <div class="loading-box">
+    <div class="spinner"></div>
+    <div class="loading-text">Saving data...</div>
+  </div>
+</div>
+
+<!-- Popup Editor -->
+<div id="editorModal">
+  <div id="editorBox">
+    <textarea id="editorTextarea"></textarea>
+    <div class="editor-buttons">
+      <button onclick="closeEditor(true)">Save</button>
+    </div>
+  </div>
+</div>
+

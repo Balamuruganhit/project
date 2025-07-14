@@ -25,7 +25,7 @@ import org.apache.ofbiz.product.image.ScaleImage
 import org.apache.ofbiz.entity.condition.*
 
 context.nowTimestampString = UtilDateTime.nowTimestamp().toString()
-
+logInfo('partnumber' + parameters.productId)
 // make the image file formats
 context.tenantId = delegator.getDelegatorTenantId()
 imageFilenameFormat = EntityUtilProperties.getPropertyValue('catalog', 'image.filename.format', delegator)

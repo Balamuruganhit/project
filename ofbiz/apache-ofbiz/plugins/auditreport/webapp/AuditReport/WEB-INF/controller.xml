@@ -141,6 +141,35 @@ under the License.
         <response name="success" type="view" value="RiskRegisterReport"/>
         <response name="error" type="view" value="riskRegisterSearch"/>
     </request-map>
+    <request-map uri="turtleSearch">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="turtleSearch"/>
+        <response name="error" type="view" value="turtleSearch"/>
+    </request-map>
+    <request-map uri="createturtleDoc">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="createturtleDoc"/>
+        <response name="error" type="view" value="turtleSearch"/>
+    </request-map>
+    <request-map uri="createTurtleDoc">
+            <!-- <event type="service" invoke="createQuestion"/>
+            <response name="success" type="view" value="config"/> -->
+            <security https="true" auth="true"/>
+            <event type="service" path="" invoke="createTurtleDoc"/>
+            <response name="success" type="view" value="createturtleDoc"/>
+            <response name="error" type="view" value="createriskRegister"/>
+    </request-map>
+    <request-map uri="TurtleReport">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="TurtleReport"/>
+        <response name="error" type="view" value="TurtleReport"/>
+    </request-map>
     <!-- Audit AS9100 and ISO9100-->
 
     <request-map uri="AuditExport"><security https="true" auth="true"/><response name="success" type="view" value="export"/></request-map>    
@@ -215,5 +244,8 @@ under the License.
     <view-map name="createriskRegister" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#createriskRegister" />
     <view-map name="viewriskRegister" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#viewriskRegister" />
     <view-map name="RiskRegisterReport" type="screenfop" page="component://AuditReport/widget/IRISReportScreens.xml#RiskRegisterReport" content-type="application/pdf" encoding="none"/>
+    <view-map name="turtleSearch" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#turtleSearch" />
+    <view-map name="createturtleDoc" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#createturtleDoc" />
+    <view-map name="TurtleReport" type="screenfop" page="component://AuditReport/widget/IRISReportScreens.xml#TurtleReport" content-type="application/pdf" encoding="none"/>
 
 </site-conf>

@@ -128,4 +128,20 @@
         <field name="warrantyTo" type="name"/>
         <prim-key field="genId"/>
     </entity>
+    <entity entity-name="TurtleData" package-name="org.apache.ofbiz.PanguAi" title="Fema Entity">
+        <field name="genId" type="id"/>
+        <field name="docId" type="id"/>
+        <field name="inputData" type="url"/>
+        <field name="resources" type="url"/>
+        <field name="risk" type="url"/>
+        <field name="content" type="url"/>
+        <field name="personnel" type="url"/>
+        <field name="oppurtunities" type="url"/>
+        <field name="process" type="url"/>
+        <field name="kpi" type="url"/>
+        <field name="outputData" type="url"/>
+        <field name="supplier" type="url"/>
+        <field name="customer" type="url"/>
+        <prim-key field="genId"/>
+    </entity>
 </entitymodel>

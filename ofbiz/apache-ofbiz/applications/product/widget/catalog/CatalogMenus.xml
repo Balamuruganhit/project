@@ -32,8 +32,9 @@ under the License.
         <menu-item name="configs" title="${uiLabelMap.ProductConfigItems}"><link target="FindProductConfigItems"/></menu-item>
         <menu-item name="Subscription" title="${uiLabelMap.ProductSubscriptions}"><link target="FindSubscription"/></menu-item>
         <menu-item name="shipping" title="${uiLabelMap.ProductShipping}"><link target="ListShipmentMethodTypes"/></menu-item>
-        <menu-item name="Imagemanagement" title="${uiLabelMap.ImageManagement}"><link target="Imagemanagement"/></menu-item>
+        <!-- <menu-item name="Imagemanagement" title="${uiLabelMap.ImageManagement}"><link target="Imagemanagement"/></menu-item> -->
         <menu-item name="vendorManagement" title="Vendor Management"><link target="vendorManagement"/></menu-item>
+        <!-- <menu-item name="import" title="import Management"><link target="importScreen"/></menu-item> -->
 
     </menu>
     <menu name="MainActionMenu" menu-container-style="button-bar button-style-2" default-selected-style="selected">
@@ -576,6 +577,12 @@ under the License.
                 <parameter param-name="productId"/>
             </link>
         </menu-item>
+        <menu-item name="Imagemanagement" title="Design &amp; Drawing Management">
+            <link target="ListImageGallery">
+                <parameter param-name="productId"/>
+            </link>
+        </menu-item>
+
     </menu>
 
     <menu name="ProductSubTabBar" menu-container-style="button-bar button-style-2" default-selected-style="selected">
@@ -658,7 +665,9 @@ under the License.
             <condition>
                 <if-has-permission permission="IMAGE_MANAGEMENT_ADMIN"/>
             </condition>
-            <link target="Imagemanagement"/>
+            <link target="Imagemanagement">
+                <parameter param-name="productId"/>
+            </link>
         </menu-item>
         <menu-item name="ImageGallery" title="${uiLabelMap.ImageManagementGallery}">
             <link target="ListImageGallery">
@@ -669,7 +678,9 @@ under the License.
             <condition>
                 <if-has-permission permission="IMAGE_MANAGEMENT" action="_UPLOAD"/>
             </condition>
-            <link target="ImageUpload"/>
+            <link target="ImageUpload">
+                <parameter param-name="productId"/>
+            </link>
         </menu-item>
         <menu-item name="ImageManage" title="${uiLabelMap.CommonManage}">
             <condition>
@@ -683,19 +694,25 @@ under the License.
             <condition>
                 <if-has-permission permission="IMAGE_MANAGEMENT" action="_APPROVE"/>
             </condition>
-            <link target="ImageApprove"/>
+            <link target="ImageApprove">
+                <parameter param-name="productId"/>
+            </link>
         </menu-item>
         <menu-item name="ImageRejected" title="${uiLabelMap.CommonRejected}">
             <condition>
                 <if-has-permission permission="IMAGE_MANAGEMENT" action="_APPROVE"/>
             </condition>
-            <link target="ImageRejected"/>
+            <link target="ImageRejected">
+                <parameter param-name="productId"/>
+            </link>
         </menu-item>
         <menu-item name="ImageRecentlyApproved" title="${uiLabelMap.ImageManagementRecentlyApproved}">
             <condition>
                 <if-has-permission permission="IMAGE_MANAGEMENT" action="_APPROVE"/>
             </condition>
-            <link target="ImageRecentlyApproved"/>
+            <link target="ImageRecentlyApproved">
+                <parameter param-name="productId"/>
+            </link>
         </menu-item>
         <menu-item name="ImageReplace" title="${uiLabelMap.ImageManagementReplace}">
             <condition>

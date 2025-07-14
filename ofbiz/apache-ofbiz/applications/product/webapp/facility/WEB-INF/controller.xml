@@ -1348,7 +1348,7 @@ under the License.
         <security https="true" auth="true"/>
         <response name="success" type="view" value="GetPartyGeoLocation"/>
     </request-map>
-
+    
     <!-- ================ Lookup Requests ================= -->
     <request-map uri="LookupOrderHeaderAndShipInfo"><security https="true" auth="true"/><response name="success" type="view" value="LookupOrderHeaderAndShipInfo"/></request-map>
     <request-map uri="LookupPurchaseOrderHeaderAndShipInfo"><security https="true" auth="true"/><response name="success" type="view" value="LookupPurchaseOrderHeaderAndShipInfo"/></request-map>

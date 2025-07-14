@@ -118,4 +118,12 @@
         auth="true">
         <attribute name="riskRegister" type="java.util.List" mode="IN"/>   
     </service>
+    <service name="createTurtleDoc"
+        engine="groovy"
+        location="component://AuditReport/groovyScripts/Audit/IRIS/riskregister.groovy"
+        invoke="createTurtleDoc"
+        auth="true">
+        <attribute name="TurtleDetails" type="java.util.List" mode="IN"/> 
+         <attribute mode="OUT" name="docId" optional="false" type="Long"/>  
+    </service>
 </services>

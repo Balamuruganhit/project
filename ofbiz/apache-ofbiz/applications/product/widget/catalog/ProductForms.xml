@@ -2274,4 +2274,8 @@ under the License.
         <field name="_rowSubmit" title="${uiLabelMap.CommonSelect}"><check/></field>
         <field name="submitButton" title="${uiLabelMap.CommonUpdate}" use-when="productKeywordList.size != 0"><submit button-type="button"/></field>
     </form>
+    <form name="ImportParty" type="upload" target="uploadExcelGroovy" title="" >
+        <field name="uploadFile" title="${uiLabelMap.ContentFile}"><file/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpload}"><submit button-type="button"/></field>
+    </form>
  </forms>

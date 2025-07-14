@@ -431,20 +431,20 @@ under the License.
   
   <#if ramsOutputTitle?has_content>  
     <footer class="footer">
-      <div>Prepared By:<input  id="preparer" value="${ramsOutputTitle.prepared!""}"/></div>
-      <div>Previewer By:<input id="previewer" value="${ramsOutputTitle.previewer!""}"/></div>
-      <div>Approved By:<input id="approver" value="${ramsOutputTitle.approve!""}"/></div>
+      <div>Auditee:<input  id="preparer" value="${ramsOutputTitle.prepared!""}"/></div>
+      <div>Internal Auditor:<input id="previewer" value="${ramsOutputTitle.previewer!""}"/></div>
+      <div>External Auditor:<input id="approver" value="${ramsOutputTitle.approve!""}"/></div>
     </footer>
     <#else>
     <footer class="footer">
-      <div>Prepared By:<input  id="preparer" /></div>
-      <div>Previewer By:<input id="previewer" /></div>
-      <div>Approved By:<input id="approver" /></div>
+      <div>Auditee:<input  id="preparer" /></div>
+      <div>Internal Auditor:<input id="previewer" /></div>
+      <div>External Auditor:<input id="approver" /></div>
     </footer>
     </#if>
 
-  <button id="addRowBtn">Add Row</button>
-  <button id="SaveBtn">Save</button>
+  <button id="addRowBtn" style="color:white; font-size:1.2rem;">Add Row</button>
+  <button id="SaveBtn" style="color:white; font-size:1.2rem;">Save</button>
 </div>
 
 <#--  loading  -->

@@ -21,8 +21,8 @@ under the License.
   <table>
     <tbody>
       <tr>
-    <td class="label"><label>${uiLabelMap.ProductProductId}</label></td>
-    <td><@htmlTemplate.lookupField name="productId" id="productId" formName="addMultipleImagesForm" fieldFormName="LookupProduct"/></td>
+    <td class="label"><label>${uiLabelMap.ProductProductId} : </label>${productId!}</td>
+    <td ><input type="hidden" name="productId" value="${productId!}"/></td>
     </tr>
       <tr>
         <td class="label"/>

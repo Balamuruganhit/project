@@ -19,14 +19,81 @@ under the License.
 -->
 <screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://ofbiz.apache.org/Widget-Screen" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Screen http://ofbiz.apache.org/dtds/widget-screen.xsd">
+ <screen name="CommonProductImageDecorator">
+        <section>
+            <actions>
+                <set field="headerItem" value="products"/>
+                <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="OrderUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="productId" from-field="parameters.productId" global="true"/>
+                <entity-one entity-name="Product" value-field="product"/>
+                <set field="product" from-field="product" global="true"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="pre-body">
+                        <include-menu name="MainActionMenu" location="component://product/widget/catalog/CatalogMenus.xml"/>
+                    </decorator-section>
+                    <decorator-section name="left-column">
+                        <include-screen name="leftbar" location="component://product/widget/catalog/CommonScreens.xml"/>
+                    </decorator-section>
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <or>
+                                    <if-has-permission permission="CATALOG" action="_ADMIN"/>
+                                    <if-has-permission permission="CATALOG" action="_CREATE"/>
+                                    <if-has-permission permission="CATALOG" action="_UPDATE"/>
+                                    <if-has-permission permission="CATALOG" action="_VIEW"/>
+                                </or>
+                            </condition>
+                            <actions>
+                                <set field="productId" from-field="parameters.productId"/>
+                                <entity-one entity-name="Product" value-field="product"/>
+                            </actions>
+                            <widgets>
+                                <section>
+                                    <condition>
+                                        <not><if-empty field="product"/></not>
+                                    </condition>
+                                    <widgets>
+                                        <include-menu name="ProductTabBar" location="component://product/widget/catalog/CatalogMenus.xml"/>
+                                        <include-menu name="ProductSubTabBar" location="component://product/widget/catalog/CatalogMenus.xml"/>
+                                        <include-menu name="ImageManagementTabBar" location="component://product/widget/catalog/CatalogMenus.xml"/>
 
+                                        <image src="${product.smallImageUrl}" url-mode="content" alt="${product.internalName}" style="cssImgSmall"/>
+                                        <label style="h1">${uiLabelMap[labelTitleProperty]} ${uiLabelMap.CommonFor}: ${product.internalName} [${uiLabelMap.CommonId}:${productId}]  ${${extraFunctionName}}</label>
+                                    </widgets>
+                                    <fail-widgets>
+                                        <section>
+                                            <condition>
+                                                <if-compare operator="not-equals" value="EditProduct" field="tabButtonItem"/>
+                                            </condition>
+                                            <widgets>
+                                                <include-menu name="ProductSubTabBar" location="component://product/widget/catalog/CatalogMenus.xml"/>
+                                                 <include-menu name="ImageManagementTabBar" location="component://product/widget/catalog/CatalogMenus.xml"/>
+                                            </widgets>
+                                        </section>
+                                    </fail-widgets>
+                                </section>
+                                <decorator-section-include name="body"/>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3">${uiLabelMap.ProductCatalogViewPermissionError}</label>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
     <screen name="Imagemanagement">
         <section>
             <actions>
                 <set field="userTabButtonImage" value="main"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -88,7 +155,7 @@ under the License.
                 <set field="userTabButtonImage" value="ImageGallery"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <screenlet title="${uiLabelMap.ImageManagementGallery}">
                                <include-form name="ImageGallery" location="component://product/widget/catalog/ImageManagementForms.xml"/>
@@ -132,7 +199,7 @@ under the License.
                                 <script location="component://product/groovyScripts/catalog/imagemanagement/ImageGallery.groovy"/>
                             </actions>
                             <widgets>
-                                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                                <decorator-screen name="CommonProductImageDecorator" >
                                     <decorator-section name="body">
                                         <label style="h1">${uiLabelMap.Product} ${uiLabelMap.CommonFor}: ${product.internalName} [${uiLabelMap.CommonId}:${product.productId}]</label>
                                         <screenlet title="${uiLabelMap.ImageManagementGallery}">
@@ -151,7 +218,7 @@ under the License.
                                 <set field="userTabButtonImage" value="ImageGallery"/>
                             </actions>
                             <widgets>
-                                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                                <decorator-screen name="CommonProductImageDecorator" >
                                     <decorator-section name="body">
                                         <label text="${uiLabelMap.ProductNoExistingProductsFound}"/>
                                     </decorator-section>
@@ -168,7 +235,7 @@ under the License.
                         <!--<set field="errorMessage" value="There is no a selected product, please insert or select the product to view image(s)."/>-->
                     </actions>
                     <widgets>
-                        <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                        <decorator-screen name="CommonProductImageDecorator" >
                             <decorator-section name="body">
                                 <screenlet title="${uiLabelMap.ImageManagementGallery}">
                                     <include-form name="ImageGallery" location="component://product/widget/catalog/ImageManagementForms.xml"/>
@@ -190,7 +257,7 @@ under the License.
                 <script location="component://product/groovyScripts/catalog/imagemanagement/ImageUpload.groovy"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -237,7 +304,7 @@ under the License.
                 <set field="userMap.checkUser" from-field="userLogin.userLoginId"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -285,7 +352,7 @@ under the License.
                 <set field="userMap.checkUser" from-field="parameters.createdByUserLogin"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -329,7 +396,7 @@ under the License.
                 </entity-condition>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -372,7 +439,7 @@ under the License.
                 <set field="userMap.checkUser" value="REJECTED"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -402,7 +469,7 @@ under the License.
                 <set field="userTabButtonImage" value="ImageManage"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -434,7 +501,7 @@ under the License.
                 <entity-one entity-name="Product" value-field="product"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -473,7 +540,7 @@ under the License.
                         <!--<set field="errorMessage" value="There is no a selected product, please insert or select the product to view image(s)."/>-->
                     </actions>
                     <widgets>
-                        <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                        <decorator-screen name="CommonProductImageDecorator" >
                             <decorator-section name="body">
                                 <section>
                                     <condition>
@@ -504,7 +571,7 @@ under the License.
                 <set field="statusForm" value="IM_PENDING"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -536,7 +603,7 @@ under the License.
                 <set field="statusForm" value="IM_PENDING"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -568,7 +635,7 @@ under the License.
                 <set field="statusForm" value="IM_PENDING"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -627,7 +694,7 @@ under the License.
                 <set field="userTabButtonImage" value="ImageReplace"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -661,7 +728,7 @@ under the License.
                 <entity-one entity-name="Product" value-field="product"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -708,7 +775,7 @@ under the License.
                         <!--<set field="errorMessage" value="There is no a selected product, please insert or select the product to view image(s)."/>-->
                     </actions>
                     <widgets>
-                        <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                        <decorator-screen name="CommonProductImageDecorator" >
                             <decorator-section name="body">
                                 <section>
                                     <condition>
@@ -772,7 +839,7 @@ under the License.
                 <script location="component://product/groovyScripts/catalog/imagemanagement/ImageRecentlyApproved.groovy"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -801,7 +868,7 @@ under the License.
                 <set field="userTabButtonImage" value="ImageRecentlyApproved"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>
@@ -850,7 +917,7 @@ under the License.
                 <set field="parameters.contentIdAccos" from-field="productContentAndInfos[0].contentId"/>
             </actions>
             <widgets>
-                <decorator-screen name="ImageManagementDecorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="CommonProductImageDecorator" >
                     <decorator-section name="body">
                         <section>
                             <condition>

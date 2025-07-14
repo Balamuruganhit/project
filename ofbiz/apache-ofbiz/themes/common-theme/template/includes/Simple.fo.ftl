@@ -30,7 +30,7 @@ under the License.
       <fo:region-after extent="0.5in"/>
     </fo:simple-page-master>
     <fo:simple-page-master master-name="simple-landscape"
-        page-width="${pageLayoutWidth?default("27in")}" page-height="11.5in"
+        page-width="${pageLayoutWidth?default("27in")}" page-height="${pageLayoutHeight?default("11.5in")}"
         margin-top="0.3in" margin-bottom="0.3in"
         margin-left="0.4in" margin-right="0.6in">
       <fo:region-body margin-top="1in" margin-bottom="0.5in"/>

@@ -1423,7 +1423,11 @@ under the License.
         <attribute name="_additionalImageTen_fileName" type="String" mode="IN" optional="true"/>
         <attribute name="_additionalImageTen_contentType" type="String" mode="IN" optional="true"/>
     </service>
-
+    <service name="uploadExcelAndPrint" engine="groovy"
+        location="component://product/groovyScripts/product/import/import.groovy" invoke="uploadExcelAndPrint" auth="true">
+        <description>Delete Product Content Relationship Entity</description>
+        <attribute name="uploadFile" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+    </service>
     <service name="removeProductContentAndImageFile" default-entity-name="ProductContent" engine="groovy"
         location="component://product/groovyScripts/product/imagemanagement/ImageManagementServices.groovy" invoke="removeProductContentAndImageFile" auth="true">
         <description>Remove Content From Product and File Image</description>

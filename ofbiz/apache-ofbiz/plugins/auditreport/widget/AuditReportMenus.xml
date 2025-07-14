@@ -452,7 +452,7 @@
             <condition>
                      <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
             </condition>
-            <link target="riskRegisterSearch"/>
+            <link target="turtleSearch"/>
         </menu-item>
         <menu-item name="kpiIris" title="KPI" >
             <condition>

@@ -84,6 +84,45 @@ def createRiskRegister(){
     }}
 }
 
+def createTurtleDoc(){
+    List<Map<String, Object>> partiesDetails = parameters.TurtleDetails
+        
+    logInfo('Uploaded file found; processing sub-content'+partiesDetails)
+    def docId=partiesDetails[-1].docId
+    Map<String,Object> newHeader =[
+        docId:partiesDetails[-1].docId,
+        revision:partiesDetails[-1].revision,
+        date:partiesDetails[-1].saveDate,
+        approve:partiesDetails[-1].approver ,
+        previewer:partiesDetails[-1].previewer,
+        prepared:partiesDetails[-1].preparer,
+        typeHeader:partiesDetails[-1].type,
+    ]
+    delegator.create("RiskHeader",newHeader)
+    (0..<partiesDetails.size()-1).each{ i ->
+        def parties = partiesDetails[i]
+   if (parties != null && parties instanceof Map) {
+                    def genId = delegator.getNextSeqId("TurtleData")
+                    Map<String, Object> newTable = [
+                        genId: genId,
+                        docId: partiesDetails[-1].docId,
+                        inputData:parties.input,
+                        resources: parties.resources,
+                        risk: parties.risk,
+                        content: parties.content,
+                        personnel:parties.personnel,
+                        oppurtunities: parties.oppurtunities,
+                        process: parties.process,
+                        kpi: parties.kpi,
+                        outputData:parties.output,
+                    ]
+
+                    delegator.create("TurtleData", newTable)
+
+    }}
+    logInfo("Document No"+docId)
+    return success([docId: docId])
+}
 
 if(parameters.approver == 'update'){
 if(parameters.docId || parameters.revision||parameters.approve||parameters.previewer||parameters.date_fld0_value || parameters.prepared){
@@ -99,10 +138,10 @@ if(parameters.docId || parameters.revision||parameters.approve||parameters.previ
             conditions << EntityCondition.makeCondition("subsubsystem", EntityOperator.LIKE,"%" + parameters.previewer+ "%")
         }
         if (parameters.docId) {
-            conditions << EntityCondition.makeCondition("ramsNo", EntityOperator.LIKE, "%" + parameters.docId + "%")
+            conditions << EntityCondition.makeCondition("docId", EntityOperator.LIKE, "%" + parameters.docId + "%")
         }
         if (parameters.prepared) {
-            conditions << EntityCondition.makeCondition("ramsNo", EntityOperator.LIKE, "%" + parameters.prepared + "%")
+            conditions << EntityCondition.makeCondition("prepared", EntityOperator.LIKE, "%" + parameters.prepared + "%")
         }
         if (parameters.date_fld0_value) {
             try {
@@ -168,3 +207,4 @@ if(parameters.docId && parameters.create){
     logInfo('It is working Fine' + fematitle)
     logInfo('It is working Fine' + femaDetail)
 }
+
