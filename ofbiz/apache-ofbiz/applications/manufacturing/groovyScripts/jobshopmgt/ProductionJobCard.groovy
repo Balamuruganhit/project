@@ -70,7 +70,7 @@ if (productionRunId) {
 
         }
         }
-       logInfo("task"+ context.productionRunRoutingTasks)
+       logInfo("task"+ context.productionRunRoutingTasks.estimatedMilliSeconds)
        logInfo("material"+ context.productionRunComponents)
     }
     workorder=from("partyOrder").where('productionRunId',productionRunId).queryOne()

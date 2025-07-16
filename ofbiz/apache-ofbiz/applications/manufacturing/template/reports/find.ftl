@@ -167,11 +167,7 @@ under the License.
                 </#if>
                 <td>${taskDetail.estimatedStartDate!0}</td>
                 <td>${taskDetail.estimatedSetupMillis!0}</td>
-                <#if taskDetail.estimatedSetupMillis? has_content>
-                    <td>${taskDetail.estimatedMilliSeconds * quantity}</td>
-                <#else>
-                    <td ></td>
-                </#if>
+                <td>${taskDetail.estimatedMilliSeconds * quantity!}</td>
                 <td></td>
                 <td></td>
                 <td><input style="height: 3rem;border:none;"/></td>
