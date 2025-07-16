@@ -28,6 +28,8 @@ if (productionRunId) {
         productionRunId = productionRun.getGenericValue().workEffortId
         context.productionRunId = productionRunId
         context.productionRun = productionRun.getGenericValue()
+        quantityProduced = productionRun.getGenericValue().quantityProduced ?: 0.0
+        quantityRejected = productionRun.getGenericValue().quantityRejected ?: 0.0
         // Prepare production run header data
         productionRunData = [:]
         productionRunData.productionRunId = productionRunId
@@ -38,6 +40,8 @@ if (productionRunId) {
         productionRunData.description = productionRun.getDescription()
         productionRunData.quantity = productionRun.getQuantity()
         productionRunData.estimatedStartDate = productionRun.getEstimatedStartDate()
+        productionRunData.quantityProduced = quantityProduced
+        productionRunData.quantityRejected = quantityRejected
         productionRunData.estimatedCompletionDate = productionRun.getEstimatedCompletionDate()
         productionRunData.actualCompletionDate = productionRun.getGenericValue().getTimestamp("actualCompletionDate")
         if(productionRunData.actualCompletionDate){
@@ -52,6 +56,7 @@ if (productionRunId) {
             productionRunData.manufacturerId = manufacturer.partyId
         }
         context.productionRunData = productionRunData
+        logInfo("Load Production Data" + context.productionRunData)
         context.productionRunRoutingTasks = productionRun.getProductionRunRoutingTasks()
         context.productionRunComponents = productionRun.getProductionRunComponents()
         productionRunComponents = productionRun.getProductionRunComponents()

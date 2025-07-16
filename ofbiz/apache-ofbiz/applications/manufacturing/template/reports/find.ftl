@@ -86,7 +86,7 @@ under the License.
             <td >${product.productName!""}</td>
         </tr>
         <tr>
-            <td class="bolder">Production Run / Batch Quantity:</td>
+            <td class="bolder">Production Run / Batch Quantity to be Produced:</td>
             <td colspan="3">${quantity}</td>
             <td class="bolder">Production Run Description:</td>
             <#if productionRunData.description? has_content>
@@ -172,8 +172,8 @@ under the License.
                 <#else>
                     <td ></td>
                 </#if>
-                <td>${taskDetail.actualStartDate!0}</td>
-                <td>${taskDetail.actualCompletionDate!0}</td>
+                <td></td>
+                <td></td>
                 <td><input style="height: 3rem;border:none;"/></td>
             </tr>
         </#list>
@@ -235,21 +235,29 @@ under the License.
             <th colspan="4" >FINAL DETAILS</th>
         </tr>
         <tr>
-            <td colspan="1">Date of Completion:</td>
+            <td colspan="1" class="bolder">Date of Completion:</td>
             <#if completionProduction?has_content>
                 <td colspan="1">${completionProduction}</td>
             <#else>
                 <td colspan="1" style="visibility: hidden;">23-11</td>
             </#if>
-            <td rowspan="3" colspan="1">REMARKS/SPECIAL INSTRUCTIONS:</td>
-            <td rowspan="3" colspan="1"><textarea style="height:7rem;border:none;"></textarea></td>
+            <td rowspan="5" colspan="1" class="bolder">REMARKS/SPECIAL INSTRUCTIONS:</td>
+            <td rowspan="5" colspan="1"><textarea style="height:7rem;border:none;"></textarea></td>
         </tr>
         <tr>
-            <td>Date of Final Inspection:</td>
+            <td class="bolder">Date of Final Inspection:</td>
             <td></td>
         </tr>
         <tr>
-            <td>Inventory No and Date:</td>
+            <td class="bolder">Quantity Produced</td>
+            <td>${productionRunData.quantityProduced!}</td>
+        </tr>
+        <tr>
+            <td class="bolder">Quantity Rejected</td>
+            <td>${productionRunData.quantityRejected!}</td>
+        </tr>
+        <tr>
+            <td class="bolder"> Inventory No and Date:</td>
             <#list inventoryItems as inventoryItem>
                 <td>${inventoryItem.inventoryItemId} - ${invDate}</td>
             </#list>

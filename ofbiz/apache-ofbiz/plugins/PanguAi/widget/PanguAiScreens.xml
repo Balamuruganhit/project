@@ -116,7 +116,7 @@ under the License.
         <section>
             <actions>
                 <script location="component://PanguAi/groovyScripts/femaService.groovy"/>
-                <set field="titleProperty" value="Find FEMA Analysis"/>
+                <set field="titleProperty" value="Find FMEA Analysis"/>
                 <set field="headerItem" value="fema"/><!-- this highlights the selected menu-item with name "main" -->
             </actions>
             <widgets>
