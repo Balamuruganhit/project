@@ -167,7 +167,7 @@ under the License.
                 </#if>
                 <td>${taskDetail.estimatedStartDate!0}</td>
                 <td>${taskDetail.estimatedSetupMillis!0}</td>
-                <td>${taskDetail.estimatedMilliSeconds * quantity!}</td>
+                <td> ${(taskDetail.estimatedMilliSeconds!0) * quantity}</td>
                 <td></td>
                 <td></td>
                 <td><input style="height: 3rem;border:none;"/></td>
