@@ -36,7 +36,7 @@ under the License.
     <table id="mytable">
  <table class="mytable">    
 
-
+<#assign i=1/>
         <tr>
             <td class="bolder">Customer Name:</td>
             <#if customer?has_content>
@@ -58,7 +58,7 @@ under the License.
             </#if>
         </tr>
         <tr>
-            <td class="bolder">Product ID:</td>
+            <td class="bolder">Part ID:</td>
             <td colspan="3">${productionRunData.productId} </td>
             <td class="bolder">WO No:</td>
              <#if workOrderNumber?has_content>
@@ -74,14 +74,16 @@ under the License.
             </#if>
         </tr>
         <tr>
-            <td class="bolder">Product Name:</td>
+            <td class="bolder">Part Name:</td>
             <td colspan="3">${product.internalName}</td>
-            <td class="bolder">Product Description:</td>
+            <td class="bolder">Part Description:</td>
             <#if product.description?has_content>
-                <td colspan="3">${product.description}</td>
+                <td >${product.description}</td>
             <#else>
-                <td colspan="3"></td>
+                <td ></td>
             </#if>
+            <td class="bolder">Drawing No:</td>
+            <td >${product.productName!""}</td>
         </tr>
         <tr>
             <td class="bolder">Production Run / Batch Quantity:</td>
@@ -110,31 +112,34 @@ under the License.
     <h1></h1>
     <table class="mytable">
         <tr>
-            <th colspan="4">RAW MATERIAL</th>
+            <th colspan="5">RAW MATERIAL</th>
         </tr>
         <tr>
             <th>Sl No</th>
-            <th>Material</th>
+            <th>Part No</th>
+            <th>Part Name</th>
             <th>Grade/Description</th>
             <th>Qty</th>
         </tr>
         <#list productionRunComponents as component>
-            <#list 1..lengthProduction as i>
+            <#assign product = delegator.findOne("Product", {"productId": component.productId}, false)>
             <tr>
                 <td>${i}</td>
                 <td>${component.productId}</td>
+                <td>${product.internalName}</td>
                 <td><input/></td>
                 <td>${component.estimatedQuantity}</td>
             </tr>
-           </#list> 
+          <#assign i++/> 
         </#list>
     </table>
     <h1></h1>
     <table class="mytable">
         <tr>
-            <th colspan="9">ROUTING TASKS</th>
+            <th colspan="10">ROUTING TASKS</th>
         </tr>
         <tr>
+            <th>Seq No</th>
             <th>OPERATIONS</th>
             <th>MACHINE</th>
             <th>OPERATOR</th>
@@ -147,6 +152,7 @@ under the License.
         </tr>
         <#list productionRunRoutingTasks as taskDetail>
             <tr>
+                <td>${taskDetail.priority}</td>
                 <td>${taskDetail.workEffortName}</td>
                 <#if taskDetail.fixedAssetId? has_content>
                     <td>${taskDetail.fixedAssetId}</td>
@@ -162,12 +168,12 @@ under the License.
                 <td>${taskDetail.estimatedStartDate!0}</td>
                 <td>${taskDetail.estimatedSetupMillis!0}</td>
                 <#if taskDetail.estimatedSetupMillis? has_content>
-                    <td>${taskDetail.estimatedSetupMillis * quantity}</td>
+                    <td>${taskDetail.estimatedMilliSeconds * quantity}</td>
                 <#else>
                     <td ></td>
                 </#if>
-                <td>${taskDetail.estimatedSetupMillis!0}</td>
-                <td>${(taskDetail.estimatedSetupMillis!0) * quantity}</td>
+                <td>${taskDetail.actualStartDate!0}</td>
+                <td>${taskDetail.actualCompletionDate!0}</td>
                 <td><input style="height: 3rem;border:none;"/></td>
             </tr>
         </#list>

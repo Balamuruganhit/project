@@ -65,7 +65,8 @@ if (productionRunId) {
 
         }
         }
-        logInfo('Uploaded file found; processing sub-content'+ productionRunComponents)
+       logInfo("task"+ context.productionRunRoutingTasks)
+       logInfo("material"+ context.productionRunComponents)
     }
     workorder=from("partyOrder").where('productionRunId',productionRunId).queryOne()
     if(workorder){
