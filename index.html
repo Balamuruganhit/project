@@ -1,206 +1,150 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Turtle Diagram</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 0;
-    }
-
-    .title {
-      font-size: 24px;
-      font-weight: bold;
-      margin: 20px;
-    }
-
-    .container {
-      position: relative;
-      width: 1200px;
-      margin: auto;
-    }
-
-    .diagram {
-      display: grid;
-      grid-template-columns: 150px 1fr 1fr 1fr 150px;
-      grid-template-rows: auto auto auto;
-      gap: 35px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .box {
-      border: 2px solid #0c2d7c;
-      border-radius: 10px;
-      padding: 15px;
-      font-size: 16px;
-      font-weight: bold;
-      color: #c00;
-      background-color: white;
-      text-align: center;
-    }
-
-    .box small {
-      display: block;
-      font-size: 12px;
-      color: black;
-      margin-top: 4px;
-    }
-
-    .center-box {
-      grid-column: 3;
-      grid-row: 2;
-      background: white;
-      color: black;
-      font-weight: bold;
-      position: relative;
-      clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-      padding: 40px 10px;
-      z-index: 2;
-      border: 2px solid #0c2d7c;
-    }
-
-    .label-vertical {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      font-size: 18px;
-      font-weight: bold;
-      color: #c00;
-      border: 2px solid #0c2d7c;
-      border-radius: 10px;
-      padding: 10px;
-    }
-
-    svg.arrows {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-    .oval-box {
-  display: inline-block;
-  padding: 20px 40px;
-  border: 2px solid #0c2d7c;
-  border-radius: 50%;
-  background: white;
-  color: black;
-  font-weight: bold;
-  text-align: center;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #eef2f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.login-box {
+  background: white;
+  border-radius: 12px;
+  padding: 30px 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #5b9bd5;
+  box-shadow: 0 0 4px rgba(91, 155, 213, 0.6);
+}
+
+.extras {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.forgot-password {
+  font-size: 13px;
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.arrow-label {
+  position: absolute;
+  top: -20px;
+  right: -40px;
+  display: flex;
+  align-items: center;
+  transform: rotate(-10deg);
+}
+
+.arrow-label span {
+  background-color: #007BFF;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid #007BFF;
+}
+
+
   </style>
 </head>
 <body>
-  <div class="title">TURTLE DIAGRAM</div>
-  <div class="container" id="container">
-    <svg class="arrows" id="arrowLayer">
-      <defs>
-        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
-          <path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="blue" stroke-width="2"/>
-        </marker>
-      </defs>
-    </svg>
+  <div class="login-container">
+    <div class="login-box">
+      <form>
+        <h2>Welcome Back</h2>
+        
+        <label for="username">User Name:</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" required />
 
-    <div class="diagram" id="diagram">
-      <div class="label-vertical box" id="supplier" style="grid-row: 1 / span 3;">Supplier A</div>
-      <div class="box" id="resources" style="grid-column: 2; grid-row: 1;">To properly align the arrows so they start and end at the correct edges of the elements (not just center-to-center), you'll need to calculate arrow anchor points based on the direction of the arrow — top, bottom, left, or righResources<small>Staff, Equipment</small></div>
-      <div class="box" id="risks" style="grid-column: 3; grid-row: 1;">To properly align the arrows so they start and end at the correct edges of the elements (not just center-to-center), you'll need to calculate arrow anchor points based on the direction of the arrow — top, bottom, left, or righRisks<small>Delays, Errors</small></div>
-      <div class="box" id="personnel" style="grid-column: 4; grid-row: 1;">Personnel<small> To properly align the arrows so they start and end at the correct edges of the elements (not just center-to-center), you'll need to calculate arrow anchor points based on the direction of the arrow — top, bottom, left, or righOperators</small></div>
-      <div class="box" id="inputs" style="grid-column: 2; grid-row: 2;">Inputs To properly align the arrows so they start and end at the correct edges of the elements (not just center-to-center), you'll need to calculate arrow anchor points based on the direction of the arrow — top, bottom, left, or righ<small>Raw Materials</small></div>
-      <div id="process" style="grid-column: 3; grid-row: 2; display: flex; justify-content: center; align-items: center;">
-  <div class="oval-box">Your content here</div>
-</div>
-      <div class="box" id="outputs" style="grid-column: 4; grid-row: 2;">Outputs<small>Finished Goods</small></div>
-      <div class="box" id="instructions" style="grid-column: 2; grid-row: 3;">Instructions To properly align the arrows so they start and end at the correct edges of the elements (not just center-to-center), you'll need to calculate arrow anchor points based on the direction of the arrow — top, bottom, left, or righ<small>Work Guides</small></div>
-      <div class="box" id="opportunities" style="grid-column: 3; grid-row: 3;">Opportunities<small>Efficiency</small></div>
-      <div class="box" id="kpis" style="grid-column: 4; grid-row: 3;">KPIs<small>Defect Rate</small></div>
-      <div class="label-vertical" id="customer" style="grid-column: 5; grid-row: 1 / span 3;writing-mode: sideways-rl;">Customer B</div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required />
+
+        <div class="extras">
+          <a href="#" class="forgot-password">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="login-button">Login</button>
+      </form>
+
+      <div class="arrow-label">
+        <span>Sign In</span>
+        <div class="arrow"></div>
+      </div>
     </div>
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-  <script>
-  
-
-    function drawArrow(fromId, toId) {
-  const fromEl = document.getElementById(fromId);
-  const toEl = document.getElementById(toId);
-  const svg = document.getElementById("arrowLayer");
-  const container = document.getElementById("container").getBoundingClientRect();
-  const from = fromEl.getBoundingClientRect();
-  const to = toEl.getBoundingClientRect();
-
-  const fromCenterX = from.left + from.width / 2 - container.left;
-  const fromCenterY = from.top + from.height / 2 - container.top;
-  const toCenterX = to.left + to.width / 2 - container.left;
-  const toCenterY = to.top + to.height / 2 - container.top;
-
-  const dx = toCenterX - fromCenterX;
-  const dy = toCenterY - fromCenterY;
-  const angle = Math.atan2(dy, dx);
-
-  // Dynamic offsets based on direction
-  const fromOffsetX = (from.width / 2) * Math.cos(angle);
-  const fromOffsetY = (from.height / 2) * Math.sin(angle);
-  const toOffsetX = (to.width / 2) * Math.cos(angle);
-  const toOffsetY = (to.height / 2) * Math.sin(angle);
-
-  const startX = fromCenterX + fromOffsetX;
-  const startY = fromCenterY + fromOffsetY;
-  const endX = toCenterX - toOffsetX;
-  const endY = toCenterY - toOffsetY;
-
-  const arrow = document.createElementNS("http://www.w3.org/2000/svg", "line");
-  arrow.setAttribute("x1", startX);
-  arrow.setAttribute("y1", startY);
-  arrow.setAttribute("x2", endX);
-  arrow.setAttribute("y2", endY);
-  arrow.setAttribute("stroke", "blue");
-  arrow.setAttribute("stroke-width", "2");
-  arrow.setAttribute("marker-end", "url(#arrowhead)");
-  svg.appendChild(arrow);
-}
-
-
-    function drawAllArrows() {
-  const connections = [
-    ["resources", "process"],
-    ["personnel", "process"],
-   
-    ["instructions", "process"],
-   
-    ["kpis", "process"],
-    
-  ];
-
-  connections.forEach(([from, to]) => drawArrow(from, to));
-}
-
-    window.onload = () => {
-      drawAllArrows();
-      setTimeout(exportPDF, 800);
-    };
-
-    function exportPDF() {
-      const { jsPDF } = window.jspdf;
-      const container = document.getElementById("container");
-
-      html2canvas(container).then(canvas => {
-        const imgData = canvas.toDataURL("image/png");
-        const pdf = new jsPDF("l", "pt", "a4");
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const imgProps = pdf.getImageProperties(imgData);
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-        pdf.addImage(imgData, "PNG", 20, 20, pdfWidth - 40, pdfHeight);
-        pdf.save("turtle_diagram.pdf");
-      });
-    }
-  </script>
 </body>
 </html>
+

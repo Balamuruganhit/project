@@ -29,7 +29,7 @@ under the License.
 <div id="loginBar"><div id="company-logo-login"></div></div>
 <center>
   <div class="screenlet login-screenlet" id="tester">
-    <div class="screenlet-title-bar">
+    <div class="screenlet-title-bar triangle">
       <h3>${uiLabelMap.CommonRegistered}</h3>
     </div>
     <div class="screenlet-body">

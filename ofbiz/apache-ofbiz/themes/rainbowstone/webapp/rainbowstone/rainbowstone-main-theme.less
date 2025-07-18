@@ -1217,7 +1217,7 @@ a.user-pref-btn {
     // top: @app-bar-height - 32px;
     // left: 15px;
     // padding: 5px 10px 5px 10px;
-    background-color: #394A53;
+    background-color: #0c2d7c;
     color: yellow;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
@@ -1234,6 +1234,9 @@ a.user-pref-btn {
   }
 }
 
+  .triangle{
+    background: white;
+  }
 .login-screenlet {
   display: flex;
   flex-direction: column;
@@ -1243,38 +1246,59 @@ a.user-pref-btn {
   /* margin-top: 15%; */
   position: relative;
   box-shadow: 3px 3px 12px #000000;
-  top: 7rem;
-
+  top: 9rem;
+.login-screenlet::-webkit-scrollbar {
+      display: none;
+    }
   .screenlet-title-bar {
     display: flex;
+    z-index: 100;
     align-content: center;
     justify-content: center;
     margin: 0;
     padding: 0;
+        position: absolute;
+    width: 14rem;
+    height: 10rem;
+    transform: rotate(45deg);
+    top: 6rem;
+    left: -9rem;
+    background: white;
 
     h3 {
+      font-family: 'Quicksand', sans-serif;
       padding-top: 6px;
       padding-bottom: 2px;
-      background-color: #394a53 !important;
-      color: yellow;
-
-      width: 100%;
+      background-color: white !important;
+      color: black;
+      transform: rotate(-45deg);
+    width: 5rem;
+    border-radius: 1.9rem;
+    font-size: 1.1rem;
+    height: 2rem;
+    position: relative;
+    left: 4.5rem;
+    top: 1rem;
       text-shadow: none;
-      font-size: 25px;
+      font-size: 1.1rem;
     }
   }
 
   .screenlet-body {
-    background-color: #394a53 !important;
+    background-color: #0c2d7c !important;
 
     form {
+      font-family: 'Quicksand', sans-serif;
+      position:relative;
+      left: 5rem; 
+      
       height: 23rem;
-      background-color: #394a53;
+      background-color: #0c2d7c;
       .button {
         width: 150px;
         border-radius: 4px;
         background: none;
-        background-color: yellow;
+        background-color: white;
         color: #394a53;
         height: 40px;
         text-shadow: none;
@@ -1283,6 +1307,7 @@ a.user-pref-btn {
       }
 
       table {
+        
         tr {
           width: 100%;
 
@@ -1293,8 +1318,9 @@ a.user-pref-btn {
           }
 
           input {
-            width: 19rem;
+            width: 16rem;
             margin: 1rem;
+            padding-left: 20px;
             border-radius: 20px;
             height: 2rem;
           }
@@ -1304,10 +1330,13 @@ a.user-pref-btn {
             width: 10rem;
             border-radius: px;
             background: none;
-            background-color: yellow;
+            background-color: white;
             color: #394a53;
             text-shadow: none;
             height: 3rem;
+            left: -15%;
+            position: relative;
+            top: 3%;
           }
 
           [name="GET_PASSWORD_HINT"] {
@@ -1338,6 +1367,9 @@ a.user-pref-btn {
     a {
       color: @font-color-for-main;
       font-size: 15px;
+      position:relative;
+      left: -15%;
+      top:-5%;
     }
   }
 }
@@ -1365,8 +1397,12 @@ a.user-pref-btn {
   border: solid 1px @grey;
   height: auto !important;
   margin-bottom: 1em;
-  overflow: auto;
+  overflow: hidden;
 }
+.screenlet::-webkit-scrollbar {
+      display: none;
+      
+    }
 
 .screenlet-body {
   background-color: #ffffff;
@@ -2017,7 +2053,7 @@ input[type="button"] {
 /* ---------------------- */
 
 #footer {
-  background: #394A53;
+  background: #0c2d7c ;
   border-top: 0.1em inset #000;
   padding: 0.5em 0 0.5em 0.5em;
 
@@ -2033,12 +2069,12 @@ input[type="button"] {
   z-index: 10;
 
   span {
-    color: yellow;
+    color: white;
     padding: 10px;
   }
 
   a {
-    color:yellow;
+    color:white ;
     font-weight: normal;
   }
 }
