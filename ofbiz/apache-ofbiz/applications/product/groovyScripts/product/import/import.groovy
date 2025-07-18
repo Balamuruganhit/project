@@ -25,7 +25,7 @@ def uploadExcelAndPrint() {
         uploadedFile.get(bytes)
 
         def workbook = new XSSFWorkbook(new ByteArrayInputStream(bytes))
-        def sheet = workbook.getSheetAt(1)
+        def sheet = workbook.getSheetAt(0)
       
     List<String> headers = ["productId", "internalName", "facilityId", "productTypeId","brandName","quantityUomId","productName","price","productPriceTypeId","introductionDate","description"]
     permUserLogin = from("UserLogin").where("userLoginId", "system").queryOne();
