@@ -27,7 +27,7 @@ under the License.
     <screen name="CommonProductDecorator">
         <section>
             <actions>
-                <set field="headerItem" value="products"/>
+                
                 <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="OrderUiLabels" map-name="uiLabelMap" global="true"/>
                 <set field="productId" from-field="parameters.productId" global="true"/>
@@ -1470,15 +1470,16 @@ under the License.
      <screen name="importScreen">
         <section>
             <actions>
-                <set field="titleProperty" value="PageTitleEditProduct"/>
-                <set field="tabButtonItem" value="EditProduct"/>
-                <set field="labelTitleProperty" value="ProductProduct"/>
+                <set field="headerItem" value="import"/>
             </actions>
             <widgets>
                 <decorator-screen name="CommonProductDecorator" location="${parameters.productDecoratorLocation}">
                     <decorator-section name="body">
-                          <screenlet title="${uiLabelMap.PageTitleEditProductTags}">
+                          <screenlet title="File Based Data Import">
                             <include-form name="ImportParty" location="component://product/widget/catalog/ProductForms.xml"/>
+                            <platform-specific>
+                                <html><html-template multi-block="true" location="component://product/template/product/importProductAvailableData.ftl"/></html>
+                            </platform-specific>
                         </screenlet>
                     </decorator-section>
                 </decorator-screen>

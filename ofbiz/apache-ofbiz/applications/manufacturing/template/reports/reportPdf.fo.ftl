@@ -142,7 +142,7 @@ under the License.
                     <fo:table-row>
                         <fo:table-cell border="1pt solid black" padding="3.4pt"><fo:block>${i}</fo:block></fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt"><fo:block>${component.productId}</fo:block></fo:table-cell>
-                        <fo:table-cell border="1pt solid black" padding="3.4pt"></fo:table-cell>
+                        <fo:table-cell border="1pt solid black" padding="3.4pt"><fo:block></fo:block></fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt"><fo:block>${component.estimatedQuantity}</fo:block></fo:table-cell>
                     </fo:table-row>
                 </#list>
@@ -170,14 +170,10 @@ under the License.
             <#list productionRunRoutingTasks as taskDetail>
                 <fo:table-row>
                     <fo:table-cell border="1pt solid black" padding="3.4pt" text-align="center"><fo:block>${taskDetail.workEffortName}</fo:block></fo:table-cell>
-                     <fo:table-cell border="1pt solid black" padding="3.4pt" text-align="center" width="100pt">
+                     <fo:table-cell border="1pt solid black" padding="3.4pt" text-align="center">
                         <fo:block wrap-option="wrap" linefeed-treatment="preserve" white-space-collapse="false">
-                            <#if taskDetail.fixedAssetId?has_content>
-                                ${taskDetail.fixedAssetId}
-                            <#else>
-                                <fo:block></fo:block>
-                            </#if>
-                        </fo:block>
+  ${taskDetail.fixedAssetId!""}
+</fo:block>
                      </fo:table-cell>
                         <fo:table-cell border="1pt solid black" padding="3.4pt" text-align="center"><#if taskDetail.reservPersons?has_content>
                             <fo:block >${taskDetail.reservPersons}</fo:block>

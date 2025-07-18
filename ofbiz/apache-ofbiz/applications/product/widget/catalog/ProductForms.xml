@@ -2275,7 +2275,11 @@ under the License.
         <field name="submitButton" title="${uiLabelMap.CommonUpdate}" use-when="productKeywordList.size != 0"><submit button-type="button"/></field>
     </form>
     <form name="ImportParty" type="upload" target="uploadExcelGroovy" title="" >
-        <field name="uploadFile" title="${uiLabelMap.ContentFile}"><file/></field>
+        <field name="uploadFile" title="Upload Excel File"><file/></field>
         <field name="submitButton" title="${uiLabelMap.CommonUpload}"><submit button-type="button"/></field>
+    </form>
+     <form name="AvailbaleProduct" type="list" use-row-submit="true" target=""  title="" list-name="availableProduct"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar" paginate-target="">
+        <field name="internalName" title="Part Name">   <display/></field>
     </form>
  </forms>
