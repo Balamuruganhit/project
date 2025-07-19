@@ -408,7 +408,8 @@ under the License.
                 <parameter param-name="productId"/>
             </link>
         </menu-item>
-        <menu-item name="EditProductContent" title="${uiLabelMap.ProductContent}">
+        <!-- Hide for IEIPL Demo -->
+        <!-- <menu-item name="EditProductContent" title="${uiLabelMap.ProductContent}">
             <link target="EditProductContent">
                 <parameter param-name="productId"/>
             </link>
@@ -417,12 +418,12 @@ under the License.
             <link target="EditProductGeos">
                 <parameter param-name="productId"/>
             </link>
-        </menu-item>
-        <menu-item name="EditProductGoodIdentifications" title="${uiLabelMap.CommonIds}">
+        </menu-item> -->
+        <!-- <menu-item name="EditProductGoodIdentifications" title="${uiLabelMap.CommonIds}">
             <link target="EditProductGoodIdentifications">
                 <parameter param-name="productId"/>
             </link>
-        </menu-item>
+        </menu-item> -->
         <menu-item name="EditProductCategories" title="${uiLabelMap.ProductCategories}">
             <link target="EditProductCategories">
                 <parameter param-name="productId"/>
@@ -453,11 +454,11 @@ under the License.
                 <parameter param-name="productId"/>
             </link>
         </menu-item>
-        <menu-item name="EditProductFeatures" title="${uiLabelMap.ProductFeatures}">
+        <!-- <menu-item name="EditProductFeatures" title="${uiLabelMap.ProductFeatures}">
             <link target="EditProductFeatures">
                 <parameter param-name="productId"/>
             </link>
-        </menu-item>
+        </menu-item> -->
         <menu-item name="EditProductFacilities" title="${uiLabelMap.ProductFacilities}">
             <link target="EditProductFacilities">
                 <parameter param-name="productId"/>
@@ -479,7 +480,7 @@ under the License.
                 <parameter param-name="productId"/>
             </link>
         </menu-item>
-        <menu-item name="ViewProductAgreements" title="${uiLabelMap.ProductAgreements}">
+        <!-- <menu-item name="ViewProductAgreements" title="${uiLabelMap.ProductAgreements}">
             <link target="ViewProductAgreements">
                 <parameter param-name="productId"/>
             </link>
@@ -488,7 +489,7 @@ under the License.
             <link target="EditProductGlAccounts">
                 <parameter param-name="productId"/>
             </link>
-        </menu-item>
+        </menu-item> -->
         <menu-item name="EditProductPaymentMethodTypes" title="${uiLabelMap.ProductPaymentTypes}">
             <link target="EditProductPaymentMethodTypes">
                 <parameter param-name="productId"/>
@@ -499,21 +500,21 @@ under the License.
                 <parameter param-name="productId"/>
             </link>
         </menu-item>
-        <menu-item name="EditProductMeters" title="${uiLabelMap.ProductMeters}">
+        <!-- <menu-item name="EditProductMeters" title="${uiLabelMap.ProductMeters}">
             <link target="EditProductMeters">
                 <parameter param-name="productId"/>
             </link>
-        </menu-item>
+        </menu-item> -->
         <menu-item name="EditProductSubscriptionResources" title="${uiLabelMap.ProductSubscriptionResources}">
             <link target="EditProductSubscriptionResources">
                 <parameter param-name="productId"/>
             </link>
         </menu-item>
-        <menu-item name="EditProductQuickAdmin" title="${uiLabelMap.ProductQuickAdmin}">
+        <!-- <menu-item name="EditProductQuickAdmin" title="${uiLabelMap.ProductQuickAdmin}">
             <link target="EditProductQuickAdmin">
                 <parameter param-name="productId"/>
             </link>
-        </menu-item>
+        </menu-item> -->
         <menu-item name="EditVendorProduct" title="${uiLabelMap.PartyVendor}">
             <link target="EditVendorProduct">
                 <parameter param-name="productId"/>
@@ -554,7 +555,7 @@ under the License.
                 <parameter param-name="productId"/>
             </link>
         </menu-item>
-        <menu-item name="EditProductParties" title="${uiLabelMap.PartyParties}">
+        <!-- <menu-item name="EditProductParties" title="${uiLabelMap.PartyParties}">
             <link target="EditProductParties">
                 <parameter param-name="productId"/>
             </link>
@@ -576,7 +577,7 @@ under the License.
             <link target="ViewProductGroupOrder">
                 <parameter param-name="productId"/>
             </link>
-        </menu-item>
+        </menu-item> -->
         <menu-item name="Imagemanagement" title="Design &amp; Drawing Management">
             <link target="ListImageGallery">
                 <parameter param-name="productId"/>
