@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3x3 Grid Boxes</title>
+  <style>
+    
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: minmax(4rem , auto) minmax(4rem , auto) minmax(4rem , auto) minmax(4rem , auto) minmax(4rem , auto);
+      
+      gap: 20px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      grid-template-areas: "lg-sb-lf tp-lf tp-md tp-rg lg-sb-rg"
+                           "lg-sb-lf md-lf md-md md-rg lg-sb-rg"
+                           "lg-sb-lf bt-lf bt-md bt-rg lg-sb-rg";
+    }
+    #lg-sb-lf{
+        grid-area: lg-sb-lf;
+    }
+    #tp-lf{
+        grid-area:tp-lf;
+    }
+    #tp-md{
+        grid-area:tp-md;
+    }
+    #tp-rg{
+        grid-area:tp-rg;
+    }
+    #lg-sb-rg{
+        grid-area:lg-sb-rg;
+    }
+    #md-lf{
+        grid-area:md-lf;
+    }
+    #md-md{
+        grid-area:md-md;
+    }
+    #md-rg{
+        grid-area:md-rg;
+    }
+    #bt-lf{
+        grid-area:bt-lf;
+    }
+    #bt-md{
+        grid-area:bt-md;
+    }
+    #bt-rg{
+        grid-area:bt-rg;
+    }
+
+    .box {
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      border:4px solid #0c2d7c;
+      font-weight: bold;
+      border-radius: 8px;
+      font-size: 1rem;
+      line-break: normal;
+    }
+    .hexagon {
+      
+      background-color: #0c2d7c;
+      clip-path: polygon(
+        25% 0%, 75% 0%,
+        100% 50%,
+        75% 100%, 25% 100%,
+        0% 50%
+      );
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      color:#e0e0e0;
+      font-weight: bold;
+      
+    }
+     .arrow {
+      position: absolute;
+      height: 2px;
+      background: black;
+      transform-origin: 0 0;
+    }
+
+    .arrow::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: -5px;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 10px solid black;
+    }
+    table {
+  border-collapse: collapse;
+  font-size:0.7rem;
+}
+td,
+th {
+  border: 3px solid #0c2d7c;
+  padding: 1px 2px;
+}
+  </style>
+</head>
+<body>
+ <div id="supplier" class="arrow"></div>
+ <div id="input" class="arrow"></div>
+ <div id="resources" class="arrow"></div>
+ <div id="risk" class="arrow"></div>
+ <div id="personel" class="arrow"></div>
+ <div id="work" class="arrow"></div>
+ <div id="oppur" class="arrow"></div>
+ <div id="kpi" class="arrow"></div>
+ <div id="output" class="arrow"></div>
+ <div id="customer" class="arrow"></div>
+  <div class="grid-container">
+    <div class="box" id="lg-sb-lf">
+        <h4>Supplier</h4>
+        <div style="padding: 1rem;">u're encountering a critical bug in your code: the variables x1, y1, x2, y2 are declared inside each if block using const, so they're not accessible outside those blocks — which is exactly where you're trying to use them in drawArrow(x1, x2, y1, y2).</div>
+    </div>
+    <div class="box" id="tp-lf"><h4>Resources</h4>
+        <div style="padding: 1rem;">u're encountering a critical bug in your code: the variables x1, y1, x2, y2 are declared inside each if block using const, so they're not accessible outside those blocks — which is exactly where you're trying to use them in drawArrow(x1, x2, y1, y2).</div>
+    </div>
+    <div class="box" id="tp-md"><h4>Risk</h4>
+        <div style="padding: 1rem;">u're encountering a critical bug in your code: the variables x1, y1, x2, y2 are declared inside each if block using const, so they're not accessible outside those blocks — which is exactly where you're trying to use them in drawArrow(x1, x2, y1, y2).</div>
+    </div>
+    <div class="box" id="tp-rg"><h4>Personnel</h4>
+        <div style="padding: 1rem;">u're encountering a critical bug in your code: the variables x1, y1, x2, y2 are declared inside each if block using const, so they're not accessible outside those blocks — which is exactly where you're trying to use them in drawArrow(x1, x2, y1, y2).</div>
+    </div>
+    <div class="box" id="md-lf"><h4>Inputs</h4>
+        <div style="padding: 1rem;">u're encountering a critical bug in your code: the variables x1, y1, x2, y2 are declared inside each if block using const, so they're not accessible outside those blocks — which is exactly where you're trying to use them in drawArrow(x1, x2, y1, y2).</div>
+    </div>
+    <div class="box hexagon" id="md-md"><h4>Process</h4>
+            <div style="padding: 1rem 3rem;text-wrap:now-wrap;">u're encountering a critical bug in your code: the variables x1, y1, x2, y2 are declared inside each if block using const, so they're not accessible outside those blocks — which is exactly where you're trying to use them in drawArrow(x1, x2, y1, y2).</div>
+
+    </div>
+    <div class="box" id="md-rg"><h4>Outputs</h4>
+                <div style="padding: 1rem;">u're encountering a critical bug in your code: the variables x1, y1, x2, y2 are declared inside each if block using const, so they're not accessible outside those blocks — which is exactly where you're trying to use them in drawArrow(x1, x2, y1, y2).</div>
+    </div>
+    <div class="box" id="bt-lf"><h4>Content/Work Instruction</h4>
+        <div style="padding: 1rem;"> u're encountering a critical bug in your code: the variables x1, y1, x2, y2 are declared inside each if block using const, so they're not accessible outside those blocks — which is exactly where you're trying to use them in drawArrow(x1, x2, y1, y2).</div>
+    </div>
+    <div class="box" id="bt-md"><h4>Opportunites</h4>
+        <div style="padding: 1rem;" contenteditable="true"></div>
+    </div>
+    <div class="box" id="bt-rg"><h4>KPI 's</h4>      
+        <table>
+            <thead>
+                <th>KPI Objective</th>
+                <th>Target</th>
+                <th>Achieved</th>
+                <th>Period</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hello</td>
+                    <td>89</td>
+                    <td>80</td>
+                    <td>it will done</td>
+                </tr>
+                <tr>
+                    <td>Hello</td>
+                    <td>89</td>
+                    <td>80</td>
+                    <td>it will done</td>
+                </tr>
+                <tr>
+                    <td>Hello</td>
+                    <td>89</td>
+                    <td>80</td>
+                    <td>it will done</td>
+                </tr>
+                <tr>
+                    <td>Hello  oppurtunities</td>
+                    <td>89</td>
+                    <td>80</td>
+                    <td>it will done</td>
+                </tr>
+                 <tr>
+                    <td>Hello  oppurtunities</td>
+                    <td>89</td>
+                    <td>80</td>
+                    <td>it will done</td>
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+    <div class="box" id="lg-sb-rg"><h4>Customer</h4>
+        <div style="padding: 1rem;"> u're encountering a critical bug in your code: the variables x1, y1, x2, y2 are declared inside each if block using const, so they're not accessible outside those blocks — which is exactly where you're trying to use them in drawArrow(x1, x2, y1, y2).</div>
+    </div>
+
+  </div>
+
+</body>
+<script>
+    const sideBoxLeft = document.getElementById("lg-sb-lf");
+    const TopBoxLeft = document.getElementById("tp-lf");
+    const TopBoxMiddle = document.getElementById("tp-md");
+    const TopBoxRight= document.getElementById("tp-rg");
+    const box1 = document.getElementById("md-lf");
+    const box2 = document.getElementById("md-md");
+    const box3 = document.getElementById("md-rg");
+    const BottomBoxLeft = document.getElementById("bt-lf");
+    const BottomBoxMiddle = document.getElementById("bt-md");
+    const BottomBoxRight = document.getElementById("bt-rg");
+    const sideBoxRight = document.getElementById("lg-sb-rg");
+    const supplier = document.getElementById("supplier");
+    const input = document.getElementById("input");
+    const resources = document.getElementById("resources");
+    const risk = document.getElementById("risk");
+    const personel = document.getElementById("personel");
+    const work = document.getElementById("work");
+    const oppur = document.getElementById("oppur");
+    const kpi = document.getElementById("kpi");
+    const output = document.getElementById("output");
+    const customer = document.getElementById("customer");
+
+    
+    function sideToside(box1,box2,start,end,arrow) {
+      const rect1 = box1.getBoundingClientRect();
+      const rect2 = box2.getBoundingClientRect();
+
+      let x1, y1, x2, y2;
+      if(start == "middle" && end == "middle"){
+       x1 = rect1.right;
+       y1 = rect1.top + rect1.height/2;
+       x2 =  rect2.left ;
+       y2 = rect2.top + rect2.height/2;
+      }else if(start == "topcorner" && end == "bottomcorner"){
+         x1 = rect1.right;
+         y1 = rect1.top;
+         x2 =  rect2.left ;
+         y2 = rect2.bottom;
+      }
+      else if(start == "bottomcorner" && end == "topcorner"){
+         x1 = rect1.right;
+         y1 = rect1.bottom ;
+         x2 =  rect2.left ;
+         y2 = rect2.top ;
+      }
+      else if(start == "bottommiddle" && end == "topmiddle"){
+         x1 = rect1.left + rect1.width/2;
+         y1 = rect1.bottom ;
+         x2 =  rect2.left + rect2.width/2 ;
+         y2 = rect2.top ;
+      }else{
+         x1 = rect1.left;
+         y1 = rect1.bottom;
+         x2 =  rect2.right ;
+         y2 = rect2.top;
+      }
+
+      
+      const dx = x2 - x1;
+      const dy = y2 - y1;
+      const length = Math.sqrt(dx * dx + dy * dy);
+      const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+      arrow.style.left = `${x1}px`;
+      arrow.style.top = `${y1}px`;
+      arrow.style.width = `${length}px`;
+      arrow.style.transform = `rotate(${angle}deg)`;
+    }
+   
+    window.addEventListener('DOMContentLoaded', ()=>{
+        sideToside(sideBoxLeft,box1,"middle",'middle',supplier)
+        sideToside(box1,box2,"middle",'middle',input)
+        sideToside(box2,box3,"middle",'middle',output)
+        sideToside(box3,sideBoxRight,"middle",'middle',customer)
+        sideToside(TopBoxLeft,box2,"bottomcorner",'topcorner',resources)
+        sideToside(box2,BottomBoxRight,"bottomcorner",'topcorner',kpi)
+        sideToside(TopBoxMiddle,box2,"bottommiddle",'topmiddle',risk)
+        sideToside(box2,BottomBoxMiddle,"bottommiddle",'topmiddle',oppur)
+        sideToside(BottomBoxLeft,box2,"topcorner",'bottomcorner',work)
+        sideToside(TopBoxRight,box2,"",'',personel)
+    });
+
+  </script>
+</html>

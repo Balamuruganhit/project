@@ -151,10 +151,10 @@
                         </container>
                     </decorator-section>
                     <decorator-section name="search-options">
-                            <include-form name="findRisk" location="component://AuditReport/widget/AuditReportForms.xml"/>
+                            <include-form name="findturtle" location="component://AuditReport/widget/AuditReportForms.xml"/>
                     </decorator-section>
                     <decorator-section name="search-results">
-                            <include-form name="resultRisk" location="component://AuditReport/widget/AuditReportForms.xml"/>
+                            <include-form name="resultturtle" location="component://AuditReport/widget/AuditReportForms.xml"/>
                     </decorator-section>
                     </decorator-screen>
                     </decorator-section>
@@ -167,7 +167,7 @@
         <section>
             <actions>
                 <set field="titleProperty" value="create Turtle Doc"/>  
-                 <set field="tabButtonItem" value="riskRegister"/>
+                 <set field="tabButtonItem" value="turtleDiagram"/>
                 <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/turtle.js" global="true"/>
                 <!-- <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/class83.js" global="true"/> -->
                 <script location="component://AuditReport/groovyScripts/Audit/IRIS/turtle.groovy"/>
@@ -186,24 +186,17 @@
     <screen name="TurtleReport">
         <section>
                 <actions>
-                    <set field="pageLayoutName" value="simple-landscape"/>
-                    <set field="ender" value="ender"/>
-                    <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
-                    <set field="viewSize" value="99999"/>
-                   <set field="headerFontSize" value="19pt" type="String"/>
-                   <set field="pageLayoutWidth" value="20in" type="String"/>
-                    <set field="pageLayoutHeight" value="19in" type="String"/>
-                    <set field="footerFontSize" value="17pt" type="String"/>
+                        <set field="titleProperty" value="create Turtle Doc"/>  
+                        <set field="tabButtonItem" value="turtleDiagram"/>
+<script location="component://AuditReport/groovyScripts/Audit/IRIS/riskregister.groovy"/>                        <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/turtleOut.js" global="true"/>
                 </actions>
                 <widgets>
-                    <decorator-screen name="SimpleDecorator" location="component://common/widget/CommonScreens.xml">
+                   <decorator-screen name="IRISCommonDecorator" location="${parameters.mainDecoratorLocation}"> 
                         <decorator-section name="body">
                             <container>
                                 <platform-specific>
-                                    <xsl-fo>
-                                        <html-template location="component://AuditReport/template/IRIS/turtleReport.fo.ftl"/>
-                                    </xsl-fo>
-                                </platform-specific>
+                                            <html><html-template location="component://AuditReport/template/IRIS/turtleReport.ftl"/></html>
+                                    </platform-specific>
                             </container>
                         </decorator-section>
                     </decorator-screen>

@@ -1,150 +1,108 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login</title>
+  <meta charset="UTF-8">
+  <title>Arrow from Box Corner to Corner</title>
   <style>
     body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #eef2f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
 
-.login-container {
-  width: 100%;
-  max-width: 400px;
-  padding: 20px;
-}
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: #4CAF50;
+      position: absolute;
+      border-radius: 8px;
+    }
 
-.login-box {
-  background: white;
-  border-radius: 12px;
-  padding: 30px 25px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
+    #box1 {
+      top: 100px;
+      left: 100px;
+    }
 
-h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #333;
-}
+    #box2 {
+      top: 250px;
+      left: 400px;
+      background-color: #2196F3;
+      cursor: move;
+    }
 
-label {
-  font-size: 14px;
-  display: block;
-  margin-bottom: 5px;
-  color: #444;
-}
+    .arrow {
+      position: absolute;
+      height: 2px;
+      background: black;
+      transform-origin: 0 0;
+    }
 
-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-
-input:focus {
-  outline: none;
-  border-color: #5b9bd5;
-  box-shadow: 0 0 4px rgba(91, 155, 213, 0.6);
-}
-
-.extras {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 20px;
-}
-
-.forgot-password {
-  font-size: 13px;
-  color: #007BFF;
-  text-decoration: none;
-}
-
-.forgot-password:hover {
-  text-decoration: underline;
-}
-
-.login-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007BFF;
-  border: none;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.login-button:hover {
-  background-color: #0056b3;
-}
-
-.arrow-label {
-  position: absolute;
-  top: -20px;
-  right: -40px;
-  display: flex;
-  align-items: center;
-  transform: rotate(-10deg);
-}
-
-.arrow-label span {
-  background-color: #007BFF;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 4px 0 0 4px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.arrow {
-  width: 0;
-  height: 0;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  border-left: 20px solid #007BFF;
-}
-
-
+    .arrow::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: -5px;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 10px solid black;
+    }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <div class="login-box">
-      <form>
-        <h2>Welcome Back</h2>
-        
-        <label for="username">User Name:</label>
-        <input type="text" id="username" name="username" placeholder="Enter username" required />
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter password" required />
+  <div id="box1" class="box"></div>
+  <div id="box2" class="box"></div>
+  <div id="arrow" class="arrow"></div>
 
-        <div class="extras">
-          <a href="#" class="forgot-password">Forgot Password?</a>
-        </div>
+  <script>
+    const box1 = document.getElementById("box1");
+    const box2 = document.getElementById("box2");
+    const arrow = document.getElementById("arrow");
 
-        <button type="submit" class="login-button">Login</button>
-      </form>
+    function updateArrow() {
+      const rect1 = box1.getBoundingClientRect();
+      const rect2 = box2.getBoundingClientRect();
 
-      <div class="arrow-label">
-        <span>Sign In</span>
-        <div class="arrow"></div>
-      </div>
-    </div>
-  </div>
+      // Use top-left corners
+      const x1 = rect1.right;
+      const y1 = rect1.bottom;
+      const x2 =  rect2.left + rect2.width / 2;;
+      const y2 = rect2.top;
+
+      const dx = x2 - x1;
+      const dy = y2 - y1;
+      const length = Math.sqrt(dx * dx + dy * dy);
+      const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+      arrow.style.left = `${x1}px`;
+      arrow.style.top = `${y1}px`;
+      arrow.style.width = `${length}px`;
+      arrow.style.transform = `rotate(${angle}deg)`;
+    }
+
+    // Drag support for box2
+    let isDragging = false, offsetX = 0, offsetY = 0;
+
+    box2.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      offsetX = e.clientX - box2.offsetLeft;
+      offsetY = e.clientY - box2.offsetTop;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        box2.style.left = (e.clientX - offsetX) + 'px';
+        box2.style.top = (e.clientY - offsetY) + 'px';
+        updateArrow();
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    window.addEventListener('resize', updateArrow);
+    window.addEventListener('DOMContentLoaded', updateArrow);
+  </script>
 </body>
 </html>
-

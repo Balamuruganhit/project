@@ -1,7 +1,7 @@
 
-    
-    document.addEventListener("DOMContentLoaded", () => {
-let currentCell = null;
+document.addEventListener("DOMContentLoaded", () => {
+
+    let currentCell = null;
 
   function openEditor(cell) {
         currentCell = cell;
@@ -10,6 +10,17 @@ let currentCell = null;
         modal.classList.add('show');
         setTimeout(() => {
             document.getElementById('editorTextarea').focus();
+        }, 150);
+    }
+    function openTableEditor(cell) {
+        currentCell = cell;
+        console.log(cell)
+        document.getElementById('editorTable').value = cell.innerText.trim();
+        const modal = document.getElementById('editorModalTable');
+        modal.classList.add('show');
+        console.log(modal)
+        setTimeout(() => {
+            document.getElementById('editorTable').focus();
         }, 150);
     }
 
@@ -24,7 +35,51 @@ let currentCell = null;
             modal.style.display = 'none';
         }, 300); // match transition time
     }
+    document.getElementById('addrowButton').addEventListener('click',function addrRow(){
+        const dataTable = document.getElementById('editorTable')
+            const newRow = `
+        <tr>
+            <td  contenteditable="true" ></td>
+            <td  contenteditable="true" ></td>
+            <td  contenteditable="true" ></td>
+            <td  contenteditable="true" ></td>
+        </tr>
+    `;
+    dataTable.innerHTML += newRow;
+    });
+    function closeEditorTable(save) {
+        const modal = document.getElementById('editorModalTable');
+        const text = document.getElementById('editorTable').value;
+        let data = [];
+        const table = document.getElementById("editorTable");
+       let i=0;
+        for (let row of table.rows) {
+        let rowData = [];
+        if(i > 0){
+        // Loop through cells in each row
+        if(row.cells[0].textContent !=""){
+        for (let cell of row.cells) {
 
+            rowData.push(cell.textContent.trim());
+        }
+        data.push(rowData);}}
+        i++;
+    }
+        console.log(data)
+        document.getElementById("cell-editable-table").textContent = JSON.stringify(data, null, 2);
+         console.log(document.getElementById("cell-editable-table").textContent)
+       
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300); // match transition time
+    }
+        document.getElementById('cell-editable-table').addEventListener('click', function () {
+            console.log("working")    
+            const modal = document.getElementById('editorModalTable');
+                modal.style.display = 'flex';
+                openTableEditor(this);
+            });
 // Apply to each cell
     document.querySelectorAll('.cell-editable').forEach(cell => {
         cell.addEventListener('click', function () {
@@ -39,6 +94,13 @@ let currentCell = null;
             closeEditor(true);
         }
     });
+     document.getElementById('editorModalTable').addEventListener('click', function (e) {
+        const editorBoxTable = document.getElementById('editorBoxTable');
+        if (!editorBoxTable.contains(e.target)) {
+            closeEditorTable(true);
+        }
+    });
+
         function updateFemaNumber(femano, rev) {
             let cleaned = femano.replace(/_R\d+$/, ""); // remove _R followed by digits at the end
             return cleaned + "_R" + rev;
@@ -53,26 +115,29 @@ let currentCell = null;
             const data = [];
         console.log('inside work')
             docIdNew=updateFemaNumber(docId, revision);
-            const rows = document.querySelectorAll("table tbody tr");
-            rows.forEach(row => {
+            const rows = document.querySelector("table tbody tr");
+           
+           
+                console.log(rows)
                 const rowData = {};
-                const cells = row.querySelectorAll("td");
+                const cells = rows.querySelectorAll("td");
                 const inputTypes = Array.from(cells).map(cell => {
                 if (cell.querySelector("div.cell-editable")) return "editable";
                 return "text";
                 });
-                let index = 0;
-                    rowData["input"] = cells[0].innerText.trim();
-                    rowData["resources"] = cells[1].innerText.trim();
-                    rowData["risk"] = cells[2].innerText.trim();
-                    rowData["content"] = cells[3].innerText.trim();
-                    rowData["personnel"] = cells[4].innerText.trim();
-                    rowData["oppurtunities"] = cells[5].innerText.trim();
-                    rowData["process"] = cells[6].innerText.trim();
-                    rowData["kpi"] = cells[7].innerText.trim();
-                    rowData["output"] = cells[8].innerText.trim();
+                    rowData["supplier"] = cells[0].textContent.trim();
+                    rowData["input"] = cells[1].textContent.trim();
+                    rowData["resources"] = cells[2].textContent.trim();
+                    rowData["risk"] = cells[3].textContent.trim();
+                    rowData["content"] = cells[4].textContent.trim();
+                    rowData["personnel"] = cells[5].textContent.trim();
+                    rowData["oppurtunities"] = cells[6].textContent.trim();
+                    rowData["process"] = cells[7].textContent.trim();
+                    rowData["kpi"] = cells[8].textContent.trim();
+                    rowData["output"] = cells[9].textContent.trim();
+                    rowData["customer"] = cells[10].textContent.trim();
                     data.push(rowData);
-            });
+         
 
             rowDataHeader={
                 docId :docIdNew,
@@ -87,6 +152,7 @@ let currentCell = null;
             console.log(docIdNew)
             console.log(docId)
             data.push(rowDataHeader);
+            console.log(data)
             if (docIdNew == docId) {
                     alert("The Revision number needs to be changed");
                     return;

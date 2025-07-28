@@ -448,4 +448,20 @@ under the License.
             </widgets>
         </section>
     </screen>
+    <screen name="importScreenRouting">
+        <section>
+            <actions>
+                <set field="headerItem" value="import"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonRoutingTaskDecorator" >
+                    <decorator-section name="body">
+                          <screenlet title="File Based Data Import">
+                            <include-form name="ImportParty" location="component://manufacturing/widget/manufacturing/RoutingTaskForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
 </screens>

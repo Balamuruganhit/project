@@ -471,4 +471,8 @@ under the License.
             </hyperlink>
         </field>
     </grid>
+    <form name="ImportParty" type="upload" target="uploadExcelGroovy" title="" >
+        <field name="uploadFile" title="Upload Excel File"><file/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpload}"><submit button-type="button"/></field>
+    </form>
 </forms>

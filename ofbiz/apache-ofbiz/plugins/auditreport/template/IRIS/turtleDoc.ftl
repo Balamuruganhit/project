@@ -62,6 +62,7 @@ under the License.
       border: 1px solid #000;
       padding: 8px;
       text-align: left;
+      
     }
 
     .footer {
@@ -92,7 +93,12 @@ under the License.
       min-height: 30px;
       cursor: pointer;
     }
-
+.cell-editable-table{
+  padding: 0.7rem;
+      min-height: 30px;
+      cursor: pointer;
+      te
+}
     /* Popup Editor */
     #editorModal {
   display: none;
@@ -107,13 +113,42 @@ under the License.
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
-
+#editorModalTable{
+   display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
 #editorModal.show {
+  display: flex;
+  opacity: 1;
+}
+#editorModalTable.show {
   display: flex;
   opacity: 1;
 }
 
 #editorBox {
+  background: white;
+  padding: 20px;
+  width: 60%;
+  max-width: 600px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: scale(0.9);
+  animation: popupZoom 0.3s ease forwards;
+}
+#editorBoxTable {
   background: white;
   padding: 20px;
   width: 60%;
@@ -146,6 +181,7 @@ under the License.
       border: 1px solid #ccc;
       border-radius: 5px;
       resize: vertical;
+      
     }
 
     .editor-buttons {
@@ -154,6 +190,30 @@ under the License.
     }
 
     .editor-buttons button {
+      padding: 8px 16px;
+      background-color: #0c2d7c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    #editorTable {
+      height: 200px;
+      font-size: 1.3rem;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+      min-width: 10rem;
+    }
+
+    .editor-buttons-table {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .editor-buttons-table button {
       padding: 8px 16px;
       background-color: #0c2d7c;
       color: white;
@@ -213,7 +273,22 @@ under the License.
     #turtleBtn{
         display:none;
     }
-
+#editorTable th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+      
+    }
+   #editorTable th {
+      background: #f4f4f4;
+      font-weight: bold;
+    }
+  #editorTable  tr:nth-child(even) {
+      background: #fafafa;
+    }
+  #editorTable  tr:hover {
+      background: #f1f1f1;
+    }
 </style>
 
 <div class="container">
@@ -230,6 +305,7 @@ under the License.
     <div class="scroll-wrapper">
         <table>
             <thead>
+                 <th>Supplier</th>
                 <th>Input</th>
                 <th>Resources</th>
                 <th>Risks</th>
@@ -239,6 +315,7 @@ under the License.
                 <th>Process</th>
                 <th>KPI's</th>
                 <th>Outputs</th>
+                <th>Customer</th>
             </thead>
             <tbody>
                 <tr>
@@ -249,6 +326,8 @@ under the License.
                     <td><div class="cell-editable" contenteditable="true"></div></td>
                     <td><div class="cell-editable" contenteditable="true"></div></td>
                     <td><div class="cell-editable" contenteditable="true"></div></td>
+                    <td><div class="cell-editable" contenteditable="true"></div></td>
+                    <td style="width:24rem;"><div class="cell-editable-table" id="cell-editable-table" style=" text-wrap:wrap" contenteditable="true"></div></td>
                     <td><div class="cell-editable" contenteditable="true"></div></td>
                     <td><div class="cell-editable" contenteditable="true"></div></td>
                 </tr>
@@ -280,4 +359,31 @@ under the License.
     </div>
   </div>
 </div>
+
+<div id="editorModalTable">
+  <div id="editorBoxTable">
+    <table id="editorTable">
+      <thead>
+        <th>KPI / Objective</th>
+        <th>Target</th>
+        <th>Achieved</th>
+        <th>Period</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td  contenteditable="true" >Hello</td>
+        <td  contenteditable="true" >89</td>
+        <td  contenteditable="true" >80</td>
+        <td  contenteditable="true" >it will done</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="editor-buttons-table">
+      <button onclick="closeEditorTable(true)">Save</button>
+      <button id="addrowButton">Add Row</button>
+    </div>
+    
+  </div>
+</div>
+
 

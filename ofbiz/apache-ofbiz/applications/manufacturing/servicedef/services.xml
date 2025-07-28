@@ -42,5 +42,11 @@ under the License.
         <auto-attributes mode="IN" include="nonpk" optional="true"/>
         <override name="fromDate" optional="true"/>
     </service>
+    <service name="uploadExcelRouting" engine="groovy"
+        location="component://manufacturing/groovyScripts/importRouting/importRouting.groovy" invoke="uploadRoutingTask" auth="true">
+        <description>Delete Product Content Relationship Entity</description>
+        <attribute name="uploadFile" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+         <attribute name="availableProduct" mode="OUT" type="List" optional="true"/>
 
+    </service>
 </services>

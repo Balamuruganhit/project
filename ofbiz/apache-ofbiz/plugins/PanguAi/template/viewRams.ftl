@@ -334,4 +334,4 @@ under the License.
   </#if>
   
   </#list>
-  <button style="margin:1rem;margin-bottom:2rem;"><a style="color:black" href="ReportRams.pdf?rams=${ramsOutputTitle.ramsNo}">Print Document</a></button>
+  <button style="margin:1rem;margin-bottom:2rem;"><a style="color:white" href="ReportRams.pdf?rams=${ramsOutputTitle.ramsNo}">Print Document</a></button>

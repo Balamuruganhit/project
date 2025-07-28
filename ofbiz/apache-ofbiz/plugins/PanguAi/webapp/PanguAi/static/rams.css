@@ -16,8 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+ .contentarea{
+    padding:0;
+    padding-top:2.5rem;
+ }
  .header_ram{
-    background: #0091DA;
+    background: #0c2d7c;
     padding: 1rem;
     text-align: right;
     margin: auto;
@@ -33,6 +38,10 @@ table{
    padding: 0.5rem;
    
 }
+td{
+    font-size: 1.3rem;
+    color: black;
+}
 .header_ram td:nth-child(odd){
     background: white;
     display: inline-block;  
@@ -42,13 +51,13 @@ table{
 .header_ram td input{
     width: 90%;
     height: 1.7rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     border-radius: 0.4rem;
     
 }
 
 .expander_section{
-    background: #0091DA;
+    background: #0c2d7c;
     width: 93%;
     margin:2rem auto;
     border-radius: 1rem;
@@ -159,7 +168,7 @@ table{
     left: 70%;
 }
 #save{
-    background:  #0091DA;
+    background:  #0c2d7c;
     margin: auto;
     position: relative;
     left: 5%;

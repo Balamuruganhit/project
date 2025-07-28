@@ -246,6 +246,6 @@ under the License.
     <view-map name="RiskRegisterReport" type="screenfop" page="component://AuditReport/widget/IRISReportScreens.xml#RiskRegisterReport" content-type="application/pdf" encoding="none"/>
     <view-map name="turtleSearch" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#turtleSearch" />
     <view-map name="createturtleDoc" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#createturtleDoc" />
-    <view-map name="TurtleReport" type="screenfop" page="component://AuditReport/widget/IRISReportScreens.xml#TurtleReport" content-type="application/pdf" encoding="none"/>
+    <view-map name="TurtleReport" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#TurtleReport"/>
 
 </site-conf>

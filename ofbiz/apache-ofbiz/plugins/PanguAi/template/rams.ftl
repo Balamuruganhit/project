@@ -374,7 +374,7 @@ under the License.
           <div class="plus">
             <div>
               <h3>Empirical Failure Rate Calculator</h3>
-              <h3 style="color:navy;margin:1rem;">Calculate a failure rate and confidence limits based on your failure history</h3>
+              <h3 style="color:white;margin:1rem;">Calculate a failure rate and confidence limits based on your failure history</h3>
             </div>
             <span class="symbol">+</span>
           </div>
@@ -443,7 +443,7 @@ under the License.
         <div class="plus">
         <div>
           <h3>Availability</h3>
-          <h3 style="color:navy;margin:1rem;">Calculate Availability or 'Uptime' for your equipment</h3>
+          <h3 style="color:white;margin:1rem;">Calculate Availability or 'Uptime' for your equipment</h3>
             </div>
           <span class="symbol">+</span>
         </div>
@@ -517,7 +517,7 @@ under the License.
         <div class="plus">
           <div>
           <h3>Reliability</h3>
-          <h3 style="color:navy;margin:1rem;">Calculate Reliability i.e. probability of no failures in a given time period</h3>
+          <h3 style="color:white;margin:1rem;">Calculate Reliability i.e. probability of no failures in a given time period</h3>
             </div>
           <span class="symbol">+</span>
         </div>
@@ -578,7 +578,7 @@ under the License.
         <div class="plus">
         <div>
           <h3>Probability of r failures in a given time period</h3>
-          <h3 style="color:navy;margin:1rem;">Calculate the probability of multiple failures over time</h3>
+          <h3 style="color:white;margin:1rem;">Calculate the probability of multiple failures over time</h3>
             </div>
           <span class="symbol">+</span>
         </div>
@@ -646,7 +646,7 @@ under the License.
         <div class="plus">
         <div>
           <h3>Probability of r failures in n independent events</h3>
-          <h3 style="color:navy;margin:1rem;">Calculate the probability of multiple failures in a number of events</h3>
+          <h3 style="color:white;margin:1rem;">Calculate the probability of multiple failures in a number of events</h3>
             </div>
           <span class="symbol">+</span>
         </div>
@@ -715,7 +715,7 @@ under the License.
         <div class="plus">
         <div>
           <h3>Has Failure Rate Really Changed?</h3>
-          <h3 style="color:navy;margin:1rem;">Determine the confidence in whether underlying failure rate has really changed</h3>
+          <h3 style="color:white;margin:1rem;">Determine the confidence in whether underlying failure rate has really changed</h3>
             </div>
           <span class="symbol">+</span>
         </div>
@@ -764,7 +764,7 @@ under the License.
           </div>
         </div>
       </div>
-      <button id="save">Save the File</button>
+      <button id="save" style="color:white;">Save the File</button>
     </div>
 </#if>
 

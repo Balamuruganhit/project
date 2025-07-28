@@ -106,6 +106,8 @@ def createTurtleDoc(){
                     Map<String, Object> newTable = [
                         genId: genId,
                         docId: partiesDetails[-1].docId,
+                        supplier: parties.supplier,
+                        customer: parties.customer,
                         inputData:parties.input,
                         resources: parties.resources,
                         risk: parties.risk,
@@ -125,7 +127,7 @@ def createTurtleDoc(){
 }
 
 if(parameters.approver == 'update'){
-if(parameters.docId || parameters.revision||parameters.approve||parameters.previewer||parameters.date_fld0_value || parameters.prepared){
+if(parameters.docId || parameters.revision||parameters.approve||parameters.previewer||parameters.date_fld0_value || parameters.prepared || parameters.typer){
     def conditions = []
 
         if (parameters.revision) {
@@ -142,6 +144,9 @@ if(parameters.docId || parameters.revision||parameters.approve||parameters.previ
         }
         if (parameters.prepared) {
             conditions << EntityCondition.makeCondition("prepared", EntityOperator.LIKE, "%" + parameters.prepared + "%")
+        }
+        if(parameters.typer){
+            conditions << EntityCondition.makeCondition("typeHeader", EntityOperator.LIKE, "%" + parameters.typer + "%")
         }
         if (parameters.date_fld0_value) {
             try {
@@ -171,6 +176,7 @@ if(parameters.docId || parameters.revision||parameters.approve||parameters.previ
     }
 
 // Now query only with .where(condition) if condition is not null:
+
     def query = from("RiskHeader")
     if (condition != null) {
         query = query.where(condition)
@@ -207,4 +213,14 @@ if(parameters.docId && parameters.create){
     logInfo('It is working Fine' + fematitle)
     logInfo('It is working Fine' + femaDetail)
 }
-
+logInfo("Work for Turtle")
+if(parameters.docId && parameters.turtle){
+   fematitle=from( 'RiskHeader').where('docId',parameters.docId).queryOne()
+    context.date=fematitle.date
+    logInfo("Work for Turtle")
+    logInfo("dt"+ context.date)
+    context.ramsOutputTitle=fematitle
+    femaDetail=from('TurtleData').where('docId',parameters.docId).queryList()
+    context.ramsOutputDetails=femaDetail
+    context.printdoc=fematitle.date 
+}

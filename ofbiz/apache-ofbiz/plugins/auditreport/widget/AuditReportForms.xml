@@ -164,6 +164,42 @@
         <field name="date" position="2"><date-find  type="date"/></field>
         <field name="submitButton" title="${uiLabelMap.CommonFind}"><submit/></field>
         <field name="approver" ><hidden value="update"/></field>
+        <field name="typer" ><hidden value="IRIS"/></field>
+    </form>
+    <form name="resultturtle" type="list" use-row-submit="true" target=""  title="" list-name="ramsList"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar" paginate-target="">
+            <field name="docId" widget-style="buttontext">
+                <hyperlink description="${docId}" target="TurtleReport">
+                    <parameter param-name="docId"/>
+                     <parameter param-name="turtle" value="done"/>
+
+                </hyperlink>  
+            </field>
+            <field name="revision"><display/>
+            </field>
+            <field name="date"><display/></field>
+            <field name="approve"><display/></field>
+            <field name="previewer"><display/></field>
+            <field name="prepared"><display/></field>
+            <!-- <field name="updateLink"  widget-style="buttontext">
+                <hyperlink description="create" target="createriskRegister" >
+                        <parameter param-name="docId"/>
+                        <parameter param-name="create" value="done"/>
+                </hyperlink>
+            </field> -->
+    </form>
+    <form name="findturtle" target="turtleSearch" title="" type="single" 
+        header-row-style="header-row" default-table-style="basic-table">
+        <field name="docId" title="Document Number" position="1" ><text/></field>
+        <field name="revision" position="2"><text></text></field>
+        <field name="approve" position="1"><text></text></field>
+        <field name="previewer" position="2"><text></text></field>
+        <field name="prepared" position="1"><text></text></field>
+        <field name="date" position="2"><date-find  type="date"/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonFind}"><submit/></field>
+        <field name="approver" ><hidden value="update"/></field>
+        <field name="typer" ><hidden value="TURTLE"/></field>
+
     </form>
 
 </forms>

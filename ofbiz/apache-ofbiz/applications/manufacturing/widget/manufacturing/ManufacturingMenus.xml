@@ -150,6 +150,14 @@ under the License.
              </condition>
              <link target="EditRoutingTask"/>
          </menu-item>
+         <menu-item name="importtask" title="File Based Data Import ">
+             <condition>
+                 <or>
+                     <if-has-permission permission="MANUFACTURING" action="_CREATE"/>
+                 </or>
+             </condition>
+             <link target="EditRoutingTask"/>
+         </menu-item>
      </menu>
       <menu name="AuditTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
         <menu-item name="productionPlantDocumentation" title="${uiLabelMap.ProductionPlantDocumentation}">

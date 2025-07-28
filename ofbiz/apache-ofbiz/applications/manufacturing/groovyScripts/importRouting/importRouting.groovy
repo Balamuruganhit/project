@@ -12,7 +12,7 @@ import org.apache.poi.ss.usermodel.DateUtil
 import org.apache.poi.ss.usermodel.FormulaEvaluator
 import org.apache.poi.ss.util.NumberToTextConverter
 
-def uploadExcelAndPrint() {
+def uploadRoutingTask() {
     final module = "import.groovy"
     try{
     Map<String, Object> result = ServiceUtil.returnSuccess();
@@ -27,7 +27,7 @@ def uploadExcelAndPrint() {
         def workbook = new XSSFWorkbook(new ByteArrayInputStream(bytes))
         def sheet = workbook.getSheetAt(0)
       
-    List<String> headers = ["productId", "internalName", "facilityId", "productTypeId","brandName","quantityUomId","productName","price","productPriceTypeId","introductionDate","description"]
+    List<String> headers = ["workEffortName", "workEffortPurposeTypeId", "description", "fixedAssetId","estimatedSetupMillis","estimatedMilliSeconds","reservPersons"]
     permUserLogin = from("UserLogin").where("userLoginId", "system").queryOne();
    List availableList=[]
     List<Map> dataList = []
@@ -82,45 +82,34 @@ def uploadExcelAndPrint() {
             rowMap[header] = value
             
                 def typeMap = [
-                    "Finished components collection": "FINISHED_GOOD",
-                    "Raw Material": "RAW_MATERIAL",
-                    "GEAR WHEEL":"GEAR_WHEEL",
+                    "Manufacturing": "ROU_MANUFACTURING",
+                    "Assembling": "ROU_ASSEMBLING",
+                    "Sub-contracting":"ROU_SUBCONTRACTING",
                 ]
-                if (typeMap.containsKey(rowMap.productTypeId)) {
-                    rowMap.productTypeId = typeMap[rowMap.productTypeId]
+                if (typeMap.containsKey(rowMap.workEffortPurposeTypeId)) {
+                    rowMap.workEffortPurposeTypeId = typeMap[rowMap.workEffortPurposeTypeId]
                 }
        
         }
-         product=from('Product').where('internalName',rowMap.internalName).queryOne()
-        if(product){
+         workEffort=from('workEffort').where('workEffortName',rowMap.workEffortName).queryOne()
+        if(workEffort){
              logInfo("Available product +${product}")
             availableList.add(rowMap.internalName)
             logInfo("It are create from available list")
         }
         else{
         rowMap["userLogin"] = permUserLogin
-        if(rowMap.productTypeId){
+        if(rowMap.workEffortPurposeTypeId){
                     
         }
         else{
-            rowMap.productTypeId = "FINISHED_GOOD"
+            rowMap.workEffortPurposeTypeId = "ROU_MANUFACTURING"
         }
+        rowMap.currentStatusId="ROU_ACTIVE"
+        rowMap.workEffortTypeId="ROU_TASK"
+        rowMap.estimateCalcMethod="6000"
         dataList.add(rowMap)
-        Map serviceResult = dispatcher.runSync("createProduct", rowMap)
-        assert ServiceUtil.isSuccess(serviceResult)
-        String productId = serviceResult.get("productId")
-        logInfo("Created productId: $productId")
-        if(rowMap.price){
-            Map createDefaultPriceMap = [
-                productId: productId,
-                currencyUomId: "INR",
-                price:rowMap.price ,
-                productStoreGroupId: "_NA_",
-                productPriceTypeId: rowMap.productPriceTypeId?: "DEFAULT_PRICE",
-                productPricePurposeId: "PURCHASE",
-            ]
-            run service: "createProductPrice", with: createDefaultPriceMap
-        }
+        Map serviceResult = dispatcher.runSync("createWorkEffort", rowMap)
         }
     }
     dataList.each { row ->
