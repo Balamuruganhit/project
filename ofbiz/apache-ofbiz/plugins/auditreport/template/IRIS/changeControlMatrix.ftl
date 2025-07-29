@@ -303,7 +303,7 @@ under the License.
             </div></td>
                         <td><div class="cell-editable" contenteditable="true">Risk / Impact associated with changes <br/>
 
-            New employees’ skill to be continuously monitored by HODs  <br/>
+            New employees skill to be continuously monitored by HODs  <br/>
 
             Accountability change includes Internal rejection, in process rejection, failures / abnormality occurrences, 
             </div></td>

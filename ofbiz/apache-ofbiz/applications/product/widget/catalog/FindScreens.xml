@@ -83,9 +83,10 @@ under the License.
                         <platform-specific>
                             <html><html-template multi-block="true" location="component://product/template/find/KeywordSearch.ftl"/></html>
                         </platform-specific>
-                        <platform-specific>
+                        <!-- Hide for IEIPL Demo -->
+                        <!-- <platform-specific>
                             <html><html-template location="component://product/template/find/KeywordSearchActions.ftl"/></html>
-                        </platform-specific>
+                        </platform-specific> -->
                     </decorator-section>
                 </decorator-screen>
             </widgets>

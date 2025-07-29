@@ -36,10 +36,11 @@ under the License.
       <label for="keywordSearchString">${uiLabelMap.ProductKeywords}:</label>
       <input type="text" name="SEARCH_STRING" id="keywordSearchString" size="20" maxlength="50" value="${requestParameters.SEARCH_STRING!}" />
     </div>
-    <div>
+    <!-- Hide for IEIPL Demo -->
+    <#--  <div>
       <label for="keywordSearchCategoryId">${uiLabelMap.ProductCategoryId}:</label>
       <@htmlTemplate.lookupField value="${requestParameters.SEARCH_CATEGORY_ID!}" formName="keywordsearchform" name="SEARCH_CATEGORY_ID" id="keywordSearchCategoryId" fieldFormName="LookupProductCategory"/>
-    </div>
+    </div>  -->
     <div>
       <label for="keywordSearchCointains">${uiLabelMap.CommonNoContains}</label>
       <input type="checkbox" name="SEARCH_CONTAINS" id="keywordSearchCointains" value="N" <#if "N" == requestParameters.SEARCH_CONTAINS!>checked="checked"</#if> />
@@ -53,7 +54,7 @@ under the License.
     </div>
     </fieldset>
 </form>
-<form name="advancedsearchform" id="advancedSearchForm" method="post" action="<@ofbizUrl>advancedsearch</@ofbizUrl>">
+<#--  <form name="advancedsearchform" id="advancedSearchForm" method="post" action="<@ofbizUrl>advancedsearch</@ofbizUrl>">
   <fieldset>
     <div>
       <label for="searchCategoryId">${uiLabelMap.ProductCategoryId}:</label>
@@ -63,8 +64,8 @@ under the License.
     <input type="submit" value="${uiLabelMap.ProductAdvancedSearch}"/>
     </div>
   </fieldset>
-</form>
-<form name="productjumpform" id="productJumpForm" method="post" action="<@ofbizUrl>EditProduct</@ofbizUrl>">
+</form>  -->
+<#--  <form name="productjumpform" id="productJumpForm" method="post" action="<@ofbizUrl>EditProduct</@ofbizUrl>">
   <fieldset>
     <input type="hidden" name="viewSize" value="20" />
     <input type="hidden" name="viewIndex" value="1" />
@@ -100,4 +101,4 @@ under the License.
         <option value="<@ofbizUrl>EditProductCommunicationEvents</@ofbizUrl>">${uiLabelMap.PartyCommunications}</option>
     </select>
   </fieldset>
-</form>
+</form>  -->

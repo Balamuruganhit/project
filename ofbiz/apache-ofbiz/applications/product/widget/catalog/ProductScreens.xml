@@ -27,7 +27,7 @@ under the License.
     <screen name="CommonProductDecorator">
         <section>
             <actions>
-                
+                 <set field="headerItem" value="products"/>
                 <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="OrderUiLabels" map-name="uiLabelMap" global="true"/>
                 <set field="productId" from-field="parameters.productId" global="true"/>
@@ -93,6 +93,7 @@ under the License.
     <screen name="FindProduct">
         <section>
             <actions>
+                
                 <set field="titleProperty" value="PageTitleFindProduct"/>
             </actions>
             <widgets>
@@ -128,7 +129,8 @@ under the License.
                         <screenlet title="${groovy: parameters.productId ? uiLabelMap.PageTitleEditProduct : uiLabelMap.ProductNewProduct}">
                             <include-form name="EditProduct" location="component://product/widget/catalog/ProductForms.xml"/>
                         </screenlet>
-                        <section>
+                        <!-- Hide for IEIPL Demo -->
+                        <!-- <section>
                             <condition>
                                 <not><if-empty field="product"/></not>
                             </condition>
@@ -137,7 +139,7 @@ under the License.
                                     <include-form name="EditProductDup" location="component://product/widget/catalog/ProductForms.xml"/>
                                 </screenlet>
                             </widgets>
-                        </section>
+                        </section> -->
                         <section>
                             <condition>
                                 <not><if-empty field="product"/></not>
