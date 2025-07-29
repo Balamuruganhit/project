@@ -36,9 +36,10 @@ import java.text.SimpleDateFormat
 
 
 def createRiskRegister(){
-     List<Map<String, Object>> partiesDetails = parameters.riskRegister
-        
+    List<Map<String, Object>> partiesDetails = parameters.riskRegister
+    def type=partiesDetails[-1].type   
     logInfo('Uploaded file found; processing sub-content'+partiesDetails)
+    if(type == "IRIS"){
     def docId=partiesDetails[-1].docId
     Map<String,Object> newHeader =[
         docId:partiesDetails[-1].docId,
@@ -52,36 +53,74 @@ def createRiskRegister(){
     delegator.create("RiskHeader",newHeader)
     (0..<partiesDetails.size()-1).each{ i ->
         def parties = partiesDetails[i]
-   if (parties != null && parties instanceof Map) {
-                    def genId = delegator.getNextSeqId("DesignDatas")
-                    Map<String, Object> newTable = [
-                        genId: genId,
-                        docId: partiesDetails[-1].docId,
-                        riskId:parties.riskId,
-                        description: parties.description,
-                        owner: parties.owner,
-                        category: parties.category,
-                        dateIdentified:parties.dateIdentified,
-                        hazard: parties.hazard,
-                        consequence: parties.consequence,
-                        controls: parties.controls,
-                        effectiveness:parties.effectiveness,
-                        likelihood: parties.likelihood,
-                        severity: parties.severity,
-                        initialRiskRating: parties.initialRiskRating,
-                        mitigation:parties.mitigation,
-                        actionsTaken: parties.actionsTaken,
-                        residualRisk: parties.residualRisk,
-                        actiondate: parties.actiondate,
-                        status:parties.status,
-                        evidence: parties.evidence,
-                        warrantyFrom: parties.warrantyFrom,
-                        warrantyTo: parties.warrantyTo,
-                    ]
+    if (parties != null && parties instanceof Map) {
+                        def genId = delegator.getNextSeqId("DesignDatas")
+                        Map<String, Object> newTable = [
+                            genId: genId,
+                            docId: partiesDetails[-1].docId,
+                            riskId:parties.riskId,
+                            description: parties.description,
+                            owner: parties.owner,
+                            category: parties.category,
+                            dateIdentified:parties.dateIdentified,
+                            hazard: parties.hazard,
+                            consequence: parties.consequence,
+                            controls: parties.controls,
+                            effectiveness:parties.effectiveness,
+                            likelihood: parties.likelihood,
+                            severity: parties.severity,
+                            initialRiskRating: parties.initialRiskRating,
+                            mitigation:parties.mitigation,
+                            actionsTaken: parties.actionsTaken,
+                            residualRisk: parties.residualRisk,
+                            actiondate: parties.actiondate,
+                            status:parties.status,
+                            evidence: parties.evidence,
+                            warrantyFrom: parties.warrantyFrom,
+                            warrantyTo: parties.warrantyTo,
+                        ]
 
-                    delegator.create("RiskData", newTable)
+                        delegator.create("RiskData", newTable)
 
-    }}
+        }
+    }
+    }
+    else if(type == "CONTROLMATRIX"){
+       def docId=partiesDetails[-1].docId
+    Map<String,Object> newHeader =[
+        docId:partiesDetails[-1].docId,
+        revision:partiesDetails[-1].revision,
+        date:partiesDetails[-1].saveDate,
+        issueNumber:partiesDetails[-1].issue,
+        approve:partiesDetails[-1].approver ,
+        previewer:partiesDetails[-1].previewer,
+        prepared:partiesDetails[-1].preparer,
+        typeHeader:partiesDetails[-1].type,
+    ]
+    delegator.create("ControlMatrix",newHeader)
+    (0..<partiesDetails.size()-1).each{ i ->
+        def parties = partiesDetails[i]
+    if (parties != null && parties instanceof Map) {
+                        def genId = delegator.getNextSeqId("ChangeMatrixData")
+                        Map<String, Object> newTable = [
+                            genId: genId,
+                            docId: partiesDetails[-1].docId,
+                            changeInitiated: parties.changeInitiated,
+                            changeImpact:parties.changeImpact,
+                            methodOfInitiation: parties.methodOfInitiation,
+                            reviewed: parties.reviewed,
+                            approvalAuthority: parties.approvalAuthority,
+                            modeCommunication:parties.modeCommunication,
+                            actions: parties.actions,
+                            implementation: parties.implementation,
+                            status: parties.status,
+                        ]
+
+                        delegator.create("ChangeMatrixData", newTable)
+
+        }
+    } 
+    }
 }
 
 def createTurtleDoc(){

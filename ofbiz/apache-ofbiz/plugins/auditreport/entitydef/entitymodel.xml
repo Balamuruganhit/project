@@ -144,4 +144,29 @@
         <field name="customer" type="url"/>
         <prim-key field="genId"/>
     </entity>
+    <entity entity-name="ControlMatrix" package-name="org.apache.ofbiz.AuditReport" title="Control Matrix Entity">
+        <field name="docId" type="id"/>
+        <field name="revision" type="id"/>
+        <field name="issueNumber" type="id"/>
+        <field name="date" type="name"/>
+        <field name="approve" type="name"/>
+        <field name="previewer" type="name"/>
+        <field name="typeHeader" type="name"/>
+        <field name="prepared" type="name"/> <!-- Field to store Base64-encoded string -->
+        <prim-key field="docId"/>
+    </entity>
+    <entity entity-name="ChangeMatrixData" package-name="org.apache.ofbiz.AuditReport" title="Control Matrix Data Entity">
+       <field name="genId" type="id"/>
+        <field name="docId" type="id"/>
+        <field name="changeInitiated" type="url"/>
+        <field name="changeImpact" type="url"/>
+        <field name="methodOfInitiation" type="url"/>
+        <field name="reviewed" type="url"/>
+        <field name="approvalAuthority" type="url"/>
+        <field name="modeCommunication" type="url"/>
+        <field name="actions" type="url"/>
+        <field name="implementation" type="url"/>
+        <field name="status" type="url"/>
+        <prim-key field="genId"/>
+    </entity>
 </entitymodel>

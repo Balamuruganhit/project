@@ -460,6 +460,12 @@
             </condition>
             <link target="AuditExport"/>
         </menu-item>
+        <menu-item name="changeMangement" title="Change Management" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="ChangeMangement"/>
+        </menu-item>
         <menu-item name="internalAuditormatrix" title="Internal Auditor Competence Matrix" >
             <condition>
                      <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
@@ -467,6 +473,27 @@
             <link target="AuditExport"/>
         </menu-item>
         <menu-item name="internalAuditorSchedule" title="Internal Auditor Schedule" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="AuditExport"/>
+        </menu-item>
+    </menu>
+    <menu name="changeManagementExtendBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
+          menu-container-style="button-bar button-style-2">
+        <menu-item name="changeControl" title="Change Control Matrix" >
+            <condition>
+                 <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="ControlMatrix"/>
+        </menu-item>
+        <menu-item name="typeExtend" title="8.4.2 Type and extend of control of external provision" >
+            <condition>
+                <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="parties"/>
+        </menu-item>
+        <menu-item name="information" title="8.4.3 Information for external providers" >
             <condition>
                      <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
             </condition>

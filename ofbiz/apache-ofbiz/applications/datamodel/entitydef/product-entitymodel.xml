@@ -2808,6 +2808,7 @@ under the License.
       <field name="productTypeId" type="id"></field>
       <field name="primaryProductCategoryId" type="id"><description>The primary category ; it should be one of the productCategoryId already setup in ProductCategoryMember</description></field>
       <field name="facilityId" type="id"></field>
+      <field name="partDescription" type="description"></field>
       <field name="introductionDate" type="date-time"></field>
       <field name="releaseDate" type="date-time"></field>
       <field name="supportDiscontinuationDate" type="date-time"></field>

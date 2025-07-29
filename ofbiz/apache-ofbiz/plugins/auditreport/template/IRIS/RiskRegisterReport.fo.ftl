@@ -88,20 +88,20 @@ under the License.
     </#list>
     </fo:table-body>
     </fo:table>
-    <fo:table table-layout="fixed" width="100%" font-size="10pt" margin-top="10pt">
+    <fo:table table-layout="fixed" width="100%" font-size="15pt" margin-top="30pt" >
       <fo:table-column column-width="30%"/>
       <fo:table-column column-width="30%"/>
       <fo:table-column column-width="30%"/>
       <fo:table-body>
         <fo:table-row>
           <fo:table-cell>
-            <fo:block text-align="left">Auditee: ${header.prepared}</fo:block>
+            <fo:block text-align="left">Auditee: ${ramsOutputTitle.prepared}</fo:block>
           </fo:table-cell>
           <fo:table-cell>
-            <fo:block text-align="center">Internal Auditor:${header.previewer} </fo:block>
+            <fo:block text-align="center">Internal Auditor:${ramsOutputTitle.previewer} </fo:block>
           </fo:table-cell>
           <fo:table-cell>
-            <fo:block text-align="right">External Auditor: ${header.approve}</fo:block>
+            <fo:block text-align="right">External Auditor: ${ramsOutputTitle.approve}</fo:block>
           </fo:table-cell>
         </fo:table-row>
       </fo:table-body>

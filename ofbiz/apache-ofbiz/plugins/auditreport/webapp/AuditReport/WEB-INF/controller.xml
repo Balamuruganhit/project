@@ -170,6 +170,41 @@ under the License.
         <response name="success" type="view" value="TurtleReport"/>
         <response name="error" type="view" value="TurtleReport"/>
     </request-map>
+    <request-map uri="ChangeMangement">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="ChangeMangement"/>
+        <response name="error" type="view" value="ChangeMangement"/>
+    </request-map>
+    <request-map uri="ControlMatrix">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="ControlMatrix"/>
+        <response name="error" type="view" value="ControlMatrix"/>
+    </request-map>
+     <request-map uri="CreateChangeMatrixDoc">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="CreateChangeMatrixDoc"/>
+        <response name="error" type="view" value="CreateChangeMatrixDoc"/>
+    </request-map>
+    <request-map uri="ViewChangeControl">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="ViewChangeControl"/>
+        <response name="error" type="view" value="ViewChangeControl"/>
+    </request-map>
+    <request-map uri="ChangeControlReport">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="ChangeControlReport"/>
+        <response name="error" type="view" value="ChangeControlReport"/>
+    </request-map>
     <!-- Audit AS9100 and ISO9100-->
 
     <request-map uri="AuditExport"><security https="true" auth="true"/><response name="success" type="view" value="export"/></request-map>    
@@ -247,5 +282,10 @@ under the License.
     <view-map name="turtleSearch" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#turtleSearch" />
     <view-map name="createturtleDoc" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#createturtleDoc" />
     <view-map name="TurtleReport" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#TurtleReport"/>
+    <view-map name="ChangeMangement" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#ChangeMangementMenu" />
+    <view-map name="ControlMatrix" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#ControlMatrixSearch" />
+    <view-map name="CreateChangeMatrixDoc" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#CreateChangeMatrixDoc"/>
+    <view-map name="ViewChangeControl" type="screen" page="component://AuditReport/widget/IRISReportScreens.xml#ViewChangeControl"/>
+    <view-map name="ChangeControlReport" type="screenfop" page="component://AuditReport/widget/IRISReportScreens.xml#ChangeControlReport" content-type="application/pdf" encoding="none"/>
 
 </site-conf>

@@ -40,7 +40,7 @@ under the License.
       padding: 10px;
       color:white;
       margin: 0;
-      height:9rem;
+      height:11rem;
       vertical-align:center;
       flex-grow: 1;
          
@@ -213,19 +213,22 @@ under the License.
 
 
   </style>
-  
+<#assign i=0/>
+
 <div class="container">
   <header class="header">
-    <h1 style="color:white;">Risk Register</h1>
+    <h1 style="color:white;">CHANGE CONTROL MATRIX </h1>
     <#if ramsOutputTitle?has_content>
       <div class="header-info">
-        <div>Ref No: <input id="docId" value="${ramsOutputTitle.docId!""}"/></div>
+        <div>Doc No: <input id="docId" value="${ramsOutputTitle.docId!""}"/></div>
+        <div>Issue No: <input id="issueNo" value="${ramsOutputTitle.issueNumber!""}"/></div>
         <div>Rev No: <input id="revision" value="${ramsOutputTitle.revision!""}"/></div>
         <div style="margin-top:1rem;">Date: <input type="date" id="saveDate" value="${ramsOutputTitle.date!""}"/></div>
       </div>
       <#else>
             <div class="header-info">
-        <div>Ref No: <input id="docId" /></div>
+        <div>Doc No: <input id="docId" /></div>
+        <div>Issue No: <input id="issueNo" /></div>
         <div>Rev No: <input id="revision" /></div>
         <div style="margin-top:1rem;">Date: <input type="date" id="saveDate" /></div>
       </div>
@@ -236,59 +239,40 @@ under the License.
     <table>
       <thead>
         <tr>
-          <th>Risk Id</th>
-          <th>Risk Description</th>
-          <th>Risk Owner</th>
-          <th>Risk Category</th>
-          <th>Date Identified</th>
-          <th>Hazard/Cause</th>
-          <th>Potential Consequence</th>
-          <th>Existing Controls</th>
-          <th>Effectiveness of Controls</th>
-          <th>Likelihood</th>
-          <th>Consequence/Severity</th>
-          <th>Initial Risk Rating</th>
-          <th>Additional Mitigation Actions</th>
-          <th>Effectiveness of Actions Taken</th>
-          <th>Residual Risk Rating</th>
-          <th>Action Due Date</th>
-          <th>Status</th>
-          <th>Evidence/References</th>
-          <th>Warranty</th>
+          <th>SI No</th>
+          <th>Change Initiated by / Origin of change</th>
+          <th>Change impact to </th>
+          <th>Method of initiation </th>
+          <th>Reviewed by </th>
+          <th>Approval Authority</th>
+          <th>Mode of change Communication</th>
+          <th>Actions to be considered </th>
+          <th>Implementation & effectiveness monitoring Responsibility</th>
+          <th>Status Review frequency</th>
         </tr>
       </thead>
       <tbody>
-      <#list ramsOutputDetails as group>
-        <tr>
-          
-            <td><div >${group.riskId!" "}</div></td>
-             <td><div >${group.description!" "}</div></td>
-              <td><div >${group.owner!" "}</div></td>
-             <td><div >${group.category!" "}</div></td>
-              <td><div >${group.dateIdentified!" "}</div></td>
-            <td><div >${group.hazard!" "}</div></td>
-            <td><div >${group.consequence!" "}</div></td>
-            <td><div >${group.controls!" "}</div></td>
-            <td><div >${group.effectiveness!" "}</div></td>
-            <td><div >${group.likelihood!" "}</div></td>
-            <td><div >${group.severity!" "}</div></td>
-            <td><div >${group.initialRiskRating!" "}</div></td>
-            <td><div >${group.mitigation!" "}</div></td>
-            <td><div >${group.actionsTaken!" "}</div></td>
-            <td><div >${group.residualRisk!" "}</div></td>
-            <td><div >${group.actiondate!" "}</div></td>
-            <td><div >${group.status!" "}</div></td>
-            <td><div >${group.evidence!" "}</div></td>
-          <td style="width:7rem">
-            <strong>From date</strong> ${group.warrantyFrom}
-            <strong>To date</strong> ${group.warrantyTo}
-          </td>
+      
+        <#list ramsOutputDetails as group>
+        <#assign i = i + 1>
+        <tr >
+            <td ><div>${i}</div></td>
+            <td ><div>${group.changeInitiated!" "}</div></td>
+            <td ><div>${group.changeImpact!" "}</div></td>
+            <td ><div>${group.methodOfInitiation!" "}</div></td>
+            <td ><div>${group.reviewed!" "}</div></td>
+            <td ><div>${group.approvalAuthority!" "}</div></td>
+            <td ><div>${group.modeCommunication!" "}</div></td>
+            <td ><div>${group.actions!" "}</div></td>
+            <td ><div>${group.implementation!" "}</div></td>
+            <td ><div>${group.status!" "}</div></td>
         </tr>
-      </#list>
+        </#list>
       </tbody>
     </table>
   </div>
 
+  
   <#if ramsOutputTitle?has_content>  
     <footer class="footer">
       <div>Auditee:<input  id="preparer" value="${ramsOutputTitle.prepared!""}"/></div>
@@ -301,8 +285,16 @@ under the License.
       <div>Internal Auditor:<input id="previewer" /></div>
       <div>External Auditor:<input id="approver" /></div>
     </footer>
-  </#if>
+    </#if>
 
-    <button ><a style="color:white; font-size:1.2rem;" href="RiskRegisterReport?printdoc=done&docId=${ramsOutputTitle.docId}">Print Document</a></button>
-
+  
+ <button ><a style="color:white; font-size:1.2rem;" href="ChangeControlReport?printdoc=done&docId=${ramsOutputTitle.docId}">Print Document</a></button>
 </div>
+
+
+
+
+
+
+
+

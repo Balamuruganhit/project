@@ -21,20 +21,39 @@
 <screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://ofbiz.apache.org/Widget-Screen" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Screen http://ofbiz.apache.org/dtds/widget-screen.xsd">
         
-            <screen name="irismenu">
-        <section>
-            <actions>
-                <set field="titleProperty" value="IRIS"/>
-                
-            </actions>
-            <widgets>
-                <decorator-screen name="IRISCommonDecorator" location="${parameters.mainDecoratorLocation}">
-                    <decorator-section name="body">
-                        
-                    </decorator-section>
-                </decorator-screen>
-            </widgets>
-        </section>
+    <screen name="irismenu">
+            <section>
+                <actions>
+                    <set field="titleProperty" value="IRIS"/>     
+                </actions>
+                <widgets>
+                    <decorator-screen name="IRISCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                        <decorator-section name="body">
+                            
+                        </decorator-section>
+                    </decorator-screen>
+                </widgets>
+            </section>
+    </screen>
+    <screen name="ChangeMangementMenu">
+            <section>
+                <actions>
+                    <set field="titleProperty" value="IRIS"/>     
+                </actions>
+                <widgets>
+                    <decorator-screen name="IRISCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                        <decorator-section name="body">
+                            <section>
+                            <widgets>
+                             <screenlet   >
+                                <include-menu name="changeManagementExtendBar" location="component://AuditReport/widget/AuditReportMenus.xml"/>
+                            </screenlet>
+                            </widgets>
+                        </section>
+                        </decorator-section>
+                    </decorator-screen>
+                </widgets>
+            </section>
     </screen>
     <screen name="riskRegisterSearch">
         <section>
@@ -188,7 +207,7 @@
                 <actions>
                         <set field="titleProperty" value="create Turtle Doc"/>  
                         <set field="tabButtonItem" value="turtleDiagram"/>
-<script location="component://AuditReport/groovyScripts/Audit/IRIS/riskregister.groovy"/>                        <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/turtleOut.js" global="true"/>
+                        <script location="component://AuditReport/groovyScripts/Audit/IRIS/riskregister.groovy"/>                        <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/turtleOut.js" global="true"/>
                 </actions>
                 <widgets>
                    <decorator-screen name="IRISCommonDecorator" location="${parameters.mainDecoratorLocation}"> 
@@ -197,6 +216,110 @@
                                 <platform-specific>
                                             <html><html-template location="component://AuditReport/template/IRIS/turtleReport.ftl"/></html>
                                     </platform-specific>
+                            </container>
+                        </decorator-section>
+                    </decorator-screen>
+                </widgets>
+            </section>
+    </screen>
+    <screen name="ControlMatrixSearch">
+        <section>
+            <actions>
+                <script location="component://AuditReport/groovyScripts/Audit/IRIS/changeManagement.groovy"/>
+                <set field="titleProperty" value="Find Change Control Matrix Doc"/>
+                 <set field="tabButtonItem" value="changeMangement"/>
+                 <set field="headerItem" value="changeControl"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="IRISCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                             <screenlet   >
+                                <include-menu name="changeManagementExtendBar" location="component://AuditReport/widget/AuditReportMenus.xml"/>
+                            </screenlet>
+                            </widgets>
+                        </section>
+                   <decorator-screen name="FindScreenDecorator" location="component://common/widget/CommonScreens.xml">
+                    <decorator-section name="menu-bar">
+                        <container style="button-bar">
+                            <link target="CreateChangeMatrixDoc" text="${uiLabelMap.CommonCreate}" style="buttontext create"/>
+                        </container>
+                    </decorator-section>
+                    <decorator-section name="search-options">
+                            <include-form name="findchangecontrol" location="component://AuditReport/widget/AuditReportForms.xml"/>
+                    </decorator-section>
+                    <decorator-section name="search-results">
+                            <include-form name="resultchangecontrol" location="component://AuditReport/widget/AuditReportForms.xml"/>
+                    </decorator-section>
+                    </decorator-screen>
+                    </decorator-section>
+                    
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="CreateChangeMatrixDoc">
+        <section>
+            <actions>
+                <set field="titleProperty" value="create Turtle Doc"/>  
+                 <set field="tabButtonItem" value="changeMangement"/>
+                <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/turtle.js" global="true"/>
+                 <script location="component://AuditReport/groovyScripts/Audit/IRIS/changeManagement.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="IRISCommonDecorator" location="${parameters.mainDecoratorLocation}"> 
+                    <decorator-section name="body">
+                        <platform-specific>
+                                    <html><html-template location="component://AuditReport/template/IRIS/changeControlMatrix.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ViewChangeControl">
+        <section>
+            <actions>
+                <set field="titleProperty" value="View Change Control Matrix"/>  
+                 <set field="tabButtonItem" value="changeMangement"/>
+
+                <!-- <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/class83.js" global="true"/> -->
+                <script location="component://AuditReport/groovyScripts/Audit/IRIS/changeManagement.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="IRISCommonDecorator" location="${parameters.mainDecoratorLocation}"> 
+                    <decorator-section name="body">
+                        <platform-specific>
+                                    <html><html-template location="component://AuditReport/template/IRIS/viewchangeControlMatrix.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ChangeControlReport">
+        <section>
+                <actions>
+                    <set field="pageLayoutName" value="simple-landscape"/>
+                    <set field="ender" value="ender"/>
+                    <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                   <script location="component://AuditReport/groovyScripts/Audit/IRIS/changeManagement.groovy"/>
+                    <set field="viewSize" value="99999"/>
+                   <set field="headerFontSize" value="19pt" type="String"/>
+                   <set field="pageLayoutWidth" value="30in" type="String"/>
+                    <set field="footerFontSize" value="17pt" type="String"/>
+                </actions>
+                <widgets>
+                    <decorator-screen name="SimpleDecorator" location="component://common/widget/CommonScreens.xml">
+                        <decorator-section name="body">
+                            <container>
+                                <platform-specific>
+                                    <xsl-fo>
+                                        <html-template location="component://AuditReport/template/IRIS/changeControlReport.fo.ftl"/>
+                                    </xsl-fo>
+                                </platform-specific>
                             </container>
                         </decorator-section>
                     </decorator-screen>
