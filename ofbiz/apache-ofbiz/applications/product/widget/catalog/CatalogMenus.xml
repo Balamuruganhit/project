@@ -597,18 +597,18 @@ under the License.
             </link>
         </menu-item> -->
         
-        <menu-item name="ProductBarCode" title="${uiLabelMap.ProductBarcode}">
+        <!-- <menu-item name="ProductBarCode" title="${uiLabelMap.ProductBarcode}">
             <condition>
                 <not><if-empty field="product"/></not>
             </condition>
             <link target="ProductBarCode.pdf" target-window="_blank">
                 <parameter param-name="productId"/>
             </link>
-        </menu-item>
+        </menu-item> -->
         <!-- <menu-item name="ProductTags" title="${uiLabelMap.ProductTags}">
             <link target="EditProductTag"/>
         </menu-item> -->
-        <menu-item name="ExpandAll" title="${uiLabelMap.CommonExpandAll}" widget-style="buttontext expand-all">
+        <!-- <menu-item name="ExpandAll" title="${uiLabelMap.CommonExpandAll}" widget-style="buttontext expand-all">
             <condition>
                 <and>
                     <if-compare operator="equals" value="EditProduct" field="tabButtonItem"/>
@@ -623,7 +623,7 @@ under the License.
                 </and>
             </condition>
             <link target="javascript:expandAll(false);" url-mode="plain"/>
-        </menu-item>
+        </menu-item> -->
     </menu>
 
     <menu name="ConfigItemTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml">

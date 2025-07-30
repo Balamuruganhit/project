@@ -199,17 +199,19 @@ under the License.
                     <entity-order-by field-name="description"/>
                 </entity-options>
             </drop-down>
-        </field>
-        <field position="3" name="shippingWeight" title="${uiLabelMap.ProductShippingWeight}"><text size="10" maxlength="20"/></field>
-        <field position="1" name="quantityIncluded" title="${uiLabelMap.ProductQuantityIncluded}"><text size="10" maxlength="20"/></field> -->
-        <field position="2" name="quantityUomId" title="${uiLabelMap.ProductQuantityUomId}">
+        </field>-->
+        <field position="1" name="quantityIncluded" title=" "><text size="50" maxlength="20"/></field>
+        <!-- <field position="2" name="quantityUomId" title="${uiLabelMap.ProductQuantityUomId}"></field> -->
+        <field position="2" name="quantityUomId" title=" " >
             <drop-down allow-empty="true">
                 <entity-options key-field-name="uomId" description="${description} - ${abbreviation}" entity-name="Uom">
                     <entity-constraint name="uomTypeId" operator="not-equals" value="CURRENCY_MEASURE"/>
                     <entity-order-by field-name="description"/>
                 </entity-options>
             </drop-down>
-        </field>
+        </field>        
+        <field position="3" name="shippingWeight" title="Unit Of measure"><display/></field> 
+
         <!-- <field position="1" name="piecesIncluded" title="${uiLabelMap.ProductPiecesIncluded}"><text size="10" maxlength="20"/></field>
         <field position="2" name="inShippingBox" title="${uiLabelMap.ProductShippingBox}">
             <drop-down><option key="N" description="${uiLabelMap.CommonN}"/><option key="Y" description="${uiLabelMap.CommonY}"/></drop-down>
@@ -293,7 +295,7 @@ under the License.
                 <sort-field name="amountUomTypeId"/>
             </field-group> -->
             <!-- <field-group title="${uiLabelMap.CommonMeasures}" collapsible="true" initially-collapsed="true"> -->
-            <field-group title="Unit Of Measure" collapsible="true" >
+            <field-group title="Dimensional Specifications" collapsible="true" >
                 <!-- <sort-field name="productHeight"/>
                 <sort-field name="heightUomId"/>
                 <sort-field name="shippingHeight"/>
@@ -307,11 +309,13 @@ under the License.
                 <sort-field name="diameterUomId"/>
                 <sort-field name="productWeight"/>
                 <sort-field name="weightUomId"/>
-                <sort-field name="shippingWeight"/>
+                
                 <sort-field name="quantityIncluded"/>
+                <sort-field name="quantityUomId"/>-->
+                
+                <sort-field name="quantityIncluded"/> 
                 <sort-field name="quantityUomId"/>
-                <sort-field name="quantityIncluded"/> -->
-                <sort-field name="quantityUomId"/>
+                <sort-field name="shippingWeight"/>
             </field-group>
             <!-- <field-group title="${uiLabelMap.CommonShipping}" collapsible="true" initially-collapsed="true">
                 <sort-field name="piecesIncluded"/>
