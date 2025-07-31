@@ -91,8 +91,8 @@ a{
 
   <main class="menu-container">
     <div ><a class="menu-item" href="<@ofbizUrl controlPath="/DemoPage/control">EditCustomer</@ofbizUrl>">AI Integrated ERP</a></div>
-    <div ><a class="menu-item" href="<@ofbizUrl controlPath="/AuditReport/control">main</@ofbizUrl>">ISO Audit Pro</a></div>
-    <div ><a class="menu-item" href="<@ofbizUrl controlPath="/PanguAi/control">main</@ofbizUrl>">Reliability Tools</a></div>
+    <div ><a class="menu-item" href="<@ofbizUrl controlPath="/DemoPage/control">IsoMenu</@ofbizUrl>">ISO Audit Pro</a></div>
+    <div ><a class="menu-item" href="<@ofbizUrl controlPath="/DemoPage/control">ReliabilityMenu</@ofbizUrl>">Reliability Tools</a></div>
   </main>
 
   <footer class="footer">

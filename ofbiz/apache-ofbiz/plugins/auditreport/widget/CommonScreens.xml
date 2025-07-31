@@ -41,6 +41,69 @@
             </widgets>
         </section>
     </screen>
+    <screen name="KPImain-decorator">
+        <section>
+            <actions>
+                <property-map resource="AuditReportUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+
+                <set field="layoutSettings.companyName" from-field="uiLabelMap.AuditReportCompanyName" global="true"/>
+                <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.AuditReportCompanySubtitle" global="true"/>
+                <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/auditreport.js" global="true"/>
+                <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/kpi.js" global="true"/>
+
+                <set field="activeApp" value="AuditReport" global="true"/>
+                <set field="applicationMenuName" value="KPIMainAppBar" global="true"/>
+                <set field="applicationMenuLocation" value="component://AuditReport/widget/AuditReportMenus.xml" global="true"/>
+                <set field="applicationTitle" from-field="uiLabelMap.AuditReportApplication" global="true"/>
+            </actions>
+            <widgets>
+                <include-screen name="GlobalDecorator" location="component://common/widget/CommonScreens.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="Iso9001main-decorator">
+        <section>
+            <actions>
+                <property-map resource="AuditReportUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+
+                <set field="layoutSettings.companyName" from-field="uiLabelMap.AuditReportCompanyName" global="true"/>
+                <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.AuditReportCompanySubtitle" global="true"/>
+                <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/auditreport.js" global="true"/>
+                <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/kpi.js" global="true"/>
+
+                <set field="activeApp" value="AuditReport" global="true"/>
+                <set field="applicationMenuName" value="AuditIso9001MainAppBar" global="true"/>
+                <set field="applicationMenuLocation" value="component://AuditReport/widget/AuditReportMenus.xml" global="true"/>
+                <set field="applicationTitle" from-field="uiLabelMap.AuditReportApplication" global="true"/>
+            </actions>
+            <widgets>
+                <include-screen name="GlobalDecorator" location="component://common/widget/CommonScreens.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="IRISmain-decorator">
+        <section>
+            <actions>
+                <property-map resource="AuditReportUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+
+                <set field="layoutSettings.companyName" from-field="uiLabelMap.AuditReportCompanyName" global="true"/>
+                <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.AuditReportCompanySubtitle" global="true"/>
+                <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/auditreport.js" global="true"/>
+                <set field="layoutSettings.javaScripts[]" value="/AuditReport/static/kpi.js" global="true"/>
+
+                <set field="activeApp" value="AuditReport" global="true"/>
+                <set field="applicationMenuName" value="AuditIRISMainAppBar" global="true"/>
+                <set field="applicationMenuLocation" value="component://AuditReport/widget/AuditReportMenus.xml" global="true"/>
+                <set field="applicationTitle" from-field="uiLabelMap.AuditReportApplication" global="true"/>
+            </actions>
+            <widgets>
+                <include-screen name="GlobalDecorator" location="component://common/widget/CommonScreens.xml"/>
+            </widgets>
+        </section>
+    </screen>
 
     
       <screen name="AuditReportCommonDecorator">
@@ -84,7 +147,7 @@
                 <set field="headerItem" value="KPI"/>
             </actions>
             <widgets>
-                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="KPImain-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <section>
                             <widgets>
@@ -119,7 +182,7 @@
                 <set field="headerItem" value="AuditIso9001"/>
             </actions>
             <widgets>
-                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="Iso9001main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <section>
                             <widgets>
@@ -154,7 +217,7 @@
                 <set field="headerItem" value="AuditIRIS"/>
             </actions>
             <widgets>
-                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                <decorator-screen name="IRISmain-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <section>
                             <widgets>

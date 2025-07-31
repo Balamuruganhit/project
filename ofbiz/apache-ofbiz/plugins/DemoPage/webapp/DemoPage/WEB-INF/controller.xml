@@ -61,9 +61,20 @@ under the License.
         <response name="error" type="view" value="EditCustomer"/>
     </request-map>
     <!-- View Mappings -->
-    
+    <request-map uri="IsoMenu">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="IsoMenu"/>
+        <response name="error" type="view" value="IsoMenu"/>
+    </request-map>
+    <request-map uri="ReliabilityMenu">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="ReliabilityMenu"/>
+        <response name="error" type="view" value="ReliabilityMenu"/>
+    </request-map>
    
     <view-map name="main" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#main"/>
     <view-map name="EditCustomer" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#EditCustomer"/>
+    <view-map name="IsoMenu" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#IsoMenu"/>
+    <view-map name="ReliabilityMenu" type="screen" page="component://DemoPage/widget/DemoPageScreens.xml#ReliabilityMenu"/>
 
 </site-conf>

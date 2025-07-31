@@ -61,7 +61,49 @@ under the License.
             </widgets>
         </section>
     </screen>
-
-    
+    <screen name="IsoMenu">
+        <section>
+            <actions>
+                <set field="titleProperty" value="Domain"/>
+                <set field="tabButtonItem" value="EditCustomer"/>
+                <set field="CustomerId" from-field="parameters.CustomerId"/>
+                <entity-one entity-name="CustomerDetail" value-field="customer"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DemoCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet>
+                            <platform-specific>
+                                    <html><html-template location="component://DemoPage/template/IsoMenu.ftl"/></html>
+                                </platform-specific> 
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+                
+            </widgets>
+        </section>
+    </screen>
+    <screen name="ReliabilityMenu">
+        <section>
+            <actions>
+                <set field="titleProperty" value="Domain"/>
+                <set field="tabButtonItem" value="EditCustomer"/>
+                <set field="CustomerId" from-field="parameters.CustomerId"/>
+                <entity-one entity-name="CustomerDetail" value-field="customer"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="DemoCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet>
+                            <platform-specific>
+                                    <html><html-template location="component://DemoPage/template/ReliabilityMenu.ftl"/></html>
+                                </platform-specific> 
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+                
+            </widgets>
+        </section>
+    </screen>
 
 </screens>

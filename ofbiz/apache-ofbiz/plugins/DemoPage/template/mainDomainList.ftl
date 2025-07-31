@@ -74,10 +74,31 @@ under the License.
 .pink    { background-color: #e91e63; }
 .purple  { background-color: #9c27b0; }
 .teal    { background-color: #009688; }
+div h1{
+    text-align:center;
+    padding:3rem;
+    font-size:2rem !important;
+    font-weight:bold;
+}
 
+
+.link{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+   color:white;
+    width:10rem;
+    height:5rem;
+    border-radius:10px;
+    margin-left:2rem;
+}
 </style>
 
-
+<div style="height:10rem">
+    <h1>AI Integrated ERP</h1>
+</div>
 <div class="tile-scroll-wrapper">
   <div class="tile-grid">
    <a href="<@ofbizUrl controlPath="/manufacturing/control">main</@ofbizUrl>" class="tile-link blue"> <div > Manufacturing</div></a>
@@ -96,3 +117,4 @@ under the License.
   </div>
 </div>
 
+<a href="<@ofbizUrl controlPath="/DemoPage/control">main</@ofbizUrl>" class="link blue"> <div > Back To Menu</div></a>

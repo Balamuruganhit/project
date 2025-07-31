@@ -20,11 +20,28 @@
 <menus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ofbiz.apache.org/Widget-Menu" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Menu http://ofbiz.apache.org/dtds/widget-menu.xsd">
     <menu name="MainAppBar" title="${uiLabelMap.AuditReportApplication}" extends="CommonAppBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
 
-        <menu-item name="MainMenu" title="Main Menu"><link target="/DemoPage/control/main" url-mode="inter-app"/></menu-item>
+        <menu-item name="MainMenu" title="Main Menu"><link target="/DemoPage/control/IsoMenu" url-mode="inter-app"/></menu-item>
         <menu-item name="AuditAs9100" title="${uiLabelMap.AuditAs9100}"><link target="config"/></menu-item>
+       
+    </menu>
+    <menu name="AuditIRISMainAppBar" title="${uiLabelMap.AuditReportApplication}" extends="CommonAppBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
+
+        <menu-item name="MainMenu" title="Main Menu"><link target="/DemoPage/control/IsoMenu" url-mode="inter-app"/></menu-item>
         <menu-item name="AuditIRIS" title="${uiLabelMap.AuditIRIS}"><link target="irismenu"/></menu-item>
-        <menu-item name="AuditIso9001" title="${uiLabelMap.AuditIso9001}"><link target="ListOfReport"/></menu-item>
+       
+    </menu>
+    <menu name="KPIMainAppBar" title="${uiLabelMap.AuditReportApplication}" extends="CommonAppBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
+
+        <menu-item name="MainMenu" title="Main Menu"><link target="/DemoPage/control/IsoMenu" url-mode="inter-app"/></menu-item>
+       
         <menu-item name="KPI" title="${uiLabelMap.Kpi}"><link target="kpi"/></menu-item>
+    </menu>
+    <menu name="AuditIso9001MainAppBar" title="${uiLabelMap.AuditReportApplication}" extends="CommonAppBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
+
+        <menu-item name="MainMenu" title="Main Menu"><link target="/DemoPage/control/IsoMenu" url-mode="inter-app"/></menu-item>
+        
+        <menu-item name="AuditIso9001" title="${uiLabelMap.AuditIso9001}"><link target="ListOfReport"/></menu-item>
+       
     </menu>
     <menu name="AuditAS9100Bar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
           menu-container-style="button-bar button-style-2">
