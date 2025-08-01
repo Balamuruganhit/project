@@ -54,98 +54,115 @@ under the License.
             
             <#else>
             <ul id="app-bar-list">
-                <#assign appCount = 0>
-                <#assign firstApp = true>
-                <#if displayApps??>
-                <#list displayApps as display>
-                    <#assign thisApp = display.getContextRoot()>
-                    <#assign permission = true>
-                    <#assign selected = false>
-                    <#assign permissions = display.getBasePermission()>
-                    <#list permissions as perm>
-                        <#if (perm != "NONE" && !security.hasEntityPermission(perm, "_VIEW", session))>
-                        <#-- User must have ALL permissions in the base-permission list -->
-                            <#assign permission = false>
+                    <#assign appCount = 0>
+                    <#assign firstApp = true>
+                    <#if displayApps??>
+                    <#list displayApps as display>
+                        <#assign thisApp = display.getContextRoot()>
+                        <#assign permission = true>
+                        <#assign selected = false>
+                        <#assign permissions = display.getBasePermission()>
+                        <#list permissions as perm>
+                            <#if (perm != "NONE" && !security.hasEntityPermission(perm, "_VIEW", session))>
+                            <#-- User must have ALL permissions in the base-permission list -->
+                                <#assign permission = false>
+                            </#if>
+                        </#list>
+                        <#if permission == true>
+                            <#if contextPath?contains("workeffort") && display.description == "Manufacturing">
+                                <#assign selected = true>
+                                <li class="app-btn<#if selected> selected</#if>">
+                                            <#if selected>
+                                            <div id="app-selected">
+                                                <#assign alreadySelected = true>
+                                            </#if>
+                                            <a href="/manufacturing/control/main "title="Manufacturing">Manufacturing</a>
+                                            <#if selected>
+                                            </div>
+                                            </#if>
+                                </li>
+                            <#else>
+                            <#if thisApp == contextPath || contextPath + "/" == thisApp>
+                                    <#assign selected = true>
+                                </#if>
+                                <#assign thisApp = StringUtil.wrapString(thisApp)>
+                                <#assign thisURL = thisApp>
+                                <#if thisApp != "/">
+                                    <#assign thisURL = thisURL + "/control/main">
+                                </#if>
+                                
+                                <#if layoutSettings.suppressTab?exists && display.name == layoutSettings.suppressTab>
+                                <#-- do not display this component-->
+                                <#else>
+                                
+                                    <#if appCount<=appMax>
+                                    
+                                            <li class="app-btn<#if selected> selected</#if>">
+                                                <#if selected>
+                                                <div id="app-selected">
+                                                    <#assign alreadySelected = true>
+                                                </#if>
+                                                <a href="${thisURL}${StringUtil.wrapString(externalKeyParam)}"<#if uiLabelMap?exists> title="${uiLabelMap[display.description]}">${uiLabelMap[display.title]}<#else> title="${display.description}">${display.title}</#if></a>
+                                                <#if selected>
+                                                </div>
+                                                </#if>
+                                            </li>
+                                        
+                                    <#else>
+                                        <#break>
+                                    </#if>
+                                    <#assign appCount = appCount + 1>
+                                
+                                </#if>
+                            </#if>
+                            
                         </#if>
                     </#list>
-                    <#if permission == true>
-                        <#if thisApp == contextPath || contextPath + "/" == thisApp>
-                            <#assign selected = true>
-                        </#if>
-                        <#assign thisApp = StringUtil.wrapString(thisApp)>
-                        <#assign thisURL = thisApp>
-                        <#if thisApp != "/">
-                            <#assign thisURL = thisURL + "/control/main">
-                        </#if>
-                        
-                        <#if layoutSettings.suppressTab?exists && display.name == layoutSettings.suppressTab>
-                        <#-- do not display this component-->
-                        <#else>
-                        
+                    </#if>
+                    <#if displaySecondaryApps??>
+                    <#list displaySecondaryApps as display>
+                        <#assign thisApp = display.getContextRoot()>
+                        <#assign permission = true>
+                        <#assign selected = false>
+                        <#assign permissions = display.getBasePermission()>
+                        <#list permissions as perm>
+                            <#if (perm != "NONE" && !security.hasEntityPermission(perm, "_VIEW", session))>
+                            <#-- User must have ALL permissions in the base-permission list -->
+                                <#assign permission = false>
+                            </#if>
+                        </#list>
+                        <#if permission == true>
+                            <#if thisApp == contextPath || contextPath + "/" == thisApp>
+                                <#assign selected = true>
+                            </#if>
+                            <#assign thisApp = StringUtil.wrapString(thisApp)>
+                            <#assign thisURL = thisApp>
+                            <#if thisApp != "/">
+                                <#assign thisURL = thisURL + "/control/main">
+                            </#if>
                             <#if appCount<=appMax>
-                            
-                                    <li class="app-btn<#if selected> selected</#if>">
-                                        <#if selected>
-                                        <div id="app-selected">
-                                            <#assign alreadySelected = true>
-                                        </#if>
-                                        <a href="${thisURL}${StringUtil.wrapString(externalKeyParam)}"<#if uiLabelMap?exists> title="${uiLabelMap[display.description]}">${uiLabelMap[display.title]}<#else> title="${display.description}">${display.title}</#if></a>
-                                        <#if selected>
-                                        </div>
-                                        </#if>
-                                    </li>
+                                
+                                <li class="app-btn<#if selected> selected</#if>">
+                                    <#if selected>
+                                    <div id="app-selected">
+                                        <#assign alreadySelected = true>
+                                    </#if>
+                                    <a href="${thisURL}${StringUtil.wrapString(externalKeyParam)}"<#if uiLabelMap?exists> title="${uiLabelMap[display.description]}">${uiLabelMap[display.title]}<#else> title="${display.description}">${display.title}</#if></a>
+                                    <#if selected>
+                                    </div>
+                                    </#if>
+                                </li>
                                 
                             <#else>
                                 <#break>
                             </#if>
                             <#assign appCount = appCount + 1>
-                        
-                        </#if>
-                    </#if>
-                </#list>
-                </#if>
-                <#if displaySecondaryApps??>
-                <#list displaySecondaryApps as display>
-                    <#assign thisApp = display.getContextRoot()>
-                    <#assign permission = true>
-                    <#assign selected = false>
-                    <#assign permissions = display.getBasePermission()>
-                    <#list permissions as perm>
-                        <#if (perm != "NONE" && !security.hasEntityPermission(perm, "_VIEW", session))>
-                        <#-- User must have ALL permissions in the base-permission list -->
-                            <#assign permission = false>
                         </#if>
                     </#list>
-                    <#if permission == true>
-                        <#if thisApp == contextPath || contextPath + "/" == thisApp>
-                            <#assign selected = true>
-                        </#if>
-                        <#assign thisApp = StringUtil.wrapString(thisApp)>
-                        <#assign thisURL = thisApp>
-                        <#if thisApp != "/">
-                            <#assign thisURL = thisURL + "/control/main">
-                        </#if>
-                        <#if appCount<=appMax>
-                            
-                            <li class="app-btn<#if selected> selected</#if>">
-                                <#if selected>
-                                <div id="app-selected">
-                                    <#assign alreadySelected = true>
-                                </#if>
-                                <a href="${thisURL}${StringUtil.wrapString(externalKeyParam)}"<#if uiLabelMap?exists> title="${uiLabelMap[display.description]}">${uiLabelMap[display.title]}<#else> title="${display.description}">${display.title}</#if></a>
-                                <#if selected>
-                                </div>
-                                </#if>
-                            </li>
-                            
-                        <#else>
-                            <#break>
-                        </#if>
-                        <#assign appCount = appCount + 1>
                     </#if>
-                </#list>
-                </#if>
-                </#if>
+                    </#if>
+                    
+               
             </ul>
             <!-- If the number of applications is greater than the maximum number of applications that can be displayed, the rest is put
             in a drop-down menu. The code is deliberately doubled because otherwise, reading the code during maintenance

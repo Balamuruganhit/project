@@ -342,7 +342,7 @@
         <value xml:lang="zh-TW">必須回複</value>
     </property>
     <property key="FormFieldTitle_newWorkEffortId">
-        <value xml:lang="en">New Work Order Number</value>
+        <value xml:lang="en">New Work Effort Number</value>
         <value xml:lang="fr">Nvlle réf de tâche</value>
     </property>
     <property key="FormFieldTitle_orderTypeDescription">
@@ -1263,7 +1263,7 @@
         <value xml:lang="zh-TW">編輯工時表角色</value>
     </property>
     <property key="PageTitleEditWorkEffort">
-        <value xml:lang="en">Edit Work order</value>
+        <value xml:lang="en">Edit Work Effort</value>
         <value xml:lang="es">Editar esfuerzo de trabajo</value>
         <value xml:lang="fr">Modifier la tâche</value>
         <value xml:lang="it">Aggiorna impegno di lavoro</value>
@@ -1422,7 +1422,7 @@
     </property>
     <property key="PageTitleFindWorkEffort">
         <value xml:lang="de">Finde Arbeitseinsatz</value>
-        <value xml:lang="en">Find Work Order</value>
+        <value xml:lang="en">Find Work Effort</value>
         <value xml:lang="es">Buscar esfuerzo de trabajo</value>
         <value xml:lang="fr">Rechercher la tâche</value>
         <value xml:lang="it">Ricerca impegno di lavoro</value>
@@ -1646,7 +1646,7 @@
         <value xml:lang="zh-TW">按名稱查詢工作投入</value>
     </property>
     <property key="PageTitleTreeWorkEfforts">
-        <value xml:lang="en">Child Work orders</value>
+        <value xml:lang="en">Child Work Efforts</value>
         <value xml:lang="es">Esfuerzos de trabajo hijos</value>
         <value xml:lang="fr">Tâches descendantes</value>
         <value xml:lang="it">Impegni di lavoro dipendenti</value>
@@ -2295,7 +2295,7 @@
     </property>
     <property key="WorkEffortCompanyName">
         <value xml:lang="de">OFBiz: Arbeitseinsatz Manager</value>
-        <value xml:lang="en">OFBiz: WorkEffort Manager</value>
+        <value xml:lang="en">Pangun Tech: WorkEffort Manager</value>
         <value xml:lang="es">OFBiz: Administración de tareas</value>
         <value xml:lang="fr">OFBiz: Gestion de tâches</value>
         <value xml:lang="it">OFBiz: Gestione impegni di lavoro</value>
@@ -2378,7 +2378,7 @@
     </property>
     <property key="WorkEffortCreate">
         <value xml:lang="de">Erstelle Arbeitseinsatz</value>
-        <value xml:lang="en">Create Work order</value>
+        <value xml:lang="en">Create Work Effort</value>
         <value xml:lang="es">Crear esfuerzo de trabajo</value>
         <value xml:lang="fr">Créer une tâche</value>
         <value xml:lang="it">Nuovo impegno di lavoro</value>
@@ -4495,7 +4495,7 @@
         <value xml:lang="en">Required Field Missing : Num Periods.</value>
     </property>
     <property key="WorkEffortRequiredFieldMissingOldWorkEffortTypeId">
-        <value xml:lang="en">Required Field Missing : Old Work Order Number.</value>
+        <value xml:lang="en">Required Field Missing : Old Work Effort Number.</value>
     </property>
     <property key="WorkEffortRequiredFieldMissingOrderId">
         <value xml:lang="en">Required Field Missing : Order Id.</value>
@@ -4531,7 +4531,7 @@
         <value xml:lang="en">Required Field Missing : Shopping List Id.</value>
     </property>
     <property key="WorkEffortRequiredFieldMissingSourceWorkEffortId">
-        <value xml:lang="en">Required Field Missing : Source Work Order Number.</value>
+        <value xml:lang="en">Required Field Missing : Source Work Effort Number.</value>
     </property>
     <property key="WorkEffortRequiredFieldMissingStart">
         <value xml:lang="en">Required Field Missing : Start.</value>
@@ -4555,7 +4555,7 @@
         <value xml:lang="en">Required Field Missing : Work Effort Good Std Type Id.</value>
     </property>
     <property key="WorkEffortRequiredFieldMissingWorkEffortId">
-        <value xml:lang="en">Required Field Missing : Work Order Number.</value>
+        <value xml:lang="en">Required Field Missing : Work Effort Number.</value>
     </property>
     <property key="WorkEffortRequiredFieldMissingWorkEffortIdFrom">
         <value xml:lang="en">Required Field Missing : Work Effort Id From.</value>
@@ -5360,7 +5360,7 @@
     
     <property key="WorkEffortWorkEffort">
         <value xml:lang="de">Arbeitseinsatz</value>
-        <value xml:lang="en">Work Order</value>
+        <value xml:lang="en">Work Effort</value>
         <value xml:lang="es">Esfuerzo de trabajo</value>
         <value xml:lang="fr">Tâche</value>
         <value xml:lang="it">Impegno di lavoro</value>
@@ -5374,7 +5374,7 @@
     </property>
     <property key="WorkOrder">
         <value xml:lang="de">Arbeitseinsatz</value>
-        <value xml:lang="en">Work Order</value>
+        <value xml:lang="en">Work Effort</value>
         <value xml:lang="es">Esfuerzo de trabajo</value>
         <value xml:lang="fr">Tâche</value>
         <value xml:lang="it">Impegno di lavoro</value>
@@ -5417,7 +5417,7 @@
     </property>
     <property key="WorkEffortWorkEffortId">
         <value xml:lang="de">Arbeitseinsatz ID</value>
-        <value xml:lang="en">Work Order Number</value>
+        <value xml:lang="en">Work Effort Number</value>
         <value xml:lang="es">Código de esfuerzo de trabajo</value>
         <value xml:lang="fr">Tâche</value>
         <value xml:lang="it">Numero impegno di lavoro</value>
@@ -5431,7 +5431,7 @@
     </property>
     <property key="WorkEffortWorkEffortIdEmpty">
         <value xml:lang="de">Arbeitseinsatz ID fehlt</value>
-        <value xml:lang="en">Work Order Number is empty</value>
+        <value xml:lang="en">Work Effort Number is empty</value>
         <value xml:lang="es">El código del esfuerzo de trabajo está vacío</value>
         <value xml:lang="fr">La réf. de tâche est vide</value>
         <value xml:lang="it">Il codice impegno di lavoro è vuoto</value>

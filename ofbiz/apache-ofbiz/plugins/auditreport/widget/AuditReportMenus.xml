@@ -45,7 +45,7 @@
     </menu>
     <menu name="AuditAS9100Bar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
           menu-container-style="button-bar button-style-2">
-        <menu-item name="createConfig" title="${uiLabelMap.AuditConfig}" >
+        <!-- <menu-item name="createConfig" title="${uiLabelMap.AuditConfig}" >
             <condition>
                  <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
             </condition>
@@ -58,6 +58,43 @@
             <link target="pickReview"/>
         </menu-item>
         <menu-item name="AuditExport" title="${uiLabelMap.AuditExport}" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="AuditExport"/>
+        </menu-item> -->
+        <menu-item name="IrisClauses" title="AS 9100 Clauses" >
+            <condition>
+                 <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="organisation"/>
+        </menu-item>
+        <menu-item name="riskRegister" title="Risk Register" >
+            <condition>
+                <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="riskRegisterSearch"/>
+        </menu-item>
+        
+        <menu-item name="kpiIris" title="KPI" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="AuditExport"/>
+        </menu-item>
+        <menu-item name="changeMangement" title="Change Management" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="ChangeMangement"/>
+        </menu-item>
+        <menu-item name="internalAuditormatrix" title="Internal Auditor Competence Matrix" >
+            <condition>
+                     <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
+            </condition>
+            <link target="AuditExport"/>
+        </menu-item>
+        <menu-item name="internalAuditorSchedule" title="Internal Auditor Schedule" >
             <condition>
                      <if-has-permission permission="AUDITREPORT" action="_CREATE"/>
             </condition>

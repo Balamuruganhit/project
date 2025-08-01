@@ -19,7 +19,7 @@ under the License.
 <style>
 .tile-scroll-wrapper {
   overflow-x: auto;
-  height:35rem;
+  height:55rem;
   overflow-y: hidden;
   padding: 20px;
   -ms-overflow-style: none;      /* IE/Edge */
@@ -32,8 +32,8 @@ under the License.
 .tile-grid {
   display: grid;
   grid-auto-flow: column;
-  grid-template-rows: repeat(2, 140px); /* 2 rows */
-  grid-auto-columns: 380px;
+  grid-template-rows: repeat(3, 140px); /* 2 rows */
+  grid-auto-columns: 280px;
   gap: 22px;
 }
 

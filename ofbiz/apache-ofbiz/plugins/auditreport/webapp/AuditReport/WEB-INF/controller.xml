@@ -43,6 +43,7 @@ under the License.
     
      <!-- Request Mappings -->
     <request-map uri="main"><security https="true" auth="true"/><response name="success" type="view" value="config"/></request-map>
+    <request-map uri="As9100Land"><security https="true" auth="true"/><response name="success" type="view" value="As9100Land"/></request-map>
     <request-map uri="CreateQuestion"><security https="true" auth="true"/>
         <!-- <event type="service" invoke="createQuestion"/>
         <response name="success" type="view" value="config"/> -->
@@ -240,6 +241,7 @@ under the License.
     <!-- View Mappings -->
      <view-map name="LookupProduct" type="screen" page="component://product/widget/catalog/LookupScreens.xml#LookupProduct"/>
     <view-map name="main" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#main"/>
+     <view-map name="As9100Land" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#As9100Land"/>
     <view-map name="config" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#config"/>
     <view-map name="export" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#export"/>   
     <view-map name="pickReview" type="screen" page="component://AuditReport/widget/AuditReportScreens.xml#pickReview"/>

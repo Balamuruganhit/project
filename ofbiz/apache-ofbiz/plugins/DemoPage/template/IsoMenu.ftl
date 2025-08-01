@@ -83,7 +83,7 @@ div h1{
 
 <div class="tile-scroll-wrapper">
   <div class="tile-grid">
-   <a href="<@ofbizUrl controlPath="/AuditReport/control">config</@ofbizUrl>" class="tile-link blue"> <div > AS9100 Reporting</div></a>
+   <a href="<@ofbizUrl controlPath="/AuditReport/control">As9100Land</@ofbizUrl>" class="tile-link blue"> <div > AS9100 Reporting</div></a>
    <a href="<@ofbizUrl controlPath="/AuditReport/control">irismenu</@ofbizUrl>" class="tile-link purple"> <div >IRIS Reporting</div></a>
    <a href="<@ofbizUrl controlPath="/AuditReport/control">ListOfReport</@ofbizUrl>" class="tile-link orange"> <div >ISO9001 Reporting</div></a>
    <a href="<@ofbizUrl controlPath="/AuditReport/control">main</@ofbizUrl>" class="tile-link red"> <div >API Reporting</div></a>
