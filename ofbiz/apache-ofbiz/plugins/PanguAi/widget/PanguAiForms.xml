@@ -165,4 +165,55 @@ under the License.
                 </hyperlink>
             </field>
     </form>
+    <form name="FindFracas" target="findfracas" title="" type="single" 
+        header-row-style="header-row" default-table-style="basic-table">
+        <field name="system"  position="1" ><text/></field>
+        <field name="subSystem" position="2"><text></text></field>
+        <field name="subSubSystem" position="1"><text></text></field>
+        <field name="partNumber"  position="2"><text></text></field>
+        <field name="startWarrantyDate" title="WarrantyDate (Start)" position="1"><date-time  type="date"/></field>
+        <field name="endWarrantyDate" title="WarrantyDate (End)" position="2"><date-time  type="date"/></field>
+        <field name="fromDate" title="Date From:" position="1"><date-time  type="date"/></field>
+        <field name="toDate" title="Date To:" position="2"><date-time  type="date"/></field>
+        <field name="prototype" title="Product is Prototype" position="1"><drop-down>
+                <option key="Yes" />
+                <option key="No" />
+        </drop-down></field>
+        <field name="submitButton" title="${uiLabelMap.CommonFind}"><submit/></field>
+        <field name="approver" ><hidden value="update"/></field>
+    </form>
+   <form name="ListSearchFracas" type="list" use-row-submit="true" target="delete"  title="" list-name="ramsList"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar" paginate-target="">
+        
+        
+            <field name="reportNumber" widget-style="buttontext">
+                <hyperlink description="${reportNumber}" target="createfracas">
+                    <parameter param-name="reportNumber"/>
+                </hyperlink>  
+            </field>
+            <field name="system"><display/>
+            </field>
+            <field name="approver"><hidden/></field>
+            <field name="team"><hidden/></field>
+            <field name="productCode"><hidden/></field>
+            <field name="rams"><hidden/></field>
+            <field name="subSystem"><display/></field>
+            <field name="subSubSystem"><display/></field>
+            <field name="partNumber" ><display/></field>
+            <field name="createDate"><display/></field> 
+            <!-- <field name="updateLink" title="Create" widget-style="buttontext">
+                <hyperlink description="create" target="rams" >
+                        <parameter param-name="ramsNo"/>
+                </hyperlink>
+            </field>
+            <field name="delete" title="Delete " widget-style="buttontext">
+                <hyperlink description="Delete" target="delete">
+                    <parameter param-name="ramsNo"/>
+                </hyperlink>  
+           </field> -->
+           <field  name="print" >
+                <check><option key=" " /></check>
+           </field>
+    
+    </form>
 </forms>

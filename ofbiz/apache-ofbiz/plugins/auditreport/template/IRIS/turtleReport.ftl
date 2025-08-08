@@ -202,8 +202,7 @@ table {
  <div id="kpi" class="arrow"></div>
  <div id="output" class="arrow lefter"></div>
  <div id="customer" class="arrow lefter" ></div>
- <div id="kpiDataDiv" style="display:none;">
-</div>
+ 
     <div class="box" id="lg-sb-lf">
         <h4  style="font-size:1.4rem;padding-top:1rem;color:black;color:black;">Supplier</h4>
         <div style="padding: 1rem;margin: 1rem 0rem;border: 3px solid #0c2d7c;"  class="cell-editable">${group.supplier!" "}</div>
@@ -264,26 +263,37 @@ table {
 <button id="SaveBtn" style="color:white; font-size:1.2rem;">Print</button>
 <script>
   // Get the data from the div
-  const rawData = document.getElementById("kpiDataDiv").innerText.trim();
-  console.log(rawData)
-  // Parse it into an array
-  const data = JSON.parse(rawData);
-console.log(data)
-  const tbody = document.querySelector("#kpiTable tbody");
-  tbody.innerHTML = "";
+  let rawData = document.getElementById("kpiDataDiv").innerText.trim();
+  try {
+  data = JSON.parse(rawData);
+  console.log("Parsed JSON:", data);
+} catch (e) {
+  console.warn("Invalid JSON, skipping parse.");
+  // Optional: fallback to raw string
+  rawData=null
+}
 
-  // Loop and insert rows
-  data.forEach(rowArray => {
-    const row = document.createElement("tr");
-    rowArray.forEach(cellData => {
-      const cell = document.createElement("td");
-      cell.classList.add("cell-editable");
-      cell.setAttribute("contenteditable", "true");
-      cell.textContent = cellData;
-      row.appendChild(cell);
-    });
-    tbody.appendChild(row);
-  });
+  if(rawData){
+     console.log("it is run here")
+  // Parse it into an array
+      const data = JSON.parse(rawData);
+    console.log(data)
+      const tbody = document.querySelector("#kpiTable tbody");
+      tbody.innerHTML = "";
+
+      // Loop and insert rows
+      data.forEach(rowArray => {
+        const row = document.createElement("tr");
+        rowArray.forEach(cellData => {
+          const cell = document.createElement("td");
+          cell.classList.add("cell-editable");
+          cell.setAttribute("contenteditable", "true");
+          cell.textContent = cellData;
+          row.appendChild(cell);
+        });
+        tbody.appendChild(row);
+      });
+  }
 document.getElementById("SaveBtn").addEventListener("click", () => {
   // Recalculate arrow positions first
  

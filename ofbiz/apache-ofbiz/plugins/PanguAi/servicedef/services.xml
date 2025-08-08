@@ -82,4 +82,10 @@ under the License.
    <attribute name="date_fld0_value" type="Timestamp" mode="IN" optional="true"/>
    <attribute name="date_fld1_value" type="Timestamp" mode="IN" optional="true"/>
 </service>
+ <service name="createFraces" default-entity-name="fracasDetails" engine="entity-auto" invoke="create" auth="true">
+        <description>Create an Ofbiz Demo record</description>
+        <auto-attributes include="pk" mode="OUT" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+</service>
+
 </services>

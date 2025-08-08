@@ -42,6 +42,25 @@
             </widgets>
         </section>
     </screen>
+    <screen name="mainfracas-decorator">
+        <section>
+            <actions>
+                <property-map resource="PanguAiUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+
+                <set field="layoutSettings.companyName" from-field="uiLabelMap.PanguAiCompanyName" global="true"/>
+                <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.PanguAiCompanySubtitle" global="true"/>
+                <set field="layoutSettings.javaScripts[]" value="/PanguAi/static/chatbot.js" global="true"/>
+                <set field="activeApp" value="PanguAi" global="true"/>
+                <set field="applicationMenuName" value="MainAppBarFracas" global="true"/>
+                <set field="applicationMenuLocation" value="component://PanguAi/widget/PanguAiMenus.xml" global="true"/>
+                <set field="applicationTitle" from-field="uiLabelMap.PanguAiApplication" global="true"/>
+            </actions>
+            <widgets>
+                <include-screen name="GlobalDecorator" location="component://common/widget/CommonScreens.xml"/>
+            </widgets>
+        </section>
+    </screen>
 
     <screen name="RamsCommonDecorator">
         <section>
@@ -70,6 +89,27 @@
             </actions>
             <widgets>
                 <decorator-screen name="mainfmea-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <if-has-permission permission="PANGUAI" action="_VIEW"/>
+                            </condition>
+                            <widgets>
+                                <decorator-section-include name="body"/>
+                            </widgets>
+                           
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="FracasCommonDecorator">
+        <section>
+            <actions>
+            </actions>
+            <widgets>
+                <decorator-screen name="mainfracas-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <section>
                             <condition>

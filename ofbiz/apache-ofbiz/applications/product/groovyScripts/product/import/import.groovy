@@ -127,7 +127,7 @@ def uploadExcelAndPrint() {
                 logInfo("Row map: ${row}")
             
             }
-    result.put("availableProduct", availableList)
+    result.availableProduct = availableList
     result.put("successMessage", "Excel Data Import successfully ${dataList.size()}")
     return result
         

@@ -430,7 +430,7 @@
                 <actions>
                     <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
                     <set field="rams" from-field="parameters.rams" type="String"/>
-                <script location="component://AuditReport/groovyScripts/Audit/isoReport/organisationreport.groovy"/>
+                    <script location="component://AuditReport/groovyScripts/Audit/isoReport/organisationreport.groovy"/>
                     <set field="viewSize" value="99999"/>
                 </actions>
                 <widgets>

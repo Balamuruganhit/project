@@ -1,5 +1,12 @@
 
 <style>
+.header-main{
+ position: absolute;
+ width:99%;
+ top:0;
+ left:0.3%;
+ background:white;
+}
 .tile-scroll-wrapper {
   overflow-x: auto;
   height:35rem;
@@ -19,7 +26,6 @@
   grid-auto-columns: 380px;
   gap: 22px;
 }
-
 
 /* Tile styles */
 
@@ -58,6 +64,12 @@
 .pink    { background-color: #e91e63; }
 .purple  { background-color: #9c27b0; }
 .teal    { background-color: #009688; }
+.header h1{
+    margin:0px;
+    text-align:center;
+    padding:2%;
+    color:white;
+}
 
 .link{
     display: flex;
@@ -71,20 +83,28 @@
     border-radius:10px;
     margin-left:2rem;
 }
-div h1{
-    text-align:center;
-    padding:3rem;
-    font-size:2rem !important;
-    font-weight:bold;
+.link:hover{
+  color:white;
+  transform: scale(1.08);
+}
+.header {
+  background-color: #0c2d7c;
+  color: white;
+  padding: 0px;
+  text-align: center;
+  font-size: 1em;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width:100%;
 }
 </style>
-<div style="height:10rem">
-    <h1>Reliability Tools</h1>
-</div>
-
+<div class="header-main">
+<header class="header">
+    <h1 style="color:white">Reliability Tools</h1>
+  </header>
 <div class="tile-scroll-wrapper">
   <div class="tile-grid">
-   <a href="<@ofbizUrl controlPath="/PanguAi/control">main</@ofbizUrl>" class="tile-link blue"> <div > FRACAS</div></a>
+  <a href="<@ofbizUrl controlPath="/PanguAi/control">findfracas</@ofbizUrl>" class="tile-link blue"> <div > FRACAS</div></a>
    <a href="<@ofbizUrl controlPath="/PanguAi/control">main</@ofbizUrl>" class="tile-link purple"> <div >RCA-8D</div></a>
     <a href="<@ofbizUrl controlPath="/PanguAi/control">ramsSelector</@ofbizUrl>" class="tile-link red"> <div >RAMS</div></a>
     <a href="<@ofbizUrl controlPath="/PanguAi/control">selector</@ofbizUrl>" class="tile-link orange"> <div >FMEA</div></a>
@@ -93,7 +113,8 @@ div h1{
 
     <!-- Add more tiles -->
   </div>
+
 </div>
+  <a style="margin-bottom:2rem;" href="<@ofbizUrl controlPath="/DemoPage/control">main</@ofbizUrl>" class="link blue"> <div > Back To Menu</div></a>
 
-<a href="<@ofbizUrl controlPath="/DemoPage/control">main</@ofbizUrl>" class="link blue"> <div > Back To Menu</div></a>
-
+</div>

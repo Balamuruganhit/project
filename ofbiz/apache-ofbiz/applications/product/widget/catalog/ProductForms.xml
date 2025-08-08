@@ -23,8 +23,8 @@ under the License.
     <form name="FindProduct" type="single" target="FindProduct" title="" default-map-name="product"
         header-row-style="header-row" default-table-style="basic-table">
         <field name="noConditionFind"><hidden value="Y"/><!-- if this isn't there then with all fields empty no query will be done --></field>
-        <field name="productId" title="${uiLabelMap.ProductProductId}"><text-find/></field>
-        <field name="internalName" title="${uiLabelMap.ProductInternalName}"><text-find/></field>
+        <field name="productId" title="${uiLabelMap.ProductProductId}" position="1"><text/></field>
+        <field name="internalName" title="${uiLabelMap.ProductInternalName}" position="2"><text/></field>
         <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit">
             <submit button-type="button"/>
         </field>
@@ -49,7 +49,7 @@ under the License.
         <field name="productTypeId" sort-field="true"><display-entity entity-name="ProductType"/></field>
         <field name="internalName" sort-field="true"><display/></field>
         <field name="brandName" sort-field="true"><display/></field>
-        <field name="productName" sort-field="true"><display/></field>
+        <!-- <field name="productName" sort-field="true"><display/></field> -->
         <field name="description" sort-field="true"><display/></field>
     </grid>
     <form name="EditProduct" type="single" target="updateProduct" title="" default-map-name="product"
@@ -241,10 +241,10 @@ under the License.
         </field>
         <field name="contentInfoText" title="${uiLabelMap.ProductContentInfoText}" widget-style="tooltip">
             <display description="${uiLabelMap.ProductNoteForContentOptions}" also-hidden="false"/>
-        </field>
+        </field>-->
         <field name="submitButton" title="${uiLabelMap.ProductUpdateProduct}" use-when="product!=null" widget-style="smallSubmit"><submit button-type="button"/></field>
         <field name="submitButton" title="${uiLabelMap.ProductCreateProduct}" use-when="product==null" widget-style="smallSubmit"><submit button-type="button"/></field>
-        <field use-when="product!=null" position="1" name="lastUpdatedByText" title="${uiLabelMap.ProductLastModifiedBy}:">
+        <!-- <field use-when="product!=null" position="1" name="lastUpdatedByText" title="${uiLabelMap.ProductLastModifiedBy}:">
             <display description="[${product.lastModifiedByUserLogin}] ${uiLabelMap.CommonOn} ${product.lastModifiedDate}" also-hidden="false"/>
         </field>
         <field use-when="product!=null" position="2" name="createdByText" title="${uiLabelMap.CommonCreatedBy}:">
@@ -252,7 +252,7 @@ under the License.
         </field>
         <field name="orderDecimalQuantity" >
             <drop-down allow-empty="true" ><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
-        </field> -->
+        </field>  -->
         <sort-order>
             <field-group>
                 <sort-field name="productId"/>

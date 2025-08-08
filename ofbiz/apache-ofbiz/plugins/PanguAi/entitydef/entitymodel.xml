@@ -107,5 +107,37 @@ under the License.
         <field name="out6" type="name"></field>
         <prim-key field="genId" />
     </entity>
-
+    <entity entity-name="fracasDetails"  package-name="org.apache.ofbiz.PanguAi" title="RamsData Entity">
+        <field name="complaintNumber" type="id"></field>
+        <field name="complaintDate" type="id"></field>
+        <field name="customerName" type="name"></field>
+        <field name="system" type="name"></field>
+        <field name="subSystem" type="name"></field>
+        <field name="subSubSystem" type="name"></field>
+        <field name="startWarranty" type="date"></field>
+        <field name="endWarranty" type="date"></field>
+        <field name="customerZone" type="name"></field>
+         <field name="prototype" type="name"></field>
+        <field name="partNumber" type="name"></field>
+        <field name="reportNumber" type="name"></field>
+        <field name="revision" type="name"></field>
+        <field name="partdescription" type="name"></field>
+        <field name="createDate" type="date"></field>
+        <field name="failureType" type="name"></field>
+        <field name="failureNature" type="name"></field>
+        <field name="closureDate" type="name"></field>
+        <field name="status" type="name"></field>
+        <field name="rootCauses" type="url"></field>
+        <field name="action" type="url"></field>
+        <field name="problemReported" type="url"></field>
+        <field name="defectObserved" type="url"></field>
+        <field name="correctiveAction" type="url"></field>
+        <field name="actualDate" type="name"></field>
+        <field name="RDAction" type="url"></field>
+        <field name="costImplication" type="url"></field>
+        <field name="response1" type="name"></field>
+        <field name="response2" type="name"></field>
+        <field name="approver" type="name"></field>
+        <prim-key field="reportNumber" />
+    </entity>   
 </entitymodel>

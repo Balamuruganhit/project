@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+                .responsive-table {
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        .responsive-table th,
+        .responsive-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+        }
+
+        /* Card view on small screens */
+        @media (max-width: 768px) {
+        .responsive-table thead {
+            display: none; /* Hide header */
+        }
+
+        .responsive-table,
+        .responsive-table tbody,
+        .responsive-table tr,
+        .responsive-table td {
+            display: block;
+            width: 100%;
+        }
+
+        .responsive-table tr {
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+
+        .responsive-table td {
+            border: none;
+            padding: 6px 0;
+            position: relative;
+        }
+
+        .responsive-table td::before {
+            content: attr(data-label);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+            color: #333;
+        }
+        }
+</style>
+    </head>
+    <body>
+       <table class="responsive-table">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Stock</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Product">Keyboard</td>
+      <td data-label="Price">$25</td>
+      <td data-label="Stock">120</td>
+    </tr>
+    <tr>
+      <td data-label="Product">Mouse</td>
+      <td data-label="Price">$15</td>
+      <td data-label="Stock">200</td>
+    </tr>
+  </tbody>
+</table>
+
+    </body>
+</html>

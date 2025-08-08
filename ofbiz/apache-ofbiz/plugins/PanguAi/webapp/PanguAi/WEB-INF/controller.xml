@@ -100,6 +100,35 @@ under the License.
         <response name="success" type="view" value="ReportPdfRams"/>
         <response name="error" type="view" value="Export"/>
     </request-map>
+    <request-map uri="findfracas">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="findfracas"/>
+        <response name="error" type="view" value="selector"/>
+    </request-map>
+     <request-map uri="createfracas">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="createfracas"/>
+        <response name="error" type="view" value="selector"/>
+    </request-map>
+    <request-map uri="Createfracas">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <event type="service" path="" invoke="createFraces"/>
+        <response name="success" type="view" value="createfracas"/>
+        <response name="error" type="view" value="selector"/>
+    </request-map>
+    <request-map uri="MasterReportFracas">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="MasterReportFracas"/>
+        <response name="error" type="view" value="selector"/>
+    </request-map>
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#main"/>
     <view-map name="fema" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#fema"/>
@@ -111,5 +140,8 @@ under the License.
     <view-map name="ReportPdfRams" type="screenfop" page="component://PanguAi/widget/PanguAiScreens.xml#ReportPdfRams" content-type="application/pdf" encoding="none"/>
     <view-map name="MasterReport" type="screenfop" page="component://PanguAi/widget/PanguAiScreens.xml#MasterReport" content-type="application/pdf" encoding="none"/>
     <view-map name="viewFema" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#viewFema"/>
+    <view-map name="findfracas" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#fracasfindscreen"/>
+    <view-map name="createfracas" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#fracascreatescreen"/>
+    <view-map name="MasterReportFracas" type="screenfop" page="component://PanguAi/widget/PanguAiScreens.xml#MasterReportFracas" content-type="application/pdf" encoding="none"/>
 
 </site-conf>

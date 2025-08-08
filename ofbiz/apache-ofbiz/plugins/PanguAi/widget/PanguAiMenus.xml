@@ -12,4 +12,9 @@
         <menu-item name="fema" title="FMEA Analysis"><link target="selector"/></menu-item>
        
     </menu>
+    <menu name="MainAppBarFracas" title="${uiLabelMap.PanguAiApplication}" extends="CommonAppBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
+        <menu-item name="MainMenu" title="Main Menu"><link target="/DemoPage/control/ReliabilityMenu" url-mode="inter-app"/></menu-item>
+        <menu-item name="fema" title="FRACAS Analysis"><link target="findfracas"/></menu-item>
+       
+    </menu>
 </menus>

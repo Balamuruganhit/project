@@ -40,6 +40,9 @@ console.log("it from selector")
       console.log(selectedRamsNo); // for debugging
     });
   });
+  if(window.location.pathname =="/PanguAi/control/findfracas"){
+      console.log("working")
+  console.log(window.location.pathname)}
   buttonSubmit.addEventListener('click', (event) => {
     event.preventDefault(); // prevent default button action (like form submission)
 
@@ -52,8 +55,14 @@ console.log("it from selector")
     }
 
     const joinedRams = selectedRamsNo.join(',');
-    const targetUrl = `/PanguAi/control/MasterReport?ramsDetail=${encodeURIComponent(joinedRams)}`;
-
+    let targetUrl;
+    console.log(joinedRams)
+    if(window.location.pathname =="/PanguAi/control/findfracas"){
+      console.log("working")
+      targetUrl = `/PanguAi/control/MasterReportFracas?fracasDetail=${encodeURIComponent(joinedRams)}`;
+    }else{
+      targetUrl = `/PanguAi/control/MasterReport?ramsDetail=${encodeURIComponent(joinedRams)}`;
+    }
     // Option 1: redirect the user
     window.location.href = targetUrl;
 
