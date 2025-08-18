@@ -20,7 +20,7 @@ under the License.
 
 .tile-scroll-wrapper {
   overflow-x: auto;
-  height:55rem;
+  
   overflow-y: hidden;
   padding: 20px;
   -ms-overflow-style: none;      /* IE/Edge */

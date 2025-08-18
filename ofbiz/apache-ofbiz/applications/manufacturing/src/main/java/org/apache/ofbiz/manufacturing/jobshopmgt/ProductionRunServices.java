@@ -1019,6 +1019,7 @@ public class ProductionRunServices {
                 try {
                     // get the currency
                     GenericValue facility = productionRun.getGenericValue().getRelatedOne("Facility", false);
+                    Debug.logInfo("Facility "+ facility , MODULE);
                     Map<String, Object> outputMap = dispatcher.runSync("getPartyAccountingPreferences",
                             UtilMisc.<String, Object>toMap("userLogin", userLogin,
                                     "organizationPartyId", facility.getString("ownerPartyId")));
@@ -1050,6 +1051,7 @@ public class ProductionRunServices {
                             Debug.logWarning("Unable to create cost component for cost component calc with id [" + costComponentCalc.getString(
                                     "costComponentCalcId") + "] because customMethod is not set", MODULE);
                         } else {
+                            Debug.logInfo("Facility "+ partyAccountingPreference , MODULE);
                             Map<String, Object> costMethodResult = dispatcher.runSync(customMethod.getString("customMethodName"),
                                     UtilMisc.toMap("productCostComponentCalc", productCostComponentCalc,
                                             "costComponentCalc", costComponentCalc,
@@ -1227,6 +1229,7 @@ public class ProductionRunServices {
                     }
                     BigDecimal totalCost = fixedCost.add(variableCost.multiply(BigDecimal.valueOf(totalTime))).setScale(DECIMALS, ROUNDING);
                     // store the cost
+                    
                     Map<String, Object> inMap = UtilMisc.<String, Object>toMap("userLogin", userLogin, "workEffortId", productionRunTaskId);
                     inMap.put("costComponentTypeId", "ACTUAL_" + workEffortCostCalc.getString("costComponentTypeId"));
                     inMap.put("costComponentCalcId", costComponentCalc.getString("costComponentCalcId"));
@@ -1829,6 +1832,7 @@ public class ProductionRunServices {
         try {
             // get the currency
             facility = productionRun.getGenericValue().getRelatedOne("Facility", false);
+            Debug.logInfo("Facility "+ facility , MODULE);
             Map<String, Object> outputMap = dispatcher.runSync("getPartyAccountingPreferences", UtilMisc.<String, Object>toMap("userLogin",
                     userLogin, "organizationPartyId", facility.getString("ownerPartyId")));
             if (ServiceUtil.isError(outputMap)) {

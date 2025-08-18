@@ -501,6 +501,10 @@ def productCostPercentageFormula() {
     Map result = success()
     GenericValue productCostComponentCalc = parameters.productCostComponentCalc
     GenericValue costComponentCalc = parameters.costComponentCalc
+    logInfo('ProductID'+productCostComponentCalc.productId)
+    logInfo('accoutn'+ parameters.accoutn)
+    logInfo('costComponentTypePrefix'+parameters.costComponentTypePrefix)
+    logInfo('baseCost'+parameters.baseCost)
     Map inputMap = [productId: productCostComponentCalc.productId, currencyUomId: parameters.currencyUomId, costComponentTypePrefix: parameters.costComponentTypePrefix]
     Map serviceResult = run service: "getProductCost", with: inputMap
     BigDecimal productCost = serviceResult.productCost
