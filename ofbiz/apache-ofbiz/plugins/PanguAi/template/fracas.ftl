@@ -153,10 +153,10 @@
       </section>
 
       <!-- Save/Cancel Buttons -->
-      <#--  <div class="form-actions">
-       
-        <input class="btn btn-primary" type="submit"/>
-      </div>  -->
+      <div class="form-actions">
+        <button ><a style="color:white; font-size:1.2rem;" href="fracasReport?reportNumber=${ramsOutputTitle.complaintNumber}">Print Document</a></button>
+
+      </div>
     </main>
     <#else>
 <form name="questionAddForm" action="<@ofbizUrl>Createfracas</@ofbizUrl>" method="post">

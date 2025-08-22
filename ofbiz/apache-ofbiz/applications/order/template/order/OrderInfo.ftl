@@ -46,7 +46,7 @@ under the License.
               </li>
             </#if>
 
-            <#if "ORDER_CREATED" == currentStatus.statusId || "ORDER_PROCESSING" == currentStatus.statusId>
+            <#if ("ORDER_CREATED" == currentStatus.statusId || "ORDER_PROCESSING" == currentStatus.statusId) && "admin" == userLogin.userLoginId>
               <li><a href="javascript:document.OrderApproveOrder.submit()">${uiLabelMap.OrderApproveOrder}</a>
               <form class ="basic-form" name="OrderApproveOrder" method="post" action="<@ofbizUrl>changeOrderStatus/orderview</@ofbizUrl>">
                 <input type="hidden" name="statusId" value="ORDER_APPROVED"/>
@@ -122,7 +122,11 @@ under the License.
             <tr>
               <td class="label"><label>${uiLabelMap.OrderStatusHistory}</label></td>
               <td<#if currentStatus.statusCode?has_content> class="${currentStatus.statusCode}"</#if>>
-                <span class="current-status">${uiLabelMap.OrderCurrentStatus}: ${currentStatus.get("description",locale)}</span>
+                <#if currentStatus.get("description",locale) == "Created">
+                  <span class="current-status">${uiLabelMap.OrderCurrentStatus}: ${currentStatus.get("description",locale)}  -- <span style="font-weight:bold"> Approval Pending </span></span>
+                <#else>
+                  <span class="current-status">${uiLabelMap.OrderCurrentStatus}: ${currentStatus.get("description",locale)}</span>
+                </#if>
                 <#if orderHeaderStatuses?has_content>
                   <hr />
                   <#list orderHeaderStatuses as orderHeaderStatus>

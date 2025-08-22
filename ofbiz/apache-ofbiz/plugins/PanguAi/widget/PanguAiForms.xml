@@ -182,25 +182,89 @@ under the License.
         <field name="submitButton" title="${uiLabelMap.CommonFind}"><submit/></field>
         <field name="approver" ><hidden value="update"/></field>
     </form>
-   <form name="ListSearchFracas" type="list" use-row-submit="true" target="delete"  title="" list-name="ramsList"
-        odd-row-style="alternate-row" default-table-style="basic-table hover-bar" paginate-target="">
-        
-        
+   <form name="ListSearchFracas" type="list" use-row-submit="true" target="delete"  title="" 
+        list-name="ramsList" odd-row-style="alternate-row" default-table-style="basic-table hover-bar" paginate-target="">
             <field name="reportNumber" widget-style="buttontext">
                 <hyperlink description="${reportNumber}" target="createfracas">
                     <parameter param-name="reportNumber"/>
                 </hyperlink>  
             </field>
-            <field name="system"><display/>
-            </field>
-            <field name="approver"><hidden/></field>
-            <field name="team"><hidden/></field>
-            <field name="productCode"><hidden/></field>
+            <field name="complaintNumber"><display/></field>
+            <field name="complaintDate"><display/></field>
+            <field name="failureType"><display/></field>
+            <field name="failureNature"><display/></field>
+            <field name="customerName"><display/></field>
+            <field name="createDate"><display/></field>
+            <field name="closureDate"><display/></field>
+            <field name="status"><display/></field>
+            <field name="rootCauses"><display/></field>
+            <field name="action"><display/></field>
+            <field name="problemReported"><display/></field>
+            <field name="defectObserved"><display/></field>
+            <field name="correctiveAction"><display/></field>
+            <field name="actualDate" title="Actual Closure Date"><display/></field>
+            <field name="response1"><display/></field>
+            <field name="response2"><display/></field>
+            <field name="response1"><display/></field>
+            <field name="revision" title="MeanTime Between failure (MTBF)"><display/></field>
+            <field name="prototype" title="Time to repair (MTTR)"><display/></field>
+            <field name="RDAction"><display/></field>
+            <field name="costImplication"><display/></field>
+            <field name="approver"><display/></field>
             <field name="rams"><hidden/></field>
-            <field name="subSystem"><display/></field>
-            <field name="subSubSystem"><display/></field>
-            <field name="partNumber" ><display/></field>
-            <field name="createDate"><display/></field> 
+            <!-- <field name="updateLink" title="Create" widget-style="buttontext">
+                <hyperlink description="create" target="rams" >
+                        <parameter param-name="ramsNo"/>
+                </hyperlink>
+            </field>
+            <field name="delete" title="Delete " widget-style="buttontext">
+                <hyperlink description="Delete" target="delete">
+                    <parameter param-name="ramsNo"/>
+                </hyperlink>  
+           </field> -->
+           <field  name="print" >
+                <check><option key=" " /></check>
+           </field>
+    
+    </form>
+    <form name="FindFracasMultiple" target="multipleFind" title="" type="single" 
+        header-row-style="header-row" default-table-style="basic-table">
+        
+        <field name="fromDate" title="Date From:" position="1"><date-time  type="date"/></field>
+        <field name="toDate" title="Date To:" position="2"><date-time  type="date"/></field>
+       
+        <field name="submitButton" title="${uiLabelMap.CommonFind}"><submit/></field>
+        <field name="approver" ><hidden value="updateMulti"/></field>
+    </form>
+   <form name="ListSearchFracas" type="list" use-row-submit="true" target="delete"  title="" 
+        list-name="ramsList" odd-row-style="alternate-row" default-table-style="basic-table hover-bar" paginate-target="">
+            <field name="reportNumber" widget-style="buttontext">
+                <hyperlink description="${reportNumber}" target="createfracas">
+                    <parameter param-name="reportNumber"/>
+                </hyperlink>  
+            </field>
+            <field name="complaintNumber"><display/></field>
+            <field name="complaintDate"><display/></field>
+            <field name="failureType"><display/></field>
+            <field name="failureNature"><display/></field>
+            <field name="customerName"><display/></field>
+            <field name="createDate"><display/></field>
+            <field name="closureDate"><display/></field>
+            <field name="status"><display/></field>
+            <field name="rootCauses"><display/></field>
+            <field name="action"><display/></field>
+            <field name="problemReported"><display/></field>
+            <field name="defectObserved"><display/></field>
+            <field name="correctiveAction"><display/></field>
+            <field name="actualDate"><display/></field>
+            <field name="response1"><display/></field>
+            <field name="response2"><display/></field>
+            <field name="response1"><display/></field>
+            <field name="revision" title="Time to repair (MTTR)"><display/></field>
+            <field name="RDAction"><display/></field>
+            <field name="costImplication"><display/></field>
+            <field name="approver"><display/></field>
+            <field name="rams"><hidden/></field>
             <!-- <field name="updateLink" title="Create" widget-style="buttontext">
                 <hyperlink description="create" target="rams" >
                         <parameter param-name="ramsNo"/>

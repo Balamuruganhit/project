@@ -34,7 +34,7 @@ import org.apache.ofbiz.product.store.ProductStoreWorker
 
 orderId = parameters.orderId
 context.orderId = orderId
-
+logInfo("UseLogin" + userLogin)
 workEffortId = parameters.workEffortId
 assignPartyId = parameters.partyId
 assignRoleTypeId = parameters.roleTypeId

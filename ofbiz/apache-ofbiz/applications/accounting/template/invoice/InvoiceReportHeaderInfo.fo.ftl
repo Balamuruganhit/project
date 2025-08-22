@@ -38,7 +38,7 @@ under the License.
 </fo:table-row>
 <fo:table-row>
   <fo:table-cell  border="1pt solid black" padding="3.8pt"><fo:block>Sale Order:</fo:block></fo:table-cell>
-  <fo:table-cell  border="1pt solid black" padding="3.8pt"><fo:block><#if invoice?has_content>${invoice.salseOrderId}</#if></fo:block></fo:table-cell>
+  <fo:table-cell  border="1pt solid black" padding="3.8pt"><fo:block></fo:block></fo:table-cell>
 </fo:table-row>
 
 <fo:table-row>

@@ -107,6 +107,13 @@ under the License.
         <response name="success" type="view" value="findfracas"/>
         <response name="error" type="view" value="selector"/>
     </request-map>
+    <request-map uri="multipleFind">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="multipleFind"/>
+        <response name="error" type="view" value="selector"/>
+    </request-map>
      <request-map uri="createfracas">
         <!-- <event type="service" invoke="createQuestion"/>
         <response name="success" type="view" value="config"/> -->
@@ -120,6 +127,13 @@ under the License.
         <security https="true" auth="true"/>
         <event type="service" path="" invoke="createFraces"/>
         <response name="success" type="view" value="createfracas"/>
+        <response name="error" type="view" value="selector"/>
+    </request-map>
+    <request-map uri="fracasReport">
+        <!-- <event type="service" invoke="createQuestion"/>
+        <response name="success" type="view" value="config"/> -->
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="fracasReport"/>
         <response name="error" type="view" value="selector"/>
     </request-map>
     <request-map uri="MasterReportFracas">
@@ -143,5 +157,7 @@ under the License.
     <view-map name="findfracas" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#fracasfindscreen"/>
     <view-map name="createfracas" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#fracascreatescreen"/>
     <view-map name="MasterReportFracas" type="screenfop" page="component://PanguAi/widget/PanguAiScreens.xml#MasterReportFracas" content-type="application/pdf" encoding="none"/>
+    <view-map name="fracasReport" type="screenfop" page="component://PanguAi/widget/PanguAiScreens.xml#fracasReport" content-type="application/pdf" encoding="none"/>
+    <view-map name="multipleFind" type="screen" page="component://PanguAi/widget/PanguAiScreens.xml#multipleFind"/>
 
 </site-conf>
