@@ -17,24 +17,21 @@ specific language governing permissions and limitations
 under the License.
 -->
 <#escape x as x?xml>
-        <fo:block>
-            <fo:table table-layout="fixed" font-size="9pt">
+        <fo:block space-after="0.3in">
+            <fo:table table-layout="fixed" font-size="9pt" >
                 <fo:table-column column-width="40pt"/>
-                <fo:table-column column-width="160pt"/>
-                <fo:table-column column-width="58pt"/>
-                <fo:table-column column-width="58pt"/>
-                <fo:table-column column-width="58pt"/>
-                <fo:table-column column-width="58pt"/>
-                <fo:table-column column-width="58pt"/>
+                <fo:table-column column-width="230pt"/>
+                <fo:table-column column-width="78pt"/>
+                <fo:table-column column-width="80pt"/>
+                <fo:table-column column-width="119pt"/>
                 <fo:table-header>
-                    <fo:table-row>
-                        <fo:table-cell border-bottom="thin solid grey"><fo:block font-weight="bold">${uiLabelMap.ProductItem}</fo:block></fo:table-cell>
-                        <fo:table-cell border-bottom="thin solid grey"><fo:block font-weight="bold">${uiLabelMap.ProductProduct}</fo:block></fo:table-cell>
-                        <fo:table-cell border-bottom="thin solid grey"><fo:block font-weight="bold" text-align="right">${uiLabelMap.ProductQuantity}</fo:block></fo:table-cell>
-                        <fo:table-cell border-bottom="thin solid grey"><fo:block font-weight="bold" text-align="right">${uiLabelMap.OrderAmount}</fo:block></fo:table-cell>
-                        <fo:table-cell border-bottom="thin solid grey"><fo:block font-weight="bold" text-align="right">${uiLabelMap.OrderOrderQuoteUnitPrice}</fo:block></fo:table-cell>
-                        <fo:table-cell border-bottom="thin solid grey"><fo:block font-weight="bold" text-align="right">${uiLabelMap.OrderAdjustments}</fo:block></fo:table-cell>
-                        <fo:table-cell border-bottom="thin solid grey"><fo:block font-weight="bold" text-align="right">${uiLabelMap.CommonSubtotal}</fo:block></fo:table-cell>
+                    <fo:table-row  >
+                        <fo:table-cell border-bottom="thin solid grey" padding="6.8pt" padding-bottom="0pt" border="1pt solid black"><fo:block font-weight="bold">${uiLabelMap.ProductItem}</fo:block></fo:table-cell>
+                        <fo:table-cell border-bottom="thin solid grey" padding="6.8pt" border="1pt solid black"><fo:block font-weight="bold" text-align="center">Item Description</fo:block></fo:table-cell>
+                        <fo:table-cell border-bottom="thin solid grey" padding="6.8pt" border="1pt solid black"><fo:block font-weight="bold" text-align="right">${uiLabelMap.ProductQuantity}</fo:block></fo:table-cell>
+                        
+                        <fo:table-cell border-bottom="thin solid grey" padding="6.8pt" border="1pt solid black"><fo:block font-weight="bold" text-align="right">Unit Rate</fo:block></fo:table-cell>
+                        <fo:table-cell border-bottom="thin solid grey" padding="6.8pt" border="1pt solid black"><fo:block font-weight="bold" text-align="right">${uiLabelMap.OrderAmount}</fo:block></fo:table-cell>
                     </fo:table-row>
                 </fo:table-header>
                 <fo:table-body>
@@ -55,36 +52,22 @@ under the License.
                         <#assign totalQuoteAmount = totalQuoteAmount + totalQuoteItemAmount>
 
                         <fo:table-row>
-                            <fo:table-cell padding="2pt" background-color="${rowColor}">
+                            <fo:table-cell padding="6pt" background-color="${rowColor}" border="1pt solid black">
                                 <fo:block>${quoteItem.quoteItemSeqId}</fo:block>
                             </fo:table-cell>
-                            <fo:table-cell padding="2pt" background-color="${rowColor}">
-                                <fo:block>${(product.internalName)!} [${quoteItem.productId!}]</fo:block>
-                                <#if quoteItem.quoteItemSeqId?has_content>
-                                    <#assign quoteItemLevelTerms = Static["org.apache.ofbiz.entity.util.EntityUtil"].filterByAnd(quoteTerms, {"quoteItemSeqId": quoteItem.quoteItemSeqId})!>
-                                    <#if quoteItemLevelTerms?has_content>
-                                        <fo:block>${uiLabelMap.CommonQuoteTerms}:</fo:block>
-                                        <#list quoteItemLevelTerms as quoteItemLevelTerm>
-                                            <fo:block text-indent="0.1in">
-                                                ${quoteItemLevelTerm.getRelatedOne("TermType", false).get("description",locale)} ${quoteItemLevelTerm.termValue?default("")} ${quoteItemLevelTerm.termDays?default("")} ${quoteItemLevelTerm.textValue?default("")}
-                                            </fo:block>
-                                        </#list>
-                                    </#if>
-                                </#if>
+                            <fo:table-cell padding="6pt" background-color="${rowColor}" border="1pt solid black" >
+                                <fo:block>${(product.internalName)!} [${quoteItem.productId!}] Drawing No: ${(product.brandName)!} Description: ${(product.description)!} </fo:block>
+                               
                             </fo:table-cell>
-                            <fo:table-cell padding="2pt" background-color="${rowColor}">
+                            <fo:table-cell padding="6pt" background-color="${rowColor}" border="1pt solid black">
                                 <fo:block text-align="right">${quoteItem.quantity!}</fo:block>
                             </fo:table-cell>
-                            <fo:table-cell padding="2pt" background-color="${rowColor}">
-                                <fo:block text-align="right">${quoteItem.selectedAmount!}</fo:block>
-                            </fo:table-cell>
-                            <fo:table-cell padding="2pt" background-color="${rowColor}">
+                            
+                            <fo:table-cell padding="6pt" background-color="${rowColor}" border="1pt solid black">
                                 <fo:block text-align="right"><@ofbizCurrency amount=quoteItem.quoteUnitPrice isoCode=quote.currencyUomId/></fo:block>
                             </fo:table-cell>
-                            <fo:table-cell padding="2pt" background-color="${rowColor}">
-                                <fo:block text-align="right"><@ofbizCurrency amount=totalQuoteItemAdjustmentAmount isoCode=quote.currencyUomId/></fo:block>
-                            </fo:table-cell>
-                            <fo:table-cell padding="2pt" background-color="${rowColor}">
+                           
+                            <fo:table-cell padding="6pt" background-color="${rowColor}" border="1pt solid black">
                                 <fo:block text-align="right"><@ofbizCurrency amount=totalQuoteItemAmount isoCode=quote.currencyUomId/></fo:block>
                             </fo:table-cell>
 
@@ -131,15 +114,23 @@ under the License.
 
 
             <fo:block text-align="right">
-                <fo:table>
+                <fo:table font-size="10pt">
+                    <fo:table-column column-width="172pt"/>
+                    <fo:table-column column-width="175pt"/>
                     <fo:table-column column-width="100pt"/>
                     <fo:table-column column-width="100pt"/>
                     <fo:table-body>
                         <fo:table-row>
-                            <fo:table-cell padding="2pt">
+                            <fo:table-cell padding="6pt" >
+                                <fo:block font-weight="bold" text-align="right"></fo:block>
+                            </fo:table-cell>
+                            <fo:table-cell padding="6pt" >
+                                <fo:block font-weight="bold" text-align="right"></fo:block>
+                            </fo:table-cell>
+                            <fo:table-cell padding="6pt" border="1pt solid black">
                                 <fo:block font-weight="bold" text-align="right">${uiLabelMap.CommonSubtotal}</fo:block>
                             </fo:table-cell>
-                            <fo:table-cell padding="2pt">
+                            <fo:table-cell padding="6pt" border="1pt solid black">
                                 <fo:block text-align="right"><@ofbizCurrency amount=totalQuoteAmount isoCode=quote.currencyUomId/></fo:block>
                             </fo:table-cell>
                         </fo:table-row>
@@ -149,21 +140,33 @@ under the License.
                             <#if !quoteAdjustment.quoteItemSeqId??>
                                 <#assign totalQuoteHeaderAdjustmentAmount = quoteAdjustment.amount?default(0) + totalQuoteHeaderAdjustmentAmount>
                                 <fo:table-row>
-                                    <fo:table-cell padding="2pt">
+                                    <fo:table-cell padding="2pt" >
+                                        <fo:block font-weight="bold" text-align="right"></fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell padding="2pt" >
+                                        <fo:block font-weight="bold" text-align="right"></fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell padding="2pt" border="1pt solid black">
                                         <fo:block font-weight="bold" text-align="right">${adjustmentType.get("description", locale)!}</fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell padding="2pt">
+                                    <fo:table-cell padding="2pt" border="1pt solid black">
                                         <fo:block text-align="right"><@ofbizCurrency amount=quoteAdjustment.amount isoCode=quote.currencyUomId/></fo:block>
                                     </fo:table-cell>
                                 </fo:table-row>
                             </#if>
                         </#list>
                         <#assign grandTotalQuoteAmount = totalQuoteAmount + totalQuoteHeaderAdjustmentAmount>
-                        <fo:table-row>
-                            <fo:table-cell padding="2pt">
-                                <fo:block font-weight="bold" text-align="right">${uiLabelMap.OrderGrandTotal}</fo:block>
+                        <fo:table-row >
+                        <fo:table-cell padding="6pt" >
+                                <fo:block font-weight="bold" text-align="right"></fo:block>
                             </fo:table-cell>
-                            <fo:table-cell padding="2pt">
+                            <fo:table-cell padding="6pt" >
+                                <fo:block font-weight="bold" text-align="right"></fo:block>
+                            </fo:table-cell>
+                            <fo:table-cell padding="6pt" >
+                                <fo:block font-weight="bold"  text-align="right">${uiLabelMap.OrderGrandTotal}</fo:block>
+                            </fo:table-cell>
+                            <fo:table-cell padding="6pt" >
                                 <fo:block text-align="right"><@ofbizCurrency amount=grandTotalQuoteAmount isoCode=quote.currencyUomId/></fo:block>
                             </fo:table-cell>
                         </fo:table-row>
@@ -171,4 +174,29 @@ under the License.
                 </fo:table>
             </fo:block>
         </fo:block>
+
+        <fo:block font-weight="bold" space-after="0.1in">Terms and Condidtions :</fo:block>
+        
+        <fo:block > 
+            <fo:table font-size="10pt">
+                    <fo:table-column column-width="172pt"/>
+                    <fo:table-column column-width="377pt"/>
+                   
+                    <fo:table-body>
+                    <#assign quoteLevelTerms = Static["org.apache.ofbiz.entity.util.EntityUtil"].filterByAnd(quoteTerms, {"quoteItemSeqId": "_NA_"})!>
+                    <#if quoteLevelTerms?has_content && quoteLevelTerms.size() gt 0>
+                            <#list quoteLevelTerms as quoteLevelTerm>
+                            <fo:table-row>
+                                <fo:table-cell padding="6pt" >
+                                    <fo:block font-weight="bold" text-align="right" font-size="10pt">${quoteLevelTerm.getRelatedOne("TermType", false).get("description",locale)} :</fo:block>
+                                </fo:table-cell>
+                                <fo:table-cell padding="6pt" >
+                                    <fo:block ><#if quoteLevelTerm.termDays?has_content>  Days:  ${quoteLevelTerm.termDays?default("")}</#if> ${quoteLevelTerm.textValue?default("")}</fo:block>
+                                </fo:table-cell>
+                            </fo:table-row>
+                        </#list>
+                    </#if>
+                </fo:table-body>
+                </fo:table>
+        </fo:block>                          
 </#escape>

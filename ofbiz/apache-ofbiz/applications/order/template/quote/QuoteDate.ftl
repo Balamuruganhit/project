@@ -28,7 +28,7 @@ under the License.
                 </td>
                 <td width="5%">&nbsp;</td>
                 <td valign="top" width="80%">
-                    ${(quote.issueDate.toString())!}
+                    ${(quote.issueDate?string("dd/MM/yyyy"))!}
                 </td>
             </tr>
             <tr><td colspan="3"><hr /></td></tr>
@@ -38,7 +38,7 @@ under the License.
                 </td>
                 <td width="5%">&nbsp;</td>
                 <td valign="top" width="80%">
-                    ${(quote.validFromDate.toString())!}
+                    ${(quote.validFromDate?string("dd/MM/yyyy"))!}
                 </td>
             </tr>
             <tr><td colspan="3"><hr /></td></tr>
@@ -48,7 +48,7 @@ under the License.
                 </td>
                 <td width="5%">&nbsp;</td>
                 <td valign="top" width="80%">
-                    ${(quote.validThruDate.toString())!}
+                    ${(quote.validThruDate?string("dd/MM/yyyy"))!}
                 </td>
             </tr>
         </table>

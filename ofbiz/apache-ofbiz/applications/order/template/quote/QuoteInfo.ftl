@@ -120,6 +120,26 @@ under the License.
                     <#if store??>${store.storeName?default(quote.productStoreId!)}</#if>
                 </td>
             </tr>
+            <tr><td colspan="3"><hr /></td></tr>
+            <tr>
+                <td align="right" valign="top" width="15%" class="label">
+                    &nbsp;Customer Reference No
+                </td>
+                <td width="5%">&nbsp;</td>
+                <td valign="top" width="80%">
+                    <#if store??>${(quote.referenceId!)}</#if>
+                </td>
+            </tr>
+            <tr><td colspan="3"><hr /></td></tr>
+            <tr>
+                <td align="right" valign="top" width="15%" class="label">
+                    &nbsp;Reference Date
+                </td>
+                <td width="5%">&nbsp;</td>
+                <td valign="top" width="80%">
+                    <#if store??>${(quote.referenceDate?string("dd/MM/yyyy"))!}</#if>
+                </td>
+            </tr>
         </table>
     </div>
 </div>

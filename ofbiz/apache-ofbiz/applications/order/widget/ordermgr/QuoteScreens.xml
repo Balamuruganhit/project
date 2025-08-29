@@ -44,7 +44,8 @@ under the License.
                                     <widgets>
                                         <include-menu name="QuoteTabBar" location="component://order/widget/ordermgr/OrderMenus.xml"/>
                                         <container style="page-title">
-                                            <label>${uiLabelMap[titleProperty]} [${uiLabelMap.CommonId}:${quote.quoteId}] ${quote.description}</label>
+                                            <!-- <label>${uiLabelMap[titleProperty]} [${uiLabelMap.CommonId}:${quote.quoteId}] ${quote.description}</label> -->
+                                              <label>${uiLabelMap[titleProperty]} ${uiLabelMap.CommonId}:${quote.quoteId} </label>
                                         </container>
                                     </widgets>
                                 </section>
@@ -258,7 +259,9 @@ under the License.
             </actions>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                   
                     <decorator-section name="body">
+                        
                         <screenlet title="${groovy: parameters.quoteId ? uiLabelMap.OrderOrderQuoteEdit : uiLabelMap.OrderNewQuote}">
                             <include-form name="EditQuote" location="component://order/widget/ordermgr/QuoteForms.xml"/>
                         </screenlet>

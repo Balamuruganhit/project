@@ -2207,7 +2207,10 @@ img.cssImgLarge {
 img.cssImgStandard {
     /*border: 1px black solid;*/
     max-width: 70px;
-    max-height: 52px;
+    height: 30px;
+}
+.changer{
+    height:50px;
 }
 
 img.cssImgSmall {

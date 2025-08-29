@@ -133,7 +133,7 @@ a{
   </header>
   
    <footer class="footer">
-   <h2 class="landing" style="font-size:36px;">Power your business with Pangun ERP</h2>
+   <h2 class="landing" style="font-size:36px;">Power your Business using AI Integrated Pangun Products</h2>
     <p>Experience Our Services to Increase your productivity</p>
   </footer>
   <main class="menu-container">

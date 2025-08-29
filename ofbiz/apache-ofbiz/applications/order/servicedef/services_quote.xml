@@ -52,6 +52,11 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
+    <service name="createSaleOrder"  engine="groovy"
+                location="component://order/groovyScripts/quote/createSaleOrderFromQuote.groovy" invoke="createSaleFromQuote" auth="true">
+        <description>Create SO From Quote</description>
+        <attribute name="quoteId" type="String" mode="IN" optional="true"/>
+    </service>
     <service name="copyQuote" default-entity-name="Quote" engine="groovy"
                 location="component://order/groovyScripts/quote/QuoteServices.groovy" invoke="copyQuote" auth="true">
         <description>Copy a Quote</description>

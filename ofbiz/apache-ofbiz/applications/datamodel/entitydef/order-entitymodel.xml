@@ -1436,6 +1436,8 @@ under the License.
       <field name="quoteId" type="id"></field>
       <field name="quoteTypeId" type="id"></field>
       <field name="partyId" type="id"></field>
+      <field name="referenceId" type="id"></field>
+      <field name="referenceDate" type="date-time"></field>
       <field name="issueDate" type="date-time"></field>
       <field name="statusId" type="id"></field>
       <field name="currencyUomId" type="id"></field>

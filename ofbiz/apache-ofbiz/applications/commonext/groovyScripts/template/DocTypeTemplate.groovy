@@ -49,6 +49,7 @@ def getCustomScreenTemplate(String entityTypeName, String fieldTypeValue) {
       .cache()
       .queryFirst()
       .parentTypeId
+     
   return getCustomScreenTemplate(entityTypeName, parentTypeValue)
 }
 

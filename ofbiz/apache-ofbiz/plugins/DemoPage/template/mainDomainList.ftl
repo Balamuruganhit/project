@@ -60,7 +60,7 @@ img{
     padding: 3.5rem;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     gap: 8px;
     width:30rem;
     font-size: 18px;
@@ -166,7 +166,7 @@ img{
   </div></a>  
     </header>
     <footer class="footer">
-   <h2 class="landing" style="font-size:36px;">Features</h2>
+   <h2 class="landing" style="font-size:36px;">Ai Intergated ERP</h2>
     
   </footer>
   <div class="tile-scroll-wrapper">

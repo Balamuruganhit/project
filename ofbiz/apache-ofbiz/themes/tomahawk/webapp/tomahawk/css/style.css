@@ -2540,8 +2540,11 @@ img.cssImgLarge {
 
 img.cssImgStandard {
     /*border: 1px black solid;*/
-    max-width: 70px;
+    max-width: 30px;
     max-height: 52px;
+}
+.changer{
+    height:50px;
 }
 
 img.cssImgSmall {

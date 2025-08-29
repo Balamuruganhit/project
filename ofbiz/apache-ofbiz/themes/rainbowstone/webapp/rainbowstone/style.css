@@ -1736,8 +1736,11 @@ img.cssImgLarge {
 
 img.cssImgStandard {
     /*border: 1px black solid;*/
-    max-width: 70px;
-    max-height: 52px;
+    max-width: 30px;
+    height: 50px;
+}
+.changer{
+    height:50px;
 }
 
 img.cssImgSmall {

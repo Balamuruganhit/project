@@ -377,6 +377,20 @@ under the License.
                 <parameter param-name="emailType" value="PRDS_QUO_CONFIRM"/>
             </link>
         </menu-item>
+        <menu-item name="createSaleFromQuote" title="Create SO from Quotation">
+            <!-- <condition>
+                <and>
+                    <not><if-empty field="custRequest"/></not>
+                   <or>
+                        <if-compare field="custRequest.custRequestTypeId" operator="equals" value="RF_QUOTE"/>
+                        <if-compare field="custRequest.custRequestTypeId" operator="equals" value="RF_PUR_QUOTE"/>
+                    </or>
+                </and>
+            </condition> -->
+            <link target="quickcheckout">
+                <parameter param-name="quoteId" from-field="quote.quoteId"/>
+            </link>
+        </menu-item>
         <menu-item name="createOrder" title="${uiLabelMap.OrderCreateOrder}">
             <condition disabled-style="disabled">
                 <and>
@@ -453,7 +467,10 @@ under the License.
             <condition>
                 <and>
                     <not><if-empty field="custRequest"/></not>
-                    <if-compare field="custRequest.custRequestTypeId" operator="equals" value="RF_QUOTE"/>
+                   <or>
+                        <if-compare field="custRequest.custRequestTypeId" operator="equals" value="RF_QUOTE"/>
+                        <if-compare field="custRequest.custRequestTypeId" operator="equals" value="RF_PUR_QUOTE"/>
+                    </or>
                 </and>
             </condition>
             <link target="createQuoteFromCustRequest">
@@ -464,24 +481,27 @@ under the License.
             <condition>
                 <and>
                     <not><if-empty field="custRequest"/></not>
-                    <if-compare field="custRequest.custRequestTypeId" operator="equals" value="RF_QUOTE"/>
+                    <or>
+                        <if-compare field="custRequest.custRequestTypeId" operator="equals" value="RF_QUOTE"/>
+                        <if-compare field="custRequest.custRequestTypeId" operator="equals" value="RF_PUR_QUOTE"/>
+                    </or>
                 </and>
             </condition>
            <link target="setOrderCurrencyAgreement?custRequestId=${custRequest.custRequestId}&amp;orderMode=PURCHASE_ORDER&amp;supplierPartyId=${supplierID}&amp;hasAgreements=N&amp;
-orderId=&amp;
-orderName=&amp;
-currencyUomId=USD&amp;
-CURRENT_CATALOG_ID=DemoCatalog&amp;
-workEffortId=&amp;
-shipAfterDate_i18n=&amp; 
-shipAfterDate=&amp;
-shipBeforeDate_i18n=&amp; 
-shipBeforeDate= &amp;
-cancelBackOrderDate_i18n=&amp; 
-cancelBackOrderDate="/>
-                
-        </menu-item>
+                        orderId=&amp;
+                        orderName=&amp;
+                        currencyUomId=USD&amp;
+                        CURRENT_CATALOG_ID=DemoCatalog&amp;
+                        workEffortId=&amp;
+                        shipAfterDate_i18n=&amp; 
+                        shipAfterDate=&amp;
+                        shipBeforeDate_i18n=&amp; 
+                        shipBeforeDate= &amp;
+                        cancelBackOrderDate_i18n=&amp; 
+                        cancelBackOrderDate="/>
+             </menu-item>
     </menu>
+    
 
     <menu name="RequestScreenletMenu" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
         menu-container-style="button-bar button-style-2 no-clear">

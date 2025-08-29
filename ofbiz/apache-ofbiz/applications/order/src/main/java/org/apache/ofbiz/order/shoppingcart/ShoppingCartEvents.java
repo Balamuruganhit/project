@@ -208,7 +208,7 @@ public class ShoppingCartEvents {
 
         // Get the parameters as a MAP, remove the productId and quantity params.
         Map<String, Object> paramMap = UtilHttp.getCombinedMap(request);
-
+        Debug.logInfo("adding item Item price " + paramMap, MODULE);
         String itemGroupNumber = (String) paramMap.get("itemGroupNumber");
 
         // Get shoppingList info if passed
@@ -1625,7 +1625,7 @@ public class ShoppingCartEvents {
         Locale locale = UtilHttp.getLocale(request);
 
         String productStoreId = request.getParameter("productStoreId");
-
+        Debug.logInfo("Attempting to add to cart with productId = " + productStoreId, MODULE);
         if (UtilValidate.isNotEmpty(productStoreId)) {
             session.setAttribute("productStoreId", productStoreId);
         }

@@ -18,19 +18,19 @@ under the License.
 -->
 <#escape x as x?xml>
 
-<fo:table table-layout="fixed" width="100%" border="1pt solid black" padding="10pt">
+<fo:table table-layout="fixed" width="96%" border="1pt solid black" padding="7pt">
     <fo:table-body>
         <fo:table-row>
             <!-- First Column (Company Info) -->
-            <fo:table-cell padding="5pt">
+            <fo:table-cell padding="4pt">
                 <fo:block text-align="left">
                     <#if logoImageUrl?has_content>
                         <fo:external-graphic src="<@ofbizContentUrl>${logoImageUrl}</@ofbizContentUrl>" 
-                            overflow="hidden" height="40px" content-height="scale-to-fit" content-width="2.00in"/>
+                            overflow="hidden" height="20px" content-height="scale-to-fit" content-width="2.00in"/>
                     </#if>
                 </fo:block>
 
-                <fo:block font-size="8pt">
+                <fo:block font-size="9pt">
                     <fo:block font-weight="bold">${companyName}</fo:block>
                     <#if postalAddress??>
                         <#if postalAddress?has_content>
@@ -44,7 +44,7 @@ under the License.
 
                     <#if sendingPartyTaxId?? || phone?? || email?? || website?? || eftAccount??>
                         <#if sendingPartyTaxId??>
-                            <fo:block>${uiLabelMap.PartyTaxId}: ${sendingPartyTaxId}</fo:block>
+                            <fo:block>GSTIN: ${sendingPartyTaxId}</fo:block>
                         </#if>
                         <#if phone??>
                             <fo:block>${uiLabelMap.CommonTelephoneAbbr}: 

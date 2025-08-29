@@ -104,7 +104,7 @@ public class EmailServices {
         String returnId = (String) context.get("returnId");
         Locale locale = (Locale) context.get("locale");
         if (communicationEventId != null) {
-            Debug.logInfo("SendMail Running, for communicationEventId : " + communicationEventId, MODULE);
+            Debug.logInfo("SendMail Running, for Calling and working : " , MODULE);
         }
         Map<String, Object> results = ServiceUtil.returnSuccess();
         String subject = (String) context.get("subject");
