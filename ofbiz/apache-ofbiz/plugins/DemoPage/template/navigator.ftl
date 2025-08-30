@@ -139,7 +139,7 @@ a{
   <main class="menu-container">
     <div ><a class="menu-item" href="<@ofbizUrl controlPath="/DemoPage/control">EditCustomer</@ofbizUrl>"><img src="/DemoPage/images/erp.png">AI Integrated ERP</a></div>
     <div ><a class="menu-item" href="<@ofbizUrl controlPath="/DemoPage/control">IsoMenu</@ofbizUrl>"><img src="/DemoPage/images/iso.png">ISO Audit Pro</a></div>
-    <div ><a class="menu-item" href="<@ofbizUrl controlPath="/DemoPage/control">ReliabilityMenu</@ofbizUrl>"><img src="/DemoPage/images/relai.jpg">Reliability Tools</a></div>
+    <div ><a class="menu-item" href="<@ofbizUrl controlPath="/DemoPage/control">ReliabilityMenu</@ofbizUrl>"><img src="/DemoPage/images/relai.jpg">Reliability  Tools</a></div>
   </main>
 
  

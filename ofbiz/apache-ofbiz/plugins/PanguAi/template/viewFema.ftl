@@ -34,11 +34,11 @@ under the License.
             padding: 8px;
             text-align: center;
             font-size: 12px;
-            
+            font-weight:bolder;
             
         }
         th {
-            background-color:#0c2d7c;
+            background-color:#153d9d;
             color:white;
         }
         .header-table td {
@@ -101,6 +101,13 @@ under the License.
         height:5rem;
         margin-top:1rem;
        }
+       .printbutton:hover{
+        color:black;
+        border:1px solid black;
+        a{
+            color:black !important;
+        }
+       }
        
 </style>
 
@@ -118,26 +125,26 @@ under the License.
         <tr class="detail">
             <th class="bolderHeader" colspan="3">Drawing</th>
             <#if femaOutputTitle?has_content >
-            <td colspan="2"><input type="text" value="${femaOutputTitle.drawing}"/></td>
+            <td colspan="2"><input type="text" style="width: 10rem;height: 3rem;"  value="${femaOutputTitle.drawing!""}"/></td>
             <#else>
                 <td colspan="2"><input type="text"/></td>
             </#if>
             <th colspan="3">Part Name:</th>
             <#if femaOutputTitle?has_content >
-            <td colspan="5" style="padding:0px;"><input type="text" value="${femaOutputTitle.part}"/></td>
+            <td colspan="5" style="padding:0px;"><input type="text" style="width: 48rem;height: 3rem;" value="${femaOutputTitle.part!""}"/></td>
             <#else>
                 <td colspan="5" style="padding:0px;"><input type="text"/></td>
             </#if>
             
             <th >Rev:</th>
             <#if femaOutputTitle?has_content >
-            <td colspan="2"><input type="text" value="${femaOutputTitle.rev}"/></td>
+            <td colspan="2"><input type="text" style="width: 10rem;height: 3rem;" value="${femaOutputTitle.rev!""}"/></td>
             <#else>
                 <td colspan="2"><input type="text"/></td>
             </#if>
             <th>DFMEA Number</th>
             <#if femaOutputTitle?has_content >
-            <td colspan="2"><input type="text" value="${femaOutputTitle.femaId}"/></td>
+            <td colspan="2"><input style="width: 15rem;height: 3rem;" type="text" value="${femaOutputTitle.femaId!""}"/></td>
             <#else>
                 <td colspan="2"><input type="text"/></td>
             </#if>
@@ -145,19 +152,19 @@ under the License.
         <tr class="detail">
             <th colspan="3">System Subsystem Components:</th>
              <#if femaOutputTitle?has_content >
-            <td colspan="2"><textarea class="input" value="${femaOutputTitle.comp}" type="text">${femaOutputTitle.comp}</textarea></td>
+            <td colspan="2"><textarea class="input" value="${femaOutputTitle.comp}" type="text">${femaOutputTitle.comp!""}</textarea></td>
             <#else>
             <td colspan="2"><textarea class="input" type="text"></textarea></td>
             </#if>
             <th colspan="3">Design Responsibility:</th>
             <#if femaOutputTitle?has_content >
-            <td colspan="5"><textarea class="biggerInput" value="${femaOutputTitle.design}"  type="text">${femaOutputTitle.design}</textarea></td>
+            <td colspan="5"><textarea class="biggerInput" value="${femaOutputTitle.design}"  type="text">${femaOutputTitle.design!""}</textarea></td>
             <#else>
             <td colspan="5"><textarea class="biggerInput"  type="text"></textarea></td>
             </#if>
             <th>Prepared By:<br>Approved By:</th>
             <#if femaOutputTitle?has_content >
-            <td colspan="5"><textarea class="input" style="width:90%" value="" type="text">${femaOutputTitle.prepareField}</textarea>
+            <td colspan="5"><textarea class="input" style="width:90%" value="" type="text">${femaOutputTitle.prepareField!""}</textarea>
             <#else>
             <td colspan="5"><textarea class="input" style="width:90%" type="text"></textarea>
             </#if>
@@ -166,13 +173,13 @@ under the License.
         <tr class="detail">
             <th colspan="3">Team Members</th>
             <#if femaOutputTitle?has_content >
-            <td colspan="12"><textarea class="inputSize"  type="text">${femaOutputTitle.team}</textarea></td>
+            <td colspan="12"><textarea class="inputSize"  type="text">${femaOutputTitle.team!""}</textarea></td>
             <#else>
             <td colspan="12"><textarea class="inputSize" type="text"></textarea></td>
             </#if>
             <th>Date:</th>
             <#if femaOutputTitle?has_content >
-            <td colspan="3"><input type="Date" value="${femaOutputTitle.femaDate}"/></td>
+            <td colspan="3"><input type="Date" value="${femaOutputTitle.femaDate!""}"/></td>
             <#else>
             <td colspan="3"><input type="Date"/></td>
             </#if>
@@ -248,107 +255,107 @@ under the License.
         <tr class="HeightSetter">
             <td rowspan="6">
             <#if taskDetail?has_content >
-           <textarea class="input1" type="text">${taskDetail.item}</textarea></td>
+           <textarea class="input1" type="text">${taskDetail.item!""}</textarea></td>
             <#else>
                 <textarea class="input1" type="text"></textarea></td>
             </#if></td>
             <td rowspan="6">
             <#if taskDetail?has_content >
-           <textarea class="input1" type="text">${taskDetail.functionPart}</textarea></td>
+           <textarea class="input1" type="text">${taskDetail.functionPart!""}</textarea></td>
             <#else>
                 <textarea class="input1" type="text"></textarea></td>
             </#if></td>
             <td rowspan="6">
             <#if taskDetail?has_content >
-           <textarea class="input1" type="text">${taskDetail.achieve}</textarea></td>
+           <textarea class="input1" type="text">${taskDetail.achieve!""}</textarea></td>
             <#else>
                 <textarea class="input1" type="text"></textarea></td>
             </#if></td>
             <td rowspan="6">
             <#if taskDetail?has_content >
-           <textarea class="input1" type="text">${taskDetail.failureMode}</textarea></td>
+           <textarea class="input1" type="text">${taskDetail.failureMode!""}</textarea></td>
             <#else>
                 <textarea class="input1" type="text"></textarea></td>
             </#if></td>
            <td rowspan="6">
             <#if taskDetail?has_content >
-           <textarea class="input1" type="text">${taskDetail.potentialEffects}</textarea></td>
+           <textarea class="input1" type="text">${taskDetail.potentialEffects!""}</textarea></td>
             <#else>
                 <textarea class="input1" type="text"></textarea></td>
             </#if></td>
             <td rowspan="6"><#if taskDetail?has_content >
-                <input class="input12" type="text" id="finalValue" value="${taskDetail.severity}" />            
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.severity!""}" />            
             <#else>
                 <input class="input12" type="text" id="finalValue" />            
             </#if></td>
             <td rowspan="6">
             <#if taskDetail?has_content >
-                <textarea class="input1" type="text">${taskDetail.potentialCause}</textarea></td>
+                <textarea class="input1" type="text">${taskDetail.potentialCause!""}</textarea></td>
             <#else>
                 <textarea class="input1" type="text"></textarea></td>
             </#if></td>
              <td rowspan="6"><#if taskDetail?has_content >
-                <input class="input12" type="text" id="finalValue" value="${taskDetail.occurrence}" disabled/>            
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.occurrence!""}" disabled/>            
             <#else>
                 <input class="input12" type="text" id="finalValue" disabled/>            
             </#if></td>
             <td rowspan="6">
             <#if taskDetail?has_content >
-                <textarea class="input1" type="text">${taskDetail.designControl}</textarea></td>
+                <textarea class="input1" type="text">${taskDetail.designControl!""}</textarea></td>
             <#else>
                 <textarea class="input1" type="text"></textarea></td>
             </#if>
             <td rowspan="6">
             <#if taskDetail?has_content >
-                <textarea class="input1" type="text">${taskDetail.detectionControl}</textarea></td>
+                <textarea class="input1" type="text">${taskDetail.detectionControl!""}</textarea></td>
             <#else>
                 <textarea class="input1" type="text"></textarea></td>
             </#if></td>
              <td rowspan="6"><#if taskDetail?has_content >
-                <input class="input12" type="text" id="finalValue" value="${taskDetail.detection}" disabled/>            
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.detection!""}" disabled/>            
             <#else>
                 <input class="input12" type="text" id="finalValue" disabled/>            
             </#if></td>
             <td rowspan="6"><#if taskDetail?has_content >
-                <input class="input12" type="text" id="finalValue" value="${taskDetail.rPN}" disabled/>            
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.rPN!""}" disabled/>            
             <#else>
                 <input class="input12" type="text" id="finalValue" disabled/>            
             </#if></td>            
            <td rowspan="6">
             <#if taskDetail?has_content >
-           <textarea class="input1" type="text">${taskDetail.action}</textarea></td>
+           <textarea class="input1" type="text">${taskDetail.action!""}</textarea></td>
             <#else>
                 <textarea class="input1 setter" type="text"></textarea></td>
             </#if></td>
            <td rowspan="6">
             <#if taskDetail?has_content >
-                <textarea class="input1" type="text">${taskDetail.responsibility}</textarea></td>
+                <textarea class="input1" type="text">${taskDetail.responsibility!""}</textarea></td>
             <#else>
                 <textarea class="input1 setter" type="text"></textarea></td>
             </#if></td>
             <td rowspan="6">
             <#if taskDetail?has_content >
-                <textarea class="input1" type="text">${taskDetail.actionTaken}</textarea></td>
+                <textarea class="input1" type="text">${taskDetail.actionTaken!""}</textarea></td>
             <#else>
                 <textarea class="input1 setter" type="text"></textarea></td>
             </#if></td>
             <td rowspan="6"><#if taskDetail?has_content >
-                <input class="input12" type="text" id="finalValue" value="${taskDetail.severity1}" disabled/>            
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.severity1!""}" disabled/>            
             <#else>
                 <input class="input12" type="text" id="finalValue" disabled/>            
             </#if></td>
             <td rowspan="6"><#if taskDetail?has_content >
-                <input class="input12" type="text" id="finalValue" value="${taskDetail.occurrence1}" disabled/>            
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.occurrence1!""}" disabled/>            
             <#else>
                 <input class="input12" type="text" id="finalValue" disabled/>            
             </#if></td>
             <td rowspan="6"><#if taskDetail?has_content >
-                <input class="input12" type="text" id="finalValue" value="${taskDetail.detection1}" disabled/>            
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.detection1!""}" disabled/>            
             <#else>
                 <input class="input12" type="text" id="finalValue" disabled/>            
             </#if></td>
             <td rowspan="6"><#if taskDetail?has_content >
-                <input class="input12" type="text" id="finalValue" value="${taskDetail.rPN1}" disabled/>            
+                <input class="input12" type="text" id="finalValue" value="${taskDetail.rPN1!""}" disabled/>            
             <#else>
                 <input class="input12" type="text" id="finalValue" disabled/>            
             </#if></td>
@@ -407,5 +414,5 @@ under the License.
     
     </div>
     <br/>
-  <button style="margin:1rem;margin-bottom:2rem;"><a style="color:black" href="Report.pdf?femaId=${femaOutputTitle.femaId}">Print Document</a></button>
+  <button style="margin:1rem;margin-bottom:2rem;" class="printbutton"><a style="color:white" href="Report.pdf?femaId=${femaOutputTitle.femaId}">Print Document</a></button>
 

@@ -1,28 +1,10 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
 
  .contentarea{
     padding:0;
     padding-top:2.5rem;
  }
  .header_ram{
-    background: #0c2d7c;
+    background: #153d9d;
     padding: 1rem;
     text-align: right;
     margin: auto;
@@ -47,6 +29,8 @@ td{
     display: inline-block;  
     border-radius: 1rem;
     padding: 0.75em;
+    width: 13rem;
+    font-weight: bold;
 }
 .header_ram td input{
     width: 90%;
@@ -57,7 +41,7 @@ td{
 }
 
 .expander_section{
-    background: #0c2d7c;
+    background: #153d9d;
     width: 93%;
     margin:2rem auto;
     border-radius: 1rem;
@@ -70,6 +54,10 @@ td{
     padding-top: 1rem;
 }
 .plus h3{
+    color: white;
+    margin-left: 1.4rem;
+}
+.plus h4{
     color: white;
     margin-left: 1.4rem;
 }
@@ -131,7 +119,8 @@ td{
     padding: 0.3rem;
     font-size: 1.2rem;
     border-radius: 0.3rem;
-    width: 4rem;
+    width: 4.3rem;
+    padding: 0.56rem 0.4rem
 }
 
 .left button{
@@ -139,7 +128,7 @@ td{
     font-size: 1.2rem;
     border-radius: 0.4rem;
     cursor: pointer;
-
+    
 }
 
 .left tr:last-child td{
@@ -154,7 +143,7 @@ td{
    padding: 0.4rem;
    border-radius: 0.5rem;
     margin-top: 0.2rem;
-    
+    font-weight: bold;
 }
 .right td:not(:first-child)
    {
@@ -163,12 +152,13 @@ td{
 .expander_section button{
     background: white;
     color: black;
-    margin: auto;
+  
     position: relative;
     left: 70%;
+    margin-top: 2rem;
 }
 #save{
-    background:  #0c2d7c;
+    background:  #153d9d;
     margin: auto;
     position: relative;
     left: 5%;

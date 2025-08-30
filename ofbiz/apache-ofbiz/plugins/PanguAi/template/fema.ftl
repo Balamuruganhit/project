@@ -34,11 +34,11 @@ under the License.
             padding: 8px;
             text-align: center;
             font-size: 12px;
-            
+            font-weight: bolder;
             
         }
         th {
-            background-color:#0c2d7c;
+            background-color:#153d9d;
             color:white
         }
         .header-table td {
@@ -96,10 +96,8 @@ under the License.
        #generate{
         margin-top:1rem;
        }
-       #addButton{
-        width:7rem;
-        height:5rem;
-        margin-top:1rem;
+       .printbutton:hover{
+        color:black;
        }
        
 </style>
@@ -403,11 +401,14 @@ under the License.
         </tr>
        </#if>
     </table>
-    
-    <button id="addButton" type="button">Add row</button>
+    <div style="display:flex;gap: 16px">
+        <button id="addButton" type="button">Add row</button>
+        <button id="save">Save</button>
+    </div>
+   
     </div>
     <br/>
-<button id="save">Save</button>
+
 <script>
     
 const firstTable=document.getElementById('firstTable');
