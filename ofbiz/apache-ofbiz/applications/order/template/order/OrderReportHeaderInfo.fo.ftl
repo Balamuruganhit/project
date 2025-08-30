@@ -17,8 +17,8 @@ specific language governing permissions and limitations
 under the License.
 -->
 <#escape x as x?xml>
-                 <fo:table border="1pt solid black" padding="5pt" table-layout="fixed">
-                 <fo:table-column column-width="50%"/>
+    <fo:table border="1pt solid black" padding="5pt" table-layout="fixed">
+    <fo:table-column column-width="50%"/>
     <fo:table-column column-width="50%"/>
         <fo:table-body>
             <fo:table-row>

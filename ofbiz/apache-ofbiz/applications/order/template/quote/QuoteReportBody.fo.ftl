@@ -26,12 +26,12 @@ under the License.
                 <fo:table-column column-width="119pt"/>
                 <fo:table-header>
                     <fo:table-row  >
-                        <fo:table-cell border-bottom="thin solid grey" padding="6.8pt" padding-bottom="0pt" border="1pt solid black"><fo:block font-weight="bold">${uiLabelMap.ProductItem}</fo:block></fo:table-cell>
-                        <fo:table-cell border-bottom="thin solid grey" padding="6.8pt" border="1pt solid black"><fo:block font-weight="bold" text-align="center">Item Description</fo:block></fo:table-cell>
-                        <fo:table-cell border-bottom="thin solid grey" padding="6.8pt" border="1pt solid black"><fo:block font-weight="bold" text-align="right">${uiLabelMap.ProductQuantity}</fo:block></fo:table-cell>
+                        <fo:table-cell border-bottom="thin solid black" padding="6.8pt" padding-bottom="0pt" border="1pt solid black"><fo:block font-weight="bold">${uiLabelMap.ProductItem}</fo:block></fo:table-cell>
+                        <fo:table-cell border-bottom="thin solid black" padding="6.8pt" border="1pt solid black"><fo:block font-weight="bold" text-align="center">Item Description</fo:block></fo:table-cell>
+                        <fo:table-cell border-bottom="thin solid black" padding="6.8pt" border="1pt solid black"><fo:block font-weight="bold" text-align="right">${uiLabelMap.ProductQuantity}</fo:block></fo:table-cell>
                         
-                        <fo:table-cell border-bottom="thin solid grey" padding="6.8pt" border="1pt solid black"><fo:block font-weight="bold" text-align="right">Unit Rate</fo:block></fo:table-cell>
-                        <fo:table-cell border-bottom="thin solid grey" padding="6.8pt" border="1pt solid black"><fo:block font-weight="bold" text-align="right">${uiLabelMap.OrderAmount}</fo:block></fo:table-cell>
+                        <fo:table-cell border-bottom="thin solid black" padding="6.8pt" border="1pt solid black"><fo:block font-weight="bold" text-align="right">Unit Rate</fo:block></fo:table-cell>
+                        <fo:table-cell border-bottom="thin solid black" padding="6.8pt" border="1pt solid black"><fo:block font-weight="bold" text-align="right">${uiLabelMap.OrderAmount}</fo:block></fo:table-cell>
                     </fo:table-row>
                 </fo:table-header>
                 <fo:table-body>
@@ -102,7 +102,7 @@ under the License.
                     </#list>
                     <#else>
                       <fo:table-row>
-                         <fo:table-cell number-columns-spanned="7" padding="2pt" background-color="${rowColor}">
+                         <fo:table-cell number-columns-spanned="5" border='1pt solid black' padding="2pt" background-color="${rowColor}">
                              <fo:block>${uiLabelMap.OrderNoItemsQuote}</fo:block>
                          </fo:table-cell>
                       </fo:table-row>
@@ -127,10 +127,10 @@ under the License.
                             <fo:table-cell padding="6pt" >
                                 <fo:block font-weight="bold" text-align="right"></fo:block>
                             </fo:table-cell>
-                            <fo:table-cell padding="6pt" border="1pt solid black">
+                            <fo:table-cell padding="6pt" >
                                 <fo:block font-weight="bold" text-align="right">${uiLabelMap.CommonSubtotal}</fo:block>
                             </fo:table-cell>
-                            <fo:table-cell padding="6pt" border="1pt solid black">
+                            <fo:table-cell padding="6pt" >
                                 <fo:block text-align="right"><@ofbizCurrency amount=totalQuoteAmount isoCode=quote.currencyUomId/></fo:block>
                             </fo:table-cell>
                         </fo:table-row>
@@ -146,10 +146,10 @@ under the License.
                                     <fo:table-cell padding="2pt" >
                                         <fo:block font-weight="bold" text-align="right"></fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell padding="2pt" border="1pt solid black">
+                                    <fo:table-cell padding="2pt" >
                                         <fo:block font-weight="bold" text-align="right">${adjustmentType.get("description", locale)!}</fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell padding="2pt" border="1pt solid black">
+                                    <fo:table-cell padding="2pt" >
                                         <fo:block text-align="right"><@ofbizCurrency amount=quoteAdjustment.amount isoCode=quote.currencyUomId/></fo:block>
                                     </fo:table-cell>
                                 </fo:table-row>
@@ -195,6 +195,12 @@ under the License.
                                 </fo:table-cell>
                             </fo:table-row>
                         </#list>
+                    <#else>
+                         <fo:table-row>
+                         <fo:table-cell number-columns-spanned="2" padding="2pt" background-color="${rowColor}">
+                             <fo:block></fo:block>
+                         </fo:table-cell>
+                      </fo:table-row>
                     </#if>
                 </fo:table-body>
                 </fo:table>
